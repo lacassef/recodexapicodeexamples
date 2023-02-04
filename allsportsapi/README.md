@@ -1,0 +1,1 @@
+This examples can be used with all APIs related to the AllSportsAPI.
