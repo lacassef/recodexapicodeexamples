@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <style>
+    svg {
+      background-image: url("soccer_field.png");
+      background-repeat: no-repeat;
+      background-color: #228B22;
+      width: 297px;
+      height: 186px;
+    }
+    .node {
+      fill: #c0cd32;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <svg></svg>
+  <script>
+    // Your JSON dataset
+        var data = [
+  {
+    x: 98,
+    y: 73
+  },
+  {
+    x: 67,
+    y: 43
+  },
+  {
+    x: 66,
+    y: 47
+  },
+  {
+    x: 40,
+    y: 4
+  },
+  {
+    x: 25,
+    y: 30
+  },
+  {
+    x: 22,
+    y: 31
+  },
+  {
+    x: 31,
+    y: 34
+  },
+  {
+    x: 63,
+    y: 65
+  },
+  {
+    x: 46,
+    y: 25
+  },
+  {
+    x: 60,
+    y: 9
+  },
+  {
+    x: 95,
+    y: 42
+  },
+  {
+    x: 68,
+    y: 51
+  },
+  {
+    x: 70,
+    y: 44
+  },
+  {
+    x: 68,
+    y: 44
+  },
+  {
+    x: 72,
+    y: 88
+  },
+  {
+    x: 66,
+    y: 84
+  },
+  {
+    x: 96,
+    y: 60
+  },
+  {
+    x: 97,
+    y: 59
+  },
+  {
+    x: 90,
+    y: 26
+  },
+  {
+    x: 35,
+    y: 80
+  },
+  {
+    x: 32,
+    y: 81
+  },
+  {
+    x: 35,
+    y: 95
+  },
+  {
+    x: 68,
+    y: 47
+  },
+  {
+    x: 63,
+    y: 50
+  },
+  {
+    x: 96,
+    y: 52
+  },
+  {
+    x: 88,
+    y: 73
+  },
+  {
+    x: 85,
+    y: 73
+  },
+  {
+    x: 68,
+    y: 36
+  },
+  {
+    x: 64,
+    y: 31
+  },
+  {
+    x: 89,
+    y: 14
+  },
+  {
+    x: 87,
+    y: 10
+  },
+  {
+    x: 85,
+    y: 7
+  },
+  {
+    x: 35,
+    y: 10
+  },
+  {
+    x: 69,
+    y: 21
+  },
+  {
+    x: 92,
+    y: 39
+  }
+];
+    
+    // Convert the data
+    var convertedData = [];
+    var countMap = new Map();
+    for (var i = 0; i < data.length; i++) {
+      var x = data[i].x;
+      var y = data[i].y;
+      if (!countMap.has(x + "," + y)) {
+        countMap.set(x + "," + y, 1);
+        convertedData.push({x: x, y: y, count: 1});
+      } else {
+        var count = countMap.get(x + "," + y) + 1;
+        countMap.set(x + "," + y, count);
+        convertedData[convertedData.length - 1].count = count;
+      }
+    }
+    
+    // Append the circles to the SVG
+    var svg = d3.select("svg");
+    svg.selectAll(".node")
+      .data(convertedData)
+      .enter().append("circle")
+      .attr("class", "node")
+      .attr("cx", function(d) { return d.x / 100 * 297; })
+      .attr("cy", function(d) { return 186 - d.y / 100 * 186; })
+      .attr("r", function(d) { return d.count * 5; })
+      .style("opacity", function(d) { return 1 - d.count / 10; });
+  </script>
+</body>
+</html>
