@@ -4,7 +4,7 @@ const App = () => {
     const [image, setImage] = useState(null);
 
     useEffect(() => {
-        const playerId = "12345";
+        const playerId = "3041";
         const headers = new Headers({
             "X-RapidAPI-Key": "YOUR_API_KEY",
             "X-RapidAPI-Host": "allsportsapi2.p.rapidapi.com"
