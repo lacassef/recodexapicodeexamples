@@ -30,7 +30,7 @@ const App = () => {
 
     return (
         <div>
-            {image ? <img src={image} alt="Player" /> : <p>Loading....</p>}
+            {image ? <img src={image} alt="Player" /> : <p>Loading...</p>}
         </div>
     );
 };
