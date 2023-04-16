@@ -1,2 +1,4 @@
 <b>How to get live and pre-match data from the API?</b><br/>
-To get live and/or pre-match data like statistics you will need to use the endpoint that have “Match” in their name. To find all these endpoints you can use the search tool available on the endpoints tab. Eg.: You can search Football Match, this will return you all endpoints like statistics, incidents, odds and more.
+To get live and/or pre-match data like statistics you will need to use the endpoint that have “Match” in their name. To find all these endpoints you can use the search tool available on the endpoints tab. Eg.: You can search Football Match, this will return you all endpoints like statistics, incidents, odds and more.<br/>
+<b>Players statistics from match?</b><br/>
+You can find player statistics by two ways. The first is from Match Lineups, Eg.: Football Match Lineups. This will return all players, including their statistics. The second way is to use Match Player Statistics, that will return statistics for a player by their id.
