@@ -38,16 +38,16 @@
 <p>We’ve created this API to collect all our sports API’s into one. If it’s too hard to understand the endpoints we recommend you to go API by API testing and seeing every one of them. After all, the endpoints all are the same except for the host.</p>
 <p>The links for the API’s are:</p>
 <ul>
-<li><a target="_blank" rel="noopener noreferrer" href="https://rapidapi.com/fluis.lacasse/api/footapi7/">Football/Soccer</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/tennisapi1/" target="_blank" rel="noopener noreferrer">Tennis</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/icehockeyapi/" target="_blank" rel="noopener noreferrer">Ice Hockey</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/americanfootballapi/" target="_blank" rel="noopener noreferrer">American-Football</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/baseballapi/" target="_blank"  rel="noopener noreferrer">Baseball</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/basketapi1/" target="_blank" rel="noopener noreferrer">Basketball</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/cricketapi21/" target="_blank" rel="noopener noreferrer">Cricket</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/esportapi1/" target="_blank" rel="noopener noreferrer">Esports</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/motorsportapi/" target="_blank" rel="noopener noreferrer">Motorsport</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/rugbyapi2/" target="_blank" rel="noopener noreferrer">Rugby</a></li></ul>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/footapi7/" target="_blank">Football/Soccer</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/tennisapi1/" target="_blank">Tennis</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/icehockeyapi/" target="_blank">Ice Hockey</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/americanfootballapi/" target="_blank">American-Football</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/baseballapi/" target="_blank" >Baseball</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/basketapi1/" target="_blank">Basketball</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/cricketapi21/" target="_blank">Cricket</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/esportapi1/" target="_blank">Esports</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/motorsportapi/" target="_blank">Motorsport</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/rugbyapi2/" target="_blank">Rugby</a></li></ul>
 <p>There, you will find the grouped endpoints. The group names can be:</p>
 <ul><li>Matches: Provides informations about the matches or schedules. Lineups, Statistics, Incidents, Highlights, Odds are some of the info you will find there.</li>
 <li>Teams: Provides informations about the teams. Squads, Statistics, Logo, Transfers are some info you will get there.</li>
