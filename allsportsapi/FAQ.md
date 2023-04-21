@@ -38,7 +38,7 @@
 <p>We’ve created this API to collect all our sports API’s into one. If it’s too hard to understand the endpoints we recommend you to go API by API testing and seeing every one of them. After all, the endpoints all are the same except for the host.</p>
 <p>The links for the API’s are:</p>
 <ul>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/footapi7/" target="_blank" rel="noopener noreferrer">Football/Soccer</a></li>
+<li><a target="_blank" rel="noopener noreferrer" href="https://rapidapi.com/fluis.lacasse/api/footapi7/">Football/Soccer</a></li>
 <li><a href="https://rapidapi.com/fluis.lacasse/api/tennisapi1/" target="_blank" rel="noopener noreferrer">Tennis</a></li>
 <li><a href="https://rapidapi.com/fluis.lacasse/api/icehockeyapi/" target="_blank" rel="noopener noreferrer">Ice Hockey</a></li>
 <li><a href="https://rapidapi.com/fluis.lacasse/api/americanfootballapi/" target="_blank" rel="noopener noreferrer">American-Football</a></li>
