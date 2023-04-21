@@ -1,12 +1,15 @@
-This examples can be used with all APIs related to the AllSportsAPI. <br>
-All Sports: https://rapidapi.com/fluis.lacasse/api/allsportsapi2 <br>
-Football/Soccer: https://rapidapi.com/fluis.lacasse/api/footapi7/ <br>
-Tennis: https://rapidapi.com/fluis.lacasse/api/tennisapi1/ <br>
-Ice Hockey: https://rapidapi.com/fluis.lacasse/api/icehockeyapi/ <br>
-American-Football: https://rapidapi.com/fluis.lacasse/api/americanfootballapi/ <br>
-Baseball: https://rapidapi.com/fluis.lacasse/api/baseballapi/ <br>
-Basketball: https://rapidapi.com/fluis.lacasse/api/basketapi1/ <br>
-Cricket: https://rapidapi.com/fluis.lacasse/api/cricketapi21/ <br>
-Esports: https://rapidapi.com/fluis.lacasse/api/esportapi1/ <br>
-Motorsport: https://rapidapi.com/fluis.lacasse/api/motorsportapi/ <br>
-Rugby: https://rapidapi.com/fluis.lacasse/api/rugbyapi2/ <br>
+<HTML>
+<p>This examples can be used with all APIs related to the AllSportsAPI.</p>
+<ul>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/allsportsapi2" target="_blank">All Sports</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/footapi7/" target="_blank">Football/Soccer</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/tennisapi1/" target="_blank">Tennis</a></li>
+<li><a target="_blank" href="https://rapidapi.com/fluis.lacasse/api/icehockeyapi/">Ice Hockey</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/americanfootballapi/" target="_blank">American-Football</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/baseballapi/" target="_blank">Baseball</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/basketapi1/" target="_blank">Basketball</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/cricketapi21/" target="_blank">Cricket</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/esportapi1/" target="_blank">Esports</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/motorsportapi/" target="_blank">Motorsport</a></li>
+<li><a target="_blank" href="https://rapidapi.com/fluis.lacasse/api/rugbyapi2/">Rugby</a></li>
+</ul>
