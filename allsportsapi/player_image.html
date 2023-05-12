@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <title>Player Image</title>
+<style>
+    .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 24px;
+    font-weight: bold;
+}
+    .image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+</style>
+</head>
+<body>
+<div id="root">
+    <p class="loading">Loading...</p>
+</div>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+    const playerId = "3041";
+    const headers = new Headers({
+    "X-RapidAPI-Key": "YOUR_API_KEY",
+    "X-RapidAPI-Host": "allsportsapi2.p.rapidapi.com"
+});
+    const options = {
+    headers: headers
+};
+    fetch(`https://allsportsapi2.p.rapidapi.com/api/player/${playerId}/image`, options)
+    .then(response => {
+    if (!response.ok) {
+    throw new Error("Network response was not ok");
+}
+    return response.blob();
+})
+    .then(blob => {
+    const imageUrl = URL.createObjectURL(blob);
+    const root = document.querySelector('#root');
+    root.innerHTML = `<img class="image" src="${imageUrl}" alt="Player"/>`;
+})
+    .catch(error => {
+    console.error("There was a problem with the fetch operation:", error);
+});
+});
+</script>
+</body>
+</html>
