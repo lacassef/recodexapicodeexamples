@@ -1,19 +1,48 @@
 <h1>FAQ</h1>
 <h3>How to get live and pre-match data from the API?</h3>
-<p>To get live and/or pre-match data like statistics you will need to use the endpoint that have “Match” in their name. To find all these endpoints you can use the search tool available on the endpoints tab. Eg.: You can search Football Match, this will return you all endpoints like statistics, incidents, odds and more.</p>
-<h3>Players statistics from match?</h3>
-<p>You can find player statistics by two ways. The first is from Match Lineups, Eg.: Football Match Lineups. This will return all players, including their statistics. The second way is to use Match Player Statistics, that will return statistics for a player by their id.</p>
-<h3>How to show image on my website?</h3>
-<p>We return image/png as response for all image/logo endpoints. To show these image on your website you need to statically access the endpoint or to convert to base64 string to dynamically show the image.</p>
-<h3>Time of the match</h3>
-<p>Every time you hit any match endpoint there are several informations we provide.</p>
-<p>The attribute “status” contains information about the period being played and the attribute “time” that contains informations about the time elapsed since the period start. From that you can perform some simple mathematical operations to get the seconds played since the start of the period.</p>
-<p>Eg.:</p>
-<ul><li>if you have event[“status”][“description”]=2nd half then you perform: current timestamp in seconds - event[“time”][“currentPeriodStartTimestamp”] + 45*60, as the second period starts at 45 minute.</li>
-<li>if you have event[“status”][“description”]=1st half then you perform: current timestamp in seconds - event[“time”][“currentPeriodStartTimestamp”], as it is the first period.</li></ul>
 
-<p>We also provide the attribute “startTimestamp” that contains the time that the match started or will start. You can simply do a conversion via date builder or timestamp converter to get the date, year and time the match started or will start.</p>
-<p>All the timestamps we provide are in seconds.</p>
+<p>If you're seeking live and pre-match data, such as statistics, you will have to interact with specific API endpoints labeled with "Match". These can be conveniently located on the RapidAPI page.</p> 
+
+<p>Using the built-in search tool within the endpoints tab on RapidAPI, you can simply type 'Match'. This will instantly return a comprehensive list of all related endpoints, including data categories like statistics, incidents, odds, and more. This efficient method will help you quickly find the necessary endpoints for retrieving the data you need.</p>
+<h3>How to Retrieve Player Statistics from a Match?</h3>
+
+<p>There are two primary methods to access player statistics. The first method involves using the 'Match Lineups' endpoint, for example: 'Football Match Lineups'. This endpoint provides comprehensive data about all participating players, inclusive of their respective statistics.</p>
+
+<p>The second approach utilizes the 'Match Player Statistics' endpoint. By inputting a specific player's id, you can directly retrieve that player's statistics. Both methods can be accessed effortlessly through the search tool in the endpoints tab on the RapidAPI page.</p>
+<h3>Methods for Displaying Images on Your Website</h3>
+
+<p>All image or logo endpoints return responses in image/png format, with placeholders being the only exception, which return SVG images. To integrate these images on your website, considering the necessary authorization headers for the API calls, you have several practical options:</p>
+
+<ol>
+<li><strong>Fetch API:</strong> Use JavaScript's Fetch API or other similar HTTP libraries like Axios to send a GET request to the endpoint. Then, set the response as a source for an HTML img element. The Fetch API allows for the setting of specific headers, accommodating the need for authorization.</li>
+
+<li><strong>Base64 Conversion:</strong> Convert the image to a base64 string using JavaScript after making an authorized fetch request. This allows for dynamic rendering of the image on your website.</li>
+
+<li><strong>Server-side Proxy:</strong> Implement a server-side proxy that handles the authenticated request to the API, retrieves the image, and then serves it to the front-end of your website. This approach isolates the API credentials on the server, improving security.</li>
+
+<li><strong>Canvas API:</strong> Another dynamic approach, especially useful when needing to manipulate images further, is to use JavaScript's Canvas API. Fetch the image via an authorized request, then draw it onto a canvas element.</li>
+
+</ol>
+
+<p>Each method has its own benefits, so choose the one that best aligns with your website's requirements and your comfort with JavaScript and server-side programming.</p>
+
+<h3>Determining the Match Time</h3>
+
+<p>When you interact with any match endpoint, we provide an array of detailed information. Among these, the attribute "statusTime" is vital to determining the match's ongoing time:</p>
+
+<ul>
+  <li><strong>"statusTime"</strong>: Contains data about the current time of the match. With this information, you can perform simple mathematical operations to calculate the seconds that have passed since the beginning of the period. Specifically, the current time is calculated as: (current timestamp - event["statusTime"]["timestamp"]) + event["statusTime"]["initial"].</li>
+</ul>
+
+<p>If you aim to implement the time in a "time + added time" format, the current added time after the official period (e.g., the standard 45 minutes for football/soccer), would follow the below logic:</p>
+
+<ul>
+  <li>If (current timestamp - event["statusTime"]["timestamp"]) > event["statusTime"]["max"], then the added time would be: (current timestamp - event["statusTime"]["timestamp"]) - event["statusTime"]["max"].</li>
+</ul>
+
+<p>We also offer an attribute called "time" which encompasses "injuryTime" - the maximum additional time granted by the referee, also known as injury time.</p>
+
+<p>Please note, all timestamps we provide are in seconds.</p>
 <h3>How to build your website or application with our API?</h3>
 <p>If you need assistance from our team you can contact us from the About tab, we will help you through your website/application building process. Don’t worry, this is costless.</p>
 <h3>Does this API provides odds?</h3>
