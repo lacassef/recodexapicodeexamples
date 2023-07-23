@@ -43,61 +43,127 @@
 <p>We also offer an attribute called "time" which encompasses "injuryTime" - the maximum additional time granted by the referee, also known as injury time.</p>
 
 <p>Please note, all timestamps we provide are in seconds.</p>
-<h3>How to build your website or application with our API?</h3>
-<p>If you need assistance from our team you can contact us from the About tab, we will help you through your website/application building process. Don’t worry, this is costless.</p>
-<h3>Does this API provides odds?</h3>
-<p>This API(and all other sports, except for motorsport and esport) provides general/referential use odds mostly from bet365. To get specialized odds please see: <a href="https://rapidapi.com/fluis.lacasse/api/pinaculo" target="_blank">Pinaculo</a> and <a href="https://rapidapi.com/fluis.lacasse/api/uniodds3" target="_blank">Unioods</a> </p>
-<h3>Status and Incidents</h3>
-<p>The incidents description can be done by “incidentType” and “incidentClass” or “text”.</p>
-<ul>
-<li>incidentType can be: “period”, “penaltyShootout”, “card”, “substitution”, “injuryTime”, “goal”, “varDecision”, “inGamePenalty”</li>
-<li>incidentClass for “penaltyShootout”: “scored”, “missed”</li>
-<li>incidentClass for “card”: “red”, “yellow”, "yellowRed"</li>
-<li>text for “period”: “HT”, “FT”, “ET”, “PEN”</li>
-<li>incidentClass for “goal”: “penalty”, “regular”, “ownGoal”</li>
-<li>incidentClass for “substitution”: “injury”, null</li>
-<li>incidentClass for “varDecision”: “penaltyNotAwarded”, “goalAwarded”, “cardUpgrade” => confirmed -> true, false</li>
-<li>incidentClass for “inGamePenalty”: “missed”</li>
-</ul>
-<p>The description of the match status can be done by:</p>
 
-<p>Status are are described by the ‘type’ property that provides a code string. The returns are: ‘inprogress’, ‘finished’, ‘postponed’, ‘canceled’, 'notstarted’</p>
-<p>The ‘description’ property returns understandable text of the status. Some returns for football are: ‘1st half’, ‘2nd half’, ‘Halftime’, ‘Ended’, ‘Postponed’, ‘Canceled’, ‘Not started’, “AP”(After Penalties), “AET”(After Extra Time), “1st extra”, “Extra time halftime”, “2nd extra”, “Awaiting penalties”, “Penalties”, “Awaiting extra time”.</p>
-<h3>API too complicated to understand, what to do?</h3>
-<p>We’ve created this API to collect all our sports API’s into one. If it’s too hard to understand the endpoints we recommend you to go API by API testing and seeing every one of them. After all, the endpoints all are the same except for the host.</p>
-<p>The links for the API’s are:</p>
+<h3>Guidance on Building Your Website or Application with Our API</h3>
+<p>Embarking on the journey to develop your website or application using our API? Rest assured, you're not alone. Our team is more than ready to offer their expertise and walk you through the entire process.</p>
+<p>If you require support, feel free to reach out to us via the 'About' tab. Whether you're navigating a technical challenge or seeking best-practice advice, we're here to help at no extra cost. Building your digital presence with our API should be a smooth and enriching experience, and we're committed to ensuring just that.</p>
+<h3>Availability of Betting Odds through Our API</h3>
+
+<p>Yes, our API does provide odds for your convenience. Apart from motorsport and esports, odds are available for all other sports, primarily sourced from bet365, one of the leading betting companies. These odds are intended for general and referential use.</p>
+
+<p>If you require specialized odds, we recommend considering our odds service, <a href="https://rapidapi.com/fluis.lacasse/api/pinaculo" target="_blank">Pinaculo</a>. It offers a more detailed and sport-specific array of betting odds to suit your needs.</p>
+<h3>Understanding Match Incidents and Status</h3>
+
+<p>The incidents and status of a match can be interpreted using specific attributes and their respective values in the data provided by the API. Here's a detailed explanation:</p>
+
+<h4>Incidents</h4>
+
+<p>Descriptions of incidents can be extracted through the "incidentType", "incidentClass", or "text" attributes. Here's a breakdown of their possible values:</p>
+
 <ul>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/footapi7/" target="_blank">Football/Soccer</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/tennisapi1/" target="_blank">Tennis</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/icehockeyapi/" target="_blank">Ice Hockey</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/americanfootballapi/" target="_blank">American-Football</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/baseballapi/" target="_blank" >Baseball</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/basketapi1/" target="_blank">Basketball</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/cricketapi21/" target="_blank">Cricket</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/esportapi1/" target="_blank">Esports</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/motorsportapi/" target="_blank">Motorsport</a></li>
-<li><a href="https://rapidapi.com/fluis.lacasse/api/rugbyapi2/" target="_blank">Rugby</a></li></ul>
-<p>There, you will find the grouped endpoints. The group names can be:</p>
-<ul><li>Matches: Provides informations about the matches or schedules. Lineups, Statistics, Incidents, Highlights, Odds are some of the info you will find there.</li>
-<li>Teams: Provides informations about the teams. Squads, Statistics, Logo, Transfers are some info you will get there.</li>
-<li>Players: Provides informations about the players. Statistics, Image, Transfer History are some info you will get there.</li>
-<li>Managers: Provides informations about managers. Career History, Image, Last Matches are some info you will get there.</li></ul>
-<p>If you still don’t understand anything or want to request new feature you can contact us.</p>
-<h3>Why we don't provide widgets?</h3>
-<p>Providing widgets will let the user to know about your API-KEY, which can represent a major security break. Instead of providing widgets we are available to provide you support while you are developing your application. You can contact us to have a free help from our team.</p>
-<h3>How to get all leagues of the sport?</h3>
-<p>To get all the leagues of the sport, you will need to list all categories first and then list all tournaments inside the category.</p>
-<p>The category represents the country/tour/game of the tournaments. To get all categories, you can use the following endpoint: “/api/tournament/categories” for football or “/api/{sport}/tournament/categories” for other sports. With the response you can get all the leagues with the following endpoint: “/api/tournament/all/category/{category_id}” for football or “/api/{sport}/tournament/all/category/{category_id}" for other sports. Additionally, there are the category schedules that shows the events played in certain day for that category alone: “/api/category/{category_id}/events/{day}/{month}/{year}” for football or “/api/{sport}/category/{category_id}/events/{day}/{month}/{year}" for other sports, with the day being integer.</p>
-<h3>How to get all teams in a league?</h3>
-<p>To get all teams of the league you need to use the standings endpoints.</p>
-<h3>Why schedules endpoints returns some matches from previous and next day?</h3>
-<p>Answer from this <a href="https://rapidapi.com/fluis.lacasse/api/allsportsapi2/discussions/38225" target="_blank">discussion</a>:</p>
-<blockquote cite="https://rapidapi.com/fluis.lacasse/api/allsportsapi2/discussions/38225">In short answer, it’s to provide the matches independently of the user’s timezone. You can filter the matches according to your timezone. If you need help doing so, we can help you.</blockquote>
-<p>Long answer(copying from this <a href="https://rapidapi.com/fluis.lacasse/api/footapi7/discussions/33473" target="_blank">discussion</a>)</p>
-<blockquote>As you may have noticed, the matches returned by the schedules endpoint have the timestamp according to the time zone gmt/utc+00. So that all time zones are covered, we return matches from 12 hours of the previous day and 12 hours of the next day…</blockquote>
-<h3>Not providing the data I'm looking, what can I do?</h3>
-<p>I think if this is the case, this API can meet your needs: <a href="https://rapidapi.com/fluis.lacasse/api/allscores/" target="_blank">Allscores</a></p>
-<h3>Team Transfer Types</h3>
-<h4>Team transfers:</h4>
-<ul><li>type 1 - loan</li><li>type 2 - end of loan</li><li>type 3 - bought/sold</li>
+  <li><strong>incidentType:</strong> Can be "period", "penaltyShootout", "card", "substitution", "injuryTime", "goal", "varDecision", "inGamePenalty".</li>
+  <li><strong>incidentClass:</strong> Various values depending on the incident type, such as:
+    <ul>
+      <li>For "penaltyShootout": "scored", "missed".</li>
+      <li>For "card": "red", "yellow", "yellowRed".</li>
+      <li>For "goal": "penalty", "regular", "ownGoal".</li>
+      <li>For "substitution": "injury", null.</li>
+      <li>For "varDecision": "penaltyNotAwarded", "goalAwarded", "cardUpgrade", with a subsequent 'confirmed' attribute that could be true or false.</li>
+      <li>For "inGamePenalty": "missed".</li>
+    </ul>
+  </li>
+  <li><strong>text:</strong> Specific to "period", can be "HT", "FT", "ET", "PEN".</li>
 </ul>
+
+<h4>Status</h4>
+
+<p>The status of the match is described using two properties:</p>
+
+<ul>
+  <li><strong>type:</strong> Provides a code string to represent the match status. Possible returns are: 'inprogress', 'finished', 'postponed', 'canceled', 'notstarted’.</li>
+  <li><strong>description:</strong> Offers a more understandable text of the status. For football, this can include '1st half', '2nd half', 'Halftime', 'Ended', 'Postponed', 'Canceled', 'Not started', "AP" (After Penalties), "AET" (After Extra Time), "1st extra", "Extra time halftime", "2nd extra", "Awaiting penalties", "Penalties", "Awaiting extra time".</li>
+</ul>
+<h3>Navigating Our API: Step-by-Step Guidance</h3>
+
+<p>We understand that our comprehensive API, combining data from various sports APIs, might appear complex at first glance. If you're finding it challenging to understand the endpoints, we recommend approaching it one API at a time. Test each one and familiarize yourself with their functionalities. Remember, the structure of the endpoints remains consistent across different hosts.</p>
+
+<p>Here are the individual API links for each sport:</p>
+
+<ul>
+  <li><a href="https://rapidapi.com/fluis.lacasse/api/footapi7/" target="_blank">Football/Soccer</a></li>
+  <li><a href="https://rapidapi.com/fluis.lacasse/api/tennisapi1/" target="_blank">Tennis</a></li>
+  <li><a href="https://rapidapi.com/fluis.lacasse/api/icehockeyapi/" target="_blank">Ice Hockey</a></li>
+  <li><a href="https://rapidapi.com/fluis.lacasse/api/americanfootballapi/" target="_blank">American-Football</a></li>
+  <li><a href="https://rapidapi.com/fluis.lacasse/api/baseballapi/" target="_blank">Baseball</a></li>
+  <li><a href="https://rapidapi.com/fluis.lacasse/api/basketapi1/" target="_blank">Basketball</a></li>
+  <li><a href="https://rapidapi.com/fluis.lacasse/api/cricketapi21/" target="_blank">Cricket</a></li>
+  <li><a href="https://rapidapi.com/fluis.lacasse/api/esportapi1/" target="_blank">Esports</a></li>
+  <li><a href="https://rapidapi.com/fluis.lacasse/api/motorsportapi/" target="_blank">Motorsport</a></li>
+  <li><a href="https://rapidapi.com/fluis.lacasse/api/rugbyapi2/" target="_blank">Rugby</a></li>
+</ul>
+
+<p>Once you access these individual APIs, you'll notice that the endpoints are grouped into four main categories:</p>
+
+<ul>
+  <li><strong>Matches:</strong> This group offers information about matches or schedules, such as Lineups, Statistics, Incidents, Highlights, and Odds.</li>
+  <li><strong>Teams:</strong> Here you'll find data about teams, including Squads, Statistics, Logos, and Transfers.</li>
+  <li><strong>Players:</strong> Provides information about individual players, including Statistics, Images, and Transfer History.</li>
+  <li><strong>Managers:</strong> This section includes data on managers, their Career History, Images, and details of their Last Matches.</li>
+</ul>
+
+<p>If you're still encountering difficulties, don't hesitate to reach out to us. We're here to help, and we're also open to suggestions for new features.</p>
+<h3>The Reason Behind Not Providing Widgets</h3>
+<p>We prioritize the security of our users and take every measure to ensure your data, including your API key, remains confidential. Widgets have the potential to expose your API key to users, creating a significant security risk.</p>
+<p>Given this concern, instead of offering widgets, we extend our support to help you during the development phase of your application. Our team is readily available to assist you with any challenges or questions you might have while building your application. This support service is entirely free, and we encourage you to reach out to us anytime you need help.</p>
+<h3>How to get all leagues of the sport?</h3>
+
+<p>In order to retrieve all the leagues of a particular sport, it's necessary to list all categories first, and then subsequently list all the tournaments within each category. Here's how:</p>
+
+<ol>
+    <li><strong>List all Categories:</strong> Categories essentially represent the country, tour, or game of the tournaments. Start by fetching all categories via the endpoints: <code>/api/tournament/categories</code> for football, or <code>/api/{sport}/tournament/categories</code> for other sports, where <code>{sport}</code> is a placeholder for the sport in question.</li>
+    <li><strong>List all Tournaments within each Category:</strong> Upon obtaining a response, you can then proceed to fetch all leagues within each category using the endpoint: <code>/api/tournament/all/category/{category_id}</code> for football, or <code>/api/{sport}/tournament/all/category/{category_id}</code> for other sports, with <code>{category_id}</code> being the ID of a specific category.</li>
+    <li><strong>Get Schedules for each Category:</strong> There is an additional functionality that allows you to see events scheduled for a certain day for each category. Use the endpoint: <code>/api/category/{category_id}/events/{day}/{month}/{year}</code> for football, or <code>/api/{sport}/category/{category_id}/events/{day}/{month}/{year}</code> for other sports. Here, <code>{day}</code>, <code>{month}</code>, and <code>{year}</code> are placeholders for the specific day you want to check, with <code>{day}</code> being an integer value.</li>
+</ol>
+
+<p>This way, you can obtain a comprehensive list of leagues and their respective events for any sport. If you encounter any issues or need further assistance, our team is always ready to assist you.</p>
+<h3>Retrieving All Teams in a League</h3>
+
+<p>For obtaining a comprehensive list of all the teams in a specific league, you'll be using our 'standings' endpoints. The process involves:</p>
+
+<ol>
+    <li><strong>Standings Endpoint:</strong> The standings endpoint is the go-to resource for retrieving data about all teams within a particular league. It provides an array of team data including their current standings, wins, losses, draws, goal difference, and more.</li>
+</ol>
+
+<p>By calling the standings endpoint, you can acquire a detailed snapshot of the teams participating in your selected league, providing a robust foundation for creating rich, interactive experiences around league data.</p>
+
+<p>Should you encounter any difficulties or need further assistance, please don't hesitate to contact our support team. We're here to ensure your API journey is as smooth as possible!</p>
+
+<h3>Reasons for Schedule Endpoints Returning Matches from Previous and Next Day</h3>
+
+<p>The schedules endpoint is designed to cater to users across various time zones. Thus, to ensure all time zones are covered, we return matches that span 12 hours of the previous day and 12 hours of the next day, relative to GMT/UTC+00. This approach allows us to provide match data that is relevant to users, regardless of their geographical location.</p>
+
+<p>Here's a quick summary from a relevant <a href="https://rapidapi.com/fluis.lacasse/api/allsportsapi2/discussions/38225" target="_blank">discussion</a>:</p>
+<blockquote>In short, the endpoint returns matches independent of the user’s timezone. You can filter the matches according to your timezone. If you need help doing so, we can assist you.</blockquote>
+
+<p>For a more detailed explanation, please refer to this <a href="https://rapidapi.com/fluis.lacasse/api/footapi7/discussions/33473" target="_blank">discussion</a>:</p>
+<blockquote>The matches returned by the schedules endpoint are timestamped according to the GMT/UTC+00 timezone. Therefore, to cover all time zones, matches from 12 hours of the previous day and 12 hours of the next day are included in the response.</blockquote>
+
+<p>Don't hesitate to reach out if you require any further clarification or assistance in filtering matches according to your specific timezone. Our team is here to help!</p>
+<h3>What If the Data I Need Isn't Available?</h3>
+
+<p>If you find that the data you're looking for isn't provided by this API, we suggest exploring another API that may better cater to your requirements. We recommend you to consider checking out the <a href="https://rapidapi.com/fluis.lacasse/api/allscores/" target="_blank">Allscores</a> API. </p>
+
+<p>Always remember, our goal is to support your needs, and we are committed to providing the necessary assistance for your development process. If you still have questions or need further information, please feel free to reach out.</p>
+<h3>Understanding Team Transfer Types</h3>
+
+<p>In team transfers, we categorize transfer activities into three types, each representing a different kind of transaction:</p>
+
+<ul>
+<li><strong>Type 1:</strong> This represents a loan transfer. In this type of transfer, a player is temporarily moved from their current team to another team for a specified period.</li>
+
+<li><strong>Type 2:</strong> This represents the end of a loan period. At the conclusion of the loan period, the player returns to their original team from the team to which they were loaned.</li>
+
+<li><strong>Type 3:</strong> This type indicates a permanent transfer where a player is bought or sold between teams. The player permanently changes their team affiliation in these transactions.</li>
+</ul>
+
+<p>These categories allow you to understand the dynamics of team transfers and the nature of the movement of players between teams.</p>
