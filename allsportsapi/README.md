@@ -13,3 +13,9 @@
 <li><a href="https://rapidapi.com/fluis.lacasse/api/motorsportapi/" target="_blank">Motorsport</a></li>
 <li><a target="_blank" href="https://rapidapi.com/fluis.lacasse/api/rugbyapi2/">Rugby</a></li>
 </ul>
+<p>Other APIs not related to AllsportsAPI because of import size limit:</p>
+<ul>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/volleyballapi" target="_blank">Volleyball</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/handballapi" target="_blank">Handball</a></li>
+<li><a href="https://rapidapi.com/fluis.lacasse/api/mmaapi" target="_blank">MMA</a></li>
+</ul>
