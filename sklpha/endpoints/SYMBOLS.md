@@ -1,6 +1,6 @@
 # `SYMBOLS`
 
-My apologies for the oversight. Here is the corrected version:
+
 
 ## Endpoint: `/api/skalpha/symbol_data`
 
