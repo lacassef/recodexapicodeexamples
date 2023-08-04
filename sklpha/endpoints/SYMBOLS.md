@@ -1,4 +1,6 @@
 # `SYMBOLS`
+This category represents endpoints that interact with data related to financial instrument symbols. These symbols, often called ticker symbols, are unique identifiers assigned to a security such as a stock, bond, ETF, or mutual fund.
+Endpoints under this tag provide functionality for querying information related to these symbols, which can include but are not limited to: company names, current and historical prices, trading volumes, market capitalizations, and other associated financial data.
 
 
 
