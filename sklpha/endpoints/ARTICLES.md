@@ -1,5 +1,5 @@
 # `ARTICLES`
-
+This category represents endpoints that provides articles that covers a wide range of topics, including individual stock analysis, sector trends, macroeconomic insights, and investment strategies.
 
 ## `/api/skalpha/education_top_articles`
 
@@ -16,7 +16,7 @@ This API endpoint allows users to retrieve a list of top articles focused on edu
 ## `/api/skalpha/articles`
 
 ### Description
-This API endpoint allows users to retrieve a list of articles from the Seeking Alpha platform. Users can specify the category of articles they are interested in, such as editors' picks, latest articles, dividends, investing strategies, market outlook, stock ideas, and more. The API response provides detailed information about each article, including its title, publication date, author, tickers associated with the article, comment count, and Getty image URL.
+This API endpoint allows users to retrieve a list of articles from the platform. Users can specify the category of articles they are interested in, such as editors' picks, latest articles, dividends, investing strategies, market outlook, stock ideas, and more. The API response provides detailed information about each article, including its title, publication date, author, tickers associated with the article, comment count, and Getty image URL.
 
 ### HTTP Method
 `GET`
@@ -94,7 +94,7 @@ This API endpoint allows users to retrieve detailed information about a specific
 ## `/api/skalpha/articles/trending`
 
 ### Description
-This API endpoint allows users to retrieve a list of trending articles on the Seeking Alpha platform. The response includes a list of articles that are currently popular and gaining attention among users. The list is sorted based on the trending criteria, which may include factors like the number of comments, likes, publication date, and other engagement metrics.
+This API endpoint allows users to retrieve a list of trending articles. The response includes a list of articles that are currently popular and gaining attention among users. The list is sorted based on the trending criteria, which may include factors like the number of comments, likes, publication date, and other engagement metrics.
 
 ### HTTP Method
 `GET`

@@ -1,9 +1,10 @@
 # `NEWS`
+This category represents endpoints that provides updates on stocks, commodities, currencies, economic indicators, earnings reports, mergers and acquisitions, and other pertinent financial news.
 
 ## `/api/skalpha/news`
 
 ### Description
-This API endpoint allows users to retrieve a list of news articles from Seeking Alpha. The response includes a list of recent news articles related to various financial and market topics. The list is sorted based on the publication date, with the most recent news appearing first.
+This API endpoint allows users to retrieve a list of news articles from. The response includes a list of recent news articles related to various financial and market topics. The list is sorted based on the publication date, with the most recent news appearing first.
 
 ### HTTP Method
 `GET`
@@ -97,7 +98,7 @@ This API endpoint allows users to retrieve detailed information about a specific
 ## `/api/skalpha/news/trending`
 
 ### Description
-This API endpoint allows users to retrieve a list of the most trending financial and market news stories on the Seeking Alpha platform. The response provides a sorted list of popular news articles, based on factors such as user engagement, comments, likes, and publication date.
+This API endpoint allows users to retrieve a list of the most trending financial and market news stories. The response provides a sorted list of popular news articles, based on factors such as user engagement, comments, likes, and publication date.
 
 ### HTTP Method
 `GET`

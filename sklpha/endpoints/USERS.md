@@ -1,9 +1,10 @@
 # `USERS`
+This category represents endpoints that allows to get user details and followers.
 
 ## `/api/skalpha/authors/{slug}`
 
 ### Description
-This API endpoint allows users to retrieve detailed information about a specific author on the Seeking Alpha platform. The information includes the author's biography, associated company, the date they became a contributor, their follower count, image URL, the date they became a member, their nickname, and social media profile URLs.
+This API endpoint allows users to retrieve detailed information about a specific author. The information includes the author's biography, associated company, the date they became a contributor, their follower count, image URL, the date they became a member, their nickname, and social media profile URLs.
 
 ### HTTP Method
 `GET`
@@ -17,7 +18,7 @@ This API endpoint allows users to retrieve detailed information about a specific
 ## `/api/skalpha/top_authors`
 
 ### Description
-This API endpoint allows users to retrieve a list of top authors on the Seeking Alpha platform who have been classified under specific themes. The authors listed under each theme are considered to be the top contributors in their respective categories. The information about these authors can be accessed by users through this endpoint.
+This API endpoint allows users to retrieve a list of top authors who have been classified under specific themes. The authors listed under each theme are considered to be the top contributors in their respective categories. The information about these authors can be accessed by users through this endpoint.
 
 ### HTTP Method
 `GET`
@@ -28,7 +29,7 @@ This endpoint does not require any parameters in the request URL. The API return
 ## `/api/skalpha/users/{id}/followings`
 
 ### Description
-This API endpoint allows users to retrieve a list of other users that the specified user (with the given ID) is following on the Seeking Alpha platform. This list includes information about each of the followed users, such as their nicknames, profile images, follower counts, followings counts, and any author badges they might have.
+This API endpoint allows users to retrieve a list of other users that the specified user (with the given ID) is following. This list includes information about each of the followed users, such as their nicknames, profile images, follower counts, followings counts, and any author badges they might have.
 
 ### HTTP Method
 `GET`
@@ -46,7 +47,7 @@ This API endpoint allows users to retrieve a list of other users that the specif
 ## `/api/skalpha/users/{id}/followers`
 
 ### Description
-This API endpoint allows users to retrieve a list of followers for a specified user (with the given ID) on the Seeking Alpha platform. This list provides details about each follower, such as their nicknames, the number of people they are following and followers they have, and any author badges they may possess.
+This API endpoint allows users to retrieve a list of followers for a specified user (with the given ID). This list provides details about each follower, such as their nicknames, the number of people they are following and followers they have, and any author badges they may possess.
 
 ### HTTP Method
 `GET`
@@ -63,7 +64,7 @@ This API endpoint allows users to retrieve a list of followers for a specified u
 ## `/api/skalpha/users/{id}`
 
 ### Description
-This endpoint allows users to retrieve comprehensive information about a specific user on the Seeking Alpha platform. The information returned includes a broad range of user details, such as their bio, company, statistics, email auto-login status, profile images, preferences, member since date, editor status, nickname, portfolio warnings, user ID, and vocation.
+This endpoint allows users to retrieve comprehensive information about a specific user. The information returned includes a broad range of user details, such as their bio, company, statistics, email auto-login status, profile images, preferences, member since date, editor status, nickname, portfolio warnings, user ID, and vocation.
 
 ### HTTP Method
 `GET`
