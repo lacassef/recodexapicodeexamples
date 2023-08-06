@@ -23,13 +23,13 @@ This API endpoint allows users to retrieve a list of articles from the platform.
 
 ### Parameters
 
-- **category** `query`: The "category" parameter allows users to specify the category of articles they want to retrieve. It can be set to a variety of values representing different categories such as "editors-picks", "latest-articles", "dividends", "dividends::dividend-ideas", "dividends::dividend-quick-picks", "dividends::dividend-strategy", "dividends::reits", and many others.
+- **category** `query`: The "category" parameter allows users to specify the category of articles they want to retrieve. It can be set to a variety of values representing different categories such as _"editors-picks", "latest-articles", "dividends", "dividends::dividend-ideas", "dividends::dividend-quick-picks", "dividends::dividend-strategy", "dividends::reits", "education::401k", "education::cryptocurrency", "education::dividends", "education::etf", "education::investing", "education::portfolio-management", "etfs-and-funds", "etfs-and-funds::closed-end-funds", "etfs-and-funds::etf-analysis", "etfs-and-funds::mutual-funds", "investing-strategy", "investing-strategy::fixed-income", "investing-strategy::portfolio-strategy", "investing-strategy::retirement", "market-outlook", "market-outlook::commodities", "market-outlook::cryptocurrency", "market-outlook::economy", "market-outlook::forex", "market-outlook::gold-and-precious-metals", "market-outlook::todays-market", "sectors::communication-services", "sectors::consumer-staples", "sectors::energy", "sectors::real-estate", "stock-ideas", "stock-ideas::basic-materials", "stock-ideas::consumer-goods", "stock-ideas::financial", "stock-ideas::healthcare", "stock-ideas::industrial-goods", "stock-ideas::ipos", "stock-ideas::long-ideas", "stock-ideas::quick-picks", "stock-ideas::technology", "stock-ideas::utilities"_
 
-- **page_size** `query`: The "page_size" parameter allows users to specify the number of articles to retrieve per page. The value should be set to an integer (e.g., "5").
+- **page_size** `query`: The "page_size" parameter allows users to specify the number of articles to retrieve per page. The value should be set to an integer.
 
 - **include** `query`: The "include" parameter allows users to specify what additional information they want to include in the response. Users can set the value to a comma-separated list of options such as "author,primaryTickers,secondaryTickers".
 
-- **isMounting** `query`: The "isMounting" parameter is not clearly described in the documentation. Its type is set to "string".
+- **isMounting** `query`: The "isMounting" is exclusive to react.
 
 - **until** `query`: The "until" parameter allows users to specify a timestamp in string format. The API will retrieve articles published until the specified timestamp.
 
@@ -53,7 +53,7 @@ This API endpoint allows users to retrieve comments associated with a specific a
 
 - **sort** `query`: The "sort" parameter enables users to specify the sorting order of the comments. Users can set the value to "-top_parent_id" to sort the comments in descending order based on the top parent ID.
 
-- **articleLinksSelf** `query`: The "articleLinksSelf" parameter allows users to specify the self-link found in the articles list. The purpose and usage of this parameter are not explicitly described in the documentation, and its type is set to "string".
+- **articleLinksSelf** `query`: The "articleLinksSelf" parameter allows users to specify the self-link found in the articles list.
 
 - **comment_ids** `query`: The "comment_ids" parameter enables users to specify a list of comment IDs separated by commas. The API will retrieve comments with the specified IDs.
 
@@ -73,7 +73,7 @@ This API endpoint allows users to retrieve comment maps associated with a specif
 
 - **sort** `query`: The "sort" parameter enables users to specify the sorting order of the comment maps. Users can set the value to "-top_parent_id" to sort the comment maps in descending order based on the top parent ID.
 
-- **articleLinksSelf** `query`: The "articleLinksSelf" parameter allows users to specify the self-link found in the articles list. The purpose and usage of this parameter are not explicitly described in the documentation, and its type is set to "string".
+- **articleLinksSelf** `query`: The "articleLinksSelf" parameter allows users to specify the self-link found in the articles list.
 
 ## `/api/skalpha/articles/{id}`
 
@@ -89,7 +89,7 @@ This API endpoint allows users to retrieve detailed information about a specific
 
 - **include** `query`: The "include" parameter allows users to specify what additional information they want to include in the response. Users can provide a comma-separated list of values to include various related data. The available options are "author," "primaryTickers," "secondaryTickers," "otherTags," "presentations," "presentations.slides," "author.authorResearch," "co_authors," "promotedService," and "sentiments."
 
-- **linksSelf** `query`: The "linksSelf" parameter provides the self-link found in the articles list. The purpose and usage of this parameter are not explicitly described in the documentation, and its type is set to "string".
+- **linksSelf** `query`: The "linksSelf" parameter provides the self-link found in the articles list.
 
 ## `/api/skalpha/articles/trending`
 

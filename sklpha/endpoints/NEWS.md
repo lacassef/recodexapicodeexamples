@@ -11,7 +11,7 @@ This API endpoint allows users to retrieve a list of news articles from. The res
 
 ### Parameters
 
-- **category** `query`: The "category" parameter specifies the category of news articles to retrieve. The category can be specified using a string value. In the provided example, the category is set to "market-news::all," indicating that the endpoint will return a list of all news articles related to market news.
+- **category** `query`: The "category" parameter specifies the category of news articles to retrieve. The category can be specified using a string value. You can choose from the following: _"market-news::all", "market-news::top-news", "market-news::on-the-move", "market-news::market-pulse", "market-news::notable-calls", "market-news::buybacks", "market-news::commodities", "market-news::crypto", "market-news::issuance", "market-news::dividend-stocks", "market-news::dividend-funds", "market-news::earnings", "earnings::earnings-news", "market-news::global", "market-news::guidance", "market-news::ipos", "market-news::spacs", "market-news::politics", "market-news::m-a", "market-news::us-economy", "market-news::consumer", "market-news::energy", "market-news::financials", "market-news::healthcare", "market-news::mlps", "market-news::reits", "market-news::technology"_
 
 - **page_size** `query`: The "page_size" parameter determines the number of news articles to be included in each page of the response. The value is specified as a string in the example, and the API may use this parameter to paginate the results.
 
@@ -105,7 +105,7 @@ This API endpoint allows users to retrieve a list of the most trending financial
 
 ### Parameters
 
-- **category** `query`: The "category" parameter allows users to specify the category of trending news they want to retrieve. For instance, a category value of "market-news::all" would return a list of all trending news articles related to market news.
+- **category** `query`: The "category" parameter allows users to specify the category of trending news they want to retrieve. Possible values are : _"market-news::all", "market-news::top-news", "market-news::on-the-move", "market-news::market-pulse", "market-news::notable-calls", "market-news::buybacks", "market-news::commodities", "market-news::crypto", "market-news::issuance", "market-news::dividend-stocks", "market-news::dividend-funds", "market-news::earnings", "earnings::earnings-news", "market-news::global", "market-news::guidance", "market-news::ipos", "market-news::spacs", "market-news::politics", "market-news::m-a", "market-news::us-economy", "market-news::consumer", "market-news::energy", "market-news::financials", "market-news::healthcare", "market-news::mlps", "market-news::reits", "market-news::technology"_
 
 - **page_size** `query`: The "page_size" parameter allows users to specify the number of news articles to be included in a single page of the response. This parameter helps in paginating the results.
 
