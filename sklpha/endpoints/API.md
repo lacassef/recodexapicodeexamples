@@ -1,5 +1,5 @@
 # `API`
-These endpoints don't have category.
+This category encapsulates endpoints for interacting with financial market data, but doesn't fall under other categories.
 
 ## `/api/skalpha/breaking_news`
 
