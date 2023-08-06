@@ -120,5 +120,3 @@ This endpoint provides details about various incidents occurring during a match.
 - **playerNameIn**: String, name of the player coming in during a substitution.
 - **playerNameOut**: String, name of the player going out during a substitution.
 - **sequence**: String, represents the sequence of the incident in the match.
-
-Please make sure to refer to this guide while interpreting the data received from the endpoint.
