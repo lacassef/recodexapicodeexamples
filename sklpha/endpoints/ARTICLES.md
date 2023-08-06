@@ -1,7 +1,7 @@
 # `ARTICLES`
 
 
-## Endpoint: `/api/skalpha/education_top_articles`
+## `/api/skalpha/education_top_articles`
 
 ### Description
 This API endpoint allows users to retrieve a list of top articles focused on education and learning about investing. It provides access to educational content that gives insights and knowledge about investing and various financial topics. The response from the API includes highly regarded articles that have generated significant engagement from the community.
@@ -13,7 +13,7 @@ This API endpoint allows users to retrieve a list of top articles focused on edu
 
 - **category** `query`: The "category" parameter allows users to specify the category of articles they want to retrieve. In this case, the value for the category should be set to "education" to get a list of top articles related to education and learning about investing.
 
-## Endpoint: `/api/skalpha/articles`
+## `/api/skalpha/articles`
 
 ### Description
 This API endpoint allows users to retrieve a list of articles from the Seeking Alpha platform. Users can specify the category of articles they are interested in, such as editors' picks, latest articles, dividends, investing strategies, market outlook, stock ideas, and more. The API response provides detailed information about each article, including its title, publication date, author, tickers associated with the article, comment count, and Getty image URL.
@@ -37,7 +37,7 @@ This API endpoint allows users to retrieve a list of articles from the Seeking A
 
 - **page_number** `query`: The "page_number" parameter allows users to specify the page number of the article list they want to retrieve. The value should be set to an integer, such as "1".
 
-## Endpoint: `/api/skalpha/articles/{id}/comments`
+## `/api/skalpha/articles/{id}/comments`
 
 ### Description
 This API endpoint allows users to retrieve comments associated with a specific article identified by its unique ID. Users can get detailed information about each comment, such as its content, creation date, number of likes, and parent relationship with other comments.
@@ -57,7 +57,7 @@ This API endpoint allows users to retrieve comments associated with a specific a
 
 - **comment_ids** `query`: The "comment_ids" parameter enables users to specify a list of comment IDs separated by commas. The API will retrieve comments with the specified IDs.
 
-## Endpoint: `/api/skalpha/articles/{id}/comment_maps`
+## `/api/skalpha/articles/{id}/comment_maps`
 
 ### Description
 This API endpoint allows users to retrieve comment maps associated with a specific article identified by its unique ID. Comment maps represent the hierarchical structure of comments, demonstrating the parent-child relationships between comments.
@@ -75,7 +75,7 @@ This API endpoint allows users to retrieve comment maps associated with a specif
 
 - **articleLinksSelf** `query`: The "articleLinksSelf" parameter allows users to specify the self-link found in the articles list. The purpose and usage of this parameter are not explicitly described in the documentation, and its type is set to "string".
 
-## Endpoint: `/api/skalpha/articles/{id}`
+## `/api/skalpha/articles/{id}`
 
 ### Description
 This API endpoint allows users to retrieve detailed information about a specific article identified by its unique ID. The response includes various attributes of the article, such as its content, publication status, likes count, author information, themes, disclosure, and more.
@@ -91,7 +91,7 @@ This API endpoint allows users to retrieve detailed information about a specific
 
 - **linksSelf** `query`: The "linksSelf" parameter provides the self-link found in the articles list. The purpose and usage of this parameter are not explicitly described in the documentation, and its type is set to "string".
 
-## Endpoint: `/api/skalpha/articles/trending`
+## `/api/skalpha/articles/trending`
 
 ### Description
 This API endpoint allows users to retrieve a list of trending articles on the Seeking Alpha platform. The response includes a list of articles that are currently popular and gaining attention among users. The list is sorted based on the trending criteria, which may include factors like the number of comments, likes, publication date, and other engagement metrics.

@@ -1,6 +1,6 @@
 # `NEWS`
 
-## Endpoint: `/api/skalpha/news`
+## `/api/skalpha/news`
 
 ### Description
 This API endpoint allows users to retrieve a list of news articles from Seeking Alpha. The response includes a list of recent news articles related to various financial and market topics. The list is sorted based on the publication date, with the most recent news appearing first.
@@ -24,7 +24,7 @@ This API endpoint allows users to retrieve a list of news articles from Seeking 
 
 - **page_number** `query`: The "page_number" parameter indicates the page number of the news articles list to be retrieved. The value is specified as a string in the example, and the API may use this parameter to navigate through the paginated results.
 
-## Endpoint: `/api/skalpha/news/{id}/read_now_suggestion`
+## `/api/skalpha/news/{id}/read_now_suggestion`
 
 ### Description
 This API endpoint allows users to get news suggestions related to a specific news article identified by its ID. The API will provide suggestions for other news articles that users may want to read, based on the content or theme of the specified article.
@@ -40,7 +40,7 @@ This API endpoint allows users to get news suggestions related to a specific new
 
 - **newsLinksSelf** `query`: The "newsLinksSelf" parameter provides a self-link to the news article for which the API is providing suggestions. The self-link is specified as a string and should be included in the query to retrieve relevant suggestions.
 
-## Endpoint: `/api/skalpha/news/{id}/comments`
+## `/api/skalpha/news/{id}/comments`
 
 ### Description
 This API endpoint allows users to retrieve comments associated with a specific news article, identified by its unique ID. Users can view detailed information related to each comment, such as its content, creation date, number of likes, and user information.
@@ -60,7 +60,7 @@ This API endpoint allows users to retrieve comments associated with a specific n
 
 - **comment_ids** `query`: The "comment_ids" parameter allows users to specify a list of comment IDs separated by commas. The API will retrieve comments with the specified IDs.
 
-## Endpoint: `/api/skalpha/news/{id}/comment_maps`
+## `/api/skalpha/news/{id}/comment_maps`
 
 ### Description
 This API endpoint allows users to retrieve a map of comments associated with a specific news article, identified by its unique ID. The comment map represents the hierarchical structure of comments, indicating the parent-child relationships among them.
@@ -78,7 +78,7 @@ This API endpoint allows users to retrieve a map of comments associated with a s
 
 - **linksSelf** `query`: The "linksSelf" parameter allows users to specify the self-link found in the news list. The purpose and usage of this parameter are not explicitly described in the documentation, and its type is set to "string".
 
-## Endpoint: `/api/skalpha/news/{id}`
+## `/api/skalpha/news/{id}`
 
 ### Description
 This API endpoint allows users to retrieve detailed information about a specific news article, identified by its unique ID. The response includes various attributes of the news article, such as its content, author information, primary and secondary tickers, tags, and more.
@@ -94,7 +94,7 @@ This API endpoint allows users to retrieve detailed information about a specific
 
 - **linksSelf** `query`: The "linksSelf" parameter allows users to specify the self-link found in the news list. The purpose and usage of this parameter are not explicitly described in the documentation, and its type is set to "string".
 
-## Endpoint: `/api/skalpha/news/trending`
+## `/api/skalpha/news/trending`
 
 ### Description
 This API endpoint allows users to retrieve a list of the most trending financial and market news stories on the Seeking Alpha platform. The response provides a sorted list of popular news articles, based on factors such as user engagement, comments, likes, and publication date.
