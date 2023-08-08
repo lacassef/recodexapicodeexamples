@@ -57,63 +57,63 @@
         - **shirtNumber**: (string) Shirt number of the player.
         - **statistics**: Player's performance metrics.
             - **accurateLongBalls**: (string) Number of accurate long passes by the player.
-              - **accuratePass**: (string) Number of accurate passes by the player.
-              - **expectedGoals**: (string) Expected goals value for the player.
-              - **goalsPrevented**: (string) Number of goals prevented by the player.
-              - **goodHighClaim**: (string) Number of successful claims from high balls by the player.
-              - **minutesPlayed**: (string) Total minutes played by the player.
-              - **possessionLostCtrl**: (string) Times the player lost possession due to poor control.
-              - **rating**: (string) Player's performance rating.
-                  - **ratingVersions**:
-                      - **alternative**: (string) An alternative version of the player's rating.
-                      - **original**: (string) Original version of the player's rating.
-              - **saves**: (string) Number of saves made by the player.
-              - **totalClearance**: (string) Total clearances made by the player.
-              - **totalLongBalls**: (string) Total number of long balls played by the player.
-              - **totalPass**: (string) Total number of passes made by the player.
-              - **touches**: (string) Total number of touches by the player.
-              - **aerialLost**: (string) Number of aerial duels lost.
-              - **aerialWon**: (string) Number of aerial duels won.
-              - **challengeLost**: (string) Number of challenges lost.
-              - **duelLost**: (string) Number of duels lost.
-              - **duelWon**: (string) Number of duels won.
-              - **expectedAssists**: (string) Expected assists value for the player.
-              - **fouls**: (string) Number of fouls committed by the player.
-              - **interceptionWon**: (string) Number of interceptions made by the player.
-              - **keyPass**: (string) Number of key passes made by the player.
-              - **totalCross**: (string) Total number of crosses made by the player.
-              - **totalTackle**: (string) Total number of tackles made by the player.
-              - **onTargetScoringAttempt**: (string) Number of on-target scoring attempts.
-              - **outfielderBlock**: (string) Number of blocks made by an outfield player.
-              - **dispossessed**: (string) Number of times the player was dispossessed.
-              - **wasFouled**: (string) Number of times the player was fouled.
-              - **totalContest**: (string) Total number of contests engaged by the player.
-              - **wonContest**: (string) Number of contests won by the player.
-              - **accurateCross**: (string) Number of accurate crosses delivered.
-              - **blockedScoringAttempt**: (string) Number of player's scoring attempts that were blocked.
-              - **bigChanceCreated**: (string) Number of big chances created by the player.
-              - **goals**: (string) Number of goals scored by the player.
-              - **bigChanceMissed**: (string) Number of big chances missed by the player.
-              - **hitWoodwork**: (string) Number of times the player's shots hit the post or bar.
-              - **shotOffTarget**: (string) Number of shots that went off target.
-              - **totalOffside**: (string) Number of times the player was caught offside.
-              - **punches**: (string) Number of times the goalkeeper punched the ball.
-              - **savedShotsFromInsideTheBox**: (string) Number of shots saved from inside the box by the goalkeeper.
-              - **goalAssist**: (string) Number of goal assists by the player.
-              - **errorLeadToAGoal**: (string) Number of errors made that led to a goal.
-              - **accurateKeeperSweeper**: (string) Number of accurate actions as a sweeper keeper.
-              - **totalKeeperSweeper**: (string) Total actions as a sweeper keeper.
-              - **ownGoals**: (string) Number of own goals scored by the player.
-              - **penaltyWon**: (string) Number of penalties won by the player.
-              - **penaltyConceded**: (string) Number of penalties conceded by the player.
-              - **errorLeadToAShot**: (string) Number of errors made that led to a shot.
-              - **penaltySave**: (string) Number of penalties saved.
-              - **lastManTackle**: (string) Number of tackles made as the last man.
-              - **clearanceOffLine**: (string) Number of clearances made off the line.
-              - **penaltyMiss**: (string) Number of penalties missed.
-              - **penaltyShootoutSave**: (string) Number of saves made during a penalty shootout.
-              - **penaltyShootoutMiss**: (string) Number of misses during a penalty shootout.
-              - **penaltyShootoutGoal**: (string) Number of goals scored during a penalty shootout.
+            - **accuratePass**: (string) Number of accurate passes by the player.
+            - **expectedGoals**: (string) Expected goals value for the player.
+            - **goalsPrevented**: (string) Number of goals prevented by the player.
+            - **goodHighClaim**: (string) Number of successful claims from high balls by the player.
+            - **minutesPlayed**: (string) Total minutes played by the player.
+            - **possessionLostCtrl**: (string) Times the player lost possession due to poor control.
+            - **rating**: (string) Player's performance rating.
+                - **ratingVersions**:
+                    - **alternative**: (string) An alternative version of the player's rating.
+                    - **original**: (string) Original version of the player's rating.
+            - **saves**: (string) Number of saves made by the player.
+            - **totalClearance**: (string) Total clearances made by the player.
+            - **totalLongBalls**: (string) Total number of long balls played by the player.
+            - **totalPass**: (string) Total number of passes made by the player.
+            - **touches**: (string) Total number of touches by the player.
+            - **aerialLost**: (string) Number of aerial duels lost.
+            - **aerialWon**: (string) Number of aerial duels won.
+            - **challengeLost**: (string) Number of challenges lost.
+            - **duelLost**: (string) Number of duels lost.
+            - **duelWon**: (string) Number of duels won.
+            - **expectedAssists**: (string) Expected assists value for the player.
+            - **fouls**: (string) Number of fouls committed by the player.
+            - **interceptionWon**: (string) Number of interceptions made by the player.
+            - **keyPass**: (string) Number of key passes made by the player.
+            - **totalCross**: (string) Total number of crosses made by the player.
+            - **totalTackle**: (string) Total number of tackles made by the player.
+            - **onTargetScoringAttempt**: (string) Number of on-target scoring attempts.
+            - **outfielderBlock**: (string) Number of blocks made by an outfield player.
+            - **dispossessed**: (string) Number of times the player was dispossessed.
+            - **wasFouled**: (string) Number of times the player was fouled.
+            - **totalContest**: (string) Total number of contests engaged by the player.
+            - **wonContest**: (string) Number of contests won by the player.
+            - **accurateCross**: (string) Number of accurate crosses delivered.
+            - **blockedScoringAttempt**: (string) Number of player's scoring attempts that were blocked.
+            - **bigChanceCreated**: (string) Number of big chances created by the player.
+            - **goals**: (string) Number of goals scored by the player.
+            - **bigChanceMissed**: (string) Number of big chances missed by the player.
+            - **hitWoodwork**: (string) Number of times the player's shots hit the post or bar.
+            - **shotOffTarget**: (string) Number of shots that went off target.
+            - **totalOffside**: (string) Number of times the player was caught offside.
+            - **punches**: (string) Number of times the goalkeeper punched the ball.
+            - **savedShotsFromInsideTheBox**: (string) Number of shots saved from inside the box by the goalkeeper.
+            - **goalAssist**: (string) Number of goal assists by the player.
+            - **errorLeadToAGoal**: (string) Number of errors made that led to a goal.
+            - **accurateKeeperSweeper**: (string) Number of accurate actions as a sweeper keeper.
+            - **totalKeeperSweeper**: (string) Total actions as a sweeper keeper.
+            - **ownGoals**: (string) Number of own goals scored by the player.
+            - **penaltyWon**: (string) Number of penalties won by the player.
+            - **penaltyConceded**: (string) Number of penalties conceded by the player.
+            - **errorLeadToAShot**: (string) Number of errors made that led to a shot.
+            - **penaltySave**: (string) Number of penalties saved.
+            - **lastManTackle**: (string) Number of tackles made as the last man.
+            - **clearanceOffLine**: (string) Number of clearances made off the line.
+            - **penaltyMiss**: (string) Number of penalties missed.
+            - **penaltyShootoutSave**: (string) Number of saves made during a penalty shootout.
+            - **penaltyShootoutMiss**: (string) Number of misses during a penalty shootout.
+            - **penaltyShootoutGoal**: (string) Number of goals scored during a penalty shootout.
 
       - **substitute**: Indicates if the player is a substitute. Possible values:
           - True
