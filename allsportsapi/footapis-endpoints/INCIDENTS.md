@@ -1,122 +1,102 @@
-# `/api/match/{match_id}/incidents` Endpoint Documentation
+## Endpoint: `/api/match/{match_id}/incidents`
 
-This endpoint provides details about various incidents occurring during a match. Below is the JSON structure and its explanation.
+### Structure:
 
-## JSON Structure
-
-```json
-{
-  "addedTime": "<int>",
-  "awayScore": "<int>",
-  "homeScore": "<int>",
-  "incidentType": "<string>",
-  "isLive": "<boolean>",
-  "text": "<string>",
-  "time": "<string>",
-  "length": "<int>",
-  "id": "<int>",
-  "isHome": "<boolean>",
-  "playerIn": {
-    "id": "<int>",
-    "name": "<string>",
-    "position": "<string>",
-    "shortName": "<string>",
-    "slug": "<string>",
-    "userCount": "<int>",
-    "firstName": "<string>",
-    "lastName": "<string>"
-  },
-  "playerOut": {
-    "id": "<int>",
-    "name": "<string>",
-    "position": "<string>",
-    "shortName": "<string>",
-    "slug": "<string>",
-    "userCount": "<int>",
-    "firstName": "<string>",
-    "lastName": "<string>"
-  },
-  "reversedPeriodTime": "<int>",
-  "confirmed": "<boolean>",
-  "incidentClass": "<string>",
-  "player": {
-    "id": "<int>",
-    "name": "<string>",
-    "position": "<string>",
-    "shortName": "<string>",
-    "slug": "<string>",
-    "userCount": "<int>",
-    "firstName": "<string>",
-    "lastName": "<string>"
-  },
-  "assist1": {
-    "id": "<int>",
-    "name": "<string>",
-    "position": "<string>",
-    "shortName": "<string>",
-    "slug": "<string>",
-    "userCount": "<int>",
-    "firstName": "<string>",
-    "lastName": "<string>"
-  },
-  "playerName": "<string>",
-  "reason": "<string>",
-  "rescinded": "<boolean>",
-  "manager": {
-    "id": "<int>",
-    "name": "<string>",
-    "shortName": "<string>",
-    "slug": "<string>"
-  },
-  "injury": "<boolean>",
-  "description": "<string>",
-  "reversedPeriodTimeSeconds": "<int>",
-  "timeSeconds": "<int>",
-  "playerNameIn": "<string>",
-  "playerNameOut": "<string>",
-  "sequence": "<string>"
-}
-```
-
-## Field Descriptions
-
-- **addedTime**: Integer, representing the added time in the match.
-- **awayScore**: Integer, representing the away team's score.
-- **homeScore**: Integer, representing the home team's score.
-- **incidentType**: String, type of incident. Possible values:
-    - substitution
+- **incidents**
+  - **addedTime**: (string) The additional time for the incident.
+  - **awayScore**: (string) The current score for the away team.
+  - **homeScore**: (string) The current score for the home team.
+  - **incidentType**: Type of the incident. Possible values:
+    - period
     - varDecision
-    - injuryTime
-    - card
     - goal
     - penaltyShootout
-    - period
+    - card
     - inGamePenalty
-- **isLive**: Boolean, indicating if the incident is currently live.
-- **text**: String. Possible values:
-    - FT (Full Time)
-    - ET (Extra Time)
-    - HT (Half Time)
-    - PEN (Penalty)
-- **time**: String, time of the incident.
-- **length**: Integer, length of the incident.
-- **id**: Integer, unique identifier for the incident.
-- **isHome**: Boolean, indicating if the incident is related to the home team.
-- **playerIn** & **playerOut**: Objects containing details of the player coming in and going out, respectively, during substitutions:
-    - id, name, position, shortName, slug, userCount, firstName, lastName
-- **reversedPeriodTime**: Integer, a specific time marker for the incident.
-- **confirmed**: Boolean, indicating if the incident has been confirmed.
-- **incidentClass**: String, classifying the type of incident. Contains various options like yellow, injury, scored, and more.
-- **player**: Object, containing details of the player involved in the incident.
-- **assist1**: Object, containing details of the assisting player.
-- **playerName**: String, name of the player involved.
-- **reason**: String, reason for the incident, such as "Persistent fouling", "Simulation", and more.
-- **rescinded**: Boolean, indicating if the incident has been rescinded.
-- **manager**: Object, details of the team manager.
-- **injury**: Boolean, indicating if there's an injury.
-- **description**: String, further describes the incident, e.g., "Woodwork", "Goalkeeper save".
-- **reversedPeriodTimeSeconds**: Integer, time of the incident in seconds.
-- **timeSeconds**: Integer, another representation of time for the incident in seconds.
-- **playerNameIn**: String, name of the player coming in during a substitution.
-- **playerNameOut**: String, name of the player going out during a substitution.
-- **sequence**: String, represents the sequence of the incident in the match.
+    - substitution
+    - injuryTime
+  - **isLive**: Indicates if the incident is live. Possible values:
+    - True
+    - False
+  - **text**: Short text descriptor of the incident. Possible values:
+    - PEN
+    - ET
+    - HT
+    - FT
+  - **time**: (string) Time when the incident occurred.
+  - **length**: (string) Length of the incident.
+  - **id**: (string) ID of the incident.
+  - **isHome**: Indicates if the incident is for the home team. Possible values:
+    - True
+    - False
+  - **playerIn** and **playerOut**: Player details for substitutions. Both have the following fields:
+    - **id**: Player ID.
+    - **name**: Full name of the player.
+    - **position**: Position of the player. Possible values:
+      - G: Goalkeeper
+      - D: Defender
+      - F: Forward
+      - M: Midfielder
+    - **shortName**: Shortened name of the player.
+    - **slug**: URL-friendly version of the player's name.
+    - **userCount**: User count related to the player.
+    - **firstName**: First name of the player.
+    - **lastName**: Last name of the player.
+  - **reversedPeriodTime**: (string) Reversed period time related to the incident.
+  - **confirmed**: If the incident is confirmed. Possible values:
+    - True
+    - False
+  - **incidentClass**: Classification of the incident. Possible values:
+    - ownGoal
+    - yellow
+    - penalty
+    - redCardGiven
+    - injury
+    - scored
+    - penaltyAwarded
+    - review
+    - mistakenIdentity
+    - goalNotAwarded
+    - penaltyNotAwarded
+    - missed
+    - yellowRed
+    - goalAwarded
+    - regular
+    - cardUpgrade
+    - red
+  - **player**: Details of the player involved in the incident. (Fields are the same as **playerIn** and **playerOut**)
+  - **assist1**: Details of the player who assisted. (Fields are the same as **playerIn** and **playerOut** but position can be D, G, F, M)
+  - **playerName**: (string) Name of the player.
+  - **reason**: Reason for the incident. Possible values:
+    - Professional handball
+    - Foul
+    - Simulation
+    - Unallowed field entering
+    - Professional foul last man
+    - Violent conduct
+    - Off the ball foul
+    - Handball
+    - Persistent fouling
+    - Time wasting
+    - Argument
+  - **rescinded**: If the incident was rescinded. Possible values:
+    - True
+    - False
+  - **manager**: Details of the manager related to the incident.
+    - **id**: Manager's ID.
+    - **name**: Manager's full name.
+    - **shortName**: Manager's shortened name.
+    - **slug**: URL-friendly version of the manager's name.
+  - **injury**: Indicates if the incident involves an injury. Possible value:
+    - True
+  - **description**: Description of the incident. Possible values:
+    - Goalkeeper save
+    - Off target
+    - Woodwork
+    - Scored
+  - **reversedPeriodTimeSeconds**: (string) Reversed period time in seconds.
+  - **timeSeconds**: (string) Time of the incident in seconds.
+  - **playerNameIn**: (string) Name of the player substituted in.
+  - **playerNameOut**: (string) Name of the player substituted out.
+  - **sequence**: (string) Sequence related to the incident.
+
