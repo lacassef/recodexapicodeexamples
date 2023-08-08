@@ -113,7 +113,7 @@
               - **penaltyMiss**: (string) Number of penalties missed.
               - **penaltyShootoutSave**: (string) Number of saves made during a penalty shootout.
               - **penaltyShootoutMiss**: (string) Number of misses during a penalty shootout.
-                - **penaltyShootoutGoal**: (string) Number of goals scored during a penalty shootout.
+              - **penaltyShootoutGoal**: (string) Number of goals scored during a penalty shootout.
 
       - **substitute**: Indicates if the player is a substitute. Possible values:
           - True
