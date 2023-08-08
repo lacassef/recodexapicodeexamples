@@ -114,12 +114,11 @@
             - **penaltyShootoutSave**: (string) Number of saves made during a penalty shootout.
             - **penaltyShootoutMiss**: (string) Number of misses during a penalty shootout.
             - **penaltyShootoutGoal**: (string) Number of goals scored during a penalty shootout.
-
-      - **substitute**: Indicates if the player is a substitute. Possible values:
-          - True
-          - False
-      - **captain**: Indicates if the player is the captain. Only value given:
-          - True
+        - **substitute**: Indicates if the player is a substitute. Possible values:
+            - True
+            - False
+        - **captain**: Indicates if the player is the captain. Only value given:
+            - True
 
 - **confirmed**: Indicates if the lineup is confirmed. Possible values:
     - True
