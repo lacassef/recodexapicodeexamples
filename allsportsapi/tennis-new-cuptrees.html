@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tennis Cup Tree Visualization</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <style>
+    .node circle {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 3px;
+    }
+
+    .node text {
+      font: 12px sans-serif;
+    }
+
+    .link {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 2px;
+    }
+  </style>
+</head>
+<body>
+<label>Select CupTree:
+  <select id="cupTreeSelector"></select>
+</label>
+<label>Select View:
+  <select id="viewSelector"></select>
+</label>
+<script>
+  const rawData = {
+    "cupTrees": [
+      {
+        "currentView": 0,
+        "id": 28285,
+        "name": "2023 Pune, India, Doubles",
+        "views": [
+          [
+            {
+              "blockId": 1863107,
+              "eventIds": [
+                10960818
+              ],
+              "eventInProgress": false,
+              "finished": true,
+              "left": {
+                "blockId": 1863106,
+                "eventIds": [
+                  10960820
+                ],
+                "eventInProgress": false,
+                "finished": true,
+                "left": {
+                  "blockId": 1863105,
+                  "eventIds": [
+                    10960821
+                  ],
+                  "eventInProgress": false,
+                  "finished": true,
+                  "left": {
+                    "blockId": 1863104,
+                    "eventIds": [
+                      10962752
+                    ],
+                    "eventInProgress": false,
+                    "finished": true,
+                    "leftParticipant": {
+                      "score": "2",
+                      "team": {
+                        "gender": "M",
+                        "id": 306971,
+                        "name": "Ram R / Salisbury J",
+                        "nameCode": "R/S",
+                        "national": false,
+                        "shortName": "Ram R / Salisbury J",
+                        "slug": "ram-r-salisbury-j",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 60
+                      },
+                      "teamSeed": "1",
+                      "winner": true
+                    },
+                    "multipleEvents": false,
+                    "order": 8,
+                    "rightParticipant": {
+                      "score": "0",
+                      "team": {
+                        "gender": "M",
+                        "id": 459919,
+                        "name": "Baez S / Martinez L",
+                        "nameCode": "B/M",
+                        "national": false,
+                        "shortName": "Baez S / Martinez L",
+                        "slug": "baez-s-martinez-l",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 0
+                      },
+                      "winner": false
+                    },
+                    "round": {
+                      "description": "Round of 16",
+                      "type": 8
+                    },
+                    "seriesStartDateTimestamp": 1672744500,
+                    "status": "2:0"
+                  },
+                  "leftParticipant": {
+                    "score": "2",
+                    "team": {
+                      "gender": "M",
+                      "id": 306971,
+                      "name": "Ram R / Salisbury J",
+                      "nameCode": "R/S",
+                      "national": false,
+                      "shortName": "Ram R / Salisbury J",
+                      "slug": "ram-r-salisbury-j",
+                      "sport": {
+                        "id": 5,
+                        "name": "Tennis",
+                        "slug": "tennis"
+                      },
+                      "teamColors": {
+                        "primary": "#52b030",
+                        "secondary": "#52b030",
+                        "text": "#ffffff"
+                      },
+                      "type": 2,
+                      "userCount": 60
+                    },
+                    "teamSeed": "1",
+                    "winner": true
+                  },
+                  "multipleEvents": false,
+                  "order": 4,
+                  "right": {
+                    "blockId": 1863118,
+                    "eventIds": [
+                      10962751
+                    ],
+                    "eventInProgress": false,
+                    "finished": true,
+                    "leftParticipant": {
+                      "score": "1",
+                      "team": {
+                        "gender": "M",
+                        "id": 459918,
+                        "name": "Bopanna R.  / Van De Zandschulp B",
+                        "nameCode": "B/V",
+                        "national": false,
+                        "shortName": "Bopanna R.  / Van De Zandschulp B",
+                        "slug": "bopanna-r-van-de-zandschulp-b",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 0
+                      },
+                      "winner": false
+                    },
+                    "multipleEvents": false,
+                    "order": 9,
+                    "rightParticipant": {
+                      "score": "2",
+                      "team": {
+                        "gender": "M",
+                        "id": 164242,
+                        "name": "Reyes-Varela M / Ramanathan R",
+                        "nameCode": "R/R",
+                        "national": false,
+                        "shortName": "Reyes-Varela M / Ramanathan R",
+                        "slug": "reyes-varela-m-ramanathan-r",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 0
+                      },
+                      "winner": true
+                    },
+                    "round": {
+                      "description": "Round of 16",
+                      "type": 8
+                    },
+                    "seriesStartDateTimestamp": 1672752900,
+                    "status": "1:2"
+                  },
+                  "rightParticipant": {
+                    "score": "0",
+                    "team": {
+                      "gender": "M",
+                      "id": 164242,
+                      "name": "Reyes-Varela M / Ramanathan R",
+                      "nameCode": "R/R",
+                      "national": false,
+                      "shortName": "Reyes-Varela M / Ramanathan R",
+                      "slug": "reyes-varela-m-ramanathan-r",
+                      "sport": {
+                        "id": 5,
+                        "name": "Tennis",
+                        "slug": "tennis"
+                      },
+                      "teamColors": {
+                        "primary": "#52b030",
+                        "secondary": "#52b030",
+                        "text": "#ffffff"
+                      },
+                      "type": 2,
+                      "userCount": 0
+                    },
+                    "winner": false
+                  },
+                  "round": {
+                    "description": "Quarterfinal",
+                    "type": 4
+                  },
+                  "seriesStartDateTimestamp": 1672925700,
+                  "status": "2:0"
+                },
+                "leftParticipant": {
+                  "score": "0",
+                  "team": {
+                    "gender": "M",
+                    "id": 306971,
+                    "name": "Ram R / Salisbury J",
+                    "nameCode": "R/S",
+                    "national": false,
+                    "shortName": "Ram R / Salisbury J",
+                    "slug": "ram-r-salisbury-j",
+                    "sport": {
+                      "id": 5,
+                      "name": "Tennis",
+                      "slug": "tennis"
+                    },
+                    "teamColors": {
+                      "primary": "#52b030",
+                      "secondary": "#52b030",
+                      "text": "#ffffff"
+                    },
+                    "type": 2,
+                    "userCount": 60
+                  },
+                  "teamSeed": "1",
+                  "winner": false
+                },
+                "multipleEvents": false,
+                "order": 2,
+                "right": {
+                  "blockId": 1863115,
+                  "eventIds": [
+                    10960819
+                  ],
+                  "eventInProgress": false,
+                  "finished": true,
+                  "left": {
+                    "blockId": 1863116,
+                    "eventIds": [
+                      10962750
+                    ],
+                    "eventInProgress": false,
+                    "finished": true,
+                    "leftParticipant": {
+                      "score": "2",
+                      "team": {
+                        "gender": "M",
+                        "id": 105741,
+                        "name": "Gille S / Vliegen J",
+                        "nameCode": "G/V",
+                        "national": false,
+                        "shortName": "Gille S / Vliegen J",
+                        "slug": "gille-s-vliegen-j",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 35
+                      },
+                      "teamSeed": "4",
+                      "winner": true
+                    },
+                    "multipleEvents": false,
+                    "order": 10,
+                    "rightParticipant": {
+                      "score": "0",
+                      "team": {
+                        "disabled": false,
+                        "gender": "M",
+                        "id": 58985,
+                        "name": "Sabanov I / Sabanov M",
+                        "nameCode": "S/S",
+                        "national": false,
+                        "shortName": "Sabanov I / Sabanov M",
+                        "slug": "sabanov-i-sabanov-m",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 19
+                      },
+                      "winner": false
+                    },
+                    "round": {
+                      "description": "Round of 16",
+                      "type": 8
+                    },
+                    "seriesStartDateTimestamp": 1672669200,
+                    "status": "2:0"
+                  },
+                  "leftParticipant": {
+                    "score": "2",
+                    "team": {
+                      "gender": "M",
+                      "id": 105741,
+                      "name": "Gille S / Vliegen J",
+                      "nameCode": "G/V",
+                      "national": false,
+                      "shortName": "Gille S / Vliegen J",
+                      "slug": "gille-s-vliegen-j",
+                      "sport": {
+                        "id": 5,
+                        "name": "Tennis",
+                        "slug": "tennis"
+                      },
+                      "teamColors": {
+                        "primary": "#52b030",
+                        "secondary": "#52b030",
+                        "text": "#ffffff"
+                      },
+                      "type": 2,
+                      "userCount": 35
+                    },
+                    "teamSeed": "4",
+                    "winner": true
+                  },
+                  "multipleEvents": false,
+                  "order": 5,
+                  "right": {
+                    "blockId": 1863117,
+                    "eventIds": [
+                      10962749
+                    ],
+                    "eventInProgress": false,
+                    "finished": true,
+                    "leftParticipant": {
+                      "score": "0",
+                      "team": {
+                        "gender": "M",
+                        "id": 459917,
+                        "name": "Carballes Baena R / Zapata Miralles B",
+                        "nameCode": "C/Z",
+                        "national": false,
+                        "shortName": "Carballes Baena R / Zapata Miralles B",
+                        "slug": "carballes-baena-r-zapata-miralles-b",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 0
+                      },
+                      "winner": false
+                    },
+                    "multipleEvents": false,
+                    "order": 11,
+                    "rightParticipant": {
+                      "score": "2",
+                      "team": {
+                        "gender": "M",
+                        "id": 262982,
+                        "name": "Martínez P / Munar J",
+                        "nameCode": "M/M",
+                        "national": false,
+                        "shortName": "Martínez P / Munar J",
+                        "slug": "martinez-p-munar-j",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 0
+                      },
+                      "winner": true
+                    },
+                    "round": {
+                      "description": "Round of 16",
+                      "type": 8
+                    },
+                    "seriesStartDateTimestamp": 1672749600,
+                    "status": "0:2"
+                  },
+                  "rightParticipant": {
+                    "score": "0",
+                    "team": {
+                      "gender": "M",
+                      "id": 262982,
+                      "name": "Martínez P / Munar J",
+                      "nameCode": "M/M",
+                      "national": false,
+                      "shortName": "Martínez P / Munar J",
+                      "slug": "martinez-p-munar-j",
+                      "sport": {
+                        "id": 5,
+                        "name": "Tennis",
+                        "slug": "tennis"
+                      },
+                      "teamColors": {
+                        "primary": "#52b030",
+                        "secondary": "#52b030",
+                        "text": "#ffffff"
+                      },
+                      "type": 2,
+                      "userCount": 0
+                    },
+                    "winner": false
+                  },
+                  "round": {
+                    "description": "Quarterfinal",
+                    "type": 4
+                  },
+                  "seriesStartDateTimestamp": 1672919100,
+                  "status": "2:0"
+                },
+                "rightParticipant": {
+                  "score": "2",
+                  "team": {
+                    "gender": "M",
+                    "id": 105741,
+                    "name": "Gille S / Vliegen J",
+                    "nameCode": "G/V",
+                    "national": false,
+                    "shortName": "Gille S / Vliegen J",
+                    "slug": "gille-s-vliegen-j",
+                    "sport": {
+                      "id": 5,
+                      "name": "Tennis",
+                      "slug": "tennis"
+                    },
+                    "teamColors": {
+                      "primary": "#52b030",
+                      "secondary": "#52b030",
+                      "text": "#ffffff"
+                    },
+                    "type": 2,
+                    "userCount": 35
+                  },
+                  "teamSeed": "4",
+                  "winner": true
+                },
+                "round": {
+                  "description": "Semifinal",
+                  "type": 2
+                },
+                "seriesStartDateTimestamp": 1673013300,
+                "status": "0:2"
+              },
+              "leftParticipant": {
+                "score": "2",
+                "team": {
+                  "gender": "M",
+                  "id": 105741,
+                  "name": "Gille S / Vliegen J",
+                  "nameCode": "G/V",
+                  "national": false,
+                  "shortName": "Gille S / Vliegen J",
+                  "slug": "gille-s-vliegen-j",
+                  "sport": {
+                    "id": 5,
+                    "name": "Tennis",
+                    "slug": "tennis"
+                  },
+                  "teamColors": {
+                    "primary": "#52b030",
+                    "secondary": "#52b030",
+                    "text": "#ffffff"
+                  },
+                  "type": 2,
+                  "userCount": 35
+                },
+                "teamSeed": "4",
+                "winner": true
+              },
+              "multipleEvents": false,
+              "order": 1,
+              "right": {
+                "blockId": 1863108,
+                "eventIds": [
+                  10960824
+                ],
+                "eventInProgress": false,
+                "finished": true,
+                "left": {
+                  "blockId": 1863109,
+                  "eventIds": [
+                    10960816
+                  ],
+                  "eventInProgress": false,
+                  "finished": true,
+                  "left": {
+                    "blockId": 1863110,
+                    "eventIds": [
+                      10962748
+                    ],
+                    "eventInProgress": false,
+                    "finished": true,
+                    "leftParticipant": {
+                      "score": "2",
+                      "team": {
+                        "gender": "M",
+                        "id": 412900,
+                        "name": "Cash J / Patten H",
+                        "nameCode": "C/P",
+                        "national": false,
+                        "shortName": "Cash J / Patten H",
+                        "slug": "cash-j-patten-h",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 37
+                      },
+                      "winner": true
+                    },
+                    "multipleEvents": false,
+                    "order": 12,
+                    "rightParticipant": {
+                      "score": "0",
+                      "team": {
+                        "gender": "M",
+                        "id": 459916,
+                        "name": "Hidalgo D / Ruusuvuori E",
+                        "nameCode": "H/R",
+                        "national": false,
+                        "shortName": "Hidalgo D / Ruusuvuori E",
+                        "slug": "hidalgo-d-ruusuvuori-e",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 0
+                      },
+                      "winner": false
+                    },
+                    "round": {
+                      "description": "Round of 16",
+                      "type": 8
+                    },
+                    "seriesStartDateTimestamp": 1672660800,
+                    "status": "2:0"
+                  },
+                  "leftParticipant": {
+                    "score": "2",
+                    "team": {
+                      "gender": "M",
+                      "id": 412900,
+                      "name": "Cash J / Patten H",
+                      "nameCode": "C/P",
+                      "national": false,
+                      "shortName": "Cash J / Patten H",
+                      "slug": "cash-j-patten-h",
+                      "sport": {
+                        "id": 5,
+                        "name": "Tennis",
+                        "slug": "tennis"
+                      },
+                      "teamColors": {
+                        "primary": "#52b030",
+                        "secondary": "#52b030",
+                        "text": "#ffffff"
+                      },
+                      "type": 2,
+                      "userCount": 37
+                    },
+                    "winner": true
+                  },
+                  "multipleEvents": false,
+                  "order": 6,
+                  "right": {
+                    "blockId": 1863111,
+                    "eventIds": [
+                      10962747
+                    ],
+                    "eventInProgress": false,
+                    "finished": true,
+                    "leftParticipant": {
+                      "score": "1",
+                      "team": {
+                        "gender": "M",
+                        "id": 194572,
+                        "name": "Bhambri Y / Myneni S",
+                        "nameCode": "B/M",
+                        "national": false,
+                        "shortName": "Bhambri Y / Myneni S",
+                        "slug": "bhambri-y-myneni-s",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 6
+                      },
+                      "winner": false
+                    },
+                    "multipleEvents": false,
+                    "order": 13,
+                    "rightParticipant": {
+                      "score": "2",
+                      "team": {
+                        "gender": "M",
+                        "id": 196794,
+                        "name": "Doumbia S / Reboul F",
+                        "nameCode": "D/R",
+                        "national": false,
+                        "shortName": "Doumbia S / Reboul F",
+                        "slug": "doumbia-s-reboul-f",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 10
+                      },
+                      "teamSeed": "3",
+                      "winner": true
+                    },
+                    "round": {
+                      "description": "Round of 16",
+                      "type": 8
+                    },
+                    "seriesStartDateTimestamp": 1672750200,
+                    "status": "1:2"
+                  },
+                  "rightParticipant": {
+                    "score": "0",
+                    "team": {
+                      "gender": "M",
+                      "id": 196794,
+                      "name": "Doumbia S / Reboul F",
+                      "nameCode": "D/R",
+                      "national": false,
+                      "shortName": "Doumbia S / Reboul F",
+                      "slug": "doumbia-s-reboul-f",
+                      "sport": {
+                        "id": 5,
+                        "name": "Tennis",
+                        "slug": "tennis"
+                      },
+                      "teamColors": {
+                        "primary": "#52b030",
+                        "secondary": "#52b030",
+                        "text": "#ffffff"
+                      },
+                      "type": 2,
+                      "userCount": 10
+                    },
+                    "teamSeed": "3",
+                    "winner": false
+                  },
+                  "round": {
+                    "description": "Quarterfinal",
+                    "type": 4
+                  },
+                  "seriesStartDateTimestamp": 1672907400,
+                  "status": "2:0"
+                },
+                "leftParticipant": {
+                  "score": "0",
+                  "team": {
+                    "gender": "M",
+                    "id": 412900,
+                    "name": "Cash J / Patten H",
+                    "nameCode": "C/P",
+                    "national": false,
+                    "shortName": "Cash J / Patten H",
+                    "slug": "cash-j-patten-h",
+                    "sport": {
+                      "id": 5,
+                      "name": "Tennis",
+                      "slug": "tennis"
+                    },
+                    "teamColors": {
+                      "primary": "#52b030",
+                      "secondary": "#52b030",
+                      "text": "#ffffff"
+                    },
+                    "type": 2,
+                    "userCount": 37
+                  },
+                  "winner": false
+                },
+                "multipleEvents": false,
+                "order": 3,
+                "right": {
+                  "blockId": 1863112,
+                  "eventIds": [
+                    10960817
+                  ],
+                  "eventInProgress": false,
+                  "finished": true,
+                  "left": {
+                    "blockId": 1863113,
+                    "eventIds": [
+                      10965991
+                    ],
+                    "eventInProgress": false,
+                    "finished": true,
+                    "leftParticipant": {
+                      "score": "2",
+                      "team": {
+                        "gender": "M",
+                        "id": 62088,
+                        "name": "Balaji N S / Nedunchezhiyan J",
+                        "nameCode": "B/N",
+                        "national": false,
+                        "shortName": "Balaji N S / Nedunchezhiyan J",
+                        "slug": "balaji-n-s-nedunchezhiyan-j",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 4
+                      },
+                      "winner": true
+                    },
+                    "multipleEvents": false,
+                    "order": 14,
+                    "rightParticipant": {
+                      "score": "0",
+                      "team": {
+                        "gender": "M",
+                        "id": 51044,
+                        "name": "Raja P / Sharan D",
+                        "nameCode": "R/S",
+                        "national": false,
+                        "shortName": "Raja P / Sharan D",
+                        "slug": "raja-p-sharan-d",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 1
+                      },
+                      "winner": false
+                    },
+                    "round": {
+                      "description": "Round of 16",
+                      "type": 8
+                    },
+                    "seriesStartDateTimestamp": 1672742400,
+                    "status": "2:0"
+                  },
+                  "leftParticipant": {
+                    "score": "2",
+                    "team": {
+                      "gender": "M",
+                      "id": 62088,
+                      "name": "Balaji N S / Nedunchezhiyan J",
+                      "nameCode": "B/N",
+                      "national": false,
+                      "shortName": "Balaji N S / Nedunchezhiyan J",
+                      "slug": "balaji-n-s-nedunchezhiyan-j",
+                      "sport": {
+                        "id": 5,
+                        "name": "Tennis",
+                        "slug": "tennis"
+                      },
+                      "teamColors": {
+                        "primary": "#52b030",
+                        "secondary": "#52b030",
+                        "text": "#ffffff"
+                      },
+                      "type": 2,
+                      "userCount": 4
+                    },
+                    "winner": true
+                  },
+                  "multipleEvents": false,
+                  "order": 7,
+                  "right": {
+                    "blockId": 1863114,
+                    "eventIds": [
+                      10962745
+                    ],
+                    "eventInProgress": false,
+                    "finished": true,
+                    "leftParticipant": {
+                      "score": "0",
+                      "team": {
+                        "gender": "M",
+                        "id": 446565,
+                        "name": "Kadhe A / Romboli F",
+                        "nameCode": "K/R",
+                        "national": false,
+                        "shortName": "Kadhe A / Romboli F",
+                        "slug": "kadhe-a-romboli-f",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 0
+                      },
+                      "winner": false
+                    },
+                    "multipleEvents": false,
+                    "order": 15,
+                    "rightParticipant": {
+                      "score": "2",
+                      "team": {
+                        "gender": "M",
+                        "id": 315019,
+                        "name": "Lammons N / Withrow J",
+                        "nameCode": "L/W",
+                        "national": false,
+                        "shortName": "Lammons N / Withrow J",
+                        "slug": "lammons-n-withrow-j",
+                        "sport": {
+                          "id": 5,
+                          "name": "Tennis",
+                          "slug": "tennis"
+                        },
+                        "teamColors": {
+                          "primary": "#52b030",
+                          "secondary": "#52b030",
+                          "text": "#ffffff"
+                        },
+                        "type": 2,
+                        "userCount": 15
+                      },
+                      "teamSeed": "2",
+                      "winner": true
+                    },
+                    "round": {
+                      "description": "Round of 16",
+                      "type": 8
+                    },
+                    "seriesStartDateTimestamp": 1672844700,
+                    "status": "0:2"
+                  },
+                  "rightParticipant": {
+                    "score": "0",
+                    "team": {
+                      "gender": "M",
+                      "id": 315019,
+                      "name": "Lammons N / Withrow J",
+                      "nameCode": "L/W",
+                      "national": false,
+                      "shortName": "Lammons N / Withrow J",
+                      "slug": "lammons-n-withrow-j",
+                      "sport": {
+                        "id": 5,
+                        "name": "Tennis",
+                        "slug": "tennis"
+                      },
+                      "teamColors": {
+                        "primary": "#52b030",
+                        "secondary": "#52b030",
+                        "text": "#ffffff"
+                      },
+                      "type": 2,
+                      "userCount": 15
+                    },
+                    "teamSeed": "2",
+                    "winner": false
+                  },
+                  "round": {
+                    "description": "Quarterfinal",
+                    "type": 4
+                  },
+                  "seriesStartDateTimestamp": 1672913100,
+                  "status": "2:0"
+                },
+                "rightParticipant": {
+                  "score": "2",
+                  "team": {
+                    "gender": "M",
+                    "id": 62088,
+                    "name": "Balaji N S / Nedunchezhiyan J",
+                    "nameCode": "B/N",
+                    "national": false,
+                    "shortName": "Balaji N S / Nedunchezhiyan J",
+                    "slug": "balaji-n-s-nedunchezhiyan-j",
+                    "sport": {
+                      "id": 5,
+                      "name": "Tennis",
+                      "slug": "tennis"
+                    },
+                    "teamColors": {
+                      "primary": "#52b030",
+                      "secondary": "#52b030",
+                      "text": "#ffffff"
+                    },
+                    "type": 2,
+                    "userCount": 4
+                  },
+                  "winner": true
+                },
+                "round": {
+                  "description": "Semifinal",
+                  "type": 2
+                },
+                "seriesStartDateTimestamp": 1673019900,
+                "status": "0:2"
+              },
+              "rightParticipant": {
+                "score": "0",
+                "team": {
+                  "gender": "M",
+                  "id": 62088,
+                  "name": "Balaji N S / Nedunchezhiyan J",
+                  "nameCode": "B/N",
+                  "national": false,
+                  "shortName": "Balaji N S / Nedunchezhiyan J",
+                  "slug": "balaji-n-s-nedunchezhiyan-j",
+                  "sport": {
+                    "id": 5,
+                    "name": "Tennis",
+                    "slug": "tennis"
+                  },
+                  "teamColors": {
+                    "primary": "#52b030",
+                    "secondary": "#52b030",
+                    "text": "#ffffff"
+                  },
+                  "type": 2,
+                  "userCount": 4
+                },
+                "winner": false
+              },
+              "round": {
+                "description": "Final",
+                "type": 1
+              },
+              "seriesStartDateTimestamp": 1673083800,
+              "status": "2:0"
+            }
+          ]
+        ]
+      }
+    ]
+  };
+  // Populate the cupTree dropdown
+  const cupTreeDropdown = d3.select("#cupTreeSelector")
+          .on("change", updateViewDropdown); // When the cupTree changes, we update the views dropdown
+
+  cupTreeDropdown.selectAll('option')
+          .data(rawData.cupTrees)
+          .enter()
+          .append('option')
+          .text((d, i) => d.name)
+          .attr('value', (d, i) => i);  // Using index as value
+
+  // Function to update views dropdown
+  function updateViewDropdown() {
+    const selectedCupTreeIndex = cupTreeDropdown.node().value;
+    const views = rawData.cupTrees[selectedCupTreeIndex].views;
+
+    const viewDropdown = d3.select("#viewSelector")
+            .on("change", drawTree);
+
+    viewDropdown.selectAll('option').remove(); // Clear existing options
+
+    viewDropdown.selectAll('option')
+            .data(views)
+            .enter()
+            .append('option')
+            .text((d, i) => "View " + (i + 1))
+            .attr('value', (d, i) => i);  // Using index as value
+
+    drawTree(); // Draw tree with initial selections
+  }
+
+  function drawTree() {
+    const selectedCupTreeIndex = cupTreeDropdown.node().value;
+    const selectedViewIndex = d3.select("#viewSelector").node().value;
+    const treeData = rawData.cupTrees[selectedCupTreeIndex].views[selectedViewIndex][0];
+    // const treeData = rawData.cupTrees[0].views[0][0];
+
+    const treeLayout = d3.tree().size([980, 400])
+            .separation((a, b) => {
+      return (a.parent === b.parent ? 1 : 2) / a.depth;
+    });
+
+    const root = d3.hierarchy(treeData, function (d) {
+      let children = [];
+      if (d.left) children.push(d.left);
+      if (d.right) children.push(d.right);
+      return children.length > 0 ? children : null;
+    });
+
+    treeLayout(root);
+
+    const svg = d3.select('body').append('svg').attr('width', 1000).attr('height', 500);
+
+    const g = svg.append('g').attr('transform', 'translate(50, 50)');
+
+    g.selectAll('path')
+            .data(root.links())
+            .enter()
+            .append('path')
+            .attr('d', d3.linkVertical().x(d => d.x).y(d => d.y))
+            .attr('class', 'link');
+
+    const nodeGroup = g.selectAll('g.node')
+            .data(root.descendants())
+            .enter()
+            .append('g')
+            .attr('class', 'node')
+            .attr('transform', function (d) {
+              return `translate(${d.x}, ${d.y})`;
+            });
+
+    nodeGroup.append('rect')
+            .attr('x', -50)  // half the width of the rectangle to center it
+            .attr('y', -20)  // half the height of the rectangle to center it
+            .attr('width', 100)  // width of the rectangle
+            .attr('height', 40)  // height of the rectangle
+            .attr('fill', '#eaeaea');
+
+    nodeGroup.append('text')
+            .attr('dy', 0)
+            .attr('text-anchor', 'middle')
+            .text(d => {
+              let left = d.data.leftParticipant ? d.data.leftParticipant.team.nameCode : ''
+              let right = d.data.rightParticipant ? d.data.rightParticipant.team.nameCode : ''
+              let round = d.data.round ? d.data.round.description : ''
+              return `${left} vs ${right}`
+            });
+    nodeGroup.append('text')
+            .attr('dy', 12.5)
+            .attr('text-anchor', 'middle')
+            .text(d => {
+              let left = d.data.leftParticipant ? d.data.leftParticipant.team.nameCode : ''
+              let right = d.data.rightParticipant ? d.data.rightParticipant.team.nameCode : ''
+              let round = d.data.round ? d.data.round.description : ''
+              return `${round}`
+            });
+
+
+  }
+  updateViewDropdown();
+
+</script>
+</body>
+</html>
