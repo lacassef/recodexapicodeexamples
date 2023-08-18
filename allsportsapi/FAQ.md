@@ -80,7 +80,7 @@
 <p>The status of the match is described using two properties:</p>
 
 <ul>
-  <li><strong>type:</strong> Provides a code string to represent the match status. Possible returns are: 'inprogress', 'finished', 'postponed', 'canceled', 'notstarted’.</li>
+  <li><strong>type:</strong> Provides a code string to represent the match status. Possible returns are: 'inprogress', 'finished', 'postponed', 'interrupted', 'canceled', 'notstarted’.</li>
   <li><strong>description:</strong> Offers a more understandable text of the status. For football, this can include '1st half', '2nd half', 'Halftime', 'Ended', 'Postponed', 'Canceled', 'Not started', "AP" (After Penalties), "AET" (After Extra Time), "1st extra", "Extra time halftime", "2nd extra", "Awaiting penalties", "Penalties", "Awaiting extra time".</li>
 </ul>
 <h3>Navigating Our API: Step-by-Step Guidance</h3>
