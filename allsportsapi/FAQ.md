@@ -51,7 +51,7 @@
 
 <p>Yes, our API does provide odds for your convenience. Apart from motorsport and esports, odds are available for all other sports, primarily sourced from bet365, one of the leading betting companies. These odds are intended for general and referential use.</p>
 
-<p>If you require specialized odds, we recommend considering our odds service, <a href="https://rapidapi.com/fluis.lacasse/api/pinaculo" target="_blank">Pinaculo</a>. It offers a more detailed and sport-specific array of betting odds to suit your needs.</p>
+<p>If you require specialized odds, we recommend considering our odds service, <a href="https://rapidapi.com/fluis.lacasse/api/pinaculo" target="_blank">Pinaculo</a> and <a href="hhttps://rapidapi.com/fluis.lacasse/api/uniodds4" target="_blank">Uniodds</a>. It offers a more detailed and sport-specific array of betting odds to suit your needs.</p>
 <h3>Understanding Match Incidents and Status</h3>
 
 <p>The incidents and status of a match can be interpreted using specific attributes and their respective values in the data provided by the API. Here's a detailed explanation:</p>
