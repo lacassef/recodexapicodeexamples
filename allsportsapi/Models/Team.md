@@ -33,7 +33,7 @@
 - **id** (`int`):
     - A unique identifier for the team.
 
-- **isRecent** (`private boolean`):
+- **isRecent** (`boolean`):
     - A flag indicating whether the team has been recently active or updated.
 
 - **luxuryTaxThreshold** (`Integer`):
