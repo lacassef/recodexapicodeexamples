@@ -109,7 +109,7 @@
       <li><code>delayed</code>: The match start has been delayed.</li>
     </ul>
   </li>
-  <li><strong>description:</strong> A detailed text describing the current status of the match. The description varies depending on the sport and specific circumstances. For football, possible descriptions include:
+  <li><strong>description:</strong> A detailed text describing the current status of the match. The description varies depending on the sport and specific circumstances. Possible descriptions include:
     <ul>
       <li><code>1st half</code>: The first half of the match is in progress.</li>
       <li><code>2nd half</code>: The second half of the match is in progress.</li>
