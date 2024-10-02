@@ -28,21 +28,191 @@
 
 <h3>Determining the Match Time</h3>
 
-<p>When you interact with any match endpoint, we provide an array of detailed information. Among these, the attribute "statusTime" is vital to determining the match's ongoing time:</p>
+<p>When interacting with any match endpoint, we provide an array of detailed information. Among these, the attributes <code>status</code>, <code>lastPeriod</code>, and <code>time</code> are crucial for determining the match's ongoing time. Understanding these attributes allows you to accurately calculate the total time elapsed in the match across all active periods.</p>
+
+<h4>Key Attributes</h4>
 
 <ul>
-  <li><strong>"statusTime"</strong>: Contains data about the current time of the match. With this information, you can perform simple mathematical operations to calculate the seconds that have passed since the beginning of the period. Specifically, the current time is calculated as: (current timestamp - event["statusTime"]["timestamp"]) + event["statusTime"]["initial"].</li>
+  <li><strong>status</strong>: Contains information about the current status of the match.
+    <ul>
+      <li><strong>code</strong>: Numerical representation of the match status.</li>
+      <li><strong>description</strong>: Textual description of the match status (e.g., "1st half").</li>
+      <li><strong>type</strong>: General status type (e.g., "inprogress", "finished").</li>
+    </ul>
+  </li>
+  <li><strong>lastPeriod</strong>: Indicates the most recent active period in the match (e.g., "period1", "period2").</li>
+  <li><strong>time</strong>: Provides timing details of the match.
+    <ul>
+      <li><strong>initial</strong>: Time before the period starts (often 0).</li>
+      <li><strong>max</strong>: Maximum regular time for the period (e.g., 2700 seconds for 45 minutes).</li>
+      <li><strong>extra</strong>: Additional time allocated (e.g., 540 seconds for extra time).</li>
+      <li><strong>currentPeriodStartTimestamp</strong>: UNIX timestamp (in seconds) indicating when the current period started.</li>
+    </ul>
+  </li>
 </ul>
 
-<p>If you aim to implement the time in a "time + added time" format, the current added time after the official period (e.g., the standard 45 minutes for football/soccer), would follow the below logic:</p>
+<h4>Calculating Total Period Time</h4>
+
+<p>The <strong>Total Period Time</strong> represents the cumulative time elapsed across all active periods of a match. To calculate this, follow the steps below:</p>
+
+<ol>
+  <li><strong>Identify Active Periods:</strong>
+    <ul>
+      <li>Active periods typically range from <code>period1</code> to <code>period7</code>.</li>
+      <li>Only periods that are active (as determined by your system's logic) should be considered in the calculation.</li>
+    </ul>
+  </li>
+
+  <li><strong>Calculate Time for Each Active Period:</strong>
+    <ul>
+      <li>For each active period <code>i</code> (where <code>i</code> ranges from 1 to 7):
+        <ul>
+          <li>If the match is currently <strong>in progress</strong> (<code>status.type == "inprogress"</code>),
+            <strong>and</strong> the current active period is <strong>period i</strong> (<code>lastPeriod == "periodi"</code>),
+            <strong>and</strong> there is a valid <code>currentPeriodStartTimestamp > 0</code>,
+            then:
+            <ul>
+              <li>Calculate the elapsed time for this period as:</li>
+              <li><code>ElapsedTime_i = CurrentTimeInSeconds - time.currentPeriodStartTimestamp</code></li>
+            </ul>
+          </li>
+          <li>Otherwise:
+            <ul>
+              <li>Use the pre-recorded time for the period:</li>
+              <li><code>RecordedTime_i = time.initial + time.max + time.extra</code></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li><strong>Sum All Period Times:</strong>
+    <ul>
+      <li>Add up the calculated times for all active periods to obtain the <strong>Total Period Time</strong>.</li>
+      <li>
+        <pre><code>TotalPeriodTime = ∑ (PeriodTime_i) for i = 1 to 7</code></pre>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h4>Mathematical Representation</h4>
+
+<p>The <strong>Total Period Time</strong> can be expressed mathematically as:</p>
+
+\[
+\text{TotalPeriodTime} = \sum_{i=1}^{7} \text{PeriodTime}_i
+\]
+
+Where:
+
+\[
+\text{PeriodTime}_i =
+\begin{cases}
+\text{CurrentTimeInSeconds} - \text{time.currentPeriodStartTimestamp} & \text{if } (\text{status.type} = \text{"inprogress"} \text{ AND } \text{lastPeriod} = \text{"period}i\text{"} \text{ AND } \text{time.currentPeriodStartTimestamp} > 0) \\
+\text{time.initial} + \text{time.max} + \text{time.extra} & \text{otherwise}
+\end{cases}
+\]
+
+<h4>Example Calculation</h4>
+
+<p>Consider the following event data:</p>
+
+<pre><code>{
+  "status": {
+    "code": 6,
+    "description": "1st half",
+    "type": "inprogress"
+  },
+  "lastPeriod": "period1",
+  "time": {
+    "initial": 0,
+    "max": 2700,
+    "extra": 540,
+    "currentPeriodStartTimestamp": 1727861400
+  }
+}
+</code></pre>
+
+<p>Assume the current system time is <code>1727862000</code> seconds (UNIX timestamp).</p>
+
+<ol>
+  <li><strong>Identify Active Periods:</strong>
+    <ul>
+      <li><code>lastPeriod</code>: "period1" (only "period1" is active).</li>
+    </ul>
+  </li>
+
+  <li><strong>Calculate Time for "period1":</strong>
+    <ul>
+      <li>Since the match is <strong>in progress</strong> and <strong>period1</strong> is active:</li>
+      <li><code>ElapsedTime_1 = 1727862000 - 1727861400 = 600</code> seconds (10 minutes).</li>
+    </ul>
+  </li>
+
+  <li><strong>Sum All Period Times:</strong>
+    <ul>
+      <li><strong>TotalPeriodTime</strong> = 600 seconds.</li>
+    </ul>
+  </li>
+</ol>
+
+<h4>Handling Added Time</h4>
+
+<p>If you aim to represent the match time in a "time + added time" format, where added time is considered once the elapsed time exceeds the standard period duration (<code>time.max</code>), apply the following logic:</p>
 
 <ul>
-  <li>If (current timestamp - event["statusTime"]["timestamp"]) > event["statusTime"]["max"], then the added time would be: (current timestamp - event["statusTime"]["timestamp"]) - event["statusTime"]["max"].</li>
+  <li>If <code>(CurrentTimeInSeconds - time.currentPeriodStartTimestamp) > time.max</code>, then the added time is:</li>
+  <li><code>AddedTime_i = (CurrentTimeInSeconds - time.currentPeriodStartTimestamp) - time.max</code></li>
 </ul>
 
-<p>We also offer an attribute called "time" which encompasses "injuryTime" - the maximum additional time granted by the referee, also known as injury time.</p>
+<p>For example, in a football/soccer match:</p>
 
-<p>Please note, all timestamps we provide are in seconds.</p>
+<ul>
+  <li><code>time.max</code>: 2700 seconds (45 minutes)</li>
+  <li>If <code>ElapsedTime_i = 2800</code> seconds, then:</li>
+  <li><code>AddedTime_i = 2800 - 2700 = 100</code> seconds (1 minute and 40 seconds).</li>
+</ul>
+
+<h4>Additional Attribute: Injury Time</h4>
+
+<p>We also provide an attribute called <strong>injuryTime</strong> within the <code>time</code> object. This represents the maximum additional time granted by the referee, commonly known as injury time. You can incorporate this into your calculations to account for unexpected delays during the match.</p>
+
+<h4>Important Notes</h4>
+
+<ul>
+  <li>All timestamps provided are in seconds (UNIX timestamp format).</li>
+  <li>Ensure that the system clock used for <code>CurrentTimeInSeconds</code> is synchronized accurately to avoid discrepancies in time calculations.</li>
+  <li>Adjust the range of periods (1 to 7) based on the specific rules and structure of the sport or league you are monitoring.</li>
+  <li>Handle edge cases where <code>currentPeriodStartTimestamp</code> might be missing or set to zero.</li>
+</ul>
+
+<h4>Pseudocode Implementation</h4>
+
+<p>Here's a pseudocode example to illustrate the calculation of <strong>Total Period Time</strong>:</p>
+
+<pre><code>function calculateTotalPeriodTime(event):
+    totalPeriodTime = 0
+    currentTime = getCurrentSystemTimeInSeconds()
+    lastPeriod = event.status.lastPeriod
+    statusType = event.status.type
+    currentPeriodStart = event.time.currentPeriodStartTimestamp
+    
+    // Define standard recorded time per period
+    recordedTime = event.time.initial + event.time.max + event.time.extra
+    
+    for i from 1 to 7:
+        periodIdentifier = "period" + i
+        if (statusType == "inprogress" and lastPeriod == periodIdentifier and currentPeriodStart > 0):
+            elapsedTime = currentTime - currentPeriodStart
+            totalPeriodTime += elapsedTime
+        else:
+            totalPeriodTime += recordedTime
+    
+    return totalPeriodTime
+</code></pre>
+
 
 <h3>Guidance on Building Your Website or Application with Our API</h3>
 <p>Embarking on the journey to develop your website or application using our API? Rest assured, you're not alone. Our team is more than ready to offer their expertise and walk you through the entire process.</p>
