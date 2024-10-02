@@ -77,11 +77,62 @@
 
 <h4>Status</h4>
 
-<p>The status of the match is described using two properties:</p>
+<p>The status of the match is described using three properties:</p>
 
 <ul>
-  <li><strong>type:</strong> Provides a code string to represent the match status. Possible returns are: 'inprogress', 'finished', 'postponed', 'interrupted', 'canceled', 'notstarted’.</li>
-  <li><strong>description:</strong> Offers a more understandable text of the status. For football, this can include '1st half', '2nd half', 'Halftime', 'Ended', 'Postponed', 'Canceled', 'Not started', "AP" (After Penalties), "AET" (After Extra Time), "1st extra", "Extra time halftime", "2nd extra", "Awaiting penalties", "Penalties", "Awaiting extra time".</li>
+  <li><strong>code:</strong> An integer representing the specific status of the match. Below are some of the possible codes:
+    <ul>
+      <li><strong>31</strong>: HT (Halftime)</li>
+      <li><strong>32</strong>: AwET (Awaiting Extra Time)</li>
+      <li><strong>33</strong>: ETHT (Extra Time Halftime)</li>
+      <li><strong>34</strong>: AwP (Awaiting Penalties)</li>
+      <li><strong>40</strong>: OT (Overtime)</li>
+      <li><strong>41</strong>: ET1 (1st Extra Time Period)</li>
+      <li><strong>42</strong>: ET2 (2nd Extra Time Period)</li>
+      <li><strong>50</strong>: PEN (Penalties)</li>
+      <li><strong>110</strong>: AET (After Extra Time)</li>
+      <li><strong>120</strong>: AP (After Penalties)</li>
+      <!-- Add more codes as necessary -->
+    </ul>
+  </li>
+  <li><strong>type:</strong> A string representing the general status of the match. Possible values include:
+    <ul>
+      <li><code>inprogress</code>: The match is currently ongoing.</li>
+      <li><code>finished</code>: The match has concluded.</li>
+      <li><code>postponed</code>: The match has been postponed.</li>
+      <li><code>interrupted</code>: The match was interrupted.</li>
+      <li><code>canceled</code>: The match was canceled.</li>
+      <li><code>notstarted</code>: The match has not started yet.</li>
+      <li><code>preliminary</code>: The match is in a preliminary stage.</li>
+      <li><code>suspended</code>: The match has been suspended.</li>
+      <li><code>willcontinue</code>: The match will continue at a later time.</li>
+      <li><code>delayed</code>: The match start has been delayed.</li>
+    </ul>
+  </li>
+  <li><strong>description:</strong> A detailed text describing the current status of the match. The description varies depending on the sport and specific circumstances. For football, possible descriptions include:
+    <ul>
+      <li><code>1st half</code>: The first half of the match is in progress.</li>
+      <li><code>2nd half</code>: The second half of the match is in progress.</li>
+      <li><code>Halftime</code>: The match is at halftime.</li>
+      <li><code>Ended</code>: The match has ended.</li>
+      <li><code>Postponed</code>: The match has been postponed.</li>
+      <li><code>Canceled</code>: The match has been canceled.</li>
+      <li><code>Not started</code>: The match has not started yet.</li>
+      <li><code>AP</code> (After Penalties): The match concluded after penalties.</li>
+      <li><code>AET</code> (After Extra Time): The match concluded after extra time.</li>
+      <li><code>1st extra</code>: The first period of extra time.</li>
+      <li><code>Extra time halftime</code>: Halftime during extra time.</li>
+      <li><code>2nd extra</code>: The second period of extra time.</li>
+      <li><code>Awaiting penalties</code>: The match is awaiting penalties.</li>
+      <li><code>Penalties</code>: The match is currently in the penalty shootout phase.</li>
+      <li><code>Awaiting extra time</code>: The match is awaiting extra time.</li>
+      <li><code>First break</code>: First break period.</li>
+      <li><code>Second break</code>: Second break period.</li>
+      <li><code>Third break</code>: Third break period.</li>
+      <li><code>FT</code>: Full Time.</li>
+      <!-- Add more descriptions as necessary -->
+    </ul>
+  </li>
 </ul>
 <h3>Navigating Our API: Step-by-Step Guidance</h3>
 
