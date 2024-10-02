@@ -97,24 +97,6 @@
   </li>
 </ol>
 
-<h4>Mathematical Representation</h4>
-
-<p>The <strong>Total Period Time</strong> can be expressed mathematically as:</p>
-
-\[
-\text{TotalPeriodTime} = \sum_{i=1}^{7} \text{PeriodTime}_i
-\]
-
-Where:
-
-\[
-\text{PeriodTime}_i =
-\begin{cases}
-\text{CurrentTimeInSeconds} - \text{time.currentPeriodStartTimestamp} & \text{if } (\text{status.type} = \text{"inprogress"} \text{ AND } \text{lastPeriod} = \text{"period}i\text{"} \text{ AND } \text{time.currentPeriodStartTimestamp} > 0) \\
-\text{time.initial} + \text{time.max} + \text{time.extra} & \text{otherwise}
-\end{cases}
-\]
-
 <h4>Example Calculation</h4>
 
 <p>Consider the following event data:</p>
