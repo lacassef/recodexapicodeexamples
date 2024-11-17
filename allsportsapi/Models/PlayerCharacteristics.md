@@ -1,9 +1,4 @@
-# PlayerCharacteristicsResponse Documentation
-
-## Class Overview
-`PlayerCharacteristicsResponse` extends `NetworkResponse` and represents a player's characteristics, including both positive and negative attributes, along with their playing positions.
-
-## Properties
+# Properties Documentation
 
 * **negative** (`@NotNull List<PlayerCharacteristic>`):
     * A list of negative characteristics associated with the player.
@@ -20,12 +15,10 @@
     * This field is mandatory and cannot be null.
     * Each characteristic contains a rank and type indicating specific player strengths.
 
-## Related Classes
+# Related Classes
 
-### PlayerCharacteristic
-A serializable data class representing a specific player characteristic.
+## PlayerCharacteristic
 
-#### Properties
 * **rank** (`int`):
     * Numerical value indicating the strength or significance of this characteristic.
     * Higher values typically indicate stronger presence of the characteristic.
@@ -35,7 +28,6 @@ A serializable data class representing a specific player characteristic.
     * Maps to predefined characteristic types (see Characteristic Types below).
 
 ## Characteristic Types
-The following constants define the various types of player characteristics:
 
 ### Offensive Characteristics
 * **FINISHING** (5):
