@@ -13,6 +13,16 @@
 <li><a href="https://rapidapi.com/fluis.lacasse/api/motorsportapi/" target="_blank">Motorsport</a></li>
 <li><a target="_blank" href="https://rapidapi.com/fluis.lacasse/api/rugbyapi2/">Rugby</a></li>
 </ul>
+
+<p>Folder structure (examples reorganized):</p>
+<ul>
+<li><strong>Basketapi/</strong> — Basketball-specific examples (e.g., shotmaps).</li>
+<li><strong>Footapi/</strong> — Football/Soccer-specific examples (e.g., shotmaps, heatmaps, related assets like soccer_field.png).</li>
+<li><strong>Tennisapi/</strong> — Tennis-specific examples (e.g., cup trees visualization).</li>
+<li><strong>Examples/</strong> — Generic examples and snippets (e.g., fetching and displaying player images in HTML/JS/React).</li>
+<li><strong>Models/</strong> — API models documentation.</li>
+</ul>
+
 <p>Other APIs not related to AllsportsAPI because of import size limit:</p>
 <ul>
 <li><a href="https://rapidapi.com/fluis.lacasse/api/volleyballapi" target="_blank">Volleyball</a></li>
