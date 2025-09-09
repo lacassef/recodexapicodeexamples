@@ -17,6 +17,11 @@
   </style>
 </head>
 <body>
+  <div style="margin:8px 0;">
+    <label>Radius scale: <input id="radiusScale" type="range" min="2" max="12" value="5"></label>
+    <label style="margin-left:12px;">Opacity: <input id="opacityScale" type="range" min="0.2" max="1" step="0.1" value="0.5"></label>
+    <span id="heatmapStatus" style="margin-left:8px; font-size:12px; color:#555;"></span>
+  </div>
   <svg></svg>
   <script>
     // The "heatmap"
@@ -179,16 +184,31 @@
       }
     }
     
-    // Append the circles to the SVG
+    // Append the circles to the SVG with dynamic controls
     var svg = d3.select("svg");
-    svg.selectAll(".node")
+    var radiusInput = document.getElementById('radiusScale');
+    var opacityInput = document.getElementById('opacityScale');
+
+    // initial draw
+    var nodes = svg.selectAll(".node")
       .data(convertedData)
       .enter().append("circle")
       .attr("class", "node")
       .attr("cx", function(d) { return d.x / 100 * 297; })
-      .attr("cy", function(d) { return 186 - d.y / 100 * 186; })
-      .attr("r", function(d) { return d.count * 5; })
-      .style("opacity", function(d) { return 1 - d.count / 10; });
+      .attr("cy", function(d) { return 186 - d.y / 100 * 186; });
+
+    function renderHeatmap() {
+      var rScale = parseFloat(radiusInput?.value || 5);
+      var baseOpacity = parseFloat(opacityInput?.value || 0.5);
+      nodes
+        .attr("r", function(d) { return d.count * rScale; })
+        .style("opacity", function(d) { return Math.max(0.1, baseOpacity - d.count / 20); });
+    }
+
+    radiusInput?.addEventListener('input', renderHeatmap);
+    opacityInput?.addEventListener('input', renderHeatmap);
+
+    renderHeatmap();
   </script>
 </body>
 </html>

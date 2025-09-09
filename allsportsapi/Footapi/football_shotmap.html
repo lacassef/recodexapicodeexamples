@@ -68,6 +68,12 @@
         <button onclick="toggleTeam('home')" class="active">Home Team</button>
         <button onclick="toggleTeam('away')">Away Team</button>
     </div>
+    <div style="margin-bottom:12px; text-align:center;">
+        <input id="apiKey" type="password" placeholder="RapidAPI Key" style="width:260px; padding:6px;" />
+        <input id="matchId" type="text" placeholder="Match ID (e.g., 123456)" style="width:200px; padding:6px;" />
+        <button id="loadShotsBtn" style="padding:6px 12px;">Load Shots</button>
+        <span id="status" style="margin-left:8px; font-size:12px; color:#555;"></span>
+    </div>
     <div class="field-container">
         <svg class="soccer-field" viewBox="0 0 400 280">
             <rect width="400" height="280" fill="#90EE90"/>
@@ -88,6 +94,53 @@
     const shotsContainer = document.getElementById('shots');
     const tooltip = document.getElementById('tooltip');
     let currentTeam = 'home';
+    const defaultShotData = shotData;
+    let currentData = defaultShotData;
+    const statusEl = document.getElementById('status');
+    const loadBtn = document.getElementById('loadShotsBtn');
+    const apiKeyInput = document.getElementById('apiKey');
+    const matchIdInput = document.getElementById('matchId');
+
+    if (loadBtn) {
+        loadBtn.addEventListener('click', async () => {
+            const apiKey = apiKeyInput.value.trim();
+            const matchId = matchIdInput.value.trim();
+            if (!matchId) {
+                statusEl.textContent = 'Please enter a Match ID';
+                statusEl.style.color = '#b91c1c';
+                return;
+            }
+            statusEl.textContent = 'Loading shots...';
+            statusEl.style.color = '#555';
+            try {
+                const res = await fetch(`https://footapi7.p.rapidapi.com/api/match/${encodeURIComponent(matchId)}/shotmap`, {
+                    headers: {
+                        'x-rapidapi-host': 'footapi7.p.rapidapi.com',
+                        'x-rapidapi-key': apiKey || 'demo'
+                    }
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                if (!data || !data.shotmap) throw new Error('Unexpected response');
+                // replace global data and re-render
+                currentData = data;
+                shotsContainer.innerHTML = '';
+                // remove any previous lines
+                document.querySelectorAll('.shot-line').forEach(el => el.remove());
+                toggleTeam(currentTeam);
+                statusEl.textContent = 'Loaded shots from API';
+                statusEl.style.color = '#166534';
+            } catch (err) {
+                console.warn('Falling back to demo data:', err);
+                statusEl.textContent = 'Could not load from API, showing demo data';
+                statusEl.style.color = '#b45309';
+                currentData = defaultShotData;
+                shotsContainer.innerHTML = '';
+                document.querySelectorAll('.shot-line').forEach(el => el.remove());
+                toggleTeam(currentTeam);
+            }
+        });
+    }
 
     function createShot(shot) {
         if (shot.isHome !== (currentTeam === 'home')) return;
@@ -157,16 +210,16 @@
             btn.classList.remove('active');
         });
         document.querySelector(`button[onclick="toggleTeam('${team}')"]`).classList.add('active');
-        shotData.shotmap.forEach(createShot);
+        currentData.shotmap.forEach(createShot);
     }
 
     // Initial render
-    shotData.shotmap.forEach(createShot);
+    currentData.shotmap.forEach(createShot);
 
     // Handle window resize
     window.addEventListener('resize', () => {
         shotsContainer.innerHTML = '';
-        shotData.shotmap.forEach(createShot);
+        currentData.shotmap.forEach(createShot);
     });
 </script>
 </body>
