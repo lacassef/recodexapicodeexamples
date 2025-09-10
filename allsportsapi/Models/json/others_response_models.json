@@ -1,0 +1,776 @@
+{
+  "title": "Other Endpoints Response Models",
+  "version": "1.0.0",
+  "description": "Comprehensive JSON schema documentation for all Other API endpoints",
+  "totalEndpoints": 51,
+  "baseResponseTypes": {
+    "AbstractNetworkResponse": {
+      "description": "Base response class for legacy endpoints",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata including status and timing"
+        },
+        "error": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Error information if request failed"
+        }
+      }
+    },
+    "NetworkResponse": {
+      "description": "Base response class for new network layer",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata"
+        },
+        "error": {
+          "type": "ErrorResponse",
+          "nullable": true,
+          "description": "Detailed error information"
+        }
+      }
+    }
+  },
+  "sharedModels": {
+    "Sport": {
+      "description": "Sport entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "color": {
+          "type": "string",
+          "format": "hex-color",
+          "required": false
+        }
+      }
+    },
+    "Category": {
+      "description": "Category entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "sport": {
+          "type": "Sport",
+          "required": true
+        },
+        "flag": {
+          "type": "string",
+          "required": false
+        },
+        "alpha2": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "required": false
+        },
+        "priority": {
+          "type": "integer",
+          "required": false
+        }
+      }
+    },
+    "Stage": {
+      "description": "Stage entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "sport": {
+          "type": "Sport",
+          "required": true
+        },
+        "category": {
+          "type": "Category",
+          "required": true
+        },
+        "startDateTimestamp": {
+          "type": "timestamp",
+          "required": false
+        },
+        "endDateTimestamp": {
+          "type": "timestamp",
+          "required": false
+        }
+      }
+    },
+    "Manager": {
+      "description": "Manager entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "shortName": {
+          "type": "string",
+          "required": false
+        },
+        "country": {
+          "type": "Country",
+          "required": false
+        },
+        "dateOfBirth": {
+          "type": "timestamp",
+          "required": false
+        }
+      }
+    },
+    "Referee": {
+      "description": "Referee entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "shortName": {
+          "type": "string",
+          "required": false
+        },
+        "country": {
+          "type": "Country",
+          "required": false
+        },
+        "sport": {
+          "type": "Sport",
+          "required": false
+        }
+      }
+    },
+    "Venue": {
+      "description": "Venue entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": false
+        },
+        "capacity": {
+          "type": "integer",
+          "required": false
+        },
+        "city": {
+          "type": "City",
+          "required": false
+        },
+        "country": {
+          "type": "Country",
+          "required": false
+        },
+        "coordinates": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "Event": {
+      "description": "Event entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "customId": {
+          "type": "string",
+          "required": false
+        },
+        "homeTeam": {
+          "type": "Team",
+          "required": true
+        },
+        "awayTeam": {
+          "type": "Team",
+          "required": true
+        },
+        "homeScore": {
+          "type": "Score",
+          "required": false
+        },
+        "awayScore": {
+          "type": "Score",
+          "required": false
+        },
+        "status": {
+          "type": "Status",
+          "required": true
+        },
+        "startTimestamp": {
+          "type": "timestamp",
+          "required": true
+        },
+        "tournament": {
+          "type": "Tournament",
+          "required": true
+        },
+        "stage": {
+          "type": "Stage",
+          "required": false
+        }
+      }
+    },
+    "Transfer": {
+      "description": "Transfer entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "player": {
+          "type": "Player",
+          "required": true
+        },
+        "transferFrom": {
+          "type": "Team",
+          "required": false
+        },
+        "transferTo": {
+          "type": "Team",
+          "required": false
+        },
+        "type": {
+          "type": "integer",
+          "required": true,
+          "description": "1: Transfer, 2: Loan, 3: Free transfer"
+        },
+        "transferDateTimestamp": {
+          "type": "timestamp",
+          "required": true
+        },
+        "transferFee": {
+          "type": "integer",
+          "required": false
+        },
+        "transferMarketUrl": {
+          "type": "string",
+          "format": "uri",
+          "required": false
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "sportsAndCategoriesEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/tournament/categories",
+          "/api/baseball/tournament/categories",
+          "/api/basketball/tournament/categories",
+          "/api/cricket/tournament/categories",
+          "/api/esport/tournament/categories",
+          "/api/handball/tournament/categories",
+          "/api/ice-hockey/tournament/categories",
+          "/api/mma/categories",
+          "/api/motorsport/categories",
+          "/api/rugby/tournament/categories",
+          "/api/tennis/tournament/categories",
+          "/api/tournament/categories",
+          "/api/volleyball/tournament/categories"
+        ],
+        "method": "sportCategories",
+        "description": "Returns all categories for a specific sport",
+        "parameters": {
+          "sport": {
+            "type": "string",
+            "required": true,
+            "description": "Sport identifier (slug)"
+          }
+        },
+        "response": {
+          "type": "SportCategoriesResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "categories": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "Category"
+              },
+              "description": "List of categories for the sport"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/matches/live",
+          "/api/baseball/matches/live",
+          "/api/basketball/matches/live",
+          "/api/cricket/matches/live",
+          "/api/esport/matches/live",
+          "/api/handball/matches/live",
+          "/api/ice-hockey/matches/live",
+          "/api/matches/live",
+          "/api/rugby/matches/live",
+          "/api/tennis/events/live",
+          "/api/volleyball/matches/live"
+        ],
+        "method": "sportLiveEvents",
+        "description": "Returns live events for a specific sport",
+        "parameters": {
+          "sport": {
+            "type": "string",
+            "required": true,
+            "description": "Sport identifier (slug)"
+          }
+        },
+        "response": {
+          "type": "SportLiveEventsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "events": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "Event"
+              },
+              "description": "List of live events"
+            }
+          }
+        }
+      }
+    ],
+    "categoriesEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/tournament/all/category/{id}",
+          "/api/baseball/tournament/all/category/{id}",
+          "/api/basketball/tournament/all/category/{id}",
+          "/api/cricket/tournament/all/category/{id}",
+          "/api/esport/tournament/all/category/{id}",
+          "/api/handball/unique-tournament/all/category/{id}",
+          "/api/ice-hockey/tournament/all/category/{id}",
+          "/api/mma/category/{id}/unique-tournaments",
+          "/api/rugby/tournament/all/category/{id}",
+          "/api/tennis/tournament/all/category/{id}",
+          "/api/tournament/all/category/{id}",
+          "/api/volleyball/unique-tournament/all/category/{id}"
+        ],
+        "method": "categoryTournaments",
+        "description": "Returns unique tournaments for a specific category",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Category identifier"
+          }
+        },
+        "response": {
+          "type": "CategoryTournamentsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "uniqueTournaments": {
+              "type": "array",
+              "required": false,
+              "items": {
+                "type": "UniqueTournament"
+              },
+              "description": "List of unique tournaments in the category"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/category/{categoryId}/matches/{day}/{month}/{year}"
+        ],
+        "method": "categoryScheduledEvents",
+        "description": "Returns scheduled events for a category on specific date",
+        "parameters": {
+          "cid": {
+            "type": "integer",
+            "required": true,
+            "description": "Category identifier"
+          },
+          "date": {
+            "type": "string",
+            "required": true,
+            "format": "YYYY-MM-DD",
+            "description": "Date for scheduled events"
+          }
+        },
+        "response": {
+          "type": "CategoryScheduledEventsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "events": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "Event"
+              },
+              "description": "Scheduled events for the category and date"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/motorsport/category/{id}/stages/all"
+        ],
+        "method": "stageSportUniqueStages",
+        "description": "Returns unique stages for a specific category",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Category identifier"
+          }
+        },
+        "response": {
+          "type": "CategoryUniqueStagesResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "uniqueStages": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "Stage"
+              },
+              "description": "List of unique stages in the category"
+            }
+          }
+        }
+      }
+    ],
+    "stagesEndpoints": [
+      {
+        "endpoint": [
+          "/api/motorsport/stage/{stageId}"
+        ],
+        "method": "stageDetails",
+        "description": "Returns stage details",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Stage identifier"
+          }
+        },
+        "response": {
+          "type": "StageDetailsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "stage": {
+              "type": "Stage",
+              "required": true,
+              "description": "Complete stage information"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/motorsport/unique-stage/{uniqueStageId}/season"
+        ],
+        "method": "stageSportSeasons",
+        "description": "Returns seasons for unique stage",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique stage identifier"
+          }
+        },
+        "response": {
+          "type": "StageSeasonsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "seasons": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "Season"
+              },
+              "description": "List of seasons for the stage"
+            }
+          }
+        }
+      }
+    ],
+    "calendarEndpoints": [],
+    "managersAndRefereesEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/manager/{id}",
+          "/api/basketball/manager/{id}",
+          "/api/ice-hockey/manager/{id}",
+          "/api/manager/{id}",
+          "/api/rugby/manager/{id}"
+        ],
+        "method": "managerDetails",
+        "description": "Returns manager details",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Manager identifier"
+          }
+        },
+        "response": {
+          "type": "ManagerDetailsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "manager": {
+              "type": "Manager",
+              "required": true,
+              "description": "Complete manager information"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/manager/{id}/history"
+        ],
+        "method": "managerCareerHistory",
+        "description": "Returns manager career history",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Manager identifier"
+          }
+        },
+        "response": {
+          "type": "ManagerCareerHistoryResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "careerHistory": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "ManagerCareerEntry",
+                "properties": {
+                  "team": {
+                    "type": "Team"
+                  },
+                  "startDate": {
+                    "type": "timestamp"
+                  },
+                  "endDate": {
+                    "type": "timestamp",
+                    "nullable": true
+                  },
+                  "matches": {
+                    "type": "integer"
+                  },
+                  "wins": {
+                    "type": "integer"
+                  },
+                  "draws": {
+                    "type": "integer"
+                  },
+                  "losses": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "description": "Manager's career history entries"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/referee/{id}"
+        ],
+        "method": "refereeDetails",
+        "description": "Returns referee details",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Referee identifier"
+          }
+        },
+        "response": {
+          "type": "RefereeDetailsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "referee": {
+              "type": "Referee",
+              "required": true,
+              "description": "Complete referee information"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/referee/{id}/statistics"
+        ],
+        "method": "refereeStatistics",
+        "description": "Returns referee statistics",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Referee identifier"
+          }
+        },
+        "response": {
+          "type": "RefereeStatisticsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "statistics": {
+              "type": "object",
+              "required": true,
+              "properties": {
+                "totalMatches": {
+                  "type": "integer"
+                },
+                "yellowCards": {
+                  "type": "integer"
+                },
+                "redCards": {
+                  "type": "integer"
+                },
+                "averageYellowCards": {
+                  "type": "number"
+                },
+                "averageRedCards": {
+                  "type": "number"
+                },
+                "seasons": {
+                  "type": "array",
+                  "items": {
+                    "type": "Season"
+                  }
+                }
+              },
+              "description": "Referee's career statistics"
+            }
+          }
+        }
+      }
+    ],
+    "venuesEndpoints": [],
+    "transfersEndpoints": [],
+    "miscellaneousEndpoints": [],
+    "configendpoints": []
+  },
+  "queryParameters": {
+    "description": "Common query parameters used across endpoints",
+    "parameters": {
+      "sport": {
+        "type": "string",
+        "description": "Sport identifier (slug)"
+      },
+      "date": {
+        "type": "string",
+        "format": "YYYY-MM-DD",
+        "description": "Date filter"
+      },
+      "timezoneOffset": {
+        "type": "integer",
+        "description": "Timezone offset in minutes"
+      },
+      "page": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Page number for pagination (0-indexed)"
+      },
+      "type": {
+        "type": "string",
+        "enum": [
+          "last",
+          "next"
+        ],
+        "description": "Time-based filter for events"
+      }
+    }
+  },
+  "dataFormats": {
+    "timestamp": {
+      "type": "integer",
+      "format": "unix-timestamp",
+      "description": "Unix timestamp in seconds"
+    },
+    "date": {
+      "type": "string",
+      "format": "YYYY-MM-DD"
+    },
+    "yearMonth": {
+      "type": "string",
+      "format": "YYYY-MM",
+      "pattern": "^\\d{4}-\\d{2}$"
+    }
+  },
+  "changelog": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-08-16",
+    "changes": [
+      {
+        "version": "1.0.0",
+        "date": "2025-08-16",
+        "changes": [
+          "Initial comprehensive documentation of Other Endpoints",
+          "Added 32 endpoints across 7 categories",
+          "Documented Sports & Categories, Categories, Stages, Calendar, Managers & Referees, Venues, Transfers, and Miscellaneous endpoints",
+          "Included detailed response structures and parameter definitions"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,991 @@
+{
+  "title": "Search Endpoints Response Models",
+  "version": "1.0.0",
+  "description": "Comprehensive JSON schema documentation for all Search API endpoints",
+  "totalEndpoints": 10,
+  "baseResponseTypes": {
+    "NetworkResponse": {
+      "description": "Base response class for network layer",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata"
+        },
+        "error": {
+          "type": "ErrorResponse",
+          "nullable": true,
+          "description": "Detailed error information"
+        }
+      }
+    }
+  },
+  "sharedModels": {
+    "SearchEntity": {
+      "description": "Generic search result entity wrapper",
+      "fields": {
+        "type": {
+          "type": "string",
+          "required": true,
+          "values": [
+            "player",
+            "team",
+            "manager",
+            "tournament",
+            "venue",
+            "event"
+          ]
+        },
+        "entity": {
+          "type": "T",
+          "required": true,
+          "description": "The actual entity object (Player, Team, etc.)"
+        },
+        "score": {
+          "type": "float",
+          "nullable": true,
+          "description": "Search relevance score"
+        },
+        "sport": {
+          "type": "Sport",
+          "nullable": true
+        }
+      }
+    },
+    "Player": {
+      "description": "Player entity in search results",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "shortName": {
+          "type": "string",
+          "nullable": true
+        },
+        "team": {
+          "type": "Team",
+          "nullable": true
+        },
+        "position": {
+          "type": "string",
+          "nullable": true
+        },
+        "jerseyNumber": {
+          "type": "string",
+          "nullable": true
+        },
+        "height": {
+          "type": "integer",
+          "nullable": true
+        },
+        "dateOfBirthTimestamp": {
+          "type": "long",
+          "nullable": true
+        },
+        "gender": {
+          "type": "string",
+          "nullable": true
+        },
+        "country": {
+          "type": "Country",
+          "nullable": true
+        },
+        "marketValueCurrency": {
+          "type": "string",
+          "nullable": true
+        },
+        "proposedMarketValue": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "Team": {
+      "description": "Team entity in search results",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "shortName": {
+          "type": "string",
+          "nullable": true
+        },
+        "nameCode": {
+          "type": "string",
+          "nullable": true
+        },
+        "gender": {
+          "type": "string",
+          "nullable": true
+        },
+        "sport": {
+          "type": "Sport",
+          "nullable": true
+        },
+        "category": {
+          "type": "Category",
+          "nullable": true
+        },
+        "tournament": {
+          "type": "Tournament",
+          "nullable": true
+        },
+        "primaryUniqueTournament": {
+          "type": "UniqueTournament",
+          "nullable": true
+        },
+        "userCount": {
+          "type": "integer",
+          "nullable": true
+        },
+        "type": {
+          "type": "integer",
+          "nullable": true
+        },
+        "teamColors": {
+          "type": "TeamColors",
+          "nullable": true
+        }
+      }
+    },
+    "Manager": {
+      "description": "Manager/Coach entity in search results",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "shortName": {
+          "type": "string",
+          "nullable": true
+        },
+        "team": {
+          "type": "Team",
+          "nullable": true
+        },
+        "gender": {
+          "type": "string",
+          "nullable": true
+        },
+        "country": {
+          "type": "Country",
+          "nullable": true
+        },
+        "dateOfBirthTimestamp": {
+          "type": "long",
+          "nullable": true
+        },
+        "performance": {
+          "type": "ManagerPerformance",
+          "nullable": true
+        }
+      }
+    },
+    "UniqueTournament": {
+      "description": "Tournament entity in search results",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "category": {
+          "type": "Category",
+          "required": true
+        },
+        "userCount": {
+          "type": "integer",
+          "nullable": true
+        },
+        "hasEventPlayerStatistics": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "crowdsourcingEnabled": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "hasPerformanceGraphFeature": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "displayInverseHomeAwayTeams": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "logo": {
+          "type": "Logo",
+          "nullable": true
+        },
+        "primaryColorHex": {
+          "type": "string",
+          "nullable": true
+        },
+        "secondaryColorHex": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "Venue": {
+      "description": "Venue/Stadium entity in search results",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "city": {
+          "type": "City",
+          "nullable": true
+        },
+        "country": {
+          "type": "Country",
+          "nullable": true
+        },
+        "stadium": {
+          "type": "Stadium",
+          "nullable": true
+        },
+        "capacity": {
+          "type": "integer",
+          "nullable": true
+        },
+        "coordinates": {
+          "type": "Coordinates",
+          "nullable": true
+        }
+      }
+    },
+    "SearchSuggestion": {
+      "description": "Search suggestion/autocomplete result",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "type": {
+          "type": "string",
+          "required": true
+        },
+        "sport": {
+          "type": "string",
+          "nullable": true
+        },
+        "category": {
+          "type": "string",
+          "nullable": true
+        },
+        "popularity": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "Sport": {
+      "description": "Sport information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "Category": {
+      "description": "Category/Country information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "sport": {
+          "type": "Sport",
+          "required": true
+        },
+        "priority": {
+          "type": "integer",
+          "nullable": true
+        },
+        "flag": {
+          "type": "string",
+          "nullable": true
+        },
+        "alpha2": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "Country": {
+      "description": "Country information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "alpha2": {
+          "type": "string",
+          "required": true
+        },
+        "alpha3": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "search": {
+      "/api/american-football/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/baseball/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/basketball/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/cricket/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/esport/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/handball/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/ice-hockey/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/mma/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/motorsport/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/rugby/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/tennis/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      },
+      "/api/volleyball/search/{term}": {
+        "method": "search",
+        "description": "Search across all entity types",
+        "queryParams": {
+          "q": {
+            "type": "string",
+            "required": true,
+            "description": "Search query string"
+          },
+          "sport": {
+            "type": "string",
+            "required": false,
+            "description": "Filter by sport (e.g., football, basketball)"
+          },
+          "page": {
+            "type": "integer",
+            "required": false,
+            "description": "Page number for pagination"
+          }
+        },
+        "responseClass": "SearchResponse",
+        "responseFields": {
+          "results": {
+            "type": "List<SearchEntity<?>>",
+            "required": true,
+            "description": "Mixed list of search results"
+          }
+        }
+      }
+    },
+    "searchByEntityType": {},
+    "searchSuggestionsByEntityType": {},
+    "searchManagers": {},
+    "searchPlayers": {},
+    "searchTeams": {},
+    "searchTeamsBySport": {},
+    "searchTournaments": {},
+    "searchVenues": {}
+  },
+  "dataModels": {
+    "TeamColors": {
+      "description": "Team color scheme",
+      "fields": {
+        "primary": {
+          "type": "string",
+          "nullable": true
+        },
+        "secondary": {
+          "type": "string",
+          "nullable": true
+        },
+        "text": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "Logo": {
+      "description": "Logo information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "md5": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "ManagerPerformance": {
+      "description": "Manager performance statistics",
+      "fields": {
+        "total": {
+          "type": "integer",
+          "nullable": true
+        },
+        "wins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "draws": {
+          "type": "integer",
+          "nullable": true
+        },
+        "losses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "winPercentage": {
+          "type": "float",
+          "nullable": true
+        }
+      }
+    },
+    "Stadium": {
+      "description": "Stadium details",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "capacity": {
+          "type": "integer",
+          "nullable": true
+        },
+        "city": {
+          "type": "City",
+          "nullable": true
+        },
+        "country": {
+          "type": "Country",
+          "nullable": true
+        }
+      }
+    },
+    "City": {
+      "description": "City information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "country": {
+          "type": "Country",
+          "nullable": true
+        }
+      }
+    },
+    "Coordinates": {
+      "description": "Geographic coordinates",
+      "fields": {
+        "latitude": {
+          "type": "double",
+          "required": true
+        },
+        "longitude": {
+          "type": "double",
+          "required": true
+        }
+      }
+    },
+    "SearchFilter": {
+      "description": "Search filter options",
+      "fields": {
+        "sport": {
+          "type": "string",
+          "nullable": true
+        },
+        "country": {
+          "type": "string",
+          "nullable": true
+        },
+        "tournament": {
+          "type": "string",
+          "nullable": true
+        },
+        "gender": {
+          "type": "string",
+          "nullable": true,
+          "values": [
+            "M",
+            "F"
+          ]
+        },
+        "season": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "SearchPagination": {
+      "description": "Search pagination info",
+      "fields": {
+        "page": {
+          "type": "integer",
+          "required": true
+        },
+        "pageSize": {
+          "type": "integer",
+          "required": true
+        },
+        "totalPages": {
+          "type": "integer",
+          "nullable": true
+        },
+        "totalResults": {
+          "type": "integer",
+          "nullable": true
+        },
+        "hasMore": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "SearchMetadata": {
+      "description": "Search metadata",
+      "fields": {
+        "query": {
+          "type": "string",
+          "required": true
+        },
+        "searchTime": {
+          "type": "long",
+          "required": true
+        },
+        "resultsCount": {
+          "type": "integer",
+          "required": true
+        },
+        "filters": {
+          "type": "SearchFilter",
+          "nullable": true
+        },
+        "pagination": {
+          "type": "SearchPagination",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "notes": {
+    "inheritance": "Search response classes extend NetworkResponse, except SearchResponse which is standalone",
+    "nullability": "Fields marked as nullable may be absent in the response",
+    "searchEntity": "SearchEntity is a generic wrapper that contains the entity type and the actual entity object",
+    "pagination": "The 'more' parameter in URLs typically starts at 0 for the first page",
+    "queryString": "Search queries support partial matching and are case-insensitive",
+    "sportFilter": "Sport filter accepts sport slugs like: football, basketball, tennis, baseball, hockey, etc.",
+    "entityTypes": "Valid entity types: players, teams, managers, tournaments, venues, events",
+    "searchScore": "Search results may include a relevance score for ranking",
+    "suggestions": "Suggestions endpoint is optimized for autocomplete with faster response times",
+    "caching": "Search results may be cached for common queries",
+    "rateLimit": "Search endpoints may have rate limiting to prevent abuse",
+    "minQueryLength": "Most search endpoints require a minimum query length of 2 characters"
+  }
+}

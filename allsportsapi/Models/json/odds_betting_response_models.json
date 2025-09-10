@@ -1,0 +1,536 @@
+{
+  "title": "Odds & Betting Endpoints Response Models",
+  "version": "1.0.0",
+  "description": "Comprehensive JSON schema documentation for all Odds & Betting API endpoints",
+  "totalEndpoints": 28,
+  "baseResponseTypes": {
+    "NetworkResponse": {
+      "description": "Base response class for network layer",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata"
+        },
+        "error": {
+          "type": "ErrorResponse",
+          "nullable": true,
+          "description": "Detailed error information"
+        }
+      }
+    }
+  },
+  "sharedModels": {
+    "ProviderOdds": {
+      "description": "Odds information from a provider",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "marketId": {
+          "type": "integer",
+          "required": true
+        },
+        "marketName": {
+          "type": "string",
+          "required": true
+        },
+        "structuredMarketName": {
+          "type": "StructuredMarketName",
+          "nullable": true
+        },
+        "suspend": {
+          "type": "boolean",
+          "required": false
+        },
+        "marketChosen": {
+          "type": "boolean",
+          "required": false
+        },
+        "choices": {
+          "type": "List<OddsChoice>",
+          "required": true
+        },
+        "fid": {
+          "type": "integer",
+          "nullable": true
+        },
+        "sourceType": {
+          "type": "string",
+          "nullable": true
+        },
+        "isLive": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "OddsChoice": {
+      "description": "Individual betting choice/option",
+      "fields": {
+        "choiceId": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "fractionalValue": {
+          "type": "string",
+          "nullable": true
+        },
+        "americanValue": {
+          "type": "integer",
+          "nullable": true
+        },
+        "decimalValue": {
+          "type": "float",
+          "nullable": true
+        },
+        "winning": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "change": {
+          "type": "integer",
+          "nullable": true
+        },
+        "initialFractionalValue": {
+          "type": "string",
+          "nullable": true
+        },
+        "sourceId": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "OddsProvider": {
+      "description": "Betting provider information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "legacy": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "link": {
+          "type": "string",
+          "nullable": true
+        },
+        "affiliate": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "redirectType": {
+          "type": "string",
+          "nullable": true
+        },
+        "priority": {
+          "type": "integer",
+          "nullable": true
+        },
+        "packageId": {
+          "type": "string",
+          "nullable": true
+        },
+        "appStoreLink": {
+          "type": "string",
+          "nullable": true
+        },
+        "playStoreLink": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "OddsCountryProvider": {
+      "description": "Provider availability by country",
+      "fields": {
+        "provider": {
+          "type": "OddsProvider",
+          "required": true
+        },
+        "priority": {
+          "type": "integer",
+          "nullable": true
+        },
+        "link": {
+          "type": "string",
+          "nullable": true
+        },
+        "prematchOdds": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "liveOdds": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "active": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "DroppingOdds": {
+      "description": "Odds that are dropping",
+      "fields": {
+        "eventId": {
+          "type": "integer",
+          "required": true
+        },
+        "marketName": {
+          "type": "string",
+          "required": true
+        },
+        "choiceName": {
+          "type": "string",
+          "required": true
+        },
+        "initialValue": {
+          "type": "float",
+          "required": true
+        },
+        "currentValue": {
+          "type": "float",
+          "required": true
+        },
+        "dropPercentage": {
+          "type": "float",
+          "required": true
+        },
+        "timestamp": {
+          "type": "long",
+          "nullable": true
+        }
+      }
+    },
+    "BetBoost": {
+      "description": "Boosted bet information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "eventId": {
+          "type": "integer",
+          "required": true
+        },
+        "providerId": {
+          "type": "integer",
+          "required": true
+        },
+        "marketName": {
+          "type": "string",
+          "required": true
+        },
+        "choiceName": {
+          "type": "string",
+          "required": true
+        },
+        "boostedOdds": {
+          "type": "float",
+          "required": true
+        },
+        "originalOdds": {
+          "type": "float",
+          "required": true
+        },
+        "boostPercentage": {
+          "type": "float",
+          "required": true
+        },
+        "expiryTime": {
+          "type": "long",
+          "nullable": true
+        }
+      }
+    },
+    "TeamStreak": {
+      "description": "Team streak information",
+      "fields": {
+        "teamId": {
+          "type": "integer",
+          "required": true
+        },
+        "teamName": {
+          "type": "string",
+          "required": true
+        },
+        "streakType": {
+          "type": "string",
+          "required": true
+        },
+        "streakLength": {
+          "type": "integer",
+          "required": true
+        },
+        "description": {
+          "type": "string",
+          "nullable": true
+        },
+        "odds": {
+          "type": "float",
+          "nullable": true
+        }
+      }
+    },
+    "H2HStreak": {
+      "description": "Head-to-head streak data",
+      "fields": {
+        "homeTeamId": {
+          "type": "integer",
+          "required": true
+        },
+        "awayTeamId": {
+          "type": "integer",
+          "required": true
+        },
+        "streakType": {
+          "type": "string",
+          "required": true
+        },
+        "count": {
+          "type": "integer",
+          "required": true
+        },
+        "lastOccurrence": {
+          "type": "long",
+          "nullable": true
+        }
+      }
+    },
+    "WinningOdds": {
+      "description": "Winning odds information",
+      "fields": {
+        "eventId": {
+          "type": "integer",
+          "required": true
+        },
+        "marketId": {
+          "type": "integer",
+          "required": true
+        },
+        "choiceId": {
+          "type": "integer",
+          "required": true
+        },
+        "odds": {
+          "type": "float",
+          "required": true
+        },
+        "result": {
+          "type": "string",
+          "required": true
+        },
+        "payout": {
+          "type": "float",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "additionalOdds": {},
+    "allOdds": {},
+    "featuredOdds": {},
+    "getEvenBetBoost": {},
+    "getWinningOdds": {},
+    "betBoosts": {},
+    "droppingOdds": {},
+    "h2hStreaks": {},
+    "trendingOdds": {},
+    "highValueStreaks": {},
+    "oddsProviderDetails": {},
+    "oddsProviderDetailsBySlug": {},
+    "oddsProvidersForCountry": {},
+    "oddsProvidersForCountryRegion": {},
+    "recommendedPrematchOdds": {},
+    "recommendedPrematchTopVotedOdds": {},
+    "stageAllOdds": {},
+    "stageFeaturedOdds": {},
+    "stageCategoryOdds": {},
+    "stageTeamOdds": {},
+    "teamStreaks": {},
+    "teamStreakBettingOdds": {},
+    "oddsendpoints": []
+  },
+  "dataModels": {
+    "StructuredMarketName": {
+      "description": "Structured market name with components",
+      "fields": {
+        "category": {
+          "type": "string",
+          "required": true
+        },
+        "subcategory": {
+          "type": "string",
+          "nullable": true
+        },
+        "specifier": {
+          "type": "string",
+          "nullable": true
+        },
+        "outcome": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "TrendingOdds": {
+      "description": "Trending odds information",
+      "fields": {
+        "eventId": {
+          "type": "integer",
+          "required": true
+        },
+        "marketName": {
+          "type": "string",
+          "required": true
+        },
+        "choiceName": {
+          "type": "string",
+          "required": true
+        },
+        "currentValue": {
+          "type": "float",
+          "required": true
+        },
+        "trend": {
+          "type": "string",
+          "required": true,
+          "values": [
+            "up",
+            "down",
+            "stable"
+          ]
+        },
+        "changePercentage": {
+          "type": "float",
+          "nullable": true
+        }
+      }
+    },
+    "HighValueStreak": {
+      "description": "High value betting streak",
+      "fields": {
+        "streakId": {
+          "type": "integer",
+          "required": true
+        },
+        "teamId": {
+          "type": "integer",
+          "required": true
+        },
+        "teamName": {
+          "type": "string",
+          "required": true
+        },
+        "streakType": {
+          "type": "string",
+          "required": true
+        },
+        "count": {
+          "type": "integer",
+          "required": true
+        },
+        "value": {
+          "type": "float",
+          "required": true
+        },
+        "confidence": {
+          "type": "float",
+          "nullable": true
+        }
+      }
+    },
+    "StageOdds": {
+      "description": "Odds for stage/tournament outright markets",
+      "fields": {
+        "stageId": {
+          "type": "integer",
+          "required": true
+        },
+        "stageName": {
+          "type": "string",
+          "required": true
+        },
+        "markets": {
+          "type": "List<ProviderOdds>",
+          "required": true
+        },
+        "lastUpdated": {
+          "type": "long",
+          "nullable": true
+        }
+      }
+    },
+    "CategoryOdds": {
+      "description": "Odds grouped by category",
+      "fields": {
+        "categoryId": {
+          "type": "integer",
+          "required": true
+        },
+        "categoryName": {
+          "type": "string",
+          "required": true
+        },
+        "events": {
+          "type": "List<Event>",
+          "nullable": true
+        },
+        "odds": {
+          "type": "Map<Integer, List<ProviderOdds>>",
+          "required": true
+        }
+      }
+    },
+    "TeamOdds": {
+      "description": "Odds specific to a team",
+      "fields": {
+        "teamId": {
+          "type": "integer",
+          "required": true
+        },
+        "teamName": {
+          "type": "string",
+          "required": true
+        },
+        "upcomingEvents": {
+          "type": "List<Event>",
+          "nullable": true
+        },
+        "outrightMarkets": {
+          "type": "List<ProviderOdds>",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "notes": {
+    "inheritance": "All response classes extend NetworkResponse or are standalone data classes",
+    "nullability": "Fields marked as nullable may be absent in the response",
+    "providerId": "Provider ID is required for most endpoints to specify betting provider",
+    "sportSlug": "Sport slugs include: football, basketball, tennis, baseball, hockey, etc.",
+    "oddsFormat": "Odds can be returned in decimal, fractional, or American format",
+    "authentication": "Some endpoints may require authentication for full data access",
+    "rateLimit": "Odds endpoints may have rate limiting based on provider agreements",
+    "liveData": "Live odds endpoints update frequently and may have different response times",
+    "marketTypes": "Common market types: 1X2, Over/Under, Both Teams to Score, Handicap, etc.",
+    "streakTypes": "Streak types include: winning, unbeaten, scoring, clean sheets, etc."
+  }
+}

@@ -1,0 +1,2677 @@
+{
+  "title": "Event Endpoints Response Models",
+  "version": "2.2.0",
+  "description": "Comprehensive JSON schema documentation for all Event API endpoints",
+  "totalEndpoints": 45,
+  "baseResponseTypes": {
+    "AbstractNetworkResponse": {
+      "description": "Base response class for legacy endpoints",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata including status and timing"
+        },
+        "error": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Error information if request failed"
+        }
+      }
+    },
+    "NetworkResponse": {
+      "description": "Base response class for new network layer",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata"
+        },
+        "error": {
+          "type": "ErrorResponse",
+          "nullable": true,
+          "description": "Detailed error information"
+        }
+      }
+    }
+  },
+  "sharedModels": {
+    "Team": {
+      "description": "Team entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": false
+        },
+        "shortName": {
+          "type": "string",
+          "required": false
+        },
+        "nameCode": {
+          "type": "string",
+          "required": false
+        },
+        "gender": {
+          "type": "string",
+          "required": false
+        },
+        "country": {
+          "type": "Country",
+          "required": false
+        },
+        "teamColors": {
+          "type": "TeamColors",
+          "required": false,
+          "description": "Primary and secondary team colors"
+        }
+      }
+    },
+    "Player": {
+      "description": "Player entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": false
+        },
+        "shortName": {
+          "type": "string",
+          "required": false
+        },
+        "position": {
+          "type": "string",
+          "required": false
+        },
+        "jerseyNumber": {
+          "type": "integer",
+          "required": false
+        },
+        "country": {
+          "type": "Country",
+          "required": false
+        },
+        "dateOfBirth": {
+          "type": "timestamp",
+          "required": false
+        }
+      }
+    },
+    "Score": {
+      "description": "Score information for an event",
+      "fields": {
+        "current": {
+          "type": "integer",
+          "required": false
+        },
+        "display": {
+          "type": "string",
+          "required": false
+        },
+        "period1": {
+          "type": "integer",
+          "required": false
+        },
+        "period2": {
+          "type": "integer",
+          "required": false
+        },
+        "normaltime": {
+          "type": "integer",
+          "required": false
+        },
+        "overtime": {
+          "type": "integer",
+          "required": false
+        },
+        "penalties": {
+          "type": "integer",
+          "required": false
+        },
+        "aggregated": {
+          "type": "integer",
+          "required": false
+        }
+      }
+    },
+    "TeamShirtColors": {
+      "description": "Team shirt color configuration",
+      "fields": {
+        "primary": {
+          "type": "string",
+          "format": "hex-color"
+        },
+        "secondary": {
+          "type": "string",
+          "format": "hex-color"
+        },
+        "text": {
+          "type": "string",
+          "format": "hex-color"
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "coreEventEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}",
+          "/api/baseball/match/{id}",
+          "/api/basketball/match/{id}",
+          "/api/cricket/match/{id}",
+          "/api/esport/event/{id}",
+          "/api/handball/match/{id}",
+          "/api/ice-hockey/match/{id}",
+          "/api/match/{id}",
+          "/api/mma/event/{id}",
+          "/api/rugby/match/{id}",
+          "/api/tennis/event/{id}",
+          "/api/volleyball/match/{id}"
+        ],
+        "method": "getEvent",
+        "description": "Retrieves complete event details including teams, scores, status, and metadata",
+        "parameters": {
+          "eventId": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique identifier for the event"
+          }
+        },
+        "response": {
+          "type": "EventResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "event": {
+              "type": "Event",
+              "required": true,
+              "description": "Complete event data",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "required": true
+                },
+                "customId": {
+                  "type": "string",
+                  "required": false
+                },
+                "slug": {
+                  "type": "string",
+                  "required": false
+                },
+                "name": {
+                  "type": "string",
+                  "required": false
+                },
+                "status": {
+                  "type": "EventStatus",
+                  "required": true,
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "notstarted",
+                        "inprogress",
+                        "finished",
+                        "postponed",
+                        "cancelled",
+                        "canceled",
+                        "delayed",
+                        "suspended",
+                        "interrupted",
+                        "willcontinue",
+                        "preliminary"
+                      ]
+                    }
+                  }
+                },
+                "tournament": {
+                  "type": "Tournament",
+                  "required": true,
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "uniqueTournament": {
+                      "type": "UniqueTournament"
+                    }
+                  }
+                },
+                "season": {
+                  "type": "Season",
+                  "required": false,
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "year": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "homeTeam": {
+                  "type": "Team",
+                  "required": true
+                },
+                "awayTeam": {
+                  "type": "Team",
+                  "required": true
+                },
+                "homeScore": {
+                  "type": "Score",
+                  "required": false
+                },
+                "awayScore": {
+                  "type": "Score",
+                  "required": false
+                },
+                "startTimestamp": {
+                  "type": "timestamp",
+                  "required": true
+                },
+                "endTimestamp": {
+                  "type": "timestamp",
+                  "required": false
+                },
+                "roundInfo": {
+                  "type": "RoundInfo",
+                  "required": false,
+                  "properties": {
+                    "round": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "venue": {
+                  "type": "Venue",
+                  "required": false,
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "City"
+                    },
+                    "country": {
+                      "type": "Country"
+                    },
+                    "stadium": {
+                      "type": "Stadium"
+                    }
+                  }
+                },
+                "referee": {
+                  "type": "Referee",
+                  "required": false,
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "Country"
+                    }
+                  }
+                },
+                "hasEventPlayerStatistics": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "hasGlobalHighlights": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "hasXg": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "hasLineups": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "crowdsourcingDataDisplayEnabled": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "winnerCode": {
+                  "type": "integer",
+                  "required": false
+                },
+                "aggregatedWinnerCode": {
+                  "type": "integer",
+                  "required": false
+                },
+                "childEvents": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "mute": {
+                  "type": "integer",
+                  "required": false
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/incidents",
+          "/api/basketball/match/{id}/incidents",
+          "/api/cricket/match/{id}/incidents",
+          "/api/handball/match/{id}/incidents",
+          "/api/ice-hockey/match/{id}/incidents",
+          "/api/match/{id}/incidents",
+          "/api/rugby/match/{id}/incidents",
+          "/api/volleyball/match/{id}/incidents"
+        ],
+        "method": "getEventIncidents",
+        "description": "Returns chronological list of match incidents like goals, cards, substitutions",
+        "parameters": {
+          "eventId": {
+            "type": "integer",
+            "required": true,
+            "description": "Event identifier"
+          }
+        },
+        "response": {
+          "type": "EventIncidentsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "incidents": {
+              "type": "array",
+              "required": true,
+              "description": "List of match incidents in chronological order",
+              "items": {
+                "type": "NetworkIncident",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "time": {
+                    "type": "integer",
+                    "description": "Minute of incident"
+                  },
+                  "addedTime": {
+                    "type": "integer",
+                    "description": "Added/injury time"
+                  },
+                  "incidentType": {
+                    "type": "string",
+                    "enum": [
+                      "goal",
+                      "card",
+                      "substitution",
+                      "period",
+                      "varDecision",
+                      "injury",
+                      "penalty"
+                    ]
+                  },
+                  "incidentClass": {
+                    "type": "string",
+                    "enum": [
+                      "regular",
+                      "penalty",
+                      "owngoal",
+                      "missed"
+                    ]
+                  },
+                  "player": {
+                    "type": "Player"
+                  },
+                  "playerIn": {
+                    "type": "Player",
+                    "description": "For substitutions"
+                  },
+                  "playerOut": {
+                    "type": "Player",
+                    "description": "For substitutions"
+                  },
+                  "assist1": {
+                    "type": "Player"
+                  },
+                  "assist2": {
+                    "type": "Player"
+                  },
+                  "teamSide": {
+                    "type": "string",
+                    "enum": [
+                      "home",
+                      "away"
+                    ]
+                  },
+                  "homeScore": {
+                    "type": "integer"
+                  },
+                  "awayScore": {
+                    "type": "integer"
+                  },
+                  "isHome": {
+                    "type": "boolean"
+                  },
+                  "incidentDescription": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "injuryTime": {
+                    "type": "integer"
+                  },
+                  "rescinded": {
+                    "type": "boolean",
+                    "default": false
+                  }
+                }
+              }
+            },
+            "homeShirtColors": {
+              "type": "TeamShirtColors",
+              "required": false,
+              "description": "Home team shirt colors for visualization"
+            },
+            "awayShirtColors": {
+              "type": "TeamShirtColors",
+              "required": false,
+              "description": "Away team shirt colors for visualization"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/lineups",
+          "/api/baseball/match/{id}/lineups",
+          "/api/basketball/match/{id}/lineups",
+          "/api/cricket/match/{id}/lineups",
+          "/api/esport/event/{id}/lineups",
+          "/api/handball/match/{id}/lineups",
+          "/api/ice-hockey/match/{id}/lineups",
+          "/api/match/{id}/lineups",
+          "/api/rugby/match/{id}/lineups"
+        ],
+        "method": "getLineups",
+        "description": "Returns team lineups including starting XI, substitutes, formation, and player ratings",
+        "parameters": {
+          "eventId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "LineupsResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "confirmed": {
+              "type": "boolean",
+              "required": true,
+              "description": "Whether lineups are officially confirmed"
+            },
+            "home": {
+              "type": "Lineups",
+              "required": true,
+              "description": "Home team lineup details",
+              "properties": {
+                "formation": {
+                  "type": "string",
+                  "example": "4-3-3"
+                },
+                "startingLineup": {
+                  "type": "array",
+                  "items": {
+                    "type": "LineupPlayer",
+                    "properties": {
+                      "player": {
+                        "type": "Player"
+                      },
+                      "position": {
+                        "type": "string"
+                      },
+                      "positionRow": {
+                        "type": "integer"
+                      },
+                      "positionNumber": {
+                        "type": "integer"
+                      },
+                      "captain": {
+                        "type": "boolean"
+                      },
+                      "substitute": {
+                        "type": "boolean"
+                      },
+                      "rating": {
+                        "type": "number",
+                        "format": "float"
+                      },
+                      "stats": {
+                        "type": "PlayerMatchStats"
+                      }
+                    }
+                  }
+                },
+                "substitutes": {
+                  "type": "array",
+                  "items": {
+                    "type": "LineupPlayer"
+                  }
+                },
+                "coach": {
+                  "type": "Manager"
+                },
+                "missingPlayers": {
+                  "type": "array",
+                  "items": {
+                    "type": "MissingPlayer",
+                    "properties": {
+                      "player": {
+                        "type": "Player"
+                      },
+                      "reason": {
+                        "type": "string",
+                        "enum": [
+                          "injured",
+                          "suspended",
+                          "other"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "away": {
+              "type": "Lineups",
+              "required": true,
+              "description": "Away team lineup details (same structure as home)"
+            },
+            "firstTeamAverageRating": {
+              "type": "number",
+              "format": "double",
+              "default": 0.0,
+              "description": "Average rating of first team players"
+            },
+            "secondTeamAverageRating": {
+              "type": "number",
+              "format": "double",
+              "default": 0.0,
+              "description": "Average rating of second team players"
+            },
+            "pregameRatingShown": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether pregame ratings should be displayed"
+            },
+            "shouldReverseTeams": {
+              "type": "boolean",
+              "default": false,
+              "description": "Flag indicating if team display should be reversed"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/statistics",
+          "/api/baseball/match/{id}/statistics",
+          "/api/basketball/match/{id}/statistics",
+          "/api/handball/match/{id}/statistics",
+          "/api/ice-hockey/match/{id}/statistics",
+          "/api/match/{id}/statistics",
+          "/api/mma/event/{id}/statistics",
+          "/api/rugby/match/{id}/statistics",
+          "/api/tennis/event/{id}/statistics",
+          "/api/volleyball/match/{id}/statistics"
+        ],
+        "method": "getEventStatistics",
+        "description": "Returns detailed match statistics like possession, shots, passes, etc.",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "EventStatisticsResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "statistics": {
+              "type": "array",
+              "required": true,
+              "description": "List of statistical categories",
+              "items": {
+                "type": "StatisticsItem",
+                "properties": {
+                  "period": {
+                    "type": "string",
+                    "enum": [
+                      "ALL",
+                      "1ST",
+                      "2ND",
+                      "ET",
+                      "PEN"
+                    ]
+                  },
+                  "groups": {
+                    "type": "array",
+                    "items": {
+                      "type": "StatisticsGroup",
+                      "properties": {
+                        "groupName": {
+                          "type": "string"
+                        },
+                        "statisticsItems": {
+                          "type": "array",
+                          "items": {
+                            "type": "Statistic",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "home": {
+                                "type": "string"
+                              },
+                              "away": {
+                                "type": "string"
+                              },
+                              "compareCode": {
+                                "type": "integer"
+                              },
+                              "statisticsType": {
+                                "type": "string"
+                              },
+                              "valueType": {
+                                "type": "string",
+                                "enum": [
+                                  "number",
+                                  "percentage",
+                                  "time"
+                                ]
+                              },
+                              "homeValue": {
+                                "type": "number"
+                              },
+                              "awayValue": {
+                                "type": "number"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "eventAnalyticsEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/best-players",
+          "/api/basketball/match/{id}/best-players",
+          "/api/handball/match/{id}/best-players",
+          "/api/ice-hockey/match/{id}/best-players",
+          "/api/match/{id}/best-players"
+        ],
+        "method": "bestPlayers",
+        "description": "Returns the best performing players in the match based on ratings and statistics",
+        "response": {
+          "type": "EventBestPlayersResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "bestHomePlayer": {
+              "type": "BestPlayer",
+              "properties": {
+                "player": {
+                  "type": "Player"
+                },
+                "rating": {
+                  "type": "number"
+                },
+                "statistics": {
+                  "type": "PlayerMatchStats"
+                }
+              }
+            },
+            "bestAwayPlayer": {
+              "type": "BestPlayer"
+            },
+            "playerOfTheMatch": {
+              "type": "BestPlayer",
+              "description": "Overall player of the match"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/match/{eventId}/best-players/summary"
+        ],
+        "method": "bestPlayersSummary",
+        "description": "Summary of best players performance with key statistics",
+        "response": {
+          "type": "EventBestPlayersSummaryResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "summary": {
+              "type": "object",
+              "properties": {
+                "topScorers": {
+                  "type": "array",
+                  "items": {
+                    "type": "PlayerSummary"
+                  }
+                },
+                "topAssists": {
+                  "type": "array",
+                  "items": {
+                    "type": "PlayerSummary"
+                  }
+                },
+                "topRatings": {
+                  "type": "array",
+                  "items": {
+                    "type": "PlayerSummary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/match/{id}/average-positions"
+        ],
+        "method": "getAveragePositions",
+        "description": "Returns average positions of players on the field during the match",
+        "response": {
+          "type": "AveragePositionsResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "homeTeamAveragePositions": {
+              "type": "array",
+              "items": {
+                "type": "PlayerPosition",
+                "properties": {
+                  "player": {
+                    "type": "Player"
+                  },
+                  "averageX": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "averageY": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "jerseyNumber": {
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            "awayTeamAveragePositions": {
+              "type": "array",
+              "items": {
+                "type": "PlayerPosition"
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/graph",
+          "/api/basketball/match/{id}/graph",
+          "/api/match/{id}/graph"
+        ],
+        "method": "eventGraph",
+        "description": "Returns momentum and event timeline graph data",
+        "response": {
+          "type": "EventGraphResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "graphPoints": {
+              "type": "array",
+              "items": {
+                "type": "GraphPoint",
+                "properties": {
+                  "minute": {
+                    "type": "integer"
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "momentumValue": {
+                    "type": "number",
+                    "min": -100,
+                    "max": 100
+                  }
+                }
+              }
+            },
+            "periodMarkers": {
+              "type": "array",
+              "items": {
+                "type": "PeriodMarker",
+                "properties": {
+                  "periodType": {
+                    "type": "string"
+                  },
+                  "startMinute": {
+                    "type": "integer"
+                  },
+                  "endMinute": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/match/{id}/win-probability"
+        ],
+        "method": "winProbability",
+        "description": "Returns win probability graph throughout the match",
+        "response": {
+          "type": "WinProbabilityResponse",
+          "fields": {
+            "winProbability": {
+              "type": "array",
+              "items": {
+                "type": "WinProbabilityPoint",
+                "properties": {
+                  "minute": {
+                    "type": "integer"
+                  },
+                  "homeWinProbability": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "awayWinProbability": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "drawProbability": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/duel",
+          "/api/baseball/match/{id}/duel",
+          "/api/basketball/match/{id}/duel",
+          "/api/cricket/match/{id}/duel",
+          "/api/esport/event/{id}/duel",
+          "/api/handball/match/{id}/duel",
+          "/api/ice-hockey/match/{id}/duel",
+          "/api/match/{id}/duel",
+          "/api/rugby/match/{id}/duel",
+          "/api/tennis/event/{id}/duel",
+          "/api/volleyball/match/{id}/duel"
+        ],
+        "method": "getHead2Head",
+        "description": "Head-to-head statistics between the two teams",
+        "response": {
+          "type": "Head2HeadResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "h2hEvents": {
+              "type": "array",
+              "description": "Previous matches between teams",
+              "items": {
+                "type": "Event"
+              }
+            },
+            "teamFormHome": {
+              "type": "array",
+              "description": "Home team recent form",
+              "items": {
+                "type": "Event"
+              }
+            },
+            "teamFormAway": {
+              "type": "array",
+              "description": "Away team recent form",
+              "items": {
+                "type": "Event"
+              }
+            },
+            "h2hStatistics": {
+              "type": "H2HStatistics",
+              "properties": {
+                "homeWins": {
+                  "type": "integer"
+                },
+                "awayWins": {
+                  "type": "integer"
+                },
+                "draws": {
+                  "type": "integer"
+                },
+                "homeGoals": {
+                  "type": "integer"
+                },
+                "awayGoals": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "eventMediaEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/highlights",
+          "/api/baseball/match/{id}/highlights",
+          "/api/basketball/match/{id}/highlights",
+          "/api/esport/event/{id}/highlights",
+          "/api/handball/match/{id}/highlights",
+          "/api/ice-hockey/match/{id}/highlights",
+          "/api/match/{id}/highlights",
+          "/api/rugby/match/{id}/highlights",
+          "/api/tennis/event/{id}/highlights"
+        ],
+        "method": "getHighlights",
+        "description": "Returns video highlights and key moments",
+        "response": {
+          "type": "HighlightsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "highlights": {
+              "type": "array",
+              "items": {
+                "type": "Highlight",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "subtitle": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "thumbnailUrl": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "duration": {
+                    "type": "integer",
+                    "description": "Duration in seconds"
+                  },
+                  "createdAt": {
+                    "type": "timestamp"
+                  },
+                  "sourceType": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "eventShotmapsHeatmaps": [
+      {
+        "endpoint": [
+          "/api/match/{id}/shotmap"
+        ],
+        "method": "getFootballEventShotmap",
+        "description": "Returns shot locations and outcomes for football matches",
+        "response": {
+          "type": "FootballShotmapResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "shotmap": {
+              "type": "array",
+              "items": {
+                "type": "FootballShotmapItem",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "player": {
+                    "type": "Player"
+                  },
+                  "teamId": {
+                    "type": "integer"
+                  },
+                  "isHome": {
+                    "type": "boolean"
+                  },
+                  "shotType": {
+                    "type": "string",
+                    "enum": [
+                      "goal",
+                      "saved",
+                      "blocked",
+                      "miss",
+                      "post",
+                      "own_goal"
+                    ]
+                  },
+                  "situation": {
+                    "type": "string",
+                    "enum": [
+                      "open_play",
+                      "fast_break",
+                      "set_piece",
+                      "corner",
+                      "free_kick",
+                      "penalty",
+                      "throw_in"
+                    ]
+                  },
+                  "bodyPart": {
+                    "type": "string",
+                    "enum": [
+                      "head",
+                      "left_foot",
+                      "right_foot",
+                      "other"
+                    ]
+                  },
+                  "goalType": {
+                    "type": "string",
+                    "enum": [
+                      "regular",
+                      "own_goal",
+                      "penalty"
+                    ],
+                    "required": false
+                  },
+                  "xCoordinate": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "yCoordinate": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "goalMouthY": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "goalMouthZ": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "time": {
+                    "type": "integer",
+                    "description": "Match minute"
+                  },
+                  "addedTime": {
+                    "type": "integer"
+                  },
+                  "period": {
+                    "type": "string"
+                  },
+                  "xg": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 1,
+                    "description": "Expected goals value"
+                  },
+                  "xgot": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 1,
+                    "description": "Expected goals on target"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/match/{id}/team/{teamId}/heatmap"
+        ],
+        "method": "getEventTeamHeatMap",
+        "description": "Returns team heatmap showing player positioning and ball touches",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "teamId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "EventTeamHeatmapResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "heatmapData": {
+              "type": "array",
+              "items": {
+                "type": "HeatmapPoint",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "y": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "value": {
+                    "type": "number",
+                    "description": "Intensity value"
+                  }
+                }
+              }
+            },
+            "zones": {
+              "type": "array",
+              "items": {
+                "type": "ZoneData",
+                "properties": {
+                  "zone": {
+                    "type": "string"
+                  },
+                  "percentage": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/match/{id}/player/{playerId}/heatmap"
+        ],
+        "method": "heatMap",
+        "description": "Returns individual player heatmap data",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "playerid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "PlayerHeatmapResponse",
+          "fields": {
+            "heatmapData": {
+              "type": "array",
+              "items": {
+                "type": "HeatmapPoint",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "action": {
+                    "type": "string",
+                    "description": "Type of action at this position"
+                  }
+                }
+              }
+            },
+            "touches": {
+              "type": "integer",
+              "description": "Total touches"
+            },
+            "averagePosition": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/match/{id}/shotmap"
+        ],
+        "method": "getHockeyEventShotmap",
+        "description": "Returns shot locations and outcomes for hockey matches",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "HockeyEventShotmapResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "shotmap": {
+              "type": "array",
+              "items": {
+                "type": "HockeyShotmapItem",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "player": {
+                    "type": "Player"
+                  },
+                  "teamId": {
+                    "type": "integer"
+                  },
+                  "isHome": {
+                    "type": "boolean"
+                  },
+                  "shotType": {
+                    "type": "string",
+                    "enum": [
+                      "goal",
+                      "saved",
+                      "blocked",
+                      "miss",
+                      "post"
+                    ]
+                  },
+                  "situation": {
+                    "type": "string",
+                    "enum": [
+                      "even_strength",
+                      "power_play",
+                      "short_handed",
+                      "penalty_shot",
+                      "empty_net"
+                    ]
+                  },
+                  "shotLocation": {
+                    "type": "string",
+                    "enum": [
+                      "wrist",
+                      "slap",
+                      "snap",
+                      "tip",
+                      "backhand",
+                      "wrap_around"
+                    ]
+                  },
+                  "xCoordinate": {
+                    "type": "number",
+                    "min": -100,
+                    "max": 100
+                  },
+                  "yCoordinate": {
+                    "type": "number",
+                    "min": -42.5,
+                    "max": 42.5
+                  },
+                  "time": {
+                    "type": "string",
+                    "description": "Period time MM:SS"
+                  },
+                  "period": {
+                    "type": "integer",
+                    "min": 1,
+                    "max": 4
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/basketball/match/{id}/team/{teamId}/shotmap"
+        ],
+        "method": "getBasketballTeamEventShotmap",
+        "description": "Returns shot locations and outcomes for basketball team",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "teamid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "TeamEventShotmapResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "shotmap": {
+              "type": "array",
+              "items": {
+                "type": "BasketballShotmapItem",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "player": {
+                    "type": "Player"
+                  },
+                  "teamId": {
+                    "type": "integer"
+                  },
+                  "isHome": {
+                    "type": "boolean"
+                  },
+                  "shotResult": {
+                    "type": "string",
+                    "enum": [
+                      "made",
+                      "missed"
+                    ]
+                  },
+                  "shotValue": {
+                    "type": "integer",
+                    "enum": [
+                      1,
+                      2,
+                      3
+                    ],
+                    "description": "Point value of shot"
+                  },
+                  "shotType": {
+                    "type": "string",
+                    "enum": [
+                      "layup",
+                      "dunk",
+                      "hook",
+                      "jump",
+                      "three_pointer",
+                      "free_throw"
+                    ]
+                  },
+                  "xCoordinate": {
+                    "type": "number",
+                    "description": "Court position X"
+                  },
+                  "yCoordinate": {
+                    "type": "number",
+                    "description": "Court position Y"
+                  },
+                  "quarter": {
+                    "type": "integer",
+                    "min": 1,
+                    "max": 4
+                  },
+                  "overtime": {
+                    "type": "integer",
+                    "required": false
+                  },
+                  "time": {
+                    "type": "string",
+                    "description": "Game clock MM:SS"
+                  }
+                }
+              }
+            },
+            "statistics": {
+              "type": "object",
+              "properties": {
+                "totalShots": {
+                  "type": "integer"
+                },
+                "madeShots": {
+                  "type": "integer"
+                },
+                "fieldGoalPercentage": {
+                  "type": "number"
+                },
+                "threePointPercentage": {
+                  "type": "number"
+                },
+                "twoPointPercentage": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/match/{id}/player/{playerId}/shotmap"
+        ],
+        "method": "getFootballPlayerEventShotmap",
+        "description": "Returns shot locations and outcomes for a specific football player in an event",
+        "parameters": {
+          "eventId": {
+            "type": "integer",
+            "required": true
+          },
+          "playerId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "FootballPlayerShotmapResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "shotmap": {
+              "type": "array",
+              "items": {
+                "type": "FootballShotmapItem",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "shotType": {
+                    "type": "string",
+                    "enum": [
+                      "goal",
+                      "saved",
+                      "blocked",
+                      "miss",
+                      "post"
+                    ]
+                  },
+                  "situation": {
+                    "type": "string",
+                    "enum": [
+                      "open_play",
+                      "fast_break",
+                      "set_piece",
+                      "corner",
+                      "free_kick",
+                      "penalty"
+                    ]
+                  },
+                  "bodyPart": {
+                    "type": "string",
+                    "enum": [
+                      "head",
+                      "left_foot",
+                      "right_foot",
+                      "other"
+                    ]
+                  },
+                  "xCoordinate": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "yCoordinate": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "goalMouthY": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "goalMouthZ": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "time": {
+                    "type": "integer",
+                    "description": "Match minute"
+                  },
+                  "xg": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 1
+                  }
+                }
+              }
+            },
+            "playerStats": {
+              "type": "object",
+              "properties": {
+                "totalShots": {
+                  "type": "integer"
+                },
+                "shotsOnTarget": {
+                  "type": "integer"
+                },
+                "goals": {
+                  "type": "integer"
+                },
+                "expectedGoals": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/basketball/match/{id}/player/{playerId}/shotmap"
+        ],
+        "method": "getHockeyPlayerEventShotmap",
+        "description": "Returns shot locations and outcomes for a specific hockey player in an event",
+        "parameters": {
+          "eventId": {
+            "type": "integer",
+            "required": true
+          },
+          "playerId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "HockeyPlayerShotmapResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "shotmap": {
+              "type": "array",
+              "items": {
+                "type": "HockeyShotmapItem",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "shotType": {
+                    "type": "string",
+                    "enum": [
+                      "goal",
+                      "saved",
+                      "blocked",
+                      "miss",
+                      "post"
+                    ]
+                  },
+                  "shotLocation": {
+                    "type": "string",
+                    "enum": [
+                      "wrist",
+                      "slap",
+                      "snap",
+                      "tip",
+                      "backhand"
+                    ]
+                  },
+                  "xCoordinate": {
+                    "type": "number"
+                  },
+                  "yCoordinate": {
+                    "type": "number"
+                  },
+                  "time": {
+                    "type": "string"
+                  },
+                  "period": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/basketball/match/{id}/player/{playerId}/shotmap"
+        ],
+        "method": "eventPlayerShotMap",
+        "description": "Returns shot locations and outcomes for a specific player in an event",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "playerid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "PlayerShotmapResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "shotmap": {
+              "type": "array",
+              "items": {
+                "type": "ShotmapItem",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "shotType": {
+                    "type": "string"
+                  },
+                  "shotResult": {
+                    "type": "string"
+                  },
+                  "xCoordinate": {
+                    "type": "number"
+                  },
+                  "yCoordinate": {
+                    "type": "number"
+                  },
+                  "time": {
+                    "type": "string"
+                  },
+                  "period": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/match/{id}/player/{playerId}/heatmap"
+        ],
+        "method": "playerEventHeatmap",
+        "description": "Returns individual player heatmap data for an event",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "pid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "PlayerHeatmapResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "heatmapData": {
+              "type": "array",
+              "items": {
+                "type": "HeatmapPoint",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "y": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "action": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "playerStats": {
+              "type": "object",
+              "properties": {
+                "touches": {
+                  "type": "integer"
+                },
+                "passes": {
+                  "type": "integer"
+                },
+                "averagePosition": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "eventCommentaryEndpoints": [
+      {
+        "endpoint": [
+          "/api/cricket/match/{id}/innings"
+        ],
+        "method": "getEventInnings",
+        "description": "Returns innings data for cricket/baseball events",
+        "response": {
+          "type": "EventInningsResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "innings": {
+              "type": "array",
+              "items": {
+                "type": "Inning",
+                "properties": {
+                  "number": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "battingTeam": {
+                    "type": "Team"
+                  },
+                  "bowlingTeam": {
+                    "type": "Team"
+                  },
+                  "runs": {
+                    "type": "integer"
+                  },
+                  "wickets": {
+                    "type": "integer"
+                  },
+                  "overs": {
+                    "type": "number"
+                  },
+                  "runRate": {
+                    "type": "number"
+                  },
+                  "extras": {
+                    "type": "integer"
+                  },
+                  "battingScorecard": {
+                    "type": "array",
+                    "items": {
+                      "type": "BattingScore",
+                      "properties": {
+                        "player": {
+                          "type": "Player"
+                        },
+                        "runs": {
+                          "type": "integer"
+                        },
+                        "balls": {
+                          "type": "integer"
+                        },
+                        "fours": {
+                          "type": "integer"
+                        },
+                        "sixes": {
+                          "type": "integer"
+                        },
+                        "strikeRate": {
+                          "type": "number"
+                        },
+                        "dismissal": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "bowlingScorecard": {
+                    "type": "array",
+                    "items": {
+                      "type": "BowlingScore",
+                      "properties": {
+                        "player": {
+                          "type": "Player"
+                        },
+                        "overs": {
+                          "type": "number"
+                        },
+                        "maidens": {
+                          "type": "integer"
+                        },
+                        "runs": {
+                          "type": "integer"
+                        },
+                        "wickets": {
+                          "type": "integer"
+                        },
+                        "economy": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/tennis/event/{id}/point-by-point"
+        ],
+        "method": "pointByPoint",
+        "description": "Returns point-by-point data for tennis/volleyball matches",
+        "response": {
+          "type": "PointByPointResponse",
+          "fields": {
+            "points": {
+              "type": "array",
+              "items": {
+                "type": "Point",
+                "properties": {
+                  "pointNumber": {
+                    "type": "integer"
+                  },
+                  "server": {
+                    "type": "Player"
+                  },
+                  "winner": {
+                    "type": "Player"
+                  },
+                  "homeScore": {
+                    "type": "string"
+                  },
+                  "awayScore": {
+                    "type": "string"
+                  },
+                  "pointType": {
+                    "type": "string",
+                    "enum": [
+                      "ace",
+                      "winner",
+                      "forced_error",
+                      "unforced_error",
+                      "double_fault"
+                    ]
+                  },
+                  "rallyLength": {
+                    "type": "integer"
+                  },
+                  "speed": {
+                    "type": "number",
+                    "description": "Serve speed in km/h"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "specializedSportsEndpoints": [
+      {
+        "endpoint": [
+          "/api/cricket/match/{id}/graph"
+        ],
+        "method": "cricketRunsPerOverGraph",
+        "description": "Cricket-specific runs per over progression graph",
+        "response": {
+          "type": "CricketRunsPerOverGraphResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "runsPerOver": {
+              "type": "array",
+              "items": {
+                "type": "OverData",
+                "properties": {
+                  "overNumber": {
+                    "type": "number"
+                  },
+                  "runs": {
+                    "type": "integer"
+                  },
+                  "wickets": {
+                    "type": "integer"
+                  },
+                  "extras": {
+                    "type": "integer"
+                  },
+                  "runRate": {
+                    "type": "number"
+                  },
+                  "requiredRunRate": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/tennis/event/{id}/graph"
+        ],
+        "method": "tennisPower",
+        "description": "Tennis match power and momentum data",
+        "response": {
+          "type": "TennisPowerResponse",
+          "fields": {
+            "powerData": {
+              "type": "object",
+              "properties": {
+                "homePower": {
+                  "type": "number",
+                  "min": 0,
+                  "max": 100
+                },
+                "awayPower": {
+                  "type": "number",
+                  "min": 0,
+                  "max": 100
+                },
+                "momentum": {
+                  "type": "number",
+                  "min": -100,
+                  "max": 100
+                },
+                "breakPointsSaved": {
+                  "type": "object",
+                  "properties": {
+                    "home": {
+                      "type": "string",
+                      "example": "5/7"
+                    },
+                    "away": {
+                      "type": "string",
+                      "example": "3/4"
+                    }
+                  }
+                },
+                "serviceStats": {
+                  "type": "object",
+                  "properties": {
+                    "homeFirstServePercentage": {
+                      "type": "number"
+                    },
+                    "awayFirstServePercentage": {
+                      "type": "number"
+                    },
+                    "homeAces": {
+                      "type": "integer"
+                    },
+                    "awayAces": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/esport/event/{id}/games"
+        ],
+        "method": "esportsGames",
+        "description": "eSports match games/maps data",
+        "response": {
+          "type": "EsportsGamesResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "games": {
+              "type": "array",
+              "items": {
+                "type": "EsportsGame",
+                "properties": {
+                  "gameNumber": {
+                    "type": "integer"
+                  },
+                  "map": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "homeScore": {
+                    "type": "integer"
+                  },
+                  "awayScore": {
+                    "type": "integer"
+                  },
+                  "duration": {
+                    "type": "integer",
+                    "description": "Duration in seconds"
+                  },
+                  "winner": {
+                    "type": "Team"
+                  },
+                  "statistics": {
+                    "type": "object",
+                    "properties": {
+                      "kills": {
+                        "type": "object"
+                      },
+                      "deaths": {
+                        "type": "object"
+                      },
+                      "assists": {
+                        "type": "object"
+                      },
+                      "gold": {
+                        "type": "object"
+                      },
+                      "cs": {
+                        "type": "object",
+                        "description": "Creep score"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/form",
+          "/api/baseball/match/{id}/form",
+          "/api/basketball/match/{id}/form",
+          "/api/cricket/match/{id}/form",
+          "/api/handball/match/{id}/form",
+          "/api/ice-hockey/match/{id}/form",
+          "/api/match/{id}/form",
+          "/api/mma/event/{id}/pregame-form",
+          "/api/rugby/match/{id}/form"
+        ],
+        "method": "pregameForm",
+        "description": "Teams' recent form before the match",
+        "response": {
+          "type": "PregameFormResponse",
+          "fields": {
+            "homeTeamForm": {
+              "type": "object",
+              "properties": {
+                "form": {
+                  "type": "string",
+                  "example": "WWDLW"
+                },
+                "position": {
+                  "type": "integer"
+                },
+                "points": {
+                  "type": "integer"
+                },
+                "goalsFor": {
+                  "type": "integer"
+                },
+                "goalsAgainst": {
+                  "type": "integer"
+                },
+                "cleanSheets": {
+                  "type": "integer"
+                },
+                "failedToScore": {
+                  "type": "integer"
+                },
+                "avgGoalsScored": {
+                  "type": "number"
+                },
+                "avgGoalsConceded": {
+                  "type": "number"
+                }
+              }
+            },
+            "awayTeamForm": {
+              "type": "object",
+              "description": "Same structure as homeTeamForm"
+            }
+          }
+        }
+      }
+    ],
+    "eventMetadataEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/managers",
+          "/api/basketball/match/{id}/managers",
+          "/api/ice-hockey/match/{id}/managers",
+          "/api/match/{id}/managers",
+          "/api/rugby/match/{id}/managers"
+        ],
+        "method": "getEventManagers",
+        "description": "Returns manager/coach information for both teams",
+        "response": {
+          "type": "EventManagersResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "homeManager": {
+              "type": "Manager",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "nationality": {
+                  "type": "Country"
+                },
+                "dateOfBirth": {
+                  "type": "timestamp"
+                },
+                "preferredFormation": {
+                  "type": "string"
+                }
+              }
+            },
+            "awayManager": {
+              "type": "Manager"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/basketball/match/{id}/series"
+        ],
+        "method": "getEventSeries",
+        "description": "Returns series information for multi-game series",
+        "response": {
+          "type": "EventSeriesResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "series": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/team-streaks",
+          "/api/esport/event/{id}/streaks",
+          "/api/handball/match/{id}/streaks",
+          "/api/ice-hockey/match/{id}/streaks",
+          "/api/match/{id}/streaks",
+          "/api/mma/event/{id}/team-streaks",
+          "/api/tennis/event/{id}/streak",
+          "/api/volleyball/match/{id}/streaks"
+        ],
+        "method": "getTeamStreaks",
+        "description": "Returns current team streaks and records",
+        "response": {
+          "type": "TeamStreaksResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "homeTeamStreaks": {
+              "type": "object",
+              "properties": {
+                "currentStreak": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "win",
+                        "draw",
+                        "loss",
+                        "unbeaten",
+                        "winless"
+                      ]
+                    },
+                    "count": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "longestWinStreak": {
+                  "type": "integer"
+                },
+                "longestUnbeatenStreak": {
+                  "type": "integer"
+                },
+                "goalsStreak": {
+                  "type": "integer",
+                  "description": "Games with goals scored"
+                },
+                "cleanSheetStreak": {
+                  "type": "integer"
+                }
+              }
+            },
+            "awayTeamStreaks": {
+              "type": "object",
+              "description": "Same structure as homeTeamStreaks"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/votes",
+          "/api/baseball/match/{id}/votes",
+          "/api/cricket/match/{id}/votes",
+          "/api/esport/event/{id}/votes",
+          "/api/handball/match/{id}/votes",
+          "/api/ice-hockey/match/{id}/votes",
+          "/api/match/{id}/votes",
+          "/api/rugby/match/{id}/votes",
+          "/api/tennis/event/{id}/votes",
+          "/api/volleyball/match/{id}/votes"
+        ],
+        "method": "getEventVotes",
+        "description": "Returns fan voting data for match outcome",
+        "response": {
+          "type": "VotesResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "vote": {
+              "type": "object",
+              "properties": {
+                "vote1": {
+                  "type": "integer",
+                  "description": "Votes for home team win"
+                },
+                "voteX": {
+                  "type": "integer",
+                  "description": "Votes for draw"
+                },
+                "vote2": {
+                  "type": "integer",
+                  "description": "Votes for away team win"
+                },
+                "totalVotes": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "fanEngagementEndpoints": [],
+    "additionalEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/match/{customId}/h2h",
+          "/api/baseball/match/{customId}/h2h",
+          "/api/basketball/match/{customId}/h2h",
+          "/api/cricket/match/{customId}/h2h",
+          "/api/esport/event/{customId}/h2h",
+          "/api/handball/match/{customId}/h2h",
+          "/api/ice-hockey/match/{customId}/h2h",
+          "/api/match/{customId}/h2h",
+          "/api/mma/event/{customId}/h2h/events",
+          "/api/rugby/match/{customId}/h2h",
+          "/api/tennis/event/{customId}/h2h",
+          "/api/volleyball/match/{customId}/h2h"
+        ],
+        "method": "getHead2HeadEvents",
+        "description": "Returns detailed head-to-head event history",
+        "parameters": {
+          "customId": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "Head2HeadEventsResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "events": {
+              "type": "array",
+              "items": {
+                "type": "Event"
+              },
+              "description": "Complete list of h2h matches"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/match/{id}/commentary"
+        ],
+        "method": "getHockeyPlayByPlay",
+        "description": "Hockey-specific play-by-play commentary",
+        "response": {
+          "type": "HockeyPlayByPlayResponse",
+          "fields": {
+            "playByPlay": {
+              "type": "array",
+              "items": {
+                "type": "HockeyPlay",
+                "properties": {
+                  "period": {
+                    "type": "integer"
+                  },
+                  "time": {
+                    "type": "string",
+                    "format": "MM:SS"
+                  },
+                  "team": {
+                    "type": "Team"
+                  },
+                  "player": {
+                    "type": "Player"
+                  },
+                  "eventType": {
+                    "type": "string",
+                    "enum": [
+                      "goal",
+                      "penalty",
+                      "shot",
+                      "hit",
+                      "faceoff",
+                      "icing",
+                      "offside"
+                    ]
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "coordinates": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "number"
+                      },
+                      "y": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "eventsendpoints": [
+      {
+        "endpoint": [
+          "/api/basketball/match/{id}/player/{playerId}/shotmap"
+        ],
+        "method": "get__api_v1_event_id_player_id_shotmap",
+        "description": "Auto-generated endpoint definition from HAR analysis",
+        "response": {
+          "type": "object",
+          "extends": "NetworkResponse",
+          "fields": {
+            "shotmap": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "fields": {
+                  "type": {
+                    "type": "integer",
+                    "required": true
+                  },
+                  "x": {
+                    "type": "integer",
+                    "required": true
+                  },
+                  "y": {
+                    "type": "integer",
+                    "required": true
+                  },
+                  "id": {
+                    "type": "integer",
+                    "required": true
+                  },
+                  "period": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "typeName": {
+                    "type": "string",
+                    "required": true
+                  }
+                }
+              },
+              "required": false
+            }
+          }
+        }
+      }
+    ]
+  },
+  "errorHandling": {
+    "description": "Standard error responses across all endpoints",
+    "errorCodes": {
+      "400": {
+        "description": "Bad Request",
+        "response": {
+          "error": {
+            "code": "BAD_REQUEST",
+            "message": "Invalid parameters provided"
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "response": {
+          "error": {
+            "code": "UNAUTHORIZED",
+            "message": "Authentication required"
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden",
+        "response": {
+          "error": {
+            "code": "FORBIDDEN",
+            "message": "Access denied to this resource"
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "response": {
+          "error": {
+            "code": "NOT_FOUND",
+            "message": "Event not found"
+          }
+        }
+      },
+      "429": {
+        "description": "Too Many Requests",
+        "response": {
+          "error": {
+            "code": "RATE_LIMITED",
+            "message": "Rate limit exceeded",
+            "retryAfter": 60
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
+        "response": {
+          "error": {
+            "code": "INTERNAL_ERROR",
+            "message": "An internal error occurred"
+          }
+        }
+      }
+    }
+  },
+  "rateLimiting": {
+    "description": "API rate limiting information",
+    "limits": {
+      "authenticated": {
+        "requestsPerMinute": 60,
+        "requestsPerHour": 3600,
+        "burstLimit": 10
+      },
+      "unauthenticated": {
+        "requestsPerMinute": 20,
+        "requestsPerHour": 500,
+        "burstLimit": 5
+      }
+    },
+    "headers": {
+      "X-RateLimit-Limit": "Rate limit for current tier",
+      "X-RateLimit-Remaining": "Remaining requests in current window",
+      "X-RateLimit-Reset": "Unix timestamp when rate limit resets"
+    }
+  },
+  "authentication": {
+    "description": "Authentication methods for API access",
+    "methods": {
+      "apiKey": {
+        "type": "header",
+        "headerName": "X-API-Key",
+        "description": "API key for application authentication"
+      },
+      "bearer": {
+        "type": "header",
+        "headerName": "Authorization",
+        "format": "Bearer {token}",
+        "description": "JWT token for user authentication"
+      },
+      "premiumToken": {
+        "type": "header",
+        "headerName": "X-Premium-Token",
+        "description": "Premium features access token",
+        "requiredFor": [
+          "AI insights",
+          "Advanced statistics"
+        ]
+      }
+    }
+  },
+  "dataFormats": {
+    "timestamp": {
+      "type": "integer",
+      "format": "unix-timestamp",
+      "description": "Unix timestamp in seconds"
+    },
+    "date": {
+      "type": "string",
+      "format": "YYYY-MM-DD"
+    },
+    "datetime": {
+      "type": "string",
+      "format": "ISO 8601"
+    },
+    "color": {
+      "type": "string",
+      "format": "#RRGGBB"
+    },
+    "percentage": {
+      "type": "number",
+      "min": 0,
+      "max": 100
+    },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "min": 0,
+          "max": 100
+        },
+        "y": {
+          "type": "number",
+          "min": 0,
+          "max": 100
+        }
+      }
+    }
+  },
+  "changelog": {
+    "version": "2.2.0",
+    "lastUpdated": "2024-01-15",
+    "changes": [
+      {
+        "version": "2.2.0",
+        "date": "2024-01-15",
+        "changes": [
+          "Added comprehensive JSON schema documentation",
+          "Expanded field descriptions and examples",
+          "Added error handling documentation",
+          "Added rate limiting information"
+        ]
+      }
+    ]
+  }
+}

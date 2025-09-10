@@ -1,0 +1,1388 @@
+{
+  "title": "Team Endpoints Response Models",
+  "version": "2.2.0",
+  "description": "Comprehensive JSON schema documentation for all Team API endpoints",
+  "totalEndpoints": 25,
+  "baseResponseTypes": {
+    "AbstractNetworkResponse": {
+      "description": "Base response class for legacy endpoints",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata including status and timing"
+        },
+        "error": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Error information if request failed"
+        }
+      }
+    },
+    "NetworkResponse": {
+      "description": "Base response class for new network layer",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata"
+        },
+        "error": {
+          "type": "ErrorResponse",
+          "nullable": true,
+          "description": "Detailed error information"
+        }
+      }
+    }
+  },
+  "sharedModels": {
+    "Team": {
+      "description": "Complete team entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true,
+          "description": "Unique team identifier"
+        },
+        "name": {
+          "type": "string",
+          "required": true,
+          "description": "Full team name"
+        },
+        "slug": {
+          "type": "string",
+          "required": false,
+          "description": "URL-friendly team name"
+        },
+        "shortName": {
+          "type": "string",
+          "required": false,
+          "description": "Abbreviated team name"
+        },
+        "nameCode": {
+          "type": "string",
+          "required": false,
+          "description": "3-letter team code"
+        },
+        "gender": {
+          "type": "string",
+          "required": false,
+          "enum": [
+            "M",
+            "F"
+          ],
+          "description": "Team gender"
+        },
+        "sport": {
+          "type": "Sport",
+          "required": false,
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "slug": {
+              "type": "string"
+            }
+          }
+        },
+        "category": {
+          "type": "Category",
+          "required": false,
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "slug": {
+              "type": "string"
+            },
+            "flag": {
+              "type": "string"
+            }
+          }
+        },
+        "country": {
+          "type": "Country",
+          "required": false,
+          "properties": {
+            "alpha2": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "alpha3": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}$"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "teamColors": {
+          "type": "TeamColors",
+          "required": false,
+          "properties": {
+            "primary": {
+              "type": "string",
+              "format": "hex-color"
+            },
+            "secondary": {
+              "type": "string",
+              "format": "hex-color"
+            },
+            "text": {
+              "type": "string",
+              "format": "hex-color"
+            }
+          }
+        },
+        "manager": {
+          "type": "Manager",
+          "required": false,
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "slug": {
+              "type": "string"
+            },
+            "nationality": {
+              "type": "Country"
+            }
+          }
+        },
+        "venue": {
+          "type": "Venue",
+          "required": false,
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "city": {
+              "type": "City"
+            },
+            "country": {
+              "type": "Country"
+            },
+            "capacity": {
+              "type": "integer"
+            }
+          }
+        },
+        "foundationDate": {
+          "type": "timestamp",
+          "required": false
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "club",
+            "national"
+          ],
+          "required": false
+        }
+      }
+    },
+    "Player": {
+      "description": "Player entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": false
+        },
+        "shortName": {
+          "type": "string",
+          "required": false
+        },
+        "position": {
+          "type": "string",
+          "required": false
+        },
+        "jerseyNumber": {
+          "type": "integer",
+          "required": false
+        },
+        "height": {
+          "type": "integer",
+          "required": false,
+          "description": "Height in cm"
+        },
+        "preferredFoot": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "both"
+          ],
+          "required": false
+        },
+        "country": {
+          "type": "Country",
+          "required": false
+        },
+        "dateOfBirth": {
+          "type": "timestamp",
+          "required": false
+        },
+        "contractUntilTimestamp": {
+          "type": "timestamp",
+          "required": false
+        },
+        "proposedMarketValue": {
+          "type": "integer",
+          "required": false
+        },
+        "proposedMarketValueRaw": {
+          "type": "MarketValue",
+          "required": false,
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "currency": {
+              "type": "string",
+              "enum": [
+                "EUR",
+                "USD",
+                "GBP"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Transfer": {
+      "description": "Transfer information model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "player": {
+          "type": "Player",
+          "required": true
+        },
+        "transferFrom": {
+          "type": "Team",
+          "required": false
+        },
+        "transferTo": {
+          "type": "Team",
+          "required": false
+        },
+        "fromTeamName": {
+          "type": "string",
+          "required": false
+        },
+        "toTeamName": {
+          "type": "string",
+          "required": false
+        },
+        "type": {
+          "type": "integer",
+          "required": true,
+          "description": "1: Transfer, 2: Loan, 3: Free transfer"
+        },
+        "transferFee": {
+          "type": "integer",
+          "required": false
+        },
+        "transferFeeRaw": {
+          "type": "TransferFee",
+          "required": false,
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "currency": {
+              "type": "string"
+            }
+          }
+        },
+        "transferDateTimestamp": {
+          "type": "timestamp",
+          "required": true
+        },
+        "transferMarketUrl": {
+          "type": "string",
+          "format": "uri",
+          "required": false
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "coreTeamEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/team/{id}",
+          "/api/baseball/team/{id}",
+          "/api/basketball/team/{id}",
+          "/api/cricket/team/{id}",
+          "/api/esport/team/{id}",
+          "/api/handball/team/{id}",
+          "/api/ice-hockey/team/{id}",
+          "/api/mma/team/{id}",
+          "/api/motorsport/team/{id}",
+          "/api/rugby/team/{id}",
+          "/api/team/{id}",
+          "/api/tennis/player/{id}",
+          "/api/tennis/team/{id}",
+          "/api/volleyball/team/{id}"
+        ],
+        "method": "teamDetails",
+        "description": "Retrieves complete team details including venue, manager, colors, and metadata",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique team identifier"
+          }
+        },
+        "response": {
+          "type": "TeamDetailsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "team": {
+              "type": "Team",
+              "required": true,
+              "description": "Complete team information",
+              "extendedProperties": {
+                "primaryUniqueTournament": {
+                  "type": "UniqueTournament",
+                  "required": false,
+                  "description": "Primary tournament the team participates in",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "primaryColorHex": {
+                      "type": "string",
+                      "format": "hex-color"
+                    },
+                    "secondaryColorHex": {
+                      "type": "string",
+                      "format": "hex-color"
+                    },
+                    "category": {
+                      "type": "Category"
+                    },
+                    "hasPerformanceGraphFeature": {
+                      "type": "boolean"
+                    },
+                    "hasStandingsGroups": {
+                      "type": "boolean"
+                    },
+                    "titleHolder": {
+                      "type": "Team"
+                    },
+                    "mostTitles": {
+                      "type": "integer"
+                    },
+                    "mostTitlesTeams": {
+                      "type": "array",
+                      "items": {
+                        "type": "Team"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/team/{id}/players",
+          "/api/baseball/team/{id}/players",
+          "/api/basketball/team/{id}/players",
+          "/api/cricket/team/{id}/players",
+          "/api/handball/team/{id}/players",
+          "/api/ice-hockey/team/{id}/players",
+          "/api/rugby/team/{id}/players",
+          "/api/team/{id}/players"
+        ],
+        "method": "getTeamSquad",
+        "description": "Returns the current team squad with detailed player information",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Team identifier"
+          }
+        },
+        "response": {
+          "type": "TeamPlayersResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "players": {
+              "type": "array",
+              "required": false,
+              "description": "List of team players grouped by position",
+              "items": {
+                "type": "object"
+              }
+            },
+            "foreignQuota": {
+              "type": "object",
+              "required": false,
+              "properties": {
+                "foreign": {
+                  "type": "integer"
+                },
+                "homegrown": {
+                  "type": "integer"
+                },
+                "limit": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/team/{id}/matches/near",
+          "/api/baseball/team/{id}/matches/near",
+          "/api/basketball/team/{id}/matches/near",
+          "/api/cricket/team/{id}/matches/near",
+          "/api/esport/team/{id}/matches/near",
+          "/api/handball/team/{id}/matches/near",
+          "/api/ice-hockey/team/{id}/matches/near",
+          "/api/rugby/team/{id}/matches/near",
+          "/api/team/{id}/matches/near",
+          "/api/tennis/player/{id}/events/near",
+          "/api/tennis/team/{id}/events/near",
+          "/api/volleyball/team/{id}/matches/near"
+        ],
+        "method": "teamNearEvents",
+        "description": "Returns upcoming and recent events for the team",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "TeamNearEventsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "previousEvent": {
+              "type": "object",
+              "required": false,
+              "description": "Most recent past event",
+              "nullable": true
+            },
+            "nextEvent": {
+              "type": "object",
+              "required": false,
+              "description": "Next upcoming event",
+              "nullable": true
+            },
+            "nearEvents": {
+              "type": "array",
+              "required": false,
+              "items": {
+                "type": "Event"
+              },
+              "description": "List of near events (past and future)"
+            }
+          }
+        }
+      }
+    ],
+    "teamStatisticsEndpoints": [
+      {
+        "endpoint": [
+          "/api/mma/team/{id}/career-statistics"
+        ],
+        "method": "teamCareerStatistics",
+        "description": "Returns all-time career statistics for the team",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "TeamCareerStatisticsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "careerStatistics": {
+              "type": "object",
+              "required": false,
+              "properties": {
+                "totalMatches": {
+                  "type": "integer"
+                },
+                "wins": {
+                  "type": "integer"
+                },
+                "draws": {
+                  "type": "integer"
+                },
+                "losses": {
+                  "type": "integer"
+                },
+                "goalsFor": {
+                  "type": "integer"
+                },
+                "goalsAgainst": {
+                  "type": "integer"
+                },
+                "cleanSheets": {
+                  "type": "integer"
+                },
+                "failedToScore": {
+                  "type": "integer"
+                },
+                "averageGoalsScored": {
+                  "type": "number"
+                },
+                "averageGoalsConceded": {
+                  "type": "number"
+                },
+                "biggestWin": {
+                  "type": "object",
+                  "properties": {
+                    "event": {
+                      "type": "Event"
+                    },
+                    "score": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "biggestDefeat": {
+                  "type": "object",
+                  "properties": {
+                    "event": {
+                      "type": "Event"
+                    },
+                    "score": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "highestScoring": {
+                  "type": "object",
+                  "properties": {
+                    "event": {
+                      "type": "Event"
+                    },
+                    "totalGoals": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "longestWinStreak": {
+                  "type": "integer"
+                },
+                "longestUnbeatenStreak": {
+                  "type": "integer"
+                },
+                "longestWinlessStreak": {
+                  "type": "integer"
+                },
+                "longestLossStreak": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/tennis/player/{id}/rankings",
+          "/api/tennis/team/{id}/rankings"
+        ],
+        "method": "teamRankings",
+        "description": "Returns team rankings in various competitions and systems",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "TeamRankingsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "rankings": {
+              "type": "array",
+              "required": false,
+              "items": {
+                "type": "Ranking",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "fifa",
+                      "uefa",
+                      "elo",
+                      "domestic",
+                      "continental"
+                    ]
+                  },
+                  "position": {
+                    "type": "integer"
+                  },
+                  "previousPosition": {
+                    "type": "integer"
+                  },
+                  "points": {
+                    "type": "number"
+                  },
+                  "pointsChange": {
+                    "type": "number"
+                  },
+                  "rankingName": {
+                    "type": "string"
+                  },
+                  "year": {
+                    "type": "integer"
+                  },
+                  "month": {
+                    "type": "integer"
+                  },
+                  "updatedAt": {
+                    "type": "timestamp"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/team/{id}/standings/seasons",
+          "/api/baseball/team/{id}/standings/seasons",
+          "/api/basketball/team/{id}/standings/seasons",
+          "/api/cricket/team/{id}/standings/seasons",
+          "/api/handball/team/{id}/standings/seasons",
+          "/api/rugby/team/{id}/standings/seasons",
+          "/api/team/{id}/standings/seasons",
+          "/api/tennis/player/{id}/standings/seasons",
+          "/api/tennis/team/{id}/standings/seasons",
+          "/api/volleyball/team/{id}/standings/seasons"
+        ],
+        "method": "teamStandingsSeasons",
+        "description": "Returns list of seasons with available standings data",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "TeamStandingsSeasonsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "standingsSeasons": {
+              "type": "array",
+              "required": false,
+              "items": {
+                "type": "StandingsSeason",
+                "properties": {
+                  "season": {
+                    "type": "Season",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "year": {
+                        "type": "string"
+                      },
+                      "editor": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "uniqueTournament": {
+                    "type": "UniqueTournament"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "teamTransfersEndpoints": [
+      {
+        "endpoint": [
+          "/api/basketball/team/{id}/transfers",
+          "/api/team/{id}/transfers"
+        ],
+        "method": "teamTransfers",
+        "description": "Returns team transfer history",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "TeamTransfersResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "transfers": {
+              "type": "object",
+              "required": false,
+              "properties": {
+                "transfersIn": {
+                  "type": "array",
+                  "items": {
+                    "type": "Transfer"
+                  },
+                  "description": "Players transferred into the team"
+                },
+                "transfersOut": {
+                  "type": "array",
+                  "items": {
+                    "type": "Transfer"
+                  },
+                  "description": "Players transferred out of the team"
+                },
+                "totalSpent": {
+                  "type": "integer"
+                },
+                "totalReceived": {
+                  "type": "integer"
+                },
+                "netSpend": {
+                  "type": "integer"
+                }
+              }
+            },
+            "transfersIn": {
+              "type": "array",
+              "items": {
+                "type": "Transfer"
+              },
+              "required": false
+            },
+            "transfersOut": {
+              "type": "array",
+              "items": {
+                "type": "Transfer"
+              },
+              "required": false
+            }
+          }
+        }
+      }
+    ],
+    "teamTournamentEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/team/{id}/tournaments",
+          "/api/baseball/team/{id}/tournaments",
+          "/api/basketball/team/{id}/tournaments",
+          "/api/cricket/team/{id}/tournaments",
+          "/api/handball/team/{id}/unique-tournaments",
+          "/api/ice-hockey/team/{id}/tournaments",
+          "/api/team/{id}/tournaments",
+          "/api/volleyball/team/{id}/unique-tournaments"
+        ],
+        "method": "teamTournaments",
+        "description": "Returns all tournaments the team participates in",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "TeamUniqueTournamentsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "uniqueTournaments": {
+              "type": "array",
+              "required": false,
+              "items": {
+                "type": "UniqueTournament",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "slug": {
+                    "type": "string"
+                  },
+                  "primaryColorHex": {
+                    "type": "string"
+                  },
+                  "secondaryColorHex": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "Category"
+                  },
+                  "userCount": {
+                    "type": "integer"
+                  },
+                  "hasEventPlayerStatistics": {
+                    "type": "boolean"
+                  },
+                  "crowdsourcingEnabled": {
+                    "type": "boolean"
+                  },
+                  "hasPerformanceGraphFeature": {
+                    "type": "boolean"
+                  },
+                  "displayInverseHomeAwayTeams": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/tennis/player/{id}/tournaments/last",
+          "/api/tennis/team/{id}/tournaments/last"
+        ],
+        "method": "recentTeamTournaments",
+        "description": "Returns recent tournaments the team has participated in",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "RecentTournamentsResponse",
+          "fields": {
+            "recentTournaments": {
+              "type": "array",
+              "items": {
+                "type": "UniqueTournament",
+                "extendedWith": {
+                  "lastParticipation": {
+                    "type": "timestamp"
+                  },
+                  "currentlyActive": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "teamSeasonStatisticsEndpoints": [
+      {
+        "endpoint": [
+          "/api/team/{teamId}/tournament/{tournamentId}/season/{seasonId}/goal-distributions"
+        ],
+        "method": "getGoalDistributions",
+        "description": "Returns goal distribution statistics across time periods",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "tid": {
+            "type": "integer",
+            "required": true,
+            "description": "Tournament ID"
+          },
+          "sid": {
+            "type": "integer",
+            "required": true,
+            "description": "Season ID"
+          }
+        },
+        "response": {
+          "type": "GoalDistributionsResponse",
+          "fields": {
+            "goalDistributions": {
+              "type": "object",
+              "properties": {
+                "scored": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer"
+                    },
+                    "periods": {
+                      "type": "array",
+                      "items": {
+                        "type": "PeriodDistribution",
+                        "properties": {
+                          "period": {
+                            "type": "string",
+                            "enum": [
+                              "0-15",
+                              "16-30",
+                              "31-45",
+                              "46-60",
+                              "61-75",
+                              "76-90",
+                              "90+"
+                            ]
+                          },
+                          "goals": {
+                            "type": "integer"
+                          },
+                          "percentage": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    },
+                    "home": {
+                      "type": "integer"
+                    },
+                    "away": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "conceded": {
+                  "type": "object",
+                  "description": "Same structure as 'scored'"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "motorsportEndpoints": [
+      {
+        "endpoint": [
+          "/api/motorsport/team/{id}/stage/seasons"
+        ],
+        "method": "driverStageSeasons",
+        "description": "Returns stage seasons for motorsport drivers/teams",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "StageSeasonResponse",
+          "fields": {
+            "stageSeasons": {
+              "type": "array",
+              "items": {
+                "type": "StageSeason",
+                "properties": {
+                  "stage": {
+                    "type": "Stage",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "slug": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "season": {
+                    "type": "Season"
+                  },
+                  "position": {
+                    "type": "integer"
+                  },
+                  "points": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/motorsport/team/{id}/driver/history"
+        ],
+        "method": "stageTeamCareerHistory",
+        "description": "Returns complete career history for motorsport driver",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "DriverCareerHistoryResponse",
+          "fields": {
+            "careerHistory": {
+              "type": "array",
+              "items": {
+                "type": "CareerItem",
+                "properties": {
+                  "season": {
+                    "type": "Season"
+                  },
+                  "team": {
+                    "type": "Team"
+                  },
+                  "series": {
+                    "type": "string"
+                  },
+                  "position": {
+                    "type": "integer"
+                  },
+                  "points": {
+                    "type": "number"
+                  },
+                  "wins": {
+                    "type": "integer"
+                  },
+                  "podiums": {
+                    "type": "integer"
+                  },
+                  "poles": {
+                    "type": "integer"
+                  },
+                  "fastestLaps": {
+                    "type": "integer"
+                  },
+                  "dnf": {
+                    "type": "integer",
+                    "description": "Did not finish count"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/motorsport/team/{id}/stage/season/{seasonId}/races"
+        ],
+        "method": "stageSportDriverSeasonRaces",
+        "description": "Returns race results for a driver in a specific season",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "DriverRacesResponse",
+          "fields": {
+            "races": {
+              "type": "array",
+              "items": {
+                "type": "Race",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "slug": {
+                    "type": "string"
+                  },
+                  "startDateTimestamp": {
+                    "type": "timestamp"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "round": {
+                    "type": "integer"
+                  },
+                  "circuit": {
+                    "type": "Circuit",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "country": {
+                        "type": "Country"
+                      }
+                    }
+                  },
+                  "results": {
+                    "type": "array",
+                    "items": {
+                      "type": "RaceResult",
+                      "properties": {
+                        "position": {
+                          "type": "integer"
+                        },
+                        "driver": {
+                          "type": "Team"
+                        },
+                        "team": {
+                          "type": "Team"
+                        },
+                        "gridPosition": {
+                          "type": "integer"
+                        },
+                        "points": {
+                          "type": "number"
+                        },
+                        "time": {
+                          "type": "string"
+                        },
+                        "laps": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "finished",
+                            "dnf",
+                            "dns",
+                            "dsq"
+                          ]
+                        },
+                        "fastestLap": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "queryParameters": {
+    "description": "Common query parameters used across endpoints",
+    "parameters": {
+      "span": {
+        "type": "string",
+        "enum": [
+          "last",
+          "next",
+          "today",
+          "all"
+        ],
+        "description": "Time span for filtering events"
+      },
+      "page": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Page number for pagination (0-indexed)"
+      },
+      "type": {
+        "type": "string",
+        "enum": [
+          "home",
+          "away",
+          "total",
+          "overall"
+        ],
+        "description": "Filter for home/away/total statistics"
+      },
+      "limit": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100,
+        "default": 20,
+        "description": "Number of items per page"
+      }
+    }
+  },
+  "errorHandling": {
+    "description": "Standard error responses across all team endpoints",
+    "errorCodes": {
+      "400": {
+        "description": "Bad Request",
+        "response": {
+          "error": {
+            "code": "BAD_REQUEST",
+            "message": "Invalid parameters provided"
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "response": {
+          "error": {
+            "code": "NOT_FOUND",
+            "message": "Team not found"
+          }
+        }
+      },
+      "429": {
+        "description": "Too Many Requests",
+        "response": {
+          "error": {
+            "code": "RATE_LIMITED",
+            "message": "Rate limit exceeded",
+            "retryAfter": 60
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
+        "response": {
+          "error": {
+            "code": "INTERNAL_ERROR",
+            "message": "An internal error occurred"
+          }
+        }
+      }
+    }
+  },
+  "rateLimiting": {
+    "description": "API rate limiting for team endpoints",
+    "limits": {
+      "authenticated": {
+        "requestsPerMinute": 60,
+        "requestsPerHour": 3600
+      },
+      "unauthenticated": {
+        "requestsPerMinute": 20,
+        "requestsPerHour": 500
+      }
+    }
+  },
+  "caching": {
+    "description": "Caching recommendations for team endpoints",
+    "ttl": {
+      "teamDetails": 3600,
+      "teamSquad": 86400,
+      "teamEvents": 300,
+      "teamStatistics": 3600,
+      "teamRankings": 86400,
+      "teamTransfers": 3600
+    },
+    "headers": {
+      "Cache-Control": "public, max-age=300",
+      "ETag": "Provided for conditional requests",
+      "Last-Modified": "Timestamp of last data modification"
+    }
+  },
+  "webhooks": {
+    "description": "Available webhooks for team data updates",
+    "events": {
+      "team.updated": {
+        "description": "Triggered when team details are updated",
+        "payload": {
+          "teamId": "integer",
+          "updatedFields": "array",
+          "timestamp": "timestamp"
+        }
+      },
+      "team.transfer": {
+        "description": "Triggered when a transfer occurs",
+        "payload": {
+          "teamId": "integer",
+          "transfer": "Transfer object",
+          "timestamp": "timestamp"
+        }
+      },
+      "team.lineup": {
+        "description": "Triggered when team lineup is announced",
+        "payload": {
+          "teamId": "integer",
+          "eventId": "integer",
+          "lineup": "array",
+          "timestamp": "timestamp"
+        }
+      }
+    }
+  },
+  "dataFormats": {
+    "timestamp": {
+      "type": "integer",
+      "format": "unix-timestamp",
+      "description": "Unix timestamp in seconds"
+    },
+    "date": {
+      "type": "string",
+      "format": "YYYY-MM-DD"
+    },
+    "datetime": {
+      "type": "string",
+      "format": "ISO 8601"
+    },
+    "percentage": {
+      "type": "number",
+      "min": 0,
+      "max": 100
+    },
+    "form": {
+      "type": "string",
+      "pattern": "^[WDL]+$",
+      "description": "String of W (win), D (draw), L (loss) characters"
+    },
+    "color": {
+      "type": "string",
+      "format": "#RRGGBB"
+    }
+  },
+  "changelog": {
+    "version": "2.2.0",
+    "lastUpdated": "2024-01-15",
+    "changes": [
+      {
+        "version": "2.2.0",
+        "date": "2024-01-15",
+        "changes": [
+          "Added comprehensive JSON schema for all team endpoints",
+          "Included detailed field descriptions and types",
+          "Added motorsport-specific endpoints",
+          "Enhanced statistics endpoint documentation"
+        ]
+      }
+    ]
+  }
+}

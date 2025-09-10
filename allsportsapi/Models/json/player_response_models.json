@@ -1,0 +1,1710 @@
+{
+  "title": "Player Endpoints Response Models",
+  "version": "2.2.0",
+  "description": "Comprehensive JSON schema documentation for all Player API endpoints",
+  "totalEndpoints": 18,
+  "baseResponseTypes": {
+    "AbstractNetworkResponse": {
+      "description": "Base response class for legacy endpoints",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata including status and timing"
+        },
+        "error": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Error information if request failed"
+        }
+      }
+    },
+    "NetworkResponse": {
+      "description": "Base response class for new network layer",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata"
+        },
+        "error": {
+          "type": "ErrorResponse",
+          "nullable": true,
+          "description": "Detailed error information"
+        }
+      }
+    }
+  },
+  "sharedModels": {
+    "Player": {
+      "description": "Complete player entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true,
+          "description": "Unique player identifier"
+        },
+        "name": {
+          "type": "string",
+          "required": true,
+          "description": "Full player name"
+        },
+        "slug": {
+          "type": "string",
+          "required": false,
+          "description": "URL-friendly player name"
+        },
+        "shortName": {
+          "type": "string",
+          "required": false,
+          "description": "Abbreviated player name"
+        },
+        "firstName": {
+          "type": "string",
+          "required": false,
+          "description": "Player's first name"
+        },
+        "lastName": {
+          "type": "string",
+          "required": false,
+          "description": "Player's last name"
+        },
+        "team": {
+          "type": "Team",
+          "required": false,
+          "description": "Current team",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "slug": {
+              "type": "string"
+            },
+            "shortName": {
+              "type": "string"
+            },
+            "gender": {
+              "type": "string"
+            },
+            "sport": {
+              "type": "Sport"
+            },
+            "teamColors": {
+              "type": "TeamColors"
+            },
+            "type": {
+              "type": "integer"
+            }
+          }
+        },
+        "position": {
+          "type": "string",
+          "required": false,
+          "description": "Playing position"
+        },
+        "jerseyNumber": {
+          "type": "string",
+          "required": false,
+          "description": "Jersey number"
+        },
+        "height": {
+          "type": "integer",
+          "required": false,
+          "description": "Height in centimeters"
+        },
+        "weight": {
+          "type": "integer",
+          "required": false,
+          "description": "Weight in kilograms"
+        },
+        "preferredFoot": {
+          "type": "string",
+          "required": false,
+          "enum": [
+            "Left",
+            "Right",
+            "Both"
+          ],
+          "description": "Preferred foot for football players"
+        },
+        "dateOfBirthTimestamp": {
+          "type": "timestamp",
+          "required": false,
+          "description": "Birth date as Unix timestamp"
+        },
+        "age": {
+          "type": "integer",
+          "required": false,
+          "description": "Calculated age"
+        },
+        "country": {
+          "type": "Country",
+          "required": false,
+          "properties": {
+            "alpha2": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "alpha3": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}$"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "marketValueCurrency": {
+          "type": "string",
+          "required": false,
+          "enum": [
+            "EUR",
+            "USD",
+            "GBP"
+          ]
+        },
+        "proposedMarketValue": {
+          "type": "integer",
+          "required": false,
+          "description": "Market value in currency units"
+        },
+        "proposedMarketValueRaw": {
+          "type": "MarketValue",
+          "required": false,
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "currency": {
+              "type": "string"
+            }
+          }
+        },
+        "contractUntilTimestamp": {
+          "type": "timestamp",
+          "required": false,
+          "description": "Contract expiry date"
+        },
+        "gender": {
+          "type": "string",
+          "required": false,
+          "enum": [
+            "M",
+            "F"
+          ]
+        },
+        "retired": {
+          "type": "boolean",
+          "default": false
+        },
+        "deceased": {
+          "type": "boolean",
+          "default": false
+        },
+        "nationalTeam": {
+          "type": "Team",
+          "required": false,
+          "description": "National team representation"
+        },
+        "shirtNumber": {
+          "type": "integer",
+          "required": false
+        },
+        "userCount": {
+          "type": "integer",
+          "required": false,
+          "description": "Number of users following"
+        }
+      }
+    },
+    "PlayerStatistics": {
+      "description": "Common player statistics structure",
+      "fields": {
+        "appearances": {
+          "type": "integer",
+          "description": "Total appearances"
+        },
+        "startingAppearances": {
+          "type": "integer",
+          "description": "Games started"
+        },
+        "substituteAppearances": {
+          "type": "integer",
+          "description": "Games as substitute"
+        },
+        "minutesPlayed": {
+          "type": "integer",
+          "description": "Total minutes played"
+        },
+        "goals": {
+          "type": "integer",
+          "description": "Goals scored"
+        },
+        "assists": {
+          "type": "integer",
+          "description": "Assists provided"
+        },
+        "penalties": {
+          "type": "integer",
+          "description": "Penalties scored"
+        },
+        "penaltiesMissed": {
+          "type": "integer",
+          "description": "Penalties missed"
+        },
+        "yellowCards": {
+          "type": "integer",
+          "description": "Yellow cards received"
+        },
+        "doubleYellowCards": {
+          "type": "integer",
+          "description": "Second yellow cards"
+        },
+        "redCards": {
+          "type": "integer",
+          "description": "Red cards received"
+        },
+        "cleanSheets": {
+          "type": "integer",
+          "description": "Clean sheets (goalkeepers)"
+        },
+        "saves": {
+          "type": "integer",
+          "description": "Saves made (goalkeepers)"
+        },
+        "goalsConceded": {
+          "type": "integer",
+          "description": "Goals conceded (goalkeepers)"
+        },
+        "rating": {
+          "type": "number",
+          "format": "float",
+          "min": 0,
+          "max": 10
+        },
+        "tackles": {
+          "type": "integer"
+        },
+        "interceptions": {
+          "type": "integer"
+        },
+        "clearances": {
+          "type": "integer"
+        },
+        "shotsTotal": {
+          "type": "integer"
+        },
+        "shotsOnTarget": {
+          "type": "integer"
+        },
+        "shotsOffTarget": {
+          "type": "integer"
+        },
+        "shotsBlocked": {
+          "type": "integer"
+        },
+        "passesTotal": {
+          "type": "integer"
+        },
+        "passesAccurate": {
+          "type": "integer"
+        },
+        "passAccuracy": {
+          "type": "number",
+          "format": "percentage"
+        },
+        "keyPasses": {
+          "type": "integer"
+        },
+        "crosses": {
+          "type": "integer"
+        },
+        "crossesAccurate": {
+          "type": "integer"
+        },
+        "longBalls": {
+          "type": "integer"
+        },
+        "longBallsAccurate": {
+          "type": "integer"
+        },
+        "dribbles": {
+          "type": "integer"
+        },
+        "dribblesSuccessful": {
+          "type": "integer"
+        },
+        "dribblesAttempted": {
+          "type": "integer"
+        },
+        "aerialDuels": {
+          "type": "integer"
+        },
+        "aerialDuelsWon": {
+          "type": "integer"
+        },
+        "groundDuels": {
+          "type": "integer"
+        },
+        "groundDuelsWon": {
+          "type": "integer"
+        },
+        "foulsCommitted": {
+          "type": "integer"
+        },
+        "foulsDrawn": {
+          "type": "integer"
+        },
+        "offsides": {
+          "type": "integer"
+        },
+        "dispossessed": {
+          "type": "integer"
+        },
+        "possessionLost": {
+          "type": "integer"
+        },
+        "errors": {
+          "type": "integer"
+        },
+        "errorsLeadingToGoal": {
+          "type": "integer"
+        },
+        "errorsLeadingToShot": {
+          "type": "integer"
+        },
+        "bigChances": {
+          "type": "integer"
+        },
+        "bigChancesMissed": {
+          "type": "integer"
+        },
+        "bigChancesCreated": {
+          "type": "integer"
+        },
+        "expectedGoals": {
+          "type": "number",
+          "description": "xG value"
+        },
+        "expectedAssists": {
+          "type": "number",
+          "description": "xA value"
+        },
+        "expectedGoalsOnTarget": {
+          "type": "number",
+          "description": "xGOT value"
+        }
+      }
+    },
+    "Transfer": {
+      "description": "Player transfer information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "player": {
+          "type": "Player",
+          "required": true
+        },
+        "transferFrom": {
+          "type": "Team",
+          "required": false
+        },
+        "transferTo": {
+          "type": "Team",
+          "required": false
+        },
+        "fromTeamName": {
+          "type": "string",
+          "required": false
+        },
+        "toTeamName": {
+          "type": "string",
+          "required": false
+        },
+        "type": {
+          "type": "integer",
+          "required": true,
+          "description": "1: Transfer, 2: Loan, 3: Free transfer, 4: End of loan"
+        },
+        "transferFee": {
+          "type": "integer",
+          "required": false
+        },
+        "transferFeeRaw": {
+          "type": "TransferFee",
+          "required": false,
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "currency": {
+              "type": "string"
+            }
+          }
+        },
+        "transferDateTimestamp": {
+          "type": "timestamp",
+          "required": true
+        },
+        "transferMarketUrl": {
+          "type": "string",
+          "format": "uri",
+          "required": false
+        },
+        "confirmed": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "corePlayerEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/player/{id}",
+          "/api/baseball/player/{id}",
+          "/api/basketball/player/{id}",
+          "/api/cricket/player/{id}",
+          "/api/esport/player/{id}",
+          "/api/handball/player/{id}",
+          "/api/ice-hockey/player/{id}",
+          "/api/player/{id}",
+          "/api/rugby/player/{id}"
+        ],
+        "method": "playerDetails",
+        "description": "Retrieves complete player details including personal info, team, and career data",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique player identifier"
+          }
+        },
+        "response": {
+          "type": "PlayerDetailsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "player": {
+              "type": "Player",
+              "required": true,
+              "description": "Complete player information",
+              "extendedProperties": {
+                "affiliation": {
+                  "type": "object",
+                  "required": false,
+                  "properties": {
+                    "team": {
+                      "type": "Team"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "club",
+                        "national"
+                      ]
+                    },
+                    "active": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "trophies": {
+                  "type": "array",
+                  "required": false,
+                  "items": {
+                    "type": "Trophy",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "count": {
+                        "type": "integer"
+                      },
+                      "seasons": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "careerHistory": {
+                  "type": "array",
+                  "required": false,
+                  "items": {
+                    "type": "CareerItem",
+                    "properties": {
+                      "team": {
+                        "type": "Team"
+                      },
+                      "startDateTimestamp": {
+                        "type": "timestamp"
+                      },
+                      "endDateTimestamp": {
+                        "type": "timestamp"
+                      },
+                      "transferType": {
+                        "type": "string"
+                      },
+                      "transferFee": {
+                        "type": "integer"
+                      },
+                      "appearance": {
+                        "type": "integer"
+                      },
+                      "goals": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                },
+                "injuryHistory": {
+                  "type": "array",
+                  "required": false,
+                  "items": {
+                    "type": "Injury",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "startDate": {
+                        "type": "timestamp"
+                      },
+                      "endDate": {
+                        "type": "timestamp"
+                      },
+                      "daysOut": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/player/{id}/attribute"
+        ],
+        "method": "playerAttributeOverview",
+        "description": "Returns player attributes and skills overview with ratings",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "AttributeOverviewResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "attributeOverviews": {
+              "type": "array",
+              "required": false,
+              "items": {
+                "type": "AttributeCategory",
+                "properties": {
+                  "category": {
+                    "type": "string",
+                    "enum": [
+                      "attacking",
+                      "technical",
+                      "defending",
+                      "physical",
+                      "mental",
+                      "goalkeeping"
+                    ]
+                  },
+                  "attributes": {
+                    "type": "array",
+                    "items": {
+                      "type": "Attribute",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "integer",
+                          "min": 0,
+                          "max": 100
+                        },
+                        "percentile": {
+                          "type": "number",
+                          "min": 0,
+                          "max": 100
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "overallRating": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 100
+                  }
+                }
+              }
+            },
+            "lastUpdateTimestamp": {
+              "type": "timestamp"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/player/{id}/characteristics"
+        ],
+        "method": "playerCharacteristics",
+        "description": "Returns player characteristics, playing style, and strengths/weaknesses",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "PlayerCharacteristicsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "characteristics": {
+              "type": "object",
+              "required": false,
+              "properties": {
+                "positions": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "GK",
+                      "CB",
+                      "LB",
+                      "RB",
+                      "DM",
+                      "CM",
+                      "AM",
+                      "LM",
+                      "RM",
+                      "LW",
+                      "RW",
+                      "CF",
+                      "ST"
+                    ]
+                  },
+                  "description": "Primary and secondary positions"
+                },
+                "playingStyle": {
+                  "type": "string",
+                  "description": "Description of playing style"
+                },
+                "strengths": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "List of player strengths"
+                },
+                "weaknesses": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "List of player weaknesses"
+                },
+                "traits": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "Leadership",
+                      "Long shot taker",
+                      "Dives into tackles",
+                      "Injury prone",
+                      "Speed dribbler",
+                      "Clinical finisher",
+                      "Playmaker",
+                      "Aerial threat"
+                    ]
+                  }
+                },
+                "similarPlayers": {
+                  "type": "array",
+                  "items": {
+                    "type": "SimilarPlayer",
+                    "properties": {
+                      "player": {
+                        "type": "Player"
+                      },
+                      "similarity": {
+                        "type": "number",
+                        "min": 0,
+                        "max": 100
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/american-football/player/{id}/matches/previous/{page}",
+          "/api/baseball/player/{id}/matches/previous/{page}",
+          "/api/basketball/player/{id}/matches/previous/{page}",
+          "/api/cricket/player/{id}/matches/previous/{page}",
+          "/api/handball/player/{id}/matches/previous/{page}",
+          "/api/ice-hockey/player/{id}/matches/previous/{page}",
+          "/api/player/{id}/matches/previous/{page}",
+          "/api/rugby/player/{id}/matches/previous/{page}"
+        ],
+        "method": "playerEventsList",
+        "description": "Returns paginated list of player's recent matches",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "page": {
+            "type": "integer",
+            "required": true,
+            "minimum": 0,
+            "description": "Page number (0-indexed)"
+          }
+        },
+        "response": {
+          "type": "PlayerEventsListResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "events": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "PlayerEvent",
+                "properties": {
+                  "event": {
+                    "type": "Event"
+                  },
+                  "statistics": {
+                    "type": "PlayerStatistics"
+                  },
+                  "rating": {
+                    "type": "number"
+                  },
+                  "minutesPlayed": {
+                    "type": "integer"
+                  },
+                  "substitute": {
+                    "type": "boolean"
+                  },
+                  "captain": {
+                    "type": "boolean"
+                  },
+                  "goals": {
+                    "type": "integer"
+                  },
+                  "assists": {
+                    "type": "integer"
+                  },
+                  "yellowCards": {
+                    "type": "integer"
+                  },
+                  "redCards": {
+                    "type": "integer"
+                  },
+                  "manOfTheMatch": {
+                    "type": "boolean",
+                    "default": false
+                  }
+                }
+              }
+            },
+            "hasNextPage": {
+              "type": "boolean",
+              "required": true
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/player/{id}/summary"
+        ],
+        "method": "playerYearSummary",
+        "description": "Returns player's performance summary for the last year",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "PlayerYearSummaryResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "yearSummary": {
+              "type": "object",
+              "required": false,
+              "properties": {
+                "year": {
+                  "type": "integer"
+                },
+                "teams": {
+                  "type": "array",
+                  "items": {
+                    "type": "TeamSummary",
+                    "properties": {
+                      "team": {
+                        "type": "Team"
+                      },
+                      "statistics": {
+                        "type": "PlayerStatistics"
+                      },
+                      "competitions": {
+                        "type": "array",
+                        "items": {
+                          "type": "CompetitionSummary",
+                          "properties": {
+                            "uniqueTournament": {
+                              "type": "UniqueTournament"
+                            },
+                            "statistics": {
+                              "type": "PlayerStatistics"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "totalStatistics": {
+                  "type": "PlayerStatistics"
+                },
+                "highlights": {
+                  "type": "object",
+                  "properties": {
+                    "bestRating": {
+                      "type": "number"
+                    },
+                    "bestRatingEvent": {
+                      "type": "Event"
+                    },
+                    "mostGoalsInMatch": {
+                      "type": "integer"
+                    },
+                    "mostAssistsInMatch": {
+                      "type": "integer"
+                    },
+                    "longestGoalStreak": {
+                      "type": "integer"
+                    },
+                    "trophiesWon": {
+                      "type": "array",
+                      "items": {
+                        "type": "Trophy"
+                      }
+                    }
+                  }
+                },
+                "monthlyBreakdown": {
+                  "type": "array",
+                  "items": {
+                    "type": "MonthlyStats",
+                    "properties": {
+                      "month": {
+                        "type": "integer",
+                        "min": 1,
+                        "max": 12
+                      },
+                      "appearances": {
+                        "type": "integer"
+                      },
+                      "goals": {
+                        "type": "integer"
+                      },
+                      "assists": {
+                        "type": "integer"
+                      },
+                      "averageRating": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/player/{id}/statistics/national"
+        ],
+        "method": "playerNationalTeamStatistics",
+        "description": "Returns player's national team career statistics",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "NationalTeamStatisticsResponse",
+          "fields": {
+            "nationalTeamStatistics": {
+              "type": "object",
+              "properties": {
+                "team": {
+                  "type": "Team"
+                },
+                "debutDate": {
+                  "type": "timestamp"
+                },
+                "lastAppearance": {
+                  "type": "timestamp"
+                },
+                "overallStatistics": {
+                  "type": "PlayerStatistics"
+                },
+                "competitionBreakdown": {
+                  "type": "array",
+                  "items": {
+                    "type": "CompetitionStats",
+                    "properties": {
+                      "competitionName": {
+                        "type": "string"
+                      },
+                      "competitionType": {
+                        "type": "string",
+                        "enum": [
+                          "World Cup",
+                          "Continental Championship",
+                          "Qualifiers",
+                          "Friendlies",
+                          "Nations League"
+                        ]
+                      },
+                      "statistics": {
+                        "type": "PlayerStatistics"
+                      }
+                    }
+                  }
+                },
+                "captainAppearances": {
+                  "type": "integer"
+                },
+                "mostCapsInYear": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "integer"
+                    },
+                    "caps": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "goalsByCompetition": {
+                  "type": "object",
+                  "properties": {
+                    "worldCup": {
+                      "type": "integer"
+                    },
+                    "continental": {
+                      "type": "integer"
+                    },
+                    "qualifiers": {
+                      "type": "integer"
+                    },
+                    "friendlies": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "playerStatisticsEndpoints": [
+      {
+        "endpoint": [
+          "/api/american-football/player/{id}/statistics/season",
+          "/api/baseball/player/{id}/statistics/seasons",
+          "/api/basketball/player/{id}/statistics/season",
+          "/api/cricket/player/{id}/statistics/seasons",
+          "/api/handball/player/{id}/statistics/season",
+          "/api/ice-hockey/player/{id}/statistics/season",
+          "/api/player/{id}/statistics/season"
+        ],
+        "method": "playerStatisticsSeasons",
+        "description": "Returns list of seasons with available statistics",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "StatisticsSeasonsResponse",
+          "fields": {
+            "seasons": {
+              "type": "array",
+              "items": {
+                "type": "StatisticsSeason",
+                "properties": {
+                  "season": {
+                    "type": "Season",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "year": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "uniqueTournament": {
+                    "type": "UniqueTournament"
+                  },
+                  "team": {
+                    "type": "Team"
+                  },
+                  "hasStatistics": {
+                    "type": "boolean"
+                  },
+                  "statisticsAvailable": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "overall",
+                        "home",
+                        "away"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "playerTransferEndpoints": [
+      {
+        "endpoint": [
+          "/api/basketball/player/{id}/transfers",
+          "/api/player/{id}/transfer"
+        ],
+        "method": "playerTransferHistory",
+        "description": "Returns complete transfer history of the player",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "PlayerTransferHistoryResponse",
+          "fields": {
+            "transferHistory": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "Transfer",
+                "extendedWith": {
+                  "marketValue": {
+                    "type": "integer",
+                    "description": "Player market value at time of transfer"
+                  },
+                  "contractLength": {
+                    "type": "integer",
+                    "description": "Contract length in years"
+                  },
+                  "wages": {
+                    "type": "object",
+                    "properties": {
+                      "weekly": {
+                        "type": "integer"
+                      },
+                      "currency": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "agentFee": {
+                    "type": "integer"
+                  },
+                  "bonuses": {
+                    "type": "object",
+                    "properties": {
+                      "signingBonus": {
+                        "type": "integer"
+                      },
+                      "performanceBonus": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "totalTransfers": {
+              "type": "integer"
+            },
+            "totalTransferFees": {
+              "type": "integer"
+            },
+            "averageTransferFee": {
+              "type": "integer"
+            },
+            "highestTransferFee": {
+              "type": "object",
+              "properties": {
+                "fee": {
+                  "type": "integer"
+                },
+                "transfer": {
+                  "type": "Transfer"
+                }
+              }
+            },
+            "currentMarketValue": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    ],
+    "playerTournamentEndpoints": [],
+    "playerVisualizationEndpoints": [
+      {
+        "endpoint": [
+          "/api/player/{id}/tournament/{tournamentId}/season/{seasonId}/ratings"
+        ],
+        "method": "playerSeasonRatings",
+        "description": "Returns player ratings throughout the season",
+        "parameters": {
+          "pid": {
+            "type": "integer",
+            "required": true
+          },
+          "tid": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "PlayerSeasonRatingsResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "ratings": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "MatchRating",
+                "properties": {
+                  "event": {
+                    "type": "Event"
+                  },
+                  "rating": {
+                    "type": "number",
+                    "min": 0,
+                    "max": 10
+                  },
+                  "minutesPlayed": {
+                    "type": "integer"
+                  },
+                  "position": {
+                    "type": "string"
+                  },
+                  "substitute": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "averageRating": {
+              "type": "number"
+            },
+            "bestRating": {
+              "type": "number"
+            },
+            "worstRating": {
+              "type": "number"
+            },
+            "ratingTrend": {
+              "type": "string",
+              "enum": [
+                "improving",
+                "declining",
+                "stable"
+              ]
+            },
+            "ratingDistribution": {
+              "type": "object",
+              "properties": {
+                "excellent": {
+                  "type": "integer",
+                  "description": "Ratings >= 8.0"
+                },
+                "good": {
+                  "type": "integer",
+                  "description": "Ratings 7.0-7.9"
+                },
+                "average": {
+                  "type": "integer",
+                  "description": "Ratings 6.0-6.9"
+                },
+                "poor": {
+                  "type": "integer",
+                  "description": "Ratings < 6.0"
+                }
+              }
+            },
+            "monthlyAverages": {
+              "type": "array",
+              "items": {
+                "type": "MonthlyRating",
+                "properties": {
+                  "month": {
+                    "type": "integer"
+                  },
+                  "year": {
+                    "type": "integer"
+                  },
+                  "averageRating": {
+                    "type": "number"
+                  },
+                  "matchesPlayed": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": [
+          "/api/player/{id}/penalty-history/tournament/{tournamentId}/season/{seasonId}"
+        ],
+        "method": "playerPenaltyHistory",
+        "description": "Returns player's penalty taking history for a season",
+        "parameters": {
+          "pid": {
+            "type": "integer",
+            "required": true
+          },
+          "uid": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "response": {
+          "type": "PlayerPenaltyHistoryResponse",
+          "extends": "NetworkResponse",
+          "fields": {
+            "penaltyHistory": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "Penalty",
+                "properties": {
+                  "event": {
+                    "type": "Event"
+                  },
+                  "minute": {
+                    "type": "integer"
+                  },
+                  "outcome": {
+                    "type": "string",
+                    "enum": [
+                      "scored",
+                      "saved",
+                      "missed",
+                      "post",
+                      "bar"
+                    ]
+                  },
+                  "placement": {
+                    "type": "string",
+                    "enum": [
+                      "bottom_left",
+                      "bottom_center",
+                      "bottom_right",
+                      "center_left",
+                      "center",
+                      "center_right",
+                      "top_left",
+                      "top_center",
+                      "top_right"
+                    ]
+                  },
+                  "keeper": {
+                    "type": "Player"
+                  },
+                  "keeperDive": {
+                    "type": "string",
+                    "enum": [
+                      "left",
+                      "center",
+                      "right",
+                      "no_dive"
+                    ]
+                  },
+                  "score": {
+                    "type": "object",
+                    "properties": {
+                      "before": {
+                        "type": "string"
+                      },
+                      "after": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "importance": {
+                    "type": "string",
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high",
+                      "crucial"
+                    ]
+                  }
+                }
+              }
+            },
+            "statistics": {
+              "type": "object",
+              "properties": {
+                "totalPenalties": {
+                  "type": "integer"
+                },
+                "scored": {
+                  "type": "integer"
+                },
+                "saved": {
+                  "type": "integer"
+                },
+                "missed": {
+                  "type": "integer"
+                },
+                "conversionRate": {
+                  "type": "number",
+                  "format": "percentage"
+                },
+                "placementDistribution": {
+                  "type": "object",
+                  "description": "Distribution of penalty placements"
+                },
+                "outcomeByImportance": {
+                  "type": "object",
+                  "description": "Success rate by penalty importance"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "playerEventStatisticsEndpoint": [
+      {
+        "endpoint": [
+          "/api/american-football/match/{id}/player/{playerId}/statistics",
+          "/api/baseball/match/{id}/player/{playerId}/statistics",
+          "/api/basketball/match/{id}/player/{playerId}/statistics",
+          "/api/ice-hockey/match/{id}/player/{playerId}/statistics",
+          "/api/match/{id}/player/{playerId}/statistics"
+        ],
+        "method": "playerEventStatistics",
+        "description": "Returns player statistics for a specific match",
+        "parameters": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          },
+          "pid": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "response": {
+          "type": "PlayerEventStatisticsResponse",
+          "extends": "AbstractNetworkResponse",
+          "fields": {
+            "statistics": {
+              "type": "PlayerStatistics",
+              "required": true,
+              "extendedWith": {
+                "periodBreakdown": {
+                  "type": "array",
+                  "items": {
+                    "type": "PeriodStatistics",
+                    "properties": {
+                      "period": {
+                        "type": "string",
+                        "enum": [
+                          "1H",
+                          "2H",
+                          "ET1",
+                          "ET2"
+                        ]
+                      },
+                      "statistics": {
+                        "type": "PlayerStatistics"
+                      }
+                    }
+                  }
+                },
+                "heatmap": {
+                  "type": "array",
+                  "items": {
+                    "type": "HeatmapPoint",
+                    "properties": {
+                      "x": {
+                        "type": "number"
+                      },
+                      "y": {
+                        "type": "number"
+                      },
+                      "actionType": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "touchMap": {
+                  "type": "array",
+                  "items": {
+                    "type": "Touch",
+                    "properties": {
+                      "minute": {
+                        "type": "integer"
+                      },
+                      "x": {
+                        "type": "number"
+                      },
+                      "y": {
+                        "type": "number"
+                      },
+                      "outcome": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "player": {
+              "type": "Player"
+            },
+            "event": {
+              "type": "Event"
+            },
+            "rating": {
+              "type": "number"
+            },
+            "minutesPlayed": {
+              "type": "integer"
+            },
+            "positionPlayed": {
+              "type": "string"
+            },
+            "substitute": {
+              "type": "boolean"
+            },
+            "substitutedIn": {
+              "type": "integer",
+              "description": "Minute substituted in"
+            },
+            "substitutedOut": {
+              "type": "integer",
+              "description": "Minute substituted out"
+            },
+            "captain": {
+              "type": "boolean"
+            },
+            "manOfTheMatch": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "errorHandling": {
+    "description": "Standard error responses across all player endpoints",
+    "errorCodes": {
+      "400": {
+        "description": "Bad Request",
+        "response": {
+          "error": {
+            "code": "BAD_REQUEST",
+            "message": "Invalid parameters provided"
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "response": {
+          "error": {
+            "code": "NOT_FOUND",
+            "message": "Player not found"
+          }
+        }
+      },
+      "429": {
+        "description": "Too Many Requests",
+        "response": {
+          "error": {
+            "code": "RATE_LIMITED",
+            "message": "Rate limit exceeded",
+            "retryAfter": 60
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
+        "response": {
+          "error": {
+            "code": "INTERNAL_ERROR",
+            "message": "An internal error occurred"
+          }
+        }
+      }
+    }
+  },
+  "rateLimiting": {
+    "description": "API rate limiting for player endpoints",
+    "limits": {
+      "authenticated": {
+        "requestsPerMinute": 60,
+        "requestsPerHour": 3600
+      },
+      "unauthenticated": {
+        "requestsPerMinute": 20,
+        "requestsPerHour": 500
+      }
+    }
+  },
+  "caching": {
+    "description": "Caching recommendations for player endpoints",
+    "ttl": {
+      "playerDetails": 3600,
+      "playerEvents": 300,
+      "playerStatistics": 1800,
+      "playerTransferHistory": 86400,
+      "playerAttributes": 86400,
+      "playerHeatmap": 3600,
+      "playerRatings": 1800
+    },
+    "headers": {
+      "Cache-Control": "public, max-age=300",
+      "ETag": "Provided for conditional requests",
+      "Last-Modified": "Timestamp of last data modification"
+    }
+  },
+  "dataFormats": {
+    "timestamp": {
+      "type": "integer",
+      "format": "unix-timestamp",
+      "description": "Unix timestamp in seconds"
+    },
+    "rating": {
+      "type": "number",
+      "format": "float",
+      "min": 0,
+      "max": 10,
+      "precision": 1
+    },
+    "percentage": {
+      "type": "number",
+      "min": 0,
+      "max": 100,
+      "format": "##.#"
+    },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "min": 0,
+          "max": 100
+        },
+        "y": {
+          "type": "number",
+          "min": 0,
+          "max": 100
+        }
+      },
+      "description": "Field coordinates normalized to 0-100 scale"
+    },
+    "marketValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string",
+          "enum": [
+            "EUR",
+            "USD",
+            "GBP"
+          ]
+        },
+        "formattedValue": {
+          "type": "string",
+          "example": "€50M"
+        }
+      }
+    }
+  },
+  "changelog": {
+    "version": "2.2.0",
+    "lastUpdated": "2024-01-15",
+    "changes": [
+      {
+        "version": "2.2.0",
+        "date": "2024-01-15",
+        "changes": [
+          "Added comprehensive JSON schema for all player endpoints",
+          "Included detailed statistics models",
+          "Added visualization endpoints (heatmaps, shot maps)",
+          "Enhanced transfer history documentation",
+          "Added penalty history endpoint"
+        ]
+      }
+    ]
+  }
+}

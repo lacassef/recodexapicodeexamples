@@ -1,0 +1,2270 @@
+{
+  "title": "Tournament Endpoints Response Models",
+  "version": "1.0.0",
+  "description": "Comprehensive JSON schema documentation for all Tournament API endpoints",
+  "totalEndpoints": 54,
+  "baseResponseTypes": {
+    "NetworkResponse": {
+      "description": "Base response class for network layer",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata"
+        },
+        "error": {
+          "type": "ErrorResponse",
+          "nullable": true,
+          "description": "Detailed error information"
+        }
+      }
+    }
+  },
+  "sharedModels": {
+    "Tournament": {
+      "description": "Tournament entity model",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "category": {
+          "type": "Category",
+          "required": true
+        },
+        "uniqueTournament": {
+          "type": "UniqueTournament",
+          "nullable": true
+        },
+        "roundPrefix": {
+          "type": "string",
+          "nullable": true
+        },
+        "season": {
+          "type": "Season",
+          "nullable": true
+        },
+        "isLive": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "fieldTranslations": {
+          "type": "FieldTranslations",
+          "nullable": true
+        },
+        "location": {
+          "type": "string",
+          "nullable": true
+        },
+        "groupName": {
+          "type": "string",
+          "nullable": true
+        },
+        "startTimestamp": {
+          "type": "long",
+          "nullable": true
+        },
+        "endTimestamp": {
+          "type": "long",
+          "nullable": true
+        },
+        "order": {
+          "type": "integer",
+          "nullable": true
+        },
+        "webUrl": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "UniqueTournament": {
+      "description": "Unique tournament entity",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "category": {
+          "type": "Category",
+          "required": true
+        },
+        "logo": {
+          "type": "Logo",
+          "nullable": true
+        },
+        "primaryColorHex": {
+          "type": "string",
+          "nullable": true
+        },
+        "secondaryColorHex": {
+          "type": "string",
+          "nullable": true
+        },
+        "hasEventPlayerStatistics": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "hasEventPlayerHeatMap": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "displayInverseHomeAwayTeams": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "userCount": {
+          "type": "integer",
+          "nullable": true
+        },
+        "hasPerformanceGraphFeature": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "hasBoxScore": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "hasStandingsGroups": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "hasRounds": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "titleHolder": {
+          "type": "Team",
+          "nullable": true
+        },
+        "titleHolderTitles": {
+          "type": "integer",
+          "nullable": true
+        },
+        "linkedUniqueTournaments": {
+          "type": "List<UniqueTournament>",
+          "nullable": true
+        },
+        "hostCountries": {
+          "type": "List<Country>",
+          "nullable": true
+        },
+        "nationalTeamEvent": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "Season": {
+      "description": "Season information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "year": {
+          "type": "string",
+          "required": true
+        },
+        "editor": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "Category": {
+      "description": "Category entity",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "slug": {
+          "type": "string",
+          "required": true
+        },
+        "sport": {
+          "type": "Sport",
+          "required": true
+        },
+        "flag": {
+          "type": "string",
+          "nullable": true
+        },
+        "alpha2": {
+          "type": "string",
+          "nullable": true
+        },
+        "priority": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "tournament": {
+      "/api/mma/tournament/{tournamentId}": {
+        "method": "tournament",
+        "description": "Get tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "TournamentResponse",
+        "responseFields": {
+          "tournament": {
+            "type": "Tournament",
+            "required": true
+          }
+        }
+      }
+    },
+    "tournamentEvents": {},
+    "tournamentSeasons": {},
+    "tournamentSeasonEvents": {},
+    "standings": {},
+    "standingsForm": {},
+    "uniqueTournament": {
+      "/api/american-football/tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      },
+      "/api/baseball/tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      },
+      "/api/basketball/tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      },
+      "/api/cricket/tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      },
+      "/api/esport/tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      },
+      "/api/handball/unique-tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      },
+      "/api/ice-hockey/tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      },
+      "/api/mma/unique-tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      },
+      "/api/rugby/tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      },
+      "/api/tennis/tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      },
+      "/api/tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      },
+      "/api/volleyball/unique-tournament/{tournamentId}": {
+        "method": "uniqueTournament",
+        "description": "Get unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          }
+        }
+      }
+    },
+    "uniqueTournamentDetails": {
+      "/api/american-football/tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      },
+      "/api/baseball/tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      },
+      "/api/basketball/tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      },
+      "/api/cricket/tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      },
+      "/api/esport/tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      },
+      "/api/handball/unique-tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      },
+      "/api/ice-hockey/tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      },
+      "/api/mma/unique-tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      },
+      "/api/rugby/tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      },
+      "/api/tennis/tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      },
+      "/api/tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      },
+      "/api/volleyball/unique-tournament/{tournamentId}": {
+        "method": "uniqueTournamentDetails",
+        "description": "Get unique tournament details",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentDetailsResponse",
+        "responseFields": {
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "required": true
+          },
+          "info": {
+            "type": "UniqueTournamentInfo",
+            "nullable": true
+          },
+          "linkedUniqueTournaments": {
+            "type": "List<UniqueTournament>",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "uniqueTournamentEvents": {},
+    "uniqueTournamentFeaturedEvents": {
+      "/api/mma/unique-tournament/{tournamentId}/featured-events": {
+        "method": "uniqueTournamentFeaturedEvents",
+        "description": "Get unique tournament featured events",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "FeaturedEventsResponse",
+        "responseFields": {
+          "featuredEvents": {
+            "type": "List<Event>",
+            "required": true
+          }
+        }
+      }
+    },
+    "uniqueTournamentMainEvents": {},
+    "uniqueTournamentMedia": {
+      "/api/american-football/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get unique tournament media",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Media>",
+            "required": true
+          }
+        }
+      },
+      "/api/baseball/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get unique tournament media",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Media>",
+            "required": true
+          }
+        }
+      },
+      "/api/basketball/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get unique tournament media",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Media>",
+            "required": true
+          }
+        }
+      },
+      "/api/cricket/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get unique tournament media",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Media>",
+            "required": true
+          }
+        }
+      },
+      "/api/esport/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get unique tournament media",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Media>",
+            "required": true
+          }
+        }
+      },
+      "/api/handball/unique-tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get unique tournament media",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Media>",
+            "required": true
+          }
+        }
+      },
+      "/api/ice-hockey/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get unique tournament media",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Media>",
+            "required": true
+          }
+        }
+      },
+      "/api/rugby/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get unique tournament media",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Media>",
+            "required": true
+          }
+        }
+      },
+      "/api/tennis/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get unique tournament media",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Media>",
+            "required": true
+          }
+        }
+      },
+      "/api/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get unique tournament media",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Media>",
+            "required": true
+          }
+        }
+      }
+    },
+    "uniqueTournamentSeasons": {
+      "/api/american-football/tournament/{tournamentId}/seasons": {
+        "method": "uniqueTournamentSeasons",
+        "description": "Get unique tournament seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": true
+          }
+        }
+      },
+      "/api/baseball/tournament/{tournamentId}/seasons": {
+        "method": "uniqueTournamentSeasons",
+        "description": "Get unique tournament seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": true
+          }
+        }
+      },
+      "/api/basketball/tournament/{tournamentId}/seasons": {
+        "method": "uniqueTournamentSeasons",
+        "description": "Get unique tournament seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": true
+          }
+        }
+      },
+      "/api/cricket/tournament/{tournamentId}/seasons": {
+        "method": "uniqueTournamentSeasons",
+        "description": "Get unique tournament seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": true
+          }
+        }
+      },
+      "/api/esport/tournament/{tournamentId}/seasons": {
+        "method": "uniqueTournamentSeasons",
+        "description": "Get unique tournament seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": true
+          }
+        }
+      },
+      "/api/handball/unique-tournament/{tournamentId}/seasons": {
+        "method": "uniqueTournamentSeasons",
+        "description": "Get unique tournament seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": true
+          }
+        }
+      },
+      "/api/ice-hockey/tournament/{tournamentId}/seasons": {
+        "method": "uniqueTournamentSeasons",
+        "description": "Get unique tournament seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": true
+          }
+        }
+      },
+      "/api/rugby/tournament/{tournamentId}/seasons": {
+        "method": "uniqueTournamentSeasons",
+        "description": "Get unique tournament seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": true
+          }
+        }
+      },
+      "/api/tennis/tournament/{tournamentId}/seasons": {
+        "method": "uniqueTournamentSeasons",
+        "description": "Get unique tournament seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": true
+          }
+        }
+      },
+      "/api/tournament/{tournamentId}/seasons": {
+        "method": "uniqueTournamentSeasons",
+        "description": "Get unique tournament seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": true
+          }
+        }
+      },
+      "/api/volleyball/unique-tournament/{tournamentId}/seasons": {
+        "method": "uniqueTournamentSeasons",
+        "description": "Get unique tournament seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": true
+          }
+        }
+      }
+    },
+    "uniqueTournamentSeasonInfo": {
+      "/api/esport/tournament/{tournamentId}/season/{seasonId}/info": {
+        "method": "uniqueTournamentSeasonInfo",
+        "description": "Get unique tournament season info",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonInfoResponse",
+        "responseFields": {
+          "info": {
+            "type": "SeasonInfo",
+            "required": true
+          },
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "nullable": true
+          }
+        }
+      },
+      "/api/tennis/tournament/{tournamentId}/season/{seasonId}/info": {
+        "method": "uniqueTournamentSeasonInfo",
+        "description": "Get unique tournament season info",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonInfoResponse",
+        "responseFields": {
+          "info": {
+            "type": "SeasonInfo",
+            "required": true
+          },
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "nullable": true
+          }
+        }
+      },
+      "/api/tournament/{tournamentId}/season/{seasonId}/info": {
+        "method": "uniqueTournamentSeasonInfo",
+        "description": "Get unique tournament season info",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "SeasonInfoResponse",
+        "responseFields": {
+          "info": {
+            "type": "SeasonInfo",
+            "required": true
+          },
+          "uniqueTournament": {
+            "type": "UniqueTournament",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "uniqueTournamentTeams": {},
+    "uniqueTournamentVenues": {},
+    "uniqueTournamentSeasonEvents": {},
+    "uniqueTournamentDivisions": {},
+    "uniqueTournamentGroups": {
+      "/api/basketball/tournament/{tournamentId}/season/{seasonId}/groups": {
+        "method": "uniqueTournamentGroups",
+        "description": "Get unique tournament groups",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentGroupsResponse",
+        "responseFields": {
+          "groups": {
+            "type": "List<Group>",
+            "required": true
+          }
+        }
+      },
+      "/api/handball/unique-tournament/{tournamentId}/season/{seasonId}/groups": {
+        "method": "uniqueTournamentGroups",
+        "description": "Get unique tournament groups",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentGroupsResponse",
+        "responseFields": {
+          "groups": {
+            "type": "List<Group>",
+            "required": true
+          }
+        }
+      },
+      "/api/tournament/{tournamentId}/season/{seasonId}/groups": {
+        "method": "uniqueTournamentGroups",
+        "description": "Get unique tournament groups",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentGroupsResponse",
+        "responseFields": {
+          "groups": {
+            "type": "List<Group>",
+            "required": true
+          }
+        }
+      }
+    },
+    "uniqueTournamentRounds": {
+      "/api/basketball/tournament/{tournamentId}/season/{seasonId}/rounds": {
+        "method": "uniqueTournamentRounds",
+        "description": "Get unique tournament rounds",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentRoundsResponse",
+        "responseFields": {
+          "currentRound": {
+            "type": "Round",
+            "nullable": true
+          },
+          "rounds": {
+            "type": "List<Round>",
+            "required": true
+          }
+        }
+      },
+      "/api/handball/unique-tournament/{tournamentId}/season/{seasonId}/rounds": {
+        "method": "uniqueTournamentRounds",
+        "description": "Get unique tournament rounds",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentRoundsResponse",
+        "responseFields": {
+          "currentRound": {
+            "type": "Round",
+            "nullable": true
+          },
+          "rounds": {
+            "type": "List<Round>",
+            "required": true
+          }
+        }
+      },
+      "/api/tennis/tournament/{tournamentId}/season/{seasonId}/rounds": {
+        "method": "uniqueTournamentRounds",
+        "description": "Get unique tournament rounds",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentRoundsResponse",
+        "responseFields": {
+          "currentRound": {
+            "type": "Round",
+            "nullable": true
+          },
+          "rounds": {
+            "type": "List<Round>",
+            "required": true
+          }
+        }
+      },
+      "/api/tournament/{tournamentId}/season/{seasonId}/rounds": {
+        "method": "uniqueTournamentRounds",
+        "description": "Get unique tournament rounds",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentRoundsResponse",
+        "responseFields": {
+          "currentRound": {
+            "type": "Round",
+            "nullable": true
+          },
+          "rounds": {
+            "type": "List<Round>",
+            "required": true
+          }
+        }
+      },
+      "/api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/rounds": {
+        "method": "uniqueTournamentRounds",
+        "description": "Get unique tournament rounds",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "UniqueTournamentRoundsResponse",
+        "responseFields": {
+          "currentRound": {
+            "type": "Round",
+            "nullable": true
+          },
+          "rounds": {
+            "type": "List<Round>",
+            "required": true
+          }
+        }
+      }
+    },
+    "uniqueStandings": {},
+    "uniqueStandingsForm": {},
+    "uniqueCupTree": {
+      "/api/american-football/tournament/{tournamentId}/season/{seasonId}/cuptrees": {
+        "method": "uniqueCupTree",
+        "description": "Get unique tournament cup trees",
+        "pathParams": {
+          "tid": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "CupTreeResponse",
+        "responseFields": {
+          "cupTrees": {
+            "type": "List<CupTree>",
+            "required": true
+          }
+        }
+      },
+      "/api/baseball/tournament/{tournamentId}/season/{seasonId}/cuptrees": {
+        "method": "uniqueCupTree",
+        "description": "Get unique tournament cup trees",
+        "pathParams": {
+          "tid": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "CupTreeResponse",
+        "responseFields": {
+          "cupTrees": {
+            "type": "List<CupTree>",
+            "required": true
+          }
+        }
+      },
+      "/api/basketball/tournament/{tournamentId}/season/{seasonId}/cuptrees": {
+        "method": "uniqueCupTree",
+        "description": "Get unique tournament cup trees",
+        "pathParams": {
+          "tid": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "CupTreeResponse",
+        "responseFields": {
+          "cupTrees": {
+            "type": "List<CupTree>",
+            "required": true
+          }
+        }
+      },
+      "/api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/cuptrees": {
+        "method": "uniqueCupTree",
+        "description": "Get unique tournament cup trees",
+        "pathParams": {
+          "tid": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "CupTreeResponse",
+        "responseFields": {
+          "cupTrees": {
+            "type": "List<CupTree>",
+            "required": true
+          }
+        }
+      },
+      "/api/tennis/tournament/{tournamentId}/season/{seasonId}/cup-trees/old": {
+        "method": "uniqueCupTree",
+        "description": "Get unique tournament cup trees",
+        "pathParams": {
+          "tid": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "CupTreeResponse",
+        "responseFields": {
+          "cupTrees": {
+            "type": "List<CupTree>",
+            "required": true
+          }
+        }
+      },
+      "/api/tournament/{tournamentId}/season/{seasonId}/cuptrees": {
+        "method": "uniqueCupTree",
+        "description": "Get unique tournament cup trees",
+        "pathParams": {
+          "tid": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "CupTreeResponse",
+        "responseFields": {
+          "cupTrees": {
+            "type": "List<CupTree>",
+            "required": true
+          }
+        }
+      }
+    },
+    "myLeagueEventIds": {},
+    "historicalSeasonComparison": {},
+    "uniqueTournamentScheduledEvents": {},
+    "uniqueTournamentScheduledMmaMainEvents": {},
+    "uniqueTournamentTeamEvents": {},
+    "uniqueTournamentSeasonVenueEvents": {},
+    "performanceGraphData": {
+      "/api/tournament/{tournamentId}/season/{seasonId}/team/{teamId}/performance": {
+        "method": "performanceGraphData",
+        "description": "Get team performance graph data",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          },
+          "teamId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "PerformanceGraphDataResponse",
+        "responseFields": {
+          "graphPoints": {
+            "type": "List<GraphPoint>",
+            "required": true
+          },
+          "team": {
+            "type": "Team",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "uniqueTournamentRoundAllEvents": {
+      "/api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}": {
+        "method": "uniqueTournamentRoundAllEvents",
+        "description": "Get all events in a round",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          },
+          "round": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "EventListResponse",
+        "responseFields": {
+          "events": {
+            "type": "List<Event>",
+            "required": true
+          }
+        }
+      },
+      "/api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}/slug/{slug}": {
+        "method": "uniqueTournamentRoundAllEvents",
+        "description": "Get all events in a round",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          },
+          "round": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "EventListResponse",
+        "responseFields": {
+          "events": {
+            "type": "List<Event>",
+            "required": true
+          }
+        }
+      },
+      "/api/tennis/tournament/{tournamentId}/season/{seasonId}/events/round/{round}/slug/{slug}": {
+        "method": "uniqueTournamentRoundAllEvents",
+        "description": "Get all events in a round",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          },
+          "round": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "EventListResponse",
+        "responseFields": {
+          "events": {
+            "type": "List<Event>",
+            "required": true
+          }
+        }
+      },
+      "/api/tournament/{tournamentId}/season/{seasonId}/matches/round/{round}": {
+        "method": "uniqueTournamentRoundAllEvents",
+        "description": "Get all events in a round",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          },
+          "round": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "EventListResponse",
+        "responseFields": {
+          "events": {
+            "type": "List<Event>",
+            "required": true
+          }
+        }
+      },
+      "/api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}": {
+        "method": "uniqueTournamentRoundAllEvents",
+        "description": "Get all events in a round",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          },
+          "round": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "EventListResponse",
+        "responseFields": {
+          "events": {
+            "type": "List<Event>",
+            "required": true
+          }
+        }
+      }
+    },
+    "uniqueTournamentRoundEvents": {},
+    "uniqueTournamentRoundEventsPrefix": {},
+    "uniqueTournamentRoundEventsBySlug": {
+      "/api/tournament/{tournamentId}/season/{seasonId}/matches/round/{round}/slug/{slug}": {
+        "method": "uniqueTournamentRoundAllEvents",
+        "description": "Get all events in a round by slug",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          },
+          "round": {
+            "type": "integer",
+            "required": true
+          },
+          "roundSlug": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "responseClass": "EventListResponse",
+        "responseFields": {
+          "events": {
+            "type": "List<Event>",
+            "required": true
+          }
+        }
+      }
+    },
+    "uniqueTournamentRoundEventsBySlugPaginated": {},
+    "leagueTopPlayers": {},
+    "leagueTopPlayersByPosition": {},
+    "leagueTopStats": {},
+    "leagueTopStatsByPosition": {},
+    "leagueTopTeams": {},
+    "leagueTopTeamsByDivision": {},
+    "getTopFollowedPlayers": {},
+    "playerOfTheSeason": {
+      "/api/tournament/{tournamentId}/season/{seasonId}/player-of-the-season": {
+        "method": "playerOfTheSeason",
+        "description": "Get player of the season",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "PlayerOfTheSeasonResponse",
+        "responseFields": {
+          "player": {
+            "type": "Player",
+            "required": true
+          },
+          "statistics": {
+            "type": "PlayerStatistics",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "playerOfTheSeasonRace": {},
+    "teamOfTheSeason": {},
+    "teamOfTheWeek": {
+      "/api/tournament/{tournamentId}/season/{seasonId}/round/{roundId}/team-of-week": {
+        "method": "teamOfTheWeek",
+        "description": "Get team of the week",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          },
+          "roundId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "TeamOfTheWeekResponse",
+        "responseFields": {
+          "formation": {
+            "type": "string",
+            "required": true
+          },
+          "players": {
+            "type": "List<TeamOfWeekPlayer>",
+            "required": true
+          },
+          "round": {
+            "type": "Round",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "teamOfTheWeekRounds": {
+      "/api/tournament/{tournamentId}/season/{seasonId}/tow/rounds": {
+        "method": "teamOfTheWeekRounds",
+        "description": "Get team of the week rounds",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "seasonId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "TeamOfTheWeekRoundsResponse",
+        "responseFields": {
+          "rounds": {
+            "type": "List<Round>",
+            "required": true
+          }
+        }
+      }
+    },
+    "tournamentPlayerStatisticsTypes": {
+      "/api/american-football/tournament/{tournamentId}/season/{seasonId}/best-players/types": {
+        "method": "tournamentPlayerStatisticsTypes",
+        "description": "Get available player statistics types",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "StatisticsTypesResponse",
+        "responseFields": {
+          "types": {
+            "type": "List<String>",
+            "required": true
+          }
+        }
+      },
+      "/api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/types": {
+        "method": "tournamentPlayerStatisticsTypes",
+        "description": "Get available player statistics types",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "StatisticsTypesResponse",
+        "responseFields": {
+          "types": {
+            "type": "List<String>",
+            "required": true
+          }
+        }
+      },
+      "/api/handball/unique-tournament/{tournamentId}/season/{seasonId}/player-statistics/types": {
+        "method": "tournamentPlayerStatisticsTypes",
+        "description": "Get available player statistics types",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "StatisticsTypesResponse",
+        "responseFields": {
+          "types": {
+            "type": "List<String>",
+            "required": true
+          }
+        }
+      },
+      "/api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-players/types": {
+        "method": "tournamentPlayerStatisticsTypes",
+        "description": "Get available player statistics types",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "StatisticsTypesResponse",
+        "responseFields": {
+          "types": {
+            "type": "List<String>",
+            "required": true
+          }
+        }
+      }
+    },
+    "tournamentTeamStatisticsTypes": {},
+    "getSeasonShotActionAreas": {},
+    "subSeasonShotActionAreas": {},
+    "leagueEditors": {},
+    "powerRanking": {
+      "/api/tournament/{tournamentId}/season/{seasonId}/power-rankings/round/{round}": {
+        "method": "powerRanking",
+        "description": "Get power ranking for round",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          },
+          "roundId": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "PowerRankingResponse",
+        "responseFields": {
+          "powerRankings": {
+            "type": "List<PowerRankingEntry>",
+            "required": true
+          },
+          "round": {
+            "type": "Round",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "powerRankingRounds": {
+      "/api/tournament/{tournamentId}/season/{seasonId}/power-rankings/rounds": {
+        "method": "powerRankingRounds",
+        "description": "Get power ranking rounds",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true
+          },
+          "sid": {
+            "type": "integer",
+            "required": true
+          }
+        },
+        "responseClass": "PowerRankingRoundsResponse",
+        "responseFields": {
+          "rounds": {
+            "type": "List<Round>",
+            "required": true
+          }
+        }
+      }
+    }
+  },
+  "dataModels": {
+    "StandingsRow": {
+      "description": "Standings table row",
+      "fields": {
+        "team": {
+          "type": "Team",
+          "required": true
+        },
+        "position": {
+          "type": "integer",
+          "required": true
+        },
+        "matches": {
+          "type": "integer",
+          "required": true
+        },
+        "wins": {
+          "type": "integer",
+          "required": true
+        },
+        "draws": {
+          "type": "integer",
+          "required": true
+        },
+        "losses": {
+          "type": "integer",
+          "required": true
+        },
+        "scoresFor": {
+          "type": "integer",
+          "required": true
+        },
+        "scoresAgainst": {
+          "type": "integer",
+          "required": true
+        },
+        "points": {
+          "type": "integer",
+          "required": true
+        },
+        "promotion": {
+          "type": "Promotion",
+          "nullable": true
+        },
+        "descriptions": {
+          "type": "List<String>",
+          "nullable": true
+        }
+      }
+    },
+    "TeamForm": {
+      "description": "Team form information",
+      "fields": {
+        "team": {
+          "type": "Team",
+          "required": true
+        },
+        "form": {
+          "type": "List<FormItem>",
+          "required": true
+        },
+        "totalWins": {
+          "type": "integer",
+          "required": true
+        },
+        "totalDraws": {
+          "type": "integer",
+          "required": true
+        },
+        "totalLosses": {
+          "type": "integer",
+          "required": true
+        }
+      }
+    },
+    "Round": {
+      "description": "Tournament round",
+      "fields": {
+        "round": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "nullable": true
+        },
+        "slug": {
+          "type": "string",
+          "nullable": true
+        },
+        "prefix": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "Group": {
+      "description": "Tournament group",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "groupName": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "Division": {
+      "description": "Tournament division",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "CupTree": {
+      "description": "Cup bracket tree",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "currentRound": {
+          "type": "Round",
+          "nullable": true
+        },
+        "rounds": {
+          "type": "List<CupRound>",
+          "required": true
+        }
+      }
+    },
+    "TopPlayer": {
+      "description": "Top player entry",
+      "fields": {
+        "player": {
+          "type": "Player",
+          "required": true
+        },
+        "team": {
+          "type": "Team",
+          "nullable": true
+        },
+        "statistics": {
+          "type": "PlayerStatistics",
+          "required": true
+        },
+        "position": {
+          "type": "integer",
+          "required": true
+        }
+      }
+    },
+    "TopTeam": {
+      "description": "Top team entry",
+      "fields": {
+        "team": {
+          "type": "Team",
+          "required": true
+        },
+        "statistics": {
+          "type": "TeamStatistics",
+          "required": true
+        },
+        "position": {
+          "type": "integer",
+          "required": true
+        }
+      }
+    },
+    "PowerRankingEntry": {
+      "description": "Power ranking entry",
+      "fields": {
+        "team": {
+          "type": "Team",
+          "required": true
+        },
+        "position": {
+          "type": "integer",
+          "required": true
+        },
+        "previousPosition": {
+          "type": "integer",
+          "nullable": true
+        },
+        "points": {
+          "type": "float",
+          "required": true
+        }
+      }
+    },
+    "SeasonInfo": {
+      "description": "Season information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "year": {
+          "type": "string",
+          "required": true
+        },
+        "editor": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "startDate": {
+          "type": "string",
+          "nullable": true
+        },
+        "endDate": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "Venue": {
+      "description": "Venue information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "city": {
+          "type": "City",
+          "nullable": true
+        },
+        "country": {
+          "type": "Country",
+          "nullable": true
+        },
+        "stadium": {
+          "type": "Stadium",
+          "nullable": true
+        }
+      }
+    },
+    "GraphPoint": {
+      "description": "Performance graph data point",
+      "fields": {
+        "round": {
+          "type": "integer",
+          "required": true
+        },
+        "position": {
+          "type": "integer",
+          "required": true
+        },
+        "points": {
+          "type": "integer",
+          "required": true
+        },
+        "event": {
+          "type": "Event",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "notes": {
+    "inheritance": "All response classes extend NetworkResponse base class",
+    "nullability": "Fields marked as nullable may be absent in the response",
+    "pagination": "List endpoints typically support span (last/next/all) and page parameters",
+    "types": "Type parameters in URLs often accept: total, home, away, overall",
+    "authentication": "Some endpoints may require authentication tokens",
+    "versioning": "API uses /api/v1 prefix for all endpoints"
+  }
+}

@@ -1,0 +1,1383 @@
+{
+  "title": "Statistics Endpoints Response Models",
+  "version": "1.0.0",
+  "description": "Comprehensive JSON schema documentation for all Statistics API endpoints",
+  "totalEndpoints": 23,
+  "baseResponseTypes": {
+    "NetworkResponse": {
+      "description": "Base response class for network layer",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata"
+        },
+        "error": {
+          "type": "ErrorResponse",
+          "nullable": true,
+          "description": "Detailed error information"
+        }
+      }
+    }
+  },
+  "sharedModels": {
+    "Statistics": {
+      "description": "Base statistics model",
+      "fields": {
+        "period": {
+          "type": "string",
+          "nullable": true,
+          "values": [
+            "ALL",
+            "HOME",
+            "AWAY",
+            "1ST_HALF",
+            "2ND_HALF"
+          ]
+        },
+        "matches": {
+          "type": "integer",
+          "required": true
+        },
+        "goals": {
+          "type": "integer",
+          "nullable": true
+        },
+        "assists": {
+          "type": "integer",
+          "nullable": true
+        },
+        "yellowCards": {
+          "type": "integer",
+          "nullable": true
+        },
+        "redCards": {
+          "type": "integer",
+          "nullable": true
+        },
+        "appearances": {
+          "type": "integer",
+          "nullable": true
+        },
+        "minutesPlayed": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "EsportsGameStatistics": {
+      "description": "eSports game statistics",
+      "fields": {
+        "kills": {
+          "type": "integer",
+          "nullable": true
+        },
+        "deaths": {
+          "type": "integer",
+          "nullable": true
+        },
+        "assists": {
+          "type": "integer",
+          "nullable": true
+        },
+        "kda": {
+          "type": "float",
+          "nullable": true
+        },
+        "gold": {
+          "type": "integer",
+          "nullable": true
+        },
+        "gpm": {
+          "type": "float",
+          "nullable": true
+        },
+        "xpm": {
+          "type": "float",
+          "nullable": true
+        },
+        "creepScore": {
+          "type": "integer",
+          "nullable": true
+        },
+        "level": {
+          "type": "integer",
+          "nullable": true
+        },
+        "heroDamage": {
+          "type": "integer",
+          "nullable": true
+        },
+        "towerDamage": {
+          "type": "integer",
+          "nullable": true
+        },
+        "healing": {
+          "type": "integer",
+          "nullable": true
+        },
+        "netWorth": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "EsportsBan": {
+      "description": "eSports ban information",
+      "fields": {
+        "teamId": {
+          "type": "integer",
+          "required": true
+        },
+        "heroId": {
+          "type": "integer",
+          "required": true
+        },
+        "heroName": {
+          "type": "string",
+          "required": true
+        },
+        "order": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "EsportsLineup": {
+      "description": "eSports team lineup",
+      "fields": {
+        "teamId": {
+          "type": "integer",
+          "required": true
+        },
+        "players": {
+          "type": "List<EsportsPlayer>",
+          "required": true
+        },
+        "formation": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "EsportsRound": {
+      "description": "eSports game round",
+      "fields": {
+        "roundNumber": {
+          "type": "integer",
+          "required": true
+        },
+        "winner": {
+          "type": "string",
+          "nullable": true
+        },
+        "duration": {
+          "type": "integer",
+          "nullable": true
+        },
+        "score": {
+          "type": "RoundScore",
+          "nullable": true
+        }
+      }
+    },
+    "RankingItem": {
+      "description": "Ranking entry",
+      "fields": {
+        "ranking": {
+          "type": "integer",
+          "required": true
+        },
+        "previousRanking": {
+          "type": "integer",
+          "nullable": true
+        },
+        "points": {
+          "type": "float",
+          "nullable": true
+        },
+        "team": {
+          "type": "Team",
+          "nullable": true
+        },
+        "player": {
+          "type": "Player",
+          "nullable": true
+        },
+        "rowName": {
+          "type": "string",
+          "nullable": true
+        },
+        "trend": {
+          "type": "integer",
+          "nullable": true,
+          "description": "-1 down, 0 same, 1 up"
+        }
+      }
+    },
+    "RefereeStatisticsItem": {
+      "description": "Referee statistics entry",
+      "fields": {
+        "season": {
+          "type": "Season",
+          "nullable": true
+        },
+        "uniqueTournament": {
+          "type": "UniqueTournament",
+          "nullable": true
+        },
+        "appearances": {
+          "type": "integer",
+          "required": true
+        },
+        "yellowCards": {
+          "type": "integer",
+          "required": true
+        },
+        "redCards": {
+          "type": "integer",
+          "required": true
+        },
+        "yellowCardsPerGame": {
+          "type": "float",
+          "nullable": true
+        },
+        "redCardsPerGame": {
+          "type": "float",
+          "nullable": true
+        },
+        "foulsPerGame": {
+          "type": "float",
+          "nullable": true
+        },
+        "penaltiesPerGame": {
+          "type": "float",
+          "nullable": true
+        }
+      }
+    },
+    "TeamStatistics": {
+      "description": "Team statistics",
+      "fields": {
+        "matches": {
+          "type": "integer",
+          "required": true
+        },
+        "wins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "draws": {
+          "type": "integer",
+          "nullable": true
+        },
+        "losses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "goalsFor": {
+          "type": "integer",
+          "nullable": true
+        },
+        "goalsAgainst": {
+          "type": "integer",
+          "nullable": true
+        },
+        "cleanSheets": {
+          "type": "integer",
+          "nullable": true
+        },
+        "avgGoalsScored": {
+          "type": "float",
+          "nullable": true
+        },
+        "avgGoalsConceded": {
+          "type": "float",
+          "nullable": true
+        },
+        "possessionPercentage": {
+          "type": "float",
+          "nullable": true
+        },
+        "accuratePasses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "accuratePassesPercentage": {
+          "type": "float",
+          "nullable": true
+        }
+      }
+    },
+    "PlayerStatistics": {
+      "description": "Player statistics",
+      "fields": {
+        "appearances": {
+          "type": "integer",
+          "required": true
+        },
+        "startingEleven": {
+          "type": "integer",
+          "nullable": true
+        },
+        "substitute": {
+          "type": "integer",
+          "nullable": true
+        },
+        "goals": {
+          "type": "integer",
+          "nullable": true
+        },
+        "assists": {
+          "type": "integer",
+          "nullable": true
+        },
+        "yellowCards": {
+          "type": "integer",
+          "nullable": true
+        },
+        "redCards": {
+          "type": "integer",
+          "nullable": true
+        },
+        "minutesPlayed": {
+          "type": "integer",
+          "nullable": true
+        },
+        "rating": {
+          "type": "float",
+          "nullable": true
+        },
+        "shotsOnTarget": {
+          "type": "integer",
+          "nullable": true
+        },
+        "successfulDribbles": {
+          "type": "integer",
+          "nullable": true
+        },
+        "keyPasses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "accuratePasses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "tackles": {
+          "type": "integer",
+          "nullable": true
+        },
+        "interceptions": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "SeasonStatistics": {
+      "description": "Season statistics",
+      "fields": {
+        "season": {
+          "type": "Season",
+          "required": true
+        },
+        "uniqueTournament": {
+          "type": "UniqueTournament",
+          "required": true
+        },
+        "statistics": {
+          "type": "Statistics",
+          "required": true
+        },
+        "team": {
+          "type": "Team",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "eSportsGameBans": {
+      "/api/esport/game/{id}/bans": {
+        "method": "eSportsGameBans",
+        "description": "Get eSports game bans",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "eSports game ID"
+          }
+        },
+        "responseClass": "ESportsBansResponse",
+        "responseFields": {
+          "homeBans": {
+            "type": "List<EsportsBan>",
+            "required": false
+          },
+          "awayBans": {
+            "type": "List<EsportsBan>",
+            "required": false
+          }
+        }
+      }
+    },
+    "eSportsGameLineUps": {
+      "/api/esport/game/{id}/lineups": {
+        "method": "eSportsGameLineUps",
+        "description": "Get eSports game lineups",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "eSports game ID"
+          }
+        },
+        "responseClass": "ESportsGameLineupsResponse",
+        "responseFields": {
+          "homeLineup": {
+            "type": "EsportsLineup",
+            "required": false
+          },
+          "awayLineup": {
+            "type": "EsportsLineup",
+            "required": false
+          }
+        }
+      }
+    },
+    "eSportsGameRounds": {
+      "/api/esport/game/{id}/rounds": {
+        "method": "eSportsGameRounds",
+        "description": "Get eSports game rounds",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "eSports game ID"
+          }
+        },
+        "responseClass": "ESportsGameRoundsResponse",
+        "responseFields": {
+          "rounds": {
+            "type": "List<EsportsRound>",
+            "required": false
+          }
+        }
+      }
+    },
+    "esportsGameStatistics": {
+      "/api/esport/game/{id}/statistics": {
+        "method": "esportsGameStatistics",
+        "description": "Get eSports game statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "eSports game ID"
+          }
+        },
+        "responseClass": "EsportsGameStatisticsResponse",
+        "responseFields": {
+          "homeStatistics": {
+            "type": "EsportsGameStatistics",
+            "required": true
+          },
+          "awayStatistics": {
+            "type": "EsportsGameStatistics",
+            "required": true
+          },
+          "shouldReverseTeams": {
+            "type": "boolean",
+            "required": false
+          }
+        }
+      }
+    },
+    "teamRankingOld": {},
+    "mmaOrganisationRanking": {
+      "/api/mma/rankings/unique-tournament/{tournamentId}/summary": {
+        "method": "mmaOrganisationRanking",
+        "description": "Get MMA organization rankings summary",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          }
+        },
+        "responseClass": "RankingResponse",
+        "responseFields": {
+          "rankings": {
+            "type": "List<RankingItem>",
+            "required": true
+          },
+          "updatedAtTimestamp": {
+            "type": "long",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "mmaRankingByWeightClass": {},
+    "rankedTeamSeasonStatistics": {},
+    "getEventStatistics": {
+      "/api/american-football/match/{id}/statistics": {
+        "method": "getEventStatistics",
+        "description": "Get event/match statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "EventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<StatisticsGroup>",
+            "required": true
+          }
+        }
+      },
+      "/api/baseball/match/{id}/statistics": {
+        "method": "getEventStatistics",
+        "description": "Get event/match statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "EventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<StatisticsGroup>",
+            "required": true
+          }
+        }
+      },
+      "/api/basketball/match/{id}/statistics": {
+        "method": "getEventStatistics",
+        "description": "Get event/match statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "EventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<StatisticsGroup>",
+            "required": true
+          }
+        }
+      },
+      "/api/handball/match/{id}/statistics": {
+        "method": "getEventStatistics",
+        "description": "Get event/match statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "EventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<StatisticsGroup>",
+            "required": true
+          }
+        }
+      },
+      "/api/ice-hockey/match/{id}/statistics": {
+        "method": "getEventStatistics",
+        "description": "Get event/match statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "EventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<StatisticsGroup>",
+            "required": true
+          }
+        }
+      },
+      "/api/match/{id}/statistics": {
+        "method": "getEventStatistics",
+        "description": "Get event/match statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "EventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<StatisticsGroup>",
+            "required": true
+          }
+        }
+      },
+      "/api/mma/event/{id}/statistics": {
+        "method": "getEventStatistics",
+        "description": "Get event/match statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "EventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<StatisticsGroup>",
+            "required": true
+          }
+        }
+      },
+      "/api/rugby/match/{id}/statistics": {
+        "method": "getEventStatistics",
+        "description": "Get event/match statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "EventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<StatisticsGroup>",
+            "required": true
+          }
+        }
+      },
+      "/api/tennis/event/{id}/statistics": {
+        "method": "getEventStatistics",
+        "description": "Get event/match statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "EventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<StatisticsGroup>",
+            "required": true
+          }
+        }
+      },
+      "/api/volleyball/match/{id}/statistics": {
+        "method": "getEventStatistics",
+        "description": "Get event/match statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "EventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<StatisticsGroup>",
+            "required": true
+          }
+        }
+      }
+    },
+    "teamCareerStatistics": {
+      "/api/mma/team/{id}/career-statistics": {
+        "method": "teamCareerStatistics",
+        "description": "Get team career statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Team ID"
+          }
+        },
+        "responseClass": "TeamCareerStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<SeasonStatistics>",
+            "required": true
+          }
+        }
+      }
+    },
+    "teamStatisticsSeasons": {},
+    "getTennisTeamYearlyStatistics": {},
+    "teamPlayerStatistics": {},
+    "teamStatistics": {},
+    "playerNationalTeamStatistics": {
+      "/api/player/{id}/statistics/national": {
+        "method": "playerNationalTeamStatistics",
+        "description": "Get player national team statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "NationalTeamStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "array",
+            "items": {
+              "type": "PlayerStatistics"
+            },
+            "required": false
+          },
+          "team": {
+            "type": "Team",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "playerCareerStatistics": {},
+    "playerStatisticsSeasons": {
+      "/api/american-football/player/{id}/statistics/season": {
+        "method": "playerStatisticsSeasons",
+        "description": "Get player statistics seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "StatisticsSeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": false
+          }
+        }
+      },
+      "/api/baseball/player/{id}/statistics/seasons": {
+        "method": "playerStatisticsSeasons",
+        "description": "Get player statistics seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "StatisticsSeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": false
+          }
+        }
+      },
+      "/api/basketball/player/{id}/statistics/season": {
+        "method": "playerStatisticsSeasons",
+        "description": "Get player statistics seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "StatisticsSeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": false
+          }
+        }
+      },
+      "/api/cricket/player/{id}/statistics/seasons": {
+        "method": "playerStatisticsSeasons",
+        "description": "Get player statistics seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "StatisticsSeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": false
+          }
+        }
+      },
+      "/api/handball/player/{id}/statistics/season": {
+        "method": "playerStatisticsSeasons",
+        "description": "Get player statistics seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "StatisticsSeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": false
+          }
+        }
+      },
+      "/api/ice-hockey/player/{id}/statistics/season": {
+        "method": "playerStatisticsSeasons",
+        "description": "Get player statistics seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "StatisticsSeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": false
+          }
+        }
+      },
+      "/api/player/{id}/statistics/season": {
+        "method": "playerStatisticsSeasons",
+        "description": "Get player statistics seasons",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "StatisticsSeasonsResponse",
+        "responseFields": {
+          "seasons": {
+            "type": "List<Season>",
+            "required": false
+          }
+        }
+      }
+    },
+    "playerTournamentStatistics": {},
+    "playerSeasonStatistics": {},
+    "playerEventStatistics": {
+      "/api/american-football/match/{id}/player/{playerId}/statistics": {
+        "method": "playerEventStatistics",
+        "description": "Get player statistics for an event",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          },
+          "pid": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "PlayerEventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "PlayerEventStatistics",
+            "required": true
+          }
+        }
+      },
+      "/api/baseball/match/{id}/player/{playerId}/statistics": {
+        "method": "playerEventStatistics",
+        "description": "Get player statistics for an event",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          },
+          "pid": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "PlayerEventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "PlayerEventStatistics",
+            "required": true
+          }
+        }
+      },
+      "/api/basketball/match/{id}/player/{playerId}/statistics": {
+        "method": "playerEventStatistics",
+        "description": "Get player statistics for an event",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          },
+          "pid": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "PlayerEventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "PlayerEventStatistics",
+            "required": true
+          }
+        }
+      },
+      "/api/ice-hockey/match/{id}/player/{playerId}/statistics": {
+        "method": "playerEventStatistics",
+        "description": "Get player statistics for an event",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          },
+          "pid": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "PlayerEventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "PlayerEventStatistics",
+            "required": true
+          }
+        }
+      },
+      "/api/match/{id}/player/{playerId}/statistics": {
+        "method": "playerEventStatistics",
+        "description": "Get player statistics for an event",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          },
+          "pid": {
+            "type": "integer",
+            "required": true,
+            "description": "Player ID"
+          }
+        },
+        "responseClass": "PlayerEventStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "PlayerEventStatistics",
+            "required": true
+          }
+        }
+      }
+    },
+    "tournamentPlayerStatisticsTypes": {
+      "/api/american-football/tournament/{tournamentId}/season/{seasonId}/best-players/types": {
+        "method": "tournamentPlayerStatisticsTypes",
+        "description": "Get available player statistics types",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Tournament ID"
+          },
+          "sid": {
+            "type": "integer",
+            "required": true,
+            "description": "Season ID"
+          }
+        },
+        "responseClass": "StatisticsTypesResponse",
+        "responseFields": {
+          "types": {
+            "type": "List<String>",
+            "required": true
+          }
+        }
+      },
+      "/api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/types": {
+        "method": "tournamentPlayerStatisticsTypes",
+        "description": "Get available player statistics types",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Tournament ID"
+          },
+          "sid": {
+            "type": "integer",
+            "required": true,
+            "description": "Season ID"
+          }
+        },
+        "responseClass": "StatisticsTypesResponse",
+        "responseFields": {
+          "types": {
+            "type": "List<String>",
+            "required": true
+          }
+        }
+      },
+      "/api/handball/unique-tournament/{tournamentId}/season/{seasonId}/player-statistics/types": {
+        "method": "tournamentPlayerStatisticsTypes",
+        "description": "Get available player statistics types",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Tournament ID"
+          },
+          "sid": {
+            "type": "integer",
+            "required": true,
+            "description": "Season ID"
+          }
+        },
+        "responseClass": "StatisticsTypesResponse",
+        "responseFields": {
+          "types": {
+            "type": "List<String>",
+            "required": true
+          }
+        }
+      },
+      "/api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-players/types": {
+        "method": "tournamentPlayerStatisticsTypes",
+        "description": "Get available player statistics types",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Tournament ID"
+          },
+          "sid": {
+            "type": "integer",
+            "required": true,
+            "description": "Season ID"
+          }
+        },
+        "responseClass": "StatisticsTypesResponse",
+        "responseFields": {
+          "types": {
+            "type": "List<String>",
+            "required": true
+          }
+        }
+      }
+    },
+    "tournamentTeamStatisticsTypes": {},
+    "refereeStatistics": {
+      "/api/referee/{id}/statistics": {
+        "method": "refereeStatistics",
+        "description": "Get referee statistics",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Referee ID"
+          }
+        },
+        "responseClass": "RefereeStatisticsResponse",
+        "responseFields": {
+          "statistics": {
+            "type": "List<RefereeStatisticsItem>",
+            "required": true
+          }
+        }
+      }
+    }
+  },
+  "dataModels": {
+    "StatisticsGroup": {
+      "description": "Group of statistics",
+      "fields": {
+        "period": {
+          "type": "string",
+          "required": true,
+          "values": [
+            "ALL",
+            "1ST_HALF",
+            "2ND_HALF",
+            "EXTRA_TIME",
+            "PENALTIES"
+          ]
+        },
+        "groups": {
+          "type": "List<StatisticItem>",
+          "required": true
+        }
+      }
+    },
+    "StatisticItem": {
+      "description": "Individual statistic item",
+      "fields": {
+        "groupName": {
+          "type": "string",
+          "required": true
+        },
+        "statisticType": {
+          "type": "string",
+          "required": true
+        },
+        "home": {
+          "type": "string",
+          "nullable": true
+        },
+        "away": {
+          "type": "string",
+          "nullable": true
+        },
+        "compareCode": {
+          "type": "integer",
+          "nullable": true
+        },
+        "homeValue": {
+          "type": "float",
+          "nullable": true
+        },
+        "awayValue": {
+          "type": "float",
+          "nullable": true
+        },
+        "renderType": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "PlayerStatisticsItem": {
+      "description": "Player statistics with metadata",
+      "fields": {
+        "player": {
+          "type": "Player",
+          "required": true
+        },
+        "statistics": {
+          "type": "PlayerStatistics",
+          "required": true
+        },
+        "team": {
+          "type": "Team",
+          "nullable": true
+        }
+      }
+    },
+    "TeamRankings": {
+      "description": "Team rankings in various categories",
+      "fields": {
+        "attack": {
+          "type": "integer",
+          "nullable": true
+        },
+        "defense": {
+          "type": "integer",
+          "nullable": true
+        },
+        "form": {
+          "type": "integer",
+          "nullable": true
+        },
+        "overall": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "TennisStatistics": {
+      "description": "Tennis-specific statistics",
+      "fields": {
+        "matches": {
+          "type": "integer",
+          "required": true
+        },
+        "wins": {
+          "type": "integer",
+          "required": true
+        },
+        "losses": {
+          "type": "integer",
+          "required": true
+        },
+        "titles": {
+          "type": "integer",
+          "nullable": true
+        },
+        "prize": {
+          "type": "integer",
+          "nullable": true
+        },
+        "hardWins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "clayWins": {
+          "type": "integer",
+          "nullable": true
+        },
+        "grassWins": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "PlayerEventStatistics": {
+      "description": "Player statistics for a specific event",
+      "fields": {
+        "minutesPlayed": {
+          "type": "integer",
+          "nullable": true
+        },
+        "goals": {
+          "type": "integer",
+          "nullable": true
+        },
+        "assists": {
+          "type": "integer",
+          "nullable": true
+        },
+        "yellowCards": {
+          "type": "integer",
+          "nullable": true
+        },
+        "redCards": {
+          "type": "integer",
+          "nullable": true
+        },
+        "touches": {
+          "type": "integer",
+          "nullable": true
+        },
+        "rating": {
+          "type": "float",
+          "nullable": true
+        },
+        "passes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "accuratePasses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "keyPasses": {
+          "type": "integer",
+          "nullable": true
+        },
+        "shots": {
+          "type": "integer",
+          "nullable": true
+        },
+        "shotsOnTarget": {
+          "type": "integer",
+          "nullable": true
+        },
+        "dribbles": {
+          "type": "integer",
+          "nullable": true
+        },
+        "successfulDribbles": {
+          "type": "integer",
+          "nullable": true
+        },
+        "tackles": {
+          "type": "integer",
+          "nullable": true
+        },
+        "blocks": {
+          "type": "integer",
+          "nullable": true
+        },
+        "interceptions": {
+          "type": "integer",
+          "nullable": true
+        },
+        "clearances": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "EsportsPlayer": {
+      "description": "eSports player information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "nickname": {
+          "type": "string",
+          "nullable": true
+        },
+        "hero": {
+          "type": "string",
+          "nullable": true
+        },
+        "role": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "RoundScore": {
+      "description": "Score for an eSports round",
+      "fields": {
+        "home": {
+          "type": "integer",
+          "required": true
+        },
+        "away": {
+          "type": "integer",
+          "required": true
+        }
+      }
+    }
+  },
+  "notes": {
+    "inheritance": "All response classes extend NetworkResponse base class",
+    "nullability": "Fields marked as nullable may be absent in the response",
+    "statisticsTypes": "The 'type' parameter typically accepts: overall, home, away",
+    "periods": "Statistics can be filtered by period: ALL, 1ST_HALF, 2ND_HALF, EXTRA_TIME",
+    "eSports": "eSports statistics vary significantly by game (DOTA2, CS:GO, LoL, etc.)",
+    "rankings": "Rankings include trend indicators showing movement up/down",
+    "seasons": "Statistics are typically organized by season and tournament",
+    "aggregation": "Statistics can be aggregated at various levels: event, season, career",
+    "refereeStats": "Referee statistics include card averages and penalty decisions",
+    "teamReverse": "Some endpoints support team reversal for home/away display",
+    "ratingSystem": "Player ratings typically use a 1-10 scale",
+    "timestamps": "All timestamps are in Unix epoch milliseconds"
+  }
+}

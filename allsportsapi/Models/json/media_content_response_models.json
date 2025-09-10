@@ -1,0 +1,886 @@
+{
+  "title": "Media & Content Endpoints Response Models",
+  "version": "1.0.0",
+  "description": "Comprehensive JSON schema documentation for all Media & Content API endpoints",
+  "totalEndpoints": 9,
+  "baseResponseTypes": {
+    "NetworkResponse": {
+      "description": "Base response class for network layer",
+      "fields": {
+        "head": {
+          "type": "HeadResponse",
+          "nullable": true,
+          "description": "Response metadata"
+        },
+        "error": {
+          "type": "ErrorResponse",
+          "nullable": true,
+          "description": "Detailed error information"
+        }
+      }
+    }
+  },
+  "sharedModels": {
+    "Highlight": {
+      "description": "Video highlight or media item",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "subtitle": {
+          "type": "string",
+          "nullable": true
+        },
+        "url": {
+          "type": "string",
+          "required": true
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "mediaType": {
+          "type": "string",
+          "required": true,
+          "values": [
+            "video",
+            "article",
+            "gallery"
+          ]
+        },
+        "createdAtTimestamp": {
+          "type": "long",
+          "nullable": true
+        },
+        "sourceUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "doFollow": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "keyHighlight": {
+          "type": "boolean",
+          "nullable": true
+        },
+        "duration": {
+          "type": "integer",
+          "nullable": true,
+          "description": "Duration in seconds for videos"
+        },
+        "publishedAt": {
+          "type": "long",
+          "nullable": true
+        },
+        "source": {
+          "type": "MediaSource",
+          "nullable": true
+        }
+      }
+    },
+    "MediaSource": {
+      "description": "Source of media content",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "url": {
+          "type": "string",
+          "nullable": true
+        },
+        "logoUrl": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "TvChannel": {
+      "description": "TV channel information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "country": {
+          "type": "Country",
+          "nullable": true
+        },
+        "logoUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "streamUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "language": {
+          "type": "string",
+          "nullable": true
+        },
+        "isNational": {
+          "type": "boolean",
+          "nullable": true
+        }
+      }
+    },
+    "VideoStory": {
+      "description": "Video story content",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "description": {
+          "type": "string",
+          "nullable": true
+        },
+        "videoUrl": {
+          "type": "string",
+          "required": true
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "required": true
+        },
+        "duration": {
+          "type": "integer",
+          "nullable": true
+        },
+        "viewCount": {
+          "type": "integer",
+          "nullable": true
+        },
+        "publishedAt": {
+          "type": "long",
+          "required": true
+        },
+        "author": {
+          "type": "string",
+          "nullable": true
+        },
+        "tags": {
+          "type": "List<String>",
+          "nullable": true
+        }
+      }
+    },
+    "EventMediaNews": {
+      "description": "News article related to an event",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "content": {
+          "type": "string",
+          "nullable": true
+        },
+        "summary": {
+          "type": "string",
+          "nullable": true
+        },
+        "url": {
+          "type": "string",
+          "required": true
+        },
+        "imageUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "publishedAt": {
+          "type": "long",
+          "required": true
+        },
+        "source": {
+          "type": "MediaSource",
+          "nullable": true
+        },
+        "author": {
+          "type": "string",
+          "nullable": true
+        },
+        "relatedEventId": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "TvScheduleItem": {
+      "description": "TV channel schedule item",
+      "fields": {
+        "eventId": {
+          "type": "integer",
+          "required": true
+        },
+        "eventName": {
+          "type": "string",
+          "required": true
+        },
+        "startTime": {
+          "type": "long",
+          "required": true
+        },
+        "endTime": {
+          "type": "long",
+          "nullable": true
+        },
+        "isLive": {
+          "type": "boolean",
+          "required": true
+        },
+        "programType": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "WSCHighlight": {
+      "description": "WSC (World Sport Clips) highlight",
+      "fields": {
+        "id": {
+          "type": "string",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "description": {
+          "type": "string",
+          "nullable": true
+        },
+        "videoUrl": {
+          "type": "string",
+          "required": true
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "required": true
+        },
+        "duration": {
+          "type": "integer",
+          "nullable": true
+        },
+        "highlightType": {
+          "type": "string",
+          "nullable": true,
+          "values": [
+            "goal",
+            "assist",
+            "save",
+            "foul",
+            "match_summary"
+          ]
+        },
+        "minute": {
+          "type": "integer",
+          "nullable": true
+        },
+        "playerId": {
+          "type": "integer",
+          "nullable": true
+        },
+        "teamId": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "Country": {
+      "description": "Country information",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "alpha2": {
+          "type": "string",
+          "required": true
+        },
+        "alpha3": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "getEventHighlights": {
+      "/api/american-football/match/{id}/highlights": {
+        "method": "getHighlights",
+        "description": "Get highlights for a specific event",
+        "pathParams": {
+          "eventId": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "HighlightsResponse",
+        "responseFields": {
+          "highlights": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/baseball/match/{id}/highlights": {
+        "method": "getHighlights",
+        "description": "Get highlights for a specific event",
+        "pathParams": {
+          "eventId": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "HighlightsResponse",
+        "responseFields": {
+          "highlights": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/basketball/match/{id}/highlights": {
+        "method": "getHighlights",
+        "description": "Get highlights for a specific event",
+        "pathParams": {
+          "eventId": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "HighlightsResponse",
+        "responseFields": {
+          "highlights": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/esport/event/{id}/highlights": {
+        "method": "getHighlights",
+        "description": "Get highlights for a specific event",
+        "pathParams": {
+          "eventId": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "HighlightsResponse",
+        "responseFields": {
+          "highlights": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/handball/match/{id}/highlights": {
+        "method": "getHighlights",
+        "description": "Get highlights for a specific event",
+        "pathParams": {
+          "eventId": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "HighlightsResponse",
+        "responseFields": {
+          "highlights": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/ice-hockey/match/{id}/highlights": {
+        "method": "getHighlights",
+        "description": "Get highlights for a specific event",
+        "pathParams": {
+          "eventId": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "HighlightsResponse",
+        "responseFields": {
+          "highlights": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/match/{id}/highlights": {
+        "method": "getHighlights",
+        "description": "Get highlights for a specific event",
+        "pathParams": {
+          "eventId": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "HighlightsResponse",
+        "responseFields": {
+          "highlights": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/rugby/match/{id}/highlights": {
+        "method": "getHighlights",
+        "description": "Get highlights for a specific event",
+        "pathParams": {
+          "eventId": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "HighlightsResponse",
+        "responseFields": {
+          "highlights": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/tennis/event/{id}/highlights": {
+        "method": "getHighlights",
+        "description": "Get highlights for a specific event",
+        "pathParams": {
+          "eventId": {
+            "type": "integer",
+            "required": true,
+            "description": "Event ID"
+          }
+        },
+        "responseClass": "HighlightsResponse",
+        "responseFields": {
+          "highlights": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      }
+    },
+    "getEventMediaNews": {},
+    "getVideoStories": {},
+    "getWSCHighlightsForEvent": {},
+    "uniqueTournamentMedia": {
+      "/api/american-football/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get media content for a unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/baseball/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get media content for a unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/basketball/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get media content for a unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/cricket/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get media content for a unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/esport/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get media content for a unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/handball/unique-tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get media content for a unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/ice-hockey/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get media content for a unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/rugby/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get media content for a unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/tennis/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get media content for a unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      },
+      "/api/tournament/{tournamentId}/media": {
+        "method": "uniqueTournamentMedia",
+        "description": "Get media content for a unique tournament",
+        "pathParams": {
+          "id": {
+            "type": "integer",
+            "required": true,
+            "description": "Unique tournament ID"
+          }
+        },
+        "responseClass": "MediaResponse",
+        "responseFields": {
+          "media": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      }
+    },
+    "getStageHighlights": {
+      "/api/motorsport/stage/{id}/highlights": {
+        "method": "getStageHighlights",
+        "description": "Get highlights for a stage/round",
+        "pathParams": {
+          "stageId": {
+            "type": "integer",
+            "required": true,
+            "description": "Stage ID"
+          }
+        },
+        "responseClass": "HighlightsResponse",
+        "responseFields": {
+          "highlights": {
+            "type": "List<Highlight>",
+            "required": true
+          }
+        }
+      }
+    },
+    "tvChannelEvents": {},
+    "tvChannelsForCountry": {},
+    "getTvCountryChannels": {}
+  },
+  "dataModels": {
+    "WSCRound": {
+      "description": "WSC highlight round/period information",
+      "fields": {
+        "round": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "nullable": true
+        },
+        "highlights": {
+          "type": "List<WSCHighlight>",
+          "required": true
+        }
+      }
+    },
+    "TvChannelVotes": {
+      "description": "User votes for TV channels",
+      "fields": {
+        "channelVotes": {
+          "type": "Map<Integer, Integer>",
+          "required": true,
+          "description": "Map of channel ID to vote count"
+        },
+        "totalVotes": {
+          "type": "integer",
+          "required": true
+        },
+        "userVote": {
+          "type": "integer",
+          "nullable": true
+        }
+      }
+    },
+    "MediaMetadata": {
+      "description": "Additional metadata for media content",
+      "fields": {
+        "views": {
+          "type": "integer",
+          "nullable": true
+        },
+        "likes": {
+          "type": "integer",
+          "nullable": true
+        },
+        "shares": {
+          "type": "integer",
+          "nullable": true
+        },
+        "comments": {
+          "type": "integer",
+          "nullable": true
+        },
+        "duration": {
+          "type": "integer",
+          "nullable": true,
+          "description": "Duration in seconds"
+        },
+        "quality": {
+          "type": "string",
+          "nullable": true,
+          "values": [
+            "SD",
+            "HD",
+            "FHD",
+            "4K"
+          ]
+        },
+        "language": {
+          "type": "string",
+          "nullable": true
+        },
+        "geoRestrictions": {
+          "type": "List<String>",
+          "nullable": true,
+          "description": "List of restricted country codes"
+        }
+      }
+    },
+    "HighlightType": {
+      "description": "Types of highlights",
+      "enum": [
+        "GOAL",
+        "ASSIST",
+        "RED_CARD",
+        "YELLOW_CARD",
+        "PENALTY",
+        "OWN_GOAL",
+        "SUBSTITUTION",
+        "MATCH_SUMMARY",
+        "INTERVIEW",
+        "PRESS_CONFERENCE",
+        "TRAINING",
+        "OTHER"
+      ]
+    },
+    "MediaType": {
+      "description": "Types of media content",
+      "enum": [
+        "VIDEO",
+        "ARTICLE",
+        "GALLERY",
+        "PODCAST",
+        "LIVE_STREAM",
+        "REPLAY"
+      ]
+    },
+    "VideoQuality": {
+      "description": "Video quality options",
+      "fields": {
+        "label": {
+          "type": "string",
+          "required": true,
+          "values": [
+            "360p",
+            "480p",
+            "720p",
+            "1080p",
+            "4K"
+          ]
+        },
+        "bitrate": {
+          "type": "integer",
+          "nullable": true
+        },
+        "url": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "MediaProvider": {
+      "description": "Media content provider",
+      "fields": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "type": {
+          "type": "string",
+          "required": true,
+          "values": [
+            "official",
+            "partner",
+            "aggregator"
+          ]
+        },
+        "logoUrl": {
+          "type": "string",
+          "nullable": true
+        },
+        "website": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    }
+  },
+  "notes": {
+    "inheritance": "All response classes extend NetworkResponse base class",
+    "nullability": "Fields marked as nullable may be absent in the response",
+    "mediaTypes": "Media can include videos, articles, galleries, and live streams",
+    "geoRestrictions": "Some content may be geo-restricted based on licensing agreements",
+    "videoQualities": "Videos may be available in multiple quality options",
+    "countryCode": "Country codes follow ISO 3166-1 alpha-2 standard (e.g., US, GB, DE)",
+    "timestamps": "All timestamps are in Unix epoch milliseconds",
+    "authentication": "Some media endpoints may require authentication for premium content",
+    "caching": "Media URLs may be cached and have expiration times",
+    "highlights": "Highlights are typically available shortly after events conclude",
+    "tvSchedule": "TV schedules are subject to change and may vary by region",
+    "wscContent": "WSC (World Sport Clips) content requires special licensing agreements"
+  }
+}
