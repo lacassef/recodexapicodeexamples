@@ -1,0 +1,1722 @@
+openapi: 3.0.0
+info:
+  title: VolleyAPI
+  version: 1.0.0
+  description: This is the OpenAPI specification for the VolleyAPI.
+paths:
+  /api/tv/country/all/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV countries
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object listing countries and their broadcasting channels.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tv/channel/{channId}/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV channel votes
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      parameters:
+        - name: channId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the TV channel.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing viewer vote data from the channel.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or channel with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/img/flag/{flag}:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      parameters:
+        - name: flag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/country/{code}/flag:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag (img API)
+      description: Fetches the flag image by country code.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.png:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.svg:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/team.svg:
+    get:
+      tags:
+        - AllSports
+        - Teams
+      summary: Get team placeholder image
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.png:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.svg:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.png:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.svg:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-male.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get male fighter placeholder image
+      description: Retrieves a placeholder image for a male fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-female.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get female fighter placeholder image
+      description: Retrieves a placeholder image for a female fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/search/{term}:
+    get:
+      tags:
+        - Volleyball
+        - Search
+      summary: Search volleyball entities
+      description: Searches for volleyball teams, players, and tournaments.
+      parameters:
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Search term (e.g., 'Brazil')
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: A JSON object containing search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/matches/{day}/{month}/{year}:
+    get:
+      tags:
+        - Volleyball
+        - Matches
+      summary: Get volleyball matches by date
+      description: Fetches all volleyball matches scheduled for a specific date.
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15)
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: A list of scheduled volleyball matches for the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/matches/live:
+    get:
+      tags:
+        - Volleyball
+        - Matches
+      summary: Get live volleyball matches
+      description: Retrieves all currently live volleyball matches.
+      responses:
+        '200':
+          description: A list of live volleyball matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/category/{id}/events/{day}/{month}/{year}:
+    get:
+      tags:
+        - Volleyball
+        - Categories
+        - Matches
+      summary: Get volleyball matches by category and date
+      description: Retrieves all volleyball matches for a specific category on a given date.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15)
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: A list of scheduled matches for the category on the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/tournament/categories:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Categories
+      summary: Get volleyball tournament categories
+      description: Retrieves all available volleyball tournament categories, which typically correspond to countries or regions.
+      responses:
+        '200':
+          description: A list of tournament categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/all/category/{id}:
+    get:
+      tags:
+        - Volleyball
+        - Categories
+        - Tournaments
+      summary: Get tournaments by category
+      description: Retrieves all volleyball tournaments within a specific category.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID
+      responses:
+        '200':
+          description: A list of tournaments for the specified category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/match/{id}:
+    get:
+      tags:
+        - Volleyball
+        - Matches
+      summary: Get volleyball match details
+      description: Retrieves detailed information for a specific volleyball match, including teams, score, and status.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: Detailed information about the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/match/{id}/odds:
+    get:
+      tags:
+        - Volleyball
+        - Matches
+        - Odds
+      summary: Get match betting odds
+      description: Retrieves available betting odds from bookmaker `1` for a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A list of available betting odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/match/{id}/incidents:
+    get:
+      tags:
+        - Volleyball
+        - Matches
+      summary: Get match incidents
+      description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., points won, substitutions).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A list of incidents from the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/match/{id}/statistics:
+    get:
+      tags:
+        - Volleyball
+        - Matches
+        - Statistics
+      summary: Get match statistics
+      description: Retrieves comprehensive team and player statistics for a specific volleyball match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: Comprehensive statistics for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/match/{id}/streaks:
+    get:
+      tags:
+        - Volleyball
+        - Matches
+        - Statistics
+      summary: Get match streaks
+      description: Provides recent form and streak information (e.g., winning streaks) for each team in a match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: Streak information for both teams.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/match/{customId}/h2h:
+    get:
+      tags:
+        - Volleyball
+        - Matches
+        - Statistics
+      summary: Get head-to-head history
+      description: Retrieves the detailed match history for head-to-head encounters between two teams.
+      parameters:
+        - name: customId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: A custom identifier for the match, used for H2H lookups.
+      responses:
+        '200':
+          description: A detailed list of past H2H matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified custom ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/team/{id}/matches/previous/{page}:
+    get:
+      tags:
+        - Volleyball
+        - Teams
+        - Matches
+      summary: Get previous team matches
+      description: Fetches a paginated list of completed matches for a team, sorted by date descending.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the team's previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number or team ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/match/{id}/votes:
+    get:
+      tags:
+        - Volleyball
+        - Matches
+      summary: Get match votes
+      description: Returns fan poll percentages and vote totals for the match outcome.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: Vote counts and percentages for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/seasons:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+      summary: Get tournament seasons
+      description: Retrieves a list of all available seasons for a specific volleyball tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: A list of available seasons for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+      summary: Get tournament details
+      description: Retrieves comprehensive details for a specific volleyball tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: Comprehensive details for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/standings/total:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Standings
+      summary: Get tournament total standings
+      description: Retrieves the complete standings table for all teams in a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: The complete standings table for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/standings/home:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Standings
+      summary: Get tournament home standings
+      description: Retrieves the standings based on home games only for a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: The home standings table for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/standings/away:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Standings
+      summary: Get tournament away standings
+      description: Retrieves the standings based on away games only for a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: The away standings table for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Matches
+      summary: Get tournament upcoming matches
+      description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the tournament's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/rounds:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+      summary: Get tournament rounds
+      description: Retrieves a list of all rounds (or weeks) for a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A list of rounds for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Matches
+      summary: Get tournament last matches
+      description: Retrieves a paginated list of recently played matches in a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the tournament's last matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/total:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Teams
+        - Statistics
+      summary: Get team events total statistics
+      description: Retrieves aggregated team performance statistics for all games in a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: Aggregated team statistics for the entire season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/home:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Teams
+        - Statistics
+      summary: Get team events home statistics
+      description: Retrieves aggregated team performance statistics for home games in a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: Aggregated team statistics for home games.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/away:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Teams
+        - Statistics
+      summary: Get team events away statistics
+      description: Retrieves aggregated team performance statistics for away games in a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: Aggregated team statistics for away games.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/team/{id}:
+    get:
+      tags:
+        - Volleyball
+        - Teams
+      summary: Get volleyball team details
+      description: Retrieves comprehensive details for a specific volleyball team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: Comprehensive details for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/team/{id}/matches/near:
+    get:
+      tags:
+        - Volleyball
+        - Teams
+        - Matches
+      summary: Get team near matches
+      description: Retrieves a list of recent and upcoming matches for a specific team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: A list of recent and upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/team/{id}/unique-tournaments:
+    get:
+      tags:
+        - Volleyball
+        - Teams
+        - Tournaments
+      summary: Get team tournaments
+      description: Retrieves a list of all unique tournaments a team has participated in.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: A list of unique tournaments the team has participated in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/team/{id}/standings/seasons:
+    get:
+      tags:
+        - Volleyball
+        - Teams
+        - Standings
+      summary: Get team standings seasons
+      description: Retrieves a list of seasons for which a team's standings are available.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: A list of seasons with available standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/match/{id}/duel:
+    get:
+      tags:
+        - Volleyball
+        - Matches
+        - Statistics
+      summary: Get head-to-head summary
+      description: Retrieves a summary of head-to-head (H2H) statistics between the two teams in a match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A summary of H2H statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/cuptrees:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+      summary: Get tournament cup trees
+      description: Retrieves the knockout bracket (cup trees) for a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: The knockout bracket for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Matches
+      summary: Get tournament matches by round
+      description: Retrieves all matches for a specific round of a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+        - name: round
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The round number.
+      responses:
+        '200':
+          description: A list of matches for the specified round.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament, season, or round with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/image:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Media
+      summary: Get tournament logo
+      description: Retrieves the logo image for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: The tournament's logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/unique-tournament/{tournamentId}/image/dark:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Media
+      summary: Get tournament dark logo
+      description: Retrieves the dark theme logo image for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: The tournament's dark theme logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/team/{id}/image:
+    get:
+      tags:
+        - Volleyball
+        - Teams
+        - Media
+      summary: Get team logo
+      description: Retrieves the logo image for a specific team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: The team's logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Team or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/volleyball/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
+    get:
+      tags:
+        - Volleyball
+        - Tournaments
+        - Matches
+      summary: Get tournament matches by date
+      description: Retrieves all matches for a specific tournament scheduled on a given date.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15).
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7).
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024).
+      responses:
+        '200':
+          description: A list of scheduled matches for the tournament on the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            title:
+              type: string
+              description: A short, human-readable summary of the problem type.
+            request_id:
+              type: string
+              description: A unique identifier for the request, useful for debugging.
+    JSONResult:
+      type: object
+      description: A generic JSON object response.
+      properties: {}
+      additionalProperties: true

@@ -1,0 +1,2025 @@
+openapi: 3.0.0
+info:
+  title: Baseball API
+  description: OpenAPI specification for the Baseball API endpoints.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local server
+paths:
+  /api/tv/country/all/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV countries
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier for the match.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A JSON object listing countries and their broadcasting channels.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tv/channel/{channId}/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV channel votes
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      parameters:
+        - name: channId
+          in: path
+          required: true
+          description: The unique identifier for the TV channel.
+          schema:
+            type: integer
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier for the match.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A JSON object containing viewer vote data from the channel.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or channel with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/img/flag/{flag}:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      parameters:
+        - name: flag
+          in: path
+          required: true
+          description: Country code or identifier (e.g., 'EN' for England).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/country/{code}/flag:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag (img API)
+      description: Fetches the flag image by country code.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          description: Country code or identifier (e.g., 'EN' for England).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/tournament.png:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/tournament.svg:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/team.svg:
+    get:
+      tags:
+        - AllSports
+        - Teams
+      summary: Get team placeholder image
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/player.png:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/player.svg:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/manager.png:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/manager.svg:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholders/fighter-male.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get male fighter placeholder image
+      description: Retrieves a placeholder image for a male fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholders/fighter-female.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get female fighter placeholder image
+      description: Retrieves a placeholder image for a female fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/baseball/search/{term}:
+    get:
+      tags:
+        - Baseball
+        - Search
+      summary: Search baseball entities
+      description: Searches for baseball teams, players, and tournaments.
+      parameters:
+        - name: term
+          in: path
+          required: true
+          description: "Search term (e.g., 'Yankees')"
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          description: Page number for pagination
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of search results for teams, players, and tournaments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/categories:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+      summary: Get baseball tournament categories
+      description: Retrieves a list of all available baseball tournament categories, typically corresponding to countries or regions.
+      responses:
+        '200':
+          description: A list of tournament categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/matches/{day}/{month}/{year}:
+    get:
+      tags:
+        - Baseball
+        - Matches
+      summary: Get baseball matches by date
+      description: Fetches all baseball matches scheduled for a specific date.
+      parameters:
+        - name: day
+          in: path
+          required: true
+          description: "Day of the month (e.g., 15)"
+          schema:
+            type: integer
+        - name: month
+          in: path
+          required: true
+          description: "Month of the year (e.g., 7)"
+          schema:
+            type: integer
+        - name: year
+          in: path
+          required: true
+          description: "Year (e.g., 2024)"
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of scheduled baseball matches for the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/matches/live:
+    get:
+      tags:
+        - Baseball
+        - Matches
+      summary: Get live baseball matches
+      description: Retrieves all currently live baseball matches.
+      responses:
+        '200':
+          description: A list of live baseball matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{id}:
+    get:
+      tags:
+        - Baseball
+        - Matches
+      summary: Get baseball match details
+      description: Retrieves detailed information for a specific baseball match by its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the match.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detailed information about the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{id}/statistics:
+    get:
+      tags:
+        - Baseball
+        - Matches
+        - Statistics
+      summary: Get match statistics
+      description: Retrieves comprehensive team and player statistics for a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the match.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Comprehensive statistics for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{customId}/h2h:
+    get:
+      tags:
+        - Baseball
+        - Matches
+        - Statistics
+      summary: Get head-to-head history
+      description: Retrieves the detailed match history for head-to-head encounters between two teams.
+      parameters:
+        - name: customId
+          in: path
+          required: true
+          description: A custom identifier for the match, used for H2H lookups.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A detailed list of past H2H matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified custom ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{id}/duel:
+    get:
+      tags:
+        - Baseball
+        - Matches
+        - Statistics
+      summary: Get head-to-head summary
+      description: Retrieves a summary of head-to-head statistics between the two teams in a match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the match.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A summary of H2H statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{id}/form:
+    get:
+      tags:
+        - Baseball
+        - Matches
+      summary: Get match form analysis
+      description: Retrieves pre-game form and recent performance data for the teams in a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the match.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Pregame form and performance trends for the teams.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{id}/odds:
+    get:
+      tags:
+        - Baseball
+        - Matches
+        - Odds
+      summary: Get match betting odds
+      description: Retrieves available betting odds from various bookmakers for a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the match.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of available betting odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{id}/votes:
+    get:
+      tags:
+        - Baseball
+        - Matches
+      summary: Get match votes
+      description: Returns fan poll percentages and vote totals for the match outcome.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the match.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Vote counts and percentages for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{id}/lineups:
+    get:
+      tags:
+        - Baseball
+        - Matches
+        - Players
+      summary: Get match lineups
+      description: Retrieves the starting lineups and batting order for both teams in a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the match.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Starting lineups and batting order for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{id}/highlights:
+    get:
+      tags:
+        - Baseball
+        - Matches
+        - Media
+      summary: Get match highlights
+      description: Retrieves video highlights and key moments from a specific match, if available.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the match.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of video highlights for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{id}/player/{playerId}/statistics:
+    get:
+      tags:
+        - Baseball
+        - Matches
+        - Players
+        - Statistics
+      summary: Get player match statistics
+      description: Retrieves detailed statistics for a single player in a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the match.
+          schema:
+            type: integer
+        - name: playerId
+          in: path
+          required: true
+          description: Unique identifier for the player.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detailed statistics for the specified player in the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/team/{id}:
+    get:
+      tags:
+        - Baseball
+        - Teams
+      summary: Get baseball team details
+      description: Retrieves comprehensive details for a specific baseball team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the team.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Comprehensive details for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/team/{id}/matches/previous/{page}:
+    get:
+      tags:
+        - Baseball
+        - Teams
+        - Matches
+      summary: Get previous team matches
+      description: Fetches a paginated list of completed baseball games for a specific team, sorted by date descending.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the team.
+          schema:
+            type: integer
+        - name: page
+          in: path
+          required: true
+          description: "Page number for pagination (starts from 1)."
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A paginated list of the team's previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number or team ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/team/{id}/matches/next/{page}:
+    get:
+      tags:
+        - Baseball
+        - Teams
+        - Matches
+      summary: Get upcoming team matches
+      description: Fetches a paginated list of scheduled baseball games for a specific team, sorted by date ascending.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the team.
+          schema:
+            type: integer
+        - name: page
+          in: path
+          required: true
+          description: "Page number for pagination (starts from 1)."
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A paginated list of the team's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number or team ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/team/{id}/matches/near:
+    get:
+      tags:
+        - Baseball
+        - Teams
+        - Matches
+      summary: Get team near matches
+      description: Retrieves a list of recent and upcoming matches for a specific team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the team.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of recent and upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/team/{id}/tournaments:
+    get:
+      tags:
+        - Baseball
+        - Teams
+        - Tournaments
+      summary: Get team tournaments
+      description: Retrieves a list of all unique tournaments a team has participated in.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the team.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of unique tournaments the team has participated in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/team/{id}/standings/seasons:
+    get:
+      tags:
+        - Baseball
+        - Teams
+        - Standings
+      summary: Get team standings seasons
+      description: Retrieves a list of seasons for which a team's standings are available.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the team.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of seasons with available standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/team/{id}/players:
+    get:
+      tags:
+        - Baseball
+        - Teams
+        - Players
+      summary: Get team players
+      description: Retrieves the current roster of players for a specific team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the team.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The current roster of players for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/team/{id}/media:
+    get:
+      tags:
+        - Baseball
+        - Teams
+        - Media
+      summary: Get team media
+      description: Retrieves media content (e.g., videos, images) associated with a specific team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the team.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of media content for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/team/{id}/image:
+    get:
+      tags:
+        - Baseball
+        - Teams
+        - Media
+      summary: Get team logo
+      description: Retrieves the logo image for a specific team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the team.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The team's logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Team or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/player/{id}:
+    get:
+      tags:
+        - Baseball
+        - Players
+      summary: Get baseball player details
+      description: Retrieves comprehensive information about a specific baseball player.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the player.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Comprehensive details for the player.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/player/{id}/matches/near:
+    get:
+      tags:
+        - Baseball
+        - Players
+        - Matches
+      summary: Get player near matches
+      description: Retrieves a list of recent and upcoming matches for a specific player.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the player.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of the player's recent and upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/player/{id}/matches/previous/{page}:
+    get:
+      tags:
+        - Baseball
+        - Players
+        - Matches
+      summary: Get previous player matches
+      description: Fetches a paginated list of completed matches for a specific player, sorted by date descending.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the player.
+          schema:
+            type: integer
+        - name: page
+          in: path
+          required: true
+          description: "Page number for pagination (starts from 1)."
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A paginated list of the player's previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number or player ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/player/{id}/statistics/seasons:
+    get:
+      tags:
+        - Baseball
+        - Players
+        - Statistics
+      summary: Get player statistics seasons
+      description: Retrieves a list of seasons for which a player's statistics are available.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the player.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of seasons with available statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularSeason:
+    get:
+      tags:
+        - Baseball
+        - Players
+        - Statistics
+      summary: Get player regular season statistics
+      description: Retrieves a player's statistics for the regular season of a specific tournament.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the player.
+          schema:
+            type: integer
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+        - name: seasonId
+          in: path
+          required: true
+          description: Unique identifier for the season.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The player's regular season statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player, tournament, or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/player/{id}/image:
+    get:
+      tags:
+        - Baseball
+        - Players
+        - Media
+      summary: Get player image
+      description: Retrieves the profile image for a specific player.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the player.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The player's profile image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Player or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+      summary: Get tournament details
+      description: Retrieves comprehensive details for a specific baseball tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Comprehensive details for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/seasons:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+      summary: Get tournament seasons
+      description: Retrieves a list of all available seasons for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of available seasons for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/image:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+        - Media
+      summary: Get tournament logo
+      description: Retrieves the logo image for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The tournament's logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/image/dark:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+        - Media
+      summary: Get tournament dark logo
+      description: Retrieves the dark theme logo image for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The tournament's dark theme logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/media:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+        - Media
+      summary: Get tournament media
+      description: Retrieves media content (e.g., videos, images) for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of media content for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/season/{seasonId}/standings/total:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+        - Standings
+      summary: Get tournament total standings
+      description: Retrieves the complete standings table for all teams in a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+        - name: seasonId
+          in: path
+          required: true
+          description: Unique identifier for the season.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The complete standings table for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/season/{seasonId}/standings/home:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+        - Standings
+      summary: Get tournament home standings
+      description: Retrieves the standings based on home games only for a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+        - name: seasonId
+          in: path
+          required: true
+          description: Unique identifier for the season.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The home standings table for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/season/{seasonId}/standings/away:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+        - Standings
+      summary: Get tournament away standings
+      description: Retrieves the standings based on away games only for a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+        - name: seasonId
+          in: path
+          required: true
+          description: Unique identifier for the season.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The away standings table for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+        - Matches
+      summary: Get tournament last matches
+      description: Retrieves a paginated list of recently played matches in a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+        - name: seasonId
+          in: path
+          required: true
+          description: Unique identifier for the season.
+          schema:
+            type: integer
+        - name: page
+          in: path
+          required: true
+          description: "Page number for pagination (starts from 1)."
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A paginated list of the tournament's last matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+        - Matches
+      summary: Get tournament upcoming matches
+      description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+        - name: seasonId
+          in: path
+          required: true
+          description: Unique identifier for the season.
+          schema:
+            type: integer
+        - name: page
+          in: path
+          required: true
+          description: "Page number for pagination (starts from 1)."
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A paginated list of the tournament's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/season/{seasonId}/cuptrees:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+      summary: Get tournament cup trees
+      description: Retrieves the knockout bracket (cup trees) for a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+        - name: seasonId
+          in: path
+          required: true
+          description: Unique identifier for the season.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The knockout bracket for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/season/{seasonId}/team-events/total:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+        - Teams
+        - Statistics
+      summary: Get team events total statistics
+      description: Retrieves aggregated team performance statistics for all games in a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+        - name: seasonId
+          in: path
+          required: true
+          description: Unique identifier for the season.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Aggregated team statistics for the entire season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/season/{seasonId}/team-events/home:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+        - Teams
+        - Statistics
+      summary: Get team events home statistics
+      description: Retrieves aggregated team performance statistics for home games in a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+        - name: seasonId
+          in: path
+          required: true
+          description: Unique identifier for the season.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Aggregated team statistics for home games.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/{tournamentId}/season/{seasonId}/team-events/away:
+    get:
+      tags:
+        - Baseball
+        - Tournaments
+        - Teams
+        - Statistics
+      summary: Get team events away statistics
+      description: Retrieves aggregated team performance statistics for away games in a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          description: Unique identifier for the tournament.
+          schema:
+            type: integer
+        - name: seasonId
+          in: path
+          required: true
+          description: Unique identifier for the season.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Aggregated team statistics for away games.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/category/{id}/events/{day}/{month}/{year}:
+    get:
+      tags:
+        - Baseball
+        - Categories
+        - Matches
+      summary: Get matches by category and date
+      description: Retrieves all baseball matches for a specific category on a given date.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the category.
+          schema:
+            type: integer
+        - name: day
+          in: path
+          required: true
+          description: "Day of the month (e.g., 15)."
+          schema:
+            type: integer
+        - name: month
+          in: path
+          required: true
+          description: "Month of the year (e.g., 7)."
+          schema:
+            type: integer
+        - name: year
+          in: path
+          required: true
+          description: "Year (e.g., 2024)."
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of scheduled matches for the category on the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/tournament/all/category/{id}:
+    get:
+      tags:
+        - Baseball
+        - Categories
+        - Tournaments
+      summary: Get tournaments by category
+      description: Retrieves all unique tournaments within a specific baseball category.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier for the category.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of unique tournaments in the specified category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    JSONResult:
+      type: object
+      description: A JSON object containing the requested data.

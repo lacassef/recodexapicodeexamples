@@ -1,0 +1,1054 @@
+openapi: 3.0.0
+info:
+  title: Ice Hockey API
+  version: 1.0.0
+  description: OpenAPI specification for Ice Hockey endpoints. Includes common AllSports endpoints and all Ice Hockey-specific routes.
+paths:
+  # AllSports – TV
+  /api/tv/country/all/event/{id}:
+    get:
+      tags: [AllSports, TV]
+      summary: Get match TV countries
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object listing countries and their broadcasting channels.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JSONResult' }
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+  /api/tv/channel/{channId}/event/{id}:
+    get:
+      tags: [AllSports, TV]
+      summary: Get match TV channel votes
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      parameters:
+        - name: channId
+          in: path
+          required: true
+          schema: { type: integer }
+          description: The unique identifier for the TV channel.
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing viewer vote data from the channel.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JSONResult' }
+        '404':
+          description: Match or channel with the specified ID not found.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  # AllSports – flags
+  /api/img/flag/{flag}:
+    get:
+      tags: [AllSports]
+      summary: Get country flag
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      parameters:
+        - name: flag
+          in: path
+          required: true
+          schema: { type: string }
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+  /api/country/{code}/flag:
+    get:
+      tags: [AllSports]
+      summary: Get country flag (img API)
+      description: Fetches the flag image by country code. The response is the raw image data.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema: { type: string }
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  # AllSports – placeholders
+  /api/placeholder/tournament.png:
+    get:
+      tags: [AllSports, Tournaments]
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema: { type: string, format: binary }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+  /api/placeholder/tournament.svg:
+    get:
+      tags: [AllSports, Tournaments]
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema: { type: string, format: binary }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+  /api/placeholder/team.svg:
+    get:
+      tags: [AllSports, Teams]
+      summary: Get team placeholder image
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema: { type: string, format: binary }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+  /api/placeholder/player.png:
+    get:
+      tags: [AllSports, Players]
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema: { type: string, format: binary }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+  /api/placeholder/player.svg:
+    get:
+      tags: [AllSports, Players]
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema: { type: string, format: binary }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+  /api/placeholder/manager.png:
+    get:
+      tags: [AllSports]
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema: { type: string, format: binary }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+  /api/placeholder/manager.svg:
+    get:
+      tags: [AllSports]
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema: { type: string, format: binary }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+  /api/placeholders/fighter-male.svg:
+    get:
+      tags: [AllSports, Placeholders, Media]
+      summary: Get male fighter placeholder image
+      description: Retrieves a placeholder image for a male fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema: { type: string, format: binary }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+  /api/placeholders/fighter-female.svg:
+    get:
+      tags: [AllSports, Placeholders, Media]
+      summary: Get female fighter placeholder image
+      description: Retrieves a placeholder image for a female fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema: { type: string, format: binary }
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  # Ice Hockey – Search & categories
+  /api/ice-hockey/search/{term}:
+    get:
+      tags: [Ice Hockey, Search]
+      summary: Search ice hockey entities
+      description: Searches for ice hockey teams, players, and tournaments.
+      parameters:
+        - name: term
+          in: path
+          required: true
+          schema: { type: string }
+          description: Search term (e.g., 'Rangers').
+        - name: page
+          in: query
+          required: false
+          schema: { type: integer }
+          description: Page number for pagination.
+      responses:
+        '200': { description: A list of search results for teams, players, and tournaments., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '400': { description: Invalid request parameters., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/matches/{day}/{month}/{year}:
+    get:
+      tags: [Ice Hockey, Matches]
+      summary: Get ice hockey matches by date
+      description: Fetches all ice hockey matches scheduled for a specific date.
+      parameters:
+        - { name: day, in: path, required: true, schema: { type: integer }, description: "Day of the month (e.g., 15)" }
+        - { name: month, in: path, required: true, schema: { type: integer }, description: "Month of the year (e.g., 7)" }
+        - { name: year, in: path, required: true, schema: { type: integer }, description: "Year (e.g., 2024)" }
+      responses:
+        '200': { description: A list of scheduled ice hockey matches for the given date., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '400': { description: Invalid date format in path., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/category/{id}/events/{day}/{month}/{year}:
+    get:
+      tags: [Ice Hockey, Categories, Matches]
+      summary: Get matches by category and date
+      description: Retrieves all ice hockey matches for a specific category on a given date.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer }, description: "Category ID" }
+        - { name: day, in: path, required: true, schema: { type: integer }, description: "Day of the month (e.g., 15)" }
+        - { name: month, in: path, required: true, schema: { type: integer }, description: "Month of the year (e.g., 7)" }
+        - { name: year, in: path, required: true, schema: { type: integer }, description: "Year (e.g., 2024)" }
+      responses:
+        '200': { description: A list of scheduled matches for the category on the given date., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '400': { description: Invalid date format in path., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '404': { description: Category with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/categories:
+    get:
+      tags: [Ice Hockey, Tournaments, Categories]
+      summary: Get ice hockey tournament categories
+      description: Retrieves all available ice hockey tournament categories, which typically correspond to countries or regions.
+      responses:
+        '200': { description: A list of tournament categories., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/all/category/{id}:
+    get:
+      tags: [Ice Hockey, Categories, Tournaments]
+      summary: Get tournaments by category
+      description: Retrieves all ice hockey tournaments within a specific category.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer }, description: "Category ID" }
+      responses:
+        '200': { description: A list of tournaments for the specified category., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Category with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/matches/live:
+    get:
+      tags: [Ice Hockey, Matches]
+      summary: Get live ice hockey matches
+      description: Retrieves all currently live ice hockey matches.
+      responses:
+        '200': { description: A list of live ice hockey matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+
+  # Ice Hockey - Match details
+  /api/ice-hockey/match/{id}:
+    get:
+      tags: [Ice Hockey, Matches]
+      summary: Get ice hockey match details
+      description: Retrieves detailed information for a specific ice hockey match, including teams, score, and status.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Detailed information about the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/player/{playerId}/statistics:
+    get:
+      tags: [Ice Hockey, Matches, Players, Statistics]
+      summary: Get player match statistics
+      description: Retrieves detailed statistics for a specific player in a specific match.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: playerId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Detailed statistics for the specified player in the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match or player with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{customId}/h2h:
+    get:
+      tags: [Ice Hockey, Matches, Statistics]
+      summary: Get head-to-head history
+      description: Retrieves the detailed match history for head-to-head encounters between two teams.
+      parameters:
+        - { name: customId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: A detailed list of past H2H matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified custom ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/lineups:
+    get:
+      tags: [Ice Hockey, Matches, Players]
+      summary: Get match lineups
+      description: Retrieves the starting lineups and substitutes for both teams in a specific match.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Starting lineups and substitutes for the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/statistics:
+    get:
+      tags: [Ice Hockey, Matches, Statistics]
+      summary: Get match statistics
+      description: Retrieves comprehensive team and player statistics for a specific match.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Comprehensive statistics for the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/incidents:
+    get:
+      tags: [Ice Hockey, Matches]
+      summary: Get match incidents
+      description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., goals, penalties).
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of incidents from the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/highlights:
+    get:
+      tags: [Ice Hockey, Matches, Media]
+      summary: Get match highlights
+      description: Retrieves video highlights and key moments from a specific match, if available.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of video highlights for the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/duel:
+    get:
+      tags: [Ice Hockey, Matches, Statistics]
+      summary: Get head-to-head summary
+      description: Retrieves a summary of head-to-head (H2H) statistics between the two teams in a match.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A summary of H2H statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/form:
+    get:
+      tags: [Ice Hockey, Matches]
+      summary: Get match form analysis
+      description: Retrieves pre-game form and recent performance data for the teams in a specific match.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Pregame form and performance trends for the teams., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/odds:
+    get:
+      tags: [Ice Hockey, Matches, Odds]
+      summary: Get match betting odds
+      description: Retrieves available betting odds from various bookmakers for a specific match.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of available betting odds for the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/managers:
+    get:
+      tags: [Ice Hockey, Matches, Managers]
+      summary: Get match managers/coaches
+      description: Retrieves information about the coaches for both teams in a specific match.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Information about the coaches for both teams., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/votes:
+    get:
+      tags: [Ice Hockey, Matches]
+      summary: Get match votes
+      description: Returns fan poll percentages and vote totals for the match outcome.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Vote counts and percentages for the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/best-players:
+    get:
+      tags: [Ice Hockey, Matches, Players]
+      summary: Get match best players
+      description: Retrieves a list of the best performing players from a specific match, based on ratings.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of the best performing players in the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/streaks:
+    get:
+      tags: [Ice Hockey, Matches, Statistics]
+      summary: Get match streaks
+      description: Provides recent form and streak information (e.g., winning streaks) for each team in a match.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Streak information for both teams., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/match/{id}/streaks/odds:
+    get:
+      tags: [Ice Hockey, Matches, Statistics, Odds]
+      summary: Get match streaks with odds
+      description: Returns recent team streaks combined with associated betting odds from bookmaker `1`.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A JSON object containing team streaks and betting odds., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Match with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+
+  # Ice Hockey - Team, Player, Tournament, Manager, etc.
+  /api/ice-hockey/team/{id}/matches/previous/{page}:
+    get:
+      tags: [Ice Hockey, Teams, Matches]
+      summary: Get previous team matches
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: page, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A paginated list of the team's previous matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '400': { description: Invalid page number or team ID format., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '404': { description: Team with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/team/{id}/matches/next/{page}:
+    get:
+      tags: [Ice Hockey, Teams, Matches]
+      summary: Get upcoming team matches
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: page, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A paginated list of the team's upcoming matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '400': { description: Invalid page number or team ID format., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '404': { description: Team with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/team/{id}/players/statistics/seasons:
+    get:
+      tags: [Ice Hockey, Teams, Statistics]
+      summary: Get team player statistics seasons
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of seasons with available player statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Team with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players/regularSeason:
+    get:
+      tags: [Ice Hockey, Teams, Players, Statistics]
+      summary: Get team top players for regular season
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of the team's top players in the regular season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Team, tournament, or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players/playoffs:
+    get:
+      tags: [Ice Hockey, Teams, Players, Statistics]
+      summary: Get team top players for playoffs
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of the team's top players in the playoffs., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Team, tournament, or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/team/{id}/tournaments:
+    get:
+      tags: [Ice Hockey, Teams, Tournaments]
+      summary: Get team tournaments
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of unique tournaments the team has participated in., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Team with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/team/{id}:
+    get:
+      tags: [Ice Hockey, Teams]
+      summary: Get ice hockey team details
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Comprehensive details for the team., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Team with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/team/{id}/players:
+    get:
+      tags: [Ice Hockey, Teams, Players]
+      summary: Get team players
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The current roster of players for the team., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Team with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/team/{id}/media:
+    get:
+      tags: [Ice Hockey, Teams, Media]
+      summary: Get team media
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of media content for the team., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Team with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/team/{id}/matches/near:
+    get:
+      tags: [Ice Hockey, Teams, Matches]
+      summary: Get team near matches
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of recent and upcoming matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Team with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/player/{id}/matches/near:
+    get:
+      tags: [Ice Hockey, Players, Matches]
+      summary: Get player near matches
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of the player's recent and upcoming matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Player with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/player/{id}/statistics/season:
+    get:
+      tags: [Ice Hockey, Players, Statistics]
+      summary: Get player statistics seasons
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of seasons with available statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Player with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularSeason:
+    get:
+      tags: [Ice Hockey, Players, Statistics]
+      summary: Get player regular season statistics
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The player's regular season statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Player, tournament, or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/playoffs:
+    get:
+      tags: [Ice Hockey, Players, Statistics]
+      summary: Get player playoffs statistics
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The player's playoffs statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Player, tournament, or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/player/{id}:
+    get:
+      tags: [Ice Hockey, Players]
+      summary: Get ice hockey player details
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Comprehensive details for the player., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Player with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/player/{id}/media:
+    get:
+      tags: [Ice Hockey, Players, Media]
+      summary: Get player media
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of media content for the player., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Player with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/standings/total:
+    get:
+      tags: [Ice Hockey, Tournaments, Standings]
+      summary: Get tournament total standings
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The complete standings table for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/standings/home:
+    get:
+      tags: [Ice Hockey, Tournaments, Standings]
+      summary: Get tournament home standings
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The home standings table for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/standings/away:
+    get:
+      tags: [Ice Hockey, Tournaments, Standings]
+      summary: Get tournament away standings
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The away standings table for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-players/playoffs:
+    get:
+      tags: [Ice Hockey, Tournaments, Players, Statistics]
+      summary: Get top players for playoffs
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of top performing players in the playoffs., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-players/regularSeason:
+    get:
+      tags: [Ice Hockey, Tournaments, Players, Statistics]
+      summary: Get top players for regular season
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of top performing players in the regular season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
+    get:
+      tags: [Ice Hockey, Tournaments, Matches]
+      summary: Get tournament last matches
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: page, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A paginated list of the tournament's last matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '400': { description: Invalid page number., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
+    get:
+      tags: [Ice Hockey, Tournaments, Matches]
+      summary: Get tournament upcoming matches
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: page, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A paginated list of the tournament's upcoming matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '400': { description: Invalid page number., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}:
+    get:
+      tags: [Ice Hockey, Tournaments]
+      summary: Get tournament details
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Comprehensive details for the tournament., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/image:
+    get:
+      tags: [Ice Hockey, Tournaments, Media]
+      summary: Get tournament logo
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The tournament's logo image., content: { "image/png": { schema: { type: string, format: binary } } } }
+        '404': { description: Tournament or logo not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/image/dark:
+    get:
+      tags: [Ice Hockey, Tournaments, Media]
+      summary: Get tournament dark logo
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The tournament's dark theme logo image., content: { "image/png": { schema: { type: string, format: binary } } } }
+        '404': { description: Tournament or logo not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/team/{id}/image:
+    get:
+      tags: [Ice Hockey, Teams, Media]
+      summary: Get team logo
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The team's logo image., content: { "image/png": { schema: { type: string, format: binary } } } }
+        '404': { description: Team or logo not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/player/{id}/image:
+    get:
+      tags: [Ice Hockey, Players, Media]
+      summary: Get player image
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The player's profile image., content: { "image/png": { schema: { type: string, format: binary } } } }
+        '404': { description: Player or image not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/manager/{id}/image:
+    get:
+      tags: [Ice Hockey, Managers, Media]
+      summary: Get manager/coach image
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The manager's profile image., content: { "image/png": { schema: { type: string, format: binary } } } }
+        '404': { description: Manager or image not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/media:
+    get:
+      tags: [Ice Hockey, Tournaments, Media]
+      summary: Get tournament media
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of media content for the tournament., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/cuptrees:
+    get:
+      tags: [Ice Hockey, Tournaments]
+      summary: Get tournament cup trees
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The knockout bracket for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/seasons:
+    get:
+      tags: [Ice Hockey, Tournaments]
+      summary: Get tournament seasons
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of available seasons for the tournament., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/manager/{id}/matches/previous/{page}:
+    get:
+      tags: [Ice Hockey, Managers, Matches]
+      summary: Get previous manager matches
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: page, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A paginated list of the manager's previous matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '400': { description: Invalid page number or manager ID format., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '404': { description: Manager with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/manager/{id}:
+    get:
+      tags: [Ice Hockey, Managers]
+      summary: Get ice hockey manager details
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Comprehensive details for the manager., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Manager with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/team-events/total:
+    get:
+      tags: [Ice Hockey, Tournaments, Teams, Statistics]
+      summary: Get team events total statistics
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Aggregated team statistics for the entire season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/team-events/home:
+    get:
+      tags: [Ice Hockey, Tournaments, Teams, Statistics]
+      summary: Get team events home statistics
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Aggregated team statistics for home games., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/team-events/away:
+    get:
+      tags: [Ice Hockey, Tournaments, Teams, Statistics]
+      summary: Get team events away statistics
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Aggregated team statistics for away games., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-players/overall:
+    get:
+      tags: [Ice Hockey, Tournaments, Players, Statistics]
+      summary: Get top players overall
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of the top performing players for the season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-players/types:
+    get:
+      tags: [Ice Hockey, Tournaments, Statistics]
+      summary: Get player statistics types
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of available player statistics types., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-players/per-game/regularSeason:
+    get:
+      tags: [Ice Hockey, Tournaments, Players, Statistics]
+      summary: Get top players per game for regular season
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Player rankings based on per-game averages for the regular season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-players/per-game/overall:
+    get:
+      tags: [Ice Hockey, Tournaments, Players, Statistics]
+      summary: Get top players per game overall
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Player rankings based on per-game averages., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-players/per-game/playoffs:
+    get:
+      tags: [Ice Hockey, Tournaments, Players, Statistics]
+      summary: Get top players per game for playoffs
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: Player rankings based on per-game averages for the playoffs., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-teams/regularSeason:
+    get:
+      tags: [Ice Hockey, Tournaments, Teams, Statistics]
+      summary: Get top teams for regular season
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of top performing teams in the regular season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-teams/playoffs:
+    get:
+      tags: [Ice Hockey, Tournaments, Teams, Statistics]
+      summary: Get top teams for playoffs
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of top performing teams in the playoffs., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Tournament or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/player/{id}/matches/previous/{page}:
+    get:
+      tags: [Ice Hockey, Players, Matches]
+      summary: Get previous player matches
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: page, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A paginated list of the player's previous matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '400': { description: Invalid page number or player ID format., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '404': { description: Player with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/overall:
+    get:
+      tags: [Ice Hockey, Players, Statistics]
+      summary: Get player overall statistics
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: The player's overall statistics for the season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '404': { description: Player, tournament, or season with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+  /api/ice-hockey/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
+    get:
+      tags: [Ice Hockey, Tournaments, Matches]
+      summary: Get tournament matches by date
+      parameters:
+        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: day, in: path, required: true, schema: { type: integer } }
+        - { name: month, in: path, required: true, schema: { type: integer } }
+        - { name: year, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200': { description: A list of scheduled matches for the tournament on the given date., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
+        '400': { description: Invalid date format in path., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '404': { description: Tournament with the specified ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            title:
+              type: string
+              description: A short, human-readable summary of the problem type.
+            request_id:
+              type: string
+              description: A unique identifier for the request.
+    JSONResult:
+      type: object
+      description: A generic JSON object response.
+      additionalProperties: true

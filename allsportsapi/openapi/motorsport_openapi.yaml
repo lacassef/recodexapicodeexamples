@@ -1,0 +1,911 @@
+openapi: 3.0.0
+info:
+  title: Motorsport API
+  version: 1.0.0
+  description: This is the OpenAPI specification for the Motorsport API.
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            title:
+              type: string
+              description: A short, human-readable summary of the problem type.
+            request_id:
+              type: string
+              description: A unique identifier for the request, useful for debugging.
+    JSONResult:
+      type: object
+      description: A generic JSON object response.
+      properties: {}
+      additionalProperties: true
+paths:
+  /api/tv/country/all/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV countries
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object listing countries and their broadcasting channels.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/search/{term}:
+    get:
+      tags:
+        - Motorsport
+        - Search
+      summary: Search motorsport entities
+      description: Searches for motorsport teams, drivers, stages, and tournaments.
+      parameters:
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Search term (e.g., 'Red Bull')
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: A JSON object containing search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/categories:
+    get:
+      tags:
+        - Motorsport
+        - Categories
+      summary: Get motorsport categories
+      description: Retrieves a list of all available motorsport categories (e.g., Formula 1, MotoGP, WRC).
+      responses:
+        '200':
+          description: A JSON object containing a list of motorsport categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/stage/featured:
+    get:
+      tags:
+        - Motorsport
+        - Stage
+      summary: Get featured motorsport stage
+      description: Retrieves the currently featured motorsport stage, typically the next upcoming major race or event.
+      responses:
+        '200':
+          description: A JSON object containing the featured motorsport stage.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/stage/{stageId}/substages:
+    get:
+      tags:
+        - Motorsport
+        - Stage
+      summary: Get substages for a motorsport stage
+      description: Retrieves a list of substages for a given motorsport stage, such as practice sessions, qualifying, and the main race.
+      parameters:
+        - name: stageId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Stage ID
+      responses:
+        '200':
+          description: A JSON object containing a list of substages.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/stage/{stageId}:
+    get:
+      tags:
+        - Motorsport
+        - Stage
+      summary: Get motorsport stage details
+      description: Retrieves detailed information for a specific motorsport stage (event).
+      parameters:
+        - name: stageId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Stage ID
+      responses:
+        '200':
+          description: A JSON object containing detailed information about the stage.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/stage/{id}/standings/competitor:
+    get:
+      tags:
+        - Motorsport
+        - Stage
+        - Standings
+      summary: Get competitor standings for stage
+      description: Retrieves the competitor (driver) standings for a specific motorsport stage.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Stage ID
+      responses:
+        '200':
+          description: A JSON object containing competitor standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/stage/{id}/standings/team:
+    get:
+      tags:
+        - Motorsport
+        - Stage
+        - Standings
+      summary: Get team standings for stage
+      description: Retrieves the team (constructor) standings for a specific motorsport stage.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Stage ID
+      responses:
+        '200':
+          description: A JSON object containing team standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/stage/{id}/image:
+    get:
+      tags:
+        - Motorsport
+        - Stage
+        - Media
+      summary: Get motorsport stage image
+      description: Retrieves the image for a specific motorsport stage.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Stage ID
+      responses:
+        '200':
+          description: The stage's image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Stage or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/stage/{id}/highlights:
+    get:
+      tags:
+        - Motorsport
+        - Stage
+        - Media
+      summary: Get motorsport stage highlights
+      description: Retrieves video highlights for a specific motorsport stage.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Stage ID
+      responses:
+        '200':
+          description: A JSON object containing a list of video highlights.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/team/{id}:
+    get:
+      tags:
+        - Motorsport
+        - Team
+      summary: Get motorsport team details
+      description: Retrieves detailed information for a specific motorsport team (constructor).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+      responses:
+        '200':
+          description: A JSON object containing detailed information about the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/team/{id}/driver/history:
+    get:
+      tags:
+        - Motorsport
+        - Team
+        - Driver
+      summary: Get motorsport team driver history
+      description: Retrieves the history of drivers for a specific motorsport team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+      responses:
+        '200':
+          description: A JSON object containing the team's driver history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/team/{id}/stage/seasons:
+    get:
+      tags:
+        - Motorsport
+        - Team
+        - Season
+      summary: Get motorsport team stage seasons
+      description: Retrieves a list of seasons in which a motorsport team has participated.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+      responses:
+        '200':
+          description: A JSON object containing a list of seasons.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/team/{id}/stage/season/{seasonId}/races:
+    get:
+      tags:
+        - Motorsport
+        - Team
+        - Race
+      summary: Get motorsport team races in stage season
+      description: Retrieves a list of races for a motorsport team in a specific season.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+      responses:
+        '200':
+          description: A JSON object containing a list of races.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/team/{id}/image:
+    get:
+      tags:
+        - Motorsport
+        - Team
+        - Media
+      summary: Get motorsport team image
+      description: Retrieves the image for a specific motorsport team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+      responses:
+        '200':
+          description: The team's image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Team or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/category/{id}/stages/all:
+    get:
+      tags:
+        - Motorsport
+        - Category
+        - Stage
+      summary: Get motorsport stages by category
+      description: Retrieves a list of all motorsport stages for a specific category.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID
+      responses:
+        '200':
+          description: A JSON object containing a list of stages.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/unique-stage/{uniqueStageId}/season:
+    get:
+      tags:
+        - Motorsport
+        - Stage
+        - Season
+      summary: Get seasons for unique stage
+      description: Retrieves a list of all seasons for a unique motorsport stage.
+      parameters:
+        - name: uniqueStageId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique Stage ID
+      responses:
+        '200':
+          description: A JSON object containing a list of seasons.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Unique stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/motorsport/unique-stage/{id}/image:
+    get:
+      tags:
+        - Motorsport
+        - Stage
+        - Media
+      summary: Get unique stage image
+      description: Retrieves the image for a unique motorsport stage.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique Stage ID
+      responses:
+        '200':
+          description: The unique stage's image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Unique stage or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/tv/channel/{channId}/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV channel votes
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      parameters:
+        - name: channId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the TV channel.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing viewer vote data from the channel.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or channel with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/img/flag/{flag}:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      parameters:
+        - name: flag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/country/{code}/flag:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag (img API)
+      description: Fetches the flag image by country code.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.png:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.svg:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/team.svg:
+    get:
+      tags:
+        - AllSports
+        - Teams
+      summary: Get team placeholder image
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.png:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.svg:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.png:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.svg:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-male.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get male fighter placeholder image
+      description: Retrieves a placeholder image for a male fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-female.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get female fighter placeholder image
+      description: Retrieves a placeholder image for a female fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'

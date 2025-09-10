@@ -1,0 +1,2052 @@
+openapi: 3.0.0
+info:
+  title: Cricket API
+  description: Unofficial API for cricket matches, teams, players, and tournaments.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: AllSports
+    description: Endpoints applicable to all sports
+  - name: Cricket
+    description: Cricket-specific endpoints
+paths:
+  /api/tv/country/all/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV countries
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object listing countries and their broadcasting channels.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tv/channel/{channId}/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV channel votes
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      parameters:
+        - name: channId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the TV channel.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing viewer vote data from the channel.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or channel with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/img/flag/{flag}:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      parameters:
+        - name: flag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "Country code or identifier (e.g., 'EN' for England)."
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/country/{code}/flag:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag (img API)
+      description: Fetches the flag image by country code.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "Country code or identifier (e.g., 'EN' for England)."
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.png:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/search/{term}:
+    get:
+      tags:
+        - Cricket
+        - Search
+      summary: Search cricket entities
+      description: Searches for cricket teams, players, and tournaments.
+      parameters:
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "Search term (e.g., 'India')"
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: A list of search results for teams, players, and tournaments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/categories:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+      summary: Get cricket tournament categories
+      description: Retrieves a list of all available cricket tournament categories, typically corresponding to countries or regions.
+      responses:
+        '200':
+          description: A list of tournament categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoriesResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/matches/{day}/{month}/{year}:
+    get:
+      tags:
+        - Cricket
+        - Matches
+      summary: Get cricket matches by date
+      description: Fetches all cricket matches scheduled for a specific date.
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: "Day of the month (e.g., 15)"
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: "Month of the year (e.g., 7)"
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: "Year (e.g., 2024)"
+      responses:
+        '200':
+          description: A list of scheduled cricket matches for the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchesResponse'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/matches/live:
+    get:
+      tags:
+        - Cricket
+        - Matches
+      summary: Get live cricket matches
+      description: Retrieves all currently live cricket matches.
+      responses:
+        '200':
+          description: A list of live cricket matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveMatchesResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/match/{id}:
+    get:
+      tags:
+        - Cricket
+        - Matches
+      summary: Get cricket match details
+      description: Retrieves detailed information for a specific cricket match by its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: Detailed information about the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchDetailsResponse'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/match/{customId}/h2h:
+    get:
+      tags:
+        - Cricket
+        - Matches
+        - Statistics
+      summary: Get match head-to-head history
+      description: Retrieves the detailed match history for head-to-head encounters between two teams.
+      parameters:
+        - name: customId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: A custom identifier for the match, used for H2H lookups.
+      responses:
+        '200':
+          description: A detailed list of past H2H matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/H2HHistoryResponse'
+        '404':
+          description: Match with the specified custom ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/match/{id}/lineups:
+    get:
+      tags:
+        - Cricket
+        - Matches
+        - Players
+      summary: Get match lineups
+      description: Retrieves the starting lineups and substitutes for both teams in a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: Starting lineups and substitutes for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineupsResponse'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/match/{id}/innings:
+    get:
+      tags:
+        - Cricket
+        - Matches
+        - Statistics
+      summary: Get match innings
+      description: Retrieves the detailed scorecard for each innings of a cricket match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: Detailed innings-by-innings scorecard.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InningsResponse'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/match/{id}/incidents:
+    get:
+      tags:
+        - Cricket
+        - Matches
+      summary: Get match incidents
+      description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., wickets, boundaries).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A list of incidents from the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentsResponse'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/match/{id}/duel:
+    get:
+      tags:
+        - Cricket
+        - Matches
+        - Statistics
+      summary: Get head-to-head summary
+      description: Retrieves a summary of head-to-head (H2H) statistics between the two teams in a match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A summary of H2H statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/H2HSummaryResponse'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/match/{id}/form:
+    get:
+      tags:
+        - Cricket
+        - Matches
+      summary: Get match form analysis
+      description: Retrieves pre-game form and recent performance data for the teams in a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: Pregame form and performance trends for the teams.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchFormResponse'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/match/{id}/odds:
+    get:
+      tags:
+        - Cricket
+        - Matches
+        - Odds
+      summary: Get match betting odds
+      description: Retrieves available betting odds from various bookmakers for a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A list of available betting odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchOddsResponse'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/match/{id}/votes:
+    get:
+      tags:
+        - Cricket
+        - Matches
+      summary: Get match votes
+      description: Returns fan poll percentages and vote totals for the match outcome.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: Vote counts and percentages for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VotesResponse'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/match/{id}/graph:
+    get:
+      tags:
+        - Cricket
+        - Matches
+        - Statistics
+      summary: Get cricket match graph
+      description: Retrieves data points for the match graph, showing runs per over for both teams.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: Data points for the match graph.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphResponse'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/team/{id}/matches/previous/{page}:
+    get:
+      tags:
+        - Cricket
+        - Teams
+        - Matches
+      summary: Get previous team matches
+      description: Fetches a paginated list of completed cricket matches for a specific team, sorted by date descending.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the team.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the team's previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchListResponse'
+        '400':
+          description: Invalid page number or team ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/team/{id}/matches/next/{page}:
+    get:
+      tags:
+        - Cricket
+        - Teams
+        - Matches
+      summary: Get upcoming team matches
+      description: Fetches a paginated list of scheduled cricket matches for a specific team, sorted by date ascending.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the team.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the team's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchListResponse'
+        '400':
+          description: Invalid page number or team ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/team/{id}/standings/seasons:
+    get:
+      tags:
+        - Cricket
+        - Teams
+        - Standings
+      summary: Get team standings seasons
+      description: Retrieves a list of seasons for which a team's standings are available.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the team.
+      responses:
+        '200':
+          description: A list of seasons with available standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeasonsResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/team/{id}/tournaments:
+    get:
+      tags:
+        - Cricket
+        - Teams
+        - Tournaments
+      summary: Get team tournaments
+      description: Retrieves a list of all unique tournaments a team has participated in.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the team.
+      responses:
+        '200':
+          description: A list of unique tournaments the team has participated in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentsResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/team/{id}/matches/near:
+    get:
+      tags:
+        - Cricket
+        - Teams
+        - Matches
+      summary: Get team near matches
+      description: Retrieves a list of recent and upcoming matches for a specific team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the team.
+      responses:
+        '200':
+          description: A list of recent and upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NearMatchesResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/team/{id}/image:
+    get:
+      tags:
+        - Cricket
+        - Teams
+        - Media
+      summary: Get team image
+      description: Retrieves the logo image for a specific team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the team.
+      responses:
+        '200':
+          description: The team's logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Team or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/team/{id}:
+    get:
+      tags:
+        - Cricket
+        - Teams
+      summary: Get cricket team details
+      description: Retrieves comprehensive details for a specific cricket team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the team.
+      responses:
+        '200':
+          description: Comprehensive details for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamDetailsResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/team/{id}/players/statistics/seasons:
+    get:
+      tags:
+        - Cricket
+        - Teams
+        - Statistics
+      summary: Get team player statistics seasons
+      description: Retrieves a list of seasons for which a team's player statistics are available.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the team.
+      responses:
+        '200':
+          description: A list of seasons with available player statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeasonsResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/team/{id}/players:
+    get:
+      tags:
+        - Cricket
+        - Teams
+        - Players
+      summary: Get team players
+      description: Retrieves the current roster of players for a specific team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the team.
+      responses:
+        '200':
+          description: The current roster of players for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayersResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/team/{id}/media:
+    get:
+      tags:
+        - Cricket
+        - Teams
+        - Media
+      summary: Get team media
+      description: Retrieves media content (e.g., videos, images) associated with a specific team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the team.
+      responses:
+        '200':
+          description: A list of media content for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/player/{id}/statistics/seasons:
+    get:
+      tags:
+        - Cricket
+        - Players
+        - Statistics
+      summary: Get player statistics seasons
+      description: Retrieves a list of seasons for which a player's statistics are available.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the player.
+      responses:
+        '200':
+          description: A list of seasons with available statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeasonsResponse'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/overall:
+    get:
+      tags:
+        - Cricket
+        - Players
+        - Statistics
+      summary: Get player overall statistics
+      description: Retrieves a player's combined statistics for an entire season (regular season and playoffs).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the player.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the season.
+      responses:
+        '200':
+          description: The player's overall statistics for the season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerStatisticsResponse'
+        '404':
+          description: Player, tournament, or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/player/{id}/image:
+    get:
+      tags:
+        - Cricket
+        - Players
+        - Media
+      summary: Get player image
+      description: Retrieves the profile image for a specific player.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the player.
+      responses:
+        '200':
+          description: The player's profile image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Player or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/player/{id}:
+    get:
+      tags:
+        - Cricket
+        - Players
+      summary: Get cricket player details
+      description: Retrieves comprehensive information about a specific cricket player.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the player.
+      responses:
+        '200':
+          description: Comprehensive details for the player.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerDetailsResponse'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/player/{id}/matches/near:
+    get:
+      tags:
+        - Cricket
+        - Players
+        - Matches
+      summary: Get player near matches
+      description: Retrieves a list of recent and upcoming matches for a specific player.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the player.
+      responses:
+        '200':
+          description: A list of the player's recent and upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NearMatchesResponse'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/player/{id}/matches/previous/{page}:
+    get:
+      tags:
+        - Cricket
+        - Players
+        - Matches
+      summary: Get previous player matches
+      description: Fetches a paginated list of completed matches for a specific player, sorted by date descending.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the player.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the player's previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchListResponse'
+        '400':
+          description: Invalid page number or player ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/{tournamentId}/season/{seasonId}/standings/total:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+        - Standings
+      summary: Get tournament total standings
+      description: Retrieves the complete standings table for all teams in a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the season.
+      responses:
+        '200':
+          description: The complete standings table for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandingsResponse'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/{tournamentId}/season/{seasonId}/top-players:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+        - Players
+        - Statistics
+      summary: Get tournament top players
+      description: Retrieves the best performing players in a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the season.
+      responses:
+        '200':
+          description: A list of top performing players in the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopPlayersResponse'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/{tournamentId}/image:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+        - Media
+      summary: Get tournament image
+      description: Retrieves the logo image for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+      responses:
+        '200':
+          description: The tournament's logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/{tournamentId}/image/dark:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+        - Media
+      summary: Get tournament dark logo
+      description: Retrieves the dark theme logo image for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+      responses:
+        '200':
+          description: The tournament's dark theme logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+        - Matches
+      summary: Get tournament last matches
+      description: Retrieves a paginated list of recently played matches in a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the season.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the tournament's last matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchListResponse'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+        - Matches
+      summary: Get tournament upcoming matches
+      description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the season.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the tournament's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchListResponse'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/{tournamentId}:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+      summary: Get cricket tournament details
+      description: Retrieves comprehensive details for a specific cricket tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+      responses:
+        '200':
+          description: Comprehensive details for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentDetailsResponse'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/{tournamentId}/seasons:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+      summary: Get cricket tournament seasons
+      description: Retrieves a list of all available seasons for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+      responses:
+        '200':
+          description: A list of available seasons for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeasonsResponse'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/{tournamentId}/media:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+        - Media
+      summary: Get cricket tournament media
+      description: Retrieves media content (e.g., videos, images) for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+      responses:
+        '200':
+          description: A list of media content for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaResponse'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/{tournamentId}/season/{seasonId}/team-events/total:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+        - Teams
+        - Statistics
+      summary: Get total team events for cricket tournament season
+      description: Retrieves aggregated team performance statistics for all games in a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the season.
+      responses:
+        '200':
+          description: Aggregated team statistics for the entire season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamEventsResponse'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
+    get:
+      tags:
+        - Cricket
+        - Tournaments
+        - Matches
+      summary: Get tournament matches by date
+      description: Retrieves all matches for a specific tournament scheduled on a given date.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the tournament.
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: "Day of the month (e.g., 15)."
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: "Month of the year (e.g., 7)."
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: "Year (e.g., 2024)."
+      responses:
+        '200':
+          description: A list of scheduled matches for the tournament on the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchesResponse'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/category/{id}/events/{day}/{month}/{year}:
+    get:
+      tags:
+        - Cricket
+        - Categories
+        - Matches
+      summary: Get cricket matches by category and date
+      description: Retrieves all cricket matches for a specific category on a given date.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the category.
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: "Day of the month (e.g., 15)."
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: "Month of the year (e.g., 7)."
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: "Year (e.g., 2024)."
+      responses:
+        '200':
+          description: A list of scheduled matches for the category on the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchesResponse'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cricket/tournament/all/category/{id}:
+    get:
+      tags:
+        - Cricket
+        - Categories
+        - Tournaments
+      summary: Get tournaments by category
+      description: Retrieves all unique tournaments within a specific cricket category.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the category.
+      responses:
+        '200':
+          description: A list of unique tournaments in the specified category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentsResponse'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.svg:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/team.svg:
+    get:
+      tags:
+        - AllSports
+        - Teams
+      summary: Get team placeholder image
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.png:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.svg:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.png:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.svg:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-male.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get male fighter placeholder image
+      description: Retrieves a placeholder image for a male fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-female.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get female fighter placeholder image
+      description: Retrieves a placeholder image for a female fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 404
+            title:
+              type: string
+              example: Not Found
+            request_id:
+              type: string
+              example: "req-12345"
+    JSONResult:
+      type: object
+      description: Generic JSON response from the upstream API. The actual structure varies by endpoint.
+    SearchResponse:
+      type: object
+    CategoriesResponse:
+      type: object
+    MatchesResponse:
+      type: object
+    LiveMatchesResponse:
+      type: object
+    MatchDetailsResponse:
+      type: object
+    MatchFormResponse:
+      type: object
+    MatchOddsResponse:
+      type: object
+    BestPlayersResponse:
+      type: object
+    H2HSummaryResponse:
+      type: object
+    HighlightsResponse:
+      type: object
+    H2HHistoryResponse:
+      type: object
+    LineupsResponse:
+      type: object
+    MatchStatisticsResponse:
+      type: object
+    GraphResponse:
+      type: object
+    IncidentsResponse:
+      type: object
+    ManagersResponse:
+      type: object
+    SeriesResponse:
+      type: object
+    PlayerMatchStatsResponse:
+      type: object
+    ShotMapResponse:
+      type: object
+    MatchListResponse:
+      type: object
+    SeasonsResponse:
+      type: object
+    TopPlayersResponse:
+      type: object
+    TournamentsResponse:
+      type: object
+    TransfersResponse:
+      type: object
+    PlayersResponse:
+      type: object
+    NearMatchesResponse:
+      type: object
+    MediaResponse:
+      type: object
+    TeamDetailsResponse:
+      type: object
+    TeamStatisticsResponse:
+      type: object
+    TeamRanksResponse:
+      type: object
+    PlayerDetailsResponse:
+      type: object
+    TransferHistoryResponse:
+      type: object
+    PlayerStatisticsResponse:
+      type: object
+    ShotActionsResponse:
+      type: object
+    ManagerDetailsResponse:
+      type: object
+    StandingsResponse:
+      type: object
+    TournamentDetailsResponse:
+      type: object
+    CupTreesResponse:
+      type: object
+    TopTeamsResponse:
+      type: object
+    TopPlayersPerGameResponse:
+      type: object
+    StatisticsTypesResponse:
+      type: object
+    ShotAreasResponse:
+      type: object
+    TeamEventsResponse:
+      type: object
+    RoundsResponse:
+      type: object
+    GroupsResponse:
+      type: object
+    InningsResponse:
+      type: object
+    VotesResponse:
+      type: object

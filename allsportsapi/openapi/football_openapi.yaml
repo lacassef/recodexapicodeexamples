@@ -1,0 +1,4851 @@
+openapi: 3.0.0
+info:
+  title: FootAPI
+  version: 1.0.0
+  description: This is the OpenAPI specification for the FootAPI.
+paths:
+  /api/tv/country/all/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV countries
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object listing countries and their broadcasting channels.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tv/channel/{channId}/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV channel votes
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      parameters:
+        - name: channId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the TV channel.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing viewer vote data from the channel.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or channel with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/img/flag/{flag}:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      parameters:
+        - name: flag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/country/{code}/flag:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag (img API)
+      description: Fetches the flag image by country code. The response is the raw image data.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.png:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.svg:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/team.svg:
+    get:
+      tags:
+        - AllSports
+        - Teams
+      summary: Get team placeholder image
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.png:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.svg:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.png:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.svg:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-male.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get male fighter placeholder image
+      description: Retrieves a placeholder image for a male fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-female.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get female fighter placeholder image
+      description: Retrieves a placeholder image for a female fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/search/{term}:
+    get:
+      tags:
+        - Football
+        - Search
+      summary: Search football entities
+      description: Searches for football teams, players, and tournaments. The `type` parameter in the upstream URL is hardcoded to `all`.
+      parameters:
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Search term (e.g., 'Manchester United')
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination (defaults to 0)
+      responses:
+        '200':
+          description: A JSON object containing search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/matches/{day}/{month}/{year}:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get all football matches by date
+      description: Fetches all football matches scheduled for a specific date by combining results from two upstream endpoints (regular and inverse).
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15)
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: A JSON object containing a list of matches for the specified date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/matches/live:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get live football matches
+      description: Retrieves all currently live football matches.
+      responses:
+        '200':
+          description: A JSON object containing a list of live matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/matches/top/{day}/{month}/{year}:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get top football matches by date
+      description: Retrieves a curated list of top-tier or more important football matches for a specific date.
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15)
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: A JSON object containing a list of top matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/matches/bottom/{day}/{month}/{year}:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get bottom football matches by date
+      description: Retrieves a list of less prominent or lower-tier football matches for a specific date.
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15)
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: A JSON object containing a list of bottom-tier matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/categories:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get football tournament categories
+      description: Retrieves a list of all available football tournament categories, typically corresponding to countries or regions.
+      responses:
+        '200':
+          description: A JSON object containing a list of tournament categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/all/category/{id}:
+    get:
+      tags:
+        - Football
+        - Categories
+        - Tournaments
+      summary: Get tournaments by category
+      description: Retrieves all unique tournaments within a specific category ID (e.g., a country).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID (e.g., 8 for England)
+      responses:
+        '200':
+          description: A JSON object containing a list of unique tournaments for the category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/category/{id}/events/{day}/{month}/{year}:
+    get:
+      tags:
+        - Football
+        - Categories
+        - Matches
+      summary: Get matches by category and date
+      description: Retrieves all football matches for a specific category on a given date.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID (e.g., 8 for England)
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15)
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: A JSON object containing a list of scheduled matches for the category on the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/meta:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get tournament metadata
+      description: Retrieves SEO metadata and other information for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: A JSON object containing metadata for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/rankings/fifa:
+    get:
+      tags:
+        - Football
+        - Rankings
+      summary: Get FIFA rankings
+      description: Retrieves the current official FIFA national team rankings.
+      responses:
+        '200':
+          description: A JSON object containing the list of FIFA rankings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/rankings/uefa/countries:
+    get:
+      tags:
+        - Football
+        - Rankings
+      summary: Get UEFA countries rankings
+      description: Retrieves the current UEFA coefficient rankings for national associations.
+      responses:
+        '200':
+          description: A JSON object containing the list of UEFA country rankings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/rankings/uefa/clubs:
+    get:
+      tags:
+        - Football
+        - Rankings
+      summary: Get UEFA clubs rankings
+      description: Retrieves the current UEFA coefficient rankings for club teams.
+      responses:
+        '200':
+          description: A JSON object containing the list of UEFA club rankings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get football match details
+      description: Retrieves detailed information for a specific football match by its ID, including teams, score, status, and tournament info.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing detailed information about the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/statistics:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Statistics
+      summary: Get match statistics
+      description: Retrieves comprehensive team and player statistics for a specific match, such as possession, shots, and passes.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing comprehensive statistics for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/incidents:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get match incidents
+      description: Retrieves a chronological list of all significant incidents from a match, such as goals, cards, and substitutions.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing a list of incidents from the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{customId}/h2h:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Statistics
+      summary: Get head-to-head history
+      description: Retrieves the detailed match history for head-to-head encounters between the two teams in a specific match.
+      parameters:
+        - name: customId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: A custom identifier for the match, used for H2H lookups.
+      responses:
+        '200':
+          description: A JSON object containing a detailed list of past H2H matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified custom ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/duel:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Statistics
+      summary: Get head-to-head summary
+      description: Retrieves a summary of head-to-head statistics, including win/draw/loss counts and recent form.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing a summary of H2H statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/form:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get match form analysis
+      description: Retrieves pre-game form, including recent results (e.g., WWDLW) and key stats for both teams.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing pre-game form and performance trends.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/odds:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Odds
+      summary: Get match betting odds
+      description: Retrieves available betting odds from bookmaker `1` for a specific match, including various markets.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing a list of available betting odds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/shotmap:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Statistics
+      summary: Get match shot map
+      description: Retrieves the shot map for a match, showing the location and outcome of every shot taken.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing shot map data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/graph:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Statistics
+      summary: Get match momentum graph
+      description: Retrieves data points for the match momentum graph, visualizing team pressure and scoring progression.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing data points for the match momentum graph.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/lineups:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get match lineups
+      description: Retrieves starting lineups, formations, substitutes, and coach details for both teams.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing starting lineups and substitutes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/win-probability:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Statistics
+      summary: Get match win probability
+      description: Retrieves real-time win, draw, and loss probabilities at different points during the match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing win probability data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/player/{playerId}/statistics:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get player match statistics
+      description: Fetches detailed performance data for a single player within a specific match, including a statistics summary and heatmap.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object containing detailed statistics for the player in the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/player/{playerId}/shotmap:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get football match player shotmap
+      description: Retrieves the shot map for a single player in a match, showing shot locations and outcomes.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object containing the player's shot map data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/player/{playerId}/heatmap:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get match player heatmap
+      description: Provides positional heatmap data showing areas of on-field activity for a specific player during a match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object containing the player's heatmap data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/average-positions:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get match average positions
+      description: Provides positional heatmap data showing the average on-field position for all players during a match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the match.
+      responses:
+        '200':
+          description: A JSON object containing average position data for both teams.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/highlights:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get match highlights
+      description: Retrieves a list of video highlight clips and related metadata for a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the match.
+      responses:
+        '200':
+          description: A JSON object containing highlight clips and metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/managers:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get match managers
+      description: Returns information about the managers (coaches) for both teams in a specified match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing details for both managers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/votes:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get match votes
+      description: Returns fan poll percentages and vote totals for the match outcome (home win, draw, away win).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing vote counts and percentages.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/best-players:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get match best players
+      description: Returns ratings and key statistics for the standout players in a match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing a list of the best performing players.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/streaks:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get team streaks
+      description: Provides recent form and streak information (e.g., unbeaten runs, winless streaks) for each team in a match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing streak information for both teams.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/streaks/odds:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get match streaks with odds
+      description: Returns recent team streaks combined with associated betting odds from bookmaker `1`.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing team streaks and betting odds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/team/{teamId}/heatmap:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Teams
+      summary: Get match team heatmap by ID
+      description: Provides an aggregated positional data heatmap for an entire team in a match, specified by its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: A JSON object containing the team's heatmap data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/commentary:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get match commentary
+      description: Fetches a live text commentary feed with entries for key moments in the specified match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing a list of commentary entries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/players/featured:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get match featured players
+      description: Retrieves a list of players highlighted for the specified match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the match.
+      responses:
+        '200':
+          description: A JSON object containing a list of featured players.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{eventId}/best-players/summary:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get match best-player summary
+      description: Returns a summary of the best player's performance, highlighting standout statistics.
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the match.
+      responses:
+        '200':
+          description: A JSON object containing a summary of the best player's performance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}:
+    get:
+      tags:
+        - Football
+        - Teams
+      summary: Get team details
+      description: Fetches comprehensive details for a specific team, including name, country, venue, and tournament information.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+      responses:
+        '200':
+          description: A JSON object containing detailed information about the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/image:
+    get:
+      tags:
+        - Football
+        - Teams
+      summary: Get team logo
+      description: Downloads the official logo (crest) for the specified team ID. The response is the raw image data.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: The team's logo image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/players:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Players
+      summary: Get team squad
+      description: Returns the current roster of players (squad) associated with the specified team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+      responses:
+        '200':
+          description: A JSON object containing the team's current player roster.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/media:
+    get:
+      tags:
+        - Football
+        - Teams
+      summary: Get team media
+      description: Returns a collection of media items (images, videos) related to the specified team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+      responses:
+        '200':
+          description: A JSON object containing a list of media items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/matches/near:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Teams
+      summary: Get team near matches
+      description: Returns a list of recent and upcoming matches for the specified team, centered around the current date.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+      responses:
+        '200':
+          description: A JSON object containing a list of nearby matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/matches/previous/{page}:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Teams
+      summary: Get previous team matches
+      description: Fetches a paginated list of completed matches for a team, sorted by most recent first.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The page number for pagination (must be >= 1).
+      responses:
+        '200':
+          description: A paginated JSON object of the team's previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/matches/next/{page}:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Teams
+      summary: Get upcoming team matches
+      description: Fetches a paginated list of scheduled future matches for a team, sorted chronologically.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The page number for pagination (must be >= 1).
+      responses:
+        '200':
+          description: A paginated JSON object of the team's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/players/statistics/seasons:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Players
+      summary: Get team player statistics seasons
+      description: Returns a list of seasons for which player-level statistics are available for the specified team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+      responses:
+        '200':
+          description: A JSON object containing a list of seasons with available player statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/statistics/seasons:
+    get:
+      tags:
+        - Football
+        - Teams
+      summary: Get team statistics seasons
+      description: Provides a list of seasons for which aggregated team-level statistics are available.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+      responses:
+        '200':
+          description: A JSON object containing a list of seasons with available team statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/tournament/{tournamentId}/season/{seasonId}/statistics:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Tournaments
+      summary: Get team overall statistics
+      description: Returns aggregated statistics for a team within a specific tournament and season.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the season.
+      responses:
+        '200':
+          description: A JSON object containing the team's overall statistics for the season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team, tournament, or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Players
+        - Tournaments
+      summary: Get team top players overall
+      description: Returns a list of the top-performing players for a team in a specific tournament and season.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the season.
+      responses:
+        '200':
+          description: A JSON object containing a list of the team's top players.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team, tournament, or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/tournaments:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Tournaments
+      summary: Get team unique tournaments
+      description: Enumerates all unique competitions a team has participated in.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+      responses:
+        '200':
+          description: A JSON object containing a list of unique tournaments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/transfers:
+    get:
+      tags:
+        - Football
+        - Teams
+      summary: Get team transfer history
+      description: Returns a chronological list of a team's incoming and outgoing player transfers.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+      responses:
+        '200':
+          description: A JSON object containing lists of players transferred in and out.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/standings/seasons:
+    get:
+      tags:
+        - Football
+        - Teams
+      summary: Get team standings seasons
+      description: Retrieves a list of seasons for which standings information is available for the team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the team.
+      responses:
+        '200':
+          description: A JSON object containing a list of seasons with available standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{teamId}/tournament/{tournamentId}/season/{seasonId}/goal-distributions:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Tournaments
+      summary: Get team goal distributions
+      description: Provides goal distribution data (goals scored/conceded in different time intervals) for a team in a tournament season.
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing goal distribution statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team, tournament, or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/team/{teamId}/performance:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Tournaments
+      summary: Get team league performance graph
+      description: Returns time-series data illustrating a team's league position and performance throughout a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: A JSON object containing data points for the team's performance graph.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team, tournament, or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}:
+    get:
+      tags:
+        - Football
+        - Players
+      summary: Get player details
+      description: Fetches profile data for a specific player, such as name, team, nationality, and position.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object containing detailed information about the player.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/image:
+    get:
+      tags:
+        - Football
+        - Players
+      summary: Get player image
+      description: Downloads the profile picture for the specified player ID. The response is the raw image data.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: The player's profile image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/media:
+    get:
+      tags:
+        - Football
+        - Players
+      summary: Get player media
+      description: Retrieves a collection of media items (images, videos) related to the specified player.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the player.
+      responses:
+        '200':
+          description: A JSON object containing a list of media items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/statistics/national:
+    get:
+      tags:
+        - Football
+        - Players
+      summary: Get player national team statistics
+      description: Returns performance data and statistics for a player's appearances with their national team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object containing the player's national team statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/summary:
+    get:
+      tags:
+        - Football
+        - Players
+      summary: Get player last year summary
+      description: Fetches aggregated performance metrics for a player from the previous year.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object containing a summary of the player's performance last year.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/matches/near:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get player nearby matches
+      description: Returns a list of the player's recent and upcoming matches.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object containing a list of nearby matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/statistics/season:
+    get:
+      tags:
+        - Football
+        - Players
+      summary: Get player seasonal statistics
+      description: Fetches a list of seasons for which aggregated statistics are available for a player.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object containing a list of seasons with available statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/tournament/{tournamentId}/season/{seasonId}/last-ratings:
+    get:
+      tags:
+        - Football
+        - Players
+        - Tournaments
+      summary: Get player last ratings
+      description: Fetches the most recent ratings for a player in a specific tournament season.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing the player's last ratings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player, tournament, or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/tournament/{tournamentId}/season/{seasonId}/ratings:
+    get:
+      tags:
+        - Football
+        - Players
+        - Tournaments
+      summary: Get player ratings
+      description: Returns the historical rating history for a player in a specific tournament season.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing the player's rating history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player, tournament, or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics:
+    get:
+      tags:
+        - Football
+        - Players
+        - Tournaments
+      summary: Get player overall statistics
+      description: Returns aggregated performance metrics for a player across all phases (e.g., regular season, playoffs) of a tournament season.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the player.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the season.
+      responses:
+        '200':
+          description: A JSON object containing the player's overall statistics for the season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player, tournament, or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/characteristics:
+    get:
+      tags:
+        - Football
+        - Players
+      summary: Get player characteristics
+      description: Returns a list of a player's noted strengths and weaknesses based on statistical analysis.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object containing the player's characteristics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/attribute:
+    get:
+      tags:
+        - Football
+        - Players
+      summary: Get player attributes
+      description: Returns radar-chart attribute scores (e.g., attacking, defending) and other skill ratings for a player.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the player.
+      responses:
+        '200':
+          description: A JSON object containing the player's attribute scores.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/transfer:
+    get:
+      tags:
+        - Football
+        - Players
+      summary: Get player transfer history
+      description: Returns a chronological list of a player's transfers between clubs.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object containing the player's transfer history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/penalty:
+    get:
+      tags:
+        - Football
+        - Players
+      summary: Get player penalty history
+      description: Returns information about a player's history of taking penalty kicks.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object containing the player's penalty history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/matches/previous/{page}:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get player match history
+      description: Fetches a paginated list of completed matches a player has participated in, sorted by most recent first.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the player.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The page number for pagination (must be >= 1).
+      responses:
+        '200':
+          description: A paginated JSON object of the player's match history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/tournament/{tournamentId}/season/{seasonId}/heatmap:
+    get:
+      tags:
+        - Football
+        - Players
+        - Tournaments
+      summary: Get player season heatmap overall
+      description: Fetches a player's combined positional data heatmap for a specific tournament season.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing the player's overall heatmap for the season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player, tournament, or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/{id}/penalty-history/tournament/{tournamentId}/season/{seasonId}:
+    get:
+      tags:
+        - Football
+        - Players
+        - Tournaments
+      summary: Get player penalty history by season
+      description: Provides a player's historical penalty kick data within a specific tournament and season.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the player.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the season.
+      responses:
+        '200':
+          description: A JSON object containing the player's penalty history for the season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player, tournament, or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/player/trending:
+    get:
+      tags:
+        - Football
+        - Players
+      summary: Get trending players
+      description: Retrieves a list of football players who are currently trending.
+      responses:
+        '200':
+          description: A JSON object containing a list of trending players.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/manager/{id}:
+    get:
+      tags:
+        - Football
+      summary: Get manager details
+      description: Returns biographical and statistical information for a specific manager (coach).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the manager.
+      responses:
+        '200':
+          description: A JSON object containing detailed information about the manager.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Manager with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/manager/{id}/image:
+    get:
+      tags:
+        - Football
+      summary: Get manager image
+      description: Returns the profile image for the specified manager ID. The response is the raw image data.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the manager.
+      responses:
+        '200':
+          description: The manager's profile image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Manager with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/manager/{id}/history:
+    get:
+      tags:
+        - Football
+      summary: Get manager career history
+      description: Lists the teams previously and currently managed by a specific manager.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the manager.
+      responses:
+        '200':
+          description: A JSON object containing the manager's career history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Manager with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/manager/{id}/matches/previous/{page}:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get manager previous matches
+      description: Fetches a paginated list of completed matches for a specific manager, sorted by most recent first.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the manager.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The page number for pagination (must be >= 1).
+      responses:
+        '200':
+          description: A paginated JSON object of the manager's previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Manager with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/manager/{id}/matches/next/{page}:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get manager upcoming matches
+      description: Fetches a paginated list of scheduled future matches for a specific manager, sorted chronologically.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the manager.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The page number for pagination (must be >= 1).
+      responses:
+        '200':
+          description: A paginated JSON object of the manager's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Manager with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get league details
+      description: Returns basic information about a tournament, including its name, sport, and current season details.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: A JSON object containing detailed information about the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/image:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get tournament logo
+      description: Downloads the official logo or emblem for the specified tournament ID. The response is the raw image data.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: The tournament's logo image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/image/dark:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get league dark logo
+      description: Fetches the dark-theme variant of the tournament's logo. The response is the raw image data.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: The tournament's dark logo image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/media:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get league media
+      description: Fetches a collection of media items (images, videos) related to the specified tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: A JSON object containing a list of media items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/seasons:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get league seasons
+      description: Lists every available season associated with the specified tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: A JSON object containing a list of seasons.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/standings/total:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get total league standings
+      description: Returns the complete league table (standings) with cumulative statistics for all teams in a season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing the complete standings table.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/standings/home:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get home league standings
+      description: Returns a league table calculated using only the results from games played at home during the season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing the home-only standings table.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/standings/away:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get away league standings
+      description: Returns a league table calculated solely from the results of away games during the season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing the away-only standings table.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/statistics:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get aggregated player statistics
+      description: Returns season-wide player performance metrics with optional filtering, ordering, and pagination.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the season.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Number of results to return.
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination (must be >= 1).
+        - name: group
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Grouping criterion (e.g., 'position').
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Sorting order (e.g., '-rating').
+        - name: accumulation
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Accumulation mode (e.g., 'total', 'perGame').
+        - name: minApps
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Minimum appearances filter.
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated statistic fields to include.
+        - name: filters
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated filters (e.g., 'position.in.G').
+      responses:
+        '200':
+          description: A JSON object containing aggregated player statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/info:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get tournament season info
+      description: Provides metadata about a specific tournament season, such as the number of rounds and standings format.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the season.
+      responses:
+        '200':
+          description: A JSON object containing information about the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/best-players:
+    get:
+      tags:
+        - Football
+        - Players
+        - Tournaments
+      summary: Get overall league top players
+      description: Provides a list of the top-performing players for a specified tournament season based on overall ratings.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing a list of the top players.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/best-teams:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Tournaments
+      summary: Get overall league top teams
+      description: Returns a leaderboard of the top-performing teams based on aggregate statistics for a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing a list of the top teams.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/best-players/per-game:
+    get:
+      tags:
+        - Football
+        - Players
+        - Tournaments
+      summary: Get per-game player leaders
+      description: Provides a list of players ranked by their per-game statistical averages across an entire tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the season.
+      responses:
+        '200':
+          description: A JSON object containing players ranked by per-game averages.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Tournaments
+      summary: Get recent league matches
+      description: Fetches a paginated list of past matches for a tournament season, ordered by most recent first.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the season.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The page number for pagination (must be >= 1).
+      responses:
+        '200':
+          description: A paginated JSON object of the tournament's last matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Tournaments
+      summary: Get upcoming league matches
+      description: Returns a paginated list of scheduled future matches for a tournament season, ordered chronologically.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the season.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The page number for pagination (must be >= 1).
+      responses:
+        '200':
+          description: A paginated JSON object of the tournament's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/tow/rounds:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: List team of the week rounds
+      description: Fetches the round numbers for which a "Team of the Week" has been published for a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing a list of round numbers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/rounds:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: List league rounds
+      description: Retrieves all round numbers (e.g., match weeks) defined for a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing a list of rounds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/round/{roundId}/team-of-week:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Tournaments
+      summary: Get team of the week
+      description: Returns the selected player lineup for the "Team of the Week" for a specific round of a tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+        - name: roundId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the round.
+      responses:
+        '200':
+          description: A JSON object containing the Team of the Week lineup.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament, season, or round with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/groups:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get league groups
+      description: Fetches the group stage assignments and structure for a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing group stage information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/cuptrees:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get league cup trees
+      description: Fetches the knockout stage bracket (cup tree) for a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing the knockout bracket.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/team-events/total:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Tournaments
+      summary: Get league team events totals
+      description: Returns cumulative team-level event counts (e.g., goals, cards) for a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing total team event statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/team-events/home:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Tournaments
+      summary: Get league team home event totals
+      description: Provides cumulative team-level statistics considering only home matches in a given season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing home-only team event statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/team-events/away:
+    get:
+      tags:
+        - Football
+        - Teams
+        - Tournaments
+      summary: Get league team away event totals
+      description: Provides cumulative team-level statistics considering only away matches in a given season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing away-only team event statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/statistics/info:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get player statistics metadata
+      description: Retrieves information about the available statistic fields for players in a specific tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the season.
+      responses:
+        '200':
+          description: A JSON object containing metadata about available player statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/power-rankings/rounds:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: List power ranking rounds
+      description: Provides a list of round numbers for which power ranking data is available in a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing a list of rounds with power rankings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/power-rankings/round/{round}:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get power rankings by round
+      description: Returns team power ranking positions and metrics for a selected round of a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+        - name: round
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The round number.
+      responses:
+        '200':
+          description: A JSON object containing power rankings for the specified round.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament, season, or round with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/player-of-the-season:
+    get:
+      tags:
+        - Football
+        - Players
+        - Tournaments
+      summary: Get player of the season
+      description: Returns details about the officially awarded "Player of the Season" for a tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing details of the Player of the Season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/matches/round/{round}:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Tournaments
+      summary: Get league events by round
+      description: Lists all matches for a specific round of a tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+        - name: round
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The round number.
+      responses:
+        '200':
+          description: A JSON object containing a list of matches for the round.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament, season, or round with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/season/{seasonId}/matches/round/{round}/slug/{slug}:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Tournaments
+      summary: Get league events by round and slug
+      description: Lists matches for a specific round, further filtered by a stage slug (e.g., 'championship-round').
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+        - name: round
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The round number.
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The slug for the stage.
+      responses:
+        '200':
+          description: A JSON object containing a list of matches for the round and slug.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament, season, or round with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
+    get:
+      tags:
+        - Football
+        - Tournaments
+      summary: Get tournament events on date
+      description: Lists all events for a specific tournament scheduled on a given date, with optional timezone formatting.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the tournament.
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day component of the date (e.g., 15).
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month component of the date (e.g., 7).
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year component of the date (e.g., 2024).
+        - name: timezone
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Optional timezone identifier (e.g., 'Europe/London').
+        - name: format
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Optional date format string.
+      responses:
+        '200':
+          description: A JSON object containing a list of scheduled events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/group/tournament/{tournamentId}/season/{seasonId}/matches:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Tournaments
+      summary: Get tournament season events
+      description: Returns a list of all events for a specified tournament and season, typically used for group stages.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A JSON object containing a list of all events for the season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/referee/{id}:
+    get:
+      tags:
+        - Football
+      summary: Get referee details
+      description: Returns the name, nationality, and career data for a specified referee.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the referee.
+      responses:
+        '200':
+          description: A JSON object containing detailed information about the referee.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Referee with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/referee/{id}/image:
+    get:
+      tags:
+        - Football
+      summary: Get referee image
+      description: Downloads the official photo for the specified referee ID. The response is the raw image data.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the referee.
+      responses:
+        '200':
+          description: The referee's image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Referee with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/referee/{id}/statistics:
+    get:
+      tags:
+        - Football
+      summary: Get referee statistics
+      description: Returns aggregated officiating data for a referee, such as total matches, cards issued, etc.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the referee.
+      responses:
+        '200':
+          description: A JSON object containing the referee's officiating statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Referee with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/referee/{id}/matches/previous/{page}:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get previous referee matches
+      description: Fetches a paginated list of completed matches officiated by a referee, sorted by most recent first.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the referee.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The page number for pagination (zero-based).
+      responses:
+        '200':
+          description: A paginated JSON object of the referee's previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Referee with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/referee/{id}/matches/next/{page}:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get upcoming referee matches
+      description: Lists a paginated list of scheduled future matches assigned to a referee, sorted chronologically.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the referee.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The page number for pagination (zero-based).
+      responses:
+        '200':
+          description: A paginated JSON object of the referee's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Referee with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/matches/odds/{day}/{month}/{year}:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get sport odds by date
+      description: Fetches pre-match betting odds for all football matches on a specific calendar date.
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15).
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7).
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024).
+      responses:
+        '200':
+          description: A JSON object containing odds for matches on the specified date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/matches/odds/featured:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get featured betting events
+      description: Returns a curated list of highlighted football matches with their betting odds information.
+      responses:
+        '200':
+          description: A JSON object containing a list of featured events with odds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/category/{categoryId}/matches/{day}/{month}/{year}:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get category scheduled events
+      description: Lists all football matches for a given category occurring on a specific date (YYYY-MM-DD).
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the category.
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15).
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7).
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year in four-digit format (e.g., 2024).
+      responses:
+        '200':
+          description: A JSON object containing a list of scheduled events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/player/jersey/away:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get away player jersey
+      description: Fetches the away jersey graphic for a player in a specific match. The response is the raw image data.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the match.
+      responses:
+        '200':
+          description: The away player jersey image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Match or jersey not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/goalkeeper/jersey/away:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get away goalkeeper jersey
+      description: Fetches the away jersey graphic for a goalkeeper in a specific match. The response is the raw image data.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the match.
+      responses:
+        '200':
+          description: The away goalkeeper jersey image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Match or jersey not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/player/jersey/home:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get home player jersey
+      description: Fetches the home jersey graphic for a player in a specific match. The response is the raw image data.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the match.
+      responses:
+        '200':
+          description: The home player jersey image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Match or jersey not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/goalkeeper/jersey/home:
+    get:
+      tags:
+        - Football
+        - Matches
+      summary: Get home goalkeeper jersey
+      description: Fetches the home jersey graphic for a goalkeeper in a specific match. The response is the raw image data.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the match.
+      responses:
+        '200':
+          description: The home goalkeeper jersey image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Match or jersey not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            title:
+              type: string
+              description: A short, human-readable summary of the problem type.
+            request_id:
+              type: string
+              description: A unique identifier for the request, useful for debugging.
+    JSONResult:
+      type: object
+      description: A generic JSON object response.
+      properties: {}
+      additionalProperties: true

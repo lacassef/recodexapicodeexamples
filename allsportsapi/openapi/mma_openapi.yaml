@@ -1,0 +1,1277 @@
+openapi: 3.0.0
+info:
+  title: MMA API
+  version: 1.0.0
+  description: This is the OpenAPI specification for the MMA API.
+paths:
+  /api/tv/country/all/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV countries
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object listing countries and their broadcasting channels.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tv/channel/{channId}/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV channel votes
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      parameters:
+        - name: channId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the TV channel.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing viewer vote data from the channel.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or channel with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/img/flag/{flag}:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      parameters:
+        - name: flag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/country/{code}/flag:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag (img API)
+      description: Fetches the flag image by country code. The response is the raw image data.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.png:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.svg:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/team.svg:
+    get:
+      tags:
+        - AllSports
+        - Teams
+      summary: Get team placeholder image
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.png:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.svg:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.png:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.svg:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-male.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get male fighter placeholder image
+      description: Retrieves a placeholder image for a male fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-female.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get female fighter placeholder image
+      description: Retrieves a placeholder image for a female fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/search/{term}:
+    get:
+      tags:
+        - MMA
+        - Search
+      summary: Search MMA entities
+      description: Searches for MMA fighters, events, and tournaments.
+      parameters:
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Search term (e.g., 'UFC')
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: A list of search results for fighters, events, and tournaments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/categories:
+    get:
+      tags:
+        - MMA
+        - Categories
+      summary: Get MMA categories
+      description: Retrieves a list of all available MMA categories, which typically correspond to different organizations (e.g., UFC, KSW).
+      responses:
+        '200':
+          description: A list of MMA categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/category/{id}/unique-tournaments:
+    get:
+      tags:
+        - MMA
+        - Categories
+        - Tournaments
+      summary: Get unique tournaments by category
+      description: Retrieves all unique MMA tournaments within a specific category (organization).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID
+      responses:
+        '200':
+          description: A list of unique tournaments for the specified category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/unique-tournament/{tournamentId}/main-events/last/{page}:
+    get:
+      tags:
+        - MMA
+        - Tournaments
+        - Events
+      summary: Get last main events for a tournament
+      description: Retrieves a paginated list of the last main events for a specific MMA tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: A paginated list of the tournament's last main events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/unique-tournament/{tournamentId}/main-events/next/{page}:
+    get:
+      tags:
+        - MMA
+        - Tournaments
+        - Events
+      summary: Get next main events for a tournament
+      description: Retrieves a paginated list of the next main events for a specific MMA tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: A paginated list of the tournament's upcoming main events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/unique-tournament/{tournamentId}:
+    get:
+      tags:
+        - MMA
+        - Tournaments
+      summary: Get MMA tournament details
+      description: Retrieves detailed information for a specific MMA tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: Detailed information about the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/rankings/unique-tournament/{tournamentId}/summary:
+    get:
+      tags:
+        - MMA
+        - Tournaments
+        - Rankings
+      summary: Get MMA rankings summary for a tournament
+      description: Retrieves a summary of rankings for a specific MMA tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: A summary of rankings for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/unique-tournament/{tournamentId}/schedules/{day}/{month}/{year}:
+    get:
+      tags:
+        - MMA
+        - Tournaments
+        - Events
+      summary: Get MMA tournament schedule by date
+      description: Retrieves the schedule of events for a specific MMA tournament on a given date.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+      responses:
+        '200':
+          description: A list of scheduled events for the tournament on the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/unique-tournament/{tournamentId}/schedules/{month}/{year}:
+    get:
+      tags:
+        - MMA
+        - Tournaments
+        - Events
+      summary: Get MMA scheduled main events by month
+      description: Retrieves the main events scheduled for a specific MMA tournament in a given month and year.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+      responses:
+        '200':
+          description: A list of scheduled main events for the tournament in the given month.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid month or year format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/unique-tournament/{uniqueTournamentId}/tournament/{tournamentId}/mma-events/all:
+    get:
+      tags:
+        - MMA
+        - Tournaments
+        - Events
+      summary: Get all MMA events for a tournament
+      description: Retrieves all MMA events associated with a specific tournament and unique tournament ID.
+      parameters:
+        - name: uniqueTournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique Tournament ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: A list of all MMA events for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/unique-tournament/{tournamentId}/featured-events:
+    get:
+      tags:
+        - MMA
+        - Tournaments
+        - Events
+      summary: Get featured MMA events for a tournament
+      description: Retrieves a list of featured MMA events for a specific tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: A list of featured MMA events for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/unique-tournament/{tournamentId}/image:
+    get:
+      tags:
+        - MMA
+        - Tournaments
+        - Media
+      summary: Get MMA tournament image
+      description: Retrieves the logo image for a specific MMA tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: The tournament's logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/unique-tournament/{tournamentId}/image/dark:
+    get:
+      tags:
+        - MMA
+        - Tournaments
+        - Media
+      summary: Get MMA tournament dark-theme image
+      description: Retrieves the dark-theme logo image for a specific MMA tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: The tournament's dark-theme logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/event/{id}:
+    get:
+      tags:
+        - MMA
+        - Events
+      summary: Get MMA event details by ID
+      description: Retrieves detailed information for a specific MMA event by its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+      responses:
+        '200':
+          description: Detailed information about the event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/event/{id}/pregame-form:
+    get:
+      tags:
+        - MMA
+        - Events
+      summary: Get pre-game form for an MMA event
+      description: Retrieves pre-game form and recent performance data for the fighters in a specific event.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+      responses:
+        '200':
+          description: Pre-game form and performance trends for the fighters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/event/{customId}/h2h/events:
+    get:
+      tags:
+        - MMA
+        - Events
+        - Statistics
+      summary: Get head-to-head history for an MMA event
+      description: Retrieves the detailed match history for head-to-head encounters between the two fighters in an event.
+      parameters:
+        - name: customId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: A custom identifier for the event, used for H2H lookups.
+      responses:
+        '200':
+          description: A detailed list of past H2H matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event with the specified custom ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/event/{id}/team-streaks:
+    get:
+      tags:
+        - MMA
+        - Events
+        - Statistics
+      summary: Get fighter streaks for an event
+      description: Provides recent form and streak information for each fighter in an event.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+      responses:
+        '200':
+          description: Streak information for both fighters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/event/{id}/statistics:
+    get:
+      tags:
+        - MMA
+        - Events
+        - Statistics
+      summary: Get MMA event statistics
+      description: Retrieves comprehensive statistics for a specific MMA event.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+      responses:
+        '200':
+          description: Comprehensive statistics for the event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/team/{id}:
+    get:
+      tags:
+        - MMA
+        - Fighters
+      summary: Get MMA fighter details
+      description: Retrieves comprehensive details for a specific MMA fighter.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Fighter (Team) ID
+      responses:
+        '200':
+          description: Comprehensive details for the fighter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Fighter with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/team/{id}/career-statistics:
+    get:
+      tags:
+        - MMA
+        - Fighters
+        - Statistics
+      summary: Get MMA fighter career statistics
+      description: Retrieves the career statistics for a specific MMA fighter.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Fighter (Team) ID
+      responses:
+        '200':
+          description: Career statistics for the fighter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Fighter with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/team/{id}/events/last/{page}:
+    get:
+      tags:
+        - MMA
+        - Fighters
+        - Events
+      summary: Get last events for an MMA fighter
+      description: Retrieves a paginated list of the last events for a specific MMA fighter.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Fighter (Team) ID
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: A paginated list of the fighter's last events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Fighter with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/team/{id}/events/next/{page}:
+    get:
+      tags:
+        - MMA
+        - Fighters
+        - Events
+      summary: Get next events for an MMA fighter
+      description: Retrieves a paginated list of the next events for a specific MMA fighter.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Fighter (Team) ID
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: A paginated list of the fighter's upcoming events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Fighter with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/team/{id}/image:
+    get:
+      tags:
+        - MMA
+        - Fighters
+        - Media
+      summary: Get MMA fighter image
+      description: Retrieves the image for a specific MMA fighter.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Fighter (Team) ID
+      responses:
+        '200':
+          description: The fighter's image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Fighter or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/tournament/{tournamentId}:
+    get:
+      tags:
+        - MMA
+        - Tournaments
+      summary: Get MMA tournament details by ID
+      description: Retrieves detailed information for a specific MMA tournament by its ID.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: Detailed information about the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/octogon.png:
+    get:
+      tags:
+        - MMA
+        - Media
+      summary: Get MMA octagon image
+      description: Retrieves the image of the MMA octagon.
+      responses:
+        '200':
+          description: The MMA octagon image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            title:
+              type: string
+              description: A short, human-readable summary of the problem type.
+            request_id:
+              type: string
+              description: A unique identifier for the request, useful for debugging.
+    JSONResult:
+      type: object
+      description: A generic JSON object response.
+      properties: {}
+      additionalProperties: true

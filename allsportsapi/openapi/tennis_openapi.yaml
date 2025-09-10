@@ -1,0 +1,2358 @@
+openapi: 3.0.0
+info:
+  title: Tennis API
+  description: OpenAPI specification for the Tennis API.
+  version: 1.0.0
+paths:
+  /api/tv/country/all/event/{id}:
+    get:
+      summary: Get match TV countries
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      tags:
+        - AllSports
+        - TV
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object listing countries and their broadcasting channels.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tv/channel/{channId}/event/{id}:
+    get:
+      summary: Get match TV channel votes
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      tags:
+        - AllSports
+        - TV
+      parameters:
+        - name: channId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the TV channel.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing viewer vote data from the channel.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or channel with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/img/flag/{flag}:
+    get:
+      summary: Get country flag
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      tags:
+        - AllSports
+      parameters:
+        - name: flag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/country/{code}/flag:
+    get:
+      summary: Get country flag (img API)
+      description: Fetches the flag image by country code. The response is the raw image data.
+      tags:
+        - AllSports
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/tournament.png:
+    get:
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      tags:
+        - AllSports
+        - Tournaments
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/tournament.svg:
+    get:
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      tags:
+        - AllSports
+        - Tournaments
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/team.svg:
+    get:
+      summary: Get team placeholder image
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      tags:
+        - AllSports
+        - Teams
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/player.png:
+    get:
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      tags:
+        - AllSports
+        - Players
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/player.svg:
+    get:
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      tags:
+        - AllSports
+        - Players
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/manager.png:
+    get:
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      tags:
+        - AllSports
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholder/manager.svg:
+    get:
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      tags:
+        - AllSports
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholders/fighter-male.svg:
+    get:
+      summary: Get male fighter placeholder image
+      description: Retrieves a placeholder image for a male fighter.
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/placeholders/fighter-female.svg:
+    get:
+      summary: Get female fighter placeholder image
+      description: Retrieves a placeholder image for a female fighter.
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/search/{term}:
+    get:
+      summary: Search tennis players and tournaments
+      description: Searches for tennis players and tournaments based on a search term.
+      tags:
+        - Tennis
+        - Search
+      parameters:
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Search term (e.g., 'Nadal')
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: A list of search results for players and tournaments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/events/{day}/{month}/{year}:
+    get:
+      summary: Get tennis events by date
+      description: Fetches all tennis matches scheduled for a specific date.
+      tags:
+        - Tennis
+        - Matches
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15)
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: A list of scheduled tennis matches for the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/calendar/{month}/{year}:
+    get:
+      summary: Get tennis calendar for month
+      description: Retrieves a calendar overview of unique tennis tournaments for a specific month.
+      tags:
+        - Tennis
+        - Calendar
+      parameters:
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: A list of unique tournaments scheduled for the specified month.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid month or year format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/events/odds/{day}/{month}/{year}:
+    get:
+      summary: Get tennis events with odds by date
+      description: Retrieves tennis events along with their betting odds for a specific date from bookmaker `1`.
+      tags:
+        - Tennis
+        - Matches
+        - Odds
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15)
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: A list of tennis events with associated betting odds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/category/{id}/events/{day}/{month}/{year}:
+    get:
+      summary: Get tennis events by category and date
+      description: Retrieves all tennis matches for a specific category (e.g., ATP, WTA, Challenger) on a given date.
+      tags:
+        - Tennis
+        - Categories
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID (e.g., 1 for ATP)
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15)
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: A list of scheduled matches for the specified category and date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date or category ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/calendar/{day}/{month}/{year}/categories:
+    get:
+      summary: Get daily tennis categories
+      description: Retrieves a list of tennis categories that have scheduled events on a specific date.
+      tags:
+        - Tennis
+        - Categories
+        - Calendar
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15)
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: A list of categories with scheduled events for the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/events/live:
+    get:
+      summary: Get live tennis matches
+      description: Retrieves all currently live tennis matches.
+      tags:
+        - Tennis
+        - Matches
+      responses:
+        '200':
+          description: A list of live tennis matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{id}:
+    get:
+      summary: Get tennis match details
+      description: Retrieves detailed information for a specific tennis match, including players, score, status, and tournament info.
+      tags:
+        - Tennis
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: Detailed information about the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{id}/statistics:
+    get:
+      summary: Get match statistics
+      description: Retrieves comprehensive statistical data for a tennis match, such as serve stats, break points, etc.
+      tags:
+        - Tennis
+        - Matches
+        - Statistics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: Comprehensive statistics for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{customId}/h2h:
+    get:
+      summary: Get head-to-head history
+      description: Retrieves the detailed match history for head-to-head encounters between two players/teams.
+      tags:
+        - Tennis
+        - Matches
+        - Statistics
+      parameters:
+        - name: customId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: A custom identifier for the match, used for H2H lookups.
+      responses:
+        '200':
+          description: A detailed list of past H2H matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified custom ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{id}/duel:
+    get:
+      summary: Get head-to-head summary
+      description: Retrieves a summary of head-to-head statistics, including win counts and recent form.
+      tags:
+        - Tennis
+        - Matches
+        - Statistics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A summary of H2H statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{id}/odds:
+    get:
+      summary: Get match betting odds
+      description: Retrieves available betting odds from bookmaker `1` for a specific match.
+      tags:
+        - Tennis
+        - Matches
+        - Odds
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A list of available betting odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{id}/graph:
+    get:
+      summary: Get match power graph
+      description: Retrieves the tennis power graph, showing momentum and key service statistics for the match.
+      tags:
+        - Tennis
+        - Matches
+        - Statistics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: Data points for the tennis power graph.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{id}/point-by-point:
+    get:
+      summary: Get point-by-point data
+      description: Retrieves a detailed, chronological list of points and games for a tennis match.
+      tags:
+        - Tennis
+        - Matches
+        - Statistics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A chronological list of points and games.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{id}/streak:
+    get:
+      summary: Get match streaks
+      description: Provides recent form and streak information for each player/team in the match.
+      tags:
+        - Tennis
+        - Matches
+        - Statistics
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: Streak information for both players/teams.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{id}/highlights:
+    get:
+      summary: Get match highlights
+      description: Retrieves video highlights and key moments from a specific match, if available.
+      tags:
+        - Tennis
+        - Matches
+        - Media
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: A list of video highlights for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{id}/votes:
+    get:
+      summary: Get match votes
+      description: Returns fan poll percentages and vote totals for the match outcome.
+      tags:
+        - Tennis
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+      responses:
+        '200':
+          description: Vote counts and percentages for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/player/{id}:
+    get:
+      summary: Get tennis player details
+      description: Retrieves comprehensive details for a specific tennis player, including personal info and rankings.
+      tags:
+        - Tennis
+        - Players
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player (team ID in upstream).
+      responses:
+        '200':
+          description: Comprehensive details for the player.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/player/{id}/image:
+    get:
+      summary: Get player image
+      description: Retrieves the profile image for a specific player.
+      tags:
+        - Tennis
+        - Players
+        - Media
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player (team ID in upstream).
+      responses:
+        '200':
+          description: The player's profile image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Player or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/player/{id}/events/previous/{page}:
+    get:
+      summary: Get previous player matches
+      description: Fetches a paginated list of completed matches for a player, sorted by date descending.
+      tags:
+        - Tennis
+        - Players
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player (team ID in upstream).
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the player's previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number or ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/player/{id}/events/next/{page}:
+    get:
+      summary: Get upcoming player matches
+      description: Fetches a paginated list of scheduled matches for a player, sorted by date ascending.
+      tags:
+        - Tennis
+        - Players
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player (team ID in upstream).
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the player's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number or ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/player/{id}/standings/seasons:
+    get:
+      summary: Get player standings seasons
+      description: Retrieves a list of seasons for which a player's standings/rankings are available.
+      tags:
+        - Tennis
+        - Players
+        - Standings
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player (team ID in upstream).
+      responses:
+        '200':
+          description: A list of seasons with available standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/player/{id}/tournaments/last:
+    get:
+      summary: Get player recent tournaments
+      description: Retrieves a list of recent unique tournaments a player has participated in.
+      tags:
+        - Tennis
+        - Players
+        - Tournaments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player (team ID in upstream).
+      responses:
+        '200':
+          description: A list of recent unique tournaments for the player.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/player/{id}/rankings:
+    get:
+      summary: Get player rankings
+      description: Retrieves current and historical ranking information for a specific player.
+      tags:
+        - Tennis
+        - Players
+        - Rankings
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player (team ID in upstream).
+      responses:
+        '200':
+          description: Ranking information for the player.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/player/{id}/events/near:
+    get:
+      summary: Get player near matches
+      description: Retrieves a list of recent and upcoming matches for a specific player.
+      tags:
+        - Tennis
+        - Players
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player (team ID in upstream).
+      responses:
+        '200':
+          description: A list of the player's recent and upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/team/{id}/events/previous/{page}:
+    get:
+      summary: Get previous team matches
+      description: Fetches a paginated list of completed matches for a doubles team, sorted by date descending.
+      tags:
+        - Tennis
+        - Teams
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the team's previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number or ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/team/{id}/events/next/{page}:
+    get:
+      summary: Get upcoming team matches
+      description: Fetches a paginated list of scheduled matches for a doubles team, sorted by date ascending.
+      tags:
+        - Tennis
+        - Teams
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the team's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number or ID format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/team/{id}/standings/seasons:
+    get:
+      summary: Get team standings seasons
+      description: Retrieves a list of seasons for which a doubles team's standings are available.
+      tags:
+        - Tennis
+        - Teams
+        - Standings
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: A list of seasons with available standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/team/{id}/tournaments/last:
+    get:
+      summary: Get team recent tournaments
+      description: Retrieves a list of recent unique tournaments a doubles team has participated in.
+      tags:
+        - Tennis
+        - Teams
+        - Tournaments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: A list of recent unique tournaments for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/team/{id}:
+    get:
+      summary: Get tennis team details
+      description: Retrieves comprehensive details for a specific tennis doubles team.
+      tags:
+        - Tennis
+        - Teams
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: Comprehensive details for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/team/{id}/rankings:
+    get:
+      summary: Get team rankings
+      description: Retrieves current and historical ranking information for a doubles team.
+      tags:
+        - Tennis
+        - Teams
+        - Rankings
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: Ranking information for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/team/{id}/image:
+    get:
+      summary: Get team image
+      description: Retrieves the profile image for a specific doubles team.
+      tags:
+        - Tennis
+        - Teams
+        - Media
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: The team's profile image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Team or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/team/{id}/events/near:
+    get:
+      summary: Get team near matches
+      description: Retrieves a list of recent and upcoming matches for a specific doubles team.
+      tags:
+        - Tennis
+        - Teams
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team.
+      responses:
+        '200':
+          description: A list of the team's recent and upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}:
+    get:
+      summary: Get tournament details
+      description: Retrieves comprehensive details for a specific tennis tournament.
+      tags:
+        - Tennis
+        - Tournaments
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: Comprehensive details for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/info:
+    get:
+      summary: Get tournament info/metadata
+      description: Retrieves metadata for a specific tournament, such as SEO tags and related info.
+      tags:
+        - Tennis
+        - Tournaments
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: Metadata for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/image:
+    get:
+      summary: Get tournament logo
+      description: Retrieves the logo image for a specific tournament.
+      tags:
+        - Tennis
+        - Tournaments
+        - Media
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: The tournament's logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/image/dark:
+    get:
+      summary: Get tournament dark logo
+      description: Retrieves the dark theme logo image for a specific tournament.
+      tags:
+        - Tennis
+        - Tournaments
+        - Media
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: The tournament's dark theme logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/media:
+    get:
+      summary: Get tournament media
+      description: Retrieves media content (e.g., videos, images) for a specific tournament.
+      tags:
+        - Tennis
+        - Tournaments
+        - Media
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: A list of media content for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/seasons:
+    get:
+      summary: Get tournament seasons
+      description: Retrieves a list of all available seasons for a specific tournament.
+      tags:
+        - Tennis
+        - Tournaments
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+      responses:
+        '200':
+          description: A list of available seasons for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/season/{seasonId}/info:
+    get:
+      summary: Get tournament season info
+      description: Retrieves information about a specific tournament season, such as start and end dates.
+      tags:
+        - Tennis
+        - Tournaments
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: Information about the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/season/{seasonId}/standings/total:
+    get:
+      summary: Get tournament standings
+      description: Retrieves the standings/rankings for a specific tournament season.
+      tags:
+        - Tennis
+        - Tournaments
+        - Standings
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: Standings for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/season/{seasonId}/events/last/{page}:
+    get:
+      summary: Get tournament last matches
+      description: Retrieves a paginated list of recently played matches in a specific tournament season.
+      tags:
+        - Tennis
+        - Tournaments
+        - Matches
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the tournament's last matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/season/{seasonId}/events/next/{page}:
+    get:
+      summary: Get tournament upcoming matches
+      description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
+      tags:
+        - Tennis
+        - Tournaments
+        - Matches
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 1).
+      responses:
+        '200':
+          description: A paginated list of the tournament's upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/season/{seasonId}/events/round/{round}/slug/{slug}:
+    get:
+      summary: Get tournament matches by round
+      description: Retrieves matches for a specific round in a tournament, identified by a slug.
+      tags:
+        - Tennis
+        - Tournaments
+        - Matches
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+        - name: round
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Round number.
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The slug for the tournament round.
+      responses:
+        '200':
+          description: A list of matches for the specified round.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament, season, or round not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/season/{seasonId}/rounds:
+    get:
+      summary: Get tournament rounds
+      description: Retrieves a list of all rounds for a specific tournament season.
+      tags:
+        - Tennis
+        - Tournaments
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A list of rounds for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/season/{seasonId}/cup-trees:
+    get:
+      summary: Get tournament draw/bracket
+      description: Retrieves the tournament's draw structure (bracket) in a structured format.
+      tags:
+        - Tennis
+        - Tournaments
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: The structured tournament draw.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/season/{seasonId}/cup-trees/old:
+    get:
+      summary: Get tournament draw (legacy format)
+      description: Retrieves the tournament's draw structure in a legacy format.
+      tags:
+        - Tennis
+        - Tournaments
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season.
+      responses:
+        '200':
+          description: The legacy format tournament draw.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
+    get:
+      summary: Get tournament matches by date
+      description: Retrieves all matches for a specific tournament scheduled on a given date.
+      tags:
+        - Tennis
+        - Tournaments
+        - Matches
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament.
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (e.g., 15).
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7).
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024).
+      responses:
+        '200':
+          description: A list of scheduled matches for the tournament on the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tournament with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/categories:
+    get:
+      summary: Get tennis tournament categories
+      description: Retrieves all available tennis tournament categories (e.g., ATP, WTA, Challenger).
+      tags:
+        - Tennis
+        - Categories
+      responses:
+        '200':
+          description: A list of tennis tournament categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/all/category/{id}:
+    get:
+      summary: Get tournaments by category
+      description: Retrieves all unique tournaments within a specific tennis category.
+      tags:
+        - Tennis
+        - Categories
+        - Tournaments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID.
+      responses:
+        '200':
+          description: A list of unique tournaments for the specified category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Category with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/calendar/{month}/{year}/categories:
+    get:
+      summary: Get monthly categories with events
+      description: Retrieves a list of categories that have scheduled events for up to five specified days in a given month.
+      tags:
+        - Tennis
+        - Categories
+        - Calendar
+      parameters:
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year (e.g., 7).
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024).
+        - name: days
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Comma-separated list of day numbers (e.g., '15,16,17'). Max 5 days.
+      responses:
+        '200':
+          description: A map where keys are dates and values are the category data for that date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid month, year, or days format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/rankings/atp:
+    get:
+      summary: Get ATP rankings
+      description: Retrieves the current official ATP (Association of Tennis Professionals) singles rankings.
+      tags:
+        - Tennis
+        - Rankings
+      responses:
+        '200':
+          description: The current ATP singles ranking table.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/rankings/atp/live:
+    get:
+      summary: Get live ATP rankings
+      description: Retrieves the live/race ATP rankings, updated in real-time with current tournament points.
+      tags:
+        - Tennis
+        - Rankings
+      responses:
+        '200':
+          description: The live ATP singles ranking table.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/rankings/wta:
+    get:
+      summary: Get WTA rankings
+      description: Retrieves the current official WTA (Women's Tennis Association) singles rankings.
+      tags:
+        - Tennis
+        - Rankings
+      responses:
+        '200':
+          description: The current WTA singles ranking table.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/rankings/wta/live:
+    get:
+      summary: Get live WTA rankings
+      description: Retrieves the live/race WTA rankings, updated in real-time with current tournament points.
+      tags:
+        - Tennis
+        - Rankings
+      responses:
+        '200':
+          description: The live WTA singles ranking table.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    JSONResult:
+      type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string

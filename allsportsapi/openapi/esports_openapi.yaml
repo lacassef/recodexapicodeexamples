@@ -1,0 +1,1728 @@
+openapi: 3.0.0
+info:
+  title: Esports API
+  version: 1.0.0
+  description: This is the OpenAPI specification for the Esports API.
+paths:
+  /api/tv/country/all/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV countries
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object listing countries and their broadcasting channels.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tv/channel/{channId}/event/{id}:
+    get:
+      tags:
+        - AllSports
+        - TV
+      summary: Get match TV channel votes
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      parameters:
+        - name: channId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the TV channel.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing viewer vote data from the channel.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or channel with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/img/flag/{flag}:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      parameters:
+        - name: flag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/country/{code}/flag:
+    get:
+      tags:
+        - AllSports
+      summary: Get country flag (img API)
+      description: Fetches the flag image by country code. The response is the raw image data.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.png:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.svg:
+    get:
+      tags:
+        - AllSports
+        - Tournaments
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/team.svg:
+    get:
+      tags:
+        - AllSports
+        - Teams
+      summary: Get team placeholder image
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.png:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.svg:
+    get:
+      tags:
+        - AllSports
+        - Players
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.png:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.svg:
+    get:
+      tags:
+        - AllSports
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-male.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get male fighter placeholder image
+      description: Retrieves a placeholder image for a male fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-female.svg:
+    get:
+      tags:
+        - AllSports
+        - Placeholders
+        - Media
+      summary: Get female fighter placeholder image
+      description: Retrieves a placeholder image for a female fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/search/{term}:
+    get:
+      tags:
+        - Esports
+        - Search
+      summary: Search eSports entities
+      description: Searches for eSports teams, players, events, and tournaments.
+      parameters:
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Search term (minimum 2 characters)
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: Successfully retrieved search results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid search term or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/matches/{day}/{month}/{year}:
+    get:
+      tags:
+        - Esports
+        - Matches
+      summary: Get eSports matches by date
+      description: Fetches all eSports matches scheduled for a specific date.
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (1-31)
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month (1-12)
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year (e.g., 2024)
+      responses:
+        '200':
+          description: Successfully retrieved matches for the specified date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/category/{id}/events/{day}/{month}/{year}:
+    get:
+      tags:
+        - Esports
+        - Matches
+        - Categories
+      summary: Get eSports events by category and date
+      description: Fetches all eSports events for a specific category on a given date.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+      responses:
+        '200':
+          description: Successfully retrieved events for the category and date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date or category parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/categories:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+        - Categories
+      summary: Get eSports tournament categories
+      description: Retrieves all available eSports tournament categories.
+      responses:
+        '200':
+          description: Successfully retrieved tournament categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/all/category/{id}:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+        - Categories
+      summary: Get all eSports tournaments for a category
+      description: Retrieves all unique tournaments within a specific eSports category.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID
+      responses:
+        '200':
+          description: Successfully retrieved tournaments for the category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Category not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/matches/live:
+    get:
+      tags:
+        - Esports
+        - Matches
+      summary: Get live eSports matches
+      description: Retrieves all currently live eSports matches.
+      responses:
+        '200':
+          description: Successfully retrieved live matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/event/{id}:
+    get:
+      tags:
+        - Esports
+        - Events
+      summary: Get eSports event details
+      description: Retrieves detailed information for a specific eSports event by its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+      responses:
+        '200':
+          description: Successfully retrieved event details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/event/{customId}/h2h:
+    get:
+      tags:
+        - Esports
+        - Events
+        - Statistics
+      summary: Get eSports H2H events
+      description: Retrieves head-to-head match history between two teams, identified by a custom event ID.
+      parameters:
+        - name: customId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Custom event ID for H2H lookup
+      responses:
+        '200':
+          description: Successfully retrieved H2H event history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: H2H data not found for the given custom ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/event/{id}/lineups:
+    get:
+      tags:
+        - Esports
+        - Events
+        - Players
+      summary: Get eSports event lineups
+      description: Retrieves player lineups for a specific eSports event.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+      responses:
+        '200':
+          description: Successfully retrieved event lineups.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/event/{id}/games:
+    get:
+      tags:
+        - Esports
+        - Events
+        - Games
+      summary: Get eSports event games
+      description: Retrieves the list of games (maps) played within a single eSports event.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+      responses:
+        '200':
+          description: Successfully retrieved the list of games for the event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/event/{id}/highlights:
+    get:
+      tags:
+        - Esports
+        - Events
+        - Media
+      summary: Get eSports event highlights
+      description: Retrieves video highlights for a specific eSports event, if available.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+      responses:
+        '200':
+          description: Successfully retrieved event highlights.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event or highlights not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/event/{id}/duel:
+    get:
+      tags:
+        - Esports
+        - Events
+        - Statistics
+      summary: Get eSports event H2H summary
+      description: Retrieves a summary of head-to-head statistics between the two teams in an event.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+      responses:
+        '200':
+          description: Successfully retrieved H2H summary.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/event/{id}/votes:
+    get:
+      tags:
+        - Esports
+        - Events
+      summary: Get eSports event votes
+      description: Retrieves fan voting results for a specific eSports event.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+      responses:
+        '200':
+          description: Successfully retrieved event votes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/event/{id}/streaks:
+    get:
+      tags:
+        - Esports
+        - Events
+        - Statistics
+      summary: Get eSports event streaks
+      description: Retrieves team streaks (e.g., winning/losing streaks) for a specific eSports event.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+      responses:
+        '200':
+          description: Successfully retrieved team streaks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/game/{id}/lineups:
+    get:
+      tags:
+        - Esports
+        - Games
+        - Players
+      summary: Get eSports game lineups
+      description: Retrieves player lineups for a specific game (map) within an eSports event.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Game ID
+      responses:
+        '200':
+          description: Successfully retrieved game lineups.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Game not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/game/{id}/rounds:
+    get:
+      tags:
+        - Esports
+        - Games
+      summary: Get eSports game rounds
+      description: Retrieves round-by-round results for a specific game (map).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Game ID
+      responses:
+        '200':
+          description: Successfully retrieved game rounds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Game not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/game/{id}/bans:
+    get:
+      tags:
+        - Esports
+        - Games
+      summary: Get eSports game bans
+      description: Retrieves character/map bans for a specific game.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Game ID
+      responses:
+        '200':
+          description: Successfully retrieved game bans.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Game not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/game/{id}/statistics:
+    get:
+      tags:
+        - Esports
+        - Games
+        - Statistics
+      summary: Get eSports game statistics
+      description: Retrieves detailed statistics for a specific game (map).
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Game ID
+      responses:
+        '200':
+          description: Successfully retrieved game statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Game not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/team/{id}/matches/previous/{page}:
+    get:
+      tags:
+        - Esports
+        - Teams
+        - Matches
+      summary: Get previous eSports matches for a team
+      description: Retrieves a paginated list of a team's past eSports matches.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: Successfully retrieved previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number or team ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/team/{id}/matches/next/{page}:
+    get:
+      tags:
+        - Esports
+        - Teams
+        - Matches
+      summary: Get next eSports matches for a team
+      description: Retrieves a paginated list of a team's upcoming eSports matches.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: Successfully retrieved upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number or team ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/team/{id}:
+    get:
+      tags:
+        - Esports
+        - Teams
+      summary: Get eSports team details
+      description: Retrieves detailed information for a specific eSports team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+      responses:
+        '200':
+          description: Successfully retrieved team details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/team/{id}/media:
+    get:
+      tags:
+        - Esports
+        - Teams
+        - Media
+      summary: Get eSports team media
+      description: Retrieves media (images, videos) associated with an eSports team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+      responses:
+        '200':
+          description: Successfully retrieved team media.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/team/{id}/matches/near:
+    get:
+      tags:
+        - Esports
+        - Teams
+        - Matches
+      summary: Get near eSports matches for a team
+      description: Retrieves a list of recent and upcoming matches for an eSports team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+      responses:
+        '200':
+          description: Successfully retrieved near matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/team/{id}/image:
+    get:
+      tags:
+        - Esports
+        - Teams
+        - Media
+      summary: Get eSports team image
+      description: Retrieves the logo image for a specific eSports team.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+      responses:
+        '200':
+          description: Successfully retrieved team image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Team or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/player/{id}:
+    get:
+      tags:
+        - Esports
+        - Players
+      summary: Get eSports player details
+      description: Retrieves detailed information for a specific eSports player.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Player ID
+      responses:
+        '200':
+          description: Successfully retrieved player details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/player/{id}/image:
+    get:
+      tags:
+        - Esports
+        - Players
+        - Media
+      summary: Get eSports player image
+      description: Retrieves the profile image for a specific eSports player.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Player ID
+      responses:
+        '200':
+          description: Successfully retrieved player image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Player or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/{tournamentId}/season/{seasonId}/standings/total:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+        - Standings
+      summary: Get total standings for eSports tournament season
+      description: Retrieves the complete standings for a specific eSports tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+      responses:
+        '200':
+          description: Successfully retrieved tournament standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/{tournamentId}/season/{seasonId}/info:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+      summary: Get eSports tournament season info
+      description: Retrieves metadata and information about a specific eSports tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+      responses:
+        '200':
+          description: Successfully retrieved tournament season information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+        - Matches
+      summary: Get last matches for eSports tournament season
+      description: Retrieves a paginated list of past matches for a specific eSports tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: Successfully retrieved last matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament or season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+        - Matches
+      summary: Get next matches for eSports tournament season
+      description: Retrieves a paginated list of upcoming matches for a specific eSports tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: Successfully retrieved next matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page number.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Tournament or season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/{tournamentId}:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+      summary: Get eSports tournament details
+      description: Retrieves detailed information for a specific eSports tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: Successfully retrieved tournament details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/{tournamentId}/image:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+        - Media
+      summary: Get eSports tournament image
+      description: Retrieves the logo image for a specific eSports tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: Successfully retrieved tournament image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/{tournamentId}/image/dark:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+        - Media
+      summary: Get eSports tournament dark image
+      description: Retrieves the dark-theme logo image for a specific eSports tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: Successfully retrieved tournament dark image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Tournament or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/{tournamentId}/media:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+        - Media
+      summary: Get eSports tournament media
+      description: Retrieves media (images, videos) associated with an eSports tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: Successfully retrieved tournament media.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/{tournamentId}/seasons:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+        - Seasons
+      summary: Get eSports tournament seasons
+      description: Retrieves a list of available seasons for a specific eSports tournament.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+      responses:
+        '200':
+          description: Successfully retrieved tournament seasons.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/tournament/{tournamentId}/season/{seasonId}/team-events/total:
+    get:
+      tags:
+        - Esports
+        - Tournaments
+        - Statistics
+      summary: Get total team events for eSports tournament season
+      description: Retrieves aggregated team statistics for an entire eSports tournament season.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+      responses:
+        '200':
+          description: Successfully retrieved total team events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/character/{tournamentId}/image:
+    get:
+      tags:
+        - Esports
+        - Assets
+      summary: Get eSports character image
+      description: Retrieves the image for a specific in-game character.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Character ID
+      responses:
+        '200':
+          description: Successfully retrieved character image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Character or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/esport/map/{tournamentId}/image:
+    get:
+      tags:
+        - Esports
+        - Assets
+      summary: Get eSports map image
+      description: Retrieves the image for a specific in-game map.
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Map ID
+      responses:
+        '200':
+          description: Successfully retrieved map image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Map or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            title:
+              type: string
+              description: A short, human-readable summary of the problem type.
+            request_id:
+              type: string
+              description: A unique identifier for the request, useful for debugging.
+    JSONResult:
+      type: object
+      description: A generic JSON object response.
+      properties: {}
+      additionalProperties: true
