@@ -2265,6 +2265,5 @@
     "pagination": "List endpoints typically support span (last/next/all) and page parameters",
     "types": "Type parameters in URLs often accept: total, home, away, overall",
     "authentication": "Some endpoints may require authentication tokens",
-    "versioning": "API uses /api/v1 prefix for all endpoints"
   }
 }
