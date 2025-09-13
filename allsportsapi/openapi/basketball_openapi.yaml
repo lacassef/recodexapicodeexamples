@@ -14,6 +14,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 10974920
           schema: { type: integer }
           description: The unique identifier for the match.
       responses:
@@ -41,11 +42,13 @@ paths:
         - name: channId
           in: path
           required: true
+          example: 3177
           schema: { type: integer }
           description: The unique identifier for the TV channel.
         - name: id
           in: path
           required: true
+          example: 10974920
           schema: { type: integer }
           description: The unique identifier for the match.
       responses:
@@ -75,6 +78,7 @@ paths:
         - name: flag
           in: path
           required: true
+          example: 'jp'
           schema: { type: string }
           description: Country code or identifier (e.g., 'EN' for England).
       responses:
@@ -281,6 +285,7 @@ paths:
         - name: term
           in: path
           required: true
+          example: 'kevin'
           schema: { type: string }
           description: Search term (e.g., 'Lakers').
         - name: page
@@ -306,9 +311,9 @@ paths:
       tags: [Basketball, Matches]
       summary: Get basketball matches by date
       parameters:
-        - { name: day, in: path, required: true, schema: { type: integer } }
-        - { name: month, in: path, required: true, schema: { type: integer } }
-        - { name: year, in: path, required: true, schema: { type: integer } }
+        - { name: day, in: path, required: true, schema: { type: integer }, example: 12}
+        - { name: month, in: path, required: true, schema: { type: integer }, example: 4}
+        - { name: year, in: path, required: true, schema: { type: integer }, example: 2022}
       responses:
         '200': { description: Scheduled basketball matches for the given date., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '400': { description: Invalid date format., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -327,7 +332,7 @@ paths:
       tags: [Basketball, Matches]
       summary: Get basketball match details
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
       responses:
         '200': { description: Detailed match info., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -337,7 +342,7 @@ paths:
       tags: [Basketball, Matches]
       summary: Get match form analysis
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
       responses:
         '200': { description: Pregame form and trends., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -347,7 +352,7 @@ paths:
       tags: [Basketball, Matches, Odds]
       summary: Get match betting odds
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10066244}
       responses:
         '200': { description: Odds for the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -357,7 +362,7 @@ paths:
       tags: [Basketball, Matches, Players]
       summary: Get match best players
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
       responses:
         '200': { description: Best performing players in the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -367,7 +372,7 @@ paths:
       tags: [Basketball, Matches, Statistics]
       summary: Get head-to-head summary
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10066290}
       responses:
         '200': { description: H2H summary for teams in the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -377,7 +382,7 @@ paths:
       tags: [Basketball, Matches, Media]
       summary: Get match highlights
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10066244}
       responses:
         '200': { description: Video highlights for the match (if available)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -387,7 +392,7 @@ paths:
       tags: [Basketball, Matches, Statistics]
       summary: Get head-to-head history
       parameters:
-        - { name: customId, in: path, required: true, schema: { type: string } }
+        - { name: customId, in: path, required: true, schema: { type: string }, example: 'HtbsLtb'}
       responses:
         '200': { description: Detailed H2H match history., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match with custom ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -397,7 +402,7 @@ paths:
       tags: [Basketball, Matches, Players]
       summary: Get match lineups
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
       responses:
         '200': { description: Starting lineups and substitutes., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -407,7 +412,7 @@ paths:
       tags: [Basketball, Matches, Statistics]
       summary: Get match statistics
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
       responses:
         '200': { description: Team and player statistics for the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -417,7 +422,7 @@ paths:
       tags: [Basketball, Matches, Statistics]
       summary: Get match momentum graph
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
       responses:
         '200': { description: Momentum graph datapoints., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -427,7 +432,7 @@ paths:
       tags: [Basketball, Matches]
       summary: Get match incidents
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
       responses:
         '200': { description: Chronological list of match incidents., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -437,7 +442,7 @@ paths:
       tags: [Basketball, Matches, Managers]
       summary: Get match managers/coaches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
       responses:
         '200': { description: Coaches information for both teams., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -447,7 +452,7 @@ paths:
       tags: [Basketball, Matches]
       summary: Get match series information
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 11213285}
       responses:
         '200': { description: Series score and status (if applicable)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -468,8 +473,8 @@ paths:
       tags: [Basketball, Matches, Teams, Statistics]
       summary: Get team shot map
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: teamId, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10600552}
+        - { name: teamId, in: path, required: true, schema: { type: integer }, example: 3427}
       responses:
         '200': { description: Shot map data for the team in the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match or team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -479,8 +484,8 @@ paths:
       tags: [Basketball, Matches, Players, Statistics]
       summary: Get player shot map
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: playerId, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 10600552}
+        - { name: playerId, in: path, required: true, schema: { type: integer }, example: 817181}
       responses:
         '200': { description: Shot map data for the player in the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Match or player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -492,8 +497,8 @@ paths:
       tags: [Basketball, Teams, Matches]
       summary: Get previous team matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: page, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
+        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
       responses:
         '200': { description: Paginated list of previous matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '400': { description: Invalid page or team ID., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -504,8 +509,8 @@ paths:
       tags: [Basketball, Teams, Matches]
       summary: Get upcoming team matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: page, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3540}
+        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
       responses:
         '200': { description: Paginated list of upcoming matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '400': { description: Invalid page or team ID., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -516,7 +521,7 @@ paths:
       tags: [Basketball, Teams, Statistics]
       summary: Get team player statistics seasons
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
       responses:
         '200': { description: Seasons with available player statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -526,7 +531,7 @@ paths:
       tags: [Basketball, Teams, Standings]
       summary: Get team standings seasons
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
       responses:
         '200': { description: Seasons with available standings., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -536,9 +541,9 @@ paths:
       tags: [Basketball, Teams, Players, Statistics]
       summary: Get team top players (regular season)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Top players for the team (regular season)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Team/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -548,9 +553,9 @@ paths:
       tags: [Basketball, Teams, Players, Statistics]
       summary: Get team top players (playoffs)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Top players for the team (playoffs)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Team/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -560,7 +565,7 @@ paths:
       tags: [Basketball, Teams, Tournaments]
       summary: Get team tournaments
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
       responses:
         '200': { description: Unique tournaments the team has participated in., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -570,7 +575,7 @@ paths:
       tags: [Basketball, Teams, Transfers]
       summary: Get team transfers
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
       responses:
         '200': { description: Player transfers for the team., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -580,7 +585,7 @@ paths:
       tags: [Basketball, Teams, Players]
       summary: Get team players
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
       responses:
         '200': { description: Current roster for the team., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -590,7 +595,7 @@ paths:
       tags: [Basketball, Teams, Matches]
       summary: Get team near matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 2701}
       responses:
         '200': { description: Recent and upcoming matches for the team., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -600,7 +605,7 @@ paths:
       tags: [Basketball, Teams, Media]
       summary: Get team media
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
       responses:
         '200': { description: Media content for the team., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -610,7 +615,7 @@ paths:
       tags: [Basketball, Teams]
       summary: Get team details
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
       responses:
         '200': { description: Team details., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -620,7 +625,7 @@ paths:
       tags: [Basketball, Teams, Media]
       summary: Get team image
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
       responses:
         '200':
           description: Team image file.
@@ -692,7 +697,7 @@ paths:
       tags: [Basketball, Players]
       summary: Get player details
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
       responses:
         '200': { description: Player details., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -702,7 +707,7 @@ paths:
       tags: [Basketball, Players, Media]
       summary: Get player media
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
       responses:
         '200': { description: Media content for the player., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -712,7 +717,7 @@ paths:
       tags: [Basketball, Players, Matches]
       summary: Get player near matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
       responses:
         '200': { description: Recent and upcoming matches for the player., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -722,7 +727,7 @@ paths:
       tags: [Basketball, Players, Transfers]
       summary: Get player transfer history
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
       responses:
         '200': { description: Transfer history for the player., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -732,7 +737,7 @@ paths:
       tags: [Basketball, Players, Statistics]
       summary: Get player statistics seasons
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
       responses:
         '200': { description: Seasons with available player statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -742,9 +747,9 @@ paths:
       tags: [Basketball, Players, Statistics]
       summary: Get player statistics (regular season)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Player regular season statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Player/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -754,9 +759,9 @@ paths:
       tags: [Basketball, Players, Statistics]
       summary: Get player statistics (playoffs)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 817050}
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Player playoffs statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Player/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -766,9 +771,9 @@ paths:
       tags: [Basketball, Players, Statistics]
       summary: Get player statistics (overall)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 861446}
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 264}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45109}
       responses:
         '200': { description: Player overall season statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Player/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -778,7 +783,7 @@ paths:
       tags: [Basketball, Players, Media]
       summary: Get player image
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
       responses:
         '200':
           description: Player image file.
@@ -800,8 +805,8 @@ paths:
       tags: [Basketball, Players, Matches]
       summary: Get previous player matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: page, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 817050}
+        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
       responses:
         '200': { description: Paginated list of previous matches for player., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '400': { description: Invalid page or player ID., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -812,9 +817,9 @@ paths:
       tags: [Basketball, Players, Statistics]
       summary: Get player shot actions (regular season)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 817050}
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
       responses:
         '200': { description: Shot action data (regular season)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Player/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -824,9 +829,9 @@ paths:
       tags: [Basketball, Players, Statistics]
       summary: Get player shot actions (playoffs)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 817050}
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Shot action data (playoffs)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Player/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -838,7 +843,7 @@ paths:
       tags: [Basketball, Managers]
       summary: Get manager details
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 798706}
       responses:
         '200': { description: Manager details., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Manager not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -848,7 +853,7 @@ paths:
       tags: [Basketball, Managers, Media]
       summary: Get manager image
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 794612}
       responses:
         '200':
           description: Manager image file.
@@ -870,8 +875,8 @@ paths:
       tags: [Basketball, Managers, Matches]
       summary: Get previous manager matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: page, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 794632}
+        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
       responses:
         '200': { description: Paginated list of previous matches for manager., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '400': { description: Invalid page or manager ID., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -884,8 +889,8 @@ paths:
       tags: [Basketball, Tournaments, Standings]
       summary: Get tournament standings (total)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Tournament standings (total)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -894,8 +899,8 @@ paths:
       tags: [Basketball, Tournaments, Standings]
       summary: Get tournament standings (home)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 264}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45109}
       responses:
         '200': { description: Tournament standings (home)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -904,8 +909,8 @@ paths:
       tags: [Basketball, Tournaments, Standings]
       summary: Get tournament standings (away)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 264}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45109}
       responses:
         '200': { description: Tournament standings (away)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -914,7 +919,7 @@ paths:
       tags: [Basketball, Tournaments]
       summary: Get tournament details
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
       responses:
         '200': { description: Tournament details., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -924,7 +929,7 @@ paths:
       tags: [Basketball, Tournaments]
       summary: Get tournament seasons
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
       responses:
         '200': { description: Available seasons for the tournament., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -934,7 +939,7 @@ paths:
       tags: [Basketball, Tournaments, Media]
       summary: Get tournament media
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
       responses:
         '200': { description: Media content for the tournament., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -944,7 +949,7 @@ paths:
       tags: [Basketball, Tournaments, Media]
       summary: Get tournament image
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
       responses:
         '200':
           description: Tournament image file.
@@ -988,8 +993,8 @@ paths:
       tags: [Basketball, Tournaments, Players, Statistics]
       summary: Get tournament best players (regular season)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Best players in regular season for the tournament., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -999,8 +1004,8 @@ paths:
       tags: [Basketball, Tournaments]
       summary: Get tournament cup trees
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Cup trees/brackets for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1010,8 +1015,8 @@ paths:
       tags: [Basketball, Tournaments, Players, Statistics]
       summary: Get tournament best players (playoffs)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Best players in playoffs for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1021,9 +1026,9 @@ paths:
       tags: [Basketball, Tournaments, Matches]
       summary: Get tournament last matches
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
-        - { name: page, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
       responses:
         '200': { description: Paginated list of last matches in tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '400': { description: Invalid page parameter., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1033,9 +1038,9 @@ paths:
       tags: [Basketball, Tournaments, Matches]
       summary: Get tournament next matches
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
-        - { name: page, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
       responses:
         '200': { description: Paginated list of next matches in tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '400': { description: Invalid page parameter., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1045,10 +1050,10 @@ paths:
       tags: [Basketball, Categories, Matches]
       summary: Get category events by date
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: day, in: path, required: true, schema: { type: integer } }
-        - { name: month, in: path, required: true, schema: { type: integer } }
-        - { name: year, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 264}
+        - { name: day, in: path, required: true, schema: { type: integer }, example: 17}
+        - { name: month, in: path, required: true, schema: { type: integer }, example: 8}
+        - { name: year, in: path, required: true, schema: { type: integer }, example: 2022}
       responses:
         '200': { description: Events for the category on the given date., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '400': { description: Invalid date parameters., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1059,8 +1064,8 @@ paths:
       tags: [Basketball, Tournaments, Matches]
       summary: Get tournament group matches
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 4618}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 22873}
       responses:
         '200': { description: Group matches within the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1070,8 +1075,8 @@ paths:
       tags: [Basketball, Tournaments, Teams, Statistics]
       summary: Get tournament best teams (regular season)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
       responses:
         '200': { description: Best teams (regular season)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1081,8 +1086,8 @@ paths:
       tags: [Basketball, Tournaments, Teams, Statistics]
       summary: Get tournament best teams (playoffs)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Best teams (playoffs)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1092,8 +1097,8 @@ paths:
       tags: [Basketball, Tournaments, Players, Statistics]
       summary: Get tournament best players per game (overall)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
       responses:
         '200': { description: Best players per game (overall) for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1103,8 +1108,8 @@ paths:
       tags: [Basketball, Tournaments, Players, Statistics]
       summary: Get tournament best players per game (regular season)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
       responses:
         '200': { description: Best players per game (regular season)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1114,8 +1119,8 @@ paths:
       tags: [Basketball, Tournaments, Players, Statistics]
       summary: Get tournament best players per game (playoffs)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Best players per game (playoffs)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1125,8 +1130,8 @@ paths:
       tags: [Basketball, Tournaments, Players, Statistics]
       summary: Get tournament best player metric types
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
       responses:
         '200': { description: Available metric types for best players leaderboards., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1136,8 +1141,8 @@ paths:
       tags: [Basketball, Tournaments, Statistics]
       summary: Get shot action areas (regular season)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
       responses:
         '200': { description: Shot action areas data for regular season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1147,8 +1152,8 @@ paths:
       tags: [Basketball, Tournaments, Statistics]
       summary: Get shot action areas (playoffs)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
       responses:
         '200': { description: Shot action areas data for playoffs., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1158,8 +1163,8 @@ paths:
       tags: [Basketball, Tournaments, Teams, Statistics]
       summary: Get team events (total)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 138}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 42914}
       responses:
         '200': { description: Team events totals for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1169,8 +1174,8 @@ paths:
       tags: [Basketball, Tournaments, Teams, Statistics]
       summary: Get team events (home)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 138}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 42914}
       responses:
         '200': { description: Team events at home for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1180,8 +1185,8 @@ paths:
       tags: [Basketball, Tournaments, Teams, Statistics]
       summary: Get team events (away)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 138}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 42914}
       responses:
         '200': { description: Team events away for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1191,8 +1196,8 @@ paths:
       tags: [Basketball, Tournaments, Teams, Statistics]
       summary: Get tournament best teams (overall)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 441}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 22873}
       responses:
         '200': { description: Best teams overall for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1202,8 +1207,8 @@ paths:
       tags: [Basketball, Tournaments]
       summary: Get tournament rounds
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 441}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 22873}
       responses:
         '200': { description: Rounds for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1213,8 +1218,8 @@ paths:
       tags: [Basketball, Tournaments]
       summary: Get tournament groups
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 441}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 22873}
       responses:
         '200': { description: Groups for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1224,8 +1229,8 @@ paths:
       tags: [Basketball, Tournaments, Players, Statistics]
       summary: Get tournament best players (overall)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 441}
+        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 22873}
       responses:
         '200': { description: Best players overall for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
@@ -1248,7 +1253,7 @@ paths:
       tags: [Basketball, Tournaments]
       summary: Get all tournaments for category
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: id, in: path, required: true, schema: { type: integer }, example: 264}
       responses:
         '200': { description: Tournaments for the given category., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
         '404': { description: Category not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }

@@ -15,6 +15,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 10974920
           schema:
             type: integer
           description: The unique identifier for the match.
@@ -48,12 +49,14 @@ paths:
         - name: channId
           in: path
           required: true
+          example: 3177
           schema:
             type: integer
           description: The unique identifier for the TV channel.
         - name: id
           in: path
           required: true
+          example: 10974920
           schema:
             type: integer
           description: The unique identifier for the match.
@@ -86,6 +89,7 @@ paths:
         - name: flag
           in: path
           required: true
+          example: 'jp'
           schema:
             type: string
           description: Country code or identifier (e.g., 'EN' for England).
@@ -342,6 +346,7 @@ paths:
         - name: term
           in: path
           required: true
+          example: 'mcgregor'
           schema:
             type: string
           description: Search term (e.g., 'UFC')
@@ -402,6 +407,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 1708
           schema:
             type: integer
           description: Category ID
@@ -436,12 +442,14 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 19906
           schema:
             type: integer
           description: Tournament ID
         - name: page
           in: path
           required: true
+          example: 0
           schema:
             type: integer
           description: Page number for pagination
@@ -482,12 +490,14 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 19906
           schema:
             type: integer
           description: Tournament ID
         - name: page
           in: path
           required: true
+          example: 0
           schema:
             type: integer
           description: Page number for pagination
@@ -527,6 +537,7 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 19906
           schema:
             type: integer
           description: Tournament ID
@@ -561,6 +572,7 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 19906
           schema:
             type: integer
           description: Tournament ID
@@ -705,12 +717,14 @@ paths:
         - name: uniqueTournamentId
           in: path
           required: true
+          example: 19906
           schema:
             type: integer
           description: Unique Tournament ID
         - name: tournamentId
           in: path
           required: true
+          example: 114389
           schema:
             type: integer
           description: Tournament ID
@@ -745,6 +759,7 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 19906
           schema:
             type: integer
           description: Tournament ID
@@ -848,6 +863,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 11257051
           schema:
             type: integer
           description: Event ID
@@ -881,6 +897,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 11257051
           schema:
             type: integer
           description: Event ID
@@ -915,6 +932,7 @@ paths:
         - name: customId
           in: path
           required: true
+          example: 'tMJdsbaMd'
           schema:
             type: string
           description: A custom identifier for the event, used for H2H lookups.
@@ -949,6 +967,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 11257051
           schema:
             type: integer
           description: Event ID
@@ -983,6 +1002,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 11243946
           schema:
             type: integer
           description: Event ID
@@ -1016,6 +1036,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 465171
           schema:
             type: integer
           description: Fighter (Team) ID
@@ -1050,6 +1071,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 465171
           schema:
             type: integer
           description: Fighter (Team) ID
@@ -1084,12 +1106,14 @@ paths:
         - name: id
           in: path
           required: true
+          example: 465171
           schema:
             type: integer
           description: Fighter (Team) ID
         - name: page
           in: path
           required: true
+          example: 0
           schema:
             type: integer
           description: Page number for pagination
@@ -1130,12 +1154,14 @@ paths:
         - name: id
           in: path
           required: true
+          example: 465171
           schema:
             type: integer
           description: Fighter (Team) ID
         - name: page
           in: path
           required: true
+          example: 0
           schema:
             type: integer
           description: Page number for pagination
@@ -1176,6 +1202,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 469994
           schema:
             type: integer
           description: Fighter (Team) ID
@@ -1210,6 +1237,7 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 113935
           schema:
             type: integer
           description: Tournament ID

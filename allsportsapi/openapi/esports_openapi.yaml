@@ -15,6 +15,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 10974920
           schema:
             type: integer
           description: The unique identifier for the match.
@@ -48,12 +49,14 @@ paths:
         - name: channId
           in: path
           required: true
+          example: 3177
           schema:
             type: integer
           description: The unique identifier for the TV channel.
         - name: id
           in: path
           required: true
+          example: 10974920
           schema:
             type: integer
           description: The unique identifier for the match.
@@ -86,6 +89,7 @@ paths:
         - name: flag
           in: path
           required: true
+          example: 'jp'
           schema:
             type: string
           description: Country code or identifier (e.g., 'EN' for England).
@@ -342,6 +346,7 @@ paths:
         - name: term
           in: path
           required: true
+          example: 'ATK'
           schema:
             type: string
           description: Search term (minimum 2 characters)
@@ -381,18 +386,21 @@ paths:
         - name: day
           in: path
           required: true
+          example: 18
           schema:
             type: integer
           description: Day of the month (1-31)
         - name: month
           in: path
           required: true
+          example: 12
           schema:
             type: integer
           description: Month (1-12)
         - name: year
           in: path
           required: true
+          example: 2022
           schema:
             type: integer
           description: Year (e.g., 2024)
@@ -427,24 +435,28 @@ paths:
         - name: id
           in: path
           required: true
+          example: 1572
           schema:
             type: integer
           description: Category ID
         - name: day
           in: path
           required: true
+          example: 19
           schema:
             type: integer
           description: Day of the month
         - name: month
           in: path
           required: true
+          example: 12
           schema:
             type: integer
           description: Month of the year
         - name: year
           in: path
           required: true
+          example: 2022
           schema:
             type: integer
           description: Year
@@ -500,6 +512,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 1572
           schema:
             type: integer
           description: Category ID
@@ -553,6 +566,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 10944540
           schema:
             type: integer
           description: Event ID
@@ -587,6 +601,7 @@ paths:
         - name: customId
           in: path
           required: true
+          example: 'jTVcsXcZc'
           schema:
             type: string
           description: Custom event ID for H2H lookup
@@ -621,6 +636,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 10945127
           schema:
             type: integer
           description: Event ID
@@ -655,6 +671,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 10945127
           schema:
             type: integer
           description: Event ID
@@ -689,6 +706,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 10945370
           schema:
             type: integer
           description: Event ID
@@ -723,6 +741,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 10945126
           schema:
             type: integer
           description: Event ID
@@ -756,6 +775,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 10944886
           schema:
             type: integer
           description: Event ID
@@ -790,6 +810,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 10944886
           schema:
             type: integer
           description: Event ID
@@ -824,6 +845,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 359360
           schema:
             type: integer
           description: Game ID
@@ -857,6 +879,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 359440
           schema:
             type: integer
           description: Game ID
@@ -890,6 +913,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 359554
           schema:
             type: integer
           description: Game ID
@@ -924,6 +948,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 359554
           schema:
             type: integer
           description: Game ID
@@ -958,12 +983,14 @@ paths:
         - name: id
           in: path
           required: true
+          example: 459469
           schema:
             type: integer
           description: Team ID
         - name: page
           in: path
           required: true
+          example: 0
           schema:
             type: integer
           description: Page number for pagination
@@ -1004,12 +1031,14 @@ paths:
         - name: id
           in: path
           required: true
+          example: 459262
           schema:
             type: integer
           description: Team ID
         - name: page
           in: path
           required: true
+          example: 0
           schema:
             type: integer
           description: Page number for pagination
@@ -1049,6 +1078,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 363904
           schema:
             type: integer
           description: Team ID
@@ -1083,6 +1113,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 363904
           schema:
             type: integer
           description: Team ID
@@ -1117,6 +1148,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 363904
           schema:
             type: integer
           description: Team ID
@@ -1185,6 +1217,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 1078255
           schema:
             type: integer
           description: Player ID
@@ -1254,12 +1287,14 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 16026
           schema:
             type: integer
           description: Tournament ID
         - name: seasonId
           in: path
           required: true
+          example: 47832
           schema:
             type: integer
           description: Season ID
@@ -1293,12 +1328,14 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 16026
           schema:
             type: integer
           description: Tournament ID
         - name: seasonId
           in: path
           required: true
+          example: 47832
           schema:
             type: integer
           description: Season ID
@@ -1333,18 +1370,21 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 16026
           schema:
             type: integer
           description: Tournament ID
         - name: seasonId
           in: path
           required: true
+          example: 47832
           schema:
             type: integer
           description: Season ID
         - name: page
           in: path
           required: true
+          example: 0
           schema:
             type: integer
           description: Page number for pagination
@@ -1385,18 +1425,21 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 16026
           schema:
             type: integer
           description: Tournament ID
         - name: seasonId
           in: path
           required: true
+          example: 47832
           schema:
             type: integer
           description: Season ID
         - name: page
           in: path
           required: true
+          example: 0
           schema:
             type: integer
           description: Page number for pagination
@@ -1436,6 +1479,7 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 16026
           schema:
             type: integer
           description: Tournament ID
@@ -1470,6 +1514,7 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 16026
           schema:
             type: integer
           description: Tournament ID
@@ -1540,6 +1585,7 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 16026
           schema:
             type: integer
           description: Tournament ID
@@ -1574,6 +1620,7 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 16151
           schema:
             type: integer
           description: Tournament ID
@@ -1608,12 +1655,14 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 16254
           schema:
             type: integer
           description: Tournament ID
         - name: seasonId
           in: path
           required: true
+          example: 49721
           schema:
             type: integer
           description: Season ID
@@ -1647,6 +1696,7 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 1717
           schema:
             type: integer
           description: Character ID
@@ -1681,6 +1731,7 @@ paths:
         - name: tournamentId
           in: path
           required: true
+          example: 21
           schema:
             type: integer
           description: Map ID

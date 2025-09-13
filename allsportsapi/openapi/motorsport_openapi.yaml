@@ -37,6 +37,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 10974920
           schema:
             type: integer
           description: The unique identifier for the match.
@@ -64,6 +65,7 @@ paths:
         - name: term
           in: path
           required: true
+          example: 'mercedes'
           schema:
             type: string
           description: Search term (e.g., 'Red Bull')
@@ -143,6 +145,7 @@ paths:
         - name: stageId
           in: path
           required: true
+          example: 203648
           schema:
             type: integer
           description: Stage ID
@@ -176,6 +179,7 @@ paths:
         - name: stageId
           in: path
           required: true
+          example: 203648
           schema:
             type: integer
           description: Stage ID
@@ -210,6 +214,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 203968
           schema:
             type: integer
           description: Stage ID
@@ -244,6 +249,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 203968
           schema:
             type: integer
           description: Stage ID
@@ -278,6 +284,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 203648
           schema:
             type: integer
           description: Stage ID
@@ -346,6 +353,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 191417
           schema:
             type: integer
           description: Team ID
@@ -380,6 +388,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 191417
           schema:
             type: integer
           description: Team ID
@@ -414,6 +423,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 191417
           schema:
             type: integer
           description: Team ID
@@ -448,12 +458,14 @@ paths:
         - name: id
           in: path
           required: true
+          example: 191417
           schema:
             type: integer
           description: Team ID
         - name: seasonId
           in: path
           required: true
+          example: 188803
           schema:
             type: integer
           description: Season ID
@@ -488,6 +500,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 214902
           schema:
             type: integer
           description: Team ID
@@ -523,6 +536,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 36
           schema:
             type: integer
           description: Category ID
@@ -557,6 +571,7 @@ paths:
         - name: uniqueStageId
           in: path
           required: true
+          example: 40
           schema:
             type: integer
           description: Unique Stage ID
@@ -591,6 +606,7 @@ paths:
         - name: id
           in: path
           required: true
+          example: 40
           schema:
             type: integer
           description: Unique Stage ID
@@ -626,12 +642,14 @@ paths:
         - name: channId
           in: path
           required: true
+          example: 3177
           schema:
             type: integer
           description: The unique identifier for the TV channel.
         - name: id
           in: path
           required: true
+          example: 10974920
           schema:
             type: integer
           description: The unique identifier for the match.
@@ -664,6 +682,7 @@ paths:
         - name: flag
           in: path
           required: true
+          example: 'jp'
           schema:
             type: string
           description: Country code or identifier (e.g., 'EN' for England).
