@@ -105,13 +105,13 @@ paths:
           description: Sort (e.g., as_of_date)
           example: as_of_date
         - in: query
-          name: "filter[show_by]"
+          name: "filter_show_by"
           required: false
           schema: { type: string, enum: [week, month] }
           description: Grouping level
           example: week
         - in: query
-          name: "filter[for_date]"
+          name: "filter_for_date"
           required: false
           schema: { type: string, format: date }
           description: Specific date (can repeat)
@@ -720,15 +720,15 @@ paths:
       description: Paginated market news stream with category filters, field selection, and includes.
       tags: [News]
       parameters:
-        - { in: query, name: "fields[news]", required: false, schema: { type: string }, description: Comma-separated news fields, example: "title,date,comment_count,content,primaryTickers,secondaryTickers,tag,gettyImageUrl,publishOn" }
-        - { in: query, name: "fields[tag]", required: false, schema: { type: string }, description: Comma-separated tag fields, example: "slug,name" }
-        - { in: query, name: "filter[category]", required: false, schema: { type: string, example: "market-news::all" }, description: "Category (e.g., market-news::technology)" }
-        - { in: query, name: "filter[since]", required: false, schema: { type: integer, format: int64 }, description: Since (epoch seconds), example: 0 }
-        - { in: query, name: "filter[until]", required: false, schema: { type: integer, format: int64 }, description: Until (epoch seconds), example: 0 }
+        - { in: query, name: "fields_news", required: false, schema: { type: string }, description: Comma-separated news fields, example: "title,date,comment_count,content,primaryTickers,secondaryTickers,tag,gettyImageUrl,publishOn" }
+        - { in: query, name: "fields_tag", required: false, schema: { type: string }, description: Comma-separated tag fields, example: "slug,name" }
+        - { in: query, name: "filter_category", required: false, schema: { type: string, example: "market-news::all" }, description: "Category (e.g., market-news::technology)" }
+        - { in: query, name: "filter_since", required: false, schema: { type: integer, format: int64 }, description: Since (epoch seconds), example: 0 }
+        - { in: query, name: "filter_until", required: false, schema: { type: integer, format: int64 }, description: Until (epoch seconds), example: 0 }
         - { in: query, name: include, required: false, schema: { type: string, example: "primaryTickers,secondaryTickers" }, description: "Includes (e.g., primaryTickers,secondaryTickers)" }
         - { in: query, name: isMounting, required: false, schema: { type: boolean }, description: Initial load flag, example: true }
-        - { in: query, name: "page[size]", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 25 }
-        - { in: query, name: "page[number]", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
+        - { in: query, name: "page_size", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 25 }
+        - { in: query, name: "page_number", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
       responses:
         '200':
           description: OK
@@ -742,10 +742,10 @@ paths:
       description: Trending market news with optional category filters and includes.
       tags: [News]
       parameters:
-        - { in: query, name: "filter[category]", required: false, schema: { type: string, example: "market-news::trending" }, description: Category filter }
+        - { in: query, name: "filter_category", required: false, schema: { type: string, example: "market-news::trending" }, description: Category filter }
         - { in: query, name: include, required: false, schema: { type: string, example: author }, description: "Includes" }
-        - { in: query, name: "page[size]", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 25 }
-        - { in: query, name: "page[number]", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
+        - { in: query, name: "page_size", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 25 }
+        - { in: query, name: "page_number", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
       responses:
         '200':
           description: OK
@@ -790,11 +790,11 @@ paths:
       description: Trending news with expanded article payloads; supports fields, includes, and paging.
       tags: [News]
       parameters:
-        - { in: query, name: "filter[category]", required: false, schema: { type: string, example: "market-news::all" }, description: Category filter }
+        - { in: query, name: "filter_category", required: false, schema: { type: string, example: "market-news::all" }, description: Category filter }
         - { in: query, name: include, required: false, schema: { type: string, example: "primaryTickers,secondaryTickers" }, description: "Includes" }
         - { in: query, name: isMounting, required: false, schema: { type: boolean }, description: Initial load flag, example: true }
-        - { in: query, name: "page[size]", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 50 }
-        - { in: query, name: "page[number]", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
+        - { in: query, name: "page_size", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 50 }
+        - { in: query, name: "page_number", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
       responses:
         '200':
           description: OK
@@ -848,14 +848,14 @@ paths:
       description: Latest analysis articles with optional category filters, field selection, includes, and paging.
       tags: [Articles]
       parameters:
-        - { in: query, name: "fields[article]", required: false, schema: { type: string }, description: Comma-separated article fields, example: "structuredInsights,publishOn,author,commentCount,title,primaryTickers,secondaryTickers,summary,isRead,sentiments" }
-        - { in: query, name: "filter[category]", required: false, schema: { type: string }, description: Category, example: podcast }
-        - { in: query, name: "filter[since]", required: false, schema: { type: integer, format: int64 }, description: Since (epoch seconds), example: 0 }
-        - { in: query, name: "filter[until]", required: false, schema: { type: integer, format: int64 }, description: Until (epoch seconds), example: 0 }
+        - { in: query, name: "fields_article", required: false, schema: { type: string }, description: Comma-separated article fields, example: "structuredInsights,publishOn,author,commentCount,title,primaryTickers,secondaryTickers,summary,isRead,sentiments" }
+        - { in: query, name: "filter_category", required: false, schema: { type: string }, description: Category, example: podcast }
+        - { in: query, name: "filter_since", required: false, schema: { type: integer, format: int64 }, description: Since (epoch seconds), example: 0 }
+        - { in: query, name: "filter_until", required: false, schema: { type: integer, format: int64 }, description: Until (epoch seconds), example: 0 }
         - { in: query, name: include, required: false, schema: { type: string, example: "author,primaryTickers,secondaryTickers,sentiments" }, description: "Includes (e.g., author,primaryTickers)" }
         - { in: query, name: isMounting, required: false, schema: { type: boolean }, description: Initial load flag, example: true }
-        - { in: query, name: "page[size]", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 40 }
-        - { in: query, name: "page[number]", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
+        - { in: query, name: "page_size", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 40 }
+        - { in: query, name: "page_number", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
       responses:
         '200':
           description: OK
@@ -869,12 +869,12 @@ paths:
       description: Trending analysis articles; supports fields, includes, and paging.
       tags: [Articles]
       parameters:
-        - { in: query, name: "fields[article]", required: false, schema: { type: string }, description: Comma-separated article fields, example: "title,links,author" }
-        - { in: query, name: "fields[author]", required: false, schema: { type: string }, description: Comma-separated author fields, example: "nick,image" }
-        - { in: query, name: "filter[category]", required: false, schema: { type: string }, description: Category, example: latest-articles }
+        - { in: query, name: "fields_article", required: false, schema: { type: string }, description: Comma-separated article fields, example: "title,links,author" }
+        - { in: query, name: "fields_author", required: false, schema: { type: string }, description: Comma-separated author fields, example: "nick,image" }
+        - { in: query, name: "filter_category", required: false, schema: { type: string }, description: Category, example: latest-articles }
         - { in: query, name: include, required: false, schema: { type: string, example: author }, description: Includes }
-        - { in: query, name: "page[size]", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 25 }
-        - { in: query, name: "page[number]", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
+        - { in: query, name: "page_size", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 25 }
+        - { in: query, name: "page_number", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
       responses:
         '200':
           description: OK
@@ -1121,12 +1121,12 @@ paths:
       description: Global search across articles, headlines, pages, people, and symbols with flexible filters.
       tags: [Search]
       parameters:
-        - { in: query, name: "filter[query]", required: false, schema: { type: string, example: s }, description: Search query }
-        - { in: query, name: "filter[type]", required: false, schema: { type: string, example: "people,symbols,pages,shortcuts" }, description: "Types (people,symbols,pages,shortcuts)" }
-        - { in: query, name: "filter[list]", required: false, schema: { type: string, example: all }, description: List scope }
-        - { in: query, name: "filter[period]", required: false, schema: { type: string, example: all }, description: "Period (e.g., all|quarter)" }
-        - { in: query, name: "page[size]", required: false, schema: { type: integer, format: int32, example: 6 }, description: Page size }
-        - { in: query, name: "page[number]", required: false, schema: { type: integer, format: int32, example: 1 }, description: Page number }
+        - { in: query, name: "filter_query", required: false, schema: { type: string, example: s }, description: Search query }
+        - { in: query, name: "filter_type", required: false, schema: { type: string, example: "people,symbols,pages,shortcuts" }, description: "Types (people,symbols,pages,shortcuts)" }
+        - { in: query, name: "filter_list", required: false, schema: { type: string, example: all }, description: List scope }
+        - { in: query, name: "filter_period", required: false, schema: { type: string, example: all }, description: "Period (e.g., all|quarter)" }
+        - { in: query, name: "page_size", required: false, schema: { type: integer, format: int32, example: 6 }, description: Page size }
+        - { in: query, name: "page_number", required: false, schema: { type: integer, format: int32, example: 1 }, description: Page number }
       responses:
         '200':
           description: OK
@@ -1145,17 +1145,22 @@ paths:
           required: true
           schema: { type: string, enum: [all, articles, headlines, news, pages, people, symbols] }
           description: Search scope
-        - { in: query, name: "filter[query]", required: false, schema: { type: string, example: as }, description: Search query }
-        - { in: query, name: "filter[list]", required: false, schema: { type: string, example: all }, description: List scope }
-        - { in: query, name: "filter[period]", required: false, schema: { type: string, example: quarter }, description: Period filter }
+        - { in: query, name: "filter_query", required: false, schema: { type: string, example: as }, description: Search query }
+        - { in: query, name: "filter_list", required: false, schema: { type: string, example: all }, description: List scope }
+        - { in: query, name: "filter_period", required: false, schema: { type: string, example: quarter }, description: Period filter }
         - in: query
-          name: "filter[tags][]"
+          name: "filter_tags"
           required: false
-          schema: { type: string, example: transcripts }
+          schema:
+            type: array
+            items: { type: string }
+          style: form
+          explode: true
           description: Tag filters (repeatable)
-        - { in: query, name: "filter[defunct]", required: false, schema: { type: boolean }, description: Include defunct (people), example: false }
-        - { in: query, name: "page[size]", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 10 }
-        - { in: query, name: "page[number]", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
+          example: [transcripts]
+        - { in: query, name: "filter_defunct", required: false, schema: { type: boolean }, description: Include defunct (people), example: false }
+        - { in: query, name: "page_size", required: false, schema: { type: integer, format: int32 }, description: Page size, example: 10 }
+        - { in: query, name: "page_number", required: false, schema: { type: integer, format: int32 }, description: Page number, example: 1 }
       responses:
         '200':
           description: OK
@@ -1171,9 +1176,9 @@ paths:
       parameters:
         - { in: query, name: start, required: false, schema: { type: string, format: date }, description: Start date (YYYY-MM-DD), example: "2024-08-28" }
         - { in: query, name: end, required: false, schema: { type: string, format: date }, description: End date (YYYY-MM-DD), example: "2025-09-03" }
-        - { in: query, name: metrics, required: false, schema: { type: string }, description: "Comma-separated metrics (alternative to metrics[])", example: total_revenue }
+        - { in: query, name: metrics, required: false, schema: { type: string }, description: "Comma-separated metrics (alternative to metrics_list)", example: total_revenue }
         - in: query
-          name: "metrics[]"
+          name: "metrics_list"
           required: false
           schema:
             type: array
@@ -1183,7 +1188,7 @@ paths:
           description: Metrics (repeatable)
           example: [market_cap]
         - in: query
-          name: "slugs[]"
+          name: "slugs_list"
           required: false
           schema:
             type: array
@@ -1269,7 +1274,7 @@ paths:
       tags: [SymbolData]
       parameters:
         - in: query
-          name: "fields[]"
+          name: "fields_list"
           required: false
           schema:
             type: array
@@ -1291,8 +1296,8 @@ paths:
       description: Core ticker metadata (names, exchanges, identifiers) with optional GICS classification.
       tags: [Symbols]
       parameters:
-        - { in: query, name: "filter[slugs]", required: true, schema: { type: string }, description: Slugs (comma-separated), example: sp500 }
-        - { in: query, name: "include[gics]", required: false, schema: { type: boolean }, description: Include GICS data, example: true }
+        - { in: query, name: "filter_slugs", required: true, schema: { type: string }, description: Slugs (comma-separated), example: sp500 }
+        - { in: query, name: "include_gics", required: false, schema: { type: boolean }, description: Include GICS data, example: true }
         - { in: query, name: per_page, required: false, schema: { type: integer, format: int32 }, description: Items per page, example: 100 }
       responses:
         '200':
@@ -1307,8 +1312,8 @@ paths:
       description: Fundamental factor metrics (valuation, growth, profitability, etc.) for requested slugs and fields.
       tags: [Metrics]
       parameters:
-        - { in: query, name: "filter[fields]", required: true, schema: { type: string }, description: Fields (comma-separated), example: "price_return_5d,price_return_1m,price_return_3m,price_return_6m,price_return_1y,price_return_ytd,price_return_3y,price_close_1m,price_close_3m,price_close_6m,price_close_1y,price_high_52w,price_low_52w,marketcap_display" }
-        - { in: query, name: "filter[slugs]", required: true, schema: { type: string }, description: Slugs (comma-separated), example: sp500 }
+        - { in: query, name: "filter_fields", required: true, schema: { type: string }, description: Fields (comma-separated), example: "price_return_5d,price_return_1m,price_return_3m,price_return_6m,price_return_1y,price_return_ytd,price_return_3y,price_close_1m,price_close_3m,price_close_6m,price_close_1y,price_high_52w,price_low_52w,marketcap_display" }
+        - { in: query, name: "filter_slugs", required: true, schema: { type: string }, description: Slugs (comma-separated), example: sp500 }
         - { in: query, name: minified, required: false, schema: { type: boolean }, description: Minified response, example: false }
       responses:
         '200':
@@ -1323,10 +1328,10 @@ paths:
       description: Algorithmic factor grades (e.g., Quant, Dividends, REIT) for selected slugs and fields.
       tags: [Metrics]
       parameters:
-        - { in: query, name: "filter[fields]", required: true, schema: { type: string }, description: Fields (comma-separated), example: "value_category,growth_category,profitability_category,momentum_category,eps_revisions_category" }
-        - { in: query, name: "filter[slugs]", required: true, schema: { type: string }, description: Slugs (comma-separated), example: nvda }
+        - { in: query, name: "filter_fields", required: true, schema: { type: string }, description: Fields (comma-separated), example: "value_category,growth_category,profitability_category,momentum_category,eps_revisions_category" }
+        - { in: query, name: "filter_slugs", required: true, schema: { type: string }, description: Slugs (comma-separated), example: nvda }
         - in: query
-          name: "filter[algos][]"
+          name: "filter_algos"
           required: false
           schema:
             type: array
@@ -1361,10 +1366,10 @@ paths:
       description: Earnings calendar entries within a date range, with optional rating and currency filters.
       tags: [Calendars]
       parameters:
-        - { in: query, name: "filter[start_date]", required: false, schema: { type: string, format: date }, description: Start date (YYYY-MM-DD), example: "2025-08-31" }
-        - { in: query, name: "filter[end_date]", required: false, schema: { type: string, format: date }, description: End date (YYYY-MM-DD), example: "2025-10-05" }
-        - { in: query, name: "filter[with_rating]", required: false, schema: { type: boolean }, description: Include rating, example: false }
-        - { in: query, name: "filter[currency]", required: false, schema: { type: string }, description: "Currency (e.g., USD)", example: USD }
+        - { in: query, name: "filter_start_date", required: false, schema: { type: string, format: date }, description: Start date (YYYY-MM-DD), example: "2025-08-31" }
+        - { in: query, name: "filter_end_date", required: false, schema: { type: string, format: date }, description: End date (YYYY-MM-DD), example: "2025-10-05" }
+        - { in: query, name: "filter_with_rating", required: false, schema: { type: boolean }, description: Include rating, example: false }
+        - { in: query, name: "filter_currency", required: false, schema: { type: string }, description: "Currency (e.g., USD)", example: USD }
       responses:
         '200':
           description: OK
@@ -1378,9 +1383,9 @@ paths:
       description: Earnings calendar entries for a specific selected date, with optional rating and currency filters.
       tags: [Calendars]
       parameters:
-        - { in: query, name: "filter[selected_date]", required: true, schema: { type: string, format: date }, description: Selected date (YYYY-MM-DD), example: "2025-09-03" }
-        - { in: query, name: "filter[with_rating]", required: false, schema: { type: boolean }, description: Include rating, example: false }
-        - { in: query, name: "filter[currency]", required: false, schema: { type: string }, description: Currency, example: USD }
+        - { in: query, name: "filter_selected_date", required: true, schema: { type: string, format: date }, description: Selected date (YYYY-MM-DD), example: "2025-09-03" }
+        - { in: query, name: "filter_with_rating", required: false, schema: { type: boolean }, description: Include rating, example: false }
+        - { in: query, name: "filter_currency", required: false, schema: { type: string }, description: Currency, example: USD }
       responses:
         '200':
           description: OK
