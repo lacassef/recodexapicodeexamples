@@ -1953,14 +1953,15 @@
                     "type": "string"
                   },
                   "pointType": {
-                    "type": "string",
+                    "type": "integer",
                     "enum": [
-                      "ace",
-                      "winner",
-                      "forced_error",
-                      "unforced_error",
-                      "double_fault"
-                    ]
+                      1,
+                      2,
+                      3,
+                      5,
+                      6
+                    ],
+                    "description": "1 = standard point, 2 = return point/break conversion, 3 = decisive hold (game/set clincher), 5 = point conceded on the opponent side, 6 = tie-break mini-break."
                   },
                   "rallyLength": {
                     "type": "integer"
