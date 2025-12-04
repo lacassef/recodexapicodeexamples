@@ -1172,6 +1172,48 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/player/{playerId}/rating-breakdown:
+    get:
+      tags:
+        - Football
+        - Matches
+        - Players
+      summary: Get match player rating breakdown
+      description: Returns the component breakdown that forms a player's SofaScore rating for a given match.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          example: 14787860
+          schema:
+            type: integer
+          description: Unique identifier for the match.
+        - name: playerId
+          in: path
+          required: true
+          example: 907152
+          schema:
+            type: integer
+          description: Unique identifier for the player.
+      responses:
+        '200':
+          description: A JSON object detailing the rating components.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or player with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/match/{id}/player/{playerId}/shotmap:
     get:
       tags:

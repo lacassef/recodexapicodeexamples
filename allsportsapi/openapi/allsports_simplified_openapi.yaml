@@ -14919,6 +14919,52 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/ErrorResponse"
+  "/api/match/{id}/player/{playerId}/rating-breakdown":
+    get:
+      tags:
+      - Football
+      summary: Get Match Player Rating Breakdown Data
+      description: Returns the rating component breakdown for a player in a specific match.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14787860
+        description: Unique identifier for the match.
+        schema:
+          type: integer
+      - name: playerId
+        in: path
+        required: true
+        example: 907152
+        description: Player identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
   "/api/match/{id}/player/{playerId}/shotmap":
     get:
       tags:
