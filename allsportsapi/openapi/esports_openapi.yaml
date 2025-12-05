@@ -3,22 +3,25 @@ info:
   title: Esports API
   version: 1.0.0
   description: This is the OpenAPI specification for the Esports API.
+servers:
+- url: http://localhost:8080
+  description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
     get:
       tags:
-        - AllSports
-        - TV
+      - TV
       summary: Get match TV countries
-      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      description: Lists the countries and the TV channels within them that are broadcasting
+        a specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema:
-            type: integer
-          description: The unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object listing countries and their broadcasting channels.
@@ -41,25 +44,25 @@ paths:
   /api/tv/channel/{channId}/event/{id}:
     get:
       tags:
-        - AllSports
-        - TV
+      - TV
       summary: Get match TV channel votes
-      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting
+        the match.
       parameters:
-        - name: channId
-          in: path
-          required: true
-          example: 3177
-          schema:
-            type: integer
-          description: The unique identifier for the TV channel.
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema:
-            type: integer
-          description: The unique identifier for the match.
+      - name: channId
+        in: path
+        required: true
+        example: 3177
+        schema:
+          type: integer
+        description: The unique identifier for the TV channel.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object containing viewer vote data from the channel.
@@ -82,17 +85,18 @@ paths:
   /api/img/flag/{flag}:
     get:
       tags:
-        - AllSports
+      - Country
       summary: Get country flag
-      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      description: Fetches the PNG flag image asset corresponding to a provided country
+        code. The response is the raw image data.
       parameters:
-        - name: flag
-          in: path
-          required: true
-          example: 'jp'
-          schema:
-            type: string
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: flag
+        in: path
+        required: true
+        example: jp
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -116,16 +120,17 @@ paths:
   /api/country/{code}/flag:
     get:
       tags:
-        - AllSports
+      - Country
       summary: Get country flag (img API)
-      description: Fetches the flag image by country code. The response is the raw image data.
+      description: Fetches the flag image by country code. The response is the raw
+        image data.
       parameters:
-        - name: code
-          in: path
-          required: true
-          schema:
-            type: string
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -149,10 +154,10 @@ paths:
   /api/placeholder/tournament.png:
     get:
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -170,10 +175,10 @@ paths:
   /api/placeholder/tournament.svg:
     get:
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -191,10 +196,10 @@ paths:
   /api/placeholder/team.svg:
     get:
       tags:
-        - AllSports
-        - Teams
+      - Team
       summary: Get team placeholder image
-      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      description: Returns a static placeholder graphic for a team. The response is
+        an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -212,10 +217,10 @@ paths:
   /api/placeholder/player.png:
     get:
       tags:
-        - AllSports
-        - Players
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -233,10 +238,10 @@ paths:
   /api/placeholder/player.svg:
     get:
       tags:
-        - AllSports
-        - Players
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -254,9 +259,10 @@ paths:
   /api/placeholder/manager.png:
     get:
       tags:
-        - AllSports
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,9 +280,10 @@ paths:
   /api/placeholder/manager.svg:
     get:
       tags:
-        - AllSports
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -294,9 +301,7 @@ paths:
   /api/placeholders/fighter-male.svg:
     get:
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       summary: Get male fighter placeholder image
       description: Retrieves a placeholder image for a male fighter.
       responses:
@@ -316,9 +321,7 @@ paths:
   /api/placeholders/fighter-female.svg:
     get:
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       summary: Get female fighter placeholder image
       description: Retrieves a placeholder image for a female fighter.
       responses:
@@ -338,24 +341,23 @@ paths:
   /api/esport/search/{term}:
     get:
       tags:
-        - Esports
-        - Search
+      - Search
       summary: Search eSports entities
       description: Searches for eSports teams, players, events, and tournaments.
       parameters:
-        - name: term
-          in: path
-          required: true
-          example: 'ATK'
-          schema:
-            type: string
-          description: Search term (minimum 2 characters)
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-          description: Page number for pagination
+      - name: term
+        in: path
+        required: true
+        example: ATK
+        schema:
+          type: string
+        description: Search term (minimum 2 characters)
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for pagination
       responses:
         '200':
           description: Successfully retrieved search results.
@@ -378,32 +380,31 @@ paths:
   /api/esport/matches/{day}/{month}/{year}:
     get:
       tags:
-        - Esports
-        - Matches
+      - Match
       summary: Get eSports matches by date
       description: Fetches all eSports matches scheduled for a specific date.
       parameters:
-        - name: day
-          in: path
-          required: true
-          example: 18
-          schema:
-            type: integer
-          description: Day of the month (1-31)
-        - name: month
-          in: path
-          required: true
-          example: 12
-          schema:
-            type: integer
-          description: Month (1-12)
-        - name: year
-          in: path
-          required: true
-          example: 2022
-          schema:
-            type: integer
-          description: Year (e.g., 2024)
+      - name: day
+        in: path
+        required: true
+        example: 18
+        schema:
+          type: integer
+        description: Day of the month (1-31)
+      - name: month
+        in: path
+        required: true
+        example: 12
+        schema:
+          type: integer
+        description: Month (1-12)
+      - name: year
+        in: path
+        required: true
+        example: 2022
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
           description: Successfully retrieved matches for the specified date.
@@ -426,40 +427,38 @@ paths:
   /api/esport/category/{id}/events/{day}/{month}/{year}:
     get:
       tags:
-        - Esports
-        - Matches
-        - Categories
+      - Category
       summary: Get eSports events by category and date
       description: Fetches all eSports events for a specific category on a given date.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 1572
-          schema:
-            type: integer
-          description: Category ID
-        - name: day
-          in: path
-          required: true
-          example: 19
-          schema:
-            type: integer
-          description: Day of the month
-        - name: month
-          in: path
-          required: true
-          example: 12
-          schema:
-            type: integer
-          description: Month of the year
-        - name: year
-          in: path
-          required: true
-          example: 2022
-          schema:
-            type: integer
-          description: Year
+      - name: id
+        in: path
+        required: true
+        example: 1572
+        schema:
+          type: integer
+        description: Category ID
+      - name: day
+        in: path
+        required: true
+        example: 19
+        schema:
+          type: integer
+        description: Day of the month
+      - name: month
+        in: path
+        required: true
+        example: 12
+        schema:
+          type: integer
+        description: Month of the year
+      - name: year
+        in: path
+        required: true
+        example: 2022
+        schema:
+          type: integer
+        description: Year
       responses:
         '200':
           description: Successfully retrieved events for the category and date.
@@ -482,9 +481,7 @@ paths:
   /api/esport/tournament/categories:
     get:
       tags:
-        - Esports
-        - Tournaments
-        - Categories
+      - Tournament
       summary: Get eSports tournament categories
       description: Retrieves all available eSports tournament categories.
       responses:
@@ -503,19 +500,17 @@ paths:
   /api/esport/tournament/all/category/{id}:
     get:
       tags:
-        - Esports
-        - Tournaments
-        - Categories
+      - Tournament
       summary: Get all eSports tournaments for a category
       description: Retrieves all unique tournaments within a specific eSports category.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 1572
-          schema:
-            type: integer
-          description: Category ID
+      - name: id
+        in: path
+        required: true
+        example: 1572
+        schema:
+          type: integer
+        description: Category ID
       responses:
         '200':
           description: Successfully retrieved tournaments for the category.
@@ -538,8 +533,7 @@ paths:
   /api/esport/matches/live:
     get:
       tags:
-        - Esports
-        - Matches
+      - Match
       summary: Get live eSports matches
       description: Retrieves all currently live eSports matches.
       responses:
@@ -558,18 +552,18 @@ paths:
   /api/esport/event/{id}:
     get:
       tags:
-        - Esports
-        - Events
+      - Event
       summary: Get eSports event details
-      description: Retrieves detailed information for a specific eSports event by its ID.
+      description: Retrieves detailed information for a specific eSports event by
+        its ID.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10944540
-          schema:
-            type: integer
-          description: Event ID
+      - name: id
+        in: path
+        required: true
+        example: 10944540
+        schema:
+          type: integer
+        description: Event ID
       responses:
         '200':
           description: Successfully retrieved event details.
@@ -592,19 +586,18 @@ paths:
   /api/esport/event/{customId}/h2h:
     get:
       tags:
-        - Esports
-        - Events
-        - Statistics
+      - Event
       summary: Get eSports H2H events
-      description: Retrieves head-to-head match history between two teams, identified by a custom event ID.
+      description: Retrieves head-to-head match history between two teams, identified
+        by a custom event ID.
       parameters:
-        - name: customId
-          in: path
-          required: true
-          example: 'jTVcsXcZc'
-          schema:
-            type: string
-          description: Custom event ID for H2H lookup
+      - name: customId
+        in: path
+        required: true
+        example: jTVcsXcZc
+        schema:
+          type: string
+        description: Custom event ID for H2H lookup
       responses:
         '200':
           description: Successfully retrieved H2H event history.
@@ -627,19 +620,17 @@ paths:
   /api/esport/event/{id}/lineups:
     get:
       tags:
-        - Esports
-        - Events
-        - Players
+      - Event
       summary: Get eSports event lineups
       description: Retrieves player lineups for a specific eSports event.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10945127
-          schema:
-            type: integer
-          description: Event ID
+      - name: id
+        in: path
+        required: true
+        example: 10945127
+        schema:
+          type: integer
+        description: Event ID
       responses:
         '200':
           description: Successfully retrieved event lineups.
@@ -662,19 +653,18 @@ paths:
   /api/esport/event/{id}/games:
     get:
       tags:
-        - Esports
-        - Events
-        - Games
+      - Event
       summary: Get eSports event games
-      description: Retrieves the list of games (maps) played within a single eSports event.
+      description: Retrieves the list of games (maps) played within a single eSports
+        event.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10945127
-          schema:
-            type: integer
-          description: Event ID
+      - name: id
+        in: path
+        required: true
+        example: 10945127
+        schema:
+          type: integer
+        description: Event ID
       responses:
         '200':
           description: Successfully retrieved the list of games for the event.
@@ -697,19 +687,17 @@ paths:
   /api/esport/event/{id}/highlights:
     get:
       tags:
-        - Esports
-        - Events
-        - Media
+      - Event
       summary: Get eSports event highlights
       description: Retrieves video highlights for a specific eSports event, if available.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10945370
-          schema:
-            type: integer
-          description: Event ID
+      - name: id
+        in: path
+        required: true
+        example: 10945370
+        schema:
+          type: integer
+        description: Event ID
       responses:
         '200':
           description: Successfully retrieved event highlights.
@@ -732,19 +720,18 @@ paths:
   /api/esport/event/{id}/duel:
     get:
       tags:
-        - Esports
-        - Events
-        - Statistics
+      - Event
       summary: Get eSports event H2H summary
-      description: Retrieves a summary of head-to-head statistics between the two teams in an event.
+      description: Retrieves a summary of head-to-head statistics between the two
+        teams in an event.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10945126
-          schema:
-            type: integer
-          description: Event ID
+      - name: id
+        in: path
+        required: true
+        example: 10945126
+        schema:
+          type: integer
+        description: Event ID
       responses:
         '200':
           description: Successfully retrieved H2H summary.
@@ -767,18 +754,17 @@ paths:
   /api/esport/event/{id}/votes:
     get:
       tags:
-        - Esports
-        - Events
+      - Event
       summary: Get eSports event votes
       description: Retrieves fan voting results for a specific eSports event.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10944886
-          schema:
-            type: integer
-          description: Event ID
+      - name: id
+        in: path
+        required: true
+        example: 10944886
+        schema:
+          type: integer
+        description: Event ID
       responses:
         '200':
           description: Successfully retrieved event votes.
@@ -801,19 +787,18 @@ paths:
   /api/esport/event/{id}/streaks:
     get:
       tags:
-        - Esports
-        - Events
-        - Statistics
+      - Event
       summary: Get eSports event streaks
-      description: Retrieves team streaks (e.g., winning/losing streaks) for a specific eSports event.
+      description: Retrieves team streaks (e.g., winning/losing streaks) for a specific
+        eSports event.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10944886
-          schema:
-            type: integer
-          description: Event ID
+      - name: id
+        in: path
+        required: true
+        example: 10944886
+        schema:
+          type: integer
+        description: Event ID
       responses:
         '200':
           description: Successfully retrieved team streaks.
@@ -836,19 +821,18 @@ paths:
   /api/esport/game/{id}/lineups:
     get:
       tags:
-        - Esports
-        - Games
-        - Players
+      - Game
       summary: Get eSports game lineups
-      description: Retrieves player lineups for a specific game (map) within an eSports event.
+      description: Retrieves player lineups for a specific game (map) within an eSports
+        event.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 359360
-          schema:
-            type: integer
-          description: Game ID
+      - name: id
+        in: path
+        required: true
+        example: 359360
+        schema:
+          type: integer
+        description: Game ID
       responses:
         '200':
           description: Successfully retrieved game lineups.
@@ -871,18 +855,17 @@ paths:
   /api/esport/game/{id}/rounds:
     get:
       tags:
-        - Esports
-        - Games
+      - Game
       summary: Get eSports game rounds
       description: Retrieves round-by-round results for a specific game (map).
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 359440
-          schema:
-            type: integer
-          description: Game ID
+      - name: id
+        in: path
+        required: true
+        example: 359440
+        schema:
+          type: integer
+        description: Game ID
       responses:
         '200':
           description: Successfully retrieved game rounds.
@@ -905,18 +888,17 @@ paths:
   /api/esport/game/{id}/bans:
     get:
       tags:
-        - Esports
-        - Games
+      - Game
       summary: Get eSports game bans
       description: Retrieves character/map bans for a specific game.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 359554
-          schema:
-            type: integer
-          description: Game ID
+      - name: id
+        in: path
+        required: true
+        example: 359554
+        schema:
+          type: integer
+        description: Game ID
       responses:
         '200':
           description: Successfully retrieved game bans.
@@ -939,19 +921,17 @@ paths:
   /api/esport/game/{id}/statistics:
     get:
       tags:
-        - Esports
-        - Games
-        - Statistics
+      - Game
       summary: Get eSports game statistics
       description: Retrieves detailed statistics for a specific game (map).
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 359554
-          schema:
-            type: integer
-          description: Game ID
+      - name: id
+        in: path
+        required: true
+        example: 359554
+        schema:
+          type: integer
+        description: Game ID
       responses:
         '200':
           description: Successfully retrieved game statistics.
@@ -974,26 +954,24 @@ paths:
   /api/esport/team/{id}/matches/previous/{page}:
     get:
       tags:
-        - Esports
-        - Teams
-        - Matches
+      - Team
       summary: Get previous eSports matches for a team
       description: Retrieves a paginated list of a team's past eSports matches.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 459469
-          schema:
-            type: integer
-          description: Team ID
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination
+      - name: id
+        in: path
+        required: true
+        example: 459469
+        schema:
+          type: integer
+        description: Team ID
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination
       responses:
         '200':
           description: Successfully retrieved previous matches.
@@ -1022,26 +1000,24 @@ paths:
   /api/esport/team/{id}/matches/next/{page}:
     get:
       tags:
-        - Esports
-        - Teams
-        - Matches
+      - Team
       summary: Get next eSports matches for a team
       description: Retrieves a paginated list of a team's upcoming eSports matches.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 459262
-          schema:
-            type: integer
-          description: Team ID
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination
+      - name: id
+        in: path
+        required: true
+        example: 459262
+        schema:
+          type: integer
+        description: Team ID
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination
       responses:
         '200':
           description: Successfully retrieved upcoming matches.
@@ -1070,18 +1046,17 @@ paths:
   /api/esport/team/{id}:
     get:
       tags:
-        - Esports
-        - Teams
+      - Team
       summary: Get eSports team details
       description: Retrieves detailed information for a specific eSports team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 363904
-          schema:
-            type: integer
-          description: Team ID
+      - name: id
+        in: path
+        required: true
+        example: 363904
+        schema:
+          type: integer
+        description: Team ID
       responses:
         '200':
           description: Successfully retrieved team details.
@@ -1104,19 +1079,17 @@ paths:
   /api/esport/team/{id}/media:
     get:
       tags:
-        - Esports
-        - Teams
-        - Media
+      - Team
       summary: Get eSports team media
       description: Retrieves media (images, videos) associated with an eSports team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 363904
-          schema:
-            type: integer
-          description: Team ID
+      - name: id
+        in: path
+        required: true
+        example: 363904
+        schema:
+          type: integer
+        description: Team ID
       responses:
         '200':
           description: Successfully retrieved team media.
@@ -1139,19 +1112,18 @@ paths:
   /api/esport/team/{id}/matches/near:
     get:
       tags:
-        - Esports
-        - Teams
-        - Matches
+      - Team
       summary: Get near eSports matches for a team
-      description: Retrieves a list of recent and upcoming matches for an eSports team.
+      description: Retrieves a list of recent and upcoming matches for an eSports
+        team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 363904
-          schema:
-            type: integer
-          description: Team ID
+      - name: id
+        in: path
+        required: true
+        example: 363904
+        schema:
+          type: integer
+        description: Team ID
       responses:
         '200':
           description: Successfully retrieved near matches.
@@ -1174,18 +1146,16 @@ paths:
   /api/esport/team/{id}/image:
     get:
       tags:
-        - Esports
-        - Teams
-        - Media
+      - Team
       summary: Get eSports team image
       description: Retrieves the logo image for a specific eSports team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Team ID
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Team ID
       responses:
         '200':
           description: Successfully retrieved team image.
@@ -1209,18 +1179,17 @@ paths:
   /api/esport/player/{id}:
     get:
       tags:
-        - Esports
-        - Players
+      - Player
       summary: Get eSports player details
       description: Retrieves detailed information for a specific eSports player.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 1078255
-          schema:
-            type: integer
-          description: Player ID
+      - name: id
+        in: path
+        required: true
+        example: 1078255
+        schema:
+          type: integer
+        description: Player ID
       responses:
         '200':
           description: Successfully retrieved player details.
@@ -1243,18 +1212,16 @@ paths:
   /api/esport/player/{id}/image:
     get:
       tags:
-        - Esports
-        - Players
-        - Media
+      - Player
       summary: Get eSports player image
       description: Retrieves the profile image for a specific eSports player.
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Player ID
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Player ID
       responses:
         '200':
           description: Successfully retrieved player image.
@@ -1278,26 +1245,25 @@ paths:
   /api/esport/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
       tags:
-        - Esports
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get total standings for eSports tournament season
-      description: Retrieves the complete standings for a specific eSports tournament season.
+      description: Retrieves the complete standings for a specific eSports tournament
+        season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 16026
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 47832
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 16026
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 47832
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: Successfully retrieved tournament standings.
@@ -1320,25 +1286,25 @@ paths:
   /api/esport/tournament/{tournamentId}/season/{seasonId}/info:
     get:
       tags:
-        - Esports
-        - Tournaments
+      - Tournament
       summary: Get eSports tournament season info
-      description: Retrieves metadata and information about a specific eSports tournament season.
+      description: Retrieves metadata and information about a specific eSports tournament
+        season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 16026
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 47832
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 16026
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 47832
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: Successfully retrieved tournament season information.
@@ -1361,33 +1327,32 @@ paths:
   /api/esport/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
       tags:
-        - Esports
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get last matches for eSports tournament season
-      description: Retrieves a paginated list of past matches for a specific eSports tournament season.
+      description: Retrieves a paginated list of past matches for a specific eSports
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 16026
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 47832
-          schema:
-            type: integer
-          description: Season ID
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination
+      - name: tournamentId
+        in: path
+        required: true
+        example: 16026
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 47832
+        schema:
+          type: integer
+        description: Season ID
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination
       responses:
         '200':
           description: Successfully retrieved last matches.
@@ -1416,33 +1381,32 @@ paths:
   /api/esport/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
       tags:
-        - Esports
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get next matches for eSports tournament season
-      description: Retrieves a paginated list of upcoming matches for a specific eSports tournament season.
+      description: Retrieves a paginated list of upcoming matches for a specific eSports
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 16026
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 47832
-          schema:
-            type: integer
-          description: Season ID
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination
+      - name: tournamentId
+        in: path
+        required: true
+        example: 16026
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 47832
+        schema:
+          type: integer
+        description: Season ID
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination
       responses:
         '200':
           description: Successfully retrieved next matches.
@@ -1471,18 +1435,17 @@ paths:
   /api/esport/tournament/{tournamentId}:
     get:
       tags:
-        - Esports
-        - Tournaments
+      - Tournament
       summary: Get eSports tournament details
       description: Retrieves detailed information for a specific eSports tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 16026
-          schema:
-            type: integer
-          description: Tournament ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 16026
+        schema:
+          type: integer
+        description: Tournament ID
       responses:
         '200':
           description: Successfully retrieved tournament details.
@@ -1505,19 +1468,17 @@ paths:
   /api/esport/tournament/{tournamentId}/image:
     get:
       tags:
-        - Esports
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get eSports tournament image
       description: Retrieves the logo image for a specific eSports tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 16026
-          schema:
-            type: integer
-          description: Tournament ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 16026
+        schema:
+          type: integer
+        description: Tournament ID
       responses:
         '200':
           description: Successfully retrieved tournament image.
@@ -1541,18 +1502,16 @@ paths:
   /api/esport/tournament/{tournamentId}/image/dark:
     get:
       tags:
-        - Esports
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get eSports tournament dark image
       description: Retrieves the dark-theme logo image for a specific eSports tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Tournament ID
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Tournament ID
       responses:
         '200':
           description: Successfully retrieved tournament dark image.
@@ -1576,19 +1535,17 @@ paths:
   /api/esport/tournament/{tournamentId}/media:
     get:
       tags:
-        - Esports
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get eSports tournament media
       description: Retrieves media (images, videos) associated with an eSports tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 16026
-          schema:
-            type: integer
-          description: Tournament ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 16026
+        schema:
+          type: integer
+        description: Tournament ID
       responses:
         '200':
           description: Successfully retrieved tournament media.
@@ -1611,19 +1568,17 @@ paths:
   /api/esport/tournament/{tournamentId}/seasons:
     get:
       tags:
-        - Esports
-        - Tournaments
-        - Seasons
+      - Tournament
       summary: Get eSports tournament seasons
       description: Retrieves a list of available seasons for a specific eSports tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 16151
-          schema:
-            type: integer
-          description: Tournament ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 16151
+        schema:
+          type: integer
+        description: Tournament ID
       responses:
         '200':
           description: Successfully retrieved tournament seasons.
@@ -1646,26 +1601,25 @@ paths:
   /api/esport/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
       tags:
-        - Esports
-        - Tournaments
-        - Statistics
+      - Tournament
       summary: Get total team events for eSports tournament season
-      description: Retrieves aggregated team statistics for an entire eSports tournament season.
+      description: Retrieves aggregated team statistics for an entire eSports tournament
+        season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 16254
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 49721
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 16254
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 49721
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: Successfully retrieved total team events.
@@ -1688,18 +1642,17 @@ paths:
   /api/esport/character/{tournamentId}/image:
     get:
       tags:
-        - Esports
-        - Assets
+      - Character
       summary: Get eSports character image
       description: Retrieves the image for a specific in-game character.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 1717
-          schema:
-            type: integer
-          description: Character ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 1717
+        schema:
+          type: integer
+        description: Character ID
       responses:
         '200':
           description: Successfully retrieved character image.
@@ -1723,18 +1676,17 @@ paths:
   /api/esport/map/{tournamentId}/image:
     get:
       tags:
-        - Esports
-        - Assets
+      - Map
       summary: Get eSports map image
       description: Retrieves the image for a specific in-game map.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 21
-          schema:
-            type: integer
-          description: Map ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 21
+        schema:
+          type: integer
+        description: Map ID
       responses:
         '200':
           description: Successfully retrieved map image.
@@ -1777,3 +1729,32 @@ components:
       description: A generic JSON object response.
       properties: {}
       additionalProperties: true
+tags:
+- name: Category
+  description: Category endpoints.
+- name: Character
+  description: Character-related endpoints.
+- name: Country
+  description: Country assets and metadata.
+- name: Event
+  description: Event endpoints.
+- name: Fighter
+  description: Fighter placeholder assets.
+- name: Game
+  description: Game endpoints.
+- name: Manager
+  description: Manager endpoints.
+- name: Map
+  description: Map endpoints.
+- name: Match
+  description: Match endpoints.
+- name: Player
+  description: Player endpoints.
+- name: Search
+  description: Search endpoints.
+- name: TV
+  description: TV broadcast endpoints.
+- name: Team
+  description: Team endpoints.
+- name: Tournament
+  description: Tournament endpoints.

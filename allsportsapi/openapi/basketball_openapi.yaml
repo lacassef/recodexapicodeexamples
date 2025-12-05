@@ -2,85 +2,102 @@ openapi: 3.0.0
 info:
   title: Basketball API
   version: 1.0.0
-  description: OpenAPI specification for Basketball endpoints. Includes common AllSports endpoints and all Basketball-specific routes.
+  description: OpenAPI specification for Basketball endpoints. Includes common AllSports
+    endpoints and all Basketball-specific routes.
+servers:
+- url: http://localhost:8080
+  description: Local development server
 paths:
-  # AllSports – TV
   /api/tv/country/all/event/{id}:
     get:
-      tags: [AllSports, TV]
+      tags:
+      - TV
       summary: Get match TV countries
-      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      description: Lists the countries and the TV channels within them that are broadcasting
+        a specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema: { type: integer }
-          description: The unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object listing countries and their broadcasting channels.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/JSONResult' }
+              schema:
+                $ref: '#/components/schemas/JSONResult'
         '404':
           description: Match with the specified ID not found.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/tv/channel/{channId}/event/{id}:
     get:
-      tags: [AllSports, TV]
+      tags:
+      - TV
       summary: Get match TV channel votes
-      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting
+        the match.
       parameters:
-        - name: channId
-          in: path
-          required: true
-          example: 3177
-          schema: { type: integer }
-          description: The unique identifier for the TV channel.
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema: { type: integer }
-          description: The unique identifier for the match.
+      - name: channId
+        in: path
+        required: true
+        example: 3177
+        schema:
+          type: integer
+        description: The unique identifier for the TV channel.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object containing viewer vote data from the channel.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/JSONResult' }
+              schema:
+                $ref: '#/components/schemas/JSONResult'
         '404':
           description: Match or channel with the specified ID not found.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
-
-  # AllSports – flags
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/img/flag/{flag}:
     get:
-      tags: [AllSports]
+      tags:
+      - Country
       summary: Get country flag
-      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      description: Fetches the PNG flag image asset corresponding to a provided country
+        code. The response is the raw image data.
       parameters:
-        - name: flag
-          in: path
-          required: true
-          example: 'jp'
-          schema: { type: string }
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: flag
+        in: path
+        required: true
+        example: jp
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -93,23 +110,28 @@ paths:
           description: Flag with the specified code not found.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/country/{code}/flag:
     get:
-      tags: [AllSports]
+      tags:
+      - Country
       summary: Get country flag (img API)
-      description: Fetches the flag image by country code. The response is the raw image data.
+      description: Fetches the flag image by country code. The response is the raw
+        image data.
       parameters:
-        - name: code
-          in: path
-          required: true
-          schema: { type: string }
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -122,129 +144,165 @@ paths:
           description: Flag with the specified code not found.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
-
-  # AllSports – placeholders
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/placeholder/tournament.png:
     get:
-      tags: [AllSports, Tournaments]
+      tags:
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
           content:
             image/svg+xml:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/placeholder/tournament.svg:
     get:
-      tags: [AllSports, Tournaments]
+      tags:
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
           content:
             image/svg+xml:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/placeholder/team.svg:
     get:
-      tags: [AllSports, Teams]
+      tags:
+      - Team
       summary: Get team placeholder image
-      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      description: Returns a static placeholder graphic for a team. The response is
+        an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
           content:
             image/svg+xml:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/placeholder/player.png:
     get:
-      tags: [AllSports, Players]
+      tags:
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
           content:
             image/svg+xml:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/placeholder/player.svg:
     get:
-      tags: [AllSports, Players]
+      tags:
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
           content:
             image/svg+xml:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/placeholder/manager.png:
     get:
-      tags: [AllSports]
+      tags:
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
           content:
             image/svg+xml:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/placeholder/manager.svg:
     get:
-      tags: [AllSports]
+      tags:
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
           content:
             image/svg+xml:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/placeholders/fighter-male.svg:
     get:
-      tags: [AllSports, Placeholders, Media]
+      tags:
+      - Fighter
       summary: Get male fighter placeholder image
       description: Retrieves a placeholder image for a male fighter.
       responses:
@@ -252,15 +310,19 @@ paths:
           description: The placeholder SVG image.
           content:
             image/svg+xml:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/placeholders/fighter-female.svg:
     get:
-      tags: [AllSports, Placeholders, Media]
+      tags:
+      - Fighter
       summary: Get female fighter placeholder image
       description: Retrieves a placeholder image for a female fighter.
       responses:
@@ -268,997 +330,2977 @@ paths:
           description: The placeholder SVG image.
           content:
             image/svg+xml:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
-
-  # Basketball – Search & categories
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/search/{term}:
     get:
-      tags: [Basketball, Search]
+      tags:
+      - Search
       summary: Search basketball entities
       description: Searches for basketball teams, players, and tournaments.
       parameters:
-        - name: term
-          in: path
-          required: true
-          example: 'kevin'
-          schema: { type: string }
-          description: Search term (e.g., 'Lakers').
-        - name: page
-          in: query
-          required: false
-          schema: { type: integer }
-          description: Page number for pagination.
+      - name: term
+        in: path
+        required: true
+        example: kevin
+        schema:
+          type: string
+        description: Search term (e.g., 'Lakers').
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for pagination.
       responses:
-        '200': { description: Search results, content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '400': { description: Invalid request parameters., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/categories:
     get:
-      tags: [Basketball, Tournaments]
+      tags:
+      - Tournament
       summary: Get basketball tournament categories
       responses:
-        '200': { description: List of tournament categories., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-
-  # Basketball – Matches listing
+        '200':
+          description: List of tournament categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/matches/{day}/{month}/{year}:
     get:
-      tags: [Basketball, Matches]
+      tags:
+      - Match
       summary: Get basketball matches by date
       parameters:
-        - { name: day, in: path, required: true, schema: { type: integer }, example: 12}
-        - { name: month, in: path, required: true, schema: { type: integer }, example: 4}
-        - { name: year, in: path, required: true, schema: { type: integer }, example: 2022}
+      - name: day
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 12
+      - name: month
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 4
+      - name: year
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 2022
       responses:
-        '200': { description: Scheduled basketball matches for the given date., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '400': { description: Invalid date format., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Scheduled basketball matches for the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/matches/live:
     get:
-      tags: [Basketball, Matches]
+      tags:
+      - Match
       summary: Get live basketball matches
       responses:
-        '200': { description: A list of live basketball matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-
-  # Basketball – Match details
+        '200':
+          description: A list of live basketball matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}:
     get:
-      tags: [Basketball, Matches]
+      tags:
+      - Match
       summary: Get basketball match details
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10247060
       responses:
-        '200': { description: Detailed match info., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Detailed match info.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/form:
     get:
-      tags: [Basketball, Matches]
+      tags:
+      - Match
       summary: Get match form analysis
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10247060
       responses:
-        '200': { description: Pregame form and trends., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Pregame form and trends.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/odds:
     get:
-      tags: [Basketball, Matches, Odds]
+      tags:
+      - Match
       summary: Get match betting odds
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10066244}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10066244
       responses:
-        '200': { description: Odds for the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/best-players:
     get:
-      tags: [Basketball, Matches, Players]
+      tags:
+      - Match
       summary: Get match best players
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10247060
       responses:
-        '200': { description: Best performing players in the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Best performing players in the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/duel:
     get:
-      tags: [Basketball, Matches, Statistics]
+      tags:
+      - Match
       summary: Get head-to-head summary
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10066290}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10066290
       responses:
-        '200': { description: H2H summary for teams in the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: H2H summary for teams in the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/highlights:
     get:
-      tags: [Basketball, Matches, Media]
+      tags:
+      - Match
       summary: Get match highlights
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10066244}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10066244
       responses:
-        '200': { description: Video highlights for the match (if available)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Video highlights for the match (if available).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{customId}/h2h:
     get:
-      tags: [Basketball, Matches, Statistics]
+      tags:
+      - Match
       summary: Get head-to-head history
       parameters:
-        - { name: customId, in: path, required: true, schema: { type: string }, example: 'HtbsLtb'}
+      - name: customId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: HtbsLtb
       responses:
-        '200': { description: Detailed H2H match history., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match with custom ID not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Detailed H2H match history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with custom ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/lineups:
     get:
-      tags: [Basketball, Matches, Players]
+      tags:
+      - Match
       summary: Get match lineups
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10247060
       responses:
-        '200': { description: Starting lineups and substitutes., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Starting lineups and substitutes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/statistics:
     get:
-      tags: [Basketball, Matches, Statistics]
+      tags:
+      - Match
       summary: Get match statistics
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10247060
       responses:
-        '200': { description: Team and player statistics for the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Team and player statistics for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/graph:
     get:
-      tags: [Basketball, Matches, Statistics]
+      tags:
+      - Match
       summary: Get match momentum graph
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10247060
       responses:
-        '200': { description: Momentum graph datapoints., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Momentum graph datapoints.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/incidents:
     get:
-      tags: [Basketball, Matches]
+      tags:
+      - Match
       summary: Get match incidents
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10247060
       responses:
-        '200': { description: Chronological list of match incidents., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Chronological list of match incidents.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/managers:
     get:
-      tags: [Basketball, Matches, Managers]
+      tags:
+      - Match
       summary: Get match managers/coaches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10247060}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10247060
       responses:
-        '200': { description: Coaches information for both teams., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Coaches information for both teams.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/series:
     get:
-      tags: [Basketball, Matches]
+      tags:
+      - Match
       summary: Get match series information
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 11213285}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 11213285
       responses:
-        '200': { description: Series score and status (if applicable)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Series score and status (if applicable).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/player/{playerId}/statistics:
     get:
-      tags: [Basketball, Matches, Players, Statistics]
+      tags:
+      - Match
       summary: Get player match statistics
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: playerId, in: path, required: true, schema: { type: integer } }
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: playerId
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        '200': { description: Statistics for player in the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match or player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Statistics for player in the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/team/{teamId}/shotmap:
     get:
-      tags: [Basketball, Matches, Teams, Statistics]
+      tags:
+      - Match
       summary: Get team shot map
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10600552}
-        - { name: teamId, in: path, required: true, schema: { type: integer }, example: 3427}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10600552
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3427
       responses:
-        '200': { description: Shot map data for the team in the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match or team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Shot map data for the team in the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}/player/{playerId}/shotmap:
     get:
-      tags: [Basketball, Matches, Players, Statistics]
+      tags:
+      - Match
       summary: Get player shot map
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 10600552}
-        - { name: playerId, in: path, required: true, schema: { type: integer }, example: 817181}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10600552
+      - name: playerId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 817181
       responses:
-        '200': { description: Shot map data for the player in the match., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Match or player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-
-  # Basketball – Team endpoints
+        '200':
+          description: Shot map data for the player in the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/matches/previous/{page}:
     get:
-      tags: [Basketball, Teams, Matches]
+      tags:
+      - Team
       summary: Get previous team matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
-        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3436
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 0
       responses:
-        '200': { description: Paginated list of previous matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '400': { description: Invalid page or team ID., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Paginated list of previous matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page or team ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/matches/next/{page}:
     get:
-      tags: [Basketball, Teams, Matches]
+      tags:
+      - Team
       summary: Get upcoming team matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3540}
-        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3540
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 0
       responses:
-        '200': { description: Paginated list of upcoming matches., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '400': { description: Invalid page or team ID., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Paginated list of upcoming matches.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page or team ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/players/statistics/seasons:
     get:
-      tags: [Basketball, Teams, Statistics]
+      tags:
+      - Team
       summary: Get team player statistics seasons
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3436
       responses:
-        '200': { description: Seasons with available player statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Seasons with available player statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/standings/seasons:
     get:
-      tags: [Basketball, Teams, Standings]
+      tags:
+      - Team
       summary: Get team standings seasons
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3436
       responses:
-        '200': { description: Seasons with available standings., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Seasons with available standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players/regularseason:
     get:
-      tags: [Basketball, Teams, Players, Statistics]
+      tags:
+      - Team
       summary: Get team top players (regular season)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3436
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Top players for the team (regular season)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Top players for the team (regular season).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team/tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players/playoffs:
     get:
-      tags: [Basketball, Teams, Players, Statistics]
+      tags:
+      - Team
       summary: Get team top players (playoffs)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3436
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Top players for the team (playoffs)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Top players for the team (playoffs).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team/tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/tournaments:
     get:
-      tags: [Basketball, Teams, Tournaments]
+      tags:
+      - Team
       summary: Get team tournaments
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3436
       responses:
-        '200': { description: Unique tournaments the team has participated in., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Unique tournaments the team has participated in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/transfers:
     get:
-      tags: [Basketball, Teams, Transfers]
+      tags:
+      - Team
       summary: Get team transfers
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3436
       responses:
-        '200': { description: Player transfers for the team., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Player transfers for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/players:
     get:
-      tags: [Basketball, Teams, Players]
+      tags:
+      - Team
       summary: Get team players
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3436
       responses:
-        '200': { description: Current roster for the team., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Current roster for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/matches/near:
     get:
-      tags: [Basketball, Teams, Matches]
+      tags:
+      - Team
       summary: Get team near matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 2701}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 2701
       responses:
-        '200': { description: Recent and upcoming matches for the team., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Recent and upcoming matches for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/media:
     get:
-      tags: [Basketball, Teams, Media]
+      tags:
+      - Team
       summary: Get team media
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3436
       responses:
-        '200': { description: Media content for the team., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Media content for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}:
     get:
-      tags: [Basketball, Teams]
+      tags:
+      - Team
       summary: Get team details
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3436
       responses:
-        '200': { description: Team details., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Team details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/image:
     get:
-      tags: [Basketball, Teams, Media]
+      tags:
+      - Team
       summary: Get team image
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 3436}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 3436
       responses:
         '200':
           description: Team image file.
           content:
             image/png:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '404':
           description: Team or image not found.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularSeason:
     get:
-      tags: [Basketball, Teams, Statistics]
+      tags:
+      - Team
       summary: Get team statistics (regular season)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        '200': { description: Team regular season statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Team regular season statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team/tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/playoffs:
     get:
-      tags: [Basketball, Teams, Statistics]
+      tags:
+      - Team
       summary: Get team statistics (playoffs)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        '200': { description: Team playoffs statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Team playoffs statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team/tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/ranks/regularSeason:
     get:
-      tags: [Basketball, Teams, Statistics, Rankings]
+      tags:
+      - Team
       summary: Get team ranks (regular season)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        '200': { description: Team regular season ranks., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Team regular season ranks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team/tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/ranks/playoffs:
     get:
-      tags: [Basketball, Teams, Statistics, Rankings]
+      tags:
+      - Team
       summary: Get team ranks (playoffs)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer } }
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: seasonId, in: path, required: true, schema: { type: integer } }
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        '200': { description: Team playoffs ranks., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Team/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-
-  # Basketball – Player endpoints
+        '200':
+          description: Team playoffs ranks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team/tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}:
     get:
-      tags: [Basketball, Players]
+      tags:
+      - Player
       summary: Get player details
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 846936
       responses:
-        '200': { description: Player details., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Player details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}/media:
     get:
-      tags: [Basketball, Players, Media]
+      tags:
+      - Player
       summary: Get player media
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 846936
       responses:
-        '200': { description: Media content for the player., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Media content for the player.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}/matches/near:
     get:
-      tags: [Basketball, Players, Matches]
+      tags:
+      - Player
       summary: Get player near matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 846936
       responses:
-        '200': { description: Recent and upcoming matches for the player., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Recent and upcoming matches for the player.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}/transfers:
     get:
-      tags: [Basketball, Players, Transfers]
+      tags:
+      - Player
       summary: Get player transfer history
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 846936
       responses:
-        '200': { description: Transfer history for the player., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Transfer history for the player.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}/statistics/season:
     get:
-      tags: [Basketball, Players, Statistics]
+      tags:
+      - Player
       summary: Get player statistics seasons
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 846936
       responses:
-        '200': { description: Seasons with available player statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Seasons with available player statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularseason:
     get:
-      tags: [Basketball, Players, Statistics]
+      tags:
+      - Player
       summary: Get player statistics (regular season)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 846936
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Player regular season statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Player/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Player regular season statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player/tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/playoffs:
     get:
-      tags: [Basketball, Players, Statistics]
+      tags:
+      - Player
       summary: Get player statistics (playoffs)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 817050}
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 817050
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Player playoffs statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Player/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Player playoffs statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player/tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/overall:
     get:
-      tags: [Basketball, Players, Statistics]
+      tags:
+      - Player
       summary: Get player statistics (overall)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 861446}
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 264}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45109}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 861446
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 264
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 45109
       responses:
-        '200': { description: Player overall season statistics., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Player/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Player overall season statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player/tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}/image:
     get:
-      tags: [Basketball, Players, Media]
+      tags:
+      - Player
       summary: Get player image
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 846936}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 846936
       responses:
         '200':
           description: Player image file.
           content:
             image/png:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '404':
           description: Player or image not found.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}/matches/previous/{page}:
     get:
-      tags: [Basketball, Players, Matches]
+      tags:
+      - Player
       summary: Get previous player matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 817050}
-        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 817050
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 0
       responses:
-        '200': { description: Paginated list of previous matches for player., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '400': { description: Invalid page or player ID., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '404': { description: Player not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Paginated list of previous matches for player.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page or player ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Player not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/shot-actions/regularSeason:
     get:
-      tags: [Basketball, Players, Statistics]
+      tags:
+      - Player
       summary: Get player shot actions (regular season)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 817050}
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 817050
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 45096
       responses:
-        '200': { description: Shot action data (regular season)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Player/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Shot action data (regular season).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player/tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/shot-actions/playoffs:
     get:
-      tags: [Basketball, Players, Statistics]
+      tags:
+      - Player
       summary: Get player shot actions (playoffs)
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 817050}
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 817050
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Shot action data (playoffs)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Player/tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-
-  # Basketball – Manager endpoints
+        '200':
+          description: Shot action data (playoffs).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Player/tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/manager/{id}:
     get:
-      tags: [Basketball, Managers]
+      tags:
+      - Manager
       summary: Get manager details
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 798706}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 798706
       responses:
-        '200': { description: Manager details., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Manager not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Manager details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Manager not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/manager/{id}/image:
     get:
-      tags: [Basketball, Managers, Media]
+      tags:
+      - Manager
       summary: Get manager image
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 794612}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 794612
       responses:
         '200':
           description: Manager image file.
           content:
             image/png:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '404':
           description: Manager or image not found.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/manager/{id}/matches/previous/{page}:
     get:
-      tags: [Basketball, Managers, Matches]
+      tags:
+      - Manager
       summary: Get previous manager matches
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 794632}
-        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 794632
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 0
       responses:
-        '200': { description: Paginated list of previous matches for manager., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '400': { description: Invalid page or manager ID., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '404': { description: Manager not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-
-  # Basketball – Tournament & standings endpoints
+        '200':
+          description: Paginated list of previous matches for manager.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page or manager ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Manager not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
-      tags: [Basketball, Tournaments, Standings]
+      tags:
+      - Tournament
       summary: Get tournament standings (total)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Tournament standings (total)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Tournament standings (total).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
-      tags: [Basketball, Tournaments, Standings]
+      tags:
+      - Tournament
       summary: Get tournament standings (home)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 264}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45109}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 264
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 45109
       responses:
-        '200': { description: Tournament standings (home)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Tournament standings (home).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/standings/away:
     get:
-      tags: [Basketball, Tournaments, Standings]
+      tags:
+      - Tournament
       summary: Get tournament standings (away)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 264}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45109}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 264
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 45109
       responses:
-        '200': { description: Tournament standings (away)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Tournament standings (away).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}:
     get:
-      tags: [Basketball, Tournaments]
+      tags:
+      - Tournament
       summary: Get tournament details
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
       responses:
-        '200': { description: Tournament details., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Tournament details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/seasons:
     get:
-      tags: [Basketball, Tournaments]
+      tags:
+      - Tournament
       summary: Get tournament seasons
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
       responses:
-        '200': { description: Available seasons for the tournament., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Available seasons for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/media:
     get:
-      tags: [Basketball, Tournaments, Media]
+      tags:
+      - Tournament
       summary: Get tournament media
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
       responses:
-        '200': { description: Media content for the tournament., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Media content for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/image:
     get:
-      tags: [Basketball, Tournaments, Media]
+      tags:
+      - Tournament
       summary: Get tournament image
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
       responses:
         '200':
           description: Tournament image file.
           content:
             image/png:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '404':
           description: Tournament or image not found.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/image/dark:
     get:
-      tags: [Basketball, Tournaments, Media]
+      tags:
+      - Tournament
       summary: Get tournament dark image
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
           description: Tournament dark image file.
           content:
             image/png:
-              schema: { type: string, format: binary }
+              schema:
+                type: string
+                format: binary
         '404':
           description: Tournament or image not found.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/ErrorResponse' }
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/regularseason:
     get:
-      tags: [Basketball, Tournaments, Players, Statistics]
+      tags:
+      - Tournament
       summary: Get tournament best players (regular season)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Best players in regular season for the tournament., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Best players in regular season for the tournament.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/cuptrees:
     get:
-      tags: [Basketball, Tournaments]
+      tags:
+      - Tournament
       summary: Get tournament cup trees
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Cup trees/brackets for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Cup trees/brackets for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/playoffs:
     get:
-      tags: [Basketball, Tournaments, Players, Statistics]
+      tags:
+      - Tournament
       summary: Get tournament best players (playoffs)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Best players in playoffs for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Best players in playoffs for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
-      tags: [Basketball, Tournaments, Matches]
+      tags:
+      - Tournament
       summary: Get tournament last matches
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
-        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 0
       responses:
-        '200': { description: Paginated list of last matches in tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '400': { description: Invalid page parameter., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Paginated list of last matches in tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
-      tags: [Basketball, Tournaments, Matches]
+      tags:
+      - Tournament
       summary: Get tournament next matches
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
-        - { name: page, in: path, required: true, schema: { type: integer }, example: 0}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 0
       responses:
-        '200': { description: Paginated list of next matches in tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '400': { description: Invalid page parameter., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Paginated list of next matches in tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid page parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/category/{id}/events/{day}/{month}/{year}:
     get:
-      tags: [Basketball, Categories, Matches]
+      tags:
+      - Category
       summary: Get category events by date
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 264}
-        - { name: day, in: path, required: true, schema: { type: integer }, example: 17}
-        - { name: month, in: path, required: true, schema: { type: integer }, example: 8}
-        - { name: year, in: path, required: true, schema: { type: integer }, example: 2022}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 264
+      - name: day
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 17
+      - name: month
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 8
+      - name: year
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 2022
       responses:
-        '200': { description: Events for the category on the given date., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '400': { description: Invalid date parameters., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '404': { description: Category not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Events for the category on the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Category not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/group/tournament/{tournamentId}/season/{seasonId}/matches:
     get:
-      tags: [Basketball, Tournaments, Matches]
+      tags:
+      - Group
       summary: Get tournament group matches
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 4618}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 22873}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 4618
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 22873
       responses:
-        '200': { description: Group matches within the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Group matches within the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-teams/regularSeason:
     get:
-      tags: [Basketball, Tournaments, Teams, Statistics]
+      tags:
+      - Tournament
       summary: Get tournament best teams (regular season)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 45096
       responses:
-        '200': { description: Best teams (regular season)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Best teams (regular season).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-teams/playoffs:
     get:
-      tags: [Basketball, Tournaments, Teams, Statistics]
+      tags:
+      - Tournament
       summary: Get tournament best teams (playoffs)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Best teams (playoffs)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Best teams (playoffs).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/per-game:
     get:
-      tags: [Basketball, Tournaments, Players, Statistics]
+      tags:
+      - Tournament
       summary: Get tournament best players per game (overall)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 45096
       responses:
-        '200': { description: Best players per game (overall) for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Best players per game (overall) for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/per-game/regularSeason:
     get:
-      tags: [Basketball, Tournaments, Players, Statistics]
+      tags:
+      - Tournament
       summary: Get tournament best players per game (regular season)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 45096
       responses:
-        '200': { description: Best players per game (regular season)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Best players per game (regular season).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/per-game/playoffs:
     get:
-      tags: [Basketball, Tournaments, Players, Statistics]
+      tags:
+      - Tournament
       summary: Get tournament best players per game (playoffs)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Best players per game (playoffs)., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Best players per game (playoffs).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/types:
     get:
-      tags: [Basketball, Tournaments, Players, Statistics]
+      tags:
+      - Tournament
       summary: Get tournament best player metric types
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 45096
       responses:
-        '200': { description: Available metric types for best players leaderboards., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Available metric types for best players leaderboards.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/shot-actions/areas/regularSeason:
     get:
-      tags: [Basketball, Tournaments, Statistics]
+      tags:
+      - Tournament
       summary: Get shot action areas (regular season)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 45096}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 45096
       responses:
-        '200': { description: Shot action areas data for regular season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Shot action areas data for regular season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/shot-actions/areas/playoffs:
     get:
-      tags: [Basketball, Tournaments, Statistics]
+      tags:
+      - Tournament
       summary: Get shot action areas (playoffs)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 132}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 38191}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 38191
       responses:
-        '200': { description: Shot action areas data for playoffs., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Shot action areas data for playoffs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
-      tags: [Basketball, Tournaments, Teams, Statistics]
+      tags:
+      - Tournament
       summary: Get team events (total)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 138}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 42914}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 138
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 42914
       responses:
-        '200': { description: Team events totals for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Team events totals for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
-      tags: [Basketball, Tournaments, Teams, Statistics]
+      tags:
+      - Tournament
       summary: Get team events (home)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 138}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 42914}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 138
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 42914
       responses:
-        '200': { description: Team events at home for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Team events at home for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
-      tags: [Basketball, Tournaments, Teams, Statistics]
+      tags:
+      - Tournament
       summary: Get team events (away)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 138}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 42914}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 138
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 42914
       responses:
-        '200': { description: Team events away for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Team events away for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-teams/overall:
     get:
-      tags: [Basketball, Tournaments, Teams, Statistics]
+      tags:
+      - Tournament
       summary: Get tournament best teams (overall)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 441}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 22873}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 441
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 22873
       responses:
-        '200': { description: Best teams overall for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Best teams overall for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
-      tags: [Basketball, Tournaments]
+      tags:
+      - Tournament
       summary: Get tournament rounds
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 441}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 22873}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 441
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 22873
       responses:
-        '200': { description: Rounds for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Rounds for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/groups:
     get:
-      tags: [Basketball, Tournaments]
+      tags:
+      - Tournament
       summary: Get tournament groups
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 441}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 22873}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 441
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 22873
       responses:
-        '200': { description: Groups for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Groups for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/overall:
     get:
-      tags: [Basketball, Tournaments, Players, Statistics]
+      tags:
+      - Tournament
       summary: Get tournament best players (overall)
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer }, example: 441}
-        - { name: seasonId, in: path, required: true, schema: { type: integer }, example: 22873}
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 441
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 22873
       responses:
-        '200': { description: Best players overall for the tournament season., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Tournament/season not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Best players overall for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
-      tags: [Basketball, Tournaments, Matches]
+      tags:
+      - Tournament
       summary: Get tournament schedules by date
       parameters:
-        - { name: tournamentId, in: path, required: true, schema: { type: integer } }
-        - { name: day, in: path, required: true, schema: { type: integer } }
-        - { name: month, in: path, required: true, schema: { type: integer } }
-        - { name: year, in: path, required: true, schema: { type: integer } }
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: day
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: month
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: year
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        '200': { description: Scheduled matches for the tournament on the given date., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '400': { description: Invalid date parameters., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
+        '200':
+          description: Scheduled matches for the tournament on the given date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/all/category/{id}:
     get:
-      tags: [Basketball, Tournaments]
+      tags:
+      - Tournament
       summary: Get all tournaments for category
       parameters:
-        - { name: id, in: path, required: true, schema: { type: integer }, example: 264}
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 264
       responses:
-        '200': { description: Tournaments for the given category., content: { application/json: { schema: { $ref: '#/components/schemas/JSONResult' } } } }
-        '404': { description: Category not found., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-        '500': { description: Internal server error., content: { application/json: { schema: { $ref: '#/components/schemas/ErrorResponse' } } } }
-
+        '200':
+          description: Tournaments for the given category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Category not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     ErrorResponse:
@@ -1280,3 +3322,26 @@ components:
       type: object
       description: A generic JSON object response.
       additionalProperties: true
+tags:
+- name: Category
+  description: Category endpoints.
+- name: Country
+  description: Country assets and metadata.
+- name: Fighter
+  description: Fighter placeholder assets.
+- name: Group
+  description: Group endpoints.
+- name: Manager
+  description: Manager endpoints.
+- name: Match
+  description: Match endpoints.
+- name: Player
+  description: Player endpoints.
+- name: Search
+  description: Search endpoints.
+- name: TV
+  description: TV broadcast endpoints.
+- name: Team
+  description: Team endpoints.
+- name: Tournament
+  description: Tournament endpoints.

@@ -4,24 +4,24 @@ info:
   description: OpenAPI specification for the Baseball API endpoints.
   version: 1.0.0
 servers:
-  - url: http://localhost:8080
-    description: Local server
+- url: http://localhost:8080
+  description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
     get:
       tags:
-        - AllSports
-        - TV
+      - TV
       summary: Get match TV countries
-      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      description: Lists the countries and the TV channels within them that are broadcasting
+        a specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: The unique identifier for the match.
-          example: 10974920
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier for the match.
+        example: 10974920
+        schema:
+          type: integer
       responses:
         '200':
           description: A JSON object listing countries and their broadcasting channels.
@@ -44,25 +44,25 @@ paths:
   /api/tv/channel/{channId}/event/{id}:
     get:
       tags:
-        - AllSports
-        - TV
+      - TV
       summary: Get match TV channel votes
-      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting
+        the match.
       parameters:
-        - name: channId
-          in: path
-          required: true
-          description: The unique identifier for the TV channel.
-          example: 3177
-          schema:
-            type: integer
-        - name: id
-          in: path
-          required: true
-          description: The unique identifier for the match.
-          example: 10974920
-          schema:
-            type: integer
+      - name: channId
+        in: path
+        required: true
+        description: The unique identifier for the TV channel.
+        example: 3177
+        schema:
+          type: integer
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier for the match.
+        example: 10974920
+        schema:
+          type: integer
       responses:
         '200':
           description: A JSON object containing viewer vote data from the channel.
@@ -85,17 +85,18 @@ paths:
   /api/img/flag/{flag}:
     get:
       tags:
-        - AllSports
+      - Country
       summary: Get country flag
-      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      description: Fetches the PNG flag image asset corresponding to a provided country
+        code. The response is the raw image data.
       parameters:
-        - name: flag
-          in: path
-          required: true
-          description: Country code or identifier (e.g., 'EN' for England).
-          example: 'jp'
-          schema:
-            type: string
+      - name: flag
+        in: path
+        required: true
+        description: Country code or identifier (e.g., 'EN' for England).
+        example: jp
+        schema:
+          type: string
       responses:
         '200':
           description: The country's flag image file.
@@ -119,16 +120,16 @@ paths:
   /api/country/{code}/flag:
     get:
       tags:
-        - AllSports
+      - Country
       summary: Get country flag (img API)
       description: Fetches the flag image by country code.
       parameters:
-        - name: code
-          in: path
-          required: true
-          description: Country code or identifier (e.g., 'EN' for England).
-          schema:
-            type: string
+      - name: code
+        in: path
+        required: true
+        description: Country code or identifier (e.g., 'EN' for England).
+        schema:
+          type: string
       responses:
         '200':
           description: The country's flag image file.
@@ -152,10 +153,10 @@ paths:
   /api/placeholder/tournament.png:
     get:
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -173,10 +174,10 @@ paths:
   /api/placeholder/tournament.svg:
     get:
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -194,10 +195,10 @@ paths:
   /api/placeholder/team.svg:
     get:
       tags:
-        - AllSports
-        - Teams
+      - Team
       summary: Get team placeholder image
-      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      description: Returns a static placeholder graphic for a team. The response is
+        an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -215,10 +216,10 @@ paths:
   /api/placeholder/player.png:
     get:
       tags:
-        - AllSports
-        - Players
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -236,10 +237,10 @@ paths:
   /api/placeholder/player.svg:
     get:
       tags:
-        - AllSports
-        - Players
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -257,9 +258,10 @@ paths:
   /api/placeholder/manager.png:
     get:
       tags:
-        - AllSports
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -277,9 +279,10 @@ paths:
   /api/placeholder/manager.svg:
     get:
       tags:
-        - AllSports
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -297,9 +300,7 @@ paths:
   /api/placeholders/fighter-male.svg:
     get:
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       summary: Get male fighter placeholder image
       description: Retrieves a placeholder image for a male fighter.
       responses:
@@ -319,9 +320,7 @@ paths:
   /api/placeholders/fighter-female.svg:
     get:
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       summary: Get female fighter placeholder image
       description: Retrieves a placeholder image for a female fighter.
       responses:
@@ -338,28 +337,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-
   /api/baseball/search/{term}:
     get:
       tags:
-        - Baseball
-        - Search
+      - Search
       summary: Search baseball entities
       description: Searches for baseball teams, players, and tournaments.
       parameters:
-        - name: term
-          in: path
-          required: true
-          description: "Search term (e.g., 'Yankees')"
-          example: 'mlb'
-          schema:
-            type: string
-        - name: page
-          in: query
-          required: false
-          description: Page number for pagination
-          schema:
-            type: integer
+      - name: term
+        in: path
+        required: true
+        description: Search term (e.g., 'Yankees')
+        example: mlb
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        description: Page number for pagination
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of search results for teams, players, and tournaments.
@@ -382,10 +379,10 @@ paths:
   /api/baseball/tournament/categories:
     get:
       tags:
-        - Baseball
-        - Tournaments
+      - Tournament
       summary: Get baseball tournament categories
-      description: Retrieves a list of all available baseball tournament categories, typically corresponding to countries or regions.
+      description: Retrieves a list of all available baseball tournament categories,
+        typically corresponding to countries or regions.
       responses:
         '200':
           description: A list of tournament categories.
@@ -402,32 +399,31 @@ paths:
   /api/baseball/matches/{day}/{month}/{year}:
     get:
       tags:
-        - Baseball
-        - Matches
+      - Match
       summary: Get baseball matches by date
       description: Fetches all baseball matches scheduled for a specific date.
       parameters:
-        - name: day
-          in: path
-          required: true
-          description: "Day of the month (e.g., 15)"
-          example: 1
-          schema:
-            type: integer
-        - name: month
-          in: path
-          required: true
-          description: "Month of the year (e.g., 7)"
-          example: 8
-          schema:
-            type: integer
-        - name: year
-          in: path
-          required: true
-          description: "Year (e.g., 2024)"
-          example: 2022
-          schema:
-            type: integer
+      - name: day
+        in: path
+        required: true
+        description: Day of the month (e.g., 15)
+        example: 1
+        schema:
+          type: integer
+      - name: month
+        in: path
+        required: true
+        description: Month of the year (e.g., 7)
+        example: 8
+        schema:
+          type: integer
+      - name: year
+        in: path
+        required: true
+        description: Year (e.g., 2024)
+        example: 2022
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of scheduled baseball matches for the given date.
@@ -450,8 +446,7 @@ paths:
   /api/baseball/matches/live:
     get:
       tags:
-        - Baseball
-        - Matches
+      - Match
       summary: Get live baseball matches
       description: Retrieves all currently live baseball matches.
       responses:
@@ -470,18 +465,18 @@ paths:
   /api/baseball/match/{id}:
     get:
       tags:
-        - Baseball
-        - Matches
+      - Match
       summary: Get baseball match details
-      description: Retrieves detailed information for a specific baseball match by its ID.
+      description: Retrieves detailed information for a specific baseball match by
+        its ID.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the match.
-          example: 9864379
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 9864379
+        schema:
+          type: integer
       responses:
         '200':
           description: Detailed information about the match.
@@ -504,19 +499,18 @@ paths:
   /api/baseball/match/{id}/statistics:
     get:
       tags:
-        - Baseball
-        - Matches
-        - Statistics
+      - Match
       summary: Get match statistics
-      description: Retrieves comprehensive team and player statistics for a specific match.
+      description: Retrieves comprehensive team and player statistics for a specific
+        match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the match.
-          example: 9864379
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 9864379
+        schema:
+          type: integer
       responses:
         '200':
           description: Comprehensive statistics for the match.
@@ -539,19 +533,18 @@ paths:
   /api/baseball/match/{customId}/h2h:
     get:
       tags:
-        - Baseball
-        - Matches
-        - Statistics
+      - Match
       summary: Get head-to-head history
-      description: Retrieves the detailed match history for head-to-head encounters between two teams.
+      description: Retrieves the detailed match history for head-to-head encounters
+        between two teams.
       parameters:
-        - name: customId
-          in: path
-          required: true
-          description: A custom identifier for the match, used for H2H lookups.
-          example: 'ExbsIxb'
-          schema:
-            type: string
+      - name: customId
+        in: path
+        required: true
+        description: A custom identifier for the match, used for H2H lookups.
+        example: ExbsIxb
+        schema:
+          type: string
       responses:
         '200':
           description: A detailed list of past H2H matches.
@@ -574,19 +567,18 @@ paths:
   /api/baseball/match/{id}/duel:
     get:
       tags:
-        - Baseball
-        - Matches
-        - Statistics
+      - Match
       summary: Get head-to-head summary
-      description: Retrieves a summary of head-to-head statistics between the two teams in a match.
+      description: Retrieves a summary of head-to-head statistics between the two
+        teams in a match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the match.
-          example: 9864379
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 9864379
+        schema:
+          type: integer
       responses:
         '200':
           description: A summary of H2H statistics.
@@ -609,18 +601,18 @@ paths:
   /api/baseball/match/{id}/form:
     get:
       tags:
-        - Baseball
-        - Matches
+      - Match
       summary: Get match form analysis
-      description: Retrieves pre-game form and recent performance data for the teams in a specific match.
+      description: Retrieves pre-game form and recent performance data for the teams
+        in a specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the match.
-          example: 9864379
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 9864379
+        schema:
+          type: integer
       responses:
         '200':
           description: Pregame form and performance trends for the teams.
@@ -643,19 +635,18 @@ paths:
   /api/baseball/match/{id}/odds:
     get:
       tags:
-        - Baseball
-        - Matches
-        - Odds
+      - Match
       summary: Get match betting odds
-      description: Retrieves available betting odds from various bookmakers for a specific match.
+      description: Retrieves available betting odds from various bookmakers for a
+        specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the match.
-          example: 9864379
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 9864379
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of available betting odds for the match.
@@ -678,18 +669,17 @@ paths:
   /api/baseball/match/{id}/votes:
     get:
       tags:
-        - Baseball
-        - Matches
+      - Match
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the match.
-          example: 9864379
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 9864379
+        schema:
+          type: integer
       responses:
         '200':
           description: Vote counts and percentages for the match.
@@ -712,19 +702,18 @@ paths:
   /api/baseball/match/{id}/lineups:
     get:
       tags:
-        - Baseball
-        - Matches
-        - Players
+      - Match
       summary: Get match lineups
-      description: Retrieves the starting lineups and batting order for both teams in a specific match.
+      description: Retrieves the starting lineups and batting order for both teams
+        in a specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the match.
-          example: 9864379
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 9864379
+        schema:
+          type: integer
       responses:
         '200':
           description: Starting lineups and batting order for the match.
@@ -747,19 +736,18 @@ paths:
   /api/baseball/match/{id}/highlights:
     get:
       tags:
-        - Baseball
-        - Matches
-        - Media
+      - Match
       summary: Get match highlights
-      description: Retrieves video highlights and key moments from a specific match, if available.
+      description: Retrieves video highlights and key moments from a specific match,
+        if available.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the match.
-          example: 9864379
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 9864379
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of video highlights for the match.
@@ -782,25 +770,23 @@ paths:
   /api/baseball/match/{id}/player/{playerId}/statistics:
     get:
       tags:
-        - Baseball
-        - Matches
-        - Players
-        - Statistics
+      - Match
       summary: Get player match statistics
-      description: Retrieves detailed statistics for a single player in a specific match.
+      description: Retrieves detailed statistics for a single player in a specific
+        match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the match.
-          schema:
-            type: integer
-        - name: playerId
-          in: path
-          required: true
-          description: Unique identifier for the player.
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        schema:
+          type: integer
+      - name: playerId
+        in: path
+        required: true
+        description: Unique identifier for the player.
+        schema:
+          type: integer
       responses:
         '200':
           description: Detailed statistics for the specified player in the match.
@@ -823,18 +809,17 @@ paths:
   /api/baseball/team/{id}:
     get:
       tags:
-        - Baseball
-        - Teams
+      - Team
       summary: Get baseball team details
       description: Retrieves comprehensive details for a specific baseball team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the team.
-          example: 3633
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the team.
+        example: 3633
+        schema:
+          type: integer
       responses:
         '200':
           description: Comprehensive details for the team.
@@ -857,26 +842,25 @@ paths:
   /api/baseball/team/{id}/matches/previous/{page}:
     get:
       tags:
-        - Baseball
-        - Teams
-        - Matches
+      - Team
       summary: Get previous team matches
-      description: Fetches a paginated list of completed baseball games for a specific team, sorted by date descending.
+      description: Fetches a paginated list of completed baseball games for a specific
+        team, sorted by date descending.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the team.
-          example: 3633
-          schema:
-            type: integer
-        - name: page
-          in: path
-          required: true
-          description: "Page number for pagination (starts from 1)."
-          example: 0
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the team.
+        example: 3633
+        schema:
+          type: integer
+      - name: page
+        in: path
+        required: true
+        description: Page number for pagination (starts from 1).
+        example: 0
+        schema:
+          type: integer
       responses:
         '200':
           description: A paginated list of the team's previous matches.
@@ -905,26 +889,25 @@ paths:
   /api/baseball/team/{id}/matches/next/{page}:
     get:
       tags:
-        - Baseball
-        - Teams
-        - Matches
+      - Team
       summary: Get upcoming team matches
-      description: Fetches a paginated list of scheduled baseball games for a specific team, sorted by date ascending.
+      description: Fetches a paginated list of scheduled baseball games for a specific
+        team, sorted by date ascending.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the team.
-          example: 3633
-          schema:
-            type: integer
-        - name: page
-          in: path
-          required: true
-          description: "Page number for pagination (starts from 1)."
-          example: 0
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the team.
+        example: 3633
+        schema:
+          type: integer
+      - name: page
+        in: path
+        required: true
+        description: Page number for pagination (starts from 1).
+        example: 0
+        schema:
+          type: integer
       responses:
         '200':
           description: A paginated list of the team's upcoming matches.
@@ -953,19 +936,18 @@ paths:
   /api/baseball/team/{id}/matches/near:
     get:
       tags:
-        - Baseball
-        - Teams
-        - Matches
+      - Team
       summary: Get team near matches
-      description: Retrieves a list of recent and upcoming matches for a specific team.
+      description: Retrieves a list of recent and upcoming matches for a specific
+        team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the team.
-          example: 3633
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the team.
+        example: 3633
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of recent and upcoming matches.
@@ -988,19 +970,18 @@ paths:
   /api/baseball/team/{id}/tournaments:
     get:
       tags:
-        - Baseball
-        - Teams
-        - Tournaments
+      - Team
       summary: Get team tournaments
-      description: Retrieves a list of all unique tournaments a team has participated in.
+      description: Retrieves a list of all unique tournaments a team has participated
+        in.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the team.
-          example: 3633
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the team.
+        example: 3633
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of unique tournaments the team has participated in.
@@ -1023,19 +1004,17 @@ paths:
   /api/baseball/team/{id}/standings/seasons:
     get:
       tags:
-        - Baseball
-        - Teams
-        - Standings
+      - Team
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which a team's standings are available.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the team.
-          example: 3633
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the team.
+        example: 3633
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of seasons with available standings.
@@ -1058,19 +1037,17 @@ paths:
   /api/baseball/team/{id}/players:
     get:
       tags:
-        - Baseball
-        - Teams
-        - Players
+      - Team
       summary: Get team players
       description: Retrieves the current roster of players for a specific team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the team.
-          example: 3633
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the team.
+        example: 3633
+        schema:
+          type: integer
       responses:
         '200':
           description: The current roster of players for the team.
@@ -1093,19 +1070,18 @@ paths:
   /api/baseball/team/{id}/media:
     get:
       tags:
-        - Baseball
-        - Teams
-        - Media
+      - Team
       summary: Get team media
-      description: Retrieves media content (e.g., videos, images) associated with a specific team.
+      description: Retrieves media content (e.g., videos, images) associated with
+        a specific team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the team.
-          example: 3633
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the team.
+        example: 3633
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of media content for the team.
@@ -1128,19 +1104,17 @@ paths:
   /api/baseball/team/{id}/image:
     get:
       tags:
-        - Baseball
-        - Teams
-        - Media
+      - Team
       summary: Get team logo
       description: Retrieves the logo image for a specific team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the team.
-          example: 3633
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the team.
+        example: 3633
+        schema:
+          type: integer
       responses:
         '200':
           description: The team's logo image.
@@ -1164,18 +1138,17 @@ paths:
   /api/baseball/player/{id}:
     get:
       tags:
-        - Baseball
-        - Players
+      - Player
       summary: Get baseball player details
       description: Retrieves comprehensive information about a specific baseball player.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the player.
-          example: 977489
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the player.
+        example: 977489
+        schema:
+          type: integer
       responses:
         '200':
           description: Comprehensive details for the player.
@@ -1198,19 +1171,18 @@ paths:
   /api/baseball/player/{id}/matches/near:
     get:
       tags:
-        - Baseball
-        - Players
-        - Matches
+      - Player
       summary: Get player near matches
-      description: Retrieves a list of recent and upcoming matches for a specific player.
+      description: Retrieves a list of recent and upcoming matches for a specific
+        player.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the player.
-          example: 977489
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the player.
+        example: 977489
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of the player's recent and upcoming matches.
@@ -1233,26 +1205,25 @@ paths:
   /api/baseball/player/{id}/matches/previous/{page}:
     get:
       tags:
-        - Baseball
-        - Players
-        - Matches
+      - Player
       summary: Get previous player matches
-      description: Fetches a paginated list of completed matches for a specific player, sorted by date descending.
+      description: Fetches a paginated list of completed matches for a specific player,
+        sorted by date descending.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the player.
-          example: 1195558
-          schema:
-            type: integer
-        - name: page
-          in: path
-          required: true
-          description: "Page number for pagination (starts from 1)."
-          example: 0
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the player.
+        example: 1195558
+        schema:
+          type: integer
+      - name: page
+        in: path
+        required: true
+        description: Page number for pagination (starts from 1).
+        example: 0
+        schema:
+          type: integer
       responses:
         '200':
           description: A paginated list of the player's previous matches.
@@ -1281,19 +1252,18 @@ paths:
   /api/baseball/player/{id}/statistics/seasons:
     get:
       tags:
-        - Baseball
-        - Players
-        - Statistics
+      - Player
       summary: Get player statistics seasons
-      description: Retrieves a list of seasons for which a player's statistics are available.
+      description: Retrieves a list of seasons for which a player's statistics are
+        available.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the player.
-          example: 977489
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the player.
+        example: 977489
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of seasons with available statistics.
@@ -1316,33 +1286,32 @@ paths:
   /api/baseball/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularSeason:
     get:
       tags:
-        - Baseball
-        - Players
-        - Statistics
+      - Player
       summary: Get player regular season statistics
-      description: Retrieves a player's statistics for the regular season of a specific tournament.
+      description: Retrieves a player's statistics for the regular season of a specific
+        tournament.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the player.
-          example: 977489
-          schema:
-            type: integer
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 11205
-          schema:
-            type: integer
-        - name: seasonId
-          in: path
-          required: true
-          description: Unique identifier for the season.
-          example: 29168
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the player.
+        example: 977489
+        schema:
+          type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 11205
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        description: Unique identifier for the season.
+        example: 29168
+        schema:
+          type: integer
       responses:
         '200':
           description: The player's regular season statistics.
@@ -1365,19 +1334,17 @@ paths:
   /api/baseball/player/{id}/image:
     get:
       tags:
-        - Baseball
-        - Players
-        - Media
+      - Player
       summary: Get player image
       description: Retrieves the profile image for a specific player.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the player.
-          example: 977489
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the player.
+        example: 977489
+        schema:
+          type: integer
       responses:
         '200':
           description: The player's profile image.
@@ -1401,18 +1368,17 @@ paths:
   /api/baseball/tournament/{tournamentId}:
     get:
       tags:
-        - Baseball
-        - Tournaments
+      - Tournament
       summary: Get tournament details
       description: Retrieves comprehensive details for a specific baseball tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 11205
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 11205
+        schema:
+          type: integer
       responses:
         '200':
           description: Comprehensive details for the tournament.
@@ -1435,18 +1401,17 @@ paths:
   /api/baseball/tournament/{tournamentId}/seasons:
     get:
       tags:
-        - Baseball
-        - Tournaments
+      - Tournament
       summary: Get tournament seasons
       description: Retrieves a list of all available seasons for a specific tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 11205
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 11205
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of available seasons for the tournament.
@@ -1469,19 +1434,17 @@ paths:
   /api/baseball/tournament/{tournamentId}/image:
     get:
       tags:
-        - Baseball
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get tournament logo
       description: Retrieves the logo image for a specific tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 11205
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 11205
+        schema:
+          type: integer
       responses:
         '200':
           description: The tournament's logo image.
@@ -1505,18 +1468,16 @@ paths:
   /api/baseball/tournament/{tournamentId}/image/dark:
     get:
       tags:
-        - Baseball
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        schema:
+          type: integer
       responses:
         '200':
           description: The tournament's dark theme logo image.
@@ -1540,19 +1501,17 @@ paths:
   /api/baseball/tournament/{tournamentId}/media:
     get:
       tags:
-        - Baseball
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get tournament media
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 11205
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 11205
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of media content for the tournament.
@@ -1575,26 +1534,25 @@ paths:
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
       tags:
-        - Baseball
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament total standings
-      description: Retrieves the complete standings table for all teams in a specific tournament season.
+      description: Retrieves the complete standings table for all teams in a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 11205
-          schema:
-            type: integer
-        - name: seasonId
-          in: path
-          required: true
-          description: Unique identifier for the season.
-          example: 29168
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 11205
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        description: Unique identifier for the season.
+        example: 29168
+        schema:
+          type: integer
       responses:
         '200':
           description: The complete standings table for the tournament season.
@@ -1617,26 +1575,25 @@ paths:
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
       tags:
-        - Baseball
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament home standings
-      description: Retrieves the standings based on home games only for a specific tournament season.
+      description: Retrieves the standings based on home games only for a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 19442
-          schema:
-            type: integer
-        - name: seasonId
-          in: path
-          required: true
-          description: Unique identifier for the season.
-          example: 49349
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 19442
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        description: Unique identifier for the season.
+        example: 49349
+        schema:
+          type: integer
       responses:
         '200':
           description: The home standings table for the tournament season.
@@ -1659,26 +1616,25 @@ paths:
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/standings/away:
     get:
       tags:
-        - Baseball
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament away standings
-      description: Retrieves the standings based on away games only for a specific tournament season.
+      description: Retrieves the standings based on away games only for a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 19442
-          schema:
-            type: integer
-        - name: seasonId
-          in: path
-          required: true
-          description: Unique identifier for the season.
-          example: 49349
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 19442
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        description: Unique identifier for the season.
+        example: 49349
+        schema:
+          type: integer
       responses:
         '200':
           description: The away standings table for the tournament season.
@@ -1701,33 +1657,32 @@ paths:
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
       tags:
-        - Baseball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament last matches
-      description: Retrieves a paginated list of recently played matches in a specific tournament season.
+      description: Retrieves a paginated list of recently played matches in a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 11205
-          schema:
-            type: integer
-        - name: seasonId
-          in: path
-          required: true
-          description: Unique identifier for the season.
-          example: 39143
-          schema:
-            type: integer
-        - name: page
-          in: path
-          required: true
-          description: "Page number for pagination (starts from 1)."
-          example: 0
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 11205
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        description: Unique identifier for the season.
+        example: 39143
+        schema:
+          type: integer
+      - name: page
+        in: path
+        required: true
+        description: Page number for pagination (starts from 1).
+        example: 0
+        schema:
+          type: integer
       responses:
         '200':
           description: A paginated list of the tournament's last matches.
@@ -1756,33 +1711,32 @@ paths:
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
       tags:
-        - Baseball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament upcoming matches
-      description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
+      description: Retrieves a paginated list of scheduled upcoming matches in a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 11205
-          schema:
-            type: integer
-        - name: seasonId
-          in: path
-          required: true
-          description: Unique identifier for the season.
-          example: 39143
-          schema:
-            type: integer
-        - name: page
-          in: path
-          required: true
-          description: "Page number for pagination (starts from 1)."
-          example: 0
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 11205
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        description: Unique identifier for the season.
+        example: 39143
+        schema:
+          type: integer
+      - name: page
+        in: path
+        required: true
+        description: Page number for pagination (starts from 1).
+        example: 0
+        schema:
+          type: integer
       responses:
         '200':
           description: A paginated list of the tournament's upcoming matches.
@@ -1811,25 +1765,25 @@ paths:
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/cuptrees:
     get:
       tags:
-        - Baseball
-        - Tournaments
+      - Tournament
       summary: Get tournament cup trees
-      description: Retrieves the knockout bracket (cup trees) for a specific tournament season.
+      description: Retrieves the knockout bracket (cup trees) for a specific tournament
+        season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 11205
-          schema:
-            type: integer
-        - name: seasonId
-          in: path
-          required: true
-          description: Unique identifier for the season.
-          example: 29168
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 11205
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        description: Unique identifier for the season.
+        example: 29168
+        schema:
+          type: integer
       responses:
         '200':
           description: The knockout bracket for the tournament season.
@@ -1852,27 +1806,25 @@ paths:
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
       tags:
-        - Baseball
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events total statistics
-      description: Retrieves aggregated team performance statistics for all games in a tournament season.
+      description: Retrieves aggregated team performance statistics for all games
+        in a tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 11205
-          schema:
-            type: integer
-        - name: seasonId
-          in: path
-          required: true
-          description: Unique identifier for the season.
-          example: 29168
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 11205
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        description: Unique identifier for the season.
+        example: 29168
+        schema:
+          type: integer
       responses:
         '200':
           description: Aggregated team statistics for the entire season.
@@ -1895,27 +1847,25 @@ paths:
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
       tags:
-        - Baseball
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events home statistics
-      description: Retrieves aggregated team performance statistics for home games in a tournament season.
+      description: Retrieves aggregated team performance statistics for home games
+        in a tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 19442
-          schema:
-            type: integer
-        - name: seasonId
-          in: path
-          required: true
-          description: Unique identifier for the season.
-          example: 49349
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 19442
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        description: Unique identifier for the season.
+        example: 49349
+        schema:
+          type: integer
       responses:
         '200':
           description: Aggregated team statistics for home games.
@@ -1938,27 +1888,25 @@ paths:
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
       tags:
-        - Baseball
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events away statistics
-      description: Retrieves aggregated team performance statistics for away games in a tournament season.
+      description: Retrieves aggregated team performance statistics for away games
+        in a tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          description: Unique identifier for the tournament.
-          example: 19442
-          schema:
-            type: integer
-        - name: seasonId
-          in: path
-          required: true
-          description: Unique identifier for the season.
-          example: 49349
-          schema:
-            type: integer
+      - name: tournamentId
+        in: path
+        required: true
+        description: Unique identifier for the tournament.
+        example: 19442
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        description: Unique identifier for the season.
+        example: 49349
+        schema:
+          type: integer
       responses:
         '200':
           description: Aggregated team statistics for away games.
@@ -1981,40 +1929,39 @@ paths:
   /api/baseball/category/{id}/events/{day}/{month}/{year}:
     get:
       tags:
-        - Baseball
-        - Categories
-        - Matches
+      - Category
       summary: Get matches by category and date
-      description: Retrieves all baseball matches for a specific category on a given date.
+      description: Retrieves all baseball matches for a specific category on a given
+        date.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the category.
-          example: 1374
-          schema:
-            type: integer
-        - name: day
-          in: path
-          required: true
-          description: "Day of the month (e.g., 15)."
-          example: 1
-          schema:
-            type: integer
-        - name: month
-          in: path
-          required: true
-          description: "Month of the year (e.g., 7)."
-          example: 8
-          schema:
-            type: integer
-        - name: year
-          in: path
-          required: true
-          description: "Year (e.g., 2024)."
-          example: 2022
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the category.
+        example: 1374
+        schema:
+          type: integer
+      - name: day
+        in: path
+        required: true
+        description: Day of the month (e.g., 15).
+        example: 1
+        schema:
+          type: integer
+      - name: month
+        in: path
+        required: true
+        description: Month of the year (e.g., 7).
+        example: 8
+        schema:
+          type: integer
+      - name: year
+        in: path
+        required: true
+        description: Year (e.g., 2024).
+        example: 2022
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of scheduled matches for the category on the given date.
@@ -2043,19 +1990,17 @@ paths:
   /api/baseball/tournament/all/category/{id}:
     get:
       tags:
-        - Baseball
-        - Categories
-        - Tournaments
+      - Tournament
       summary: Get tournaments by category
       description: Retrieves all unique tournaments within a specific baseball category.
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier for the category.
-          example: 1374
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the category.
+        example: 1374
+        schema:
+          type: integer
       responses:
         '200':
           description: A list of unique tournaments in the specified category.
@@ -2075,7 +2020,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-
 components:
   schemas:
     Error:
@@ -2089,3 +2033,24 @@ components:
     JSONResult:
       type: object
       description: A JSON object containing the requested data.
+tags:
+- name: Category
+  description: Category endpoints.
+- name: Country
+  description: Country assets and metadata.
+- name: Fighter
+  description: Fighter placeholder assets.
+- name: Manager
+  description: Manager endpoints.
+- name: Match
+  description: Match endpoints.
+- name: Player
+  description: Player endpoints.
+- name: Search
+  description: Search endpoints.
+- name: TV
+  description: TV broadcast endpoints.
+- name: Team
+  description: Team endpoints.
+- name: Tournament
+  description: Tournament endpoints.

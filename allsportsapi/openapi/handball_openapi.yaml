@@ -3,22 +3,25 @@ info:
   title: HandballAPI
   version: 1.0.0
   description: This is the OpenAPI specification for the HandballAPI.
+servers:
+- url: http://localhost:8080
+  description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
     get:
       tags:
-        - AllSports
-        - TV
+      - TV
       summary: Get match TV countries
-      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      description: Lists the countries and the TV channels within them that are broadcasting
+        a specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema:
-            type: integer
-          description: The unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object listing countries and their broadcasting channels.
@@ -41,25 +44,25 @@ paths:
   /api/tv/channel/{channId}/event/{id}:
     get:
       tags:
-        - AllSports
-        - TV
+      - TV
       summary: Get match TV channel votes
-      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting
+        the match.
       parameters:
-        - name: channId
-          in: path
-          required: true
-          example: 3177
-          schema:
-            type: integer
-          description: The unique identifier for the TV channel.
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema:
-            type: integer
-          description: The unique identifier for the match.
+      - name: channId
+        in: path
+        required: true
+        example: 3177
+        schema:
+          type: integer
+        description: The unique identifier for the TV channel.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object containing viewer vote data from the channel.
@@ -82,17 +85,18 @@ paths:
   /api/img/flag/{flag}:
     get:
       tags:
-        - AllSports
+      - Country
       summary: Get country flag
-      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      description: Fetches the PNG flag image asset corresponding to a provided country
+        code. The response is the raw image data.
       parameters:
-        - name: flag
-          in: path
-          required: true
-          example: 'jp'
-          schema:
-            type: string
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: flag
+        in: path
+        required: true
+        example: jp
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -116,16 +120,17 @@ paths:
   /api/country/{code}/flag:
     get:
       tags:
-        - AllSports
+      - Country
       summary: Get country flag (img API)
-      description: Fetches the flag image by country code. The response is the raw image data.
+      description: Fetches the flag image by country code. The response is the raw
+        image data.
       parameters:
-        - name: code
-          in: path
-          required: true
-          schema:
-            type: string
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -149,10 +154,10 @@ paths:
   /api/placeholder/tournament.png:
     get:
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -170,10 +175,10 @@ paths:
   /api/placeholder/tournament.svg:
     get:
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -191,10 +196,10 @@ paths:
   /api/placeholder/team.svg:
     get:
       tags:
-        - AllSports
-        - Teams
+      - Team
       summary: Get team placeholder image
-      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      description: Returns a static placeholder graphic for a team. The response is
+        an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -212,10 +217,10 @@ paths:
   /api/placeholder/player.png:
     get:
       tags:
-        - AllSports
-        - Players
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -233,10 +238,10 @@ paths:
   /api/placeholder/player.svg:
     get:
       tags:
-        - AllSports
-        - Players
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -254,9 +259,10 @@ paths:
   /api/placeholder/manager.png:
     get:
       tags:
-        - AllSports
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,9 +280,10 @@ paths:
   /api/placeholder/manager.svg:
     get:
       tags:
-        - AllSports
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -294,9 +301,7 @@ paths:
   /api/placeholders/fighter-male.svg:
     get:
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       summary: Get male fighter placeholder image
       description: Retrieves a placeholder image for a male fighter.
       responses:
@@ -316,9 +321,7 @@ paths:
   /api/placeholders/fighter-female.svg:
     get:
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       summary: Get female fighter placeholder image
       description: Retrieves a placeholder image for a female fighter.
       responses:
@@ -338,24 +341,23 @@ paths:
   /api/handball/search/{term}:
     get:
       tags:
-        - Handball
-        - Search
+      - Search
       summary: Search handball entities
       description: Searches for handball teams, players, and tournaments.
       parameters:
-        - name: term
-          in: path
-          required: true
-          example: 'asobal'
-          schema:
-            type: string
-          description: "Search term (e.g., 'Kiel')"
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-          description: Page number for pagination
+      - name: term
+        in: path
+        required: true
+        example: asobal
+        schema:
+          type: string
+        description: Search term (e.g., 'Kiel')
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for pagination
       responses:
         '200':
           description: A list of search results for teams, players, and tournaments.
@@ -378,40 +380,39 @@ paths:
   /api/handball/category/{id}/events/{day}/{month}/{year}:
     get:
       tags:
-        - Handball
-        - Categories
-        - Matches
+      - Category
       summary: Get handball matches by category and date
-      description: Retrieves all handball matches for a specific category on a given date.
+      description: Retrieves all handball matches for a specific category on a given
+        date.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 71
-          schema:
-            type: integer
-          description: Category ID
-        - name: day
-          in: path
-          required: true
-          example: 24
-          schema:
-            type: integer
-          description: Day of the month (1-31)
-        - name: month
-          in: path
-          required: true
-          example: 5
-          schema:
-            type: integer
-          description: Month (1-12)
-        - name: year
-          in: path
-          required: true
-          example: 2023
-          schema:
-            type: integer
-          description: "Year (e.g., 2024)"
+      - name: id
+        in: path
+        required: true
+        example: 71
+        schema:
+          type: integer
+        description: Category ID
+      - name: day
+        in: path
+        required: true
+        example: 24
+        schema:
+          type: integer
+        description: Day of the month (1-31)
+      - name: month
+        in: path
+        required: true
+        example: 5
+        schema:
+          type: integer
+        description: Month (1-12)
+      - name: year
+        in: path
+        required: true
+        example: 2023
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
           description: A list of scheduled matches for the category on the given date.
@@ -440,8 +441,7 @@ paths:
   /api/handball/matches/live:
     get:
       tags:
-        - Handball
-        - Matches
+      - Match
       summary: Get live handball matches
       description: Retrieves all currently live handball matches.
       responses:
@@ -460,9 +460,7 @@ paths:
   /api/handball/tournament/categories:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Categories
+      - Tournament
       summary: Get handball tournament categories
       description: Retrieves all available handball tournament categories (countries/regions).
       responses:
@@ -481,19 +479,17 @@ paths:
   /api/handball/unique-tournament/all/category/{id}:
     get:
       tags:
-        - Handball
-        - Categories
-        - Tournaments
+      - Tournament
       summary: Get tournaments by category
       description: Retrieves all handball tournaments within a specific category.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 71
-          schema:
-            type: integer
-          description: Category ID
+      - name: id
+        in: path
+        required: true
+        example: 71
+        schema:
+          type: integer
+        description: Category ID
       responses:
         '200':
           description: A list of tournaments for the specified category.
@@ -516,32 +512,31 @@ paths:
   /api/handball/matches/{day}/{month}/{year}:
     get:
       tags:
-        - Handball
-        - Matches
+      - Match
       summary: Get handball matches by date
       description: Fetches all handball matches scheduled for a specific date.
       parameters:
-        - name: day
-          in: path
-          required: true
-          example: 13
-          schema:
-            type: integer
-          description: Day of the month (1-31)
-        - name: month
-          in: path
-          required: true
-          example: 5
-          schema:
-            type: integer
-          description: Month (1-12)
-        - name: year
-          in: path
-          required: true
-          example: 2023
-          schema:
-            type: integer
-          description: "Year (e.g., 2024)"
+      - name: day
+        in: path
+        required: true
+        example: 13
+        schema:
+          type: integer
+        description: Day of the month (1-31)
+      - name: month
+        in: path
+        required: true
+        example: 5
+        schema:
+          type: integer
+        description: Month (1-12)
+      - name: year
+        in: path
+        required: true
+        example: 2023
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
           description: A list of scheduled matches for the given date.
@@ -564,18 +559,17 @@ paths:
   /api/handball/match/{id}:
     get:
       tags:
-        - Handball
-        - Matches
+      - Match
       summary: Get handball match details
       description: Retrieves detailed information about a specific handball match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10485769
-          schema:
-            type: integer
-          description: Match ID
+      - name: id
+        in: path
+        required: true
+        example: 10485769
+        schema:
+          type: integer
+        description: Match ID
       responses:
         '200':
           description: Detailed information about the match.
@@ -598,19 +592,18 @@ paths:
   /api/handball/match/{id}/odds:
     get:
       tags:
-        - Handball
-        - Matches
-        - Odds
+      - Match
       summary: Get match betting odds
-      description: Retrieves betting odds from various bookmakers for the handball match.
+      description: Retrieves betting odds from various bookmakers for the handball
+        match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10485769
-          schema:
-            type: integer
-          description: Match ID
+      - name: id
+        in: path
+        required: true
+        example: 10485769
+        schema:
+          type: integer
+        description: Match ID
       responses:
         '200':
           description: A list of available betting odds for the match.
@@ -633,18 +626,17 @@ paths:
   /api/handball/match/{id}/incidents:
     get:
       tags:
-        - Handball
-        - Matches
+      - Match
       summary: Get match incidents
       description: Retrieves all incidents and events that occurred during the match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10485760
-          schema:
-            type: integer
-          description: Match ID
+      - name: id
+        in: path
+        required: true
+        example: 10485760
+        schema:
+          type: integer
+        description: Match ID
       responses:
         '200':
           description: A list of incidents from the match.
@@ -667,19 +659,17 @@ paths:
   /api/handball/match/{id}/best-players:
     get:
       tags:
-        - Handball
-        - Matches
-        - Players
+      - Match
       summary: Get match best players
       description: Retrieves the best performing players from the match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10485760
-          schema:
-            type: integer
-          description: Match ID
+      - name: id
+        in: path
+        required: true
+        example: 10485760
+        schema:
+          type: integer
+        description: Match ID
       responses:
         '200':
           description: A list of the best performing players in the match.
@@ -702,18 +692,17 @@ paths:
   /api/handball/match/{id}/votes:
     get:
       tags:
-        - Handball
-        - Matches
+      - Match
       summary: Get match votes
       description: Retrieves fan voting results for the match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10485760
-          schema:
-            type: integer
-          description: Match ID
+      - name: id
+        in: path
+        required: true
+        example: 10485760
+        schema:
+          type: integer
+        description: Match ID
       responses:
         '200':
           description: Fan voting results for the match.
@@ -736,19 +725,17 @@ paths:
   /api/handball/match/{id}/duel:
     get:
       tags:
-        - Handball
-        - Matches
-        - Statistics
+      - Match
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head statistics between the teams.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10485760
-          schema:
-            type: integer
-          description: Match ID
+      - name: id
+        in: path
+        required: true
+        example: 10485760
+        schema:
+          type: integer
+        description: Match ID
       responses:
         '200':
           description: A summary of H2H statistics.
@@ -771,18 +758,17 @@ paths:
   /api/handball/match/{id}/form:
     get:
       tags:
-        - Handball
-        - Matches
+      - Match
       summary: Get match form analysis
       description: Retrieves recent form and performance trends for teams in the match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10485760
-          schema:
-            type: integer
-          description: Match ID
+      - name: id
+        in: path
+        required: true
+        example: 10485760
+        schema:
+          type: integer
+        description: Match ID
       responses:
         '200':
           description: Pregame form and performance trends for the teams.
@@ -805,19 +791,17 @@ paths:
   /api/handball/match/{id}/lineups:
     get:
       tags:
-        - Handball
-        - Matches
-        - Players
+      - Match
       summary: Get match lineups
       description: Retrieves starting lineups and player positions for both teams.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10485769
-          schema:
-            type: integer
-          description: Match ID
+      - name: id
+        in: path
+        required: true
+        example: 10485769
+        schema:
+          type: integer
+        description: Match ID
       responses:
         '200':
           description: Starting lineups and substitutes for the match.
@@ -840,19 +824,17 @@ paths:
   /api/handball/match/{id}/statistics:
     get:
       tags:
-        - Handball
-        - Matches
-        - Statistics
+      - Match
       summary: Get match statistics
       description: Retrieves comprehensive statistical data for the handball match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10485769
-          schema:
-            type: integer
-          description: Match ID
+      - name: id
+        in: path
+        required: true
+        example: 10485769
+        schema:
+          type: integer
+        description: Match ID
       responses:
         '200':
           description: Comprehensive statistics for the match.
@@ -875,19 +857,17 @@ paths:
   /api/handball/match/{id}/streaks:
     get:
       tags:
-        - Handball
-        - Matches
-        - Statistics
+      - Match
       summary: Get match streaks
       description: Retrieves winning/scoring streaks information for the match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10485769
-          schema:
-            type: integer
-          description: Match ID
+      - name: id
+        in: path
+        required: true
+        example: 10485769
+        schema:
+          type: integer
+        description: Match ID
       responses:
         '200':
           description: Streak information for both teams.
@@ -910,19 +890,17 @@ paths:
   /api/handball/match/{customId}/h2h:
     get:
       tags:
-        - Handball
-        - Matches
-        - Statistics
+      - Match
       summary: Get head-to-head history
       description: Retrieves detailed head-to-head match history between the teams.
       parameters:
-        - name: customId
-          in: path
-          required: true
-          example: 'FEbsxAc'
-          schema:
-            type: string
-          description: Custom match identifier
+      - name: customId
+        in: path
+        required: true
+        example: FEbsxAc
+        schema:
+          type: string
+        description: Custom match identifier
       responses:
         '200':
           description: A detailed list of past H2H matches.
@@ -945,26 +923,25 @@ paths:
   /api/handball/team/{id}/matches/previous/{page}:
     get:
       tags:
-        - Handball
-        - Teams
-        - Matches
+      - Team
       summary: Get previous team matches
-      description: Fetches a list of completed matches for the team, sorted by date descending.
+      description: Fetches a list of completed matches for the team, sorted by date
+        descending.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6272
-          schema:
-            type: integer
-          description: Team ID
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: "Page number for pagination (starts from 1)."
+      - name: id
+        in: path
+        required: true
+        example: 6272
+        schema:
+          type: integer
+        description: Team ID
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the team's previous matches.
@@ -993,26 +970,25 @@ paths:
   /api/handball/team/{id}/matches/next/{page}:
     get:
       tags:
-        - Handball
-        - Teams
-        - Matches
+      - Team
       summary: Get upcoming team matches
-      description: Fetches a list of scheduled matches for the team, sorted by date ascending.
+      description: Fetches a list of scheduled matches for the team, sorted by date
+        ascending.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6272
-          schema:
-            type: integer
-          description: Team ID
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: "Page number for pagination (starts from 1)."
+      - name: id
+        in: path
+        required: true
+        example: 6272
+        schema:
+          type: integer
+        description: Team ID
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the team's upcoming matches.
@@ -1041,18 +1017,17 @@ paths:
   /api/handball/team/{id}:
     get:
       tags:
-        - Handball
-        - Teams
+      - Team
       summary: Get handball team details
       description: Retrieves comprehensive information about a handball team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6272
-          schema:
-            type: integer
-          description: Team ID
+      - name: id
+        in: path
+        required: true
+        example: 6272
+        schema:
+          type: integer
+        description: Team ID
       responses:
         '200':
           description: Comprehensive details for the team.
@@ -1075,19 +1050,17 @@ paths:
   /api/handball/team/{id}/players:
     get:
       tags:
-        - Handball
-        - Teams
-        - Players
+      - Team
       summary: Get team players
       description: Retrieves the current roster of players for the team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6272
-          schema:
-            type: integer
-          description: Team ID
+      - name: id
+        in: path
+        required: true
+        example: 6272
+        schema:
+          type: integer
+        description: Team ID
       responses:
         '200':
           description: The current roster of players for the team.
@@ -1110,19 +1083,17 @@ paths:
   /api/handball/team/{id}/matches/near:
     get:
       tags:
-        - Handball
-        - Teams
-        - Matches
+      - Team
       summary: Get team near matches
       description: Retrieves recent and upcoming matches for the team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6272
-          schema:
-            type: integer
-          description: Team ID
+      - name: id
+        in: path
+        required: true
+        example: 6272
+        schema:
+          type: integer
+        description: Team ID
       responses:
         '200':
           description: A list of recent and upcoming matches.
@@ -1145,19 +1116,17 @@ paths:
   /api/handball/team/{id}/unique-tournaments:
     get:
       tags:
-        - Handball
-        - Teams
-        - Tournaments
+      - Team
       summary: Get team tournaments
       description: Retrieves all tournaments the team participates in.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6272
-          schema:
-            type: integer
-          description: Team ID
+      - name: id
+        in: path
+        required: true
+        example: 6272
+        schema:
+          type: integer
+        description: Team ID
       responses:
         '200':
           description: A list of unique tournaments the team has participated in.
@@ -1180,19 +1149,17 @@ paths:
   /api/handball/team/{id}/standings/seasons:
     get:
       tags:
-        - Handball
-        - Teams
-        - Standings
+      - Team
       summary: Get team standings seasons
       description: Retrieves available seasons for team standings data.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6272
-          schema:
-            type: integer
-          description: Team ID
+      - name: id
+        in: path
+        required: true
+        example: 6272
+        schema:
+          type: integer
+        description: Team ID
       responses:
         '200':
           description: A list of seasons with available standings.
@@ -1215,19 +1182,17 @@ paths:
   /api/handball/team/{id}/player-statistics/seasons:
     get:
       tags:
-        - Handball
-        - Teams
-        - Statistics
+      - Team
       summary: Get team player statistics seasons
       description: Retrieves available seasons for team player statistics.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6272
-          schema:
-            type: integer
-          description: Team ID
+      - name: id
+        in: path
+        required: true
+        example: 6272
+        schema:
+          type: integer
+        description: Team ID
       responses:
         '200':
           description: A list of seasons with available player statistics.
@@ -1250,34 +1215,32 @@ paths:
   /api/handball/team/{id}/unique-tournament/{tournamentId}/season/{seasonId}/top-players/overall:
     get:
       tags:
-        - Handball
-        - Teams
-        - Players
-        - Statistics
+      - Team
       summary: Get team top players overall
-      description: Retrieves the best performing players for the team in a specific tournament season.
+      description: Retrieves the best performing players for the team in a specific
+        tournament season.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6272
-          schema:
-            type: integer
-          description: Team ID
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: id
+        in: path
+        required: true
+        example: 6272
+        schema:
+          type: integer
+        description: Team ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: A list of the team's top players for the season.
@@ -1300,26 +1263,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament total standings
       description: Retrieves complete standings table for all teams in the tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: The complete standings table for the tournament season.
@@ -1342,26 +1303,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament home standings
       description: Retrieves standings based on home games only.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: The home standings table for the tournament season.
@@ -1384,26 +1343,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/standings/away:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament away standings
       description: Retrieves standings based on away games only.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: The away standings table for the tournament season.
@@ -1426,18 +1383,17 @@ paths:
   /api/handball/unique-tournament/{tournamentId}:
     get:
       tags:
-        - Handball
-        - Tournaments
+      - Tournament
       summary: Get tournament details
       description: Retrieves comprehensive information about a handball tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
       responses:
         '200':
           description: Comprehensive details for the tournament.
@@ -1460,18 +1416,17 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/seasons:
     get:
       tags:
-        - Handball
-        - Tournaments
+      - Tournament
       summary: Get tournament seasons
       description: Retrieves all available seasons for the tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
       responses:
         '200':
           description: A list of available seasons for the tournament.
@@ -1494,26 +1449,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/player-statistics/types:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Statistics
+      - Tournament
       summary: Get player statistics types
       description: Retrieves available player statistics categories for the tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: A list of available player statistics types.
@@ -1536,27 +1489,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-players/overall:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Players
-        - Statistics
+      - Tournament
       summary: Get top players overall
       description: Retrieves the best performing players for the entire season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: A list of the top performing players for the season.
@@ -1579,27 +1529,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-players-per-game/all/overall:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Players
-        - Statistics
+      - Tournament
       summary: Get top players per game
       description: Retrieves the best performing players based on per-game averages.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: Player rankings based on per-game averages.
@@ -1622,27 +1569,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-teams/overall:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get top teams overall
       description: Retrieves the best performing teams for the entire season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: A list of the top performing teams for the season.
@@ -1665,27 +1609,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events total statistics
       description: Retrieves aggregated team performance statistics for all games.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: Aggregated team statistics for the entire season.
@@ -1708,27 +1649,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events home statistics
       description: Retrieves aggregated team performance statistics for home games.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: Aggregated team statistics for home games.
@@ -1751,27 +1689,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events away statistics
       description: Retrieves aggregated team performance statistics for away games.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: Aggregated team statistics for away games.
@@ -1794,33 +1729,31 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament last matches
       description: Retrieves recently played matches in the tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: "Page number for pagination (starts from 1)."
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the tournament's last matches.
@@ -1849,33 +1782,31 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament upcoming matches
       description: Retrieves scheduled upcoming matches in the tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: "Page number for pagination (starts from 1)."
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the tournament's upcoming matches.
@@ -1904,18 +1835,17 @@ paths:
   /api/handball/player/{id}:
     get:
       tags:
-        - Handball
-        - Players
+      - Player
       summary: Get handball player details
       description: Retrieves comprehensive information about a handball player.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 944907
-          schema:
-            type: integer
-          description: Player ID
+      - name: id
+        in: path
+        required: true
+        example: 944907
+        schema:
+          type: integer
+        description: Player ID
       responses:
         '200':
           description: Comprehensive details for the player.
@@ -1938,19 +1868,17 @@ paths:
   /api/handball/player/{id}/matches/near:
     get:
       tags:
-        - Handball
-        - Players
-        - Matches
+      - Player
       summary: Get player near matches
       description: Retrieves recent and upcoming matches for the player.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 944907
-          schema:
-            type: integer
-          description: Player ID
+      - name: id
+        in: path
+        required: true
+        example: 944907
+        schema:
+          type: integer
+        description: Player ID
       responses:
         '200':
           description: A list of the player's recent and upcoming matches.
@@ -1973,26 +1901,25 @@ paths:
   /api/handball/player/{id}/matches/previous/{page}:
     get:
       tags:
-        - Handball
-        - Players
-        - Matches
+      - Player
       summary: Get previous player matches
-      description: Fetches a list of completed matches for the player, sorted by date descending.
+      description: Fetches a list of completed matches for the player, sorted by date
+        descending.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 944907
-          schema:
-            type: integer
-          description: Player ID
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: "Page number for pagination (starts from 1)."
+      - name: id
+        in: path
+        required: true
+        example: 944907
+        schema:
+          type: integer
+        description: Player ID
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the player's previous matches.
@@ -2021,19 +1948,17 @@ paths:
   /api/handball/player/{id}/statistics/season:
     get:
       tags:
-        - Handball
-        - Players
-        - Statistics
+      - Player
       summary: Get player statistics seasons
       description: Retrieves available seasons for player statistics.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 944907
-          schema:
-            type: integer
-          description: Player ID
+      - name: id
+        in: path
+        required: true
+        example: 944907
+        schema:
+          type: integer
+        description: Player ID
       responses:
         '200':
           description: A list of seasons with available statistics.
@@ -2056,33 +1981,32 @@ paths:
   /api/handball/player/{id}/unique-tournament/{tournamentId}/season/{seasonId}/statistics/overall:
     get:
       tags:
-        - Handball
-        - Players
-        - Statistics
+      - Player
       summary: Get player overall statistics
-      description: Retrieves player's overall statistics for a specific tournament season.
+      description: Retrieves player's overall statistics for a specific tournament
+        season.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 944907
-          schema:
-            type: integer
-          description: Player ID
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42967
-          schema:
-            type: integer
-          description: Season ID
+      - name: id
+        in: path
+        required: true
+        example: 944907
+        schema:
+          type: integer
+        description: Player ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42967
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: The player's overall statistics for the season.
@@ -2105,25 +2029,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/cuptrees:
     get:
       tags:
-        - Handball
-        - Tournaments
+      - Tournament
       summary: Get tournament cup trees
       description: Retrieves playoff/knockout bracket structure for the tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 160
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 24048
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 160
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 24048
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: The knockout bracket for the tournament season.
@@ -2146,19 +2069,17 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/media:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get tournament media
       description: Retrieves media content for the tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 30
-          schema:
-            type: integer
-          description: Tournament ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 30
+        schema:
+          type: integer
+        description: Tournament ID
       responses:
         '200':
           description: A list of media content for the tournament.
@@ -2181,26 +2102,24 @@ paths:
   /api/handball/tournament/{tournamentId}/season/{seasonId}/matches:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament season matches
       description: Retrieves all matches for a tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2465
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42851
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2465
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42851
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: A list of all events for the season.
@@ -2223,25 +2142,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/groups:
     get:
       tags:
-        - Handball
-        - Tournaments
+      - Tournament
       summary: Get tournament groups
       description: Retrieves group stage information for the tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 30
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42851
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 30
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42851
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: Group stage information for the tournament season.
@@ -2264,25 +2182,24 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
       tags:
-        - Handball
-        - Tournaments
+      - Tournament
       summary: Get tournament rounds
       description: Retrieves all rounds/game weeks for the tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 30
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42851
-          schema:
-            type: integer
-          description: Season ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 30
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42851
+        schema:
+          type: integer
+        description: Season ID
       responses:
         '200':
           description: A list of rounds for the tournament season.
@@ -2305,33 +2222,31 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament matches by round
       description: Retrieves matches for a specific round in the tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 30
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42851
-          schema:
-            type: integer
-          description: Season ID
-        - name: round
-          in: path
-          required: true
-          example: 3
-          schema:
-            type: integer
-          description: Round number
+      - name: tournamentId
+        in: path
+        required: true
+        example: 30
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42851
+        schema:
+          type: integer
+        description: Season ID
+      - name: round
+        in: path
+        required: true
+        example: 3
+        schema:
+          type: integer
+        description: Round number
       responses:
         '200':
           description: A list of matches for the specified round.
@@ -2354,40 +2269,38 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}/slug/{slug}:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament matches by round with slug
       description: Retrieves matches for a specific round with tournament slug.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 30
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: seasonId
-          in: path
-          required: true
-          example: 42851
-          schema:
-            type: integer
-          description: Season ID
-        - name: round
-          in: path
-          required: true
-          example: 27
-          schema:
-            type: integer
-          description: Round number
-        - name: slug
-          in: path
-          required: true
-          example: 'quarterfinal'
-          schema:
-            type: string
-          description: Tournament slug
+      - name: tournamentId
+        in: path
+        required: true
+        example: 30
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: seasonId
+        in: path
+        required: true
+        example: 42851
+        schema:
+          type: integer
+        description: Season ID
+      - name: round
+        in: path
+        required: true
+        example: 27
+        schema:
+          type: integer
+        description: Round number
+      - name: slug
+        in: path
+        required: true
+        example: quarterfinal
+        schema:
+          type: string
+        description: Tournament slug
       responses:
         '200':
           description: A list of matches for the specified round and slug.
@@ -2410,19 +2323,17 @@ paths:
   /api/handball/match/{id}/highlights:
     get:
       tags:
-        - Handball
-        - Matches
-        - Media
+      - Match
       summary: Get match highlights
       description: Retrieves video highlights and key moments from the match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 11179097
-          schema:
-            type: integer
-          description: Match ID
+      - name: id
+        in: path
+        required: true
+        example: 11179097
+        schema:
+          type: integer
+        description: Match ID
       responses:
         '200':
           description: A list of video highlights for the match.
@@ -2445,19 +2356,17 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/image:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get tournament logo
       description: Retrieves the tournament's logo image.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 149
-          schema:
-            type: integer
-          description: Tournament ID
+      - name: tournamentId
+        in: path
+        required: true
+        example: 149
+        schema:
+          type: integer
+        description: Tournament ID
       responses:
         '200':
           description: Tournament logo image.
@@ -2481,18 +2390,16 @@ paths:
   /api/handball/unique-tournament/{tournamentId}/image/dark:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get tournament dark logo
       description: Retrieves the tournament's dark theme logo image.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Tournament ID
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Tournament ID
       responses:
         '200':
           description: Tournament dark logo image.
@@ -2516,19 +2423,17 @@ paths:
   /api/handball/team/{id}/image:
     get:
       tags:
-        - Handball
-        - Teams
-        - Media
+      - Team
       summary: Get team logo
       description: Retrieves the team's logo image.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6272
-          schema:
-            type: integer
-          description: Team ID
+      - name: id
+        in: path
+        required: true
+        example: 6272
+        schema:
+          type: integer
+        description: Team ID
       responses:
         '200':
           description: Team logo image.
@@ -2552,19 +2457,17 @@ paths:
   /api/handball/player/{id}/image:
     get:
       tags:
-        - Handball
-        - Players
-        - Media
+      - Player
       summary: Get player image
       description: Retrieves the player's profile image.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 944907
-          schema:
-            type: integer
-          description: Player ID
+      - name: id
+        in: path
+        required: true
+        example: 944907
+        schema:
+          type: integer
+        description: Player ID
       responses:
         '200':
           description: Player profile image.
@@ -2588,39 +2491,38 @@ paths:
   /api/handball/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
       tags:
-        - Handball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament matches by date
       description: Retrieves all tournament matches scheduled for a specific date.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Tournament ID
-        - name: day
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: "Day of the month (1-31)"
-        - name: month
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: "Month (1-12)"
-        - name: year
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: "Year (e.g., 2024)"
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Tournament ID
+      - name: day
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Day of the month (1-31)
+      - name: month
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Month (1-12)
+      - name: year
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
-          description: A list of scheduled matches for the tournament on the given date.
+          description: A list of scheduled matches for the tournament on the given
+            date.
           content:
             application/json:
               schema:
@@ -2665,3 +2567,24 @@ components:
       description: A generic JSON object response.
       properties: {}
       additionalProperties: true
+tags:
+- name: Category
+  description: Category endpoints.
+- name: Country
+  description: Country assets and metadata.
+- name: Fighter
+  description: Fighter placeholder assets.
+- name: Manager
+  description: Manager endpoints.
+- name: Match
+  description: Match endpoints.
+- name: Player
+  description: Player endpoints.
+- name: Search
+  description: Search endpoints.
+- name: TV
+  description: TV broadcast endpoints.
+- name: Team
+  description: Team endpoints.
+- name: Tournament
+  description: Tournament endpoints.

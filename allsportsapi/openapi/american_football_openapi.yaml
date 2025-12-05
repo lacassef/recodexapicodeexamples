@@ -3,22 +3,25 @@ info:
   title: American-Football-API
   version: 1.0.0
   description: This is the OpenAPI specification for the American Football API.
+servers:
+- url: http://localhost:8080
+  description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
     get:
       tags:
-        - AllSports
-        - TV
+      - TV
       summary: Get match TV countries
-      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      description: Lists the countries and the TV channels within them that are broadcasting
+        a specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema:
-            type: integer
-          description: The unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object listing countries and their broadcasting channels.
@@ -35,24 +38,23 @@ paths:
   /api/american-football/search/{term}:
     get:
       tags:
-        - American Football
-        - Search
+      - Search
       summary: Search American football entities
       description: Searches for American football teams, players, and tournaments.
       parameters:
-        - name: term
-          in: path
-          required: true
-          example: 'brady'
-          schema:
-            type: string
-          description: Search term (e.g., 'Kansas City Chiefs')
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-          description: Page number for pagination
+      - name: term
+        in: path
+        required: true
+        example: brady
+        schema:
+          type: string
+        description: Search term (e.g., 'Kansas City Chiefs')
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for pagination
       responses:
         '200':
           description: A list of search results for teams, players, and tournaments.
@@ -75,10 +77,10 @@ paths:
   /api/american-football/tournament/categories:
     get:
       tags:
-        - American Football
-        - Tournaments
+      - Tournament
       summary: Get American football tournament categories
-      description: Retrieves a list of all available American football tournament categories, typically corresponding to countries or regions.
+      description: Retrieves a list of all available American football tournament
+        categories, typically corresponding to countries or regions.
       responses:
         '200':
           description: A list of tournament categories.
@@ -95,35 +97,36 @@ paths:
   /api/american-football/matches/{day}/{month}/{year}:
     get:
       tags:
-        - American Football
-        - Matches
+      - Match
       summary: Get American football matches by date
-      description: Fetches all American football matches scheduled for a specific date.
+      description: Fetches all American football matches scheduled for a specific
+        date.
       parameters:
-        - name: day
-          in: path
-          required: true
-          example: 31
-          schema:
-            type: integer
-          description: Day of the month (e.g., 15)
-        - name: month
-          in: path
-          required: true
-          example: 7
-          schema:
-            type: integer
-          description: Month of the year (e.g., 9)
-        - name: year
-          in: path
-          required: true
-          example: 2022
-          schema:
-            type: integer
-          description: Year (e.g., 2024)
+      - name: day
+        in: path
+        required: true
+        example: 31
+        schema:
+          type: integer
+        description: Day of the month (e.g., 15)
+      - name: month
+        in: path
+        required: true
+        example: 7
+        schema:
+          type: integer
+        description: Month of the year (e.g., 9)
+      - name: year
+        in: path
+        required: true
+        example: 2022
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
-          description: A list of scheduled American football matches for the given date.
+          description: A list of scheduled American football matches for the given
+            date.
           content:
             application/json:
               schema:
@@ -143,8 +146,7 @@ paths:
   /api/american-football/matches/live:
     get:
       tags:
-        - American Football
-        - Matches
+      - Match
       summary: Get live American football matches
       description: Retrieves all currently live American football matches.
       responses:
@@ -163,18 +165,18 @@ paths:
   /api/american-football/match/{id}:
     get:
       tags:
-        - American Football
-        - Matches
+      - Match
       summary: Get American football match details
-      description: Retrieves detailed information for a specific American football match by its ID.
+      description: Retrieves detailed information for a specific American football
+        match by its ID.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10060042
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10060042
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Detailed information about the match.
@@ -197,19 +199,18 @@ paths:
   /api/american-football/match/{id}/statistics:
     get:
       tags:
-        - American Football
-        - Matches
-        - Statistics
+      - Match
       summary: Get match statistics
-      description: Retrieves comprehensive team and player statistics for a specific match.
+      description: Retrieves comprehensive team and player statistics for a specific
+        match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10060042
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10060042
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Comprehensive statistics for the match.
@@ -232,18 +233,18 @@ paths:
   /api/american-football/match/{id}/incidents:
     get:
       tags:
-        - American Football
-        - Matches
+      - Match
       summary: Get match incidents
-      description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., touchdowns, field goals).
+      description: Retrieves a chronological list of all significant incidents that
+        occurred during the match (e.g., touchdowns, field goals).
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10060042
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10060042
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A list of incidents from the match.
@@ -266,19 +267,18 @@ paths:
   /api/american-football/match/{id}/team-streaks:
     get:
       tags:
-        - American Football
-        - Matches
-        - Statistics
+      - Match
       summary: Get match team streaks
-      description: Provides recent form and streak information for each team in a match.
+      description: Provides recent form and streak information for each team in a
+        match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 9520491
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 9520491
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Streak information for both teams.
@@ -301,19 +301,18 @@ paths:
   /api/american-football/match/{customId}/h2h:
     get:
       tags:
-        - American Football
-        - Matches
-        - Statistics
+      - Match
       summary: Get head-to-head history
-      description: Retrieves the detailed match history for head-to-head encounters between two teams.
+      description: Retrieves the detailed match history for head-to-head encounters
+        between two teams.
       parameters:
-        - name: customId
-          in: path
-          required: true
-          example: 'uMbsRCt'
-          schema:
-            type: string
-          description: A custom identifier for the match, used for H2H lookups.
+      - name: customId
+        in: path
+        required: true
+        example: uMbsRCt
+        schema:
+          type: string
+        description: A custom identifier for the match, used for H2H lookups.
       responses:
         '200':
           description: A detailed list of past H2H matches.
@@ -336,19 +335,18 @@ paths:
   /api/american-football/match/{id}/duel:
     get:
       tags:
-        - American Football
-        - Matches
-        - Statistics
+      - Match
       summary: Get head-to-head summary
-      description: Retrieves a summary of head-to-head statistics between the two teams in a match.
+      description: Retrieves a summary of head-to-head statistics between the two
+        teams in a match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 9895598
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 9895598
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A summary of H2H statistics.
@@ -371,18 +369,18 @@ paths:
   /api/american-football/match/{id}/form:
     get:
       tags:
-        - American Football
-        - Matches
+      - Match
       summary: Get match form analysis
-      description: Retrieves pre-game form and recent performance data for the teams in a specific match.
+      description: Retrieves pre-game form and recent performance data for the teams
+        in a specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 9895598
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 9895598
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Pregame form and performance trends for the teams.
@@ -405,19 +403,18 @@ paths:
   /api/american-football/match/{id}/odds:
     get:
       tags:
-        - American Football
-        - Matches
-        - Odds
+      - Match
       summary: Get match betting odds
-      description: Retrieves available betting odds from various bookmakers for a specific match.
+      description: Retrieves available betting odds from various bookmakers for a
+        specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10075539
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10075539
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A list of available betting odds for the match.
@@ -440,18 +437,17 @@ paths:
   /api/american-football/match/{id}/votes:
     get:
       tags:
-        - American Football
-        - Matches
+      - Match
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10060042
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10060042
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Vote counts and percentages for the match.
@@ -474,19 +470,18 @@ paths:
   /api/american-football/match/{id}/best-players:
     get:
       tags:
-        - American Football
-        - Matches
-        - Players
+      - Match
       summary: Get match best players
-      description: Retrieves a list of the best performing players from a specific match, based on ratings.
+      description: Retrieves a list of the best performing players from a specific
+        match, based on ratings.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10060042
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10060042
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A list of the best performing players in the match.
@@ -509,19 +504,18 @@ paths:
   /api/american-football/match/{id}/lineups:
     get:
       tags:
-        - American Football
-        - Matches
-        - Players
+      - Match
       summary: Get match lineups
-      description: Retrieves the starting lineups and substitutes for both teams in a specific match.
+      description: Retrieves the starting lineups and substitutes for both teams in
+        a specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10060042
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10060042
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Starting lineups and substitutes for the match.
@@ -544,19 +538,18 @@ paths:
   /api/american-football/match/{id}/highlights:
     get:
       tags:
-        - American Football
-        - Matches
-        - Media
+      - Match
       summary: Get match highlights
-      description: Retrieves video highlights and key moments from a specific match, if available.
+      description: Retrieves video highlights and key moments from a specific match,
+        if available.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10300344
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10300344
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A list of video highlights for the match.
@@ -579,19 +572,18 @@ paths:
   /api/american-football/match/{id}/managers:
     get:
       tags:
-        - American Football
-        - Matches
-        - Managers
+      - Match
       summary: Get match managers/coaches
-      description: Retrieves information about the coaches for both teams in a specific match.
+      description: Retrieves information about the coaches for both teams in a specific
+        match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10060042
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10060042
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Information about the coaches for both teams.
@@ -614,19 +606,18 @@ paths:
   /api/american-football/match/{id}/graph:
     get:
       tags:
-        - American Football
-        - Matches
-        - Statistics
+      - Match
       summary: Get match momentum graph
-      description: Retrieves data points for the match momentum graph, showing scoring progression and team pressure.
+      description: Retrieves data points for the match momentum graph, showing scoring
+        progression and team pressure.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10060042
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10060042
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Data points for the match momentum graph.
@@ -649,27 +640,25 @@ paths:
   /api/american-football/match/{id}/player/{playerId}/statistics:
     get:
       tags:
-        - American Football
-        - Matches
-        - Players
-        - Statistics
+      - Match
       summary: Get player match statistics
-      description: Retrieves detailed statistics for a single player in a specific match.
+      description: Retrieves detailed statistics for a single player in a specific
+        match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10309127
-          schema:
-            type: integer
-          description: Unique identifier for the match.
-        - name: playerId
-          in: path
-          required: true
-          example: 853614
-          schema:
-            type: integer
-          description: Unique identifier for the player.
+      - name: id
+        in: path
+        required: true
+        example: 10309127
+        schema:
+          type: integer
+        description: Unique identifier for the match.
+      - name: playerId
+        in: path
+        required: true
+        example: 853614
+        schema:
+          type: integer
+        description: Unique identifier for the player.
       responses:
         '200':
           description: Detailed statistics for the specified player in the match.
@@ -692,18 +681,18 @@ paths:
   /api/american-football/team/{id}:
     get:
       tags:
-        - American Football
-        - Teams
+      - Team
       summary: Get American football team details
-      description: Retrieves comprehensive details for a specific American football team.
+      description: Retrieves comprehensive details for a specific American football
+        team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4388
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 4388
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: Comprehensive details for the team.
@@ -726,26 +715,25 @@ paths:
   /api/american-football/team/{id}/matches/previous/{page}:
     get:
       tags:
-        - American Football
-        - Teams
-        - Matches
+      - Team
       summary: Get previous team matches
-      description: Fetches a paginated list of completed American football games for a specific team, sorted by date descending.
+      description: Fetches a paginated list of completed American football games for
+        a specific team, sorted by date descending.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4294
-          schema:
-            type: integer
-          description: Unique identifier for the team.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: id
+        in: path
+        required: true
+        example: 4294
+        schema:
+          type: integer
+        description: Unique identifier for the team.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the team's previous matches.
@@ -774,26 +762,25 @@ paths:
   /api/american-football/team/{id}/matches/next/{page}:
     get:
       tags:
-        - American Football
-        - Teams
-        - Matches
+      - Team
       summary: Get upcoming team matches
-      description: Fetches a paginated list of scheduled American football games for a specific team, sorted by date ascending.
+      description: Fetches a paginated list of scheduled American football games for
+        a specific team, sorted by date ascending.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4294
-          schema:
-            type: integer
-          description: Unique identifier for the team.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: id
+        in: path
+        required: true
+        example: 4294
+        schema:
+          type: integer
+        description: Unique identifier for the team.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the team's upcoming matches.
@@ -822,19 +809,18 @@ paths:
   /api/american-football/team/{id}/matches/near:
     get:
       tags:
-        - American Football
-        - Teams
-        - Matches
+      - Team
       summary: Get team near matches
-      description: Retrieves a list of recent and upcoming matches for a specific team.
+      description: Retrieves a list of recent and upcoming matches for a specific
+        team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4413
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 4413
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: A list of recent and upcoming matches.
@@ -857,19 +843,18 @@ paths:
   /api/american-football/team/{id}/tournaments:
     get:
       tags:
-        - American Football
-        - Teams
-        - Tournaments
+      - Team
       summary: Get team tournaments
-      description: Retrieves a list of all unique tournaments a team has participated in.
+      description: Retrieves a list of all unique tournaments a team has participated
+        in.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4294
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 4294
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: A list of unique tournaments the team has participated in.
@@ -892,19 +877,17 @@ paths:
   /api/american-football/team/{id}/standings/seasons:
     get:
       tags:
-        - American Football
-        - Teams
-        - Standings
+      - Team
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which a team's standings are available.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4294
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 4294
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: A list of seasons with available standings.
@@ -927,19 +910,18 @@ paths:
   /api/american-football/team/{id}/players/statistics/seasons:
     get:
       tags:
-        - American Football
-        - Teams
-        - Statistics
+      - Team
       summary: Get team player statistics seasons
-      description: Retrieves a list of seasons for which a team's player statistics are available.
+      description: Retrieves a list of seasons for which a team's player statistics
+        are available.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4388
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 4388
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: A list of seasons with available player statistics.
@@ -962,19 +944,17 @@ paths:
   /api/american-football/team/{id}/players:
     get:
       tags:
-        - American Football
-        - Teams
-        - Players
+      - Team
       summary: Get team players
       description: Retrieves the current roster of players for a specific team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4388
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 4388
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: The current roster of players for the team.
@@ -997,19 +977,18 @@ paths:
   /api/american-football/team/{id}/media:
     get:
       tags:
-        - American Football
-        - Teams
-        - Media
+      - Team
       summary: Get team media
-      description: Retrieves media content (e.g., videos, images) associated with a specific team.
+      description: Retrieves media content (e.g., videos, images) associated with
+        a specific team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4413
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 4413
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: A list of media content for the team.
@@ -1032,19 +1011,17 @@ paths:
   /api/american-football/team/{id}/image:
     get:
       tags:
-        - American Football
-        - Teams
-        - Media
+      - Team
       summary: Get team logo
       description: Retrieves the logo image for a specific team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4388
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 4388
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: The team's logo image.
@@ -1068,34 +1045,32 @@ paths:
   /api/american-football/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players/regularSeason:
     get:
       tags:
-        - American Football
-        - Teams
-        - Players
-        - Statistics
+      - Team
       summary: Get team top players for regular season
-      description: Retrieves the best performing players for a team in the regular season of a specific tournament.
+      description: Retrieves the best performing players for a team in the regular
+        season of a specific tournament.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4418
-          schema:
-            type: integer
-          description: Unique identifier for the team.
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 36422
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: id
+        in: path
+        required: true
+        example: 4418
+        schema:
+          type: integer
+        description: Unique identifier for the team.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: A list of the team's top players in the regular season.
@@ -1118,34 +1093,32 @@ paths:
   /api/american-football/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players/playoffs:
     get:
       tags:
-        - American Football
-        - Teams
-        - Players
-        - Statistics
+      - Team
       summary: Get team top players for playoffs
-      description: Retrieves the best performing players for a team in the playoffs of a specific tournament.
+      description: Retrieves the best performing players for a team in the playoffs
+        of a specific tournament.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 4388
-          schema:
-            type: integer
-          description: Unique identifier for the team.
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 36422
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: id
+        in: path
+        required: true
+        example: 4388
+        schema:
+          type: integer
+        description: Unique identifier for the team.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: A list of the team's top players in the playoffs.
@@ -1168,18 +1141,18 @@ paths:
   /api/american-football/player/{id}:
     get:
       tags:
-        - American Football
-        - Players
+      - Player
       summary: Get American football player details
-      description: Retrieves comprehensive information about a specific American football player.
+      description: Retrieves comprehensive information about a specific American football
+        player.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 853680
-          schema:
-            type: integer
-          description: Unique identifier for the player.
+      - name: id
+        in: path
+        required: true
+        example: 853680
+        schema:
+          type: integer
+        description: Unique identifier for the player.
       responses:
         '200':
           description: Comprehensive details for the player.
@@ -1202,19 +1175,18 @@ paths:
   /api/american-football/player/{id}/matches/near:
     get:
       tags:
-        - American Football
-        - Players
-        - Matches
+      - Player
       summary: Get player near matches
-      description: Retrieves a list of recent and upcoming matches for a specific player.
+      description: Retrieves a list of recent and upcoming matches for a specific
+        player.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 853680
-          schema:
-            type: integer
-          description: Unique identifier for the player.
+      - name: id
+        in: path
+        required: true
+        example: 853680
+        schema:
+          type: integer
+        description: Unique identifier for the player.
       responses:
         '200':
           description: A list of the player's recent and upcoming matches.
@@ -1237,26 +1209,25 @@ paths:
   /api/american-football/player/{id}/matches/previous/{page}:
     get:
       tags:
-        - American Football
-        - Players
-        - Matches
+      - Player
       summary: Get previous player matches
-      description: Fetches a paginated list of completed matches for a specific player, sorted by date descending.
+      description: Fetches a paginated list of completed matches for a specific player,
+        sorted by date descending.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 1028028
-          schema:
-            type: integer
-          description: Unique identifier for the player.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: id
+        in: path
+        required: true
+        example: 1028028
+        schema:
+          type: integer
+        description: Unique identifier for the player.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the player's previous matches.
@@ -1285,19 +1256,18 @@ paths:
   /api/american-football/player/{id}/statistics/season:
     get:
       tags:
-        - American Football
-        - Players
-        - Statistics
+      - Player
       summary: Get player statistics seasons
-      description: Retrieves a list of seasons for which a player's statistics are available.
+      description: Retrieves a list of seasons for which a player's statistics are
+        available.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 853680
-          schema:
-            type: integer
-          description: Unique identifier for the player.
+      - name: id
+        in: path
+        required: true
+        example: 853680
+        schema:
+          type: integer
+        description: Unique identifier for the player.
       responses:
         '200':
           description: A list of seasons with available statistics.
@@ -1320,33 +1290,32 @@ paths:
   /api/american-football/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularSeason:
     get:
       tags:
-        - American Football
-        - Players
-        - Statistics
+      - Player
       summary: Get player regular season statistics
-      description: Retrieves a player's statistics for the regular season of a specific tournament.
+      description: Retrieves a player's statistics for the regular season of a specific
+        tournament.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 853680
-          schema:
-            type: integer
-          description: Unique identifier for the player.
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 36422
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: id
+        in: path
+        required: true
+        example: 853680
+        schema:
+          type: integer
+        description: Unique identifier for the player.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The player's regular season statistics.
@@ -1369,33 +1338,32 @@ paths:
   /api/american-football/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/playoffs:
     get:
       tags:
-        - American Football
-        - Players
-        - Statistics
+      - Player
       summary: Get player playoffs statistics
-      description: Retrieves a player's statistics for the playoffs of a specific tournament.
+      description: Retrieves a player's statistics for the playoffs of a specific
+        tournament.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 853680
-          schema:
-            type: integer
-          description: Unique identifier for the player.
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 36422
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: id
+        in: path
+        required: true
+        example: 853680
+        schema:
+          type: integer
+        description: Unique identifier for the player.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The player's playoffs statistics.
@@ -1418,19 +1386,18 @@ paths:
   /api/american-football/player/{id}/media:
     get:
       tags:
-        - American Football
-        - Players
-        - Media
+      - Player
       summary: Get player media
-      description: Retrieves media content (e.g., videos, images) associated with a specific player.
+      description: Retrieves media content (e.g., videos, images) associated with
+        a specific player.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 853680
-          schema:
-            type: integer
-          description: Unique identifier for the player.
+      - name: id
+        in: path
+        required: true
+        example: 853680
+        schema:
+          type: integer
+        description: Unique identifier for the player.
       responses:
         '200':
           description: A list of media content for the player.
@@ -1453,19 +1420,17 @@ paths:
   /api/american-football/player/{id}/image:
     get:
       tags:
-        - American Football
-        - Players
-        - Media
+      - Player
       summary: Get player image
       description: Retrieves the profile image for a specific player.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 853680
-          schema:
-            type: integer
-          description: Unique identifier for the player.
+      - name: id
+        in: path
+        required: true
+        example: 853680
+        schema:
+          type: integer
+        description: Unique identifier for the player.
       responses:
         '200':
           description: The player's profile image.
@@ -1489,18 +1454,18 @@ paths:
   /api/american-football/manager/{id}:
     get:
       tags:
-        - American Football
-        - Managers
+      - Manager
       summary: Get American football manager/coach details
-      description: Retrieves comprehensive information about a specific American football manager/coach.
+      description: Retrieves comprehensive information about a specific American football
+        manager/coach.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 793384
-          schema:
-            type: integer
-          description: Unique identifier for the manager.
+      - name: id
+        in: path
+        required: true
+        example: 793384
+        schema:
+          type: integer
+        description: Unique identifier for the manager.
       responses:
         '200':
           description: Comprehensive details for the manager.
@@ -1523,26 +1488,25 @@ paths:
   /api/american-football/manager/{id}/matches/previous/{page}:
     get:
       tags:
-        - American Football
-        - Managers
-        - Matches
+      - Manager
       summary: Get previous manager matches
-      description: Fetches a paginated list of completed matches for a specific manager, sorted by date descending.
+      description: Fetches a paginated list of completed matches for a specific manager,
+        sorted by date descending.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 793398
-          schema:
-            type: integer
-          description: Unique identifier for the manager.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: id
+        in: path
+        required: true
+        example: 793398
+        schema:
+          type: integer
+        description: Unique identifier for the manager.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the manager's previous matches.
@@ -1571,19 +1535,17 @@ paths:
   /api/american-football/manager/{id}/image:
     get:
       tags:
-        - American Football
-        - Managers
-        - Media
+      - Manager
       summary: Get manager/coach image
       description: Retrieves the profile image for a specific manager.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 793384
-          schema:
-            type: integer
-          description: Unique identifier for the manager.
+      - name: id
+        in: path
+        required: true
+        example: 793384
+        schema:
+          type: integer
+        description: Unique identifier for the manager.
       responses:
         '200':
           description: The manager's profile image.
@@ -1607,18 +1569,18 @@ paths:
   /api/american-football/tournament/{tournamentId}:
     get:
       tags:
-        - American Football
-        - Tournaments
+      - Tournament
       summary: Get tournament details
-      description: Retrieves comprehensive details for a specific American football tournament.
+      description: Retrieves comprehensive details for a specific American football
+        tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: Comprehensive details for the tournament.
@@ -1641,18 +1603,17 @@ paths:
   /api/american-football/tournament/{tournamentId}/seasons:
     get:
       tags:
-        - American Football
-        - Tournaments
+      - Tournament
       summary: Get tournament seasons
       description: Retrieves a list of all available seasons for a specific tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: A list of available seasons for the tournament.
@@ -1675,19 +1636,17 @@ paths:
   /api/american-football/tournament/{tournamentId}/image:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get tournament logo
       description: Retrieves the logo image for a specific tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: The tournament's logo image.
@@ -1711,18 +1670,16 @@ paths:
   /api/american-football/tournament/{tournamentId}/image/dark:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: The tournament's dark theme logo image.
@@ -1746,19 +1703,17 @@ paths:
   /api/american-football/tournament/{tournamentId}/media:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get tournament media
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: A list of media content for the tournament.
@@ -1781,26 +1736,25 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament total standings
-      description: Retrieves the complete standings table for all teams in a specific tournament season.
+      description: Retrieves the complete standings table for all teams in a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 36422
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The complete standings table for the tournament season.
@@ -1823,26 +1777,25 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament home standings
-      description: Retrieves the standings based on home games only for a specific tournament season.
+      description: Retrieves the standings based on home games only for a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 19510
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 46788
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 19510
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 46788
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The home standings table for the tournament season.
@@ -1865,26 +1818,25 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/standings/away:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament away standings
-      description: Retrieves the standings based on away games only for a specific tournament season.
+      description: Retrieves the standings based on away games only for a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 19510
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 46788
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 19510
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 46788
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The away standings table for the tournament season.
@@ -1907,27 +1859,25 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/best-players/regularSeason:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Players
-        - Statistics
+      - Tournament
       summary: Get top players for regular season
-      description: Retrieves the best performing players in the regular season of a specific tournament.
+      description: Retrieves the best performing players in the regular season of
+        a specific tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 36422
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: A list of top performing players in the regular season.
@@ -1950,27 +1900,25 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/best-players/playoffs:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Players
-        - Statistics
+      - Tournament
       summary: Get top players for playoffs
-      description: Retrieves the best performing players in the playoffs of a specific tournament.
+      description: Retrieves the best performing players in the playoffs of a specific
+        tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 36422
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: A list of top performing players in the playoffs.
@@ -1993,26 +1941,25 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/best-players/types:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Statistics
+      - Tournament
       summary: Get player statistics types
-      description: Retrieves the available types of player statistics for a given tournament season.
+      description: Retrieves the available types of player statistics for a given
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 46786
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 46786
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: A list of available player statistics types.
@@ -2035,33 +1982,32 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament last matches
-      description: Retrieves a paginated list of recently played matches in a specific tournament season.
+      description: Retrieves a paginated list of recently played matches in a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 36422
-          schema:
-            type: integer
-          description: Unique identifier for the season.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the tournament's last matches.
@@ -2090,33 +2036,32 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament upcoming matches
-      description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
+      description: Retrieves a paginated list of scheduled upcoming matches in a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 36422
-          schema:
-            type: integer
-          description: Unique identifier for the season.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the tournament's upcoming matches.
@@ -2145,25 +2090,25 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/cuptrees:
     get:
       tags:
-        - American Football
-        - Tournaments
+      - Tournament
       summary: Get tournament cup trees
-      description: Retrieves the knockout bracket (cup trees) for a specific tournament season.
+      description: Retrieves the knockout bracket (cup trees) for a specific tournament
+        season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 9464
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 36422
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The knockout bracket for the tournament season.
@@ -2186,27 +2131,25 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events total statistics
-      description: Retrieves aggregated team performance statistics for all games in a tournament season.
+      description: Retrieves aggregated team performance statistics for all games
+        in a tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 19510
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 46788
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 19510
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 46788
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: Aggregated team statistics for the entire season.
@@ -2229,27 +2172,25 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events home statistics
-      description: Retrieves aggregated team performance statistics for home games in a tournament season.
+      description: Retrieves aggregated team performance statistics for home games
+        in a tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 19510
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 46788
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 19510
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 46788
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: Aggregated team statistics for home games.
@@ -2272,27 +2213,25 @@ paths:
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
       tags:
-        - American Football
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events away statistics
-      description: Retrieves aggregated team performance statistics for away games in a tournament season.
+      description: Retrieves aggregated team performance statistics for away games
+        in a tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 19510
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 46788
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 19510
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 46788
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: Aggregated team statistics for away games.
@@ -2315,40 +2254,39 @@ paths:
   /api/american-football/category/{id}/events/{day}/{month}/{year}:
     get:
       tags:
-        - American Football
-        - Categories
-        - Matches
+      - Category
       summary: Get matches by category and date
-      description: Retrieves all American football matches for a specific category on a given date.
+      description: Retrieves all American football matches for a specific category
+        on a given date.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 1370
-          schema:
-            type: integer
-          description: Unique identifier for the category.
-        - name: day
-          in: path
-          required: true
-          example: 25
-          schema:
-            type: integer
-          description: Day of the month (e.g., 15).
-        - name: month
-          in: path
-          required: true
-          example: 11
-          schema:
-            type: integer
-          description: Month of the year (e.g., 9).
-        - name: year
-          in: path
-          required: true
-          example: 2021
-          schema:
-            type: integer
-          description: Year (e.g., 2024).
+      - name: id
+        in: path
+        required: true
+        example: 1370
+        schema:
+          type: integer
+        description: Unique identifier for the category.
+      - name: day
+        in: path
+        required: true
+        example: 25
+        schema:
+          type: integer
+        description: Day of the month (e.g., 15).
+      - name: month
+        in: path
+        required: true
+        example: 11
+        schema:
+          type: integer
+        description: Month of the year (e.g., 9).
+      - name: year
+        in: path
+        required: true
+        example: 2021
+        schema:
+          type: integer
+        description: Year (e.g., 2024).
       responses:
         '200':
           description: A list of scheduled matches for the category on the given date.
@@ -2377,19 +2315,18 @@ paths:
   /api/american-football/tournament/all/category/{id}:
     get:
       tags:
-        - American Football
-        - Categories
-        - Tournaments
+      - Tournament
       summary: Get tournaments by category
-      description: Retrieves all unique tournaments within a specific American football category.
+      description: Retrieves all unique tournaments within a specific American football
+        category.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 1512
-          schema:
-            type: integer
-          description: Unique identifier for the category.
+      - name: id
+        in: path
+        required: true
+        example: 1512
+        schema:
+          type: integer
+        description: Unique identifier for the category.
       responses:
         '200':
           description: A list of unique tournaments in the specified category.
@@ -2409,29 +2346,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-
   /api/tv/channel/{channId}/event/{id}:
     get:
       tags:
-        - AllSports
-        - TV
+      - TV
       summary: Get match TV channel votes
-      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting
+        the match.
       parameters:
-        - name: channId
-          in: path
-          required: true
-          example: 3177
-          schema:
-            type: integer
-          description: The unique identifier for the TV channel.
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema:
-            type: integer
-          description: The unique identifier for the match.
+      - name: channId
+        in: path
+        required: true
+        example: 3177
+        schema:
+          type: integer
+        description: The unique identifier for the TV channel.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object containing viewer vote data from the channel.
@@ -2454,17 +2390,18 @@ paths:
   /api/img/flag/{flag}:
     get:
       tags:
-        - AllSports
+      - Country
       summary: Get country flag
-      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      description: Fetches the PNG flag image asset corresponding to a provided country
+        code. The response is the raw image data.
       parameters:
-        - name: flag
-          in: path
-          required: true
-          example: 'jp'
-          schema:
-            type: string
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: flag
+        in: path
+        required: true
+        example: jp
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -2488,16 +2425,16 @@ paths:
   /api/country/{code}/flag:
     get:
       tags:
-        - AllSports
+      - Country
       summary: Get country flag (img API)
       description: Fetches the flag image by country code.
       parameters:
-        - name: code
-          in: path
-          required: true
-          schema:
-            type: string
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -2521,10 +2458,10 @@ paths:
   /api/placeholder/tournament.png:
     get:
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -2542,10 +2479,10 @@ paths:
   /api/placeholder/tournament.svg:
     get:
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -2563,10 +2500,10 @@ paths:
   /api/placeholder/team.svg:
     get:
       tags:
-        - AllSports
-        - Teams
+      - Team
       summary: Get team placeholder image
-      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      description: Returns a static placeholder graphic for a team. The response is
+        an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -2584,10 +2521,10 @@ paths:
   /api/placeholder/player.png:
     get:
       tags:
-        - AllSports
-        - Players
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -2605,10 +2542,10 @@ paths:
   /api/placeholder/player.svg:
     get:
       tags:
-        - AllSports
-        - Players
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -2626,9 +2563,10 @@ paths:
   /api/placeholder/manager.png:
     get:
       tags:
-        - AllSports
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -2646,9 +2584,10 @@ paths:
   /api/placeholder/manager.svg:
     get:
       tags:
-        - AllSports
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -2666,9 +2605,7 @@ paths:
   /api/placeholders/fighter-male.svg:
     get:
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       summary: Get male fighter placeholder image
       description: Retrieves a placeholder image for a male fighter.
       responses:
@@ -2688,9 +2625,7 @@ paths:
   /api/placeholders/fighter-female.svg:
     get:
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       summary: Get female fighter placeholder image
       description: Retrieves a placeholder image for a female fighter.
       responses:
@@ -2707,7 +2642,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-
 components:
   schemas:
     ErrorResponse:
@@ -2730,3 +2664,24 @@ components:
       description: A generic JSON object response.
       properties: {}
       additionalProperties: true
+tags:
+- name: Category
+  description: Category endpoints.
+- name: Country
+  description: Country assets and metadata.
+- name: Fighter
+  description: Fighter placeholder assets.
+- name: Manager
+  description: Manager endpoints.
+- name: Match
+  description: Match endpoints.
+- name: Player
+  description: Player endpoints.
+- name: Search
+  description: Search endpoints.
+- name: TV
+  description: TV broadcast endpoints.
+- name: Team
+  description: Team endpoints.
+- name: Tournament
+  description: Tournament endpoints.

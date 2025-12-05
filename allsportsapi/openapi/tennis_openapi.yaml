@@ -3,22 +3,25 @@ info:
   title: Tennis API
   description: OpenAPI specification for the Tennis API.
   version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
     get:
       summary: Get match TV countries
-      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      description: Lists the countries and the TV channels within them that are broadcasting
+        a specific match.
       tags:
-        - AllSports
-        - TV
+      - TV
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema:
-            type: integer
-          description: The unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object listing countries and their broadcasting channels.
@@ -41,25 +44,25 @@ paths:
   /api/tv/channel/{channId}/event/{id}:
     get:
       summary: Get match TV channel votes
-      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting
+        the match.
       tags:
-        - AllSports
-        - TV
+      - TV
       parameters:
-        - name: channId
-          in: path
-          required: true
-          example: 3177
-          schema:
-            type: integer
-          description: The unique identifier for the TV channel.
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema:
-            type: integer
-          description: The unique identifier for the match.
+      - name: channId
+        in: path
+        required: true
+        example: 3177
+        schema:
+          type: integer
+        description: The unique identifier for the TV channel.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object containing viewer vote data from the channel.
@@ -82,17 +85,18 @@ paths:
   /api/img/flag/{flag}:
     get:
       summary: Get country flag
-      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      description: Fetches the PNG flag image asset corresponding to a provided country
+        code. The response is the raw image data.
       tags:
-        - AllSports
+      - Country
       parameters:
-        - name: flag
-          in: path
-          required: true
-          example: 'jp'
-          schema:
-            type: string
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: flag
+        in: path
+        required: true
+        example: jp
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -116,16 +120,17 @@ paths:
   /api/country/{code}/flag:
     get:
       summary: Get country flag (img API)
-      description: Fetches the flag image by country code. The response is the raw image data.
+      description: Fetches the flag image by country code. The response is the raw
+        image data.
       tags:
-        - AllSports
+      - Country
       parameters:
-        - name: code
-          in: path
-          required: true
-          schema:
-            type: string
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -149,10 +154,10 @@ paths:
   /api/placeholder/tournament.png:
     get:
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -170,10 +175,10 @@ paths:
   /api/placeholder/tournament.svg:
     get:
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -191,10 +196,10 @@ paths:
   /api/placeholder/team.svg:
     get:
       summary: Get team placeholder image
-      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      description: Returns a static placeholder graphic for a team. The response is
+        an SVG image.
       tags:
-        - AllSports
-        - Teams
+      - Team
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -212,10 +217,10 @@ paths:
   /api/placeholder/player.png:
     get:
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       tags:
-        - AllSports
-        - Players
+      - Player
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -233,10 +238,10 @@ paths:
   /api/placeholder/player.svg:
     get:
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       tags:
-        - AllSports
-        - Players
+      - Player
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -254,9 +259,10 @@ paths:
   /api/placeholder/manager.png:
     get:
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       tags:
-        - AllSports
+      - Manager
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,9 +280,10 @@ paths:
   /api/placeholder/manager.svg:
     get:
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       tags:
-        - AllSports
+      - Manager
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -296,9 +303,7 @@ paths:
       summary: Get male fighter placeholder image
       description: Retrieves a placeholder image for a male fighter.
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       responses:
         '200':
           description: The placeholder SVG image.
@@ -318,9 +323,7 @@ paths:
       summary: Get female fighter placeholder image
       description: Retrieves a placeholder image for a female fighter.
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       responses:
         '200':
           description: The placeholder SVG image.
@@ -340,22 +343,21 @@ paths:
       summary: Search tennis players and tournaments
       description: Searches for tennis players and tournaments based on a search term.
       tags:
-        - Tennis
-        - Search
+      - Search
       parameters:
-        - name: term
-          in: path
-          required: true
-          example: 'federer'
-          schema:
-            type: string
-          description: Search term (e.g., 'Nadal')
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-          description: Page number for pagination
+      - name: term
+        in: path
+        required: true
+        example: federer
+        schema:
+          type: string
+        description: Search term (e.g., 'Nadal')
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for pagination
       responses:
         '200':
           description: A list of search results for players and tournaments.
@@ -380,30 +382,29 @@ paths:
       summary: Get tennis events by date
       description: Fetches all tennis matches scheduled for a specific date.
       tags:
-        - Tennis
-        - Matches
+      - Event
       parameters:
-        - name: day
-          in: path
-          required: true
-          example: 7
-          schema:
-            type: integer
-          description: Day of the month (e.g., 15)
-        - name: month
-          in: path
-          required: true
-          example: 7
-          schema:
-            type: integer
-          description: Month of the year (e.g., 7)
-        - name: year
-          in: path
-          required: true
-          example: 2022
-          schema:
-            type: integer
-          description: Year (e.g., 2024)
+      - name: day
+        in: path
+        required: true
+        example: 7
+        schema:
+          type: integer
+        description: Day of the month (e.g., 15)
+      - name: month
+        in: path
+        required: true
+        example: 7
+        schema:
+          type: integer
+        description: Month of the year (e.g., 7)
+      - name: year
+        in: path
+        required: true
+        example: 2022
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
           description: A list of scheduled tennis matches for the given date.
@@ -426,25 +427,25 @@ paths:
   /api/tennis/calendar/{month}/{year}:
     get:
       summary: Get tennis calendar for month
-      description: Retrieves a calendar overview of unique tennis tournaments for a specific month.
+      description: Retrieves a calendar overview of unique tennis tournaments for
+        a specific month.
       tags:
-        - Tennis
-        - Calendar
+      - Calendar
       parameters:
-        - name: month
-          in: path
-          required: true
-          example: 7
-          schema:
-            type: integer
-          description: Month of the year (e.g., 7)
-        - name: year
-          in: path
-          required: true
-          example: 2022
-          schema:
-            type: integer
-          description: Year (e.g., 2024)
+      - name: month
+        in: path
+        required: true
+        example: 7
+        schema:
+          type: integer
+        description: Month of the year (e.g., 7)
+      - name: year
+        in: path
+        required: true
+        example: 2022
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
           description: A list of unique tournaments scheduled for the specified month.
@@ -467,33 +468,32 @@ paths:
   /api/tennis/events/odds/{day}/{month}/{year}:
     get:
       summary: Get tennis events with odds by date
-      description: Retrieves tennis events along with their betting odds for a specific date from bookmaker `1`.
+      description: Retrieves tennis events along with their betting odds for a specific
+        date from bookmaker `1`.
       tags:
-        - Tennis
-        - Matches
-        - Odds
+      - Event
       parameters:
-        - name: day
-          in: path
-          required: true
-          example: 21
-          schema:
-            type: integer
-          description: Day of the month (e.g., 15)
-        - name: month
-          in: path
-          required: true
-          example: 11
-          schema:
-            type: integer
-          description: Month of the year (e.g., 7)
-        - name: year
-          in: path
-          required: true
-          example: 2022
-          schema:
-            type: integer
-          description: Year (e.g., 2024)
+      - name: day
+        in: path
+        required: true
+        example: 21
+        schema:
+          type: integer
+        description: Day of the month (e.g., 15)
+      - name: month
+        in: path
+        required: true
+        example: 11
+        schema:
+          type: integer
+        description: Month of the year (e.g., 7)
+      - name: year
+        in: path
+        required: true
+        example: 2022
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
           description: A list of tennis events with associated betting odds.
@@ -516,43 +516,43 @@ paths:
   /api/tennis/category/{id}/events/{day}/{month}/{year}:
     get:
       summary: Get tennis events by category and date
-      description: Retrieves all tennis matches for a specific category (e.g., ATP, WTA, Challenger) on a given date.
+      description: Retrieves all tennis matches for a specific category (e.g., ATP,
+        WTA, Challenger) on a given date.
       tags:
-        - Tennis
-        - Categories
-        - Matches
+      - Category
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 72
-          schema:
-            type: integer
-          description: Category ID (e.g., 1 for ATP)
-        - name: day
-          in: path
-          required: true
-          example: 30
-          schema:
-            type: integer
-          description: Day of the month (e.g., 15)
-        - name: month
-          in: path
-          required: true
-          example: 10
-          schema:
-            type: integer
-          description: Month of the year (e.g., 7)
-        - name: year
-          in: path
-          required: true
-          example: 2022
-          schema:
-            type: integer
-          description: Year (e.g., 2024)
+      - name: id
+        in: path
+        required: true
+        example: 72
+        schema:
+          type: integer
+        description: Category ID (e.g., 1 for ATP)
+      - name: day
+        in: path
+        required: true
+        example: 30
+        schema:
+          type: integer
+        description: Day of the month (e.g., 15)
+      - name: month
+        in: path
+        required: true
+        example: 10
+        schema:
+          type: integer
+        description: Month of the year (e.g., 7)
+      - name: year
+        in: path
+        required: true
+        example: 2022
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
-          description: A list of scheduled matches for the specified category and date.
+          description: A list of scheduled matches for the specified category and
+            date.
           content:
             application/json:
               schema:
@@ -578,33 +578,32 @@ paths:
   /api/tennis/calendar/{day}/{month}/{year}/categories:
     get:
       summary: Get daily tennis categories
-      description: Retrieves a list of tennis categories that have scheduled events on a specific date.
+      description: Retrieves a list of tennis categories that have scheduled events
+        on a specific date.
       tags:
-        - Tennis
-        - Categories
-        - Calendar
+      - Calendar
       parameters:
-        - name: day
-          in: path
-          required: true
-          example: 30
-          schema:
-            type: integer
-          description: Day of the month (e.g., 15)
-        - name: month
-          in: path
-          required: true
-          example: 10
-          schema:
-            type: integer
-          description: Month of the year (e.g., 7)
-        - name: year
-          in: path
-          required: true
-          example: 2022
-          schema:
-            type: integer
-          description: Year (e.g., 2024)
+      - name: day
+        in: path
+        required: true
+        example: 30
+        schema:
+          type: integer
+        description: Day of the month (e.g., 15)
+      - name: month
+        in: path
+        required: true
+        example: 10
+        schema:
+          type: integer
+        description: Month of the year (e.g., 7)
+      - name: year
+        in: path
+        required: true
+        example: 2022
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
           description: A list of categories with scheduled events for the given date.
@@ -629,8 +628,7 @@ paths:
       summary: Get live tennis matches
       description: Retrieves all currently live tennis matches.
       tags:
-        - Tennis
-        - Matches
+      - Event
       responses:
         '200':
           description: A list of live tennis matches.
@@ -647,18 +645,18 @@ paths:
   /api/tennis/event/{id}:
     get:
       summary: Get tennis match details
-      description: Retrieves detailed information for a specific tennis match, including players, score, status, and tournament info.
+      description: Retrieves detailed information for a specific tennis match, including
+        players, score, status, and tournament info.
       tags:
-        - Tennis
-        - Matches
+      - Event
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Detailed information about the match.
@@ -681,19 +679,18 @@ paths:
   /api/tennis/event/{id}/statistics:
     get:
       summary: Get match statistics
-      description: Retrieves comprehensive statistical data for a tennis match, such as serve stats, break points, etc.
+      description: Retrieves comprehensive statistical data for a tennis match, such
+        as serve stats, break points, etc.
       tags:
-        - Tennis
-        - Matches
-        - Statistics
+      - Event
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Comprehensive statistics for the match.
@@ -716,19 +713,18 @@ paths:
   /api/tennis/event/{customId}/h2h:
     get:
       summary: Get head-to-head history
-      description: Retrieves the detailed match history for head-to-head encounters between two players/teams.
+      description: Retrieves the detailed match history for head-to-head encounters
+        between two players/teams.
       tags:
-        - Tennis
-        - Matches
-        - Statistics
+      - Event
       parameters:
-        - name: customId
-          in: path
-          required: true
-          example: 'LOfsRveb'
-          schema:
-            type: string
-          description: A custom identifier for the match, used for H2H lookups.
+      - name: customId
+        in: path
+        required: true
+        example: LOfsRveb
+        schema:
+          type: string
+        description: A custom identifier for the match, used for H2H lookups.
       responses:
         '200':
           description: A detailed list of past H2H matches.
@@ -751,19 +747,18 @@ paths:
   /api/tennis/event/{id}/duel:
     get:
       summary: Get head-to-head summary
-      description: Retrieves a summary of head-to-head statistics, including win counts and recent form.
+      description: Retrieves a summary of head-to-head statistics, including win counts
+        and recent form.
       tags:
-        - Tennis
-        - Matches
-        - Statistics
+      - Event
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A summary of H2H statistics.
@@ -786,19 +781,18 @@ paths:
   /api/tennis/event/{id}/odds:
     get:
       summary: Get match betting odds
-      description: Retrieves available betting odds from bookmaker `1` for a specific match.
+      description: Retrieves available betting odds from bookmaker `1` for a specific
+        match.
       tags:
-        - Tennis
-        - Matches
-        - Odds
+      - Event
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A list of available betting odds for the match.
@@ -821,19 +815,18 @@ paths:
   /api/tennis/event/{id}/graph:
     get:
       summary: Get match power graph
-      description: Retrieves the tennis power graph, showing momentum and key service statistics for the match.
+      description: Retrieves the tennis power graph, showing momentum and key service
+        statistics for the match.
       tags:
-        - Tennis
-        - Matches
-        - Statistics
+      - Event
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10443003
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10443003
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Data points for the tennis power graph.
@@ -856,19 +849,18 @@ paths:
   /api/tennis/event/{id}/point-by-point:
     get:
       summary: Get point-by-point data
-      description: Retrieves a detailed, chronological list of points and games for a tennis match.
+      description: Retrieves a detailed, chronological list of points and games for
+        a tennis match.
       tags:
-        - Tennis
-        - Matches
-        - Statistics
+      - Event
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10520841
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10520841
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A chronological list of points and games.
@@ -891,19 +883,18 @@ paths:
   /api/tennis/event/{id}/streak:
     get:
       summary: Get match streaks
-      description: Provides recent form and streak information for each player/team in the match.
+      description: Provides recent form and streak information for each player/team
+        in the match.
       tags:
-        - Tennis
-        - Matches
-        - Statistics
+      - Event
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10520838
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10520838
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Streak information for both players/teams.
@@ -926,19 +917,18 @@ paths:
   /api/tennis/event/{id}/highlights:
     get:
       summary: Get match highlights
-      description: Retrieves video highlights and key moments from a specific match, if available.
+      description: Retrieves video highlights and key moments from a specific match,
+        if available.
       tags:
-        - Tennis
-        - Matches
-        - Media
+      - Event
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A list of video highlights for the match.
@@ -963,16 +953,15 @@ paths:
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome.
       tags:
-        - Tennis
-        - Matches
+      - Event
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Vote counts and percentages for the match.
@@ -995,18 +984,18 @@ paths:
   /api/tennis/player/{id}:
     get:
       summary: Get tennis player details
-      description: Retrieves comprehensive details for a specific tennis player, including personal info and rankings.
+      description: Retrieves comprehensive details for a specific tennis player, including
+        personal info and rankings.
       tags:
-        - Tennis
-        - Players
+      - Player
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 37785
-          schema:
-            type: integer
-          description: Unique identifier for the player (team ID in upstream).
+      - name: id
+        in: path
+        required: true
+        example: 37785
+        schema:
+          type: integer
+        description: Unique identifier for the player (team ID in upstream).
       responses:
         '200':
           description: Comprehensive details for the player.
@@ -1031,17 +1020,15 @@ paths:
       summary: Get player image
       description: Retrieves the profile image for a specific player.
       tags:
-        - Tennis
-        - Players
-        - Media
+      - Player
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 37785
-          schema:
-            type: integer
-          description: Unique identifier for the player (team ID in upstream).
+      - name: id
+        in: path
+        required: true
+        example: 37785
+        schema:
+          type: integer
+        description: Unique identifier for the player (team ID in upstream).
       responses:
         '200':
           description: The player's profile image.
@@ -1065,26 +1052,25 @@ paths:
   /api/tennis/player/{id}/events/previous/{page}:
     get:
       summary: Get previous player matches
-      description: Fetches a paginated list of completed matches for a player, sorted by date descending.
+      description: Fetches a paginated list of completed matches for a player, sorted
+        by date descending.
       tags:
-        - Tennis
-        - Players
-        - Matches
+      - Player
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 136042
-          schema:
-            type: integer
-          description: Unique identifier for the player (team ID in upstream).
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: id
+        in: path
+        required: true
+        example: 136042
+        schema:
+          type: integer
+        description: Unique identifier for the player (team ID in upstream).
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the player's previous matches.
@@ -1113,26 +1099,25 @@ paths:
   /api/tennis/player/{id}/events/next/{page}:
     get:
       summary: Get upcoming player matches
-      description: Fetches a paginated list of scheduled matches for a player, sorted by date ascending.
+      description: Fetches a paginated list of scheduled matches for a player, sorted
+        by date ascending.
       tags:
-        - Tennis
-        - Players
-        - Matches
+      - Player
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 14486
-          schema:
-            type: integer
-          description: Unique identifier for the player (team ID in upstream).
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: id
+        in: path
+        required: true
+        example: 14486
+        schema:
+          type: integer
+        description: Unique identifier for the player (team ID in upstream).
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the player's upcoming matches.
@@ -1161,19 +1146,18 @@ paths:
   /api/tennis/player/{id}/standings/seasons:
     get:
       summary: Get player standings seasons
-      description: Retrieves a list of seasons for which a player's standings/rankings are available.
+      description: Retrieves a list of seasons for which a player's standings/rankings
+        are available.
       tags:
-        - Tennis
-        - Players
-        - Standings
+      - Player
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 14486
-          schema:
-            type: integer
-          description: Unique identifier for the player (team ID in upstream).
+      - name: id
+        in: path
+        required: true
+        example: 14486
+        schema:
+          type: integer
+        description: Unique identifier for the player (team ID in upstream).
       responses:
         '200':
           description: A list of seasons with available standings.
@@ -1196,19 +1180,18 @@ paths:
   /api/tennis/player/{id}/tournaments/last:
     get:
       summary: Get player recent tournaments
-      description: Retrieves a list of recent unique tournaments a player has participated in.
+      description: Retrieves a list of recent unique tournaments a player has participated
+        in.
       tags:
-        - Tennis
-        - Players
-        - Tournaments
+      - Player
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 275923
-          schema:
-            type: integer
-          description: Unique identifier for the player (team ID in upstream).
+      - name: id
+        in: path
+        required: true
+        example: 275923
+        schema:
+          type: integer
+        description: Unique identifier for the player (team ID in upstream).
       responses:
         '200':
           description: A list of recent unique tournaments for the player.
@@ -1231,19 +1214,18 @@ paths:
   /api/tennis/player/{id}/rankings:
     get:
       summary: Get player rankings
-      description: Retrieves current and historical ranking information for a specific player.
+      description: Retrieves current and historical ranking information for a specific
+        player.
       tags:
-        - Tennis
-        - Players
-        - Rankings
+      - Player
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 37785
-          schema:
-            type: integer
-          description: Unique identifier for the player (team ID in upstream).
+      - name: id
+        in: path
+        required: true
+        example: 37785
+        schema:
+          type: integer
+        description: Unique identifier for the player (team ID in upstream).
       responses:
         '200':
           description: Ranking information for the player.
@@ -1266,19 +1248,18 @@ paths:
   /api/tennis/player/{id}/events/near:
     get:
       summary: Get player near matches
-      description: Retrieves a list of recent and upcoming matches for a specific player.
+      description: Retrieves a list of recent and upcoming matches for a specific
+        player.
       tags:
-        - Tennis
-        - Players
-        - Matches
+      - Player
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 163504
-          schema:
-            type: integer
-          description: Unique identifier for the player (team ID in upstream).
+      - name: id
+        in: path
+        required: true
+        example: 163504
+        schema:
+          type: integer
+        description: Unique identifier for the player (team ID in upstream).
       responses:
         '200':
           description: A list of the player's recent and upcoming matches.
@@ -1301,26 +1282,25 @@ paths:
   /api/tennis/team/{id}/events/previous/{page}:
     get:
       summary: Get previous team matches
-      description: Fetches a paginated list of completed matches for a doubles team, sorted by date descending.
+      description: Fetches a paginated list of completed matches for a doubles team,
+        sorted by date descending.
       tags:
-        - Tennis
-        - Teams
-        - Matches
+      - Team
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 136042
-          schema:
-            type: integer
-          description: Unique identifier for the team.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: id
+        in: path
+        required: true
+        example: 136042
+        schema:
+          type: integer
+        description: Unique identifier for the team.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the team's previous matches.
@@ -1349,26 +1329,25 @@ paths:
   /api/tennis/team/{id}/events/next/{page}:
     get:
       summary: Get upcoming team matches
-      description: Fetches a paginated list of scheduled matches for a doubles team, sorted by date ascending.
+      description: Fetches a paginated list of scheduled matches for a doubles team,
+        sorted by date ascending.
       tags:
-        - Tennis
-        - Teams
-        - Matches
+      - Team
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 14486
-          schema:
-            type: integer
-          description: Unique identifier for the team.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: id
+        in: path
+        required: true
+        example: 14486
+        schema:
+          type: integer
+        description: Unique identifier for the team.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the team's upcoming matches.
@@ -1397,19 +1376,18 @@ paths:
   /api/tennis/team/{id}/standings/seasons:
     get:
       summary: Get team standings seasons
-      description: Retrieves a list of seasons for which a doubles team's standings are available.
+      description: Retrieves a list of seasons for which a doubles team's standings
+        are available.
       tags:
-        - Tennis
-        - Teams
-        - Standings
+      - Team
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 14486
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 14486
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: A list of seasons with available standings.
@@ -1432,19 +1410,18 @@ paths:
   /api/tennis/team/{id}/tournaments/last:
     get:
       summary: Get team recent tournaments
-      description: Retrieves a list of recent unique tournaments a doubles team has participated in.
+      description: Retrieves a list of recent unique tournaments a doubles team has
+        participated in.
       tags:
-        - Tennis
-        - Teams
-        - Tournaments
+      - Team
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 275923
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 275923
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: A list of recent unique tournaments for the team.
@@ -1469,16 +1446,15 @@ paths:
       summary: Get tennis team details
       description: Retrieves comprehensive details for a specific tennis doubles team.
       tags:
-        - Tennis
-        - Teams
+      - Team
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 37785
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 37785
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: Comprehensive details for the team.
@@ -1501,19 +1477,18 @@ paths:
   /api/tennis/team/{id}/rankings:
     get:
       summary: Get team rankings
-      description: Retrieves current and historical ranking information for a doubles team.
+      description: Retrieves current and historical ranking information for a doubles
+        team.
       tags:
-        - Tennis
-        - Teams
-        - Rankings
+      - Team
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 37785
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 37785
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: Ranking information for the team.
@@ -1538,17 +1513,15 @@ paths:
       summary: Get team image
       description: Retrieves the profile image for a specific doubles team.
       tags:
-        - Tennis
-        - Teams
-        - Media
+      - Team
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 37785
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 37785
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: The team's profile image.
@@ -1572,19 +1545,18 @@ paths:
   /api/tennis/team/{id}/events/near:
     get:
       summary: Get team near matches
-      description: Retrieves a list of recent and upcoming matches for a specific doubles team.
+      description: Retrieves a list of recent and upcoming matches for a specific
+        doubles team.
       tags:
-        - Tennis
-        - Teams
-        - Matches
+      - Team
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 163504
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 163504
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: A list of the team's recent and upcoming matches.
@@ -1609,16 +1581,15 @@ paths:
       summary: Get tournament details
       description: Retrieves comprehensive details for a specific tennis tournament.
       tags:
-        - Tennis
-        - Tournaments
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: Comprehensive details for the tournament.
@@ -1641,17 +1612,17 @@ paths:
   /api/tennis/tournament/{tournamentId}/info:
     get:
       summary: Get tournament info/metadata
-      description: Retrieves metadata for a specific tournament, such as SEO tags and related info.
+      description: Retrieves metadata for a specific tournament, such as SEO tags
+        and related info.
       tags:
-        - Tennis
-        - Tournaments
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: Metadata for the tournament.
@@ -1676,17 +1647,15 @@ paths:
       summary: Get tournament logo
       description: Retrieves the logo image for a specific tournament.
       tags:
-        - Tennis
-        - Tournaments
-        - Media
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: The tournament's logo image.
@@ -1712,16 +1681,14 @@ paths:
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       tags:
-        - Tennis
-        - Tournaments
-        - Media
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: The tournament's dark theme logo image.
@@ -1747,17 +1714,15 @@ paths:
       summary: Get tournament media
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       tags:
-        - Tennis
-        - Tournaments
-        - Media
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: A list of media content for the tournament.
@@ -1782,16 +1747,15 @@ paths:
       summary: Get tournament seasons
       description: Retrieves a list of all available seasons for a specific tournament.
       tags:
-        - Tennis
-        - Tournaments
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: A list of available seasons for the tournament.
@@ -1814,25 +1778,25 @@ paths:
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/info:
     get:
       summary: Get tournament season info
-      description: Retrieves information about a specific tournament season, such as start and end dates.
+      description: Retrieves information about a specific tournament season, such
+        as start and end dates.
       tags:
-        - Tennis
-        - Tournaments
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2363
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 48186
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2363
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 48186
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: Information about the tournament season.
@@ -1857,24 +1821,22 @@ paths:
       summary: Get tournament standings
       description: Retrieves the standings/rankings for a specific tournament season.
       tags:
-        - Tennis
-        - Tournaments
-        - Standings
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2517
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 47334
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2517
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 47334
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: Standings for the tournament season.
@@ -1897,33 +1859,32 @@ paths:
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/events/last/{page}:
     get:
       summary: Get tournament last matches
-      description: Retrieves a paginated list of recently played matches in a specific tournament season.
+      description: Retrieves a paginated list of recently played matches in a specific
+        tournament season.
       tags:
-        - Tennis
-        - Tournaments
-        - Matches
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: Unique identifier for the season.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the tournament's last matches.
@@ -1952,33 +1913,32 @@ paths:
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/events/next/{page}:
     get:
       summary: Get tournament upcoming matches
-      description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
+      description: Retrieves a paginated list of scheduled upcoming matches in a specific
+        tournament season.
       tags:
-        - Tennis
-        - Tournaments
-        - Matches
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: Unique identifier for the season.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the tournament's upcoming matches.
@@ -2007,40 +1967,39 @@ paths:
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/events/round/{round}/slug/{slug}:
     get:
       summary: Get tournament matches by round
-      description: Retrieves matches for a specific round in a tournament, identified by a slug.
+      description: Retrieves matches for a specific round in a tournament, identified
+        by a slug.
       tags:
-        - Tennis
-        - Tournaments
-        - Matches
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2363
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 48186
-          schema:
-            type: integer
-          description: Unique identifier for the season.
-        - name: round
-          in: path
-          required: true
-          example: 32
-          schema:
-            type: integer
-          description: Round number.
-        - name: slug
-          in: path
-          required: true
-          example: 'round-of-64'
-          schema:
-            type: string
-          description: The slug for the tournament round.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2363
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 48186
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      - name: round
+        in: path
+        required: true
+        example: 32
+        schema:
+          type: integer
+        description: Round number.
+      - name: slug
+        in: path
+        required: true
+        example: round-of-64
+        schema:
+          type: string
+        description: The slug for the tournament round.
       responses:
         '200':
           description: A list of matches for the specified round.
@@ -2065,23 +2024,22 @@ paths:
       summary: Get tournament rounds
       description: Retrieves a list of all rounds for a specific tournament season.
       tags:
-        - Tennis
-        - Tournaments
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2363
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 48186
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2363
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 48186
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: A list of rounds for the tournament season.
@@ -2104,25 +2062,25 @@ paths:
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/cup-trees:
     get:
       summary: Get tournament draw/bracket
-      description: Retrieves the tournament's draw structure (bracket) in a structured format.
+      description: Retrieves the tournament's draw structure (bracket) in a structured
+        format.
       tags:
-        - Tennis
-        - Tournaments
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The structured tournament draw.
@@ -2147,23 +2105,22 @@ paths:
       summary: Get tournament draw (legacy format)
       description: Retrieves the tournament's draw structure in a legacy format.
       tags:
-        - Tennis
-        - Tournaments
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The legacy format tournament draw.
@@ -2186,39 +2143,39 @@ paths:
   /api/tennis/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
       summary: Get tournament matches by date
-      description: Retrieves all matches for a specific tournament scheduled on a given date.
+      description: Retrieves all matches for a specific tournament scheduled on a
+        given date.
       tags:
-        - Tennis
-        - Tournaments
-        - Matches
+      - Tournament
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: day
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Day of the month (e.g., 15).
-        - name: month
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Month of the year (e.g., 7).
-        - name: year
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Year (e.g., 2024).
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: day
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Day of the month (e.g., 15).
+      - name: month
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Month of the year (e.g., 7).
+      - name: year
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Year (e.g., 2024).
       responses:
         '200':
-          description: A list of scheduled matches for the tournament on the given date.
+          description: A list of scheduled matches for the tournament on the given
+            date.
           content:
             application/json:
               schema:
@@ -2244,10 +2201,10 @@ paths:
   /api/tennis/tournament/categories:
     get:
       summary: Get tennis tournament categories
-      description: Retrieves all available tennis tournament categories (e.g., ATP, WTA, Challenger).
+      description: Retrieves all available tennis tournament categories (e.g., ATP,
+        WTA, Challenger).
       tags:
-        - Tennis
-        - Categories
+      - Tournament
       responses:
         '200':
           description: A list of tennis tournament categories.
@@ -2266,17 +2223,15 @@ paths:
       summary: Get tournaments by category
       description: Retrieves all unique tournaments within a specific tennis category.
       tags:
-        - Tennis
-        - Categories
-        - Tournaments
+      - Tournament
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 785
-          schema:
-            type: integer
-          description: Category ID.
+      - name: id
+        in: path
+        required: true
+        example: 785
+        schema:
+          type: integer
+        description: Category ID.
       responses:
         '200':
           description: A list of unique tournaments for the specified category.
@@ -2299,36 +2254,37 @@ paths:
   /api/tennis/calendar/{month}/{year}/categories:
     get:
       summary: Get monthly categories with events
-      description: Retrieves a list of categories that have scheduled events for up to five specified days in a given month.
+      description: Retrieves a list of categories that have scheduled events for up
+        to five specified days in a given month.
       tags:
-        - Tennis
-        - Categories
-        - Calendar
+      - Calendar
       parameters:
-        - name: month
-          in: path
-          required: true
-          example: 10
-          schema:
-            type: integer
-          description: Month of the year (e.g., 7).
-        - name: year
-          in: path
-          required: true
-          example: 2022
-          schema:
-            type: integer
-          description: Year (e.g., 2024).
-        - name: days
-          in: query
-          required: true
-          example: '2,3,4,5,6'
-          schema:
-            type: string
-          description: Comma-separated list of day numbers (e.g., '15,16,17'). Max 5 days.
+      - name: month
+        in: path
+        required: true
+        example: 10
+        schema:
+          type: integer
+        description: Month of the year (e.g., 7).
+      - name: year
+        in: path
+        required: true
+        example: 2022
+        schema:
+          type: integer
+        description: Year (e.g., 2024).
+      - name: days
+        in: query
+        required: true
+        example: 2,3,4,5,6
+        schema:
+          type: string
+        description: Comma-separated list of day numbers (e.g., '15,16,17'). Max 5
+          days.
       responses:
         '200':
-          description: A map where keys are dates and values are the category data for that date.
+          description: A map where keys are dates and values are the category data
+            for that date.
           content:
             application/json:
               schema:
@@ -2348,10 +2304,10 @@ paths:
   /api/tennis/rankings/atp:
     get:
       summary: Get ATP rankings
-      description: Retrieves the current official ATP (Association of Tennis Professionals) singles rankings.
+      description: Retrieves the current official ATP (Association of Tennis Professionals)
+        singles rankings.
       tags:
-        - Tennis
-        - Rankings
+      - Ranking
       responses:
         '200':
           description: The current ATP singles ranking table.
@@ -2368,10 +2324,10 @@ paths:
   /api/tennis/rankings/atp/live:
     get:
       summary: Get live ATP rankings
-      description: Retrieves the live/race ATP rankings, updated in real-time with current tournament points.
+      description: Retrieves the live/race ATP rankings, updated in real-time with
+        current tournament points.
       tags:
-        - Tennis
-        - Rankings
+      - Ranking
       responses:
         '200':
           description: The live ATP singles ranking table.
@@ -2388,10 +2344,10 @@ paths:
   /api/tennis/rankings/wta:
     get:
       summary: Get WTA rankings
-      description: Retrieves the current official WTA (Women's Tennis Association) singles rankings.
+      description: Retrieves the current official WTA (Women's Tennis Association)
+        singles rankings.
       tags:
-        - Tennis
-        - Rankings
+      - Ranking
       responses:
         '200':
           description: The current WTA singles ranking table.
@@ -2408,10 +2364,10 @@ paths:
   /api/tennis/rankings/wta/live:
     get:
       summary: Get live WTA rankings
-      description: Retrieves the live/race WTA rankings, updated in real-time with current tournament points.
+      description: Retrieves the live/race WTA rankings, updated in real-time with
+        current tournament points.
       tags:
-        - Tennis
-        - Rankings
+      - Ranking
       responses:
         '200':
           description: The live WTA singles ranking table.
@@ -2434,3 +2390,28 @@ components:
       properties:
         error:
           type: string
+tags:
+- name: Calendar
+  description: Calendar and schedule endpoints.
+- name: Category
+  description: Category endpoints.
+- name: Country
+  description: Country assets and metadata.
+- name: Event
+  description: Event endpoints.
+- name: Fighter
+  description: Fighter placeholder assets.
+- name: Manager
+  description: Manager endpoints.
+- name: Player
+  description: Player endpoints.
+- name: Ranking
+  description: Ranking endpoints.
+- name: Search
+  description: Search endpoints.
+- name: TV
+  description: TV broadcast endpoints.
+- name: Team
+  description: Team endpoints.
+- name: Tournament
+  description: Tournament endpoints.

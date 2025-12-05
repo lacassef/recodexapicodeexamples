@@ -3,22 +3,25 @@ info:
   title: VolleyAPI
   version: 1.0.0
   description: This is the OpenAPI specification for the VolleyAPI.
+servers:
+- url: http://localhost:8080
+  description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
     get:
       tags:
-        - AllSports
-        - TV
+      - TV
       summary: Get match TV countries
-      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      description: Lists the countries and the TV channels within them that are broadcasting
+        a specific match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema:
-            type: integer
-          description: The unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object listing countries and their broadcasting channels.
@@ -41,25 +44,25 @@ paths:
   /api/tv/channel/{channId}/event/{id}:
     get:
       tags:
-        - AllSports
-        - TV
+      - TV
       summary: Get match TV channel votes
-      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting
+        the match.
       parameters:
-        - name: channId
-          in: path
-          required: true
-          example: 3177
-          schema:
-            type: integer
-          description: The unique identifier for the TV channel.
-        - name: id
-          in: path
-          required: true
-          example: 10974920
-          schema:
-            type: integer
-          description: The unique identifier for the match.
+      - name: channId
+        in: path
+        required: true
+        example: 3177
+        schema:
+          type: integer
+        description: The unique identifier for the TV channel.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
       responses:
         '200':
           description: A JSON object containing viewer vote data from the channel.
@@ -82,17 +85,18 @@ paths:
   /api/img/flag/{flag}:
     get:
       tags:
-        - AllSports
+      - Country
       summary: Get country flag
-      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw image data.
+      description: Fetches the PNG flag image asset corresponding to a provided country
+        code. The response is the raw image data.
       parameters:
-        - name: flag
-          in: path
-          required: true
-          example: 'jp'
-          schema:
-            type: string
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: flag
+        in: path
+        required: true
+        example: jp
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -116,16 +120,16 @@ paths:
   /api/country/{code}/flag:
     get:
       tags:
-        - AllSports
+      - Country
       summary: Get country flag (img API)
       description: Fetches the flag image by country code.
       parameters:
-        - name: code
-          in: path
-          required: true
-          schema:
-            type: string
-          description: Country code or identifier (e.g., 'EN' for England).
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
       responses:
         '200':
           description: The country's flag image file.
@@ -149,10 +153,10 @@ paths:
   /api/placeholder/tournament.png:
     get:
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -170,10 +174,10 @@ paths:
   /api/placeholder/tournament.svg:
     get:
       tags:
-        - AllSports
-        - Tournaments
+      - Tournament
       summary: Get tournament placeholder image
-      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -191,10 +195,10 @@ paths:
   /api/placeholder/team.svg:
     get:
       tags:
-        - AllSports
-        - Teams
+      - Team
       summary: Get team placeholder image
-      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      description: Returns a static placeholder graphic for a team. The response is
+        an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -212,10 +216,10 @@ paths:
   /api/placeholder/player.png:
     get:
       tags:
-        - AllSports
-        - Players
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -233,10 +237,10 @@ paths:
   /api/placeholder/player.svg:
     get:
       tags:
-        - AllSports
-        - Players
+      - Player
       summary: Get player placeholder image
-      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -254,9 +258,10 @@ paths:
   /api/placeholder/manager.png:
     get:
       tags:
-        - AllSports
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,9 +279,10 @@ paths:
   /api/placeholder/manager.svg:
     get:
       tags:
-        - AllSports
+      - Manager
       summary: Get manager placeholder image
-      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -294,9 +300,7 @@ paths:
   /api/placeholders/fighter-male.svg:
     get:
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       summary: Get male fighter placeholder image
       description: Retrieves a placeholder image for a male fighter.
       responses:
@@ -316,9 +320,7 @@ paths:
   /api/placeholders/fighter-female.svg:
     get:
       tags:
-        - AllSports
-        - Placeholders
-        - Media
+      - Fighter
       summary: Get female fighter placeholder image
       description: Retrieves a placeholder image for a female fighter.
       responses:
@@ -338,24 +340,23 @@ paths:
   /api/volleyball/search/{term}:
     get:
       tags:
-        - Volleyball
-        - Search
+      - Search
       summary: Search volleyball entities
       description: Searches for volleyball teams, players, and tournaments.
       parameters:
-        - name: term
-          in: path
-          required: true
-          example: 'china'
-          schema:
-            type: string
-          description: Search term (e.g., 'Brazil')
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-          description: Page number for pagination
+      - name: term
+        in: path
+        required: true
+        example: china
+        schema:
+          type: string
+        description: Search term (e.g., 'Brazil')
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for pagination
       responses:
         '200':
           description: A JSON object containing search results.
@@ -378,32 +379,31 @@ paths:
   /api/volleyball/matches/{day}/{month}/{year}:
     get:
       tags:
-        - Volleyball
-        - Matches
+      - Match
       summary: Get volleyball matches by date
       description: Fetches all volleyball matches scheduled for a specific date.
       parameters:
-        - name: day
-          in: path
-          required: true
-          example: 20
-          schema:
-            type: integer
-          description: Day of the month (e.g., 15)
-        - name: month
-          in: path
-          required: true
-          example: 5
-          schema:
-            type: integer
-          description: Month of the year (e.g., 7)
-        - name: year
-          in: path
-          required: true
-          example: 2023
-          schema:
-            type: integer
-          description: Year (e.g., 2024)
+      - name: day
+        in: path
+        required: true
+        example: 20
+        schema:
+          type: integer
+        description: Day of the month (e.g., 15)
+      - name: month
+        in: path
+        required: true
+        example: 5
+        schema:
+          type: integer
+        description: Month of the year (e.g., 7)
+      - name: year
+        in: path
+        required: true
+        example: 2023
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
           description: A list of scheduled volleyball matches for the given date.
@@ -426,8 +426,7 @@ paths:
   /api/volleyball/matches/live:
     get:
       tags:
-        - Volleyball
-        - Matches
+      - Match
       summary: Get live volleyball matches
       description: Retrieves all currently live volleyball matches.
       responses:
@@ -446,40 +445,39 @@ paths:
   /api/volleyball/category/{id}/events/{day}/{month}/{year}:
     get:
       tags:
-        - Volleyball
-        - Categories
-        - Matches
+      - Category
       summary: Get volleyball matches by category and date
-      description: Retrieves all volleyball matches for a specific category on a given date.
+      description: Retrieves all volleyball matches for a specific category on a given
+        date.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 136
-          schema:
-            type: integer
-          description: Category ID
-        - name: day
-          in: path
-          required: true
-          example: 20
-          schema:
-            type: integer
-          description: Day of the month (e.g., 15)
-        - name: month
-          in: path
-          required: true
-          example: 5
-          schema:
-            type: integer
-          description: Month of the year (e.g., 7)
-        - name: year
-          in: path
-          required: true
-          example: 2023
-          schema:
-            type: integer
-          description: Year (e.g., 2024)
+      - name: id
+        in: path
+        required: true
+        example: 136
+        schema:
+          type: integer
+        description: Category ID
+      - name: day
+        in: path
+        required: true
+        example: 20
+        schema:
+          type: integer
+        description: Day of the month (e.g., 15)
+      - name: month
+        in: path
+        required: true
+        example: 5
+        schema:
+          type: integer
+        description: Month of the year (e.g., 7)
+      - name: year
+        in: path
+        required: true
+        example: 2023
+        schema:
+          type: integer
+        description: Year (e.g., 2024)
       responses:
         '200':
           description: A list of scheduled matches for the category on the given date.
@@ -508,11 +506,10 @@ paths:
   /api/volleyball/tournament/categories:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Categories
+      - Tournament
       summary: Get volleyball tournament categories
-      description: Retrieves all available volleyball tournament categories, which typically correspond to countries or regions.
+      description: Retrieves all available volleyball tournament categories, which
+        typically correspond to countries or regions.
       responses:
         '200':
           description: A list of tournament categories.
@@ -529,19 +526,17 @@ paths:
   /api/volleyball/unique-tournament/all/category/{id}:
     get:
       tags:
-        - Volleyball
-        - Categories
-        - Tournaments
+      - Tournament
       summary: Get tournaments by category
       description: Retrieves all volleyball tournaments within a specific category.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 136
-          schema:
-            type: integer
-          description: Category ID
+      - name: id
+        in: path
+        required: true
+        example: 136
+        schema:
+          type: integer
+        description: Category ID
       responses:
         '200':
           description: A list of tournaments for the specified category.
@@ -564,18 +559,18 @@ paths:
   /api/volleyball/match/{id}:
     get:
       tags:
-        - Volleyball
-        - Matches
+      - Match
       summary: Get volleyball match details
-      description: Retrieves detailed information for a specific volleyball match, including teams, score, and status.
+      description: Retrieves detailed information for a specific volleyball match,
+        including teams, score, and status.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 11263928
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 11263928
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Detailed information about the match.
@@ -598,19 +593,18 @@ paths:
   /api/volleyball/match/{id}/odds:
     get:
       tags:
-        - Volleyball
-        - Matches
-        - Odds
+      - Match
       summary: Get match betting odds
-      description: Retrieves available betting odds from bookmaker `1` for a specific match.
+      description: Retrieves available betting odds from bookmaker `1` for a specific
+        match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 11271199
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 11271199
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A list of available betting odds for the match.
@@ -633,18 +627,18 @@ paths:
   /api/volleyball/match/{id}/incidents:
     get:
       tags:
-        - Volleyball
-        - Matches
+      - Match
       summary: Get match incidents
-      description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., points won, substitutions).
+      description: Retrieves a chronological list of all significant incidents that
+        occurred during the match (e.g., points won, substitutions).
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 11263928
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 11263928
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A list of incidents from the match.
@@ -667,19 +661,18 @@ paths:
   /api/volleyball/match/{id}/statistics:
     get:
       tags:
-        - Volleyball
-        - Matches
-        - Statistics
+      - Match
       summary: Get match statistics
-      description: Retrieves comprehensive team and player statistics for a specific volleyball match.
+      description: Retrieves comprehensive team and player statistics for a specific
+        volleyball match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 11263928
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 11263928
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Comprehensive statistics for the match.
@@ -702,19 +695,18 @@ paths:
   /api/volleyball/match/{id}/streaks:
     get:
       tags:
-        - Volleyball
-        - Matches
-        - Statistics
+      - Match
       summary: Get match streaks
-      description: Provides recent form and streak information (e.g., winning streaks) for each team in a match.
+      description: Provides recent form and streak information (e.g., winning streaks)
+        for each team in a match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 11263928
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 11263928
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Streak information for both teams.
@@ -737,19 +729,18 @@ paths:
   /api/volleyball/match/{customId}/h2h:
     get:
       tags:
-        - Volleyball
-        - Matches
-        - Statistics
+      - Match
       summary: Get head-to-head history
-      description: Retrieves the detailed match history for head-to-head encounters between two teams.
+      description: Retrieves the detailed match history for head-to-head encounters
+        between two teams.
       parameters:
-        - name: customId
-          in: path
-          required: true
-          example: 'oCpswQIb'
-          schema:
-            type: string
-          description: A custom identifier for the match, used for H2H lookups.
+      - name: customId
+        in: path
+        required: true
+        example: oCpswQIb
+        schema:
+          type: string
+        description: A custom identifier for the match, used for H2H lookups.
       responses:
         '200':
           description: A detailed list of past H2H matches.
@@ -772,26 +763,25 @@ paths:
   /api/volleyball/team/{id}/matches/previous/{page}:
     get:
       tags:
-        - Volleyball
-        - Teams
-        - Matches
+      - Team
       summary: Get previous team matches
-      description: Fetches a paginated list of completed matches for a team, sorted by date descending.
+      description: Fetches a paginated list of completed matches for a team, sorted
+        by date descending.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6824
-          schema:
-            type: integer
-          description: Unique identifier for the team.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: id
+        in: path
+        required: true
+        example: 6824
+        schema:
+          type: integer
+        description: Unique identifier for the team.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the team's previous matches.
@@ -820,18 +810,17 @@ paths:
   /api/volleyball/match/{id}/votes:
     get:
       tags:
-        - Volleyball
-        - Matches
+      - Match
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 11263928
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 11263928
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: Vote counts and percentages for the match.
@@ -854,18 +843,18 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/seasons:
     get:
       tags:
-        - Volleyball
-        - Tournaments
+      - Tournament
       summary: Get tournament seasons
-      description: Retrieves a list of all available seasons for a specific volleyball tournament.
+      description: Retrieves a list of all available seasons for a specific volleyball
+        tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: A list of available seasons for the tournament.
@@ -888,18 +877,17 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}:
     get:
       tags:
-        - Volleyball
-        - Tournaments
+      - Tournament
       summary: Get tournament details
       description: Retrieves comprehensive details for a specific volleyball tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: Comprehensive details for the tournament.
@@ -922,26 +910,25 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament total standings
-      description: Retrieves the complete standings table for all teams in a specific tournament season.
+      description: Retrieves the complete standings table for all teams in a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 48867
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 48867
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The complete standings table for the tournament season.
@@ -964,26 +951,25 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament home standings
-      description: Retrieves the standings based on home games only for a specific tournament season.
+      description: Retrieves the standings based on home games only for a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 48867
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 48867
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The home standings table for the tournament season.
@@ -1006,26 +992,25 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/standings/away:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Standings
+      - Tournament
       summary: Get tournament away standings
-      description: Retrieves the standings based on away games only for a specific tournament season.
+      description: Retrieves the standings based on away games only for a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 48867
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 48867
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The away standings table for the tournament season.
@@ -1048,33 +1033,32 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament upcoming matches
-      description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
+      description: Retrieves a paginated list of scheduled upcoming matches in a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 48867
-          schema:
-            type: integer
-          description: Unique identifier for the season.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 48867
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the tournament's upcoming matches.
@@ -1103,25 +1087,25 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
       tags:
-        - Volleyball
-        - Tournaments
+      - Tournament
       summary: Get tournament rounds
-      description: Retrieves a list of all rounds (or weeks) for a specific tournament season.
+      description: Retrieves a list of all rounds (or weeks) for a specific tournament
+        season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 41060
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 41060
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: A list of rounds for the tournament season.
@@ -1144,33 +1128,32 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament last matches
-      description: Retrieves a paginated list of recently played matches in a specific tournament season.
+      description: Retrieves a paginated list of recently played matches in a specific
+        tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 41060
-          schema:
-            type: integer
-          description: Unique identifier for the season.
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: Page number for pagination (starts from 1).
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 41060
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination (starts from 1).
       responses:
         '200':
           description: A paginated list of the tournament's last matches.
@@ -1199,27 +1182,25 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events total statistics
-      description: Retrieves aggregated team performance statistics for all games in a tournament season.
+      description: Retrieves aggregated team performance statistics for all games
+        in a tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 41060
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 41060
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: Aggregated team statistics for the entire season.
@@ -1242,27 +1223,25 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events home statistics
-      description: Retrieves aggregated team performance statistics for home games in a tournament season.
+      description: Retrieves aggregated team performance statistics for home games
+        in a tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 41060
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 41060
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: Aggregated team statistics for home games.
@@ -1285,27 +1264,25 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Teams
-        - Statistics
+      - Tournament
       summary: Get team events away statistics
-      description: Retrieves aggregated team performance statistics for away games in a tournament season.
+      description: Retrieves aggregated team performance statistics for away games
+        in a tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 41060
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 41060
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: Aggregated team statistics for away games.
@@ -1328,18 +1305,17 @@ paths:
   /api/volleyball/team/{id}:
     get:
       tags:
-        - Volleyball
-        - Teams
+      - Team
       summary: Get volleyball team details
       description: Retrieves comprehensive details for a specific volleyball team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6824
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 6824
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: Comprehensive details for the team.
@@ -1362,19 +1338,18 @@ paths:
   /api/volleyball/team/{id}/matches/near:
     get:
       tags:
-        - Volleyball
-        - Teams
-        - Matches
+      - Team
       summary: Get team near matches
-      description: Retrieves a list of recent and upcoming matches for a specific team.
+      description: Retrieves a list of recent and upcoming matches for a specific
+        team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6824
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 6824
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: A list of recent and upcoming matches.
@@ -1397,19 +1372,18 @@ paths:
   /api/volleyball/team/{id}/unique-tournaments:
     get:
       tags:
-        - Volleyball
-        - Teams
-        - Tournaments
+      - Team
       summary: Get team tournaments
-      description: Retrieves a list of all unique tournaments a team has participated in.
+      description: Retrieves a list of all unique tournaments a team has participated
+        in.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6824
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 6824
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: A list of unique tournaments the team has participated in.
@@ -1432,19 +1406,17 @@ paths:
   /api/volleyball/team/{id}/standings/seasons:
     get:
       tags:
-        - Volleyball
-        - Teams
-        - Standings
+      - Team
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which a team's standings are available.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6824
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 6824
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: A list of seasons with available standings.
@@ -1467,19 +1439,18 @@ paths:
   /api/volleyball/match/{id}/duel:
     get:
       tags:
-        - Volleyball
-        - Matches
-        - Statistics
+      - Match
       summary: Get head-to-head summary
-      description: Retrieves a summary of head-to-head (H2H) statistics between the two teams in a match.
+      description: Retrieves a summary of head-to-head (H2H) statistics between the
+        two teams in a match.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 11052780
-          schema:
-            type: integer
-          description: Unique identifier for the match.
+      - name: id
+        in: path
+        required: true
+        example: 11052780
+        schema:
+          type: integer
+        description: Unique identifier for the match.
       responses:
         '200':
           description: A summary of H2H statistics.
@@ -1502,25 +1473,25 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/cuptrees:
     get:
       tags:
-        - Volleyball
-        - Tournaments
+      - Tournament
       summary: Get tournament cup trees
-      description: Retrieves the knockout bracket (cup trees) for a specific tournament season.
+      description: Retrieves the knockout bracket (cup trees) for a specific tournament
+        season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 586
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 45579
-          schema:
-            type: integer
-          description: Unique identifier for the season.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 586
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 45579
+        schema:
+          type: integer
+        description: Unique identifier for the season.
       responses:
         '200':
           description: The knockout bracket for the tournament season.
@@ -1543,33 +1514,31 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament matches by round
       description: Retrieves all matches for a specific round of a tournament season.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: seasonId
-          in: path
-          required: true
-          example: 48867
-          schema:
-            type: integer
-          description: Unique identifier for the season.
-        - name: round
-          in: path
-          required: true
-          example: 1
-          schema:
-            type: integer
-          description: The round number.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 48867
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      - name: round
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: The round number.
       responses:
         '200':
           description: A list of matches for the specified round.
@@ -1592,19 +1561,17 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/image:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get tournament logo
       description: Retrieves the logo image for a specific tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 11093
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        example: 11093
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: The tournament's logo image.
@@ -1628,18 +1595,16 @@ paths:
   /api/volleyball/unique-tournament/{tournamentId}/image/dark:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Media
+      - Tournament
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
       responses:
         '200':
           description: The tournament's dark theme logo image.
@@ -1663,19 +1628,17 @@ paths:
   /api/volleyball/team/{id}/image:
     get:
       tags:
-        - Volleyball
-        - Teams
-        - Media
+      - Team
       summary: Get team logo
       description: Retrieves the logo image for a specific team.
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 6824
-          schema:
-            type: integer
-          description: Unique identifier for the team.
+      - name: id
+        in: path
+        required: true
+        example: 6824
+        schema:
+          type: integer
+        description: Unique identifier for the team.
       responses:
         '200':
           description: The team's logo image.
@@ -1699,39 +1662,39 @@ paths:
   /api/volleyball/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
       tags:
-        - Volleyball
-        - Tournaments
-        - Matches
+      - Tournament
       summary: Get tournament matches by date
-      description: Retrieves all matches for a specific tournament scheduled on a given date.
+      description: Retrieves all matches for a specific tournament scheduled on a
+        given date.
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Unique identifier for the tournament.
-        - name: day
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Day of the month (e.g., 15).
-        - name: month
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Month of the year (e.g., 7).
-        - name: year
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: Year (e.g., 2024).
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: day
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Day of the month (e.g., 15).
+      - name: month
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Month of the year (e.g., 7).
+      - name: year
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Year (e.g., 2024).
       responses:
         '200':
-          description: A list of scheduled matches for the tournament on the given date.
+          description: A list of scheduled matches for the tournament on the given
+            date.
           content:
             application/json:
               schema:
@@ -1776,3 +1739,24 @@ components:
       description: A generic JSON object response.
       properties: {}
       additionalProperties: true
+tags:
+- name: Category
+  description: Category endpoints.
+- name: Country
+  description: Country assets and metadata.
+- name: Fighter
+  description: Fighter placeholder assets.
+- name: Manager
+  description: Manager endpoints.
+- name: Match
+  description: Match endpoints.
+- name: Player
+  description: Player endpoints.
+- name: Search
+  description: Search endpoints.
+- name: TV
+  description: TV broadcast endpoints.
+- name: Team
+  description: Team endpoints.
+- name: Tournament
+  description: Tournament endpoints.
