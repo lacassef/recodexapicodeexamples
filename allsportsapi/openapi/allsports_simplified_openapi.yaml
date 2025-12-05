@@ -3,6 +3,9 @@ info:
   title: simplified-allsports-api
   version: 1.0.0
   description: OpenAPI specification derived from simplified.md endpoints.
+servers:
+- url: http://localhost:8080
+  description: Local development server
 tags:
 - name: AllSports
   description: Shared assets and utilities across sports.

@@ -3,6 +3,9 @@ info:
   title: allsportsapi
   version: 1.0.0
   description: A merged OpenAPI specification for all sports APIs.
+servers:
+- url: http://localhost:8080
+  description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
     get:
