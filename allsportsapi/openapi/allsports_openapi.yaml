@@ -47,7 +47,7 @@ paths:
       - name: term
         in: path
         required: true
-        example: 'brady'
+        example: brady
         schema:
           type: string
         description: Search term (e.g., 'Kansas City Chiefs')
@@ -322,7 +322,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: 'uMbsRCt'
+        example: uMbsRCt
         schema:
           type: string
         description: A custom identifier for the match, used for H2H lookups.
@@ -2516,7 +2516,7 @@ paths:
       - name: flag
         in: path
         required: true
-        example: 'jp'
+        example: jp
         schema:
           type: string
         description: Country code or identifier (e.g., 'EN' for England).
@@ -2781,7 +2781,7 @@ paths:
         in: path
         required: true
         description: Search term (e.g., 'Yankees')
-        example: 'mlb'
+        example: mlb
         schema:
           type: string
       - name: page
@@ -2983,7 +2983,7 @@ paths:
         in: path
         required: true
         description: A custom identifier for the match, used for H2H lookups.
-        example: 'ExbsIxb'
+        example: ExbsIxb
         schema:
           type: string
       responses:
@@ -4545,7 +4545,7 @@ paths:
       - name: term
         in: path
         required: true
-        example: 'kevin'
+        example: kevin
         schema:
           type: string
         description: Search term (e.g., 'Lakers').
@@ -4863,7 +4863,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: 'HtbsLtb'
+        example: HtbsLtb
         schema:
           type: string
       responses:
@@ -7678,7 +7678,7 @@ paths:
       - name: term
         in: path
         required: true
-        example: 'kabul'
+        example: kabul
         schema:
           type: string
         description: Search term (e.g., 'India')
@@ -7844,7 +7844,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: 'kfAbspfAb'
+        example: kfAbspfAb
         schema:
           type: string
         description: A custom identifier for the match, used for H2H lookups.
@@ -9357,7 +9357,7 @@ paths:
       - name: term
         in: path
         required: true
-        example: 'ATK'
+        example: ATK
         schema:
           type: string
         description: Search term (minimum 2 characters)
@@ -9614,7 +9614,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: 'jTVcsXcZc'
+        example: jTVcsXcZc
         schema:
           type: string
         description: Custom event ID for H2H lookup
@@ -10790,7 +10790,7 @@ paths:
       - name: term
         in: path
         required: true
-        example: 'champions'
+        example: champions
         schema:
           type: string
         description: Search term (e.g., 'Manchester United')
@@ -11321,7 +11321,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: 'xdbsugb'
+        example: xdbsugb
         schema:
           type: string
         description: A custom identifier for the match, used for H2H lookups.
@@ -11646,7 +11646,8 @@ paths:
       - Matches
       - Players
       summary: Get match player rating breakdown
-      description: Returns the component breakdown that forms a player's SofaScore rating for a given match.
+      description: Returns the component breakdown that forms a player's SofaScore
+        rating for a given match.
       parameters:
       - name: id
         in: path
@@ -14046,21 +14047,21 @@ paths:
       - name: group
         in: query
         required: false
-        example: 'summary'
+        example: summary
         schema:
           type: string
         description: Grouping criterion (e.g., 'position').
       - name: order
         in: query
         required: false
-        example: '-rating'
+        example: -rating
         schema:
           type: string
         description: Sorting order (e.g., '-rating').
       - name: accumulation
         in: query
         required: false
-        example: 'total'
+        example: total
         schema:
           type: string
         description: Accumulation mode (e.g., 'total', 'perGame').
@@ -14989,7 +14990,7 @@ paths:
       - name: slug
         in: path
         required: true
-        example: 'semifinal'
+        example: semifinal
         schema:
           type: string
         description: The slug for the stage.
@@ -15608,7 +15609,7 @@ paths:
       - name: term
         in: path
         required: true
-        example: 'asobal'
+        example: asobal
         schema:
           type: string
         description: Search term (e.g., 'Kiel')
@@ -16183,7 +16184,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: 'FEbsxAc'
+        example: FEbsxAc
         schema:
           type: string
         description: Custom match identifier
@@ -17653,7 +17654,7 @@ paths:
       - name: slug
         in: path
         required: true
-        example: 'quarterfinal'
+        example: quarterfinal
         schema:
           type: string
         description: Tournament slug
@@ -17924,7 +17925,7 @@ paths:
       - name: term
         in: path
         required: true
-        example: 'nhl'
+        example: nhl
         schema:
           type: string
         description: Search term (e.g., 'Rangers').
@@ -18230,7 +18231,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: 'dzbsfzb'
+        example: dzbsfzb
         schema:
           type: string
       responses:
@@ -20502,7 +20503,7 @@ paths:
       - name: term
         in: path
         required: true
-        example: 'mcgregor'
+        example: mcgregor
         schema:
           type: string
         description: Search term (e.g., 'UFC')
@@ -21100,7 +21101,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: 'tMJdsbaMd'
+        example: tMJdsbaMd
         schema:
           type: string
         description: A custom identifier for the event, used for H2H lookups.
@@ -21464,7 +21465,7 @@ paths:
       - name: term
         in: path
         required: true
-        example: 'mercedes'
+        example: mercedes
         schema:
           type: string
         description: Search term (e.g., 'Red Bull')
@@ -22046,7 +22047,7 @@ paths:
       - name: term
         in: path
         required: true
-        example: 'champions'
+        example: champions
         schema:
           type: string
         description: Search term
@@ -22278,7 +22279,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: 'gKbsnWc'
+        example: gKbsnWc
         schema:
           type: string
         description: A custom identifier for the match, used for H2H lookups.
@@ -23848,7 +23849,7 @@ paths:
       - name: term
         in: path
         required: true
-        example: 'federer'
+        example: federer
         schema:
           type: string
         description: Search term (e.g., 'Nadal')
@@ -24235,7 +24236,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: 'LOfsRveb'
+        example: LOfsRveb
         schema:
           type: string
         description: A custom identifier for the match, used for H2H lookups.
@@ -25571,7 +25572,7 @@ paths:
       - name: slug
         in: path
         required: true
-        example: 'round-of-64'
+        example: round-of-64
         schema:
           type: string
         description: The slug for the tournament round.
@@ -25861,7 +25862,7 @@ paths:
       - name: days
         in: query
         required: true
-        example: '2,3,4,5,6'
+        example: 2,3,4,5,6
         schema:
           type: string
         description: Comma-separated list of day numbers (e.g., '15,16,17'). Max 5
@@ -25970,1488 +25971,1477 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-
   /api/table-tennis/events/{day}/{month}/{year}:
     get:
-      summary: 'Get table tennis events by date'
-      description: 'Returns all scheduled table tennis matches for the provided day.'
+      summary: Get table tennis events by date
+      description: Returns all scheduled table tennis matches for the provided day.
       tags:
-        - TableTennis
-        - Matches
+      - TableTennis
+      - Matches
       parameters:
-        - name: day
-          in: path
-          required: true
-          example: 21
-          schema:
-            type: integer
-          description: 'Day of the month'
-        - name: month
-          in: path
-          required: true
-          example: 11
-          schema:
-            type: integer
-          description: 'Month of the year'
-        - name: year
-          in: path
-          required: true
-          example: 2024
-          schema:
-            type: integer
-          description: 'Four-digit year'
+      - name: day
+        in: path
+        required: true
+        example: 21
+        schema:
+          type: integer
+        description: Day of the month
+      - name: month
+        in: path
+        required: true
+        example: 11
+        schema:
+          type: integer
+        description: Month of the year
+      - name: year
+        in: path
+        required: true
+        example: 2024
+        schema:
+          type: integer
+        description: Four-digit year
       responses:
         '200':
-          description: 'Scheduled matches for the given date.'
+          description: Scheduled matches for the given date.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/events/odds/{day}/{month}/{year}:
     get:
-      summary: 'Get table tennis events with odds'
-      description: 'Returns scheduled matches together with odds for bookmaker `1`.'
+      summary: Get table tennis events with odds
+      description: Returns scheduled matches together with odds for bookmaker `1`.
       tags:
-        - TableTennis
-        - Matches
-        - Odds
+      - TableTennis
+      - Matches
+      - Odds
       parameters:
-        - name: day
-          in: path
-          required: true
-          example: 21
-          schema:
-            type: integer
-          description: 'Day of the month'
-        - name: month
-          in: path
-          required: true
-          example: 11
-          schema:
-            type: integer
-          description: 'Month of the year'
-        - name: year
-          in: path
-          required: true
-          example: 2024
-          schema:
-            type: integer
-          description: 'Four-digit year'
+      - name: day
+        in: path
+        required: true
+        example: 21
+        schema:
+          type: integer
+        description: Day of the month
+      - name: month
+        in: path
+        required: true
+        example: 11
+        schema:
+          type: integer
+        description: Month of the year
+      - name: year
+        in: path
+        required: true
+        example: 2024
+        schema:
+          type: integer
+        description: Four-digit year
       responses:
         '200':
-          description: 'Matches and odds for the date.'
+          description: Matches and odds for the date.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/events/live:
     get:
-      summary: 'Get live table tennis events'
-      description: 'Lists all currently live table tennis matches.'
+      summary: Get live table tennis events
+      description: Lists all currently live table tennis matches.
       tags:
-        - TableTennis
-        - Matches
+      - TableTennis
+      - Matches
       responses:
         '200':
-          description: 'Live matches.'
+          description: Live matches.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/calendar/{month}/{year}:
     get:
-      summary: 'Get table tennis calendar overview'
-      description: 'Provides unique tournaments with events for the requested month.'
+      summary: Get table tennis calendar overview
+      description: Provides unique tournaments with events for the requested month.
       tags:
-        - TableTennis
-        - Calendar
+      - TableTennis
+      - Calendar
       parameters:
-        - name: month
-          in: path
-          required: true
-          example: 11
-          schema:
-            type: integer
-          description: 'Month of the year'
-        - name: year
-          in: path
-          required: true
-          example: 2024
-          schema:
-            type: integer
-          description: 'Four-digit year'
+      - name: month
+        in: path
+        required: true
+        example: 11
+        schema:
+          type: integer
+        description: Month of the year
+      - name: year
+        in: path
+        required: true
+        example: 2024
+        schema:
+          type: integer
+        description: Four-digit year
       responses:
         '200':
-          description: 'Unique tournaments scheduled for the month.'
+          description: Unique tournaments scheduled for the month.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/calendar/{day}/{month}/{year}/categories:
     get:
-      summary: 'Get table tennis categories for a day'
-      description: 'Lists categories that have events on the provided date.'
+      summary: Get table tennis categories for a day
+      description: Lists categories that have events on the provided date.
       tags:
-        - TableTennis
-        - Calendar
-        - Categories
+      - TableTennis
+      - Calendar
+      - Categories
       parameters:
-        - name: day
-          in: path
-          required: true
-          example: 21
-          schema:
-            type: integer
-          description: 'Day of the month'
-        - name: month
-          in: path
-          required: true
-          example: 11
-          schema:
-            type: integer
-          description: 'Month of the year'
-        - name: year
-          in: path
-          required: true
-          example: 2024
-          schema:
-            type: integer
-          description: 'Four-digit year'
+      - name: day
+        in: path
+        required: true
+        example: 21
+        schema:
+          type: integer
+        description: Day of the month
+      - name: month
+        in: path
+        required: true
+        example: 11
+        schema:
+          type: integer
+        description: Month of the year
+      - name: year
+        in: path
+        required: true
+        example: 2024
+        schema:
+          type: integer
+        description: Four-digit year
       responses:
         '200':
-          description: 'Categories available for the date.'
+          description: Categories available for the date.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/calendar/{month}/{year}/categories:
     get:
-      summary: 'Get table tennis categories for multiple days'
-      description: 'Aggregates categories for up to five days in the given month.'
+      summary: Get table tennis categories for multiple days
+      description: Aggregates categories for up to five days in the given month.
       tags:
-        - TableTennis
-        - Calendar
-        - Categories
+      - TableTennis
+      - Calendar
+      - Categories
       parameters:
-        - name: month
-          in: path
-          required: true
-          example: 11
-          schema:
-            type: integer
-          description: 'Month of the year'
-        - name: year
-          in: path
-          required: true
-          example: 2024
-          schema:
-            type: integer
-          description: 'Four-digit year'
-        - name: days
-          in: query
-          required: true
-          example: '2,3,4,5,6'
-          schema:
-            type: string
-          description: 'Comma separated list of days (max 5).'
+      - name: month
+        in: path
+        required: true
+        example: 11
+        schema:
+          type: integer
+        description: Month of the year
+      - name: year
+        in: path
+        required: true
+        example: 2024
+        schema:
+          type: integer
+        description: Four-digit year
+      - name: days
+        in: query
+        required: true
+        example: 2,3,4,5,6
+        schema:
+          type: string
+        description: Comma separated list of days (max 5).
       responses:
         '200':
-          description: 'Map of date to categories.'
+          description: Map of date to categories.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/categories:
     get:
-      summary: 'Get table tennis tournament categories'
-      description: 'Returns all SofaScore categories for table tennis.'
+      summary: Get table tennis tournament categories
+      description: Returns all SofaScore categories for table tennis.
       tags:
-        - TableTennis
-        - Categories
+      - TableTennis
+      - Categories
       responses:
         '200':
-          description: 'Available categories.'
+          description: Available categories.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/all/category/{id}:
     get:
-      summary: 'Get table tennis tournaments by category'
-      description: 'Lists unique tournaments under the given category.'
+      summary: Get table tennis tournaments by category
+      description: Lists unique tournaments under the given category.
       tags:
-        - TableTennis
-        - Categories
-        - Tournaments
+      - TableTennis
+      - Categories
+      - Tournaments
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Category identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Category identifier
       responses:
         '200':
-          description: 'Tournaments in the category.'
+          description: Tournaments in the category.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/category/{id}/events/{day}/{month}/{year}:
     get:
-      summary: 'Get category events by date'
-      description: 'Lists all matches in the category for the provided day.'
+      summary: Get category events by date
+      description: Lists all matches in the category for the provided day.
       tags:
-        - TableTennis
-        - Categories
-        - Matches
+      - TableTennis
+      - Categories
+      - Matches
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Category identifier'
-        - name: day
-          in: path
-          required: true
-          example: 21
-          schema:
-            type: integer
-          description: 'Day of the month'
-        - name: month
-          in: path
-          required: true
-          example: 11
-          schema:
-            type: integer
-          description: 'Month of the year'
-        - name: year
-          in: path
-          required: true
-          example: 2024
-          schema:
-            type: integer
-          description: 'Four-digit year'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Category identifier
+      - name: day
+        in: path
+        required: true
+        example: 21
+        schema:
+          type: integer
+        description: Day of the month
+      - name: month
+        in: path
+        required: true
+        example: 11
+        schema:
+          type: integer
+        description: Month of the year
+      - name: year
+        in: path
+        required: true
+        example: 2024
+        schema:
+          type: integer
+        description: Four-digit year
       responses:
         '200':
-          description: 'Category schedule.'
+          description: Category schedule.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}:
     get:
-      summary: 'Get table tennis match details'
-      description: 'Returns core information for the requested match.'
+      summary: Get table tennis match details
+      description: Returns core information for the requested match.
       tags:
-        - TableTennis
-        - Matches
+      - TableTennis
+      - Matches
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Match information.'
+          description: Match information.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}/statistics:
     get:
-      summary: 'Get table tennis match statistics'
-      description: 'Provides detailed statistics for the specified match.'
+      summary: Get table tennis match statistics
+      description: Provides detailed statistics for the specified match.
       tags:
-        - TableTennis
-        - Matches
-        - Statistics
+      - TableTennis
+      - Matches
+      - Statistics
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Statistical breakdown.'
+          description: Statistical breakdown.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}/incidents:
     get:
-      summary: 'Get table tennis match incidents'
-      description: 'Lists point-by-point incidents and notable events.'
+      summary: Get table tennis match incidents
+      description: Lists point-by-point incidents and notable events.
       tags:
-        - TableTennis
-        - Matches
+      - TableTennis
+      - Matches
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Match incidents.'
+          description: Match incidents.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}/lineups:
     get:
-      summary: 'Get table tennis match lineups'
-      description: 'Returns confirmed lineups when available.'
+      summary: Get table tennis match lineups
+      description: Returns confirmed lineups when available.
       tags:
-        - TableTennis
-        - Matches
+      - TableTennis
+      - Matches
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Lineups and substitutes.'
+          description: Lineups and substitutes.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}/odds:
     get:
-      summary: 'Get table tennis match odds'
-      description: 'Retrieves odds from bookmaker `1` for the match.'
+      summary: Get table tennis match odds
+      description: Retrieves odds from bookmaker `1` for the match.
       tags:
-        - TableTennis
-        - Matches
-        - Odds
+      - TableTennis
+      - Matches
+      - Odds
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Available odds.'
+          description: Available odds.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}/form:
     get:
-      summary: 'Get table tennis match form'
-      description: 'Provides pre-game form information for both competitors.'
+      summary: Get table tennis match form
+      description: Provides pre-game form information for both competitors.
       tags:
-        - TableTennis
-        - Matches
+      - TableTennis
+      - Matches
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Form data.'
+          description: Form data.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{customId}/h2h:
     get:
-      summary: 'Get table tennis head-to-head history'
-      description: 'Returns historical meetings for the match custom identifier.'
+      summary: Get table tennis head-to-head history
+      description: Returns historical meetings for the match custom identifier.
       tags:
-        - TableTennis
-        - Matches
-        - Statistics
+      - TableTennis
+      - Matches
+      - Statistics
       parameters:
-        - name: customId
-          in: path
-          required: true
-          example: 'LOfsRveb'
-          schema:
-            type: string
-          description: 'Match custom identifier'
+      - name: customId
+        in: path
+        required: true
+        example: LOfsRveb
+        schema:
+          type: string
+        description: Match custom identifier
       responses:
         '200':
-          description: 'Head-to-head events.'
+          description: Head-to-head events.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}/duel:
     get:
-      summary: 'Get table tennis head-to-head summary'
-      description: 'Provides aggregated head-to-head totals for the competitors.'
+      summary: Get table tennis head-to-head summary
+      description: Provides aggregated head-to-head totals for the competitors.
       tags:
-        - TableTennis
-        - Matches
-        - Statistics
+      - TableTennis
+      - Matches
+      - Statistics
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Head-to-head summary.'
+          description: Head-to-head summary.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}/streaks:
     get:
-      summary: 'Get table tennis match streaks'
-      description: 'Returns recent streak information for the match participants.'
+      summary: Get table tennis match streaks
+      description: Returns recent streak information for the match participants.
       tags:
-        - TableTennis
-        - Matches
-        - Statistics
+      - TableTennis
+      - Matches
+      - Statistics
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Team streaks.'
+          description: Team streaks.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}/streaks/odds:
     get:
-      summary: 'Get table tennis match streaks with odds'
-      description: 'Returns streak details paired with bookmaker odds.'
+      summary: Get table tennis match streaks with odds
+      description: Returns streak details paired with bookmaker odds.
       tags:
-        - TableTennis
-        - Matches
-        - Odds
+      - TableTennis
+      - Matches
+      - Odds
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Streaks with odds.'
+          description: Streaks with odds.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}/highlights:
     get:
-      summary: 'Get table tennis match highlights'
-      description: 'Returns available highlight clips for the match.'
+      summary: Get table tennis match highlights
+      description: Returns available highlight clips for the match.
       tags:
-        - TableTennis
-        - Matches
-        - Media
+      - TableTennis
+      - Matches
+      - Media
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Highlight list.'
+          description: Highlight list.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}/votes:
     get:
-      summary: 'Get table tennis match votes'
-      description: 'Returns community votes for player of the match.'
+      summary: Get table tennis match votes
+      description: Returns community votes for player of the match.
       tags:
-        - TableTennis
-        - Matches
-        - Fans
+      - TableTennis
+      - Matches
+      - Fans
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Vote tallies.'
+          description: Vote tallies.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/event/{id}/win-probability:
     get:
-      summary: 'Get table tennis match win probability'
-      description: 'Returns win probability timeline for the match.'
+      summary: Get table tennis match win probability
+      description: Returns win probability timeline for the match.
       tags:
-        - TableTennis
-        - Matches
-        - Statistics
+      - TableTennis
+      - Matches
+      - Statistics
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Match identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Match identifier
       responses:
         '200':
-          description: 'Win probability data.'
+          description: Win probability data.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}:
     get:
-      summary: 'Get table tennis team details'
-      description: 'Returns information about the requested team.'
+      summary: Get table tennis team details
+      description: Returns information about the requested team.
       tags:
-        - TableTennis
-        - Teams
+      - TableTennis
+      - Teams
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
       responses:
         '200':
-          description: 'Team details.'
+          description: Team details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}/players:
     get:
-      summary: 'Get table tennis team roster'
-      description: 'Returns current players registered for the team.'
+      summary: Get table tennis team roster
+      description: Returns current players registered for the team.
       tags:
-        - TableTennis
-        - Teams
-        - Players
+      - TableTennis
+      - Teams
+      - Players
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
       responses:
         '200':
-          description: 'List of players.'
+          description: List of players.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}/media:
     get:
-      summary: 'Get table tennis team media'
-      description: 'Returns media items linked to the team.'
+      summary: Get table tennis team media
+      description: Returns media items linked to the team.
       tags:
-        - TableTennis
-        - Teams
-        - Media
+      - TableTennis
+      - Teams
+      - Media
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
       responses:
         '200':
-          description: 'Media assets.'
+          description: Media assets.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}/matches/previous/{page}:
     get:
-      summary: 'Get previous table tennis matches by team'
-      description: 'Returns paginated list of past matches for the team.'
+      summary: Get previous table tennis matches by team
+      description: Returns paginated list of past matches for the team.
       tags:
-        - TableTennis
-        - Teams
-        - Matches
+      - TableTennis
+      - Teams
+      - Matches
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: 'Page number'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number
       responses:
         '200':
-          description: 'Previous matches.'
+          description: Previous matches.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}/matches/next/{page}:
     get:
-      summary: 'Get upcoming table tennis matches by team'
-      description: 'Returns paginated list of next matches for the team.'
+      summary: Get upcoming table tennis matches by team
+      description: Returns paginated list of next matches for the team.
       tags:
-        - TableTennis
-        - Teams
-        - Matches
+      - TableTennis
+      - Teams
+      - Matches
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: 'Page number'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number
       responses:
         '200':
-          description: 'Upcoming matches.'
+          description: Upcoming matches.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}/matches/near:
     get:
-      summary: 'Get nearby table tennis matches by team'
-      description: 'Returns recent and upcoming matches around the current date.'
+      summary: Get nearby table tennis matches by team
+      description: Returns recent and upcoming matches around the current date.
       tags:
-        - TableTennis
-        - Teams
-        - Matches
+      - TableTennis
+      - Teams
+      - Matches
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
       responses:
         '200':
-          description: 'Nearby matches.'
+          description: Nearby matches.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}/standings/seasons:
     get:
-      summary: 'Get table tennis team standings seasons'
-      description: 'Lists seasons that have standings for the team.'
+      summary: Get table tennis team standings seasons
+      description: Lists seasons that have standings for the team.
       tags:
-        - TableTennis
-        - Teams
-        - Standings
+      - TableTennis
+      - Teams
+      - Standings
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
       responses:
         '200':
-          description: 'Seasons.'
+          description: Seasons.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}/player-statistics/seasons:
     get:
-      summary: 'Get table tennis team player-statistics seasons'
-      description: 'Lists seasons with player statistics for the team.'
+      summary: Get table tennis team player-statistics seasons
+      description: Lists seasons with player statistics for the team.
       tags:
-        - TableTennis
-        - Teams
-        - Statistics
+      - TableTennis
+      - Teams
+      - Statistics
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
       responses:
         '200':
-          description: 'Seasons.'
+          description: Seasons.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}/statistics/seasons:
     get:
-      summary: 'Get table tennis team statistics seasons'
-      description: 'Lists seasons with team statistics data.'
+      summary: Get table tennis team statistics seasons
+      description: Lists seasons with team statistics data.
       tags:
-        - TableTennis
-        - Teams
-        - Statistics
+      - TableTennis
+      - Teams
+      - Statistics
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
       responses:
         '200':
-          description: 'Seasons.'
+          description: Seasons.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}/rankings:
     get:
-      summary: 'Get table tennis team rankings'
-      description: 'Returns the SofaScore rankings for the team.'
+      summary: Get table tennis team rankings
+      description: Returns the SofaScore rankings for the team.
       tags:
-        - TableTennis
-        - Teams
-        - Rankings
+      - TableTennis
+      - Teams
+      - Rankings
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
       responses:
         '200':
-          description: 'Ranking data.'
+          description: Ranking data.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}/unique-tournaments:
     get:
-      summary: 'Get table tennis team tournaments'
-      description: 'Lists unique tournaments that the team participates in.'
+      summary: Get table tennis team tournaments
+      description: Lists unique tournaments that the team participates in.
       tags:
-        - TableTennis
-        - Teams
-        - Tournaments
+      - TableTennis
+      - Teams
+      - Tournaments
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
       responses:
         '200':
-          description: 'Team tournaments.'
+          description: Team tournaments.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/team/{id}/transfers:
     get:
-      summary: 'Get table tennis team transfers'
-      description: 'Returns historical transfer activity for the team.'
+      summary: Get table tennis team transfers
+      description: Returns historical transfer activity for the team.
       tags:
-        - TableTennis
-        - Teams
-        - Transfers
+      - TableTennis
+      - Teams
+      - Transfers
       parameters:
-        - name: id
-          in: path
-          required: true
-          example: 10400727
-          schema:
-            type: integer
-          description: 'Team identifier'
+      - name: id
+        in: path
+        required: true
+        example: 10400727
+        schema:
+          type: integer
+        description: Team identifier
       responses:
         '200':
-          description: 'Transfer history.'
+          description: Transfer history.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}:
     get:
-      summary: 'Get table tennis tournament details'
-      description: 'Returns detailed information about the tournament.'
+      summary: Get table tennis tournament details
+      description: Returns detailed information about the tournament.
       tags:
-        - TableTennis
-        - Tournaments
+      - TableTennis
+      - Tournaments
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
       responses:
         '200':
-          description: 'Tournament details.'
+          description: Tournament details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/info:
     get:
-      summary: 'Get table tennis tournament meta info'
-      description: 'Returns metadata used on SofaScore tournament pages.'
+      summary: Get table tennis tournament meta info
+      description: Returns metadata used on SofaScore tournament pages.
       tags:
-        - TableTennis
-        - Tournaments
+      - TableTennis
+      - Tournaments
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
       responses:
         '200':
-          description: 'Tournament metadata.'
+          description: Tournament metadata.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/media:
     get:
-      summary: 'Get table tennis tournament media'
-      description: 'Returns media assets associated with the tournament.'
+      summary: Get table tennis tournament media
+      description: Returns media assets associated with the tournament.
       tags:
-        - TableTennis
-        - Tournaments
-        - Media
+      - TableTennis
+      - Tournaments
+      - Media
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
       responses:
         '200':
-          description: 'Media assets.'
+          description: Media assets.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/featured-events:
     get:
-      summary: 'Get table tennis tournament featured events'
-      description: 'Lists SofaScore highlighted events for the tournament.'
+      summary: Get table tennis tournament featured events
+      description: Lists SofaScore highlighted events for the tournament.
       tags:
-        - TableTennis
-        - Tournaments
-        - Matches
+      - TableTennis
+      - Tournaments
+      - Matches
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
       responses:
         '200':
-          description: 'Featured events.'
+          description: Featured events.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/seasons:
     get:
-      summary: 'Get table tennis tournament seasons'
-      description: 'Lists available seasons for the tournament.'
+      summary: Get table tennis tournament seasons
+      description: Lists available seasons for the tournament.
       tags:
-        - TableTennis
-        - Tournaments
+      - TableTennis
+      - Tournaments
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
       responses:
         '200':
-          description: 'Seasons.'
+          description: Seasons.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/info:
     get:
-      summary: 'Get table tennis tournament season info'
-      description: 'Returns metadata about a specific tournament season.'
+      summary: Get table tennis tournament season info
+      description: Returns metadata about a specific tournament season.
       tags:
-        - TableTennis
-        - Tournaments
+      - TableTennis
+      - Tournaments
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Season info.'
+          description: Season info.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
-      summary: 'Get table tennis tournament standings'
-      description: 'Returns overall standings table for the season.'
+      summary: Get table tennis tournament standings
+      description: Returns overall standings table for the season.
       tags:
-        - TableTennis
-        - Tournaments
-        - Standings
+      - TableTennis
+      - Tournaments
+      - Standings
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Standings.'
+          description: Standings.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
-      summary: 'Get table tennis home standings'
-      description: 'Returns standings filtered by home matches for the season.'
+      summary: Get table tennis home standings
+      description: Returns standings filtered by home matches for the season.
       tags:
-        - TableTennis
-        - Tournaments
-        - Standings
+      - TableTennis
+      - Tournaments
+      - Standings
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Home standings.'
+          description: Home standings.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/round/{round}/slug/{slug}:
     get:
-      summary: 'Get table tennis tournament matches by round'
-      description: 'Returns matches for the specified knockout round slug.'
+      summary: Get table tennis tournament matches by round
+      description: Returns matches for the specified knockout round slug.
       tags:
-        - TableTennis
-        - Tournaments
-        - Matches
+      - TableTennis
+      - Tournaments
+      - Matches
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
-        - name: round
-          in: path
-          required: true
-          example: 32
-          schema:
-            type: integer
-          description: 'Round number'
-        - name: slug
-          in: path
-          required: true
-          example: 'round-of-64'
-          schema:
-            type: string
-          description: 'Round slug'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
+      - name: round
+        in: path
+        required: true
+        example: 32
+        schema:
+          type: integer
+        description: Round number
+      - name: slug
+        in: path
+        required: true
+        example: round-of-64
+        schema:
+          type: string
+        description: Round slug
       responses:
         '200':
-          description: 'Matches for the round.'
+          description: Matches for the round.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/last/{page}:
     get:
-      summary: 'Get table tennis tournament last matches'
-      description: 'Returns finished matches for the season, paginated.'
+      summary: Get table tennis tournament last matches
+      description: Returns finished matches for the season, paginated.
       tags:
-        - TableTennis
-        - Tournaments
-        - Matches
+      - TableTennis
+      - Tournaments
+      - Matches
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: 'Page number'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number
       responses:
         '200':
-          description: 'Completed matches.'
+          description: Completed matches.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/next/{page}:
     get:
-      summary: 'Get table tennis tournament upcoming matches'
-      description: 'Returns upcoming matches for the season, paginated.'
+      summary: Get table tennis tournament upcoming matches
+      description: Returns upcoming matches for the season, paginated.
       tags:
-        - TableTennis
-        - Tournaments
-        - Matches
+      - TableTennis
+      - Tournaments
+      - Matches
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
-        - name: page
-          in: path
-          required: true
-          example: 0
-          schema:
-            type: integer
-          description: 'Page number'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number
       responses:
         '200':
-          description: 'Upcoming matches.'
+          description: Upcoming matches.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
-      summary: 'Get table tennis tournament rounds'
-      description: 'Lists available rounds for the tournament season.'
+      summary: Get table tennis tournament rounds
+      description: Lists available rounds for the tournament season.
       tags:
-        - TableTennis
-        - Tournaments
+      - TableTennis
+      - Tournaments
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'List of rounds.'
+          description: List of rounds.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/groups:
     get:
-      summary: 'Get table tennis tournament groups'
-      description: 'Returns groups for the tournament season.'
+      summary: Get table tennis tournament groups
+      description: Returns groups for the tournament season.
       tags:
-        - TableTennis
-        - Tournaments
+      - TableTennis
+      - Tournaments
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Group data.'
+          description: Group data.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/cup-trees:
     get:
-      summary: 'Get table tennis tournament bracket'
-      description: 'Returns knockout bracket for the season.'
+      summary: Get table tennis tournament bracket
+      description: Returns knockout bracket for the season.
       tags:
-        - TableTennis
-        - Tournaments
+      - TableTennis
+      - Tournaments
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Bracket structure.'
+          description: Bracket structure.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
-      summary: 'Get table tennis tournament team events total'
-      description: 'Returns aggregated event statistics for the season.'
+      summary: Get table tennis tournament team events total
+      description: Returns aggregated event statistics for the season.
       tags:
-        - TableTennis
-        - Tournaments
-        - Statistics
+      - TableTennis
+      - Tournaments
+      - Statistics
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Team event totals.'
+          description: Team event totals.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
-      summary: 'Get table tennis tournament team events home'
-      description: 'Returns team event statistics for home matches only.'
+      summary: Get table tennis tournament team events home
+      description: Returns team event statistics for home matches only.
       tags:
-        - TableTennis
-        - Tournaments
-        - Statistics
+      - TableTennis
+      - Tournaments
+      - Statistics
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Home event statistics.'
+          description: Home event statistics.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
-      summary: 'Get table tennis tournament team events away'
-      description: 'Returns team event statistics for away matches only.'
+      summary: Get table tennis tournament team events away
+      description: Returns team event statistics for away matches only.
       tags:
-        - TableTennis
-        - Tournaments
-        - Statistics
+      - TableTennis
+      - Tournaments
+      - Statistics
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Away event statistics.'
+          description: Away event statistics.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/statistics/info:
     get:
-      summary: 'Get table tennis tournament statistics info'
-      description: 'Lists available statistics fields for the season.'
+      summary: Get table tennis tournament statistics info
+      description: Lists available statistics fields for the season.
       tags:
-        - TableTennis
-        - Tournaments
-        - Statistics
+      - TableTennis
+      - Tournaments
+      - Statistics
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Statistics metadata.'
+          description: Statistics metadata.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/player-of-the-season:
     get:
-      summary: 'Get table tennis tournament player of the season'
-      description: 'Returns SofaScore player of the season data.'
+      summary: Get table tennis tournament player of the season
+      description: Returns SofaScore player of the season data.
       tags:
-        - TableTennis
-        - Tournaments
-        - Awards
+      - TableTennis
+      - Tournaments
+      - Awards
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Player of the season.'
+          description: Player of the season.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/power-rankings/rounds:
     get:
-      summary: 'Get table tennis tournament power ranking rounds'
-      description: 'Lists rounds with available power rankings.'
+      summary: Get table tennis tournament power ranking rounds
+      description: Lists rounds with available power rankings.
       tags:
-        - TableTennis
-        - Tournaments
-        - Rankings
+      - TableTennis
+      - Tournaments
+      - Rankings
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Power ranking rounds.'
+          description: Power ranking rounds.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-of-the-week/rounds:
     get:
-      summary: 'Get table tennis tournament team of the week rounds'
-      description: 'Lists rounds where a team of the week is available.'
+      summary: Get table tennis tournament team of the week rounds
+      description: Lists rounds where a team of the week is available.
       tags:
-        - TableTennis
-        - Tournaments
-        - Awards
+      - TableTennis
+      - Tournaments
+      - Awards
       parameters:
-        - name: tournamentId
-          in: path
-          required: true
-          example: 2361
-          schema:
-            type: integer
-          description: 'Tournament identifier'
-        - name: seasonId
-          in: path
-          required: true
-          example: 42300
-          schema:
-            type: integer
-          description: 'Season identifier'
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2361
+        schema:
+          type: integer
+        description: Tournament identifier
+      - name: seasonId
+        in: path
+        required: true
+        example: 42300
+        schema:
+          type: integer
+        description: Season identifier
       responses:
         '200':
-          description: 'Team of the week rounds.'
+          description: Team of the week rounds.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-components:
-  schemas:
-    JSONResult:
-      type: object
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-
   /api/volleyball/search/{term}:
     get:
       tags:
@@ -27463,7 +27453,7 @@ components:
       - name: term
         in: path
         required: true
-        example: 'china'
+        example: china
         schema:
           type: string
         description: Search term (e.g., 'Brazil')
@@ -27871,7 +27861,7 @@ components:
       - name: customId
         in: path
         required: true
-        example: 'oCpswQIb'
+        example: oCpswQIb
         schema:
           type: string
         description: A custom identifier for the match, used for H2H lookups.
@@ -29012,3 +29002,8 @@ components:
       type: object
     VotesResponse:
       type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
