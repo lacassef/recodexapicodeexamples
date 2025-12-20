@@ -12,6 +12,7 @@ paths:
       tags:
       - TV
       summary: Get match TV countries
+      operationId: matchTvCountries
       description: Lists the countries and the TV channels within them that are broadcasting
         a specific match.
       parameters:
@@ -46,6 +47,7 @@ paths:
       tags:
       - TV
       summary: Get match TV channel votes
+      operationId: matchTvChannelVotes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting
         the match.
       parameters:
@@ -87,6 +89,7 @@ paths:
       tags:
       - Country
       summary: Get country flag
+      operationId: countryFlag
       description: Fetches the PNG flag image asset corresponding to a provided country
         code. The response is the raw image data.
       parameters:
@@ -122,6 +125,7 @@ paths:
       tags:
       - Country
       summary: Get country flag (img API)
+      operationId: countryFlagImgApi
       description: Fetches the flag image by country code.
       parameters:
       - name: code
@@ -155,6 +159,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImage
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -176,6 +181,7 @@ paths:
       tags:
       - Search
       summary: Search cricket entities
+      operationId: cricketEntities
       description: Searches for cricket teams, players, and tournaments.
       parameters:
       - name: term
@@ -215,6 +221,7 @@ paths:
       tags:
       - Tournament
       summary: Get cricket tournament categories
+      operationId: cricketTournamentCategories
       description: Retrieves a list of all available cricket tournament categories,
         typically corresponding to countries or regions.
       responses:
@@ -235,6 +242,7 @@ paths:
       tags:
       - Match
       summary: Get cricket matches by date
+      operationId: cricketMatchesByDate
       description: Fetches all cricket matches scheduled for a specific date.
       parameters:
       - name: day
@@ -282,6 +290,7 @@ paths:
       tags:
       - Match
       summary: Get live cricket matches
+      operationId: liveCricketMatches
       description: Retrieves all currently live cricket matches.
       responses:
         '200':
@@ -301,6 +310,7 @@ paths:
       tags:
       - Match
       summary: Get cricket match details
+      operationId: cricketMatchDetails
       description: Retrieves detailed information for a specific cricket match by
         its ID.
       parameters:
@@ -335,6 +345,7 @@ paths:
       tags:
       - Match
       summary: Get match head-to-head history
+      operationId: matchHeadToHeadHistory
       description: Retrieves the detailed match history for head-to-head encounters
         between two teams.
       parameters:
@@ -369,6 +380,7 @@ paths:
       tags:
       - Match
       summary: Get match lineups
+      operationId: matchLineups
       description: Retrieves the starting lineups and substitutes for both teams in
         a specific match.
       parameters:
@@ -403,6 +415,7 @@ paths:
       tags:
       - Match
       summary: Get match innings
+      operationId: matchInnings
       description: Retrieves the detailed scorecard for each innings of a cricket
         match.
       parameters:
@@ -437,6 +450,7 @@ paths:
       tags:
       - Match
       summary: Get match incidents
+      operationId: matchIncidents
       description: Retrieves a chronological list of all significant incidents that
         occurred during the match (e.g., wickets, boundaries).
       parameters:
@@ -471,6 +485,7 @@ paths:
       tags:
       - Match
       summary: Get head-to-head summary
+      operationId: headToHeadSummary
       description: Retrieves a summary of head-to-head (H2H) statistics between the
         two teams in a match.
       parameters:
@@ -505,6 +520,7 @@ paths:
       tags:
       - Match
       summary: Get match form analysis
+      operationId: matchFormAnalysis
       description: Retrieves pre-game form and recent performance data for the teams
         in a specific match.
       parameters:
@@ -539,6 +555,7 @@ paths:
       tags:
       - Match
       summary: Get match betting odds
+      operationId: matchBettingOdds
       description: Retrieves available betting odds from various bookmakers for a
         specific match.
       parameters:
@@ -573,6 +590,7 @@ paths:
       tags:
       - Match
       summary: Get match votes
+      operationId: matchVotes
       description: Returns fan poll percentages and vote totals for the match outcome.
       parameters:
       - name: id
@@ -606,6 +624,7 @@ paths:
       tags:
       - Match
       summary: Get cricket match graph
+      operationId: cricketMatchGraph
       description: Retrieves data points for the match graph, showing runs per over
         for both teams.
       parameters:
@@ -639,6 +658,7 @@ paths:
       tags:
       - Team
       summary: Get previous team matches
+      operationId: previousTeamMatches
       description: Fetches a paginated list of completed cricket matches for a specific
         team, sorted by date descending.
       parameters:
@@ -686,6 +706,7 @@ paths:
       tags:
       - Team
       summary: Get upcoming team matches
+      operationId: upcomingTeamMatches
       description: Fetches a paginated list of scheduled cricket matches for a specific
         team, sorted by date ascending.
       parameters:
@@ -733,6 +754,7 @@ paths:
       tags:
       - Team
       summary: Get team standings seasons
+      operationId: teamStandingsSeasons
       description: Retrieves a list of seasons for which a team's standings are available.
       parameters:
       - name: id
@@ -766,6 +788,7 @@ paths:
       tags:
       - Team
       summary: Get team tournaments
+      operationId: teamTournaments
       description: Retrieves a list of all unique tournaments a team has participated
         in.
       parameters:
@@ -800,6 +823,7 @@ paths:
       tags:
       - Team
       summary: Get team near matches
+      operationId: teamNearMatches
       description: Retrieves a list of recent and upcoming matches for a specific
         team.
       parameters:
@@ -834,6 +858,7 @@ paths:
       tags:
       - Team
       summary: Get team image
+      operationId: teamImage
       description: Retrieves the logo image for a specific team.
       parameters:
       - name: id
@@ -867,6 +892,7 @@ paths:
       tags:
       - Team
       summary: Get cricket team details
+      operationId: cricketTeamDetails
       description: Retrieves comprehensive details for a specific cricket team.
       parameters:
       - name: id
@@ -900,6 +926,7 @@ paths:
       tags:
       - Team
       summary: Get team player statistics seasons
+      operationId: teamPlayerStatisticsSeasons
       description: Retrieves a list of seasons for which a team's player statistics
         are available.
       parameters:
@@ -934,6 +961,7 @@ paths:
       tags:
       - Team
       summary: Get team players
+      operationId: teamPlayers
       description: Retrieves the current roster of players for a specific team.
       parameters:
       - name: id
@@ -967,6 +995,7 @@ paths:
       tags:
       - Team
       summary: Get team media
+      operationId: teamMedia
       description: Retrieves media content (e.g., videos, images) associated with
         a specific team.
       parameters:
@@ -1001,6 +1030,7 @@ paths:
       tags:
       - Player
       summary: Get player statistics seasons
+      operationId: playerStatisticsSeasons
       description: Retrieves a list of seasons for which a player's statistics are
         available.
       parameters:
@@ -1035,6 +1065,7 @@ paths:
       tags:
       - Player
       summary: Get player overall statistics
+      operationId: playerOverallStatistics
       description: Retrieves a player's combined statistics for an entire season (regular
         season and playoffs).
       parameters:
@@ -1083,6 +1114,7 @@ paths:
       tags:
       - Player
       summary: Get player image
+      operationId: playerImage
       description: Retrieves the profile image for a specific player.
       parameters:
       - name: id
@@ -1116,6 +1148,7 @@ paths:
       tags:
       - Player
       summary: Get cricket player details
+      operationId: cricketPlayerDetails
       description: Retrieves comprehensive information about a specific cricket player.
       parameters:
       - name: id
@@ -1149,6 +1182,7 @@ paths:
       tags:
       - Player
       summary: Get player near matches
+      operationId: playerNearMatches
       description: Retrieves a list of recent and upcoming matches for a specific
         player.
       parameters:
@@ -1183,6 +1217,7 @@ paths:
       tags:
       - Player
       summary: Get previous player matches
+      operationId: previousPlayerMatches
       description: Fetches a paginated list of completed matches for a specific player,
         sorted by date descending.
       parameters:
@@ -1230,6 +1265,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament total standings
+      operationId: tournamentTotalStandings
       description: Retrieves the complete standings table for all teams in a specific
         tournament season.
       parameters:
@@ -1271,6 +1307,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament top players
+      operationId: tournamentTopPlayers
       description: Retrieves the best performing players in a specific tournament
         season.
       parameters:
@@ -1312,6 +1349,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament image
+      operationId: tournamentImage
       description: Retrieves the logo image for a specific tournament.
       parameters:
       - name: tournamentId
@@ -1346,6 +1384,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament dark logo
+      operationId: tournamentDarkLogo
       description: Retrieves the dark theme logo image for a specific tournament.
       parameters:
       - name: tournamentId
@@ -1379,6 +1418,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament last matches
+      operationId: tournamentLastMatches
       description: Retrieves a paginated list of recently played matches in a specific
         tournament season.
       parameters:
@@ -1433,6 +1473,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament upcoming matches
+      operationId: tournamentUpcomingMatches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific
         tournament season.
       parameters:
@@ -1487,6 +1528,7 @@ paths:
       tags:
       - Tournament
       summary: Get cricket tournament details
+      operationId: cricketTournamentDetails
       description: Retrieves comprehensive details for a specific cricket tournament.
       parameters:
       - name: tournamentId
@@ -1520,6 +1562,7 @@ paths:
       tags:
       - Tournament
       summary: Get cricket tournament seasons
+      operationId: cricketTournamentSeasons
       description: Retrieves a list of all available seasons for a specific tournament.
       parameters:
       - name: tournamentId
@@ -1553,6 +1596,7 @@ paths:
       tags:
       - Tournament
       summary: Get cricket tournament media
+      operationId: cricketTournamentMedia
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       parameters:
       - name: tournamentId
@@ -1586,6 +1630,7 @@ paths:
       tags:
       - Tournament
       summary: Get total team events for cricket tournament season
+      operationId: totalTeamEventsForCricketTournamentSeason
       description: Retrieves aggregated team performance statistics for all games
         in a tournament season.
       parameters:
@@ -1627,6 +1672,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament matches by date
+      operationId: tournamentMatchesByDate
       description: Retrieves all matches for a specific tournament scheduled on a
         given date.
       parameters:
@@ -1685,6 +1731,7 @@ paths:
       tags:
       - Category
       summary: Get cricket matches by category and date
+      operationId: cricketMatchesByCategoryAndDate
       description: Retrieves all cricket matches for a specific category on a given
         date.
       parameters:
@@ -1746,6 +1793,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournaments by category
+      operationId: tournamentsByCategory
       description: Retrieves all unique tournaments within a specific cricket category.
       parameters:
       - name: id
@@ -1779,6 +1827,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImageTournamentSvg
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -1800,6 +1849,7 @@ paths:
       tags:
       - Team
       summary: Get team placeholder image
+      operationId: teamPlaceholderImage
       description: Returns a static placeholder graphic for a team. The response is
         an SVG image.
       responses:
@@ -1821,6 +1871,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImage
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -1842,6 +1893,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImagePlayerSvg
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -1863,6 +1915,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImage
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -1884,6 +1937,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImageManagerSvg
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -1905,6 +1959,7 @@ paths:
       tags:
       - Fighter
       summary: Get male fighter placeholder image
+      operationId: maleFighterPlaceholderImage
       description: Retrieves a placeholder image for a male fighter.
       responses:
         '200':
@@ -1925,6 +1980,7 @@ paths:
       tags:
       - Fighter
       summary: Get female fighter placeholder image
+      operationId: femaleFighterPlaceholderImage
       description: Retrieves a placeholder image for a female fighter.
       responses:
         '200':

@@ -12,6 +12,7 @@ paths:
       tags:
       - TV
       summary: Get match TV countries
+      operationId: matchTvCountries
       description: Lists the countries and the TV channels within them that are broadcasting
         a specific match.
       parameters:
@@ -46,6 +47,7 @@ paths:
       tags:
       - TV
       summary: Get match TV channel votes
+      operationId: matchTvChannelVotes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting
         the match.
       parameters:
@@ -87,6 +89,7 @@ paths:
       tags:
       - Country
       summary: Get country flag
+      operationId: countryFlag
       description: Fetches the PNG flag image asset corresponding to a provided country
         code. The response is the raw image data.
       parameters:
@@ -122,6 +125,7 @@ paths:
       tags:
       - Country
       summary: Get country flag (img API)
+      operationId: countryFlagImgApi
       description: Fetches the flag image by country code. The response is the raw
         image data.
       parameters:
@@ -156,6 +160,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImage
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -177,6 +182,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImageTournamentSvg
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -198,6 +204,7 @@ paths:
       tags:
       - Team
       summary: Get team placeholder image
+      operationId: teamPlaceholderImage
       description: Returns a static placeholder graphic for a team. The response is
         an SVG image.
       responses:
@@ -219,6 +226,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImage
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -240,6 +248,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImagePlayerSvg
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -261,6 +270,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImage
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -282,6 +292,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImageManagerSvg
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -303,6 +314,7 @@ paths:
       tags:
       - Fighter
       summary: Get male fighter placeholder image
+      operationId: maleFighterPlaceholderImage
       description: Retrieves a placeholder image for a male fighter.
       responses:
         '200':
@@ -323,6 +335,7 @@ paths:
       tags:
       - Fighter
       summary: Get female fighter placeholder image
+      operationId: femaleFighterPlaceholderImage
       description: Retrieves a placeholder image for a female fighter.
       responses:
         '200':
@@ -343,6 +356,7 @@ paths:
       tags:
       - Search
       summary: Search handball entities
+      operationId: handballEntities
       description: Searches for handball teams, players, and tournaments.
       parameters:
       - name: term
@@ -382,6 +396,7 @@ paths:
       tags:
       - Category
       summary: Get handball matches by category and date
+      operationId: handballMatchesByCategoryAndDate
       description: Retrieves all handball matches for a specific category on a given
         date.
       parameters:
@@ -443,6 +458,7 @@ paths:
       tags:
       - Match
       summary: Get live handball matches
+      operationId: liveHandballMatches
       description: Retrieves all currently live handball matches.
       responses:
         '200':
@@ -462,6 +478,7 @@ paths:
       tags:
       - Tournament
       summary: Get handball tournament categories
+      operationId: handballTournamentCategories
       description: Retrieves all available handball tournament categories (countries/regions).
       responses:
         '200':
@@ -481,6 +498,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournaments by category
+      operationId: tournamentsByCategory
       description: Retrieves all handball tournaments within a specific category.
       parameters:
       - name: id
@@ -514,6 +532,7 @@ paths:
       tags:
       - Match
       summary: Get handball matches by date
+      operationId: handballMatchesByDate
       description: Fetches all handball matches scheduled for a specific date.
       parameters:
       - name: day
@@ -561,6 +580,7 @@ paths:
       tags:
       - Match
       summary: Get handball match details
+      operationId: handballMatchDetails
       description: Retrieves detailed information about a specific handball match.
       parameters:
       - name: id
@@ -594,6 +614,7 @@ paths:
       tags:
       - Match
       summary: Get match betting odds
+      operationId: matchBettingOdds
       description: Retrieves betting odds from various bookmakers for the handball
         match.
       parameters:
@@ -628,6 +649,7 @@ paths:
       tags:
       - Match
       summary: Get match incidents
+      operationId: matchIncidents
       description: Retrieves all incidents and events that occurred during the match.
       parameters:
       - name: id
@@ -661,6 +683,7 @@ paths:
       tags:
       - Match
       summary: Get match best players
+      operationId: matchBestPlayers
       description: Retrieves the best performing players from the match.
       parameters:
       - name: id
@@ -694,6 +717,7 @@ paths:
       tags:
       - Match
       summary: Get match votes
+      operationId: matchVotes
       description: Retrieves fan voting results for the match.
       parameters:
       - name: id
@@ -727,6 +751,7 @@ paths:
       tags:
       - Match
       summary: Get head-to-head summary
+      operationId: headToHeadSummary
       description: Retrieves a summary of head-to-head statistics between the teams.
       parameters:
       - name: id
@@ -760,6 +785,7 @@ paths:
       tags:
       - Match
       summary: Get match form analysis
+      operationId: matchFormAnalysis
       description: Retrieves recent form and performance trends for teams in the match.
       parameters:
       - name: id
@@ -793,6 +819,7 @@ paths:
       tags:
       - Match
       summary: Get match lineups
+      operationId: matchLineups
       description: Retrieves starting lineups and player positions for both teams.
       parameters:
       - name: id
@@ -826,6 +853,7 @@ paths:
       tags:
       - Match
       summary: Get match statistics
+      operationId: matchStatistics
       description: Retrieves comprehensive statistical data for the handball match.
       parameters:
       - name: id
@@ -859,6 +887,7 @@ paths:
       tags:
       - Match
       summary: Get match streaks
+      operationId: matchStreaks
       description: Retrieves winning/scoring streaks information for the match.
       parameters:
       - name: id
@@ -892,6 +921,7 @@ paths:
       tags:
       - Match
       summary: Get head-to-head history
+      operationId: headToHeadHistory
       description: Retrieves detailed head-to-head match history between the teams.
       parameters:
       - name: customId
@@ -925,6 +955,7 @@ paths:
       tags:
       - Team
       summary: Get previous team matches
+      operationId: previousTeamMatches
       description: Fetches a list of completed matches for the team, sorted by date
         descending.
       parameters:
@@ -972,6 +1003,7 @@ paths:
       tags:
       - Team
       summary: Get upcoming team matches
+      operationId: upcomingTeamMatches
       description: Fetches a list of scheduled matches for the team, sorted by date
         ascending.
       parameters:
@@ -1019,6 +1051,7 @@ paths:
       tags:
       - Team
       summary: Get handball team details
+      operationId: handballTeamDetails
       description: Retrieves comprehensive information about a handball team.
       parameters:
       - name: id
@@ -1052,6 +1085,7 @@ paths:
       tags:
       - Team
       summary: Get team players
+      operationId: teamPlayers
       description: Retrieves the current roster of players for the team.
       parameters:
       - name: id
@@ -1085,6 +1119,7 @@ paths:
       tags:
       - Team
       summary: Get team near matches
+      operationId: teamNearMatches
       description: Retrieves recent and upcoming matches for the team.
       parameters:
       - name: id
@@ -1118,6 +1153,7 @@ paths:
       tags:
       - Team
       summary: Get team tournaments
+      operationId: teamTournaments
       description: Retrieves all tournaments the team participates in.
       parameters:
       - name: id
@@ -1151,6 +1187,7 @@ paths:
       tags:
       - Team
       summary: Get team standings seasons
+      operationId: teamStandingsSeasons
       description: Retrieves available seasons for team standings data.
       parameters:
       - name: id
@@ -1184,6 +1221,7 @@ paths:
       tags:
       - Team
       summary: Get team player statistics seasons
+      operationId: teamPlayerStatisticsSeasons
       description: Retrieves available seasons for team player statistics.
       parameters:
       - name: id
@@ -1217,6 +1255,7 @@ paths:
       tags:
       - Team
       summary: Get team top players overall
+      operationId: teamTopPlayersOverall
       description: Retrieves the best performing players for the team in a specific
         tournament season.
       parameters:
@@ -1265,6 +1304,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament total standings
+      operationId: tournamentTotalStandings
       description: Retrieves complete standings table for all teams in the tournament.
       parameters:
       - name: tournamentId
@@ -1305,6 +1345,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament home standings
+      operationId: tournamentHomeStandings
       description: Retrieves standings based on home games only.
       parameters:
       - name: tournamentId
@@ -1345,6 +1386,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament away standings
+      operationId: tournamentAwayStandings
       description: Retrieves standings based on away games only.
       parameters:
       - name: tournamentId
@@ -1385,6 +1427,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament details
+      operationId: tournamentDetails
       description: Retrieves comprehensive information about a handball tournament.
       parameters:
       - name: tournamentId
@@ -1418,6 +1461,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament seasons
+      operationId: tournamentSeasons
       description: Retrieves all available seasons for the tournament.
       parameters:
       - name: tournamentId
@@ -1451,6 +1495,7 @@ paths:
       tags:
       - Tournament
       summary: Get player statistics types
+      operationId: playerStatisticsTypes
       description: Retrieves available player statistics categories for the tournament.
       parameters:
       - name: tournamentId
@@ -1491,6 +1536,7 @@ paths:
       tags:
       - Tournament
       summary: Get top players overall
+      operationId: topPlayersOverall
       description: Retrieves the best performing players for the entire season.
       parameters:
       - name: tournamentId
@@ -1531,6 +1577,7 @@ paths:
       tags:
       - Tournament
       summary: Get top players per game
+      operationId: topPlayersPerGame
       description: Retrieves the best performing players based on per-game averages.
       parameters:
       - name: tournamentId
@@ -1571,6 +1618,7 @@ paths:
       tags:
       - Tournament
       summary: Get top teams overall
+      operationId: topTeamsOverall
       description: Retrieves the best performing teams for the entire season.
       parameters:
       - name: tournamentId
@@ -1611,6 +1659,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events total statistics
+      operationId: teamEventsTotalStatistics
       description: Retrieves aggregated team performance statistics for all games.
       parameters:
       - name: tournamentId
@@ -1651,6 +1700,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events home statistics
+      operationId: teamEventsHomeStatistics
       description: Retrieves aggregated team performance statistics for home games.
       parameters:
       - name: tournamentId
@@ -1691,6 +1741,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events away statistics
+      operationId: teamEventsAwayStatistics
       description: Retrieves aggregated team performance statistics for away games.
       parameters:
       - name: tournamentId
@@ -1731,6 +1782,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament last matches
+      operationId: tournamentLastMatches
       description: Retrieves recently played matches in the tournament.
       parameters:
       - name: tournamentId
@@ -1784,6 +1836,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament upcoming matches
+      operationId: tournamentUpcomingMatches
       description: Retrieves scheduled upcoming matches in the tournament.
       parameters:
       - name: tournamentId
@@ -1837,6 +1890,7 @@ paths:
       tags:
       - Player
       summary: Get handball player details
+      operationId: handballPlayerDetails
       description: Retrieves comprehensive information about a handball player.
       parameters:
       - name: id
@@ -1870,6 +1924,7 @@ paths:
       tags:
       - Player
       summary: Get player near matches
+      operationId: playerNearMatches
       description: Retrieves recent and upcoming matches for the player.
       parameters:
       - name: id
@@ -1903,6 +1958,7 @@ paths:
       tags:
       - Player
       summary: Get previous player matches
+      operationId: previousPlayerMatches
       description: Fetches a list of completed matches for the player, sorted by date
         descending.
       parameters:
@@ -1950,6 +2006,7 @@ paths:
       tags:
       - Player
       summary: Get player statistics seasons
+      operationId: playerStatisticsSeasons
       description: Retrieves available seasons for player statistics.
       parameters:
       - name: id
@@ -1983,6 +2040,7 @@ paths:
       tags:
       - Player
       summary: Get player overall statistics
+      operationId: playerOverallStatistics
       description: Retrieves player's overall statistics for a specific tournament
         season.
       parameters:
@@ -2031,6 +2089,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament cup trees
+      operationId: tournamentCupTrees
       description: Retrieves playoff/knockout bracket structure for the tournament.
       parameters:
       - name: tournamentId
@@ -2071,6 +2130,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament media
+      operationId: tournamentMedia
       description: Retrieves media content for the tournament.
       parameters:
       - name: tournamentId
@@ -2104,6 +2164,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament season matches
+      operationId: tournamentSeasonMatches
       description: Retrieves all matches for a tournament season.
       parameters:
       - name: tournamentId
@@ -2144,6 +2205,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament groups
+      operationId: tournamentGroups
       description: Retrieves group stage information for the tournament.
       parameters:
       - name: tournamentId
@@ -2184,6 +2246,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament rounds
+      operationId: tournamentRounds
       description: Retrieves all rounds/game weeks for the tournament season.
       parameters:
       - name: tournamentId
@@ -2224,6 +2287,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament matches by round
+      operationId: tournamentMatchesByRound
       description: Retrieves matches for a specific round in the tournament.
       parameters:
       - name: tournamentId
@@ -2271,6 +2335,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament matches by round with slug
+      operationId: tournamentMatchesByRoundWithSlug
       description: Retrieves matches for a specific round with tournament slug.
       parameters:
       - name: tournamentId
@@ -2325,6 +2390,7 @@ paths:
       tags:
       - Match
       summary: Get match highlights
+      operationId: matchHighlights
       description: Retrieves video highlights and key moments from the match.
       parameters:
       - name: id
@@ -2358,6 +2424,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament logo
+      operationId: tournamentLogo
       description: Retrieves the tournament's logo image.
       parameters:
       - name: tournamentId
@@ -2392,6 +2459,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament dark logo
+      operationId: tournamentDarkLogo
       description: Retrieves the tournament's dark theme logo image.
       parameters:
       - name: tournamentId
@@ -2425,6 +2493,7 @@ paths:
       tags:
       - Team
       summary: Get team logo
+      operationId: teamLogo
       description: Retrieves the team's logo image.
       parameters:
       - name: id
@@ -2459,6 +2528,7 @@ paths:
       tags:
       - Player
       summary: Get player image
+      operationId: playerImage
       description: Retrieves the player's profile image.
       parameters:
       - name: id
@@ -2493,6 +2563,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament matches by date
+      operationId: tournamentMatchesByDate
       description: Retrieves all tournament matches scheduled for a specific date.
       parameters:
       - name: tournamentId

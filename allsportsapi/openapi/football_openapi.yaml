@@ -12,6 +12,7 @@ paths:
       tags:
       - TV
       summary: Get match TV countries
+      operationId: matchTvCountries
       description: Lists the countries and the TV channels within them that are broadcasting
         a specific match.
       parameters:
@@ -46,6 +47,7 @@ paths:
       tags:
       - TV
       summary: Get match TV channel votes
+      operationId: matchTvChannelVotes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting
         the match.
       parameters:
@@ -87,6 +89,7 @@ paths:
       tags:
       - Country
       summary: Get country flag
+      operationId: countryFlag
       description: Fetches the PNG flag image asset corresponding to a provided country
         code. The response is the raw image data.
       parameters:
@@ -122,6 +125,7 @@ paths:
       tags:
       - Country
       summary: Get country flag (img API)
+      operationId: countryFlagImgApi
       description: Fetches the flag image by country code. The response is the raw
         image data.
       parameters:
@@ -156,6 +160,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImage
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -177,6 +182,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImageTournamentSvg
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -198,6 +204,7 @@ paths:
       tags:
       - Team
       summary: Get team placeholder image
+      operationId: teamPlaceholderImage
       description: Returns a static placeholder graphic for a team. The response is
         an SVG image.
       responses:
@@ -219,6 +226,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImage
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -240,6 +248,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImagePlayerSvg
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -261,6 +270,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImage
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -282,6 +292,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImageManagerSvg
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -303,6 +314,7 @@ paths:
       tags:
       - Fighter
       summary: Get male fighter placeholder image
+      operationId: maleFighterPlaceholderImage
       description: Retrieves a placeholder image for a male fighter.
       responses:
         '200':
@@ -323,6 +335,7 @@ paths:
       tags:
       - Fighter
       summary: Get female fighter placeholder image
+      operationId: femaleFighterPlaceholderImage
       description: Retrieves a placeholder image for a female fighter.
       responses:
         '200':
@@ -343,6 +356,7 @@ paths:
       tags:
       - Search
       summary: Search football entities
+      operationId: footballEntities
       description: Searches for football teams, players, and tournaments. The `type`
         parameter in the upstream URL is hardcoded to `all`.
       parameters:
@@ -383,6 +397,7 @@ paths:
       tags:
       - Match
       summary: Get all football matches by date
+      operationId: allFootballMatchesByDate
       description: Fetches all football matches scheduled for a specific date by combining
         results from two upstream endpoints (regular and inverse).
       parameters:
@@ -432,6 +447,7 @@ paths:
       tags:
       - Match
       summary: Get live football matches
+      operationId: liveFootballMatches
       description: Retrieves all currently live football matches.
       responses:
         '200':
@@ -451,6 +467,7 @@ paths:
       tags:
       - Match
       summary: Get top football matches by date
+      operationId: topFootballMatchesByDate
       description: Retrieves a curated list of top-tier or more important football
         matches for a specific date.
       parameters:
@@ -499,6 +516,7 @@ paths:
       tags:
       - Match
       summary: Get bottom football matches by date
+      operationId: bottomFootballMatchesByDate
       description: Retrieves a list of less prominent or lower-tier football matches
         for a specific date.
       parameters:
@@ -547,6 +565,7 @@ paths:
       tags:
       - Tournament
       summary: Get football tournament categories
+      operationId: footballTournamentCategories
       description: Retrieves a list of all available football tournament categories,
         typically corresponding to countries or regions.
       responses:
@@ -567,6 +586,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournaments by category
+      operationId: tournamentsByCategory
       description: Retrieves all unique tournaments within a specific category ID
         (e.g., a country).
       parameters:
@@ -602,6 +622,7 @@ paths:
       tags:
       - Category
       summary: Get matches by category and date
+      operationId: matchesByCategoryAndDate
       description: Retrieves all football matches for a specific category on a given
         date.
       parameters:
@@ -664,6 +685,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament metadata
+      operationId: tournamentMetadata
       description: Retrieves SEO metadata and other information for a specific tournament.
       parameters:
       - name: tournamentId
@@ -696,6 +718,7 @@ paths:
       tags:
       - Ranking
       summary: Get FIFA rankings
+      operationId: fifaRankings
       description: Retrieves the current official FIFA national team rankings.
       responses:
         '200':
@@ -715,6 +738,7 @@ paths:
       tags:
       - Ranking
       summary: Get UEFA countries rankings
+      operationId: uefaCountriesRankings
       description: Retrieves the current UEFA coefficient rankings for national associations.
       responses:
         '200':
@@ -734,6 +758,7 @@ paths:
       tags:
       - Ranking
       summary: Get UEFA clubs rankings
+      operationId: uefaClubsRankings
       description: Retrieves the current UEFA coefficient rankings for club teams.
       responses:
         '200':
@@ -753,6 +778,7 @@ paths:
       tags:
       - Match
       summary: Get football match details
+      operationId: footballMatchDetails
       description: Retrieves detailed information for a specific football match by
         its ID, including teams, score, status, and tournament info.
       parameters:
@@ -787,6 +813,7 @@ paths:
       tags:
       - Match
       summary: Get match statistics
+      operationId: matchStatistics
       description: Retrieves comprehensive team and player statistics for a specific
         match, such as possession, shots, and passes.
       parameters:
@@ -821,6 +848,7 @@ paths:
       tags:
       - Match
       summary: Get match incidents
+      operationId: matchIncidents
       description: Retrieves a chronological list of all significant incidents from
         a match, such as goals, cards, and substitutions.
       parameters:
@@ -855,6 +883,7 @@ paths:
       tags:
       - Match
       summary: Get head-to-head history
+      operationId: headToHeadHistory
       description: Retrieves the detailed match history for head-to-head encounters
         between the two teams in a specific match.
       parameters:
@@ -889,6 +918,7 @@ paths:
       tags:
       - Match
       summary: Get head-to-head summary
+      operationId: headToHeadSummary
       description: Retrieves a summary of head-to-head statistics, including win/draw/loss
         counts and recent form.
       parameters:
@@ -923,6 +953,7 @@ paths:
       tags:
       - Match
       summary: Get match form analysis
+      operationId: matchFormAnalysis
       description: Retrieves pre-game form, including recent results (e.g., WWDLW)
         and key stats for both teams.
       parameters:
@@ -957,6 +988,7 @@ paths:
       tags:
       - Match
       summary: Get match betting odds
+      operationId: matchBettingOdds
       description: Retrieves available betting odds from bookmaker `1` for a specific
         match, including various markets.
       parameters:
@@ -991,6 +1023,7 @@ paths:
       tags:
       - Match
       summary: Get match shot map
+      operationId: matchShotMap
       description: Retrieves the shot map for a match, showing the location and outcome
         of every shot taken.
       parameters:
@@ -1025,6 +1058,7 @@ paths:
       tags:
       - Match
       summary: Get match momentum graph
+      operationId: matchMomentumGraph
       description: Retrieves data points for the match momentum graph, visualizing
         team pressure and scoring progression.
       parameters:
@@ -1060,6 +1094,7 @@ paths:
       tags:
       - Match
       summary: Get match lineups
+      operationId: matchLineups
       description: Retrieves starting lineups, formations, substitutes, and coach
         details for both teams.
       parameters:
@@ -1094,6 +1129,7 @@ paths:
       tags:
       - Match
       summary: Get match win probability
+      operationId: matchWinProbability
       description: Retrieves real-time win, draw, and loss probabilities at different
         points during the match.
       parameters:
@@ -1127,6 +1163,7 @@ paths:
       tags:
       - Match
       summary: Get player match statistics
+      operationId: playerMatchStatistics
       description: Fetches detailed performance data for a single player within a
         specific match, including a statistics summary and heatmap.
       parameters:
@@ -1169,6 +1206,7 @@ paths:
       tags:
       - Match
       summary: Get match player rating breakdown
+      operationId: matchPlayerRatingBreakdown
       description: Returns the component breakdown that forms a player's SofaScore
         rating for a given match.
       parameters:
@@ -1210,6 +1248,7 @@ paths:
       tags:
       - Match
       summary: Get football match player shotmap
+      operationId: footballMatchPlayerShotmap
       description: Retrieves the shot map for a single player in a match, showing
         shot locations and outcomes.
       parameters:
@@ -1251,6 +1290,7 @@ paths:
       tags:
       - Match
       summary: Get match player heatmap
+      operationId: matchPlayerHeatmap
       description: Provides positional heatmap data showing areas of on-field activity
         for a specific player during a match.
       parameters:
@@ -1290,6 +1330,7 @@ paths:
       tags:
       - Match
       summary: Get match average positions
+      operationId: matchAveragePositions
       description: Provides positional heatmap data showing the average on-field position
         for all players during a match.
       parameters:
@@ -1324,6 +1365,7 @@ paths:
       tags:
       - Match
       summary: Get match highlights
+      operationId: matchHighlights
       description: Retrieves a list of video highlight clips and related metadata
         for a specific match.
       parameters:
@@ -1358,6 +1400,7 @@ paths:
       tags:
       - Match
       summary: Get match managers
+      operationId: matchManagers
       description: Returns information about the managers (coaches) for both teams
         in a specified match.
       parameters:
@@ -1392,6 +1435,7 @@ paths:
       tags:
       - Match
       summary: Get match votes
+      operationId: matchVotes
       description: Returns fan poll percentages and vote totals for the match outcome
         (home win, draw, away win).
       parameters:
@@ -1426,6 +1470,7 @@ paths:
       tags:
       - Match
       summary: Get match best players
+      operationId: matchBestPlayers
       description: Returns ratings and key statistics for the standout players in
         a match.
       parameters:
@@ -1460,6 +1505,7 @@ paths:
       tags:
       - Match
       summary: Get team streaks
+      operationId: teamStreaks
       description: Provides recent form and streak information (e.g., unbeaten runs,
         winless streaks) for each team in a match.
       parameters:
@@ -1494,6 +1540,7 @@ paths:
       tags:
       - Match
       summary: Get match streaks with odds
+      operationId: matchStreaksWithOdds
       description: Returns recent team streaks combined with associated betting odds
         from bookmaker `1`.
       parameters:
@@ -1528,6 +1575,7 @@ paths:
       tags:
       - Match
       summary: Get match team heatmap by ID
+      operationId: matchTeamHeatmapById
       description: Provides an aggregated positional data heatmap for an entire team
         in a match, specified by its ID.
       parameters:
@@ -1567,6 +1615,7 @@ paths:
       tags:
       - Match
       summary: Get match commentary
+      operationId: matchCommentary
       description: Fetches a live text commentary feed with entries for key moments
         in the specified match.
       parameters:
@@ -1600,6 +1649,7 @@ paths:
       tags:
       - Match
       summary: Get match featured players
+      operationId: matchFeaturedPlayers
       description: Retrieves a list of players highlighted for the specified match.
       parameters:
       - name: id
@@ -1632,6 +1682,7 @@ paths:
       tags:
       - Match
       summary: Get match best-player summary
+      operationId: matchBestPlayerSummary
       description: Returns a summary of the best player's performance, highlighting
         standout statistics.
       parameters:
@@ -1665,6 +1716,7 @@ paths:
       tags:
       - Team
       summary: Get team details
+      operationId: teamDetails
       description: Fetches comprehensive details for a specific team, including name,
         country, venue, and tournament information.
       parameters:
@@ -1699,6 +1751,7 @@ paths:
       tags:
       - Team
       summary: Get team logo
+      operationId: teamLogo
       description: Downloads the official logo (crest) for the specified team ID.
         The response is the raw image data.
       parameters:
@@ -1733,6 +1786,7 @@ paths:
       tags:
       - Team
       summary: Get team squad
+      operationId: teamSquad
       description: Returns the current roster of players (squad) associated with the
         specified team.
       parameters:
@@ -1767,6 +1821,7 @@ paths:
       tags:
       - Team
       summary: Get team media
+      operationId: teamMedia
       description: Returns a collection of media items (images, videos) related to
         the specified team.
       parameters:
@@ -1801,6 +1856,7 @@ paths:
       tags:
       - Team
       summary: Get team near matches
+      operationId: teamNearMatches
       description: Returns a list of recent and upcoming matches for the specified
         team, centered around the current date.
       parameters:
@@ -1835,6 +1891,7 @@ paths:
       tags:
       - Team
       summary: Get previous team matches
+      operationId: previousTeamMatches
       description: Fetches a paginated list of completed matches for a team, sorted
         by most recent first.
       parameters:
@@ -1882,6 +1939,7 @@ paths:
       tags:
       - Team
       summary: Get upcoming team matches
+      operationId: upcomingTeamMatches
       description: Fetches a paginated list of scheduled future matches for a team,
         sorted chronologically.
       parameters:
@@ -1929,6 +1987,7 @@ paths:
       tags:
       - Team
       summary: Get team player statistics seasons
+      operationId: teamPlayerStatisticsSeasons
       description: Returns a list of seasons for which player-level statistics are
         available for the specified team.
       parameters:
@@ -1964,6 +2023,7 @@ paths:
       tags:
       - Team
       summary: Get team statistics seasons
+      operationId: teamStatisticsSeasons
       description: Provides a list of seasons for which aggregated team-level statistics
         are available.
       parameters:
@@ -1999,6 +2059,7 @@ paths:
       tags:
       - Team
       summary: Get team overall statistics
+      operationId: teamOverallStatistics
       description: Returns aggregated statistics for a team within a specific tournament
         and season.
       parameters:
@@ -2048,6 +2109,7 @@ paths:
       tags:
       - Team
       summary: Get team top players overall
+      operationId: teamTopPlayersOverall
       description: Returns a list of the top-performing players for a team in a specific
         tournament and season.
       parameters:
@@ -2096,6 +2158,7 @@ paths:
       tags:
       - Team
       summary: Get team unique tournaments
+      operationId: teamUniqueTournaments
       description: Enumerates all unique competitions a team has participated in.
       parameters:
       - name: id
@@ -2129,6 +2192,7 @@ paths:
       tags:
       - Team
       summary: Get team transfer history
+      operationId: teamTransferHistory
       description: Returns a chronological list of a team's incoming and outgoing
         player transfers.
       parameters:
@@ -2164,6 +2228,7 @@ paths:
       tags:
       - Team
       summary: Get team standings seasons
+      operationId: teamStandingsSeasons
       description: Retrieves a list of seasons for which standings information is
         available for the team.
       parameters:
@@ -2197,6 +2262,7 @@ paths:
       tags:
       - Team
       summary: Get team goal distributions
+      operationId: teamGoalDistributions
       description: Provides goal distribution data (goals scored/conceded in different
         time intervals) for a team in a tournament season.
       parameters:
@@ -2242,6 +2308,7 @@ paths:
       tags:
       - Tournament
       summary: Get team league performance graph
+      operationId: teamLeaguePerformanceGraph
       description: Returns time-series data illustrating a team's league position
         and performance throughout a tournament season.
       parameters:
@@ -2291,6 +2358,7 @@ paths:
       tags:
       - Player
       summary: Get player details
+      operationId: playerDetails
       description: Fetches profile data for a specific player, such as name, team,
         nationality, and position.
       parameters:
@@ -2325,6 +2393,7 @@ paths:
       tags:
       - Player
       summary: Get player image
+      operationId: playerImage
       description: Downloads the profile picture for the specified player ID. The
         response is the raw image data.
       parameters:
@@ -2359,6 +2428,7 @@ paths:
       tags:
       - Player
       summary: Get player media
+      operationId: playerMedia
       description: Retrieves a collection of media items (images, videos) related
         to the specified player.
       parameters:
@@ -2393,6 +2463,7 @@ paths:
       tags:
       - Player
       summary: Get player national team statistics
+      operationId: playerNationalTeamStatistics
       description: Returns performance data and statistics for a player's appearances
         with their national team.
       parameters:
@@ -2427,6 +2498,7 @@ paths:
       tags:
       - Player
       summary: Get player last year summary
+      operationId: playerLastYearSummary
       description: Fetches aggregated performance metrics for a player from the previous
         year.
       parameters:
@@ -2462,6 +2534,7 @@ paths:
       tags:
       - Player
       summary: Get player nearby matches
+      operationId: playerNearbyMatches
       description: Returns a list of the player's recent and upcoming matches.
       parameters:
       - name: id
@@ -2495,6 +2568,7 @@ paths:
       tags:
       - Player
       summary: Get player seasonal statistics
+      operationId: playerSeasonalStatistics
       description: Fetches a list of seasons for which aggregated statistics are available
         for a player.
       parameters:
@@ -2529,6 +2603,7 @@ paths:
       tags:
       - Player
       summary: Get player last ratings
+      operationId: playerLastRatings
       description: Fetches the most recent ratings for a player in a specific tournament
         season.
       parameters:
@@ -2577,6 +2652,7 @@ paths:
       tags:
       - Player
       summary: Get player ratings
+      operationId: playerRatings
       description: Returns the historical rating history for a player in a specific
         tournament season.
       parameters:
@@ -2622,6 +2698,7 @@ paths:
       tags:
       - Player
       summary: Get player overall statistics
+      operationId: playerOverallStatistics
       description: Returns aggregated performance metrics for a player across all
         phases (e.g., regular season, playoffs) of a tournament season.
       parameters:
@@ -2671,6 +2748,7 @@ paths:
       tags:
       - Player
       summary: Get player characteristics
+      operationId: playerCharacteristics
       description: Returns a list of a player's noted strengths and weaknesses based
         on statistical analysis.
       parameters:
@@ -2705,6 +2783,7 @@ paths:
       tags:
       - Player
       summary: Get player attributes
+      operationId: playerAttributes
       description: Returns radar-chart attribute scores (e.g., attacking, defending)
         and other skill ratings for a player.
       parameters:
@@ -2739,6 +2818,7 @@ paths:
       tags:
       - Player
       summary: Get player transfer history
+      operationId: playerTransferHistory
       description: Returns a chronological list of a player's transfers between clubs.
       parameters:
       - name: id
@@ -2772,6 +2852,7 @@ paths:
       tags:
       - Player
       summary: Get player penalty history
+      operationId: playerPenaltyHistory
       description: Returns information about a player's history of taking penalty
         kicks.
       parameters:
@@ -2806,6 +2887,7 @@ paths:
       tags:
       - Player
       summary: Get player match history
+      operationId: playerMatchHistory
       description: Fetches a paginated list of completed matches a player has participated
         in, sorted by most recent first.
       parameters:
@@ -2853,6 +2935,7 @@ paths:
       tags:
       - Player
       summary: Get player season heatmap overall
+      operationId: playerSeasonHeatmapOverall
       description: Fetches a player's combined positional data heatmap for a specific
         tournament season.
       parameters:
@@ -2899,6 +2982,7 @@ paths:
       tags:
       - Player
       summary: Get player penalty history by season
+      operationId: playerPenaltyHistoryBySeason
       description: Provides a player's historical penalty kick data within a specific
         tournament and season.
       parameters:
@@ -2945,6 +3029,7 @@ paths:
       tags:
       - Player
       summary: Get trending players
+      operationId: trendingPlayers
       description: Retrieves a list of football players who are currently trending.
       responses:
         '200':
@@ -2964,6 +3049,7 @@ paths:
       tags:
       - Manager
       summary: Get manager details
+      operationId: managerDetails
       description: Returns biographical and statistical information for a specific
         manager (coach).
       parameters:
@@ -2998,6 +3084,7 @@ paths:
       tags:
       - Manager
       summary: Get manager image
+      operationId: managerImage
       description: Returns the profile image for the specified manager ID. The response
         is the raw image data.
       parameters:
@@ -3033,6 +3120,7 @@ paths:
       tags:
       - Manager
       summary: Get manager career history
+      operationId: managerCareerHistory
       description: Lists the teams previously and currently managed by a specific
         manager.
       parameters:
@@ -3067,6 +3155,7 @@ paths:
       tags:
       - Manager
       summary: Get manager previous matches
+      operationId: managerPreviousMatches
       description: Fetches a paginated list of completed matches for a specific manager,
         sorted by most recent first.
       parameters:
@@ -3114,6 +3203,7 @@ paths:
       tags:
       - Manager
       summary: Get manager upcoming matches
+      operationId: managerUpcomingMatches
       description: Fetches a paginated list of scheduled future matches for a specific
         manager, sorted chronologically.
       parameters:
@@ -3161,6 +3251,7 @@ paths:
       tags:
       - Tournament
       summary: Get league details
+      operationId: leagueDetails
       description: Returns basic information about a tournament, including its name,
         sport, and current season details.
       parameters:
@@ -3195,6 +3286,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament logo
+      operationId: tournamentLogo
       description: Downloads the official logo or emblem for the specified tournament
         ID. The response is the raw image data.
       parameters:
@@ -3230,6 +3322,7 @@ paths:
       tags:
       - Tournament
       summary: Get league dark logo
+      operationId: leagueDarkLogo
       description: Fetches the dark-theme variant of the tournament's logo. The response
         is the raw image data.
       parameters:
@@ -3264,6 +3357,7 @@ paths:
       tags:
       - Tournament
       summary: Get league media
+      operationId: leagueMedia
       description: Fetches a collection of media items (images, videos) related to
         the specified tournament.
       parameters:
@@ -3298,6 +3392,7 @@ paths:
       tags:
       - Tournament
       summary: Get league seasons
+      operationId: leagueSeasons
       description: Lists every available season associated with the specified tournament.
       parameters:
       - name: tournamentId
@@ -3331,6 +3426,7 @@ paths:
       tags:
       - Tournament
       summary: Get total league standings
+      operationId: totalLeagueStandings
       description: Returns the complete league table (standings) with cumulative statistics
         for all teams in a season.
       parameters:
@@ -3372,6 +3468,7 @@ paths:
       tags:
       - Tournament
       summary: Get home league standings
+      operationId: homeLeagueStandings
       description: Returns a league table calculated using only the results from games
         played at home during the season.
       parameters:
@@ -3413,6 +3510,7 @@ paths:
       tags:
       - Tournament
       summary: Get away league standings
+      operationId: awayLeagueStandings
       description: Returns a league table calculated solely from the results of away
         games during the season.
       parameters:
@@ -3454,6 +3552,7 @@ paths:
       tags:
       - Tournament
       summary: Get aggregated player statistics
+      operationId: aggregatedPlayerStatistics
       description: Returns season-wide player performance metrics with optional filtering,
         ordering, and pagination.
       parameters:
@@ -3551,6 +3650,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament season info
+      operationId: tournamentSeasonInfo
       description: Provides metadata about a specific tournament season, such as the
         number of rounds and standings format.
       parameters:
@@ -3592,6 +3692,7 @@ paths:
       tags:
       - Tournament
       summary: Get overall league top players
+      operationId: overallLeagueTopPlayers
       description: Provides a list of the top-performing players for a specified tournament
         season based on overall ratings.
       parameters:
@@ -3633,6 +3734,7 @@ paths:
       tags:
       - Tournament
       summary: Get overall league top teams
+      operationId: overallLeagueTopTeams
       description: Returns a leaderboard of the top-performing teams based on aggregate
         statistics for a tournament season.
       parameters:
@@ -3674,6 +3776,7 @@ paths:
       tags:
       - Tournament
       summary: Get per-game player leaders
+      operationId: perGamePlayerLeaders
       description: Provides a list of players ranked by their per-game statistical
         averages across an entire tournament season.
       parameters:
@@ -3715,6 +3818,7 @@ paths:
       tags:
       - Tournament
       summary: Get recent league matches
+      operationId: recentLeagueMatches
       description: Fetches a paginated list of past matches for a tournament season,
         ordered by most recent first.
       parameters:
@@ -3769,6 +3873,7 @@ paths:
       tags:
       - Tournament
       summary: Get upcoming league matches
+      operationId: upcomingLeagueMatches
       description: Returns a paginated list of scheduled future matches for a tournament
         season, ordered chronologically.
       parameters:
@@ -3823,6 +3928,7 @@ paths:
       tags:
       - Tournament
       summary: List team of the week rounds
+      operationId: teamOfTheWeekRounds
       description: Fetches the round numbers for which a "Team of the Week" has been
         published for a tournament season.
       parameters:
@@ -3864,6 +3970,7 @@ paths:
       tags:
       - Tournament
       summary: List league rounds
+      operationId: leagueRounds
       description: Retrieves all round numbers (e.g., match weeks) defined for a specific
         tournament season.
       parameters:
@@ -3905,6 +4012,7 @@ paths:
       tags:
       - Tournament
       summary: Get team of the week
+      operationId: teamOfTheWeek
       description: Returns the selected player lineup for the "Team of the Week" for
         a specific round of a tournament.
       parameters:
@@ -3953,6 +4061,7 @@ paths:
       tags:
       - Tournament
       summary: Get league groups
+      operationId: leagueGroups
       description: Fetches the group stage assignments and structure for a specific
         tournament season.
       parameters:
@@ -3994,6 +4103,7 @@ paths:
       tags:
       - Tournament
       summary: Get league cup trees
+      operationId: leagueCupTrees
       description: Fetches the knockout stage bracket (cup tree) for a specific tournament
         season.
       parameters:
@@ -4035,6 +4145,7 @@ paths:
       tags:
       - Tournament
       summary: Get league team events totals
+      operationId: leagueTeamEventsTotals
       description: Returns cumulative team-level event counts (e.g., goals, cards)
         for a tournament season.
       parameters:
@@ -4076,6 +4187,7 @@ paths:
       tags:
       - Tournament
       summary: Get league team home event totals
+      operationId: leagueTeamHomeEventTotals
       description: Provides cumulative team-level statistics considering only home
         matches in a given season.
       parameters:
@@ -4117,6 +4229,7 @@ paths:
       tags:
       - Tournament
       summary: Get league team away event totals
+      operationId: leagueTeamAwayEventTotals
       description: Provides cumulative team-level statistics considering only away
         matches in a given season.
       parameters:
@@ -4158,6 +4271,7 @@ paths:
       tags:
       - Tournament
       summary: Get player statistics metadata
+      operationId: playerStatisticsMetadata
       description: Retrieves information about the available statistic fields for
         players in a specific tournament season.
       parameters:
@@ -4197,6 +4311,7 @@ paths:
       tags:
       - Tournament
       summary: List power ranking rounds
+      operationId: powerRankingRounds
       description: Provides a list of round numbers for which power ranking data is
         available in a tournament season.
       parameters:
@@ -4238,6 +4353,7 @@ paths:
       tags:
       - Tournament
       summary: Get power rankings by round
+      operationId: powerRankingsByRound
       description: Returns team power ranking positions and metrics for a selected
         round of a tournament season.
       parameters:
@@ -4286,6 +4402,7 @@ paths:
       tags:
       - Tournament
       summary: Get player of the season
+      operationId: playerOfTheSeason
       description: Returns details about the officially awarded "Player of the Season"
         for a tournament.
       parameters:
@@ -4325,6 +4442,7 @@ paths:
       tags:
       - Tournament
       summary: Get league events by round
+      operationId: leagueEventsByRound
       description: Lists all matches for a specific round of a tournament season.
       parameters:
       - name: tournamentId
@@ -4372,6 +4490,7 @@ paths:
       tags:
       - Tournament
       summary: Get league events by round and slug
+      operationId: leagueEventsByRoundAndSlug
       description: Lists matches for a specific round, further filtered by a stage
         slug (e.g., 'championship-round').
       parameters:
@@ -4428,6 +4547,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament events on date
+      operationId: tournamentEventsOnDate
       description: Lists all events for a specific tournament scheduled on a given
         date, with optional timezone formatting.
       parameters:
@@ -4497,6 +4617,7 @@ paths:
       tags:
       - Group
       summary: Get tournament season events
+      operationId: tournamentSeasonEvents
       description: Returns a list of all events for a specified tournament and season,
         typically used for group stages.
       parameters:
@@ -4538,6 +4659,7 @@ paths:
       tags:
       - Referee
       summary: Get referee details
+      operationId: refereeDetails
       description: Returns the name, nationality, and career data for a specified
         referee.
       parameters:
@@ -4572,6 +4694,7 @@ paths:
       tags:
       - Referee
       summary: Get referee image
+      operationId: refereeImage
       description: Downloads the official photo for the specified referee ID. The
         response is the raw image data.
       parameters:
@@ -4607,6 +4730,7 @@ paths:
       tags:
       - Referee
       summary: Get referee statistics
+      operationId: refereeStatistics
       description: Returns aggregated officiating data for a referee, such as total
         matches, cards issued, etc.
       parameters:
@@ -4641,6 +4765,7 @@ paths:
       tags:
       - Referee
       summary: Get previous referee matches
+      operationId: previousRefereeMatches
       description: Fetches a paginated list of completed matches officiated by a referee,
         sorted by most recent first.
       parameters:
@@ -4688,6 +4813,7 @@ paths:
       tags:
       - Referee
       summary: Get upcoming referee matches
+      operationId: upcomingRefereeMatches
       description: Lists a paginated list of scheduled future matches assigned to
         a referee, sorted chronologically.
       parameters:
@@ -4735,6 +4861,7 @@ paths:
       tags:
       - Match
       summary: Get sport odds by date
+      operationId: sportOddsByDate
       description: Fetches pre-match betting odds for all football matches on a specific
         calendar date.
       parameters:
@@ -4781,6 +4908,7 @@ paths:
       tags:
       - Match
       summary: Get featured betting events
+      operationId: featuredBettingEvents
       description: Returns a curated list of highlighted football matches with their
         betting odds information.
       responses:
@@ -4801,6 +4929,7 @@ paths:
       tags:
       - Category
       summary: Get category scheduled events
+      operationId: categoryScheduledEvents
       description: Lists all football matches for a given category occurring on a
         specific date (YYYY-MM-DD).
       parameters:
@@ -4858,6 +4987,7 @@ paths:
       tags:
       - Match
       summary: Get away player jersey
+      operationId: awayPlayerJersey
       description: Fetches the away jersey graphic for a player in a specific match.
         The response is the raw image data.
       parameters:
@@ -4893,6 +5023,7 @@ paths:
       tags:
       - Match
       summary: Get away goalkeeper jersey
+      operationId: awayGoalkeeperJersey
       description: Fetches the away jersey graphic for a goalkeeper in a specific
         match. The response is the raw image data.
       parameters:
@@ -4928,6 +5059,7 @@ paths:
       tags:
       - Match
       summary: Get home player jersey
+      operationId: homePlayerJersey
       description: Fetches the home jersey graphic for a player in a specific match.
         The response is the raw image data.
       parameters:
@@ -4963,6 +5095,7 @@ paths:
       tags:
       - Match
       summary: Get home goalkeeper jersey
+      operationId: homeGoalkeeperJersey
       description: Fetches the home jersey graphic for a goalkeeper in a specific
         match. The response is the raw image data.
       parameters:

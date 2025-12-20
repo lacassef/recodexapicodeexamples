@@ -12,6 +12,7 @@ paths:
       tags:
       - TV
       summary: Get match TV countries
+      operationId: matchTvCountries
       description: Lists the countries and the TV channels within them that are broadcasting
         a specific match.
       parameters:
@@ -46,6 +47,7 @@ paths:
       tags:
       - TV
       summary: Get match TV channel votes
+      operationId: matchTvChannelVotes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting
         the match.
       parameters:
@@ -87,6 +89,7 @@ paths:
       tags:
       - Country
       summary: Get country flag
+      operationId: countryFlag
       description: Fetches the PNG flag image asset corresponding to a provided country
         code. The response is the raw image data.
       parameters:
@@ -122,6 +125,7 @@ paths:
       tags:
       - Country
       summary: Get country flag (img API)
+      operationId: countryFlagImgApi
       description: Fetches the flag image by country code. The response is the raw
         image data.
       parameters:
@@ -156,6 +160,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImage
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -177,6 +182,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImageTournamentSvg
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -198,6 +204,7 @@ paths:
       tags:
       - Team
       summary: Get team placeholder image
+      operationId: teamPlaceholderImage
       description: Returns a static placeholder graphic for a team. The response is
         an SVG image.
       responses:
@@ -219,6 +226,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImage
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -240,6 +248,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImagePlayerSvg
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -261,6 +270,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImage
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -282,6 +292,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImageManagerSvg
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -303,6 +314,7 @@ paths:
       tags:
       - Fighter
       summary: Get male fighter placeholder image
+      operationId: maleFighterPlaceholderImage
       description: Retrieves a placeholder image for a male fighter.
       responses:
         '200':
@@ -323,6 +335,7 @@ paths:
       tags:
       - Fighter
       summary: Get female fighter placeholder image
+      operationId: femaleFighterPlaceholderImage
       description: Retrieves a placeholder image for a female fighter.
       responses:
         '200':
@@ -343,6 +356,7 @@ paths:
       tags:
       - Search
       summary: Search MMA entities
+      operationId: mmaEntities
       description: Searches for MMA fighters, events, and tournaments.
       parameters:
       - name: term
@@ -382,6 +396,7 @@ paths:
       tags:
       - Category
       summary: Get MMA categories
+      operationId: mmaCategories
       description: Retrieves a list of all available MMA categories, which typically
         correspond to different organizations (e.g., UFC, KSW).
       responses:
@@ -402,6 +417,7 @@ paths:
       tags:
       - Category
       summary: Get unique tournaments by category
+      operationId: uniqueTournamentsByCategory
       description: Retrieves all unique MMA tournaments within a specific category
         (organization).
       parameters:
@@ -436,6 +452,7 @@ paths:
       tags:
       - Tournament
       summary: Get last main events for a tournament
+      operationId: lastMainEventsForATournament
       description: Retrieves a paginated list of the last main events for a specific
         MMA tournament.
       parameters:
@@ -483,6 +500,7 @@ paths:
       tags:
       - Tournament
       summary: Get next main events for a tournament
+      operationId: nextMainEventsForATournament
       description: Retrieves a paginated list of the next main events for a specific
         MMA tournament.
       parameters:
@@ -530,6 +548,7 @@ paths:
       tags:
       - Tournament
       summary: Get MMA tournament details
+      operationId: mmaTournamentDetails
       description: Retrieves detailed information for a specific MMA tournament.
       parameters:
       - name: tournamentId
@@ -563,6 +582,7 @@ paths:
       tags:
       - Ranking
       summary: Get MMA rankings summary for a tournament
+      operationId: mmaRankingsSummaryForATournament
       description: Retrieves a summary of rankings for a specific MMA tournament.
       parameters:
       - name: tournamentId
@@ -596,6 +616,7 @@ paths:
       tags:
       - Tournament
       summary: Get MMA tournament schedule by date
+      operationId: mmaTournamentScheduleByDate
       description: Retrieves the schedule of events for a specific MMA tournament
         on a given date.
       parameters:
@@ -654,6 +675,7 @@ paths:
       tags:
       - Tournament
       summary: Get MMA scheduled main events by month
+      operationId: mmaScheduledMainEventsByMonth
       description: Retrieves the main events scheduled for a specific MMA tournament
         in a given month and year.
       parameters:
@@ -706,6 +728,7 @@ paths:
       tags:
       - Tournament
       summary: Get all MMA events for a tournament
+      operationId: allMmaEventsForATournament
       description: Retrieves all MMA events associated with a specific tournament
         and unique tournament ID.
       parameters:
@@ -747,6 +770,7 @@ paths:
       tags:
       - Tournament
       summary: Get featured MMA events for a tournament
+      operationId: featuredMmaEventsForATournament
       description: Retrieves a list of featured MMA events for a specific tournament.
       parameters:
       - name: tournamentId
@@ -780,6 +804,7 @@ paths:
       tags:
       - Tournament
       summary: Get MMA tournament image
+      operationId: mmaTournamentImage
       description: Retrieves the logo image for a specific MMA tournament.
       parameters:
       - name: tournamentId
@@ -813,6 +838,7 @@ paths:
       tags:
       - Tournament
       summary: Get MMA tournament dark-theme image
+      operationId: mmaTournamentDarkThemeImage
       description: Retrieves the dark-theme logo image for a specific MMA tournament.
       parameters:
       - name: tournamentId
@@ -846,6 +872,7 @@ paths:
       tags:
       - Event
       summary: Get MMA event details by ID
+      operationId: mmaEventDetailsById
       description: Retrieves detailed information for a specific MMA event by its
         ID.
       parameters:
@@ -880,6 +907,7 @@ paths:
       tags:
       - Event
       summary: Get pre-game form for an MMA event
+      operationId: preGameFormForAnMmaEvent
       description: Retrieves pre-game form and recent performance data for the fighters
         in a specific event.
       parameters:
@@ -914,6 +942,7 @@ paths:
       tags:
       - Event
       summary: Get head-to-head history for an MMA event
+      operationId: headToHeadHistoryForAnMmaEvent
       description: Retrieves the detailed match history for head-to-head encounters
         between the two fighters in an event.
       parameters:
@@ -948,6 +977,7 @@ paths:
       tags:
       - Event
       summary: Get fighter streaks for an event
+      operationId: fighterStreaksForAnEvent
       description: Provides recent form and streak information for each fighter in
         an event.
       parameters:
@@ -982,6 +1012,7 @@ paths:
       tags:
       - Event
       summary: Get MMA event statistics
+      operationId: mmaEventStatistics
       description: Retrieves comprehensive statistics for a specific MMA event.
       parameters:
       - name: id
@@ -1015,6 +1046,7 @@ paths:
       tags:
       - Team
       summary: Get MMA fighter details
+      operationId: mmaFighterDetails
       description: Retrieves comprehensive details for a specific MMA fighter.
       parameters:
       - name: id
@@ -1048,6 +1080,7 @@ paths:
       tags:
       - Team
       summary: Get MMA fighter career statistics
+      operationId: mmaFighterCareerStatistics
       description: Retrieves the career statistics for a specific MMA fighter.
       parameters:
       - name: id
@@ -1081,6 +1114,7 @@ paths:
       tags:
       - Team
       summary: Get last events for an MMA fighter
+      operationId: lastEventsForAnMmaFighter
       description: Retrieves a paginated list of the last events for a specific MMA
         fighter.
       parameters:
@@ -1128,6 +1162,7 @@ paths:
       tags:
       - Team
       summary: Get next events for an MMA fighter
+      operationId: nextEventsForAnMmaFighter
       description: Retrieves a paginated list of the next events for a specific MMA
         fighter.
       parameters:
@@ -1175,6 +1210,7 @@ paths:
       tags:
       - Team
       summary: Get MMA fighter image
+      operationId: mmaFighterImage
       description: Retrieves the image for a specific MMA fighter.
       parameters:
       - name: id
@@ -1209,6 +1245,7 @@ paths:
       tags:
       - Tournament
       summary: Get MMA tournament details by ID
+      operationId: mmaTournamentDetailsById
       description: Retrieves detailed information for a specific MMA tournament by
         its ID.
       parameters:
@@ -1243,6 +1280,7 @@ paths:
       tags:
       - Asset
       summary: Get MMA octagon image
+      operationId: mmaOctagonImage
       description: Retrieves the image of the MMA octagon.
       responses:
         '200':

@@ -13,6 +13,7 @@ paths:
       tags:
       - TV
       summary: Get match TV countries
+      operationId: matchTvCountries
       description: Lists the countries and the TV channels within them that are broadcasting
         a specific match.
       parameters:
@@ -47,6 +48,7 @@ paths:
       tags:
       - TV
       summary: Get match TV channel votes
+      operationId: matchTvChannelVotes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting
         the match.
       parameters:
@@ -88,6 +90,7 @@ paths:
       tags:
       - Country
       summary: Get country flag
+      operationId: countryFlag
       description: Fetches the PNG flag image asset corresponding to a provided country
         code. The response is the raw image data.
       parameters:
@@ -123,6 +126,7 @@ paths:
       tags:
       - Country
       summary: Get country flag (img API)
+      operationId: countryFlagImgApi
       description: Fetches the flag image by country code. The response is the raw
         image data.
       parameters:
@@ -157,6 +161,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImage
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -178,6 +183,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImageTournamentSvg
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -199,6 +205,7 @@ paths:
       tags:
       - Team
       summary: Get team placeholder image
+      operationId: teamPlaceholderImage
       description: Returns a static placeholder graphic for a team. The response is
         an SVG image.
       responses:
@@ -220,6 +227,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImage
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -241,6 +249,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImagePlayerSvg
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -262,6 +271,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImage
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -283,6 +293,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImageManagerSvg
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -304,6 +315,7 @@ paths:
       tags:
       - Fighter
       summary: Get male fighter placeholder image
+      operationId: maleFighterPlaceholderImage
       description: Retrieves a placeholder image for a male fighter.
       responses:
         '200':
@@ -324,6 +336,7 @@ paths:
       tags:
       - Fighter
       summary: Get female fighter placeholder image
+      operationId: femaleFighterPlaceholderImage
       description: Retrieves a placeholder image for a female fighter.
       responses:
         '200':
@@ -344,6 +357,7 @@ paths:
       tags:
       - Search
       summary: Search basketball entities
+      operationId: basketballEntities
       description: Searches for basketball teams, players, and tournaments.
       parameters:
       - name: term
@@ -383,6 +397,7 @@ paths:
       tags:
       - Tournament
       summary: Get basketball tournament categories
+      operationId: basketballTournamentCategories
       responses:
         '200':
           description: List of tournament categories.
@@ -401,6 +416,7 @@ paths:
       tags:
       - Match
       summary: Get basketball matches by date
+      operationId: basketballMatchesByDate
       parameters:
       - name: day
         in: path
@@ -444,6 +460,7 @@ paths:
       tags:
       - Match
       summary: Get live basketball matches
+      operationId: liveBasketballMatches
       responses:
         '200':
           description: A list of live basketball matches.
@@ -462,6 +479,7 @@ paths:
       tags:
       - Match
       summary: Get basketball match details
+      operationId: basketballMatchDetails
       parameters:
       - name: id
         in: path
@@ -493,6 +511,7 @@ paths:
       tags:
       - Match
       summary: Get match form analysis
+      operationId: matchFormAnalysis
       parameters:
       - name: id
         in: path
@@ -524,6 +543,7 @@ paths:
       tags:
       - Match
       summary: Get match betting odds
+      operationId: matchBettingOdds
       parameters:
       - name: id
         in: path
@@ -555,6 +575,7 @@ paths:
       tags:
       - Match
       summary: Get match best players
+      operationId: matchBestPlayers
       parameters:
       - name: id
         in: path
@@ -586,6 +607,7 @@ paths:
       tags:
       - Match
       summary: Get head-to-head summary
+      operationId: headToHeadSummary
       parameters:
       - name: id
         in: path
@@ -617,6 +639,7 @@ paths:
       tags:
       - Match
       summary: Get match highlights
+      operationId: matchHighlights
       parameters:
       - name: id
         in: path
@@ -648,6 +671,7 @@ paths:
       tags:
       - Match
       summary: Get head-to-head history
+      operationId: headToHeadHistory
       parameters:
       - name: customId
         in: path
@@ -679,6 +703,7 @@ paths:
       tags:
       - Match
       summary: Get match lineups
+      operationId: matchLineups
       parameters:
       - name: id
         in: path
@@ -710,6 +735,7 @@ paths:
       tags:
       - Match
       summary: Get match statistics
+      operationId: matchStatistics
       parameters:
       - name: id
         in: path
@@ -741,6 +767,7 @@ paths:
       tags:
       - Match
       summary: Get match momentum graph
+      operationId: matchMomentumGraph
       parameters:
       - name: id
         in: path
@@ -772,6 +799,7 @@ paths:
       tags:
       - Match
       summary: Get match incidents
+      operationId: matchIncidents
       parameters:
       - name: id
         in: path
@@ -803,6 +831,7 @@ paths:
       tags:
       - Match
       summary: Get match managers/coaches
+      operationId: matchManagersCoaches
       parameters:
       - name: id
         in: path
@@ -834,6 +863,7 @@ paths:
       tags:
       - Match
       summary: Get match series information
+      operationId: matchSeriesInformation
       parameters:
       - name: id
         in: path
@@ -865,6 +895,7 @@ paths:
       tags:
       - Match
       summary: Get player match statistics
+      operationId: playerMatchStatistics
       parameters:
       - name: id
         in: path
@@ -900,6 +931,7 @@ paths:
       tags:
       - Match
       summary: Get team shot map
+      operationId: teamShotMap
       parameters:
       - name: id
         in: path
@@ -937,6 +969,7 @@ paths:
       tags:
       - Match
       summary: Get player shot map
+      operationId: playerShotMap
       parameters:
       - name: id
         in: path
@@ -974,6 +1007,7 @@ paths:
       tags:
       - Team
       summary: Get previous team matches
+      operationId: previousTeamMatches
       parameters:
       - name: id
         in: path
@@ -1017,6 +1051,7 @@ paths:
       tags:
       - Team
       summary: Get upcoming team matches
+      operationId: upcomingTeamMatches
       parameters:
       - name: id
         in: path
@@ -1060,6 +1095,7 @@ paths:
       tags:
       - Team
       summary: Get team player statistics seasons
+      operationId: teamPlayerStatisticsSeasons
       parameters:
       - name: id
         in: path
@@ -1091,6 +1127,7 @@ paths:
       tags:
       - Team
       summary: Get team standings seasons
+      operationId: teamStandingsSeasons
       parameters:
       - name: id
         in: path
@@ -1122,6 +1159,7 @@ paths:
       tags:
       - Team
       summary: Get team top players (regular season)
+      operationId: teamTopPlayersRegularSeason
       parameters:
       - name: id
         in: path
@@ -1165,6 +1203,7 @@ paths:
       tags:
       - Team
       summary: Get team top players (playoffs)
+      operationId: teamTopPlayersPlayoffs
       parameters:
       - name: id
         in: path
@@ -1208,6 +1247,7 @@ paths:
       tags:
       - Team
       summary: Get team tournaments
+      operationId: teamTournaments
       parameters:
       - name: id
         in: path
@@ -1239,6 +1279,7 @@ paths:
       tags:
       - Team
       summary: Get team transfers
+      operationId: teamTransfers
       parameters:
       - name: id
         in: path
@@ -1270,6 +1311,7 @@ paths:
       tags:
       - Team
       summary: Get team players
+      operationId: teamPlayers
       parameters:
       - name: id
         in: path
@@ -1301,6 +1343,7 @@ paths:
       tags:
       - Team
       summary: Get team near matches
+      operationId: teamNearMatches
       parameters:
       - name: id
         in: path
@@ -1332,6 +1375,7 @@ paths:
       tags:
       - Team
       summary: Get team media
+      operationId: teamMedia
       parameters:
       - name: id
         in: path
@@ -1363,6 +1407,7 @@ paths:
       tags:
       - Team
       summary: Get team details
+      operationId: teamDetails
       parameters:
       - name: id
         in: path
@@ -1394,6 +1439,7 @@ paths:
       tags:
       - Team
       summary: Get team image
+      operationId: teamImage
       parameters:
       - name: id
         in: path
@@ -1426,6 +1472,7 @@ paths:
       tags:
       - Team
       summary: Get team statistics (regular season)
+      operationId: teamStatisticsRegularSeason
       parameters:
       - name: id
         in: path
@@ -1466,6 +1513,7 @@ paths:
       tags:
       - Team
       summary: Get team statistics (playoffs)
+      operationId: teamStatisticsPlayoffs
       parameters:
       - name: id
         in: path
@@ -1506,6 +1554,7 @@ paths:
       tags:
       - Team
       summary: Get team ranks (regular season)
+      operationId: teamRanksRegularSeason
       parameters:
       - name: id
         in: path
@@ -1546,6 +1595,7 @@ paths:
       tags:
       - Team
       summary: Get team ranks (playoffs)
+      operationId: teamRanksPlayoffs
       parameters:
       - name: id
         in: path
@@ -1586,6 +1636,7 @@ paths:
       tags:
       - Player
       summary: Get player details
+      operationId: playerDetails
       parameters:
       - name: id
         in: path
@@ -1617,6 +1668,7 @@ paths:
       tags:
       - Player
       summary: Get player media
+      operationId: playerMedia
       parameters:
       - name: id
         in: path
@@ -1648,6 +1700,7 @@ paths:
       tags:
       - Player
       summary: Get player near matches
+      operationId: playerNearMatches
       parameters:
       - name: id
         in: path
@@ -1679,6 +1732,7 @@ paths:
       tags:
       - Player
       summary: Get player transfer history
+      operationId: playerTransferHistory
       parameters:
       - name: id
         in: path
@@ -1710,6 +1764,7 @@ paths:
       tags:
       - Player
       summary: Get player statistics seasons
+      operationId: playerStatisticsSeasons
       parameters:
       - name: id
         in: path
@@ -1741,6 +1796,7 @@ paths:
       tags:
       - Player
       summary: Get player statistics (regular season)
+      operationId: playerStatisticsRegularSeason
       parameters:
       - name: id
         in: path
@@ -1784,6 +1840,7 @@ paths:
       tags:
       - Player
       summary: Get player statistics (playoffs)
+      operationId: playerStatisticsPlayoffs
       parameters:
       - name: id
         in: path
@@ -1827,6 +1884,7 @@ paths:
       tags:
       - Player
       summary: Get player statistics (overall)
+      operationId: playerStatisticsOverall
       parameters:
       - name: id
         in: path
@@ -1870,6 +1928,7 @@ paths:
       tags:
       - Player
       summary: Get player image
+      operationId: playerImage
       parameters:
       - name: id
         in: path
@@ -1902,6 +1961,7 @@ paths:
       tags:
       - Player
       summary: Get previous player matches
+      operationId: previousPlayerMatches
       parameters:
       - name: id
         in: path
@@ -1945,6 +2005,7 @@ paths:
       tags:
       - Player
       summary: Get player shot actions (regular season)
+      operationId: playerShotActionsRegularSeason
       parameters:
       - name: id
         in: path
@@ -1988,6 +2049,7 @@ paths:
       tags:
       - Player
       summary: Get player shot actions (playoffs)
+      operationId: playerShotActionsPlayoffs
       parameters:
       - name: id
         in: path
@@ -2031,6 +2093,7 @@ paths:
       tags:
       - Manager
       summary: Get manager details
+      operationId: managerDetails
       parameters:
       - name: id
         in: path
@@ -2062,6 +2125,7 @@ paths:
       tags:
       - Manager
       summary: Get manager image
+      operationId: managerImage
       parameters:
       - name: id
         in: path
@@ -2094,6 +2158,7 @@ paths:
       tags:
       - Manager
       summary: Get previous manager matches
+      operationId: previousManagerMatches
       parameters:
       - name: id
         in: path
@@ -2137,6 +2202,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament standings (total)
+      operationId: tournamentStandingsTotal
       parameters:
       - name: tournamentId
         in: path
@@ -2168,6 +2234,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament standings (home)
+      operationId: tournamentStandingsHome
       parameters:
       - name: tournamentId
         in: path
@@ -2199,6 +2266,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament standings (away)
+      operationId: tournamentStandingsAway
       parameters:
       - name: tournamentId
         in: path
@@ -2230,6 +2298,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament details
+      operationId: tournamentDetails
       parameters:
       - name: tournamentId
         in: path
@@ -2261,6 +2330,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament seasons
+      operationId: tournamentSeasons
       parameters:
       - name: tournamentId
         in: path
@@ -2292,6 +2362,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament media
+      operationId: tournamentMedia
       parameters:
       - name: tournamentId
         in: path
@@ -2323,6 +2394,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament image
+      operationId: tournamentImage
       parameters:
       - name: tournamentId
         in: path
@@ -2355,6 +2427,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament dark image
+      operationId: tournamentDarkImage
       parameters:
       - name: tournamentId
         in: path
@@ -2386,6 +2459,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament best players (regular season)
+      operationId: tournamentBestPlayersRegularSeason
       parameters:
       - name: tournamentId
         in: path
@@ -2423,6 +2497,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament cup trees
+      operationId: tournamentCupTrees
       parameters:
       - name: tournamentId
         in: path
@@ -2460,6 +2535,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament best players (playoffs)
+      operationId: tournamentBestPlayersPlayoffs
       parameters:
       - name: tournamentId
         in: path
@@ -2497,6 +2573,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament last matches
+      operationId: tournamentLastMatches
       parameters:
       - name: tournamentId
         in: path
@@ -2540,6 +2617,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament next matches
+      operationId: tournamentNextMatches
       parameters:
       - name: tournamentId
         in: path
@@ -2583,6 +2661,7 @@ paths:
       tags:
       - Category
       summary: Get category events by date
+      operationId: categoryEventsByDate
       parameters:
       - name: id
         in: path
@@ -2638,6 +2717,7 @@ paths:
       tags:
       - Group
       summary: Get tournament group matches
+      operationId: tournamentGroupMatches
       parameters:
       - name: tournamentId
         in: path
@@ -2675,6 +2755,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament best teams (regular season)
+      operationId: tournamentBestTeamsRegularSeason
       parameters:
       - name: tournamentId
         in: path
@@ -2712,6 +2793,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament best teams (playoffs)
+      operationId: tournamentBestTeamsPlayoffs
       parameters:
       - name: tournamentId
         in: path
@@ -2749,6 +2831,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament best players per game (overall)
+      operationId: tournamentBestPlayersPerGameOverall
       parameters:
       - name: tournamentId
         in: path
@@ -2786,6 +2869,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament best players per game (regular season)
+      operationId: tournamentBestPlayersPerGameRegularSeason
       parameters:
       - name: tournamentId
         in: path
@@ -2823,6 +2907,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament best players per game (playoffs)
+      operationId: tournamentBestPlayersPerGamePlayoffs
       parameters:
       - name: tournamentId
         in: path
@@ -2860,6 +2945,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament best player metric types
+      operationId: tournamentBestPlayerMetricTypes
       parameters:
       - name: tournamentId
         in: path
@@ -2897,6 +2983,7 @@ paths:
       tags:
       - Tournament
       summary: Get shot action areas (regular season)
+      operationId: shotActionAreasRegularSeason
       parameters:
       - name: tournamentId
         in: path
@@ -2934,6 +3021,7 @@ paths:
       tags:
       - Tournament
       summary: Get shot action areas (playoffs)
+      operationId: shotActionAreasPlayoffs
       parameters:
       - name: tournamentId
         in: path
@@ -2971,6 +3059,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events (total)
+      operationId: teamEventsTotal
       parameters:
       - name: tournamentId
         in: path
@@ -3008,6 +3097,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events (home)
+      operationId: teamEventsHome
       parameters:
       - name: tournamentId
         in: path
@@ -3045,6 +3135,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events (away)
+      operationId: teamEventsAway
       parameters:
       - name: tournamentId
         in: path
@@ -3082,6 +3173,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament best teams (overall)
+      operationId: tournamentBestTeamsOverall
       parameters:
       - name: tournamentId
         in: path
@@ -3119,6 +3211,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament rounds
+      operationId: tournamentRounds
       parameters:
       - name: tournamentId
         in: path
@@ -3156,6 +3249,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament groups
+      operationId: tournamentGroups
       parameters:
       - name: tournamentId
         in: path
@@ -3193,6 +3287,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament best players (overall)
+      operationId: tournamentBestPlayersOverall
       parameters:
       - name: tournamentId
         in: path
@@ -3230,6 +3325,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament schedules by date
+      operationId: tournamentSchedulesByDate
       parameters:
       - name: tournamentId
         in: path
@@ -3275,6 +3371,7 @@ paths:
       tags:
       - Tournament
       summary: Get all tournaments for category
+      operationId: allTournamentsForCategory
       parameters:
       - name: id
         in: path

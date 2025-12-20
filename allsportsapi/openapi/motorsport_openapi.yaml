@@ -12,6 +12,7 @@ paths:
       tags:
       - TV
       summary: Get match TV countries
+      operationId: matchTvCountries
       description: Lists the countries and the TV channels within them that are broadcasting
         a specific match.
       parameters:
@@ -40,6 +41,7 @@ paths:
       tags:
       - Search
       summary: Search motorsport entities
+      operationId: motorsportEntities
       description: Searches for motorsport teams, drivers, stages, and tournaments.
       parameters:
       - name: term
@@ -79,6 +81,7 @@ paths:
       tags:
       - Category
       summary: Get motorsport categories
+      operationId: motorsportCategories
       description: Retrieves a list of all available motorsport categories (e.g.,
         Formula 1, MotoGP, WRC).
       responses:
@@ -99,6 +102,7 @@ paths:
       tags:
       - Stage
       summary: Get featured motorsport stage
+      operationId: featuredMotorsportStage
       description: Retrieves the currently featured motorsport stage, typically the
         next upcoming major race or event.
       responses:
@@ -119,6 +123,7 @@ paths:
       tags:
       - Stage
       summary: Get substages for a motorsport stage
+      operationId: substagesForAMotorsportStage
       description: Retrieves a list of substages for a given motorsport stage, such
         as practice sessions, qualifying, and the main race.
       parameters:
@@ -153,6 +158,7 @@ paths:
       tags:
       - Stage
       summary: Get motorsport stage details
+      operationId: motorsportStageDetails
       description: Retrieves detailed information for a specific motorsport stage
         (event).
       parameters:
@@ -187,6 +193,7 @@ paths:
       tags:
       - Stage
       summary: Get competitor standings for stage
+      operationId: competitorStandingsForStage
       description: Retrieves the competitor (driver) standings for a specific motorsport
         stage.
       parameters:
@@ -221,6 +228,7 @@ paths:
       tags:
       - Stage
       summary: Get team standings for stage
+      operationId: teamStandingsForStage
       description: Retrieves the team (constructor) standings for a specific motorsport
         stage.
       parameters:
@@ -255,6 +263,7 @@ paths:
       tags:
       - Stage
       summary: Get motorsport stage image
+      operationId: motorsportStageImage
       description: Retrieves the image for a specific motorsport stage.
       parameters:
       - name: id
@@ -289,6 +298,7 @@ paths:
       tags:
       - Stage
       summary: Get motorsport stage highlights
+      operationId: motorsportStageHighlights
       description: Retrieves video highlights for a specific motorsport stage.
       parameters:
       - name: id
@@ -321,6 +331,7 @@ paths:
       tags:
       - Team
       summary: Get motorsport team details
+      operationId: motorsportTeamDetails
       description: Retrieves detailed information for a specific motorsport team (constructor).
       parameters:
       - name: id
@@ -354,6 +365,7 @@ paths:
       tags:
       - Team
       summary: Get motorsport team driver history
+      operationId: motorsportTeamDriverHistory
       description: Retrieves the history of drivers for a specific motorsport team.
       parameters:
       - name: id
@@ -387,6 +399,7 @@ paths:
       tags:
       - Team
       summary: Get motorsport team stage seasons
+      operationId: motorsportTeamStageSeasons
       description: Retrieves a list of seasons in which a motorsport team has participated.
       parameters:
       - name: id
@@ -420,6 +433,7 @@ paths:
       tags:
       - Team
       summary: Get motorsport team races in stage season
+      operationId: motorsportTeamRacesInStageSeason
       description: Retrieves a list of races for a motorsport team in a specific season.
       parameters:
       - name: id
@@ -460,6 +474,7 @@ paths:
       tags:
       - Team
       summary: Get motorsport team image
+      operationId: motorsportTeamImage
       description: Retrieves the image for a specific motorsport team.
       parameters:
       - name: id
@@ -494,6 +509,7 @@ paths:
       tags:
       - Category
       summary: Get motorsport stages by category
+      operationId: motorsportStagesByCategory
       description: Retrieves a list of all motorsport stages for a specific category.
       parameters:
       - name: id
@@ -527,6 +543,7 @@ paths:
       tags:
       - Stage
       summary: Get seasons for unique stage
+      operationId: seasonsForUniqueStage
       description: Retrieves a list of all seasons for a unique motorsport stage.
       parameters:
       - name: uniqueStageId
@@ -560,6 +577,7 @@ paths:
       tags:
       - Stage
       summary: Get unique stage image
+      operationId: uniqueStageImage
       description: Retrieves the image for a unique motorsport stage.
       parameters:
       - name: id
@@ -594,6 +612,7 @@ paths:
       tags:
       - TV
       summary: Get match TV channel votes
+      operationId: matchTvChannelVotes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting
         the match.
       parameters:
@@ -635,6 +654,7 @@ paths:
       tags:
       - Country
       summary: Get country flag
+      operationId: countryFlag
       description: Fetches the PNG flag image asset corresponding to a provided country
         code. The response is the raw image data.
       parameters:
@@ -670,6 +690,7 @@ paths:
       tags:
       - Country
       summary: Get country flag (img API)
+      operationId: countryFlagImgApi
       description: Fetches the flag image by country code.
       parameters:
       - name: code
@@ -703,6 +724,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImage
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -724,6 +746,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImageTournamentSvg
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -745,6 +768,7 @@ paths:
       tags:
       - Team
       summary: Get team placeholder image
+      operationId: teamPlaceholderImage
       description: Returns a static placeholder graphic for a team. The response is
         an SVG image.
       responses:
@@ -766,6 +790,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImage
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -787,6 +812,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImagePlayerSvg
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -808,6 +834,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImage
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -829,6 +856,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImageManagerSvg
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -850,6 +878,7 @@ paths:
       tags:
       - Fighter
       summary: Get male fighter placeholder image
+      operationId: maleFighterPlaceholderImage
       description: Retrieves a placeholder image for a male fighter.
       responses:
         '200':
@@ -870,6 +899,7 @@ paths:
       tags:
       - Fighter
       summary: Get female fighter placeholder image
+      operationId: femaleFighterPlaceholderImage
       description: Retrieves a placeholder image for a female fighter.
       responses:
         '200':

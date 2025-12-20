@@ -12,6 +12,7 @@ paths:
       tags:
       - TV
       summary: Get match TV countries
+      operationId: matchTvCountries
       description: Lists the countries and the TV channels within them that are broadcasting
         a specific match.
       parameters:
@@ -46,6 +47,7 @@ paths:
       tags:
       - TV
       summary: Get match TV channel votes
+      operationId: matchTvChannelVotes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting
         the match.
       parameters:
@@ -87,6 +89,7 @@ paths:
       tags:
       - Country
       summary: Get country flag
+      operationId: countryFlag
       description: Fetches the PNG flag image asset corresponding to a provided country
         code. The response is the raw image data.
       parameters:
@@ -122,6 +125,7 @@ paths:
       tags:
       - Country
       summary: Get country flag (img API)
+      operationId: countryFlagImgApi
       description: Fetches the flag image by country code. The response is the raw
         image data.
       parameters:
@@ -156,6 +160,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImage
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -177,6 +182,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImageTournamentSvg
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -198,6 +204,7 @@ paths:
       tags:
       - Team
       summary: Get team placeholder image
+      operationId: teamPlaceholderImage
       description: Returns a static placeholder graphic for a team. The response is
         an SVG image.
       responses:
@@ -219,6 +226,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImage
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -240,6 +248,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImagePlayerSvg
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -261,6 +270,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImage
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -282,6 +292,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImageManagerSvg
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -303,6 +314,7 @@ paths:
       tags:
       - Fighter
       summary: Get male fighter placeholder image
+      operationId: maleFighterPlaceholderImage
       description: Retrieves a placeholder image for a male fighter.
       responses:
         '200':
@@ -323,6 +335,7 @@ paths:
       tags:
       - Fighter
       summary: Get female fighter placeholder image
+      operationId: femaleFighterPlaceholderImage
       description: Retrieves a placeholder image for a female fighter.
       responses:
         '200':
@@ -343,6 +356,7 @@ paths:
       tags:
       - Search
       summary: Search eSports entities
+      operationId: esportsEntities
       description: Searches for eSports teams, players, events, and tournaments.
       parameters:
       - name: term
@@ -382,6 +396,7 @@ paths:
       tags:
       - Match
       summary: Get eSports matches by date
+      operationId: esportsMatchesByDate
       description: Fetches all eSports matches scheduled for a specific date.
       parameters:
       - name: day
@@ -429,6 +444,7 @@ paths:
       tags:
       - Category
       summary: Get eSports events by category and date
+      operationId: esportsEventsByCategoryAndDate
       description: Fetches all eSports events for a specific category on a given date.
       parameters:
       - name: id
@@ -483,6 +499,7 @@ paths:
       tags:
       - Tournament
       summary: Get eSports tournament categories
+      operationId: esportsTournamentCategories
       description: Retrieves all available eSports tournament categories.
       responses:
         '200':
@@ -502,6 +519,7 @@ paths:
       tags:
       - Tournament
       summary: Get all eSports tournaments for a category
+      operationId: allEsportsTournamentsForACategory
       description: Retrieves all unique tournaments within a specific eSports category.
       parameters:
       - name: id
@@ -535,6 +553,7 @@ paths:
       tags:
       - Match
       summary: Get live eSports matches
+      operationId: liveEsportsMatches
       description: Retrieves all currently live eSports matches.
       responses:
         '200':
@@ -554,6 +573,7 @@ paths:
       tags:
       - Event
       summary: Get eSports event details
+      operationId: esportsEventDetails
       description: Retrieves detailed information for a specific eSports event by
         its ID.
       parameters:
@@ -588,6 +608,7 @@ paths:
       tags:
       - Event
       summary: Get eSports H2H events
+      operationId: esportsH2hEvents
       description: Retrieves head-to-head match history between two teams, identified
         by a custom event ID.
       parameters:
@@ -622,6 +643,7 @@ paths:
       tags:
       - Event
       summary: Get eSports event lineups
+      operationId: esportsEventLineups
       description: Retrieves player lineups for a specific eSports event.
       parameters:
       - name: id
@@ -655,6 +677,7 @@ paths:
       tags:
       - Event
       summary: Get eSports event games
+      operationId: esportsEventGames
       description: Retrieves the list of games (maps) played within a single eSports
         event.
       parameters:
@@ -689,6 +712,7 @@ paths:
       tags:
       - Event
       summary: Get eSports event highlights
+      operationId: esportsEventHighlights
       description: Retrieves video highlights for a specific eSports event, if available.
       parameters:
       - name: id
@@ -722,6 +746,7 @@ paths:
       tags:
       - Event
       summary: Get eSports event H2H summary
+      operationId: esportsEventH2hSummary
       description: Retrieves a summary of head-to-head statistics between the two
         teams in an event.
       parameters:
@@ -756,6 +781,7 @@ paths:
       tags:
       - Event
       summary: Get eSports event votes
+      operationId: esportsEventVotes
       description: Retrieves fan voting results for a specific eSports event.
       parameters:
       - name: id
@@ -789,6 +815,7 @@ paths:
       tags:
       - Event
       summary: Get eSports event streaks
+      operationId: esportsEventStreaks
       description: Retrieves team streaks (e.g., winning/losing streaks) for a specific
         eSports event.
       parameters:
@@ -823,6 +850,7 @@ paths:
       tags:
       - Game
       summary: Get eSports game lineups
+      operationId: esportsGameLineups
       description: Retrieves player lineups for a specific game (map) within an eSports
         event.
       parameters:
@@ -857,6 +885,7 @@ paths:
       tags:
       - Game
       summary: Get eSports game rounds
+      operationId: esportsGameRounds
       description: Retrieves round-by-round results for a specific game (map).
       parameters:
       - name: id
@@ -890,6 +919,7 @@ paths:
       tags:
       - Game
       summary: Get eSports game bans
+      operationId: esportsGameBans
       description: Retrieves character/map bans for a specific game.
       parameters:
       - name: id
@@ -923,6 +953,7 @@ paths:
       tags:
       - Game
       summary: Get eSports game statistics
+      operationId: esportsGameStatistics
       description: Retrieves detailed statistics for a specific game (map).
       parameters:
       - name: id
@@ -956,6 +987,7 @@ paths:
       tags:
       - Team
       summary: Get previous eSports matches for a team
+      operationId: previousEsportsMatchesForATeam
       description: Retrieves a paginated list of a team's past eSports matches.
       parameters:
       - name: id
@@ -1002,6 +1034,7 @@ paths:
       tags:
       - Team
       summary: Get next eSports matches for a team
+      operationId: nextEsportsMatchesForATeam
       description: Retrieves a paginated list of a team's upcoming eSports matches.
       parameters:
       - name: id
@@ -1048,6 +1081,7 @@ paths:
       tags:
       - Team
       summary: Get eSports team details
+      operationId: esportsTeamDetails
       description: Retrieves detailed information for a specific eSports team.
       parameters:
       - name: id
@@ -1081,6 +1115,7 @@ paths:
       tags:
       - Team
       summary: Get eSports team media
+      operationId: esportsTeamMedia
       description: Retrieves media (images, videos) associated with an eSports team.
       parameters:
       - name: id
@@ -1114,6 +1149,7 @@ paths:
       tags:
       - Team
       summary: Get near eSports matches for a team
+      operationId: nearEsportsMatchesForATeam
       description: Retrieves a list of recent and upcoming matches for an eSports
         team.
       parameters:
@@ -1148,6 +1184,7 @@ paths:
       tags:
       - Team
       summary: Get eSports team image
+      operationId: esportsTeamImage
       description: Retrieves the logo image for a specific eSports team.
       parameters:
       - name: id
@@ -1181,6 +1218,7 @@ paths:
       tags:
       - Player
       summary: Get eSports player details
+      operationId: esportsPlayerDetails
       description: Retrieves detailed information for a specific eSports player.
       parameters:
       - name: id
@@ -1214,6 +1252,7 @@ paths:
       tags:
       - Player
       summary: Get eSports player image
+      operationId: esportsPlayerImage
       description: Retrieves the profile image for a specific eSports player.
       parameters:
       - name: id
@@ -1247,6 +1286,7 @@ paths:
       tags:
       - Tournament
       summary: Get total standings for eSports tournament season
+      operationId: totalStandingsForEsportsTournamentSeason
       description: Retrieves the complete standings for a specific eSports tournament
         season.
       parameters:
@@ -1288,6 +1328,7 @@ paths:
       tags:
       - Tournament
       summary: Get eSports tournament season info
+      operationId: esportsTournamentSeasonInfo
       description: Retrieves metadata and information about a specific eSports tournament
         season.
       parameters:
@@ -1329,6 +1370,7 @@ paths:
       tags:
       - Tournament
       summary: Get last matches for eSports tournament season
+      operationId: lastMatchesForEsportsTournamentSeason
       description: Retrieves a paginated list of past matches for a specific eSports
         tournament season.
       parameters:
@@ -1383,6 +1425,7 @@ paths:
       tags:
       - Tournament
       summary: Get next matches for eSports tournament season
+      operationId: nextMatchesForEsportsTournamentSeason
       description: Retrieves a paginated list of upcoming matches for a specific eSports
         tournament season.
       parameters:
@@ -1437,6 +1480,7 @@ paths:
       tags:
       - Tournament
       summary: Get eSports tournament details
+      operationId: esportsTournamentDetails
       description: Retrieves detailed information for a specific eSports tournament.
       parameters:
       - name: tournamentId
@@ -1470,6 +1514,7 @@ paths:
       tags:
       - Tournament
       summary: Get eSports tournament image
+      operationId: esportsTournamentImage
       description: Retrieves the logo image for a specific eSports tournament.
       parameters:
       - name: tournamentId
@@ -1504,6 +1549,7 @@ paths:
       tags:
       - Tournament
       summary: Get eSports tournament dark image
+      operationId: esportsTournamentDarkImage
       description: Retrieves the dark-theme logo image for a specific eSports tournament.
       parameters:
       - name: tournamentId
@@ -1537,6 +1583,7 @@ paths:
       tags:
       - Tournament
       summary: Get eSports tournament media
+      operationId: esportsTournamentMedia
       description: Retrieves media (images, videos) associated with an eSports tournament.
       parameters:
       - name: tournamentId
@@ -1570,6 +1617,7 @@ paths:
       tags:
       - Tournament
       summary: Get eSports tournament seasons
+      operationId: esportsTournamentSeasons
       description: Retrieves a list of available seasons for a specific eSports tournament.
       parameters:
       - name: tournamentId
@@ -1603,6 +1651,7 @@ paths:
       tags:
       - Tournament
       summary: Get total team events for eSports tournament season
+      operationId: totalTeamEventsForEsportsTournamentSeason
       description: Retrieves aggregated team statistics for an entire eSports tournament
         season.
       parameters:
@@ -1644,6 +1693,7 @@ paths:
       tags:
       - Character
       summary: Get eSports character image
+      operationId: esportsCharacterImage
       description: Retrieves the image for a specific in-game character.
       parameters:
       - name: tournamentId
@@ -1678,6 +1728,7 @@ paths:
       tags:
       - Map
       summary: Get eSports map image
+      operationId: esportsMapImage
       description: Retrieves the image for a specific in-game map.
       parameters:
       - name: tournamentId

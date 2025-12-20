@@ -12,6 +12,7 @@ paths:
       tags:
       - TV
       summary: Get match TV countries
+      operationId: matchTvCountries
       description: Lists the countries and the TV channels within them that are broadcasting
         a specific match.
       parameters:
@@ -46,6 +47,7 @@ paths:
       tags:
       - TV
       summary: Get match TV channel votes
+      operationId: matchTvChannelVotes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting
         the match.
       parameters:
@@ -87,6 +89,7 @@ paths:
       tags:
       - Country
       summary: Get country flag
+      operationId: countryFlag
       description: Fetches the PNG flag image asset corresponding to a provided country
         code. The response is the raw image data.
       parameters:
@@ -122,6 +125,7 @@ paths:
       tags:
       - Country
       summary: Get country flag (img API)
+      operationId: countryFlagImgApi
       description: Fetches the flag image by country code.
       parameters:
       - name: code
@@ -155,6 +159,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImage
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -176,6 +181,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImageTournamentSvg
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -197,6 +203,7 @@ paths:
       tags:
       - Team
       summary: Get team placeholder image
+      operationId: teamPlaceholderImage
       description: Returns a static placeholder graphic for a team. The response is
         an SVG image.
       responses:
@@ -218,6 +225,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImage
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -239,6 +247,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImagePlayerSvg
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -260,6 +269,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImage
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -281,6 +291,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImageManagerSvg
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -302,6 +313,7 @@ paths:
       tags:
       - Fighter
       summary: Get male fighter placeholder image
+      operationId: maleFighterPlaceholderImage
       description: Retrieves a placeholder image for a male fighter.
       responses:
         '200':
@@ -322,6 +334,7 @@ paths:
       tags:
       - Fighter
       summary: Get female fighter placeholder image
+      operationId: femaleFighterPlaceholderImage
       description: Retrieves a placeholder image for a female fighter.
       responses:
         '200':
@@ -342,6 +355,7 @@ paths:
       tags:
       - Search
       summary: Search volleyball entities
+      operationId: volleyballEntities
       description: Searches for volleyball teams, players, and tournaments.
       parameters:
       - name: term
@@ -381,6 +395,7 @@ paths:
       tags:
       - Match
       summary: Get volleyball matches by date
+      operationId: volleyballMatchesByDate
       description: Fetches all volleyball matches scheduled for a specific date.
       parameters:
       - name: day
@@ -428,6 +443,7 @@ paths:
       tags:
       - Match
       summary: Get live volleyball matches
+      operationId: liveVolleyballMatches
       description: Retrieves all currently live volleyball matches.
       responses:
         '200':
@@ -447,6 +463,7 @@ paths:
       tags:
       - Category
       summary: Get volleyball matches by category and date
+      operationId: volleyballMatchesByCategoryAndDate
       description: Retrieves all volleyball matches for a specific category on a given
         date.
       parameters:
@@ -508,6 +525,7 @@ paths:
       tags:
       - Tournament
       summary: Get volleyball tournament categories
+      operationId: volleyballTournamentCategories
       description: Retrieves all available volleyball tournament categories, which
         typically correspond to countries or regions.
       responses:
@@ -528,6 +546,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournaments by category
+      operationId: tournamentsByCategory
       description: Retrieves all volleyball tournaments within a specific category.
       parameters:
       - name: id
@@ -561,6 +580,7 @@ paths:
       tags:
       - Match
       summary: Get volleyball match details
+      operationId: volleyballMatchDetails
       description: Retrieves detailed information for a specific volleyball match,
         including teams, score, and status.
       parameters:
@@ -595,6 +615,7 @@ paths:
       tags:
       - Match
       summary: Get match betting odds
+      operationId: matchBettingOdds
       description: Retrieves available betting odds from bookmaker `1` for a specific
         match.
       parameters:
@@ -629,6 +650,7 @@ paths:
       tags:
       - Match
       summary: Get match incidents
+      operationId: matchIncidents
       description: Retrieves a chronological list of all significant incidents that
         occurred during the match (e.g., points won, substitutions).
       parameters:
@@ -663,6 +685,7 @@ paths:
       tags:
       - Match
       summary: Get match statistics
+      operationId: matchStatistics
       description: Retrieves comprehensive team and player statistics for a specific
         volleyball match.
       parameters:
@@ -697,6 +720,7 @@ paths:
       tags:
       - Match
       summary: Get match streaks
+      operationId: matchStreaks
       description: Provides recent form and streak information (e.g., winning streaks)
         for each team in a match.
       parameters:
@@ -731,6 +755,7 @@ paths:
       tags:
       - Match
       summary: Get head-to-head history
+      operationId: headToHeadHistory
       description: Retrieves the detailed match history for head-to-head encounters
         between two teams.
       parameters:
@@ -765,6 +790,7 @@ paths:
       tags:
       - Team
       summary: Get previous team matches
+      operationId: previousTeamMatches
       description: Fetches a paginated list of completed matches for a team, sorted
         by date descending.
       parameters:
@@ -812,6 +838,7 @@ paths:
       tags:
       - Match
       summary: Get match votes
+      operationId: matchVotes
       description: Returns fan poll percentages and vote totals for the match outcome.
       parameters:
       - name: id
@@ -845,6 +872,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament seasons
+      operationId: tournamentSeasons
       description: Retrieves a list of all available seasons for a specific volleyball
         tournament.
       parameters:
@@ -879,6 +907,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament details
+      operationId: tournamentDetails
       description: Retrieves comprehensive details for a specific volleyball tournament.
       parameters:
       - name: tournamentId
@@ -912,6 +941,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament total standings
+      operationId: tournamentTotalStandings
       description: Retrieves the complete standings table for all teams in a specific
         tournament season.
       parameters:
@@ -953,6 +983,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament home standings
+      operationId: tournamentHomeStandings
       description: Retrieves the standings based on home games only for a specific
         tournament season.
       parameters:
@@ -994,6 +1025,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament away standings
+      operationId: tournamentAwayStandings
       description: Retrieves the standings based on away games only for a specific
         tournament season.
       parameters:
@@ -1035,6 +1067,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament upcoming matches
+      operationId: tournamentUpcomingMatches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific
         tournament season.
       parameters:
@@ -1089,6 +1122,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament rounds
+      operationId: tournamentRounds
       description: Retrieves a list of all rounds (or weeks) for a specific tournament
         season.
       parameters:
@@ -1130,6 +1164,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament last matches
+      operationId: tournamentLastMatches
       description: Retrieves a paginated list of recently played matches in a specific
         tournament season.
       parameters:
@@ -1184,6 +1219,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events total statistics
+      operationId: teamEventsTotalStatistics
       description: Retrieves aggregated team performance statistics for all games
         in a tournament season.
       parameters:
@@ -1225,6 +1261,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events home statistics
+      operationId: teamEventsHomeStatistics
       description: Retrieves aggregated team performance statistics for home games
         in a tournament season.
       parameters:
@@ -1266,6 +1303,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events away statistics
+      operationId: teamEventsAwayStatistics
       description: Retrieves aggregated team performance statistics for away games
         in a tournament season.
       parameters:
@@ -1307,6 +1345,7 @@ paths:
       tags:
       - Team
       summary: Get volleyball team details
+      operationId: volleyballTeamDetails
       description: Retrieves comprehensive details for a specific volleyball team.
       parameters:
       - name: id
@@ -1340,6 +1379,7 @@ paths:
       tags:
       - Team
       summary: Get team near matches
+      operationId: teamNearMatches
       description: Retrieves a list of recent and upcoming matches for a specific
         team.
       parameters:
@@ -1374,6 +1414,7 @@ paths:
       tags:
       - Team
       summary: Get team tournaments
+      operationId: teamTournaments
       description: Retrieves a list of all unique tournaments a team has participated
         in.
       parameters:
@@ -1408,6 +1449,7 @@ paths:
       tags:
       - Team
       summary: Get team standings seasons
+      operationId: teamStandingsSeasons
       description: Retrieves a list of seasons for which a team's standings are available.
       parameters:
       - name: id
@@ -1441,6 +1483,7 @@ paths:
       tags:
       - Match
       summary: Get head-to-head summary
+      operationId: headToHeadSummary
       description: Retrieves a summary of head-to-head (H2H) statistics between the
         two teams in a match.
       parameters:
@@ -1475,6 +1518,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament cup trees
+      operationId: tournamentCupTrees
       description: Retrieves the knockout bracket (cup trees) for a specific tournament
         season.
       parameters:
@@ -1516,6 +1560,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament matches by round
+      operationId: tournamentMatchesByRound
       description: Retrieves all matches for a specific round of a tournament season.
       parameters:
       - name: tournamentId
@@ -1563,6 +1608,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament logo
+      operationId: tournamentLogo
       description: Retrieves the logo image for a specific tournament.
       parameters:
       - name: tournamentId
@@ -1597,6 +1643,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament dark logo
+      operationId: tournamentDarkLogo
       description: Retrieves the dark theme logo image for a specific tournament.
       parameters:
       - name: tournamentId
@@ -1630,6 +1677,7 @@ paths:
       tags:
       - Team
       summary: Get team logo
+      operationId: teamLogo
       description: Retrieves the logo image for a specific team.
       parameters:
       - name: id
@@ -1664,6 +1712,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament matches by date
+      operationId: tournamentMatchesByDate
       description: Retrieves all matches for a specific tournament scheduled on a
         given date.
       parameters:

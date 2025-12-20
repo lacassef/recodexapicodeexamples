@@ -19,6 +19,7 @@ paths:
       tags:
       - AllSports
       summary: Get Country Flag Data
+      operationId: countryFlagData
       description: Returns country flag details.
       parameters:
       - name: code
@@ -58,6 +59,7 @@ paths:
       tags:
       - AllSports
       summary: Get Img Flag Data
+      operationId: imgFlagData
       description: Returns img flag details.
       parameters:
       - name: flag
@@ -97,6 +99,7 @@ paths:
       tags:
       - AllSports
       summary: Get Placeholder Manager.Png Data
+      operationId: placeholderManagerPngData
       description: Returns placeholder manager.png details.
       responses:
         '200':
@@ -123,6 +126,7 @@ paths:
       tags:
       - AllSports
       summary: Get Placeholder Manager.Svg Data
+      operationId: placeholderManagerSvgData
       description: Returns placeholder manager.svg details.
       responses:
         '200':
@@ -149,6 +153,7 @@ paths:
       tags:
       - AllSports
       summary: Get Placeholder Player.Png Data
+      operationId: placeholderPlayerPngData
       description: Returns placeholder player.png details.
       responses:
         '200':
@@ -175,6 +180,7 @@ paths:
       tags:
       - AllSports
       summary: Get Placeholder Player.Svg Data
+      operationId: placeholderPlayerSvgData
       description: Returns placeholder player.svg details.
       responses:
         '200':
@@ -201,6 +207,7 @@ paths:
       tags:
       - AllSports
       summary: Get Placeholder Team.Svg Data
+      operationId: placeholderTeamSvgData
       description: Returns placeholder team.svg details.
       responses:
         '200':
@@ -227,6 +234,7 @@ paths:
       tags:
       - AllSports
       summary: Get Placeholder Tournament.Png Data
+      operationId: placeholderTournamentPngData
       description: Returns placeholder tournament.png details.
       responses:
         '200':
@@ -253,6 +261,7 @@ paths:
       tags:
       - AllSports
       summary: Get Placeholder Tournament.Svg Data
+      operationId: placeholderTournamentSvgData
       description: Returns placeholder tournament.svg details.
       responses:
         '200':
@@ -279,6 +288,7 @@ paths:
       tags:
       - AllSports
       summary: Get Placeholders Fighter Female.Svg Data
+      operationId: placeholdersFighterFemaleSvgData
       description: Returns placeholders fighter female.svg details.
       responses:
         '200':
@@ -305,6 +315,7 @@ paths:
       tags:
       - AllSports
       summary: Get Placeholders Fighter Male.Svg Data
+      operationId: placeholdersFighterMaleSvgData
       description: Returns placeholders fighter male.svg details.
       responses:
         '200':
@@ -331,6 +342,7 @@ paths:
       tags:
       - AllSports
       summary: Get Tv Channel Event Data
+      operationId: tvChannelEventData
       description: Returns tv channel event details.
       parameters:
       - name: channId
@@ -377,6 +389,7 @@ paths:
       tags:
       - AllSports
       summary: Get Country All Event Data
+      operationId: countryAllEventData
       description: Returns tv country all event details.
       parameters:
       - name: id
@@ -416,6 +429,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Calendar Categories Data
+      operationId: calendarCategoriesData
       description: Returns calendar categories details.
       parameters:
       - name: sport
@@ -490,6 +504,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Calendar Data
+      operationId: calendarData
       description: Returns calendar details.
       parameters:
       - name: sport
@@ -557,6 +572,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Calendar Categories Data
+      operationId: calendarCategoriesDataCategories
       description: Returns calendar categories details.
       parameters:
       - name: sport
@@ -624,6 +640,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Categories Data
+      operationId: categoriesData
       description: Returns categories details.
       parameters:
       - name: sport
@@ -677,6 +694,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Category Events Data
+      operationId: categoryEventsData
       description: Returns category events details.
       parameters:
       - name: sport
@@ -758,6 +776,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Category Stages All Data
+      operationId: categoryStagesAllData
       description: Returns category stages all details.
       parameters:
       - name: sport
@@ -818,6 +837,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Category Unique Tournaments Data
+      operationId: categoryUniqueTournamentsData
       description: Returns category unique tournaments details.
       parameters:
       - name: sport
@@ -878,6 +898,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Character Image Data
+      operationId: characterImageData
       description: Returns character image details.
       parameters:
       - name: sport
@@ -938,6 +959,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event H2H Data
+      operationId: eventH2hData
       description: Returns event h2h details.
       parameters:
       - name: sport
@@ -998,6 +1020,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event H2H Events Data
+      operationId: eventH2hEventsData
       description: Returns event h2h events details.
       parameters:
       - name: sport
@@ -1058,6 +1081,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Data
+      operationId: eventData
       description: Returns event details.
       parameters:
       - name: sport
@@ -1118,6 +1142,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Duel Data
+      operationId: eventDuelData
       description: Returns event duel details.
       parameters:
       - name: sport
@@ -1178,6 +1203,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Form Data
+      operationId: eventFormData
       description: Returns event form details.
       parameters:
       - name: sport
@@ -1238,6 +1264,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Games Data
+      operationId: eventGamesData
       description: Returns event games details.
       parameters:
       - name: sport
@@ -1298,6 +1325,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Graph Data
+      operationId: eventGraphData
       description: Returns event graph details.
       parameters:
       - name: sport
@@ -1358,6 +1386,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Highlights Data
+      operationId: eventHighlightsData
       description: Returns event highlights details.
       parameters:
       - name: sport
@@ -1418,6 +1447,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Incidents Data
+      operationId: eventIncidentsData
       description: Returns event incidents details.
       parameters:
       - name: sport
@@ -1478,6 +1508,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Lineups Data
+      operationId: eventLineupsData
       description: Returns event lineups details.
       parameters:
       - name: sport
@@ -1538,6 +1569,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Odds Data
+      operationId: eventOddsData
       description: Returns event odds details.
       parameters:
       - name: sport
@@ -1598,6 +1630,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Point By Point Data
+      operationId: eventPointByPointData
       description: Returns event point by point details.
       parameters:
       - name: sport
@@ -1658,6 +1691,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Pregame Form Data
+      operationId: eventPregameFormData
       description: Returns event pregame form details.
       parameters:
       - name: sport
@@ -1718,6 +1752,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Statistics Data
+      operationId: eventStatisticsData
       description: Returns event statistics details.
       parameters:
       - name: sport
@@ -1778,6 +1813,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Streak Data
+      operationId: eventStreakData
       description: Returns event streak details.
       parameters:
       - name: sport
@@ -1838,6 +1874,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Streaks Data
+      operationId: eventStreaksData
       description: Returns event streaks details.
       parameters:
       - name: sport
@@ -1898,6 +1935,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Streaks Odds Data
+      operationId: eventStreaksOddsData
       description: Returns event streaks odds details.
       parameters:
       - name: sport
@@ -1958,6 +1996,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Team Streaks Data
+      operationId: eventTeamStreaksData
       description: Returns event team streaks details.
       parameters:
       - name: sport
@@ -2018,6 +2057,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Votes Data
+      operationId: eventVotesData
       description: Returns event votes details.
       parameters:
       - name: sport
@@ -2078,6 +2118,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Event Win Probability Data
+      operationId: eventWinProbabilityData
       description: Returns event win probability details.
       parameters:
       - name: sport
@@ -2138,6 +2179,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Events Live Data
+      operationId: eventsLiveData
       description: Returns events live details.
       parameters:
       - name: sport
@@ -2191,6 +2233,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Events Odds Data
+      operationId: eventsOddsData
       description: Returns events odds details.
       parameters:
       - name: sport
@@ -2265,6 +2308,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Events Data
+      operationId: eventsData
       description: Returns events details.
       parameters:
       - name: sport
@@ -2339,6 +2383,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Game Bans Data
+      operationId: gameBansData
       description: Returns game bans details.
       parameters:
       - name: sport
@@ -2399,6 +2444,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Game Lineups Data
+      operationId: gameLineupsData
       description: Returns game lineups details.
       parameters:
       - name: sport
@@ -2459,6 +2505,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Game Rounds Data
+      operationId: gameRoundsData
       description: Returns game rounds details.
       parameters:
       - name: sport
@@ -2519,6 +2566,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Game Statistics Data
+      operationId: gameStatisticsData
       description: Returns game statistics details.
       parameters:
       - name: sport
@@ -2579,6 +2627,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Season Matches Data
+      operationId: tournamentSeasonMatchesData
       description: Returns group tournament season matches details.
       parameters:
       - name: sport
@@ -2646,6 +2695,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Manager Data
+      operationId: managerData
       description: Returns manager details.
       parameters:
       - name: sport
@@ -2706,6 +2756,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Manager Image Data
+      operationId: managerImageData
       description: Returns manager image details.
       parameters:
       - name: sport
@@ -2766,6 +2817,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Manager Matches Previous Data
+      operationId: managerMatchesPreviousData
       description: Returns manager matches previous details.
       parameters:
       - name: sport
@@ -2833,6 +2885,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Map Image Data
+      operationId: mapImageData
       description: Returns map image details.
       parameters:
       - name: sport
@@ -2893,6 +2946,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match H2H Data
+      operationId: matchH2hData
       description: Returns match h2h details.
       parameters:
       - name: sport
@@ -2953,6 +3007,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Data
+      operationId: matchData
       description: Returns match details.
       parameters:
       - name: sport
@@ -3013,6 +3068,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Best Players Data
+      operationId: matchBestPlayersData
       description: Returns match best players details.
       parameters:
       - name: sport
@@ -3073,6 +3129,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Duel Data
+      operationId: matchDuelData
       description: Returns match duel details.
       parameters:
       - name: sport
@@ -3133,6 +3190,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Form Data
+      operationId: matchFormData
       description: Returns match form details.
       parameters:
       - name: sport
@@ -3193,6 +3251,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Graph Data
+      operationId: matchGraphData
       description: Returns match graph details.
       parameters:
       - name: sport
@@ -3253,6 +3312,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Highlights Data
+      operationId: matchHighlightsData
       description: Returns match highlights details.
       parameters:
       - name: sport
@@ -3313,6 +3373,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Incidents Data
+      operationId: matchIncidentsData
       description: Returns match incidents details.
       parameters:
       - name: sport
@@ -3373,6 +3434,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Innings Data
+      operationId: matchInningsData
       description: Returns match innings details.
       parameters:
       - name: sport
@@ -3433,6 +3495,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Lineups Data
+      operationId: matchLineupsData
       description: Returns match lineups details.
       parameters:
       - name: sport
@@ -3493,6 +3556,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Managers Data
+      operationId: matchManagersData
       description: Returns match managers details.
       parameters:
       - name: sport
@@ -3553,6 +3617,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Odds Data
+      operationId: matchOddsData
       description: Returns match odds details.
       parameters:
       - name: sport
@@ -3613,6 +3678,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Player Shotmap Data
+      operationId: matchPlayerShotmapData
       description: Returns match player shotmap details.
       parameters:
       - name: sport
@@ -3680,6 +3746,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Player Statistics Data
+      operationId: matchPlayerStatisticsData
       description: Returns match player statistics details.
       parameters:
       - name: sport
@@ -3747,6 +3814,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Series Data
+      operationId: matchSeriesData
       description: Returns match series details.
       parameters:
       - name: sport
@@ -3807,6 +3875,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Statistics Data
+      operationId: matchStatisticsData
       description: Returns match statistics details.
       parameters:
       - name: sport
@@ -3867,6 +3936,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Streaks Data
+      operationId: matchStreaksData
       description: Returns match streaks details.
       parameters:
       - name: sport
@@ -3927,6 +3997,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Streaks Odds Data
+      operationId: matchStreaksOddsData
       description: Returns match streaks odds details.
       parameters:
       - name: sport
@@ -3987,6 +4058,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Team Streaks Data
+      operationId: matchTeamStreaksData
       description: Returns match team streaks details.
       parameters:
       - name: sport
@@ -4047,6 +4119,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Team Shotmap Data
+      operationId: matchTeamShotmapData
       description: Returns match team shotmap details.
       parameters:
       - name: sport
@@ -4114,6 +4187,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Match Votes Data
+      operationId: matchVotesData
       description: Returns match votes details.
       parameters:
       - name: sport
@@ -4174,6 +4248,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Matches Live Data
+      operationId: matchesLiveData
       description: Returns matches live details.
       parameters:
       - name: sport
@@ -4227,6 +4302,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Matches Data
+      operationId: matchesData
       description: Returns matches details.
       parameters:
       - name: sport
@@ -4301,6 +4377,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Octogon.Png Data
+      operationId: octogonPngData
       description: Returns octogon.png details.
       parameters:
       - name: sport
@@ -4349,6 +4426,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Data
+      operationId: playerData
       description: Returns player details.
       parameters:
       - name: sport
@@ -4409,6 +4487,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Events Near Data
+      operationId: playerEventsNearData
       description: Returns player events near details.
       parameters:
       - name: sport
@@ -4469,6 +4548,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Events Next Data
+      operationId: playerEventsNextData
       description: Returns player events next details.
       parameters:
       - name: sport
@@ -4536,6 +4616,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Events Previous Data
+      operationId: playerEventsPreviousData
       description: Returns player events previous details.
       parameters:
       - name: sport
@@ -4603,6 +4684,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Image Data
+      operationId: playerImageData
       description: Returns player image details.
       parameters:
       - name: sport
@@ -4663,6 +4745,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Matches Near Data
+      operationId: playerMatchesNearData
       description: Returns player matches near details.
       parameters:
       - name: sport
@@ -4723,6 +4806,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Matches Previous Data
+      operationId: playerMatchesPreviousData
       description: Returns player matches previous details.
       parameters:
       - name: sport
@@ -4790,6 +4874,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Media Data
+      operationId: playerMediaData
       description: Returns player media details.
       parameters:
       - name: sport
@@ -4850,6 +4935,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Rankings Data
+      operationId: playerRankingsData
       description: Returns player rankings details.
       parameters:
       - name: sport
@@ -4910,6 +4996,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Standings Seasons Data
+      operationId: playerStandingsSeasonsData
       description: Returns player standings seasons details.
       parameters:
       - name: sport
@@ -4970,6 +5057,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Statistics Season Data
+      operationId: playerStatisticsSeasonData
       description: Returns player statistics season details.
       parameters:
       - name: sport
@@ -5030,6 +5118,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Statistics Seasons Data
+      operationId: playerStatisticsSeasonsData
       description: Returns player statistics seasons details.
       parameters:
       - name: sport
@@ -5090,6 +5179,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Shot Actions Playoffs Data
+      operationId: seasonShotActionsPlayoffsData
       description: Returns player tournament season shot actions playoffs details.
       parameters:
       - name: sport
@@ -5164,6 +5254,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Shot Actions Regularseason Data
+      operationId: seasonShotActionsRegularseasonData
       description: Returns player tournament season shot actions regularseason details.
       parameters:
       - name: sport
@@ -5238,6 +5329,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Statistics Overall Data
+      operationId: seasonStatisticsOverallData
       description: Returns player tournament season statistics overall details.
       parameters:
       - name: sport
@@ -5312,6 +5404,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Statistics Playoffs Data
+      operationId: seasonStatisticsPlayoffsData
       description: Returns player tournament season statistics playoffs details.
       parameters:
       - name: sport
@@ -5386,6 +5479,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Statistics Regularseason Data
+      operationId: seasonStatisticsRegularseasonData
       description: Returns player tournament season statistics regularseason details.
       parameters:
       - name: sport
@@ -5460,6 +5554,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Statistics Regularseason Data
+      operationId: seasonStatisticsRegularseasonDataRegularseason
       description: Returns player tournament season statistics regularseason details.
       parameters:
       - name: sport
@@ -5534,6 +5629,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Tournaments Last Data
+      operationId: playerTournamentsLastData
       description: Returns player tournaments last details.
       parameters:
       - name: sport
@@ -5594,6 +5690,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Player Transfers Data
+      operationId: playerTransfersData
       description: Returns player transfers details.
       parameters:
       - name: sport
@@ -5654,6 +5751,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Statistics Overall Data
+      operationId: seasonStatisticsOverallDataOverall
       description: Returns player unique tournament season statistics overall details.
       parameters:
       - name: sport
@@ -5728,6 +5826,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Rankings Atp Data
+      operationId: rankingsAtpData
       description: Returns rankings atp details.
       parameters:
       - name: sport
@@ -5781,6 +5880,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Rankings Atp Live Data
+      operationId: rankingsAtpLiveData
       description: Returns rankings atp live details.
       parameters:
       - name: sport
@@ -5834,6 +5934,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Rankings Rugby Union Data
+      operationId: rankingsRugbyUnionData
       description: Returns rankings rugby union details.
       parameters:
       - name: sport
@@ -5887,6 +5988,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Rankings Unique Tournament Summary Data
+      operationId: rankingsUniqueTournamentSummaryData
       description: Returns rankings unique tournament summary details.
       parameters:
       - name: sport
@@ -5947,6 +6049,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Rankings Wta Data
+      operationId: rankingsWtaData
       description: Returns rankings wta details.
       parameters:
       - name: sport
@@ -6000,6 +6103,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Rankings Wta Live Data
+      operationId: rankingsWtaLiveData
       description: Returns rankings wta live details.
       parameters:
       - name: sport
@@ -6053,6 +6157,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Search Data
+      operationId: searchData
       description: Returns search details.
       parameters:
       - name: sport
@@ -6113,6 +6218,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Stage Featured Data
+      operationId: stageFeaturedData
       description: Returns stage featured details.
       parameters:
       - name: sport
@@ -6166,6 +6272,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Stage Highlights Data
+      operationId: stageHighlightsData
       description: Returns stage highlights details.
       parameters:
       - name: sport
@@ -6226,6 +6333,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Stage Image Data
+      operationId: stageImageData
       description: Returns stage image details.
       parameters:
       - name: sport
@@ -6286,6 +6394,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Stage Standings Competitor Data
+      operationId: stageStandingsCompetitorData
       description: Returns stage standings competitor details.
       parameters:
       - name: sport
@@ -6346,6 +6455,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Stage Standings Team Data
+      operationId: stageStandingsTeamData
       description: Returns stage standings team details.
       parameters:
       - name: sport
@@ -6406,6 +6516,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Stage Data
+      operationId: stageData
       description: Returns stage details.
       parameters:
       - name: sport
@@ -6466,6 +6577,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Stage Substages Data
+      operationId: stageSubstagesData
       description: Returns stage substages details.
       parameters:
       - name: sport
@@ -6526,6 +6638,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Data
+      operationId: teamData
       description: Returns team details.
       parameters:
       - name: sport
@@ -6586,6 +6699,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Career Statistics Data
+      operationId: teamCareerStatisticsData
       description: Returns team career statistics details.
       parameters:
       - name: sport
@@ -6646,6 +6760,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Driver History Data
+      operationId: teamDriverHistoryData
       description: Returns team driver history details.
       parameters:
       - name: sport
@@ -6706,6 +6821,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Events Last Data
+      operationId: teamEventsLastData
       description: Returns team events last details.
       parameters:
       - name: sport
@@ -6773,6 +6889,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Events Near Data
+      operationId: teamEventsNearData
       description: Returns team events near details.
       parameters:
       - name: sport
@@ -6833,6 +6950,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Events Next Data
+      operationId: teamEventsNextData
       description: Returns team events next details.
       parameters:
       - name: sport
@@ -6900,6 +7018,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Events Previous Data
+      operationId: teamEventsPreviousData
       description: Returns team events previous details.
       parameters:
       - name: sport
@@ -6967,6 +7086,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Image Data
+      operationId: teamImageData
       description: Returns team image details.
       parameters:
       - name: sport
@@ -7027,6 +7147,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Matches Near Data
+      operationId: teamMatchesNearData
       description: Returns team matches near details.
       parameters:
       - name: sport
@@ -7087,6 +7208,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Matches Next Data
+      operationId: teamMatchesNextData
       description: Returns team matches next details.
       parameters:
       - name: sport
@@ -7154,6 +7276,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Matches Previous Data
+      operationId: teamMatchesPreviousData
       description: Returns team matches previous details.
       parameters:
       - name: sport
@@ -7221,6 +7344,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Media Data
+      operationId: teamMediaData
       description: Returns team media details.
       parameters:
       - name: sport
@@ -7281,6 +7405,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Player Statistics Seasons Data
+      operationId: teamPlayerStatisticsSeasonsData
       description: Returns team player statistics seasons details.
       parameters:
       - name: sport
@@ -7341,6 +7466,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Players Data
+      operationId: teamPlayersData
       description: Returns team players details.
       parameters:
       - name: sport
@@ -7401,6 +7527,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Players Statistics Seasons Data
+      operationId: playersStatisticsSeasonsData
       description: Returns team players statistics seasons details.
       parameters:
       - name: sport
@@ -7461,6 +7588,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Rankings Data
+      operationId: teamRankingsData
       description: Returns team rankings details.
       parameters:
       - name: sport
@@ -7521,6 +7649,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Stage Season Races Data
+      operationId: stageSeasonRacesData
       description: Returns team stage season races details.
       parameters:
       - name: sport
@@ -7588,6 +7717,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Stage Seasons Data
+      operationId: teamStageSeasonsData
       description: Returns team stage seasons details.
       parameters:
       - name: sport
@@ -7648,6 +7778,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Standings Seasons Data
+      operationId: teamStandingsSeasonsData
       description: Returns team standings seasons details.
       parameters:
       - name: sport
@@ -7708,6 +7839,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Statistics Seasons Data
+      operationId: teamStatisticsSeasonsData
       description: Returns team statistics seasons details.
       parameters:
       - name: sport
@@ -7768,6 +7900,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Players Playoffs Data
+      operationId: seasonBestPlayersPlayoffsData
       description: Returns team tournament season best players playoffs details.
       parameters:
       - name: sport
@@ -7842,6 +7975,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Players Regularseason Data
+      operationId: seasonBestPlayersRegularseasonData
       description: Returns team tournament season best players regularseason details.
       parameters:
       - name: sport
@@ -7916,6 +8050,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Players Regularseason Data
+      operationId: seasonBestPlayersRegularseasonDataRegularseason
       description: Returns team tournament season best players regularseason details.
       parameters:
       - name: sport
@@ -7990,6 +8125,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Ranks Playoffs Data
+      operationId: seasonRanksPlayoffsData
       description: Returns team tournament season ranks playoffs details.
       parameters:
       - name: sport
@@ -8064,6 +8200,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Ranks Regularseason Data
+      operationId: seasonRanksRegularseasonData
       description: Returns team tournament season ranks regularseason details.
       parameters:
       - name: sport
@@ -8138,6 +8275,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Statistics Playoffs Data
+      operationId: seasonStatisticsPlayoffsDataPlayoffs
       description: Returns team tournament season statistics playoffs details.
       parameters:
       - name: sport
@@ -8212,6 +8350,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Statistics Regularseason Data
+      operationId: seasonStatisticsRegularseasonDataRegularseason2
       description: Returns team tournament season statistics regularseason details.
       parameters:
       - name: sport
@@ -8286,6 +8425,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Tournaments Data
+      operationId: teamTournamentsData
       description: Returns team tournaments details.
       parameters:
       - name: sport
@@ -8346,6 +8486,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Tournaments Last Data
+      operationId: teamTournamentsLastData
       description: Returns team tournaments last details.
       parameters:
       - name: sport
@@ -8406,6 +8547,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Transfers Data
+      operationId: teamTransfersData
       description: Returns team transfers details.
       parameters:
       - name: sport
@@ -8466,6 +8608,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Top Players Overall Data
+      operationId: seasonTopPlayersOverallData
       description: Returns team unique tournament season top players overall details.
       parameters:
       - name: sport
@@ -8540,6 +8683,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Team Unique Tournaments Data
+      operationId: teamUniqueTournamentsData
       description: Returns team unique tournaments details.
       parameters:
       - name: sport
@@ -8600,6 +8744,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament All Category Data
+      operationId: tournamentAllCategoryData
       description: Returns tournament all category details.
       parameters:
       - name: sport
@@ -8660,6 +8805,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Categories Data
+      operationId: tournamentCategoriesData
       description: Returns tournament categories details.
       parameters:
       - name: sport
@@ -8713,6 +8859,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Data
+      operationId: tournamentData
       description: Returns tournament details.
       parameters:
       - name: sport
@@ -8773,6 +8920,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Featured Events Data
+      operationId: tournamentFeaturedEventsData
       description: Returns tournament featured events details.
       parameters:
       - name: sport
@@ -8833,6 +8981,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Image Data
+      operationId: tournamentImageData
       description: Returns tournament image details.
       parameters:
       - name: sport
@@ -8893,6 +9042,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Image Dark Data
+      operationId: tournamentImageDarkData
       description: Returns tournament image dark details.
       parameters:
       - name: sport
@@ -8953,6 +9103,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Info Data
+      operationId: tournamentInfoData
       description: Returns tournament info details.
       parameters:
       - name: sport
@@ -9013,6 +9164,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Media Data
+      operationId: tournamentMediaData
       description: Returns tournament media details.
       parameters:
       - name: sport
@@ -9073,6 +9225,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Schedules Data
+      operationId: tournamentSchedulesData
       description: Returns tournament schedules details.
       parameters:
       - name: sport
@@ -9154,6 +9307,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Players Overall Data
+      operationId: seasonBestPlayersOverallData
       description: Returns tournament season best players overall details.
       parameters:
       - name: sport
@@ -9221,6 +9375,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Players Per Game Data
+      operationId: seasonBestPlayersPerGameData
       description: Returns tournament season best players per game details.
       parameters:
       - name: sport
@@ -9288,6 +9443,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Best Players Per Game Overall Data
+      operationId: bestPlayersPerGameOverallData
       description: Returns tournament season best players per game overall details.
       parameters:
       - name: sport
@@ -9355,6 +9511,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Best Players Per Game Playoffs Data
+      operationId: bestPlayersPerGamePlayoffsData
       description: Returns tournament season best players per game playoffs details.
       parameters:
       - name: sport
@@ -9422,6 +9579,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Best Players Per Game Regularseason Data
+      operationId: bestPlayersPerGameRegularseasonData
       description: Returns tournament season best players per game regularseason details.
       parameters:
       - name: sport
@@ -9489,6 +9647,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Players Playoffs Data
+      operationId: seasonBestPlayersPlayoffsDataPlayoffs
       description: Returns tournament season best players playoffs details.
       parameters:
       - name: sport
@@ -9556,6 +9715,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Players Regularseason Data
+      operationId: seasonBestPlayersRegularseasonDataRegularseason2
       description: Returns tournament season best players regularseason details.
       parameters:
       - name: sport
@@ -9623,6 +9783,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Players Regularseason Data
+      operationId: seasonBestPlayersRegularseasonDataRegularseason3
       description: Returns tournament season best players regularseason details.
       parameters:
       - name: sport
@@ -9690,6 +9851,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Players Types Data
+      operationId: seasonBestPlayersTypesData
       description: Returns tournament season best players types details.
       parameters:
       - name: sport
@@ -9757,6 +9919,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Teams Overall Data
+      operationId: seasonBestTeamsOverallData
       description: Returns tournament season best teams overall details.
       parameters:
       - name: sport
@@ -9824,6 +9987,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Teams Playoffs Data
+      operationId: seasonBestTeamsPlayoffsData
       description: Returns tournament season best teams playoffs details.
       parameters:
       - name: sport
@@ -9891,6 +10055,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Best Teams Regularseason Data
+      operationId: seasonBestTeamsRegularseasonData
       description: Returns tournament season best teams regularseason details.
       parameters:
       - name: sport
@@ -9958,6 +10123,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Season Cup Trees Data
+      operationId: tournamentSeasonCupTreesData
       description: Returns tournament season cup trees details.
       parameters:
       - name: sport
@@ -10025,6 +10191,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Cup Trees Old Data
+      operationId: seasonCupTreesOldData
       description: Returns tournament season cup trees old details.
       parameters:
       - name: sport
@@ -10092,6 +10259,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Season Cuptrees Data
+      operationId: tournamentSeasonCuptreesData
       description: Returns tournament season cuptrees details.
       parameters:
       - name: sport
@@ -10159,6 +10327,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Events Last Data
+      operationId: seasonEventsLastData
       description: Returns tournament season events last details.
       parameters:
       - name: sport
@@ -10233,6 +10402,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Events Next Data
+      operationId: seasonEventsNextData
       description: Returns tournament season events next details.
       parameters:
       - name: sport
@@ -10307,6 +10477,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Events Round Slug Data
+      operationId: eventsRoundSlugData
       description: Returns tournament season events round slug details.
       parameters:
       - name: sport
@@ -10388,6 +10559,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Season Groups Data
+      operationId: tournamentSeasonGroupsData
       description: Returns tournament season groups details.
       parameters:
       - name: sport
@@ -10455,6 +10627,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Season Info Data
+      operationId: tournamentSeasonInfoData
       description: Returns tournament season info details.
       parameters:
       - name: sport
@@ -10522,6 +10695,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Season Matches Data
+      operationId: tournamentSeasonMatchesDataMatches
       description: Returns tournament season matches details.
       parameters:
       - name: sport
@@ -10589,6 +10763,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Matches Last Data
+      operationId: seasonMatchesLastData
       description: Returns tournament season matches last details.
       parameters:
       - name: sport
@@ -10663,6 +10838,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Matches Next Data
+      operationId: seasonMatchesNextData
       description: Returns tournament season matches next details.
       parameters:
       - name: sport
@@ -10737,6 +10913,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Season Player Of The Season Data
+      operationId: tournamentSeasonPlayerOfTheSeasonData
       description: Returns tournament season player of the season details.
       parameters:
       - name: sport
@@ -10804,6 +10981,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Power Rankings Rounds Data
+      operationId: seasonPowerRankingsRoundsData
       description: Returns tournament season power rankings rounds details.
       parameters:
       - name: sport
@@ -10871,6 +11049,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Season Rounds Data
+      operationId: tournamentSeasonRoundsData
       description: Returns tournament season rounds details.
       parameters:
       - name: sport
@@ -10938,6 +11117,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Shot Actions Areas Playoffs Data
+      operationId: shotActionsAreasPlayoffsData
       description: Returns tournament season shot actions areas playoffs details.
       parameters:
       - name: sport
@@ -11005,6 +11185,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Shot Actions Areas Regularseason Data
+      operationId: shotActionsAreasRegularseasonData
       description: Returns tournament season shot actions areas regularseason details.
       parameters:
       - name: sport
@@ -11072,6 +11253,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Standings Away Data
+      operationId: seasonStandingsAwayData
       description: Returns tournament season standings away details.
       parameters:
       - name: sport
@@ -11139,6 +11321,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Standings Home Data
+      operationId: seasonStandingsHomeData
       description: Returns tournament season standings home details.
       parameters:
       - name: sport
@@ -11206,6 +11389,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Standings Total Data
+      operationId: seasonStandingsTotalData
       description: Returns tournament season standings total details.
       parameters:
       - name: sport
@@ -11273,6 +11457,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Statistics Info Data
+      operationId: seasonStatisticsInfoData
       description: Returns tournament season statistics info details.
       parameters:
       - name: sport
@@ -11340,6 +11525,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Team Events Away Data
+      operationId: seasonTeamEventsAwayData
       description: Returns tournament season team events away details.
       parameters:
       - name: sport
@@ -11407,6 +11593,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Team Events Home Data
+      operationId: seasonTeamEventsHomeData
       description: Returns tournament season team events home details.
       parameters:
       - name: sport
@@ -11474,6 +11661,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Team Events Total Data
+      operationId: seasonTeamEventsTotalData
       description: Returns tournament season team events total details.
       parameters:
       - name: sport
@@ -11541,6 +11729,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Team Of The Week Rounds Data
+      operationId: seasonTeamOfTheWeekRoundsData
       description: Returns tournament season team of the week rounds details.
       parameters:
       - name: sport
@@ -11608,6 +11797,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Season Top Players Data
+      operationId: tournamentSeasonTopPlayersData
       description: Returns tournament season top players details.
       parameters:
       - name: sport
@@ -11675,6 +11865,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Seasons Data
+      operationId: tournamentSeasonsData
       description: Returns tournament seasons details.
       parameters:
       - name: sport
@@ -11735,6 +11926,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Stage Image Data
+      operationId: uniqueStageImageData
       description: Returns unique stage image details.
       parameters:
       - name: sport
@@ -11795,6 +11987,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Stage Season Data
+      operationId: uniqueStageSeasonData
       description: Returns unique stage season details.
       parameters:
       - name: sport
@@ -11855,6 +12048,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament All Category Data
+      operationId: uniqueTournamentAllCategoryData
       description: Returns unique tournament all category details.
       parameters:
       - name: sport
@@ -11915,6 +12109,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Data
+      operationId: uniqueTournamentData
       description: Returns unique tournament details.
       parameters:
       - name: sport
@@ -11975,6 +12170,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Featured Events Data
+      operationId: uniqueTournamentFeaturedEventsData
       description: Returns unique tournament featured events details.
       parameters:
       - name: sport
@@ -12035,6 +12231,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Image Data
+      operationId: uniqueTournamentImageData
       description: Returns unique tournament image details.
       parameters:
       - name: sport
@@ -12095,6 +12292,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Image Dark Data
+      operationId: uniqueTournamentImageDarkData
       description: Returns unique tournament image dark details.
       parameters:
       - name: sport
@@ -12155,6 +12353,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Main Events Last Data
+      operationId: uniqueTournamentMainEventsLastData
       description: Returns unique tournament main events last details.
       parameters:
       - name: sport
@@ -12222,6 +12421,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Main Events Next Data
+      operationId: uniqueTournamentMainEventsNextData
       description: Returns unique tournament main events next details.
       parameters:
       - name: sport
@@ -12289,6 +12489,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Media Data
+      operationId: uniqueTournamentMediaData
       description: Returns unique tournament media details.
       parameters:
       - name: sport
@@ -12349,6 +12550,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Schedules Data
+      operationId: uniqueTournamentSchedulesData
       description: Returns unique tournament schedules details.
       parameters:
       - name: sport
@@ -12430,6 +12632,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Schedules Data
+      operationId: uniqueTournamentSchedulesDataYear
       description: Returns unique tournament schedules details.
       parameters:
       - name: sport
@@ -12504,6 +12707,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Season Cuptrees Data
+      operationId: uniqueTournamentSeasonCuptreesData
       description: Returns unique tournament season cuptrees details.
       parameters:
       - name: sport
@@ -12571,6 +12775,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Season Groups Data
+      operationId: uniqueTournamentSeasonGroupsData
       description: Returns unique tournament season groups details.
       parameters:
       - name: sport
@@ -12638,6 +12843,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Matches Last Data
+      operationId: seasonMatchesLastDataPage
       description: Returns unique tournament season matches last details.
       parameters:
       - name: sport
@@ -12712,6 +12918,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Matches Next Data
+      operationId: seasonMatchesNextDataPage
       description: Returns unique tournament season matches next details.
       parameters:
       - name: sport
@@ -12786,6 +12993,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Matches Round Data
+      operationId: seasonMatchesRoundData
       description: Returns unique tournament season matches round details.
       parameters:
       - name: sport
@@ -12860,6 +13068,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Matches Round Slug Data
+      operationId: matchesRoundSlugData
       description: Returns unique tournament season matches round slug details.
       parameters:
       - name: sport
@@ -12941,6 +13150,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Player Statistics Types Data
+      operationId: seasonPlayerStatisticsTypesData
       description: Returns unique tournament season player statistics types details.
       parameters:
       - name: sport
@@ -13008,6 +13218,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Season Rounds Data
+      operationId: uniqueTournamentSeasonRoundsData
       description: Returns unique tournament season rounds details.
       parameters:
       - name: sport
@@ -13075,6 +13286,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Standings Away Data
+      operationId: seasonStandingsAwayDataAway
       description: Returns unique tournament season standings away details.
       parameters:
       - name: sport
@@ -13142,6 +13354,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Standings Home Data
+      operationId: seasonStandingsHomeDataHome
       description: Returns unique tournament season standings home details.
       parameters:
       - name: sport
@@ -13209,6 +13422,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Standings Total Data
+      operationId: seasonStandingsTotalDataTotal
       description: Returns unique tournament season standings total details.
       parameters:
       - name: sport
@@ -13276,6 +13490,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Team Events Away Data
+      operationId: seasonTeamEventsAwayDataAway
       description: Returns unique tournament season team events away details.
       parameters:
       - name: sport
@@ -13343,6 +13558,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Team Events Home Data
+      operationId: seasonTeamEventsHomeDataHome
       description: Returns unique tournament season team events home details.
       parameters:
       - name: sport
@@ -13410,6 +13626,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Team Events Total Data
+      operationId: seasonTeamEventsTotalDataTotal
       description: Returns unique tournament season team events total details.
       parameters:
       - name: sport
@@ -13477,6 +13694,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Top Players Per Game All Overall Data
+      operationId: topPlayersPerGameAllOverallData
       description: Returns unique tournament season top players per game all overall
         details.
       parameters:
@@ -13545,6 +13763,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Top Players Overall Data
+      operationId: seasonTopPlayersOverallDataOverall
       description: Returns unique tournament season top players overall details.
       parameters:
       - name: sport
@@ -13612,6 +13831,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Season Top Teams Overall Data
+      operationId: seasonTopTeamsOverallData
       description: Returns unique tournament season top teams overall details.
       parameters:
       - name: sport
@@ -13679,6 +13899,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Unique Tournament Seasons Data
+      operationId: uniqueTournamentSeasonsData
       description: Returns unique tournament seasons details.
       parameters:
       - name: sport
@@ -13739,6 +13960,7 @@ paths:
       tags:
       - MultiSport
       summary: Get Tournament Mma Events All Data
+      operationId: tournamentMmaEventsAllData
       description: Returns unique tournament tournament mma events all details.
       parameters:
       - name: sport
@@ -13806,6 +14028,7 @@ paths:
       tags:
       - Football
       summary: Get Category Matches Data
+      operationId: categoryMatchesData
       description: Returns category matches details.
       parameters:
       - name: categoryId
@@ -13865,6 +14088,7 @@ paths:
       tags:
       - Football
       summary: Get Category Events Data
+      operationId: categoryEventsDataYear
       description: Returns category events details.
       parameters:
       - name: id
@@ -13925,6 +14149,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Matches Data
+      operationId: tournamentSeasonMatchesDataMatches2
       description: Returns group tournament season matches details.
       parameters:
       - name: tournamentId
@@ -13971,6 +14196,7 @@ paths:
       tags:
       - Football
       summary: Get Manager Data
+      operationId: managerDataId
       description: Returns manager details.
       parameters:
       - name: id
@@ -14010,6 +14236,7 @@ paths:
       tags:
       - Football
       summary: Get Manager History Data
+      operationId: managerHistoryData
       description: Returns manager history details.
       parameters:
       - name: id
@@ -14049,6 +14276,7 @@ paths:
       tags:
       - Football
       summary: Get Manager Image Data
+      operationId: managerImageDataImage
       description: Returns manager image details.
       parameters:
       - name: id
@@ -14088,6 +14316,7 @@ paths:
       tags:
       - Football
       summary: Get Manager Matches Next Data
+      operationId: managerMatchesNextData
       description: Returns manager matches next details.
       parameters:
       - name: id
@@ -14134,6 +14363,7 @@ paths:
       tags:
       - Football
       summary: Get Manager Matches Previous Data
+      operationId: managerMatchesPreviousDataPage
       description: Returns manager matches previous details.
       parameters:
       - name: id
@@ -14180,6 +14410,7 @@ paths:
       tags:
       - Football
       summary: Get Match H2H Data
+      operationId: matchH2hDataH2h
       description: Returns match h2h details.
       parameters:
       - name: customId
@@ -14219,6 +14450,7 @@ paths:
       tags:
       - Football
       summary: Get Match Best Players Summary Data
+      operationId: matchBestPlayersSummaryData
       description: Returns match best players summary details.
       parameters:
       - name: eventId
@@ -14257,6 +14489,7 @@ paths:
       tags:
       - Football
       summary: Get Match Data
+      operationId: matchDataId
       description: Returns match details.
       parameters:
       - name: id
@@ -14296,6 +14529,7 @@ paths:
       tags:
       - Football
       summary: Get Match Average Positions Data
+      operationId: matchAveragePositionsData
       description: Returns match average positions details.
       parameters:
       - name: id
@@ -14335,6 +14569,7 @@ paths:
       tags:
       - Football
       summary: Get Match Best Players Data
+      operationId: matchBestPlayersDataBestPlayers
       description: Returns match best players details.
       parameters:
       - name: id
@@ -14374,6 +14609,7 @@ paths:
       tags:
       - Football
       summary: Get Match Commentary Data
+      operationId: matchCommentaryData
       description: Returns match commentary details.
       parameters:
       - name: id
@@ -14413,6 +14649,7 @@ paths:
       tags:
       - Football
       summary: Get Match Duel Data
+      operationId: matchDuelDataDuel
       description: Returns match duel details.
       parameters:
       - name: id
@@ -14452,6 +14689,7 @@ paths:
       tags:
       - Football
       summary: Get Match Form Data
+      operationId: matchFormDataForm
       description: Returns match form details.
       parameters:
       - name: id
@@ -14491,6 +14729,7 @@ paths:
       tags:
       - Football
       summary: Get Goalkeeper Jersey Away Data
+      operationId: goalkeeperJerseyAwayData
       description: Returns match goalkeeper jersey away details.
       parameters:
       - name: id
@@ -14530,6 +14769,7 @@ paths:
       tags:
       - Football
       summary: Get Goalkeeper Jersey Home Data
+      operationId: goalkeeperJerseyHomeData
       description: Returns match goalkeeper jersey home details.
       parameters:
       - name: id
@@ -14569,6 +14809,7 @@ paths:
       tags:
       - Football
       summary: Get Match Graph Data
+      operationId: matchGraphDataGraph
       description: Returns match graph details.
       parameters:
       - name: id
@@ -14608,6 +14849,7 @@ paths:
       tags:
       - Football
       summary: Get Match Highlights Data
+      operationId: matchHighlightsDataHighlights
       description: Returns match highlights details.
       parameters:
       - name: id
@@ -14647,6 +14889,7 @@ paths:
       tags:
       - Football
       summary: Get Match Incidents Data
+      operationId: matchIncidentsDataIncidents
       description: Returns match incidents details.
       parameters:
       - name: id
@@ -14686,6 +14929,7 @@ paths:
       tags:
       - Football
       summary: Get Match Lineups Data
+      operationId: matchLineupsDataLineups
       description: Returns match lineups details.
       parameters:
       - name: id
@@ -14725,6 +14969,7 @@ paths:
       tags:
       - Football
       summary: Get Match Managers Data
+      operationId: matchManagersDataManagers
       description: Returns match managers details.
       parameters:
       - name: id
@@ -14764,6 +15009,7 @@ paths:
       tags:
       - Football
       summary: Get Match Odds Data
+      operationId: matchOddsDataOdds
       description: Returns match odds details.
       parameters:
       - name: id
@@ -14803,6 +15049,7 @@ paths:
       tags:
       - Football
       summary: Get Player Jersey Away Data
+      operationId: playerJerseyAwayData
       description: Returns match player jersey away details.
       parameters:
       - name: id
@@ -14842,6 +15089,7 @@ paths:
       tags:
       - Football
       summary: Get Player Jersey Home Data
+      operationId: playerJerseyHomeData
       description: Returns match player jersey home details.
       parameters:
       - name: id
@@ -14881,6 +15129,7 @@ paths:
       tags:
       - Football
       summary: Get Match Player Heatmap Data
+      operationId: matchPlayerHeatmapData
       description: Returns match player heatmap details.
       parameters:
       - name: id
@@ -14927,6 +15176,7 @@ paths:
       tags:
       - Football
       summary: Get Match Player Rating Breakdown Data
+      operationId: matchPlayerRatingBreakdownData
       description: Returns the rating component breakdown for a player in a specific match.
       parameters:
       - name: id
@@ -14973,6 +15223,7 @@ paths:
       tags:
       - Football
       summary: Get Match Player Shotmap Data
+      operationId: matchPlayerShotmapDataShotmap
       description: Returns match player shotmap details.
       parameters:
       - name: id
@@ -15019,6 +15270,7 @@ paths:
       tags:
       - Football
       summary: Get Match Player Statistics Data
+      operationId: matchPlayerStatisticsDataStatistics
       description: Returns match player statistics details.
       parameters:
       - name: id
@@ -15065,6 +15317,7 @@ paths:
       tags:
       - Football
       summary: Get Match Players Featured Data
+      operationId: matchPlayersFeaturedData
       description: Returns match players featured details.
       parameters:
       - name: id
@@ -15104,6 +15357,7 @@ paths:
       tags:
       - Football
       summary: Get Match Shotmap Data
+      operationId: matchShotmapData
       description: Returns match shotmap details.
       parameters:
       - name: id
@@ -15143,6 +15397,7 @@ paths:
       tags:
       - Football
       summary: Get Match Statistics Data
+      operationId: matchStatisticsDataStatistics
       description: Returns match statistics details.
       parameters:
       - name: id
@@ -15182,6 +15437,7 @@ paths:
       tags:
       - Football
       summary: Get Match Streaks Data
+      operationId: matchStreaksDataStreaks
       description: Returns match streaks details.
       parameters:
       - name: id
@@ -15221,6 +15477,7 @@ paths:
       tags:
       - Football
       summary: Get Match Streaks Odds Data
+      operationId: matchStreaksOddsDataOdds
       description: Returns match streaks odds details.
       parameters:
       - name: id
@@ -15260,6 +15517,7 @@ paths:
       tags:
       - Football
       summary: Get Match Team Heatmap Data
+      operationId: matchTeamHeatmapData
       description: Returns match team heatmap details.
       parameters:
       - name: id
@@ -15306,6 +15564,7 @@ paths:
       tags:
       - Football
       summary: Get Match Votes Data
+      operationId: matchVotesDataVotes
       description: Returns match votes details.
       parameters:
       - name: id
@@ -15345,6 +15604,7 @@ paths:
       tags:
       - Football
       summary: Get Match Win Probability Data
+      operationId: matchWinProbabilityData
       description: Returns match win probability details.
       parameters:
       - name: id
@@ -15384,6 +15644,7 @@ paths:
       tags:
       - Football
       summary: Get Matches Bottom Data
+      operationId: matchesBottomData
       description: Returns matches bottom details.
       parameters:
       - name: day
@@ -15437,6 +15698,7 @@ paths:
       tags:
       - Football
       summary: Get Matches Live Data
+      operationId: matchesLiveDataLive
       description: Returns matches live details.
       responses:
         '200':
@@ -15468,6 +15730,7 @@ paths:
       tags:
       - Football
       summary: Get Matches Odds Featured Data
+      operationId: matchesOddsFeaturedData
       description: Returns matches odds featured details.
       responses:
         '200':
@@ -15499,6 +15762,7 @@ paths:
       tags:
       - Football
       summary: Get Matches Odds Data
+      operationId: matchesOddsData
       description: Returns matches odds details.
       parameters:
       - name: day
@@ -15552,6 +15816,7 @@ paths:
       tags:
       - Football
       summary: Get Matches Top Data
+      operationId: matchesTopData
       description: Returns matches top details.
       parameters:
       - name: day
@@ -15605,6 +15870,7 @@ paths:
       tags:
       - Football
       summary: Get Matches Data
+      operationId: matchesDataYear
       description: Returns matches details.
       parameters:
       - name: day
@@ -15658,6 +15924,7 @@ paths:
       tags:
       - Football
       summary: Get Player Trending Data
+      operationId: playerTrendingData
       description: Returns player trending details.
       responses:
         '200':
@@ -15689,6 +15956,7 @@ paths:
       tags:
       - Football
       summary: Get Player Data
+      operationId: playerDataId
       description: Returns player details.
       parameters:
       - name: id
@@ -15728,6 +15996,7 @@ paths:
       tags:
       - Football
       summary: Get Player Attribute Data
+      operationId: playerAttributeData
       description: Returns player attribute details.
       parameters:
       - name: id
@@ -15767,6 +16036,7 @@ paths:
       tags:
       - Football
       summary: Get Player Characteristics Data
+      operationId: playerCharacteristicsData
       description: Returns player characteristics details.
       parameters:
       - name: id
@@ -15806,6 +16076,7 @@ paths:
       tags:
       - Football
       summary: Get Player Image Data
+      operationId: playerImageDataImage
       description: Returns player image details.
       parameters:
       - name: id
@@ -15845,6 +16116,7 @@ paths:
       tags:
       - Football
       summary: Get Player Matches Near Data
+      operationId: playerMatchesNearDataNear
       description: Returns player matches near details.
       parameters:
       - name: id
@@ -15884,6 +16156,7 @@ paths:
       tags:
       - Football
       summary: Get Player Matches Previous Data
+      operationId: playerMatchesPreviousDataPage
       description: Returns player matches previous details.
       parameters:
       - name: id
@@ -15930,6 +16203,7 @@ paths:
       tags:
       - Football
       summary: Get Player Media Data
+      operationId: playerMediaDataMedia
       description: Returns player media details.
       parameters:
       - name: id
@@ -15969,6 +16243,7 @@ paths:
       tags:
       - Football
       summary: Get Player Penalty Data
+      operationId: playerPenaltyData
       description: Returns player penalty details.
       parameters:
       - name: id
@@ -16008,6 +16283,7 @@ paths:
       tags:
       - Football
       summary: Get Penalty History Tournament Season Data
+      operationId: penaltyHistoryTournamentSeasonData
       description: Returns player penalty history tournament season details.
       parameters:
       - name: id
@@ -16061,6 +16337,7 @@ paths:
       tags:
       - Football
       summary: Get Player Statistics National Data
+      operationId: playerStatisticsNationalData
       description: Returns player statistics national details.
       parameters:
       - name: id
@@ -16100,6 +16377,7 @@ paths:
       tags:
       - Football
       summary: Get Player Statistics Season Data
+      operationId: playerStatisticsSeasonDataSeason
       description: Returns player statistics season details.
       parameters:
       - name: id
@@ -16139,6 +16417,7 @@ paths:
       tags:
       - Football
       summary: Get Player Summary Data
+      operationId: playerSummaryData
       description: Returns player summary details.
       parameters:
       - name: id
@@ -16178,6 +16457,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Heatmap Data
+      operationId: tournamentSeasonHeatmapData
       description: Returns player tournament season heatmap details.
       parameters:
       - name: id
@@ -16231,6 +16511,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Last Ratings Data
+      operationId: tournamentSeasonLastRatingsData
       description: Returns player tournament season last ratings details.
       parameters:
       - name: id
@@ -16284,6 +16565,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Ratings Data
+      operationId: tournamentSeasonRatingsData
       description: Returns player tournament season ratings details.
       parameters:
       - name: id
@@ -16337,6 +16619,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Statistics Data
+      operationId: tournamentSeasonStatisticsData
       description: Returns player tournament season statistics details.
       parameters:
       - name: id
@@ -16390,6 +16673,7 @@ paths:
       tags:
       - Football
       summary: Get Player Transfer Data
+      operationId: playerTransferData
       description: Returns player transfer details.
       parameters:
       - name: id
@@ -16429,6 +16713,7 @@ paths:
       tags:
       - Football
       summary: Get Rankings Fifa Data
+      operationId: rankingsFifaData
       description: Returns rankings fifa details.
       responses:
         '200':
@@ -16460,6 +16745,7 @@ paths:
       tags:
       - Football
       summary: Get Rankings Uefa Clubs Data
+      operationId: rankingsUefaClubsData
       description: Returns rankings uefa clubs details.
       responses:
         '200':
@@ -16491,6 +16777,7 @@ paths:
       tags:
       - Football
       summary: Get Rankings Uefa Countries Data
+      operationId: rankingsUefaCountriesData
       description: Returns rankings uefa countries details.
       responses:
         '200':
@@ -16522,6 +16809,7 @@ paths:
       tags:
       - Football
       summary: Get Referee Data
+      operationId: refereeData
       description: Returns referee details.
       parameters:
       - name: id
@@ -16561,6 +16849,7 @@ paths:
       tags:
       - Football
       summary: Get Referee Image Data
+      operationId: refereeImageData
       description: Returns referee image details.
       parameters:
       - name: id
@@ -16600,6 +16889,7 @@ paths:
       tags:
       - Football
       summary: Get Referee Matches Next Data
+      operationId: refereeMatchesNextData
       description: Returns referee matches next details.
       parameters:
       - name: id
@@ -16646,6 +16936,7 @@ paths:
       tags:
       - Football
       summary: Get Referee Matches Previous Data
+      operationId: refereeMatchesPreviousData
       description: Returns referee matches previous details.
       parameters:
       - name: id
@@ -16692,6 +16983,7 @@ paths:
       tags:
       - Football
       summary: Get Referee Statistics Data
+      operationId: refereeStatisticsData
       description: Returns referee statistics details.
       parameters:
       - name: id
@@ -16731,6 +17023,7 @@ paths:
       tags:
       - Football
       summary: Get Search Data
+      operationId: searchDataTerm
       description: Returns search details.
       parameters:
       - name: term
@@ -16770,6 +17063,7 @@ paths:
       tags:
       - Football
       summary: Get Team Data
+      operationId: teamDataId
       description: Returns team details.
       parameters:
       - name: id
@@ -16809,6 +17103,7 @@ paths:
       tags:
       - Football
       summary: Get Team Image Data
+      operationId: teamImageDataImage
       description: Returns team image details.
       parameters:
       - name: id
@@ -16848,6 +17143,7 @@ paths:
       tags:
       - Football
       summary: Get Team Matches Near Data
+      operationId: teamMatchesNearDataNear
       description: Returns team matches near details.
       parameters:
       - name: id
@@ -16887,6 +17183,7 @@ paths:
       tags:
       - Football
       summary: Get Team Matches Next Data
+      operationId: teamMatchesNextDataPage
       description: Returns team matches next details.
       parameters:
       - name: id
@@ -16933,6 +17230,7 @@ paths:
       tags:
       - Football
       summary: Get Team Matches Previous Data
+      operationId: teamMatchesPreviousDataPage
       description: Returns team matches previous details.
       parameters:
       - name: id
@@ -16979,6 +17277,7 @@ paths:
       tags:
       - Football
       summary: Get Team Media Data
+      operationId: teamMediaDataMedia
       description: Returns team media details.
       parameters:
       - name: id
@@ -17018,6 +17317,7 @@ paths:
       tags:
       - Football
       summary: Get Team Players Data
+      operationId: teamPlayersDataPlayers
       description: Returns team players details.
       parameters:
       - name: id
@@ -17057,6 +17357,7 @@ paths:
       tags:
       - Football
       summary: Get Players Statistics Seasons Data
+      operationId: playersStatisticsSeasonsDataSeasons
       description: Returns team players statistics seasons details.
       parameters:
       - name: id
@@ -17096,6 +17397,7 @@ paths:
       tags:
       - Football
       summary: Get Team Standings Seasons Data
+      operationId: teamStandingsSeasonsDataSeasons
       description: Returns team standings seasons details.
       parameters:
       - name: id
@@ -17135,6 +17437,7 @@ paths:
       tags:
       - Football
       summary: Get Team Statistics Seasons Data
+      operationId: teamStatisticsSeasonsDataSeasons
       description: Returns team statistics seasons details.
       parameters:
       - name: id
@@ -17174,6 +17477,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Best Players Data
+      operationId: tournamentSeasonBestPlayersData
       description: Returns team tournament season best players details.
       parameters:
       - name: id
@@ -17227,6 +17531,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Statistics Data
+      operationId: tournamentSeasonStatisticsDataStatistics
       description: Returns team tournament season statistics details.
       parameters:
       - name: id
@@ -17280,6 +17585,7 @@ paths:
       tags:
       - Football
       summary: Get Team Tournaments Data
+      operationId: teamTournamentsDataTournaments
       description: Returns team tournaments details.
       parameters:
       - name: id
@@ -17319,6 +17625,7 @@ paths:
       tags:
       - Football
       summary: Get Team Transfers Data
+      operationId: teamTransfersDataTransfers
       description: Returns team transfers details.
       parameters:
       - name: id
@@ -17358,6 +17665,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Goal Distributions Data
+      operationId: tournamentSeasonGoalDistributionsData
       description: Returns team tournament season goal distributions details.
       parameters:
       - name: teamId
@@ -17411,6 +17719,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament All Category Data
+      operationId: tournamentAllCategoryDataId
       description: Returns tournament all category details.
       parameters:
       - name: id
@@ -17450,6 +17759,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Categories Data
+      operationId: tournamentCategoriesDataCategories
       description: Returns tournament categories details.
       responses:
         '200':
@@ -17481,6 +17791,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Data
+      operationId: tournamentDataTournamentid
       description: Returns tournament details.
       parameters:
       - name: tournamentId
@@ -17520,6 +17831,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Image Data
+      operationId: tournamentImageDataImage
       description: Returns tournament image details.
       parameters:
       - name: tournamentId
@@ -17559,6 +17871,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Image Dark Data
+      operationId: tournamentImageDarkDataDark
       description: Returns tournament image dark details.
       parameters:
       - name: tournamentId
@@ -17598,6 +17911,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Media Data
+      operationId: tournamentMediaDataMedia
       description: Returns tournament media details.
       parameters:
       - name: tournamentId
@@ -17637,6 +17951,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Meta Data
+      operationId: tournamentMetaData
       description: Returns tournament meta details.
       parameters:
       - name: tournamentId
@@ -17676,6 +17991,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Schedules Data
+      operationId: tournamentSchedulesDataYear
       description: Returns tournament schedules details.
       parameters:
       - name: tournamentId
@@ -17736,6 +18052,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Best Players Data
+      operationId: tournamentSeasonBestPlayersDataBestPlayers
       description: Returns tournament season best players details.
       parameters:
       - name: tournamentId
@@ -17782,6 +18099,7 @@ paths:
       tags:
       - Football
       summary: Get Season Best Players Per Game Data
+      operationId: seasonBestPlayersPerGameDataPerGame
       description: Returns tournament season best players per game details.
       parameters:
       - name: tournamentId
@@ -17828,6 +18146,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Best Teams Data
+      operationId: tournamentSeasonBestTeamsData
       description: Returns tournament season best teams details.
       parameters:
       - name: tournamentId
@@ -17874,6 +18193,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Cuptrees Data
+      operationId: tournamentSeasonCuptreesDataCuptrees
       description: Returns tournament season cuptrees details.
       parameters:
       - name: tournamentId
@@ -17920,6 +18240,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Groups Data
+      operationId: tournamentSeasonGroupsDataGroups
       description: Returns tournament season groups details.
       parameters:
       - name: tournamentId
@@ -17966,6 +18287,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Info Data
+      operationId: tournamentSeasonInfoDataInfo
       description: Returns tournament season info details.
       parameters:
       - name: tournamentId
@@ -18012,6 +18334,7 @@ paths:
       tags:
       - Football
       summary: Get Season Matches Last Data
+      operationId: seasonMatchesLastDataPage2
       description: Returns tournament season matches last details.
       parameters:
       - name: tournamentId
@@ -18065,6 +18388,7 @@ paths:
       tags:
       - Football
       summary: Get Season Matches Next Data
+      operationId: seasonMatchesNextDataPage2
       description: Returns tournament season matches next details.
       parameters:
       - name: tournamentId
@@ -18118,6 +18442,7 @@ paths:
       tags:
       - Football
       summary: Get Season Matches Round Data
+      operationId: seasonMatchesRoundDataRound
       description: Returns tournament season matches round details.
       parameters:
       - name: tournamentId
@@ -18171,6 +18496,7 @@ paths:
       tags:
       - Football
       summary: Get Matches Round Slug Data
+      operationId: matchesRoundSlugDataSlug
       description: Returns tournament season matches round slug details.
       parameters:
       - name: tournamentId
@@ -18231,6 +18557,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Player Of The Season Data
+      operationId: tournamentSeasonPlayerOfTheSeasonDataPlayerOfTheSeason
       description: Returns tournament season player of the season details.
       parameters:
       - name: tournamentId
@@ -18277,6 +18604,7 @@ paths:
       tags:
       - Football
       summary: Get Season Power Rankings Round Data
+      operationId: seasonPowerRankingsRoundData
       description: Returns tournament season power rankings round details.
       parameters:
       - name: tournamentId
@@ -18330,6 +18658,7 @@ paths:
       tags:
       - Football
       summary: Get Season Power Rankings Rounds Data
+      operationId: seasonPowerRankingsRoundsDataRounds
       description: Returns tournament season power rankings rounds details.
       parameters:
       - name: tournamentId
@@ -18376,6 +18705,7 @@ paths:
       tags:
       - Football
       summary: Get Season Round Team Of Week Data
+      operationId: seasonRoundTeamOfWeekData
       description: Returns tournament season round team of week details.
       parameters:
       - name: tournamentId
@@ -18429,6 +18759,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Rounds Data
+      operationId: tournamentSeasonRoundsDataRounds
       description: Returns tournament season rounds details.
       parameters:
       - name: tournamentId
@@ -18475,6 +18806,7 @@ paths:
       tags:
       - Football
       summary: Get Season Standings Away Data
+      operationId: seasonStandingsAwayDataAway2
       description: Returns tournament season standings away details.
       parameters:
       - name: tournamentId
@@ -18521,6 +18853,7 @@ paths:
       tags:
       - Football
       summary: Get Season Standings Home Data
+      operationId: seasonStandingsHomeDataHome2
       description: Returns tournament season standings home details.
       parameters:
       - name: tournamentId
@@ -18567,6 +18900,7 @@ paths:
       tags:
       - Football
       summary: Get Season Standings Total Data
+      operationId: seasonStandingsTotalDataTotal2
       description: Returns tournament season standings total details.
       parameters:
       - name: tournamentId
@@ -18613,6 +18947,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Season Statistics Data
+      operationId: tournamentSeasonStatisticsDataStatistics2
       description: Returns tournament season statistics details.
       parameters:
       - name: tournamentId
@@ -18659,6 +18994,7 @@ paths:
       tags:
       - Football
       summary: Get Season Statistics Info Data
+      operationId: seasonStatisticsInfoDataInfo
       description: Returns tournament season statistics info details.
       parameters:
       - name: tournamentId
@@ -18705,6 +19041,7 @@ paths:
       tags:
       - Football
       summary: Get Season Team Events Away Data
+      operationId: seasonTeamEventsAwayDataAway2
       description: Returns tournament season team events away details.
       parameters:
       - name: tournamentId
@@ -18751,6 +19088,7 @@ paths:
       tags:
       - Football
       summary: Get Season Team Events Home Data
+      operationId: seasonTeamEventsHomeDataHome2
       description: Returns tournament season team events home details.
       parameters:
       - name: tournamentId
@@ -18797,6 +19135,7 @@ paths:
       tags:
       - Football
       summary: Get Season Team Events Total Data
+      operationId: seasonTeamEventsTotalDataTotal2
       description: Returns tournament season team events total details.
       parameters:
       - name: tournamentId
@@ -18843,6 +19182,7 @@ paths:
       tags:
       - Football
       summary: Get Season Team Performance Data
+      operationId: seasonTeamPerformanceData
       description: Returns tournament season team performance details.
       parameters:
       - name: tournamentId
@@ -18896,6 +19236,7 @@ paths:
       tags:
       - Football
       summary: Get Season Tow Rounds Data
+      operationId: seasonTowRoundsData
       description: Returns tournament season tow rounds details.
       parameters:
       - name: tournamentId
@@ -18942,6 +19283,7 @@ paths:
       tags:
       - Football
       summary: Get Tournament Seasons Data
+      operationId: tournamentSeasonsDataSeasons
       description: Returns tournament seasons details.
       parameters:
       - name: tournamentId

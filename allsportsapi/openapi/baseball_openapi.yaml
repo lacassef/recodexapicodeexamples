@@ -12,6 +12,7 @@ paths:
       tags:
       - TV
       summary: Get match TV countries
+      operationId: matchTvCountries
       description: Lists the countries and the TV channels within them that are broadcasting
         a specific match.
       parameters:
@@ -46,6 +47,7 @@ paths:
       tags:
       - TV
       summary: Get match TV channel votes
+      operationId: matchTvChannelVotes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting
         the match.
       parameters:
@@ -87,6 +89,7 @@ paths:
       tags:
       - Country
       summary: Get country flag
+      operationId: countryFlag
       description: Fetches the PNG flag image asset corresponding to a provided country
         code. The response is the raw image data.
       parameters:
@@ -122,6 +125,7 @@ paths:
       tags:
       - Country
       summary: Get country flag (img API)
+      operationId: countryFlagImgApi
       description: Fetches the flag image by country code.
       parameters:
       - name: code
@@ -155,6 +159,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImage
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -176,6 +181,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImageTournamentSvg
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       responses:
@@ -197,6 +203,7 @@ paths:
       tags:
       - Team
       summary: Get team placeholder image
+      operationId: teamPlaceholderImage
       description: Returns a static placeholder graphic for a team. The response is
         an SVG image.
       responses:
@@ -218,6 +225,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImage
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -239,6 +247,7 @@ paths:
       tags:
       - Player
       summary: Get player placeholder image
+      operationId: playerPlaceholderImagePlayerSvg
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       responses:
@@ -260,6 +269,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImage
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -281,6 +291,7 @@ paths:
       tags:
       - Manager
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImageManagerSvg
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       responses:
@@ -302,6 +313,7 @@ paths:
       tags:
       - Fighter
       summary: Get male fighter placeholder image
+      operationId: maleFighterPlaceholderImage
       description: Retrieves a placeholder image for a male fighter.
       responses:
         '200':
@@ -322,6 +334,7 @@ paths:
       tags:
       - Fighter
       summary: Get female fighter placeholder image
+      operationId: femaleFighterPlaceholderImage
       description: Retrieves a placeholder image for a female fighter.
       responses:
         '200':
@@ -342,6 +355,7 @@ paths:
       tags:
       - Search
       summary: Search baseball entities
+      operationId: baseballEntities
       description: Searches for baseball teams, players, and tournaments.
       parameters:
       - name: term
@@ -381,6 +395,7 @@ paths:
       tags:
       - Tournament
       summary: Get baseball tournament categories
+      operationId: baseballTournamentCategories
       description: Retrieves a list of all available baseball tournament categories,
         typically corresponding to countries or regions.
       responses:
@@ -401,6 +416,7 @@ paths:
       tags:
       - Match
       summary: Get baseball matches by date
+      operationId: baseballMatchesByDate
       description: Fetches all baseball matches scheduled for a specific date.
       parameters:
       - name: day
@@ -448,6 +464,7 @@ paths:
       tags:
       - Match
       summary: Get live baseball matches
+      operationId: liveBaseballMatches
       description: Retrieves all currently live baseball matches.
       responses:
         '200':
@@ -467,6 +484,7 @@ paths:
       tags:
       - Match
       summary: Get baseball match details
+      operationId: baseballMatchDetails
       description: Retrieves detailed information for a specific baseball match by
         its ID.
       parameters:
@@ -501,6 +519,7 @@ paths:
       tags:
       - Match
       summary: Get match statistics
+      operationId: matchStatistics
       description: Retrieves comprehensive team and player statistics for a specific
         match.
       parameters:
@@ -535,6 +554,7 @@ paths:
       tags:
       - Match
       summary: Get head-to-head history
+      operationId: headToHeadHistory
       description: Retrieves the detailed match history for head-to-head encounters
         between two teams.
       parameters:
@@ -569,6 +589,7 @@ paths:
       tags:
       - Match
       summary: Get head-to-head summary
+      operationId: headToHeadSummary
       description: Retrieves a summary of head-to-head statistics between the two
         teams in a match.
       parameters:
@@ -603,6 +624,7 @@ paths:
       tags:
       - Match
       summary: Get match form analysis
+      operationId: matchFormAnalysis
       description: Retrieves pre-game form and recent performance data for the teams
         in a specific match.
       parameters:
@@ -637,6 +659,7 @@ paths:
       tags:
       - Match
       summary: Get match betting odds
+      operationId: matchBettingOdds
       description: Retrieves available betting odds from various bookmakers for a
         specific match.
       parameters:
@@ -671,6 +694,7 @@ paths:
       tags:
       - Match
       summary: Get match votes
+      operationId: matchVotes
       description: Returns fan poll percentages and vote totals for the match outcome.
       parameters:
       - name: id
@@ -704,6 +728,7 @@ paths:
       tags:
       - Match
       summary: Get match lineups
+      operationId: matchLineups
       description: Retrieves the starting lineups and batting order for both teams
         in a specific match.
       parameters:
@@ -738,6 +763,7 @@ paths:
       tags:
       - Match
       summary: Get match highlights
+      operationId: matchHighlights
       description: Retrieves video highlights and key moments from a specific match,
         if available.
       parameters:
@@ -772,6 +798,7 @@ paths:
       tags:
       - Match
       summary: Get player match statistics
+      operationId: playerMatchStatistics
       description: Retrieves detailed statistics for a single player in a specific
         match.
       parameters:
@@ -811,6 +838,7 @@ paths:
       tags:
       - Team
       summary: Get baseball team details
+      operationId: baseballTeamDetails
       description: Retrieves comprehensive details for a specific baseball team.
       parameters:
       - name: id
@@ -844,6 +872,7 @@ paths:
       tags:
       - Team
       summary: Get previous team matches
+      operationId: previousTeamMatches
       description: Fetches a paginated list of completed baseball games for a specific
         team, sorted by date descending.
       parameters:
@@ -891,6 +920,7 @@ paths:
       tags:
       - Team
       summary: Get upcoming team matches
+      operationId: upcomingTeamMatches
       description: Fetches a paginated list of scheduled baseball games for a specific
         team, sorted by date ascending.
       parameters:
@@ -938,6 +968,7 @@ paths:
       tags:
       - Team
       summary: Get team near matches
+      operationId: teamNearMatches
       description: Retrieves a list of recent and upcoming matches for a specific
         team.
       parameters:
@@ -972,6 +1003,7 @@ paths:
       tags:
       - Team
       summary: Get team tournaments
+      operationId: teamTournaments
       description: Retrieves a list of all unique tournaments a team has participated
         in.
       parameters:
@@ -1006,6 +1038,7 @@ paths:
       tags:
       - Team
       summary: Get team standings seasons
+      operationId: teamStandingsSeasons
       description: Retrieves a list of seasons for which a team's standings are available.
       parameters:
       - name: id
@@ -1039,6 +1072,7 @@ paths:
       tags:
       - Team
       summary: Get team players
+      operationId: teamPlayers
       description: Retrieves the current roster of players for a specific team.
       parameters:
       - name: id
@@ -1072,6 +1106,7 @@ paths:
       tags:
       - Team
       summary: Get team media
+      operationId: teamMedia
       description: Retrieves media content (e.g., videos, images) associated with
         a specific team.
       parameters:
@@ -1106,6 +1141,7 @@ paths:
       tags:
       - Team
       summary: Get team logo
+      operationId: teamLogo
       description: Retrieves the logo image for a specific team.
       parameters:
       - name: id
@@ -1140,6 +1176,7 @@ paths:
       tags:
       - Player
       summary: Get baseball player details
+      operationId: baseballPlayerDetails
       description: Retrieves comprehensive information about a specific baseball player.
       parameters:
       - name: id
@@ -1173,6 +1210,7 @@ paths:
       tags:
       - Player
       summary: Get player near matches
+      operationId: playerNearMatches
       description: Retrieves a list of recent and upcoming matches for a specific
         player.
       parameters:
@@ -1207,6 +1245,7 @@ paths:
       tags:
       - Player
       summary: Get previous player matches
+      operationId: previousPlayerMatches
       description: Fetches a paginated list of completed matches for a specific player,
         sorted by date descending.
       parameters:
@@ -1254,6 +1293,7 @@ paths:
       tags:
       - Player
       summary: Get player statistics seasons
+      operationId: playerStatisticsSeasons
       description: Retrieves a list of seasons for which a player's statistics are
         available.
       parameters:
@@ -1288,6 +1328,7 @@ paths:
       tags:
       - Player
       summary: Get player regular season statistics
+      operationId: playerRegularSeasonStatistics
       description: Retrieves a player's statistics for the regular season of a specific
         tournament.
       parameters:
@@ -1336,6 +1377,7 @@ paths:
       tags:
       - Player
       summary: Get player image
+      operationId: playerImage
       description: Retrieves the profile image for a specific player.
       parameters:
       - name: id
@@ -1370,6 +1412,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament details
+      operationId: tournamentDetails
       description: Retrieves comprehensive details for a specific baseball tournament.
       parameters:
       - name: tournamentId
@@ -1403,6 +1446,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament seasons
+      operationId: tournamentSeasons
       description: Retrieves a list of all available seasons for a specific tournament.
       parameters:
       - name: tournamentId
@@ -1436,6 +1480,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament logo
+      operationId: tournamentLogo
       description: Retrieves the logo image for a specific tournament.
       parameters:
       - name: tournamentId
@@ -1470,6 +1515,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament dark logo
+      operationId: tournamentDarkLogo
       description: Retrieves the dark theme logo image for a specific tournament.
       parameters:
       - name: tournamentId
@@ -1503,6 +1549,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament media
+      operationId: tournamentMedia
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       parameters:
       - name: tournamentId
@@ -1536,6 +1583,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament total standings
+      operationId: tournamentTotalStandings
       description: Retrieves the complete standings table for all teams in a specific
         tournament season.
       parameters:
@@ -1577,6 +1625,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament home standings
+      operationId: tournamentHomeStandings
       description: Retrieves the standings based on home games only for a specific
         tournament season.
       parameters:
@@ -1618,6 +1667,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament away standings
+      operationId: tournamentAwayStandings
       description: Retrieves the standings based on away games only for a specific
         tournament season.
       parameters:
@@ -1659,6 +1709,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament last matches
+      operationId: tournamentLastMatches
       description: Retrieves a paginated list of recently played matches in a specific
         tournament season.
       parameters:
@@ -1713,6 +1764,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament upcoming matches
+      operationId: tournamentUpcomingMatches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific
         tournament season.
       parameters:
@@ -1767,6 +1819,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournament cup trees
+      operationId: tournamentCupTrees
       description: Retrieves the knockout bracket (cup trees) for a specific tournament
         season.
       parameters:
@@ -1808,6 +1861,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events total statistics
+      operationId: teamEventsTotalStatistics
       description: Retrieves aggregated team performance statistics for all games
         in a tournament season.
       parameters:
@@ -1849,6 +1903,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events home statistics
+      operationId: teamEventsHomeStatistics
       description: Retrieves aggregated team performance statistics for home games
         in a tournament season.
       parameters:
@@ -1890,6 +1945,7 @@ paths:
       tags:
       - Tournament
       summary: Get team events away statistics
+      operationId: teamEventsAwayStatistics
       description: Retrieves aggregated team performance statistics for away games
         in a tournament season.
       parameters:
@@ -1931,6 +1987,7 @@ paths:
       tags:
       - Category
       summary: Get matches by category and date
+      operationId: matchesByCategoryAndDate
       description: Retrieves all baseball matches for a specific category on a given
         date.
       parameters:
@@ -1992,6 +2049,7 @@ paths:
       tags:
       - Tournament
       summary: Get tournaments by category
+      operationId: tournamentsByCategory
       description: Retrieves all unique tournaments within a specific baseball category.
       parameters:
       - name: id

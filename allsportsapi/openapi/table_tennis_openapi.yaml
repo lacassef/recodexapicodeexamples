@@ -10,6 +10,7 @@ paths:
   /api/tv/country/all/event/{id}:
     get:
       summary: Get match TV countries
+      operationId: matchTvCountries
       description: Lists the countries and the TV channels within them that are broadcasting
         a specific match.
       tags:
@@ -44,6 +45,7 @@ paths:
   /api/tv/channel/{channId}/event/{id}:
     get:
       summary: Get match TV channel votes
+      operationId: matchTvChannelVotes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting
         the match.
       tags:
@@ -85,6 +87,7 @@ paths:
   /api/img/flag/{flag}:
     get:
       summary: Get country flag
+      operationId: countryFlag
       description: Fetches the PNG flag image asset corresponding to a provided country
         code. The response is the raw image data.
       tags:
@@ -120,6 +123,7 @@ paths:
   /api/country/{code}/flag:
     get:
       summary: Get country flag (img API)
+      operationId: countryFlagImgApi
       description: Fetches the flag image from the SofaScore image API by country
         code.
       tags:
@@ -155,6 +159,7 @@ paths:
   /api/placeholder/tournament.png:
     get:
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImage
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       tags:
@@ -176,6 +181,7 @@ paths:
   /api/placeholder/tournament.svg:
     get:
       summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImageTournamentSvg
       description: Returns a static placeholder graphic for a tournament. The response
         is an SVG image.
       tags:
@@ -197,6 +203,7 @@ paths:
   /api/placeholder/team.svg:
     get:
       summary: Get team placeholder image
+      operationId: teamPlaceholderImage
       description: Returns a static placeholder graphic for a team. The response is
         an SVG image.
       tags:
@@ -218,6 +225,7 @@ paths:
   /api/placeholder/player.png:
     get:
       summary: Get player placeholder image
+      operationId: playerPlaceholderImage
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       tags:
@@ -239,6 +247,7 @@ paths:
   /api/placeholder/player.svg:
     get:
       summary: Get player placeholder image
+      operationId: playerPlaceholderImagePlayerSvg
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       tags:
@@ -260,6 +269,7 @@ paths:
   /api/placeholder/manager.png:
     get:
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImage
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       tags:
@@ -281,6 +291,7 @@ paths:
   /api/placeholder/manager.svg:
     get:
       summary: Get manager placeholder image
+      operationId: managerPlaceholderImageManagerSvg
       description: Returns a static placeholder graphic for a manager. The response
         is an SVG image.
       tags:
@@ -302,6 +313,7 @@ paths:
   /api/placeholders/fighter-male.svg:
     get:
       summary: Get male fighter placeholder image
+      operationId: maleFighterPlaceholderImage
       description: Retrieves a placeholder image for a male fighter.
       tags:
       - Fighter
@@ -322,6 +334,7 @@ paths:
   /api/placeholders/fighter-female.svg:
     get:
       summary: Get female fighter placeholder image
+      operationId: femaleFighterPlaceholderImage
       description: Retrieves a placeholder image for a female fighter.
       tags:
       - Fighter
@@ -342,6 +355,7 @@ paths:
   /api/table-tennis/events/{day}/{month}/{year}:
     get:
       summary: Get table tennis events by date
+      operationId: tableTennisEventsByDate
       description: Returns all scheduled table tennis matches for the provided day.
       tags:
       - Event
@@ -377,6 +391,7 @@ paths:
   /api/table-tennis/events/odds/{day}/{month}/{year}:
     get:
       summary: Get table tennis events with odds
+      operationId: tableTennisEventsWithOdds
       description: Returns scheduled matches together with odds for bookmaker `1`.
       tags:
       - Event
@@ -412,6 +427,7 @@ paths:
   /api/table-tennis/events/live:
     get:
       summary: Get live table tennis events
+      operationId: liveTableTennisEvents
       description: Lists all currently live table tennis matches.
       tags:
       - Event
@@ -425,6 +441,7 @@ paths:
   /api/table-tennis/calendar/{month}/{year}:
     get:
       summary: Get table tennis calendar overview
+      operationId: tableTennisCalendarOverview
       description: Provides unique tournaments with events for the requested month.
       tags:
       - Calendar
@@ -453,6 +470,7 @@ paths:
   /api/table-tennis/calendar/{day}/{month}/{year}/categories:
     get:
       summary: Get table tennis categories for a day
+      operationId: tableTennisCategoriesForADay
       description: Lists categories that have events on the provided date.
       tags:
       - Calendar
@@ -488,6 +506,7 @@ paths:
   /api/table-tennis/calendar/{month}/{year}/categories:
     get:
       summary: Get table tennis categories for multiple days
+      operationId: tableTennisCategoriesForMultipleDays
       description: Aggregates categories for up to five days in the given month.
       tags:
       - Calendar
@@ -523,6 +542,7 @@ paths:
   /api/table-tennis/tournament/categories:
     get:
       summary: Get table tennis tournament categories
+      operationId: tableTennisTournamentCategories
       description: Returns all SofaScore categories for table tennis.
       tags:
       - Tournament
@@ -536,6 +556,7 @@ paths:
   /api/table-tennis/tournament/all/category/{id}:
     get:
       summary: Get table tennis tournaments by category
+      operationId: tableTennisTournamentsByCategory
       description: Lists unique tournaments under the given category.
       tags:
       - Tournament
@@ -557,6 +578,7 @@ paths:
   /api/table-tennis/category/{id}/events/{day}/{month}/{year}:
     get:
       summary: Get category events by date
+      operationId: categoryEventsByDate
       description: Lists all matches in the category for the provided day.
       tags:
       - Category
@@ -599,6 +621,7 @@ paths:
   /api/table-tennis/event/{id}:
     get:
       summary: Get table tennis match details
+      operationId: tableTennisMatchDetails
       description: Returns core information for the requested match.
       tags:
       - Event
@@ -620,6 +643,7 @@ paths:
   /api/table-tennis/event/{id}/statistics:
     get:
       summary: Get table tennis match statistics
+      operationId: tableTennisMatchStatistics
       description: Provides detailed statistics for the specified match.
       tags:
       - Event
@@ -641,6 +665,7 @@ paths:
   /api/table-tennis/event/{id}/incidents:
     get:
       summary: Get table tennis match incidents
+      operationId: tableTennisMatchIncidents
       description: Lists point-by-point incidents and notable events.
       tags:
       - Event
@@ -662,6 +687,7 @@ paths:
   /api/table-tennis/event/{id}/lineups:
     get:
       summary: Get table tennis match lineups
+      operationId: tableTennisMatchLineups
       description: Returns confirmed lineups when available.
       tags:
       - Event
@@ -683,6 +709,7 @@ paths:
   /api/table-tennis/event/{id}/odds:
     get:
       summary: Get table tennis match odds
+      operationId: tableTennisMatchOdds
       description: Retrieves odds from bookmaker `1` for the match.
       tags:
       - Event
@@ -704,6 +731,7 @@ paths:
   /api/table-tennis/event/{id}/form:
     get:
       summary: Get table tennis match form
+      operationId: tableTennisMatchForm
       description: Provides pre-game form information for both competitors.
       tags:
       - Event
@@ -725,6 +753,7 @@ paths:
   /api/table-tennis/event/{customId}/h2h:
     get:
       summary: Get table tennis head-to-head history
+      operationId: tableTennisHeadToHeadHistory
       description: Returns historical meetings for the match custom identifier.
       tags:
       - Event
@@ -746,6 +775,7 @@ paths:
   /api/table-tennis/event/{id}/duel:
     get:
       summary: Get table tennis head-to-head summary
+      operationId: tableTennisHeadToHeadSummary
       description: Provides aggregated head-to-head totals for the competitors.
       tags:
       - Event
@@ -767,6 +797,7 @@ paths:
   /api/table-tennis/event/{id}/streaks:
     get:
       summary: Get table tennis match streaks
+      operationId: tableTennisMatchStreaks
       description: Returns recent streak information for the match participants.
       tags:
       - Event
@@ -788,6 +819,7 @@ paths:
   /api/table-tennis/event/{id}/streaks/odds:
     get:
       summary: Get table tennis match streaks with odds
+      operationId: tableTennisMatchStreaksWithOdds
       description: Returns streak details paired with bookmaker odds.
       tags:
       - Event
@@ -809,6 +841,7 @@ paths:
   /api/table-tennis/event/{id}/highlights:
     get:
       summary: Get table tennis match highlights
+      operationId: tableTennisMatchHighlights
       description: Returns available highlight clips for the match.
       tags:
       - Event
@@ -830,6 +863,7 @@ paths:
   /api/table-tennis/event/{id}/votes:
     get:
       summary: Get table tennis match votes
+      operationId: tableTennisMatchVotes
       description: Returns community votes for player of the match.
       tags:
       - Event
@@ -851,6 +885,7 @@ paths:
   /api/table-tennis/event/{id}/win-probability:
     get:
       summary: Get table tennis match win probability
+      operationId: tableTennisMatchWinProbability
       description: Returns win probability timeline for the match.
       tags:
       - Event
@@ -872,6 +907,7 @@ paths:
   /api/table-tennis/team/{id}:
     get:
       summary: Get table tennis team details
+      operationId: tableTennisTeamDetails
       description: Returns information about the requested team.
       tags:
       - Team
@@ -893,6 +929,7 @@ paths:
   /api/table-tennis/team/{id}/players:
     get:
       summary: Get table tennis team roster
+      operationId: tableTennisTeamRoster
       description: Returns current players registered for the team.
       tags:
       - Team
@@ -914,6 +951,7 @@ paths:
   /api/table-tennis/team/{id}/media:
     get:
       summary: Get table tennis team media
+      operationId: tableTennisTeamMedia
       description: Returns media items linked to the team.
       tags:
       - Team
@@ -935,6 +973,7 @@ paths:
   /api/table-tennis/team/{id}/matches/previous/{page}:
     get:
       summary: Get previous table tennis matches by team
+      operationId: previousTableTennisMatchesByTeam
       description: Returns paginated list of past matches for the team.
       tags:
       - Team
@@ -963,6 +1002,7 @@ paths:
   /api/table-tennis/team/{id}/matches/next/{page}:
     get:
       summary: Get upcoming table tennis matches by team
+      operationId: upcomingTableTennisMatchesByTeam
       description: Returns paginated list of next matches for the team.
       tags:
       - Team
@@ -991,6 +1031,7 @@ paths:
   /api/table-tennis/team/{id}/matches/near:
     get:
       summary: Get nearby table tennis matches by team
+      operationId: nearbyTableTennisMatchesByTeam
       description: Returns recent and upcoming matches around the current date.
       tags:
       - Team
@@ -1012,6 +1053,7 @@ paths:
   /api/table-tennis/team/{id}/standings/seasons:
     get:
       summary: Get table tennis team standings seasons
+      operationId: tableTennisTeamStandingsSeasons
       description: Lists seasons that have standings for the team.
       tags:
       - Team
@@ -1033,6 +1075,7 @@ paths:
   /api/table-tennis/team/{id}/player-statistics/seasons:
     get:
       summary: Get table tennis team player-statistics seasons
+      operationId: tableTennisTeamPlayerStatisticsSeasons
       description: Lists seasons with player statistics for the team.
       tags:
       - Team
@@ -1054,6 +1097,7 @@ paths:
   /api/table-tennis/team/{id}/statistics/seasons:
     get:
       summary: Get table tennis team statistics seasons
+      operationId: tableTennisTeamStatisticsSeasons
       description: Lists seasons with team statistics data.
       tags:
       - Team
@@ -1075,6 +1119,7 @@ paths:
   /api/table-tennis/team/{id}/rankings:
     get:
       summary: Get table tennis team rankings
+      operationId: tableTennisTeamRankings
       description: Returns the SofaScore rankings for the team.
       tags:
       - Team
@@ -1096,6 +1141,7 @@ paths:
   /api/table-tennis/team/{id}/unique-tournaments:
     get:
       summary: Get table tennis team tournaments
+      operationId: tableTennisTeamTournaments
       description: Lists unique tournaments that the team participates in.
       tags:
       - Team
@@ -1117,6 +1163,7 @@ paths:
   /api/table-tennis/team/{id}/transfers:
     get:
       summary: Get table tennis team transfers
+      operationId: tableTennisTeamTransfers
       description: Returns historical transfer activity for the team.
       tags:
       - Team
@@ -1138,6 +1185,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}:
     get:
       summary: Get table tennis tournament details
+      operationId: tableTennisTournamentDetails
       description: Returns detailed information about the tournament.
       tags:
       - Tournament
@@ -1159,6 +1207,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/info:
     get:
       summary: Get table tennis tournament meta info
+      operationId: tableTennisTournamentMetaInfo
       description: Returns metadata used on SofaScore tournament pages.
       tags:
       - Tournament
@@ -1180,6 +1229,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/media:
     get:
       summary: Get table tennis tournament media
+      operationId: tableTennisTournamentMedia
       description: Returns media assets associated with the tournament.
       tags:
       - Tournament
@@ -1201,6 +1251,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/featured-events:
     get:
       summary: Get table tennis tournament featured events
+      operationId: tableTennisTournamentFeaturedEvents
       description: Lists SofaScore highlighted events for the tournament.
       tags:
       - Tournament
@@ -1222,6 +1273,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/seasons:
     get:
       summary: Get table tennis tournament seasons
+      operationId: tableTennisTournamentSeasons
       description: Lists available seasons for the tournament.
       tags:
       - Tournament
@@ -1243,6 +1295,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/info:
     get:
       summary: Get table tennis tournament season info
+      operationId: tableTennisTournamentSeasonInfo
       description: Returns metadata about a specific tournament season.
       tags:
       - Tournament
@@ -1271,6 +1324,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
       summary: Get table tennis tournament standings
+      operationId: tableTennisTournamentStandings
       description: Returns overall standings table for the season.
       tags:
       - Tournament
@@ -1299,6 +1353,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
       summary: Get table tennis home standings
+      operationId: tableTennisHomeStandings
       description: Returns standings filtered by home matches for the season.
       tags:
       - Tournament
@@ -1327,6 +1382,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/round/{round}/slug/{slug}:
     get:
       summary: Get table tennis tournament matches by round
+      operationId: tableTennisTournamentMatchesByRound
       description: Returns matches for the specified knockout round slug.
       tags:
       - Tournament
@@ -1369,6 +1425,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/last/{page}:
     get:
       summary: Get table tennis tournament last matches
+      operationId: tableTennisTournamentLastMatches
       description: Returns finished matches for the season, paginated.
       tags:
       - Tournament
@@ -1404,6 +1461,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/next/{page}:
     get:
       summary: Get table tennis tournament upcoming matches
+      operationId: tableTennisTournamentUpcomingMatches
       description: Returns upcoming matches for the season, paginated.
       tags:
       - Tournament
@@ -1439,6 +1497,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
       summary: Get table tennis tournament rounds
+      operationId: tableTennisTournamentRounds
       description: Lists available rounds for the tournament season.
       tags:
       - Tournament
@@ -1467,6 +1526,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/groups:
     get:
       summary: Get table tennis tournament groups
+      operationId: tableTennisTournamentGroups
       description: Returns groups for the tournament season.
       tags:
       - Tournament
@@ -1495,6 +1555,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/cup-trees:
     get:
       summary: Get table tennis tournament bracket
+      operationId: tableTennisTournamentBracket
       description: Returns knockout bracket for the season.
       tags:
       - Tournament
@@ -1523,6 +1584,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
       summary: Get table tennis tournament team events total
+      operationId: tableTennisTournamentTeamEventsTotal
       description: Returns aggregated event statistics for the season.
       tags:
       - Tournament
@@ -1551,6 +1613,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
       summary: Get table tennis tournament team events home
+      operationId: tableTennisTournamentTeamEventsHome
       description: Returns team event statistics for home matches only.
       tags:
       - Tournament
@@ -1579,6 +1642,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
       summary: Get table tennis tournament team events away
+      operationId: tableTennisTournamentTeamEventsAway
       description: Returns team event statistics for away matches only.
       tags:
       - Tournament
@@ -1607,6 +1671,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/statistics/info:
     get:
       summary: Get table tennis tournament statistics info
+      operationId: tableTennisTournamentStatisticsInfo
       description: Lists available statistics fields for the season.
       tags:
       - Tournament
@@ -1635,6 +1700,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/player-of-the-season:
     get:
       summary: Get table tennis tournament player of the season
+      operationId: tableTennisTournamentPlayerOfTheSeason
       description: Returns SofaScore player of the season data.
       tags:
       - Tournament
@@ -1663,6 +1729,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/power-rankings/rounds:
     get:
       summary: Get table tennis tournament power ranking rounds
+      operationId: tableTennisTournamentPowerRankingRounds
       description: Lists rounds with available power rankings.
       tags:
       - Tournament
@@ -1691,6 +1758,7 @@ paths:
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-of-the-week/rounds:
     get:
       summary: Get table tennis tournament team of the week rounds
+      operationId: tableTennisTournamentTeamOfTheWeekRounds
       description: Lists rounds where a team of the week is available.
       tags:
       - Tournament
