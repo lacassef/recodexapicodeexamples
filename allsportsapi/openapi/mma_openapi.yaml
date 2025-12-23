@@ -412,6 +412,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/main-events/{date}/extended:
+    get:
+      tags:
+      - Event
+      summary: Get MMA main events extended by date
+      operationId: mmaMainEventsExtendedByDate
+      description: Retrieves extended main events for MMA on a specific date.
+      parameters:
+      - name: date
+        in: path
+        required: true
+        example: 2025-07-22
+        schema:
+          type: string
+        description: Date in YYYY-MM-DD format.
+      responses:
+        '200':
+          description: A list of extended main events for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/mma/category/{id}/unique-tournaments:
     get:
       tags:
@@ -886,6 +920,81 @@ paths:
       responses:
         '200':
           description: Detailed information about the event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/event/{id}/meta:
+    get:
+      tags:
+      - Event
+      summary: Get MMA event metadata
+      operationId: mmaEventMetadata
+      description: Retrieves metadata for a specific MMA event.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 13998594
+        schema:
+          type: integer
+        description: Event ID
+      responses:
+        '200':
+          description: Metadata for the event.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Event with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/mma/event/{id}/odds/{providerId}/featured:
+    get:
+      tags:
+      - Event
+      summary: Get MMA event featured odds
+      operationId: mmaEventFeaturedOdds
+      description: Retrieves featured odds for a specific MMA event and provider.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 12140708
+        schema:
+          type: integer
+        description: Event ID
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider identifier.
+      responses:
+        '200':
+          description: Featured odds for the event.
           content:
             application/json:
               schema:

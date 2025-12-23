@@ -1688,7 +1688,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/esport/character/{tournamentId}/image:
+  /api/esport/character/{characterId}/image:
     get:
       tags:
       - Character
@@ -1696,10 +1696,10 @@ paths:
       operationId: esportsCharacterImage
       description: Retrieves the image for a specific in-game character.
       parameters:
-      - name: tournamentId
+      - name: characterId
         in: path
         required: true
-        example: 1717
+        example: 1610
         schema:
           type: integer
         description: Character ID
@@ -1723,7 +1723,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/esport/map/{tournamentId}/image:
+  /api/esport/map/{mapId}/image:
     get:
       tags:
       - Map
@@ -1731,10 +1731,10 @@ paths:
       operationId: esportsMapImage
       description: Retrieves the image for a specific in-game map.
       parameters:
-      - name: tournamentId
+      - name: mapId
         in: path
         required: true
-        example: 21
+        example: 15
         schema:
           type: integer
         description: Map ID

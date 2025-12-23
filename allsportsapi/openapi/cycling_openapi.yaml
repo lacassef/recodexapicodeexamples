@@ -1,0 +1,826 @@
+openapi: 3.0.0
+info:
+  title: Cycling API
+  version: 1.0.0
+  description: OpenAPI specification for Cycling endpoints. Includes common AllSports
+    endpoints and all Cycling-specific routes.
+servers:
+- url: http://localhost:8080
+  description: Local development server
+paths:
+  /api/tv/country/all/event/{id}:
+    get:
+      tags:
+      - TV
+      summary: Get match TV countries
+      operationId: matchTvCountries
+      description: Lists the countries and the TV channels within them that are broadcasting
+        a specific match.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object listing countries and their broadcasting channels.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/tv/channel/{channId}/event/{id}:
+    get:
+      tags:
+      - TV
+      summary: Get match TV channel votes
+      operationId: matchTvChannelVotes
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting
+        the match.
+      parameters:
+      - name: channId
+        in: path
+        required: true
+        example: 3177
+        schema:
+          type: integer
+        description: The unique identifier for the TV channel.
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        schema:
+          type: integer
+        description: The unique identifier for the match.
+      responses:
+        '200':
+          description: A JSON object containing viewer vote data from the channel.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or channel with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/img/flag/{flag}:
+    get:
+      tags:
+      - Country
+      summary: Get country flag
+      operationId: countryFlag
+      description: Fetches the PNG flag image asset corresponding to a provided country
+        code. The response is the raw image data.
+      parameters:
+      - name: flag
+        in: path
+        required: true
+        example: jp
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/country/{code}/flag:
+    get:
+      tags:
+      - Country
+      summary: Get country flag (img API)
+      operationId: countryFlagImgApi
+      description: Fetches the flag image by country code. The response is the raw
+        image data.
+      parameters:
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Country code or identifier (e.g., 'EN' for England).
+      responses:
+        '200':
+          description: The country's flag image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Flag with the specified code not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.png:
+    get:
+      tags:
+      - Tournament
+      summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImage
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/tournament.svg:
+    get:
+      tags:
+      - Tournament
+      summary: Get tournament placeholder image
+      operationId: tournamentPlaceholderImageTournamentSvg
+      description: Returns a static placeholder graphic for a tournament. The response
+        is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/team.svg:
+    get:
+      tags:
+      - Team
+      summary: Get team placeholder image
+      operationId: teamPlaceholderImage
+      description: Returns a static placeholder graphic for a team. The response is
+        an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.png:
+    get:
+      tags:
+      - Player
+      summary: Get player placeholder image
+      operationId: playerPlaceholderImage
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/player.svg:
+    get:
+      tags:
+      - Player
+      summary: Get player placeholder image
+      operationId: playerPlaceholderImagePlayerSvg
+      description: Returns a static placeholder graphic for a player. The response
+        is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.png:
+    get:
+      tags:
+      - Manager
+      summary: Get manager placeholder image
+      operationId: managerPlaceholderImage
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholder/manager.svg:
+    get:
+      tags:
+      - Manager
+      summary: Get manager placeholder image
+      operationId: managerPlaceholderImageManagerSvg
+      description: Returns a static placeholder graphic for a manager. The response
+        is an SVG image.
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-male.svg:
+    get:
+      tags:
+      - Fighter
+      summary: Get male fighter placeholder image
+      operationId: maleFighterPlaceholderImage
+      description: Retrieves a placeholder image for a male fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/placeholders/fighter-female.svg:
+    get:
+      tags:
+      - Fighter
+      summary: Get female fighter placeholder image
+      operationId: femaleFighterPlaceholderImage
+      description: Retrieves a placeholder image for a female fighter.
+      responses:
+        '200':
+          description: The placeholder SVG image.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/stage/{stageId}/substages:
+    get:
+      tags:
+      - Stage
+      summary: Get cycling stage substages
+      operationId: cyclingStageSubstages
+      description: Retrieves substages associated with the given cycling stage.
+      parameters:
+      - name: stageId
+        in: path
+        required: true
+        example: 210217
+        schema:
+          type: integer
+        description: Stage ID.
+      responses:
+        '200':
+          description: A JSON object containing substages for the stage.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/stage/{id}/standings/competitor:
+    get:
+      tags:
+      - Stage
+      summary: Get cycling stage competitor standings
+      operationId: cyclingStageCompetitorStandings
+      description: Retrieves competitor standings for a cycling stage.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 210217
+        schema:
+          type: integer
+        description: Stage ID.
+      responses:
+        '200':
+          description: A JSON object containing competitor standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/stage/{id}/standings/team:
+    get:
+      tags:
+      - Stage
+      summary: Get cycling stage team standings
+      operationId: cyclingStageTeamStandings
+      description: Retrieves team standings for a cycling stage.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 214854
+        schema:
+          type: integer
+        description: Stage ID.
+      responses:
+        '200':
+          description: A JSON object containing team standings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/stage/{id}/highlights:
+    get:
+      tags:
+      - Stage
+      summary: Get cycling stage highlights
+      operationId: cyclingStageHighlights
+      description: Retrieves highlights for a cycling stage.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 210217
+        schema:
+          type: integer
+        description: Stage ID.
+      responses:
+        '200':
+          description: A JSON object containing stage highlights.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/stage/{id}/extended:
+    get:
+      tags:
+      - Stage
+      summary: Get cycling stage extended details
+      operationId: cyclingStageExtendedDetails
+      description: Retrieves extended data for a cycling stage.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 210189
+        schema:
+          type: integer
+        description: Stage ID.
+      responses:
+        '200':
+          description: A JSON object containing extended stage data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/stage/{id}/odds/provider/{providerId}/all:
+    get:
+      tags:
+      - Stage
+      summary: Get cycling stage odds (all) by provider
+      operationId: cyclingStageOddsAllByProvider
+      description: Retrieves all available odds for a cycling stage from a provider.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 210217
+        schema:
+          type: integer
+        description: Stage ID.
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider ID.
+      responses:
+        '200':
+          description: A JSON object containing all odds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage or provider with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/stage/{id}/odds/provider/{providerId}/featured:
+    get:
+      tags:
+      - Stage
+      summary: Get cycling stage odds (featured) by provider
+      operationId: cyclingStageOddsFeaturedByProvider
+      description: Retrieves featured odds for a cycling stage from a provider.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 210217
+        schema:
+          type: integer
+        description: Stage ID.
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider ID.
+      responses:
+        '200':
+          description: A JSON object containing featured odds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Stage or provider with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/team/{id}/stage/seasons:
+    get:
+      tags:
+      - Team
+      summary: Get cycling team stage seasons
+      operationId: cyclingTeamStageSeasons
+      description: Retrieves cycling stage seasons for a team.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 377503
+        schema:
+          type: integer
+        description: Team ID.
+      responses:
+        '200':
+          description: A JSON object containing team stage seasons.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/team/{id}/stage/season/{seasonId}/races:
+    get:
+      tags:
+      - Team
+      summary: Get cycling team stage season races
+      operationId: cyclingTeamStageSeasonRaces
+      description: Retrieves races for a cycling team in a specific stage season.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 377503
+        schema:
+          type: integer
+        description: Team ID.
+      - name: seasonId
+        in: path
+        required: true
+        example: 210189
+        schema:
+          type: integer
+        description: Season ID.
+      responses:
+        '200':
+          description: A JSON object containing stage races for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/team/{id}/image:
+    get:
+      tags:
+      - Team
+      summary: Get cycling team image
+      operationId: cyclingTeamImage
+      description: Retrieves the image for a cycling team.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 363701
+        schema:
+          type: integer
+        description: Team ID.
+      responses:
+        '200':
+          description: The team's image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Team or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/unique-stage/{uniqueStageId}/season:
+    get:
+      tags:
+      - Stage
+      summary: Get cycling unique stage seasons
+      operationId: cyclingUniqueStageSeasons
+      description: Retrieves seasons for a cycling unique stage.
+      parameters:
+      - name: uniqueStageId
+        in: path
+        required: true
+        example: 9
+        schema:
+          type: integer
+        description: Unique stage ID.
+      responses:
+        '200':
+          description: A JSON object containing seasons for the unique stage.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Unique stage with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/cycling/category/{categoryId}/image:
+    get:
+      tags:
+      - Category
+      summary: Get cycling category image
+      operationId: cyclingCategoryImage
+      description: Retrieves the image for a cycling category.
+      parameters:
+      - name: categoryId
+        in: path
+        required: true
+        example: 1506
+        schema:
+          type: integer
+        description: Category ID.
+      responses:
+        '200':
+          description: The category's image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Category or image not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            title:
+              type: string
+              description: A short, human-readable summary of the problem type.
+            request_id:
+              type: string
+              description: A unique identifier for the request.
+    JSONResult:
+      type: object
+      description: A generic JSON object response.
+      additionalProperties: true
+tags:
+- name: Category
+  description: Category endpoints.
+- name: Country
+  description: Country assets and metadata.
+- name: Fighter
+  description: Fighter placeholder assets.
+- name: Manager
+  description: Manager endpoints.
+- name: Player
+  description: Player endpoints.
+- name: Stage
+  description: Stage endpoints.
+- name: TV
+  description: TV broadcast endpoints.
+- name: Team
+  description: Team endpoints.
+- name: Tournament
+  description: Tournament endpoints.

@@ -438,6 +438,62 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+  /api/table-tennis/events/odds/featured/{providerId}:
+    get:
+      summary: Get featured table tennis events with odds
+      operationId: featuredTableTennisEventsWithOdds
+      description: Returns highlighted table tennis events with odds information for a provider.
+      tags:
+      - Event
+      parameters:
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider identifier.
+      responses:
+        '200':
+          description: A list of featured table tennis events with odds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/table-tennis/events/odds/featured-by-tiers/{providerId}:
+    get:
+      summary: Get featured table tennis events by tiers
+      operationId: featuredTableTennisEventsByTiers
+      description: Returns highlighted table tennis events by tiers with odds information for a provider.
+      tags:
+      - Event
+      parameters:
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider identifier.
+      responses:
+        '200':
+          description: A list of featured table tennis events by tiers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/table-tennis/calendar/{month}/{year}:
     get:
       summary: Get table tennis calendar overview
@@ -553,6 +609,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+  /api/table-tennis/tournament/categories/all:
+    get:
+      summary: Get table tennis tournament categories (all)
+      operationId: tableTennisTournamentCategoriesAll
+      description: Returns the full list of table tennis categories.
+      tags:
+      - Tournament
+      responses:
+        '200':
+          description: Available categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/table-tennis/tournament/all/category/{id}:
     get:
       summary: Get table tennis tournaments by category
@@ -728,6 +804,88 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+  /api/table-tennis/event/{id}/odds/{providerId}/featured:
+    get:
+      summary: Get match featured odds
+      operationId: tableTennisMatchFeaturedOdds
+      description: Retrieves featured odds for a specific table tennis match and provider.
+      tags:
+      - Event
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14243166
+        schema:
+          type: integer
+        description: Match identifier.
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider identifier.
+      responses:
+        '200':
+          description: Featured odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/table-tennis/event/{id}/provider/{providerId}/winning-odds:
+    get:
+      summary: Get match winning odds
+      operationId: tableTennisMatchWinningOdds
+      description: Retrieves winning odds for a specific table tennis match and provider.
+      tags:
+      - Event
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14243166
+        schema:
+          type: integer
+        description: Match identifier.
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider identifier.
+      responses:
+        '200':
+          description: Winning odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/table-tennis/event/{id}/form:
     get:
       summary: Get table tennis match form
@@ -926,6 +1084,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+  /api/table-tennis/team/{id}/performance:
+    get:
+      summary: Get table tennis team performance
+      operationId: tableTennisTeamPerformance
+      description: Returns performance data for the requested team.
+      tags:
+      - Team
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 348036
+        schema:
+          type: integer
+        description: Team identifier.
+      responses:
+        '200':
+          description: Team performance data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/table-tennis/team/{id}/players:
     get:
       summary: Get table tennis team roster

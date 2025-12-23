@@ -1018,6 +1018,88 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/odds/{providerId}/featured:
+    get:
+      tags:
+      - Match
+      summary: Get match featured odds
+      operationId: matchFeaturedOdds
+      description: Retrieves featured odds for a specific match and provider.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14054688
+        schema:
+          type: integer
+        description: Unique identifier for the match.
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider identifier.
+      responses:
+        '200':
+          description: Featured odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/provider/{providerId}/winning-odds:
+    get:
+      tags:
+      - Match
+      summary: Get match winning odds
+      operationId: matchWinningOdds
+      description: Retrieves winning odds for a specific match and provider.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14030789
+        schema:
+          type: integer
+        description: Unique identifier for the match.
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider identifier.
+      responses:
+        '200':
+          description: Winning odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/match/{id}/shotmap:
     get:
       tags:
@@ -1764,6 +1846,41 @@ paths:
       responses:
         '200':
           description: The team's logo image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/image/small:
+    get:
+      tags:
+      - Team
+      summary: Get team small logo
+      operationId: teamSmallLogo
+      description: Downloads the small logo (crest) for the specified team ID. The response is the raw image data.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 6117
+        schema:
+          type: integer
+        description: Unique identifier for the team.
+      responses:
+        '200':
+          description: The team's small logo image file.
           content:
             image/png:
               schema:
@@ -4654,6 +4771,88 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/group/tournament/{tournamentId}/season/{seasonId}/standings/total:
+    get:
+      tags:
+      - Group
+      summary: Get group tournament total standings
+      operationId: groupTournamentStandingsTotal
+      description: Retrieves the total standings table for a tournament season in group context.
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        example: 16752
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 69831
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      responses:
+        '200':
+          description: The total standings table for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/group/tournament/{tournamentId}/season/{seasonId}/standings/home:
+    get:
+      tags:
+      - Group
+      summary: Get group tournament home standings
+      operationId: groupTournamentStandingsHome
+      description: Retrieves the home standings table for a tournament season in group context.
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        example: 16752
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 69831
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      responses:
+        '200':
+          description: The home standings table for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/referee/{id}:
     get:
       tags:
@@ -5109,6 +5308,76 @@ paths:
       responses:
         '200':
           description: The home goalkeeper jersey image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Match or jersey not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/player/jersey/away-clean:
+    get:
+      tags:
+      - Match
+      summary: Get away player clean jersey
+      operationId: awayPlayerCleanJersey
+      description: Fetches the away clean jersey graphic for a player in a specific match. The response is the raw image data.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14015387
+        schema:
+          type: integer
+        description: The unique identifier of the match.
+      responses:
+        '200':
+          description: The away player clean jersey image file.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Match or jersey not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/match/{id}/player/jersey/home-clean:
+    get:
+      tags:
+      - Match
+      summary: Get home player clean jersey
+      operationId: homePlayerCleanJersey
+      description: Fetches the home clean jersey graphic for a player in a specific match. The response is the raw image data.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14015387
+        schema:
+          type: integer
+        description: The unique identifier of the match.
+      responses:
+        '200':
+          description: The home player clean jersey image file.
           content:
             image/png:
               schema:

@@ -893,7 +893,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/ErrorResponse"
-  "/api/{sport}/character/{tournamentId}/image":
+  "/api/{sport}/character/{characterId}/image":
     get:
       tags:
       - MultiSport
@@ -922,11 +922,11 @@ paths:
           - table-tennis
           - tennis
           - volleyball
-      - name: tournamentId
+      - name: characterId
         in: path
         required: true
         example: 9464
-        description: Tournament identifier.
+        description: Character identifier.
         schema:
           type: integer
       responses:
@@ -2880,7 +2880,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/ErrorResponse"
-  "/api/{sport}/map/{tournamentId}/image":
+  "/api/{sport}/map/{mapId}/image":
     get:
       tags:
       - MultiSport
@@ -2909,11 +2909,11 @@ paths:
           - table-tennis
           - tennis
           - volleyball
-      - name: tournamentId
+      - name: mapId
         in: path
         required: true
         example: 9464
-        description: Tournament identifier.
+        description: Map identifier.
         schema:
           type: integer
       responses:

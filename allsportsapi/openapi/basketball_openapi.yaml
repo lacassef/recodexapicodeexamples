@@ -474,6 +474,62 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/basketball/matches/odds/featured/{providerId}:
+    get:
+      tags:
+      - Match
+      summary: Get featured betting events
+      operationId: featuredBettingEventsByProvider
+      description: Returns highlighted basketball events with odds information for a provider.
+      parameters:
+      - name: providerId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+        description: Provider identifier.
+      responses:
+        '200':
+          description: A JSON object containing featured events with odds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/basketball/matches/odds/featured-by-tiers/{providerId}:
+    get:
+      tags:
+      - Match
+      summary: Get featured betting events by tiers
+      operationId: featuredBettingEventsByTiers
+      description: Returns highlighted basketball events by tiers with odds information for a provider.
+      parameters:
+      - name: providerId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+        description: Provider identifier.
+      responses:
+        '200':
+          description: A JSON object containing featured events by tiers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/match/{id}:
     get:
       tags:
@@ -554,6 +610,84 @@ paths:
       responses:
         '200':
           description: Odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/basketball/match/{id}/odds/{providerId}/featured:
+    get:
+      tags:
+      - Match
+      summary: Get match featured odds
+      operationId: matchFeaturedOdds
+      description: Retrieves featured odds for a specific match and provider.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 14231599
+      - name: providerId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '200':
+          description: Featured odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/basketball/match/{id}/provider/{providerId}/winning-odds:
+    get:
+      tags:
+      - Match
+      summary: Get match winning odds
+      operationId: matchWinningOdds
+      description: Retrieves winning odds for a specific match and provider.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 14226471
+      - name: providerId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+      responses:
+        '200':
+          description: Winning odds for the match.
           content:
             application/json:
               schema:
@@ -1467,6 +1601,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/basketball/team/{id}/image/small:
+    get:
+      tags:
+      - Team
+      summary: Get team small logo
+      operationId: teamSmallImage
+      description: Retrieves the small logo image for a specific team.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 417913
+      responses:
+        '200':
+          description: The team's small logo image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Team or logo not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularSeason:
     get:
       tags:
@@ -2293,6 +2461,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/basketball/tournament/{tournamentId}/season/{seasonId}/venues:
+    get:
+      tags:
+      - Tournament
+      summary: Get tournament venues
+      operationId: tournamentVenues
+      description: Retrieves venues for a specific tournament season.
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 132
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 65360
+      responses:
+        '200':
+          description: A list of venues for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/basketball/tournament/{tournamentId}:
     get:
       tags:
@@ -2740,6 +2947,84 @@ paths:
                 $ref: '#/components/schemas/JSONResult'
         '404':
           description: Tournament/season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/basketball/group/tournament/{tournamentId}/season/{seasonId}/standings/total:
+    get:
+      tags:
+      - Group
+      summary: Get group tournament total standings
+      operationId: tournamentGroupStandingsTotal
+      description: Retrieves the total standings table for a tournament season in group context.
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 156278
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 77317
+      responses:
+        '200':
+          description: The total standings table for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/basketball/group/tournament/{tournamentId}/season/{seasonId}/team-events/total:
+    get:
+      tags:
+      - Group
+      summary: Get group tournament team events total
+      operationId: tournamentGroupTeamEventsTotal
+      description: Retrieves aggregated team statistics for all games in a tournament season.
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 8611
+      - name: seasonId
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 77013
+      responses:
+        '200':
+          description: Aggregated team statistics for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season not found.
           content:
             application/json:
               schema:

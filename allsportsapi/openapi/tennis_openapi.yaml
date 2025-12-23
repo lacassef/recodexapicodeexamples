@@ -662,6 +662,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /api/tennis/events/odds/featured/{providerId}:
+    get:
+      summary: Get featured tennis events with odds
+      operationId: featuredTennisEventsWithOdds
+      description: Returns highlighted tennis events with odds information for a provider.
+      tags:
+      - Event
+      parameters:
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider identifier.
+      responses:
+        '200':
+          description: A list of featured tennis events with odds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/tennis/event/{id}:
     get:
       summary: Get tennis match details
@@ -821,6 +849,88 @@ paths:
       responses:
         '200':
           description: A list of available betting odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{id}/odds/{providerId}/featured:
+    get:
+      summary: Get match featured odds
+      operationId: matchFeaturedOdds
+      description: Retrieves featured odds for a specific tennis match and provider.
+      tags:
+      - Event
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14225543
+        schema:
+          type: integer
+        description: Unique identifier for the match.
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider identifier.
+      responses:
+        '200':
+          description: Featured odds for the match.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/event/{id}/provider/{providerId}/winning-odds:
+    get:
+      summary: Get match winning odds
+      operationId: matchWinningOdds
+      description: Retrieves winning odds for a specific tennis match and provider.
+      tags:
+      - Event
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14232981
+        schema:
+          type: integer
+        description: Unique identifier for the match.
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        schema:
+          type: integer
+        description: Provider identifier.
+      responses:
+        '200':
+          description: Winning odds for the match.
           content:
             application/json:
               schema:
@@ -1587,6 +1697,88 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /api/tennis/team/{id}/year-statistics/{year}:
+    get:
+      summary: Get team year statistics
+      operationId: teamYearStatistics
+      description: Retrieves year-based statistics for a doubles team.
+      tags:
+      - Team
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 69208
+        schema:
+          type: integer
+        description: Unique identifier for the team.
+      - name: year
+        in: path
+        required: true
+        example: 2025
+        schema:
+          type: integer
+        description: Year.
+      responses:
+        '200':
+          description: Year-based statistics for the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/team/{id}/season/{seasonId}/best-result:
+    get:
+      summary: Get team season best result
+      operationId: teamSeasonBestResult
+      description: Retrieves the best result achieved by a team in a specific season.
+      tags:
+      - Team
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 69208
+        schema:
+          type: integer
+        description: Unique identifier for the team.
+      - name: seasonId
+        in: path
+        required: true
+        example: 63967
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      responses:
+        '200':
+          description: Best result for the team in the season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /api/tennis/team/{id}/events/near:
     get:
       summary: Get team near matches
@@ -1612,6 +1804,41 @@ paths:
                 $ref: '#/components/schemas/JSONResult'
         '404':
           description: Team not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/manager/{id}/image:
+    get:
+      summary: Get manager image
+      operationId: managerImage
+      description: Retrieves the profile image for a specific manager.
+      tags:
+      - Manager
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 793880
+        schema:
+          type: integer
+        description: Unique identifier for the manager.
+      responses:
+        '200':
+          description: The manager's profile image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Manager or image not found.
           content:
             application/json:
               schema:
@@ -1900,6 +2127,102 @@ paths:
                 $ref: '#/components/schemas/JSONResult'
         '404':
           description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/season/{seasonId}/venues:
+    get:
+      summary: Get tournament venues
+      operationId: tournamentVenues
+      description: Retrieves the venues available for a tournament season.
+      tags:
+      - Tournament
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2473
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 67391
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      responses:
+        '200':
+          description: A list of venues for the tournament season.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament or season with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tennis/tournament/{tournamentId}/season/{seasonId}/venue/{venueId}/events/all/{page}:
+    get:
+      summary: Get tournament venue events
+      operationId: tournamentVenueEvents
+      description: Retrieves events for a specific venue in a tournament season.
+      tags:
+      - Tournament
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        example: 2473
+        schema:
+          type: integer
+        description: Unique identifier for the tournament.
+      - name: seasonId
+        in: path
+        required: true
+        example: 67391
+        schema:
+          type: integer
+        description: Unique identifier for the season.
+      - name: venueId
+        in: path
+        required: true
+        example: 29580
+        schema:
+          type: integer
+        description: Unique identifier for the venue.
+      - name: page
+        in: path
+        required: true
+        example: 0
+        schema:
+          type: integer
+        description: Page number for pagination.
+      responses:
+        '200':
+          description: A list of events for the venue.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Tournament, season, or venue with the specified ID not found.
           content:
             application/json:
               schema:
