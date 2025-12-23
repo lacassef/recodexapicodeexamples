@@ -228,7 +228,7 @@ paths:
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       tags:
-      - Player
+      - Player (Deprecated)
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -250,7 +250,7 @@ paths:
       description: Returns a static placeholder graphic for a player. The response
         is an SVG image.
       tags:
-      - Player
+      - Player (Deprecated)
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -1128,7 +1128,7 @@ paths:
       description: Retrieves comprehensive details for a specific tennis player, including
         personal info and rankings.
       tags:
-      - Player
+      - Player (Deprecated)
       parameters:
       - name: id
         in: path
@@ -1162,7 +1162,7 @@ paths:
       operationId: playerImage
       description: Retrieves the profile image for a specific player.
       tags:
-      - Player
+      - Player (Deprecated)
       parameters:
       - name: id
         in: path
@@ -1198,7 +1198,7 @@ paths:
       description: Fetches a paginated list of completed matches for a player, sorted
         by date descending.
       tags:
-      - Player
+      - Player (Deprecated)
       parameters:
       - name: id
         in: path
@@ -1246,7 +1246,7 @@ paths:
       description: Fetches a paginated list of scheduled matches for a player, sorted
         by date ascending.
       tags:
-      - Player
+      - Player (Deprecated)
       parameters:
       - name: id
         in: path
@@ -1294,7 +1294,7 @@ paths:
       description: Retrieves a list of seasons for which a player's standings/rankings
         are available.
       tags:
-      - Player
+      - Player (Deprecated)
       parameters:
       - name: id
         in: path
@@ -1329,7 +1329,7 @@ paths:
       description: Retrieves a list of recent unique tournaments a player has participated
         in.
       tags:
-      - Player
+      - Player (Deprecated)
       parameters:
       - name: id
         in: path
@@ -1364,7 +1364,7 @@ paths:
       description: Retrieves current and historical ranking information for a specific
         player.
       tags:
-      - Player
+      - Player (Deprecated)
       parameters:
       - name: id
         in: path
@@ -1399,7 +1399,7 @@ paths:
       description: Retrieves a list of recent and upcoming matches for a specific
         player.
       tags:
-      - Player
+      - Player (Deprecated)
       parameters:
       - name: id
         in: path
@@ -2794,7 +2794,7 @@ tags:
   description: Fighter placeholder assets.
 - name: Manager
   description: Manager endpoints.
-- name: Player
+- name: Player (Deprecated)
   description: Player endpoints.
 - name: Ranking
   description: Ranking endpoints.

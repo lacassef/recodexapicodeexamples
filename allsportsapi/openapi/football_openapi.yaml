@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: This is the OpenAPI specification for the FootAPI.
 servers:
-- url: http://localhost:8080
+- url: https://rendercodex.com
   description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
