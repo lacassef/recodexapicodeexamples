@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: This is the OpenAPI specification for the FootAPI.
 servers:
-- url: https://rendercodex.com
+- url: http://localhost:8080
   description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
@@ -135,6 +135,7 @@ paths:
         schema:
           type: string
         description: Country code or identifier (e.g., 'EN' for England).
+        example: AU
       responses:
         '200':
           description: The country's flag image file.
@@ -331,6 +332,7 @@ paths:
         schema:
           type: integer
         description: Page number for pagination (defaults to 0)
+        example: 0
       responses:
         '200':
           description: A JSON object containing search results.
@@ -362,21 +364,21 @@ paths:
       - name: day
         in: path
         required: true
-        example: 14
+        example: 21
         schema:
           type: integer
         description: Day of the month (e.g., 15)
       - name: month
         in: path
         required: true
-        example: 8
+        example: 7
         schema:
           type: integer
         description: Month of the year (e.g., 7)
       - name: year
         in: path
         required: true
-        example: 2022
+        example: 2025
         schema:
           type: integer
         description: Year (e.g., 2024)
@@ -432,21 +434,21 @@ paths:
       - name: day
         in: path
         required: true
-        example: 14
+        example: 21
         schema:
           type: integer
         description: Day of the month (e.g., 15)
       - name: month
         in: path
         required: true
-        example: 8
+        example: 7
         schema:
           type: integer
         description: Month of the year (e.g., 7)
       - name: year
         in: path
         required: true
-        example: 2022
+        example: 2025
         schema:
           type: integer
         description: Year (e.g., 2024)
@@ -481,21 +483,21 @@ paths:
       - name: day
         in: path
         required: true
-        example: 14
+        example: 21
         schema:
           type: integer
         description: Day of the month (e.g., 15)
       - name: month
         in: path
         required: true
-        example: 8
+        example: 7
         schema:
           type: integer
         description: Month of the year (e.g., 7)
       - name: year
         in: path
         required: true
-        example: 2022
+        example: 2025
         schema:
           type: integer
         description: Year (e.g., 2024)
@@ -551,7 +553,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 785
+        example: 1
         schema:
           type: integer
         description: Category ID (e.g., 8 for England)
@@ -587,28 +589,28 @@ paths:
       - name: id
         in: path
         required: true
-        example: 72
+        example: 1
         schema:
           type: integer
         description: Category ID (e.g., 8 for England)
       - name: day
         in: path
         required: true
-        example: 14
+        example: 21
         schema:
           type: integer
         description: Day of the month (e.g., 15)
       - name: month
         in: path
         required: true
-        example: 8
+        example: 7
         schema:
           type: integer
         description: Month of the year (e.g., 7)
       - name: year
         in: path
         required: true
-        example: 2022
+        example: 2025
         schema:
           type: integer
         description: Year (e.g., 2024)
@@ -652,6 +654,7 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the tournament.
+        example: 16
       responses:
         '200':
           description: A JSON object containing metadata for the tournament.
@@ -743,7 +746,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10200674
+        example: 14030789
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -778,7 +781,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 13472836
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -813,7 +816,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 14030789
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -848,7 +851,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: xdbsugb
+        example: ddcsrOo
         schema:
           type: string
         description: A custom identifier for the match, used for H2H lookups.
@@ -883,7 +886,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 14030789
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -918,7 +921,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 14030789
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -953,7 +956,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 14217375
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -1070,7 +1073,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10230564
+        example: 14015387
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -1105,7 +1108,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 14030789
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -1141,7 +1144,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 14030789
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -1179,6 +1182,7 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the match.
+        example: 14015387
       responses:
         '200':
           description: A JSON object containing win probability data.
@@ -1210,14 +1214,14 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10200674
+        example: 13295530
         schema:
           type: integer
         description: Unique identifier for the match.
       - name: playerId
         in: path
         required: true
-        example: 128383
+        example: 126774
         schema:
           type: integer
         description: Unique identifier for the player.
@@ -1253,14 +1257,14 @@ paths:
       - name: id
         in: path
         required: true
-        example: 14787860
+        example: 13424932
         schema:
           type: integer
         description: Unique identifier for the match.
       - name: playerId
         in: path
         required: true
-        example: 907152
+        example: 991421
         schema:
           type: integer
         description: Unique identifier for the player.
@@ -1295,14 +1299,14 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10230635
+        example: 13295530
         schema:
           type: integer
         description: Unique identifier for the match.
       - name: playerId
         in: path
         required: true
-        example: 12994
+        example: 126774
         schema:
           type: integer
         description: Unique identifier for the player.
@@ -1340,12 +1344,14 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the match.
+        example: 14012306
       - name: playerId
         in: path
         required: true
         schema:
           type: integer
         description: Unique identifier for the player.
+        example: 985186
       responses:
         '200':
           description: A JSON object containing the player's heatmap data.
@@ -1377,7 +1383,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10408343
+        example: 14015387
         schema:
           type: integer
         description: The unique identifier of the match.
@@ -1412,7 +1418,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 14030789
         schema:
           type: integer
         description: The unique identifier of the match.
@@ -1447,7 +1453,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 14030789
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -1482,7 +1488,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 14030789
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -1552,7 +1558,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 14015387
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -1587,7 +1593,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10114139
+        example: 14030789
         schema:
           type: integer
         description: Unique identifier for the match.
@@ -1625,12 +1631,14 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the match.
+        example: 13295530
       - name: teamId
         in: path
         required: true
         schema:
           type: integer
         description: Unique identifier for the team.
+        example: 1769
       responses:
         '200':
           description: A JSON object containing the team's heatmap data.
@@ -1665,6 +1673,7 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the match.
+        example: 14030789
       responses:
         '200':
           description: A JSON object containing a list of commentary entries.
@@ -1698,6 +1707,7 @@ paths:
         schema:
           type: integer
         description: The unique identifier of the match.
+        example: 13472836
       responses:
         '200':
           description: A JSON object containing a list of featured players.
@@ -1732,6 +1742,7 @@ paths:
         schema:
           type: integer
         description: The unique identifier of the match.
+        example: 13472836
       responses:
         '200':
           description: A JSON object containing a summary of the best player's performance.
@@ -1763,7 +1774,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 44
         schema:
           type: integer
         description: The unique identifier of the team.
@@ -1801,6 +1812,7 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the team.
+        example: 24798
       responses:
         '200':
           description: The team's logo image file.
@@ -1868,7 +1880,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 44
         schema:
           type: integer
         description: The unique identifier of the team.
@@ -1903,7 +1915,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 38
         schema:
           type: integer
         description: The unique identifier of the team.
@@ -1938,7 +1950,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 44
         schema:
           type: integer
         description: The unique identifier of the team.
@@ -1973,7 +1985,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 5153
         schema:
           type: integer
         description: The unique identifier of the team.
@@ -2021,7 +2033,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 5153
         schema:
           type: integer
         description: The unique identifier of the team.
@@ -2069,7 +2081,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 38
         schema:
           type: integer
         description: The unique identifier of the team.
@@ -2105,7 +2117,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 292595
         schema:
           type: integer
         description: The unique identifier of the team.
@@ -2141,21 +2153,21 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 292595
         schema:
           type: integer
         description: The unique identifier of the team.
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 11541
         schema:
           type: integer
         description: The unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 69831
         schema:
           type: integer
         description: The unique identifier of the season.
@@ -2191,21 +2203,21 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 38
         schema:
           type: integer
         description: The unique identifier of the team.
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 357
         schema:
           type: integer
         description: The unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 69619
         schema:
           type: integer
         description: The unique identifier of the season.
@@ -2239,7 +2251,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 44
         schema:
           type: integer
         description: The unique identifier of the team.
@@ -2274,7 +2286,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 2672
+        example: 44
         schema:
           type: integer
         description: The unique identifier of the team.
@@ -2313,6 +2325,7 @@ paths:
         schema:
           type: integer
         description: The unique identifier of the team.
+        example: 38
       responses:
         '200':
           description: A JSON object containing a list of seasons with available standings.
@@ -2347,18 +2360,21 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the team.
+        example: 5153
       - name: tournamentId
         in: path
         required: true
         schema:
           type: integer
         description: Unique identifier for the tournament.
+        example: 210
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
         description: Unique identifier for the season.
+        example: 76909
       responses:
         '200':
           description: A JSON object containing goal distribution statistics.
@@ -2390,21 +2406,21 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 17
+        example: 40
         schema:
           type: integer
         description: Unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 41886
+        example: 69956
         schema:
           type: integer
         description: Unique identifier for the season.
       - name: teamId
         in: path
         required: true
-        example: 60
+        example: 1769
         schema:
           type: integer
         description: Unique identifier for the team.
@@ -2440,7 +2456,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 3041
+        example: 103417
         schema:
           type: integer
         description: Unique identifier for the player.
@@ -2478,6 +2494,7 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the player.
+        example: 985186
       responses:
         '200':
           description: The player's profile image file.
@@ -2510,7 +2527,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 3041
+        example: 920546
         schema:
           type: integer
         description: The unique identifier of the player.
@@ -2545,7 +2562,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 3041
+        example: 982780
         schema:
           type: integer
         description: Unique identifier for the player.
@@ -2580,7 +2597,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 3041
+        example: 103417
         schema:
           type: integer
         description: Unique identifier for the player.
@@ -2650,7 +2667,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 3041
+        example: 982780
         schema:
           type: integer
         description: Unique identifier for the player.
@@ -2737,18 +2754,21 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the player.
+        example: 982780
       - name: tournamentId
         in: path
         required: true
         schema:
           type: integer
         description: Unique identifier for the tournament.
+        example: 357
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
         description: Unique identifier for the season.
+        example: 69619
       responses:
         '200':
           description: A JSON object containing the player's rating history.
@@ -2780,21 +2800,21 @@ paths:
       - name: id
         in: path
         required: true
-        example: 3041
+        example: 982780
         schema:
           type: integer
         description: The unique identifier of the player.
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 357
         schema:
           type: integer
         description: The unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 69619
         schema:
           type: integer
         description: The unique identifier of the season.
@@ -2830,7 +2850,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 3041
+        example: 982780
         schema:
           type: integer
         description: Unique identifier for the player.
@@ -2865,7 +2885,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 3041
+        example: 982780
         schema:
           type: integer
         description: The unique identifier of the player.
@@ -2899,7 +2919,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 3041
+        example: 103417
         schema:
           type: integer
         description: Unique identifier for the player.
@@ -2969,7 +2989,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 826643
+        example: 982780
         schema:
           type: integer
         description: The unique identifier of the player.
@@ -3020,18 +3040,21 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the player.
+        example: 982780
       - name: tournamentId
         in: path
         required: true
         schema:
           type: integer
         description: Unique identifier for the tournament.
+        example: 357
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
         description: Unique identifier for the season.
+        example: 69619
       responses:
         '200':
           description: A JSON object containing the player's overall heatmap for the
@@ -3067,18 +3090,21 @@ paths:
         schema:
           type: integer
         description: The unique identifier of the player.
+        example: 982780
       - name: tournamentId
         in: path
         required: true
         schema:
           type: integer
         description: The unique identifier of the tournament.
+        example: 357
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
         description: The unique identifier of the season.
+        example: 69619
       responses:
         '200':
           description: A JSON object containing the player's penalty history for the
@@ -3166,7 +3192,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 787526
+        example: 805670
         schema:
           type: integer
         description: Unique identifier for the manager.
@@ -3237,7 +3263,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 787526
+        example: 794873
         schema:
           type: integer
         description: The unique identifier of the manager.
@@ -3285,7 +3311,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 787526
+        example: 794873
         schema:
           type: integer
         description: The unique identifier of the manager.
@@ -3333,7 +3359,7 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 16
         schema:
           type: integer
         description: Unique identifier for the tournament.
@@ -3368,7 +3394,7 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: Unique identifier for the tournament.
@@ -3407,6 +3433,7 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the tournament.
+        example: 679
       responses:
         '200':
           description: The tournament's dark logo image file.
@@ -3439,7 +3466,7 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: Unique identifier for the tournament.
@@ -3473,7 +3500,7 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 16
         schema:
           type: integer
         description: Unique identifier for the tournament.
@@ -3508,14 +3535,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: Unique identifier for the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -3550,14 +3577,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: Unique identifier for the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -3592,14 +3619,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: Unique identifier for the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -3634,14 +3661,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: The unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 61627
         schema:
           type: integer
         description: The unique identifier of the season.
@@ -3655,21 +3682,21 @@ paths:
       - name: page
         in: query
         required: false
-        example: 1
+        example: 0
         schema:
           type: integer
         description: Page number for pagination (must be >= 1).
       - name: group
         in: query
         required: false
-        example: summary
+        example: goalkeeper
         schema:
           type: string
         description: Grouping criterion (e.g., 'position').
       - name: order
         in: query
         required: false
-        example: -rating
+        example: -saves
         schema:
           type: string
         description: Sorting order (e.g., '-rating').
@@ -3690,14 +3717,14 @@ paths:
       - name: fields
         in: query
         required: false
-        example: ''
+        example: 
         schema:
           type: string
         description: Comma-separated statistic fields to include.
       - name: filters
         in: query
         required: false
-        example: ''
+        example: position.in.G
         schema:
           type: string
         description: Comma-separated filters (e.g., 'position.in.G').
@@ -3732,14 +3759,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: The unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: The unique identifier of the season.
@@ -3774,14 +3801,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: Unique identifier for the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -3816,14 +3843,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: Unique identifier for the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -3858,14 +3885,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: The unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: The unique identifier of the season.
@@ -3900,14 +3927,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: The unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: The unique identifier of the season.
@@ -3955,14 +3982,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: The unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: The unique identifier of the season.
@@ -4010,14 +4037,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: Unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -4052,14 +4079,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: Unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -4094,21 +4121,21 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: Unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 61627
         schema:
           type: integer
         description: Unique identifier for the season.
       - name: roundId
         in: path
         required: true
-        example: 7296
+        example: 19564
         schema:
           type: integer
         description: Unique identifier for the round.
@@ -4143,14 +4170,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 17
         schema:
           type: integer
         description: Unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -4185,14 +4212,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 7
+        example: 11541
         schema:
           type: integer
         description: Unique identifier for the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 36886
+        example: 69831
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -4234,7 +4261,7 @@ paths:
       - name: seasonId
         in: path
         required: true
-        example: 41886
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -4276,7 +4303,7 @@ paths:
       - name: seasonId
         in: path
         required: true
-        example: 41886
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -4318,7 +4345,7 @@ paths:
       - name: seasonId
         in: path
         required: true
-        example: 41886
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -4356,12 +4383,14 @@ paths:
         schema:
           type: integer
         description: The unique identifier of the tournament.
+        example: 17
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
         description: The unique identifier of the season.
+        example: 76986
       responses:
         '200':
           description: A JSON object containing metadata about available player statistics.
@@ -4393,14 +4422,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 16
+        example: 17
         schema:
           type: integer
         description: Unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 41087
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -4487,12 +4516,14 @@ paths:
         schema:
           type: integer
         description: Unique identifier of the tournament.
+        example: 17
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
         description: Unique identifier for the season.
+        example: 76986
       responses:
         '200':
           description: A JSON object containing details of the Player of the Season.
@@ -4523,14 +4554,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 16
+        example: 17
         schema:
           type: integer
         description: Unique identifier of the tournament.
       - name: seasonId
         in: path
         required: true
-        example: 41087
+        example: 76986
         schema:
           type: integer
         description: Unique identifier for the season.
@@ -4586,14 +4617,14 @@ paths:
       - name: round
         in: path
         required: true
-        example: 2
+        example: 29
         schema:
           type: integer
         description: The round number.
       - name: slug
         in: path
         required: true
-        example: semifinal
+        example: final
         schema:
           type: string
         description: The slug for the stage.
@@ -4632,24 +4663,28 @@ paths:
         schema:
           type: integer
         description: Unique identifier of the tournament.
+        example: 270
       - name: day
         in: path
         required: true
         schema:
           type: integer
         description: Day component of the date (e.g., 15).
+        example: 23
       - name: month
         in: path
         required: true
         schema:
           type: integer
         description: Month component of the date (e.g., 7).
+        example: 12
       - name: year
         in: path
         required: true
         schema:
           type: integer
         description: Year component of the date (e.g., 2024).
+        example: 2025
       - name: timezone
         in: query
         required: false
@@ -4823,7 +4858,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 86508
+        example: 72926
         schema:
           type: integer
         description: Unique identifier for the referee.
@@ -4858,7 +4893,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 86508
+        example: 787948
         schema:
           type: integer
         description: Unique identifier for the referee.
@@ -4894,7 +4929,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 86508
+        example: 72926
         schema:
           type: integer
         description: Unique identifier for the referee.
@@ -4929,7 +4964,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 86508
+        example: 787948
         schema:
           type: integer
         description: Unique identifier for the referee.
@@ -4977,7 +5012,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 86508
+        example: 787948
         schema:
           type: integer
         description: Unique identifier for the referee.
@@ -5028,18 +5063,21 @@ paths:
         schema:
           type: integer
         description: Day of the month (e.g., 15).
+        example: 21
       - name: month
         in: path
         required: true
         schema:
           type: integer
         description: Month of the year (e.g., 7).
+        example: 7
       - name: year
         in: path
         required: true
         schema:
           type: integer
         description: Year (e.g., 2024).
+        example: 2025
       responses:
         '200':
           description: A JSON object containing odds for matches on the specified
@@ -5096,24 +5134,28 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the category.
+        example: 1
       - name: day
         in: path
         required: true
         schema:
           type: integer
         description: Day of the month (e.g., 15).
+        example: 15
       - name: month
         in: path
         required: true
         schema:
           type: integer
         description: Month of the year (e.g., 7).
+        example: 7
       - name: year
         in: path
         required: true
         schema:
           type: integer
         description: Year in four-digit format (e.g., 2024).
+        example: 2025
       responses:
         '200':
           description: A JSON object containing a list of scheduled events.

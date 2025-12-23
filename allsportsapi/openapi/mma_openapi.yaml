@@ -135,6 +135,7 @@ paths:
         schema:
           type: string
         description: Country code or identifier (e.g., 'EN' for England).
+        example: AU
       responses:
         '200':
           description: The country's flag image file.
@@ -372,6 +373,7 @@ paths:
         schema:
           type: integer
         description: Page number for pagination
+        example: 0
       responses:
         '200':
           description: A list of search results for fighters, events, and tournaments.
@@ -660,6 +662,7 @@ paths:
         schema:
           type: integer
         description: Tournament ID
+        example: 19906
       - name: day
         in: path
         required: true
@@ -719,18 +722,21 @@ paths:
         schema:
           type: integer
         description: Tournament ID
+        example: 19906
       - name: month
         in: path
         required: true
         schema:
           type: integer
         description: Month of the year
+        example: 7
       - name: year
         in: path
         required: true
         schema:
           type: integer
         description: Year
+        example: 2025
       responses:
         '200':
           description: A list of scheduled main events for the tournament in the given
@@ -769,14 +775,14 @@ paths:
       - name: uniqueTournamentId
         in: path
         required: true
-        example: 19906
+        example: 19905
         schema:
           type: integer
         description: Unique Tournament ID
       - name: tournamentId
         in: path
         required: true
-        example: 114389
+        example: 154804
         schema:
           type: integer
         description: Tournament ID
@@ -847,6 +853,7 @@ paths:
         schema:
           type: integer
         description: Tournament ID
+        example: 19946
       responses:
         '200':
           description: The tournament's logo image.
@@ -881,6 +888,7 @@ paths:
         schema:
           type: integer
         description: Tournament ID
+        example: 19906
       responses:
         '200':
           description: The tournament's dark-theme logo image.
@@ -913,7 +921,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 11257051
+        example: 13998594
         schema:
           type: integer
         description: Event ID
@@ -1023,7 +1031,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 11257051
+        example: 13998594
         schema:
           type: integer
         description: Event ID
@@ -1058,7 +1066,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: tMJdsbaMd
+        example: ItLdswYNd
         schema:
           type: string
         description: A custom identifier for the event, used for H2H lookups.
@@ -1093,7 +1101,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 11257051
+        example: 13998594
         schema:
           type: integer
         description: Event ID
@@ -1127,7 +1135,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 11243946
+        example: 12140708
         schema:
           type: integer
         description: Event ID
@@ -1161,7 +1169,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 465171
+        example: 472421
         schema:
           type: integer
         description: Fighter (Team) ID
@@ -1195,7 +1203,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 465171
+        example: 472421
         schema:
           type: integer
         description: Fighter (Team) ID
@@ -1230,7 +1238,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 465171
+        example: 472421
         schema:
           type: integer
         description: Fighter (Team) ID
@@ -1278,7 +1286,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 465171
+        example: 472421
         schema:
           type: integer
         description: Fighter (Team) ID
@@ -1325,7 +1333,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 469994
+        example: 461600
         schema:
           type: integer
         description: Fighter (Team) ID
@@ -1361,7 +1369,7 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 113935
+        example: 154804
         schema:
           type: integer
         description: Tournament ID

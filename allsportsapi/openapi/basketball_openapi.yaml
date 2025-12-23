@@ -136,6 +136,7 @@ paths:
         schema:
           type: string
         description: Country code or identifier (e.g., 'EN' for England).
+        example: AU
       responses:
         '200':
           description: The country's flag image file.
@@ -331,6 +332,7 @@ paths:
         schema:
           type: integer
         description: Page number for pagination.
+        example: 0
       responses:
         '200':
           description: Search results
@@ -381,19 +383,19 @@ paths:
         required: true
         schema:
           type: integer
-        example: 12
+        example: 22
       - name: month
         in: path
         required: true
         schema:
           type: integer
-        example: 4
+        example: 7
       - name: year
         in: path
         required: true
         schema:
           type: integer
-        example: 2022
+        example: 2025
       responses:
         '200':
           description: Scheduled basketball matches for the given date.
@@ -500,7 +502,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10247060
+        example: 14055018
       responses:
         '200':
           description: Detailed match info.
@@ -532,7 +534,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10247060
+        example: 14055018
       responses:
         '200':
           description: Pregame form and trends.
@@ -564,7 +566,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10066244
+        example: 14231599
       responses:
         '200':
           description: Odds for the match.
@@ -674,7 +676,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10247060
+        example: 14055018
       responses:
         '200':
           description: Best performing players in the match.
@@ -706,7 +708,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10066290
+        example: 14055018
       responses:
         '200':
           description: H2H summary for teams in the match.
@@ -738,7 +740,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10066244
+        example: 14055018
       responses:
         '200':
           description: Video highlights for the match (if available).
@@ -770,7 +772,7 @@ paths:
         required: true
         schema:
           type: string
-        example: HtbsLtb
+        example: nIecsNUed
       responses:
         '200':
           description: Detailed H2H match history.
@@ -802,7 +804,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10247060
+        example: 14055018
       responses:
         '200':
           description: Starting lineups and substitutes.
@@ -834,7 +836,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10247060
+        example: 14055018
       responses:
         '200':
           description: Team and player statistics for the match.
@@ -866,7 +868,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10247060
+        example: 14231599
       responses:
         '200':
           description: Momentum graph datapoints.
@@ -898,7 +900,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10247060
+        example: 14055018
       responses:
         '200':
           description: Chronological list of match incidents.
@@ -930,7 +932,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10247060
+        example: 14055018
       responses:
         '200':
           description: Coaches information for both teams.
@@ -962,7 +964,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 11213285
+        example: 13753802
       responses:
         '200':
           description: Series score and status (if applicable).
@@ -994,11 +996,13 @@ paths:
         required: true
         schema:
           type: integer
+        example: 14226471
       - name: playerId
         in: path
         required: true
         schema:
           type: integer
+        example: 2150425
       responses:
         '200':
           description: Statistics for player in the match.
@@ -1030,13 +1034,13 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10600552
+        example: 14226471
       - name: teamId
         in: path
         required: true
         schema:
           type: integer
-        example: 3427
+        example: 417913
       responses:
         '200':
           description: Shot map data for the team in the match.
@@ -1068,13 +1072,13 @@ paths:
         required: true
         schema:
           type: integer
-        example: 10600552
+        example: 13905809
       - name: playerId
         in: path
         required: true
         schema:
           type: integer
-        example: 817181
+        example: 1132145
       responses:
         '200':
           description: Shot map data for the player in the match.
@@ -1106,7 +1110,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3436
+        example: 387238
       - name: page
         in: path
         required: true
@@ -1150,7 +1154,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3540
+        example: 387238
       - name: page
         in: path
         required: true
@@ -1194,7 +1198,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3436
+        example: 3418
       responses:
         '200':
           description: Seasons with available player statistics.
@@ -1226,7 +1230,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3436
+        example: 3418
       responses:
         '200':
           description: Seasons with available standings.
@@ -1258,7 +1262,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3436
+        example: 3418
       - name: tournamentId
         in: path
         required: true
@@ -1270,7 +1274,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       responses:
         '200':
           description: Top players for the team (regular season).
@@ -1302,7 +1306,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3436
+        example: 3418
       - name: tournamentId
         in: path
         required: true
@@ -1314,7 +1318,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       responses:
         '200':
           description: Top players for the team (playoffs).
@@ -1346,7 +1350,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3436
+        example: 3418
       responses:
         '200':
           description: Unique tournaments the team has participated in.
@@ -1378,7 +1382,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3436
+        example: 3418
       responses:
         '200':
           description: Player transfers for the team.
@@ -1410,7 +1414,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3436
+        example: 3418
       responses:
         '200':
           description: Current roster for the team.
@@ -1442,7 +1446,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 2701
+        example: 3418
       responses:
         '200':
           description: Recent and upcoming matches for the team.
@@ -1474,7 +1478,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3436
+        example: 3418
       responses:
         '200':
           description: Media content for the team.
@@ -1506,7 +1510,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3436
+        example: 3418
       responses:
         '200':
           description: Team details.
@@ -1538,7 +1542,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 3436
+        example: 353716
       responses:
         '200':
           description: Team image file.
@@ -1605,16 +1609,19 @@ paths:
         required: true
         schema:
           type: integer
+        example: 3418
       - name: tournamentId
         in: path
         required: true
         schema:
           type: integer
+        example: 132
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
+        example: 65360
       responses:
         '200':
           description: Team regular season statistics.
@@ -1646,16 +1653,19 @@ paths:
         required: true
         schema:
           type: integer
+        example: 3432
       - name: tournamentId
         in: path
         required: true
         schema:
           type: integer
+        example: 132
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
+        example: 65360
       responses:
         '200':
           description: Team playoffs statistics.
@@ -1687,16 +1697,19 @@ paths:
         required: true
         schema:
           type: integer
+        example: 3418
       - name: tournamentId
         in: path
         required: true
         schema:
           type: integer
+        example: 132
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
+        example: 65360
       responses:
         '200':
           description: Team regular season ranks.
@@ -1728,16 +1741,19 @@ paths:
         required: true
         schema:
           type: integer
+        example: 3418
       - name: tournamentId
         in: path
         required: true
         schema:
           type: integer
+        example: 132
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
+        example: 65360
       responses:
         '200':
           description: Team playoffs ranks.
@@ -1769,7 +1785,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 846936
+        example: 940794
       responses:
         '200':
           description: Player details.
@@ -1801,7 +1817,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 846936
+        example: 940794
       responses:
         '200':
           description: Media content for the player.
@@ -1865,7 +1881,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 846936
+        example: 940794
       responses:
         '200':
           description: Transfer history for the player.
@@ -1897,7 +1913,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 846936
+        example: 940794
       responses:
         '200':
           description: Seasons with available player statistics.
@@ -1929,7 +1945,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 846936
+        example: 940794
       - name: tournamentId
         in: path
         required: true
@@ -1941,7 +1957,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       responses:
         '200':
           description: Player regular season statistics.
@@ -1973,7 +1989,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 817050
+        example: 940794
       - name: tournamentId
         in: path
         required: true
@@ -1985,7 +2001,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       responses:
         '200':
           description: Player playoffs statistics.
@@ -2017,19 +2033,19 @@ paths:
         required: true
         schema:
           type: integer
-        example: 861446
+        example: 903020
       - name: tournamentId
         in: path
         required: true
         schema:
           type: integer
-        example: 264
+        example: 662
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
-        example: 45109
+        example: 39857
       responses:
         '200':
           description: Player overall season statistics.
@@ -2061,7 +2077,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 846936
+        example: 1132145
       responses:
         '200':
           description: Player image file.
@@ -2094,7 +2110,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 817050
+        example: 940794
       - name: page
         in: path
         required: true
@@ -2138,7 +2154,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 817050
+        example: 940794
       - name: tournamentId
         in: path
         required: true
@@ -2150,7 +2166,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 45096
+        example: 65360
       responses:
         '200':
           description: Shot action data (regular season).
@@ -2182,7 +2198,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 817050
+        example: 940794
       - name: tournamentId
         in: path
         required: true
@@ -2194,7 +2210,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       responses:
         '200':
           description: Shot action data (playoffs).
@@ -2258,7 +2274,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 794612
+        example: 795129
       responses:
         '200':
           description: Manager image file.
@@ -2291,7 +2307,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 794632
+        example: 795129
       - name: page
         in: path
         required: true
@@ -2341,7 +2357,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       responses:
         '200':
           description: Tournament standings (total).
@@ -2367,13 +2383,13 @@ paths:
         required: true
         schema:
           type: integer
-        example: 264
+        example: 132
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
-        example: 45109
+        example: 65360
       responses:
         '200':
           description: Tournament standings (home).
@@ -2405,7 +2421,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 45109
+        example: 64689
       responses:
         '200':
           description: Tournament standings (away).
@@ -2566,7 +2582,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 132
+        example: 871
       responses:
         '200':
           description: Tournament image file.
@@ -2599,6 +2615,7 @@ paths:
         required: true
         schema:
           type: integer
+        example: 132
       responses:
         '200':
           description: Tournament dark image file.
@@ -2637,7 +2654,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       responses:
         '200':
           description: Best players in regular season for the tournament.
@@ -2669,13 +2686,13 @@ paths:
         required: true
         schema:
           type: integer
-        example: 132
+        example: 27555
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 77317
       responses:
         '200':
           description: Cup trees/brackets for the tournament season.
@@ -2713,7 +2730,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       responses:
         '200':
           description: Best players in playoffs for the tournament season.
@@ -2751,7 +2768,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       - name: page
         in: path
         required: true
@@ -2795,7 +2812,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       - name: page
         in: path
         required: true
@@ -2833,25 +2850,25 @@ paths:
         required: true
         schema:
           type: integer
-        example: 264
+        example: 15
       - name: day
         in: path
         required: true
         schema:
           type: integer
-        example: 17
+        example: 22
       - name: month
         in: path
         required: true
         schema:
           type: integer
-        example: 8
+        example: 7
       - name: year
         in: path
         required: true
         schema:
           type: integer
-        example: 2022
+        example: 2025
       responses:
         '200':
           description: Events for the category on the given date.
@@ -3011,7 +3028,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 45096
+        example: 65360
       responses:
         '200':
           description: Best teams (regular season).
@@ -3049,7 +3066,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       responses:
         '200':
           description: Best teams (playoffs).
@@ -3087,7 +3104,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 45096
+        example: 65360
       responses:
         '200':
           description: Best players per game (overall) for the tournament season.
@@ -3125,7 +3142,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 45096
+        example: 65360
       responses:
         '200':
           description: Best players per game (regular season).
@@ -3163,7 +3180,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       responses:
         '200':
           description: Best players per game (playoffs).
@@ -3201,7 +3218,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 45096
+        example: 65360
       responses:
         '200':
           description: Available metric types for best players leaderboards.
@@ -3239,7 +3256,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 45096
+        example: 65360
       responses:
         '200':
           description: Shot action areas data for regular season.
@@ -3277,7 +3294,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 38191
+        example: 65360
       responses:
         '200':
           description: Shot action areas data for playoffs.
@@ -3309,13 +3326,13 @@ paths:
         required: true
         schema:
           type: integer
-        example: 138
+        example: 132
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
-        example: 42914
+        example: 65360
       responses:
         '200':
           description: Team events totals for the tournament season.
@@ -3347,13 +3364,13 @@ paths:
         required: true
         schema:
           type: integer
-        example: 138
+        example: 264
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
-        example: 42914
+        example: 64689
       responses:
         '200':
           description: Team events at home for the tournament season.
@@ -3385,13 +3402,13 @@ paths:
         required: true
         schema:
           type: integer
-        example: 138
+        example: 264
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
-        example: 42914
+        example: 64689
       responses:
         '200':
           description: Team events away for the tournament season.
@@ -3423,13 +3440,13 @@ paths:
         required: true
         schema:
           type: integer
-        example: 441
+        example: 132
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
-        example: 22873
+        example: 65360
       responses:
         '200':
           description: Best teams overall for the tournament season.
@@ -3461,13 +3478,13 @@ paths:
         required: true
         schema:
           type: integer
-        example: 441
+        example: 132
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
-        example: 22873
+        example: 65360
       responses:
         '200':
           description: Rounds for the tournament season.
@@ -3499,13 +3516,13 @@ paths:
         required: true
         schema:
           type: integer
-        example: 441
+        example: 132
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
-        example: 22873
+        example: 65360
       responses:
         '200':
           description: Groups for the tournament season.
@@ -3537,13 +3554,13 @@ paths:
         required: true
         schema:
           type: integer
-        example: 441
+        example: 132
       - name: seasonId
         in: path
         required: true
         schema:
           type: integer
-        example: 22873
+        example: 65360
       responses:
         '200':
           description: Best players overall for the tournament season.
@@ -3575,21 +3592,25 @@ paths:
         required: true
         schema:
           type: integer
+        example: 132
       - name: day
         in: path
         required: true
         schema:
           type: integer
+        example: 23
       - name: month
         in: path
         required: true
         schema:
           type: integer
+        example: 12
       - name: year
         in: path
         required: true
         schema:
           type: integer
+        example: 2025
       responses:
         '200':
           description: Scheduled matches for the tournament on the given date.
@@ -3621,7 +3642,7 @@ paths:
         required: true
         schema:
           type: integer
-        example: 264
+        example: 15
       responses:
         '200':
           description: Tournaments for the given category.

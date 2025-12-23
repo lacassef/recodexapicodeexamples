@@ -135,6 +135,7 @@ paths:
         schema:
           type: string
         description: Country code or identifier (e.g., 'EN' for England).
+        example: AU
       responses:
         '200':
           description: The country's flag image file.
@@ -330,6 +331,7 @@ paths:
         schema:
           type: integer
         description: Page number for pagination
+        example: 0
       responses:
         '200':
           description: Successfully retrieved search results.
@@ -1151,6 +1153,7 @@ paths:
         schema:
           type: integer
         description: Team ID
+        example: 363904
       responses:
         '200':
           description: Successfully retrieved team image.
@@ -1219,6 +1222,7 @@ paths:
         schema:
           type: integer
         description: Player ID
+        example: 1078255
       responses:
         '200':
           description: Successfully retrieved player image.
@@ -1516,6 +1520,7 @@ paths:
         schema:
           type: integer
         description: Tournament ID
+        example: 16026
       responses:
         '200':
           description: Successfully retrieved tournament dark image.

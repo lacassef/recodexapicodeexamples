@@ -57,6 +57,7 @@ paths:
         schema:
           type: integer
         description: Page number for pagination
+        example: 0
       responses:
         '200':
           description: A JSON object containing search results.
@@ -164,7 +165,7 @@ paths:
       - name: stageId
         in: path
         required: true
-        example: 203648
+        example: 209766
         schema:
           type: integer
         description: Stage ID
@@ -199,7 +200,7 @@ paths:
       - name: stageId
         in: path
         required: true
-        example: 203648
+        example: 206456
         schema:
           type: integer
         description: Stage ID
@@ -234,7 +235,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 203968
+        example: 206455
         schema:
           type: integer
         description: Stage ID
@@ -269,7 +270,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 203968
+        example: 206455
         schema:
           type: integer
         description: Stage ID
@@ -303,7 +304,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 203648
+        example: 206456
         schema:
           type: integer
         description: Stage ID
@@ -341,6 +342,7 @@ paths:
         schema:
           type: integer
         description: Stage ID
+        example: 206456
       responses:
         '200':
           description: A JSON object containing a list of video highlights.
@@ -480,7 +482,7 @@ paths:
       - name: seasonId
         in: path
         required: true
-        example: 188803
+        example: 209766
         schema:
           type: integer
         description: Season ID
@@ -514,7 +516,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 214902
+        example: 191417
         schema:
           type: integer
         description: Team ID
@@ -774,6 +776,7 @@ paths:
         schema:
           type: string
         description: Country code or identifier (e.g., 'EN' for England).
+        example: AU
       responses:
         '200':
           description: The country's flag image file.

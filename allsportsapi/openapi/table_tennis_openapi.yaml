@@ -19,7 +19,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 10974920
         schema:
           type: integer
         description: The unique identifier for the match.
@@ -61,7 +61,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 10974920
         schema:
           type: integer
         description: The unique identifier for the match.
@@ -132,7 +132,7 @@ paths:
       - name: code
         in: path
         required: true
-        example: jp
+        example: AU
         schema:
           type: string
         description: Country code or identifier (e.g., 'EN' for England).
@@ -321,21 +321,21 @@ paths:
       - name: day
         in: path
         required: true
-        example: 21
+        example: 22
         schema:
           type: integer
         description: Day of the month
       - name: month
         in: path
         required: true
-        example: 11
+        example: 7
         schema:
           type: integer
         description: Month of the year
       - name: year
         in: path
         required: true
-        example: 2024
+        example: 2025
         schema:
           type: integer
         description: Four-digit year
@@ -357,21 +357,21 @@ paths:
       - name: day
         in: path
         required: true
-        example: 21
+        example: 22
         schema:
           type: integer
         description: Day of the month
       - name: month
         in: path
         required: true
-        example: 11
+        example: 7
         schema:
           type: integer
         description: Month of the year
       - name: year
         in: path
         required: true
-        example: 2024
+        example: 2025
         schema:
           type: integer
         description: Four-digit year
@@ -463,14 +463,14 @@ paths:
       - name: month
         in: path
         required: true
-        example: 11
+        example: 12
         schema:
           type: integer
         description: Month of the year
       - name: year
         in: path
         required: true
-        example: 2024
+        example: 2025
         schema:
           type: integer
         description: Four-digit year
@@ -492,21 +492,21 @@ paths:
       - name: day
         in: path
         required: true
-        example: 21
+        example: 23
         schema:
           type: integer
         description: Day of the month
       - name: month
         in: path
         required: true
-        example: 11
+        example: 12
         schema:
           type: integer
         description: Month of the year
       - name: year
         in: path
         required: true
-        example: 2024
+        example: 2025
         schema:
           type: integer
         description: Four-digit year
@@ -528,21 +528,21 @@ paths:
       - name: month
         in: path
         required: true
-        example: 11
+        example: 12
         schema:
           type: integer
         description: Month of the year
       - name: year
         in: path
         required: true
-        example: 2024
+        example: 2025
         schema:
           type: integer
         description: Four-digit year
       - name: days
         in: query
         required: true
-        example: 2,3,4,5,6
+        example: 23,24,26
         schema:
           type: string
         description: Comma separated list of days (max 5).
@@ -598,7 +598,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 145
         schema:
           type: integer
         description: Category identifier
@@ -620,28 +620,28 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 88
         schema:
           type: integer
         description: Category identifier
       - name: day
         in: path
         required: true
-        example: 21
+        example: 22
         schema:
           type: integer
         description: Day of the month
       - name: month
         in: path
         required: true
-        example: 11
+        example: 7
         schema:
           type: integer
         description: Month of the year
       - name: year
         in: path
         required: true
-        example: 2024
+        example: 2025
         schema:
           type: integer
         description: Four-digit year
@@ -663,7 +663,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243166
         schema:
           type: integer
         description: Match identifier
@@ -685,7 +685,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243166
         schema:
           type: integer
         description: Match identifier
@@ -707,7 +707,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243166
         schema:
           type: integer
         description: Match identifier
@@ -729,7 +729,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243166
         schema:
           type: integer
         description: Match identifier
@@ -751,7 +751,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243156
         schema:
           type: integer
         description: Match identifier
@@ -855,7 +855,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243166
         schema:
           type: integer
         description: Match identifier
@@ -877,7 +877,7 @@ paths:
       - name: customId
         in: path
         required: true
-        example: LOfsRveb
+        example: axmcsLkOc
         schema:
           type: string
         description: Match custom identifier
@@ -899,7 +899,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243166
         schema:
           type: integer
         description: Match identifier
@@ -921,7 +921,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243166
         schema:
           type: integer
         description: Match identifier
@@ -943,7 +943,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243166
         schema:
           type: integer
         description: Match identifier
@@ -965,7 +965,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243166
         schema:
           type: integer
         description: Match identifier
@@ -987,7 +987,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243166
         schema:
           type: integer
         description: Match identifier
@@ -1009,7 +1009,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 14243166
         schema:
           type: integer
         description: Match identifier
@@ -1031,7 +1031,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1087,7 +1087,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1109,7 +1109,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1131,7 +1131,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1160,7 +1160,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1189,7 +1189,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1211,7 +1211,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1233,7 +1233,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1255,7 +1255,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1277,7 +1277,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1299,7 +1299,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1321,7 +1321,7 @@ paths:
       - name: id
         in: path
         required: true
-        example: 10400727
+        example: 348036
         schema:
           type: integer
         description: Team identifier
@@ -1343,7 +1343,7 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
@@ -1365,7 +1365,7 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
@@ -1387,7 +1387,7 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
@@ -1409,7 +1409,7 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
@@ -1431,7 +1431,7 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
@@ -1453,14 +1453,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
@@ -1482,14 +1482,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
@@ -1511,14 +1511,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
@@ -1540,28 +1540,28 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
       - name: round
         in: path
         required: true
-        example: 32
+        example: 29
         schema:
           type: integer
         description: Round number
       - name: slug
         in: path
         required: true
-        example: round-of-64
+        example: final
         schema:
           type: string
         description: Round slug
@@ -1583,14 +1583,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
@@ -1619,14 +1619,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
@@ -1655,14 +1655,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
@@ -1684,14 +1684,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
@@ -1713,14 +1713,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
@@ -1742,14 +1742,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 17
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 76986
         schema:
           type: integer
         description: Season identifier
@@ -1771,14 +1771,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 17
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 76986
         schema:
           type: integer
         description: Season identifier
@@ -1800,14 +1800,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 17
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 76986
         schema:
           type: integer
         description: Season identifier
@@ -1829,14 +1829,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
@@ -1858,14 +1858,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
@@ -1887,14 +1887,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier
@@ -1916,14 +1916,14 @@ paths:
       - name: tournamentId
         in: path
         required: true
-        example: 2361
+        example: 564
         schema:
           type: integer
         description: Tournament identifier
       - name: seasonId
         in: path
         required: true
-        example: 42300
+        example: 64269
         schema:
           type: integer
         description: Season identifier

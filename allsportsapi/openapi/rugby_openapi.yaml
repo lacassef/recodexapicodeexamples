@@ -134,6 +134,7 @@ paths:
         schema:
           type: string
         description: Country code or identifier (e.g., 'EN' for England).
+        example: AU
       responses:
         '200':
           description: The country's flag image file.
@@ -329,6 +330,7 @@ paths:
         schema:
           type: integer
         description: Page number for pagination
+        example: 0
       responses:
         '200':
           description: A list of search results for teams, players, and tournaments.
@@ -1089,6 +1091,7 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the team.
+        example: 4264
       responses:
         '200':
           description: The team's logo image.
@@ -1239,6 +1242,7 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the player.
+        example: 835169
       responses:
         '200':
           description: The player's profile image.
@@ -1492,6 +1496,7 @@ paths:
         schema:
           type: integer
         description: Unique identifier for the tournament.
+        example: 294
       responses:
         '200':
           description: The tournament's dark theme logo image.

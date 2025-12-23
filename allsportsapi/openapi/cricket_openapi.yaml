@@ -134,6 +134,7 @@ paths:
         schema:
           type: string
         description: Country code or identifier (e.g., 'EN' for England).
+        example: AU
       responses:
         '200':
           description: The country's flag image file.
@@ -197,6 +198,7 @@ paths:
         schema:
           type: integer
         description: Page number for pagination
+        example: 0
       responses:
         '200':
           description: A list of search results for teams, players, and tournaments.
@@ -634,6 +636,7 @@ paths:
         schema:
           type: integer
         description: The unique identifier for the match.
+        example: 10534787
       responses:
         '200':
           description: Data points for the match graph.
@@ -867,6 +870,7 @@ paths:
         schema:
           type: integer
         description: The unique identifier for the team.
+        example: 187760
       responses:
         '200':
           description: The team's logo image.
@@ -1123,6 +1127,7 @@ paths:
         schema:
           type: integer
         description: The unique identifier for the player.
+        example: 786521
       responses:
         '200':
           description: The player's profile image.
@@ -1393,6 +1398,7 @@ paths:
         schema:
           type: integer
         description: The unique identifier for the tournament.
+        example: 19048
       responses:
         '200':
           description: The tournament's dark theme logo image.
@@ -1682,24 +1688,28 @@ paths:
         schema:
           type: integer
         description: The unique identifier for the tournament.
+        example: 11162
       - name: day
         in: path
         required: true
         schema:
           type: integer
         description: Day of the month (e.g., 15).
+        example: 23
       - name: month
         in: path
         required: true
         schema:
           type: integer
         description: Month of the year (e.g., 7).
+        example: 12
       - name: year
         in: path
         required: true
         schema:
           type: integer
         description: Year (e.g., 2024).
+        example: 2025
       responses:
         '200':
           description: A list of scheduled matches for the tournament on the given

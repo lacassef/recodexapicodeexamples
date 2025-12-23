@@ -135,6 +135,7 @@ paths:
         schema:
           type: string
         description: Country code or identifier (e.g., 'EN' for England).
+        example: AU
       responses:
         '200':
           description: The country's flag image file.
@@ -330,6 +331,7 @@ paths:
         schema:
           type: integer
         description: Page number for pagination
+        example: 0
       responses:
         '200':
           description: A list of search results for teams, players, and tournaments.
@@ -2426,6 +2428,7 @@ paths:
         schema:
           type: integer
         description: Tournament ID
+        example: 149
       responses:
         '200':
           description: Tournament dark logo image.
@@ -2530,24 +2533,28 @@ paths:
         schema:
           type: integer
         description: Tournament ID
+        example: 149
       - name: day
         in: path
         required: true
         schema:
           type: integer
         description: Day of the month (1-31)
+        example: 23
       - name: month
         in: path
         required: true
         schema:
           type: integer
         description: Month (1-12)
+        example: 12
       - name: year
         in: path
         required: true
         schema:
           type: integer
         description: Year (e.g., 2024)
+        example: 2025
       responses:
         '200':
           description: A list of scheduled matches for the tournament on the given
