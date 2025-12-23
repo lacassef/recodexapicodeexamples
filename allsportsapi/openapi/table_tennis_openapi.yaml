@@ -310,48 +310,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /api/placeholders/fighter-male.svg:
-    get:
-      summary: Get male fighter placeholder image
-      operationId: maleFighterPlaceholderImage
-      description: Retrieves a placeholder image for a male fighter.
-      tags:
-      - Fighter
-      responses:
-        '200':
-          description: The placeholder SVG image.
-          content:
-            image/svg+xml:
-              schema:
-                type: string
-                format: binary
-        '500':
-          description: Internal server error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /api/placeholders/fighter-female.svg:
-    get:
-      summary: Get female fighter placeholder image
-      operationId: femaleFighterPlaceholderImage
-      description: Retrieves a placeholder image for a female fighter.
-      tags:
-      - Fighter
-      responses:
-        '200':
-          description: The placeholder SVG image.
-          content:
-            image/svg+xml:
-              schema:
-                type: string
-                format: binary
-        '500':
-          description: Internal server error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /api/table-tennis/events/{day}/{month}/{year}:
     get:
       summary: Get table tennis events by date
@@ -1994,8 +1952,6 @@ tags:
   description: Country assets and metadata.
 - name: Event
   description: Event endpoints.
-- name: Fighter
-  description: Fighter placeholder assets.
 - name: Manager
   description: Manager endpoints.
 - name: Player

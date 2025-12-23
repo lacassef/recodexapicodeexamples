@@ -308,48 +308,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /api/placeholders/fighter-male.svg:
-    get:
-      tags:
-      - Fighter
-      summary: Get male fighter placeholder image
-      operationId: maleFighterPlaceholderImage
-      description: Retrieves a placeholder image for a male fighter.
-      responses:
-        '200':
-          description: The placeholder SVG image.
-          content:
-            image/svg+xml:
-              schema:
-                type: string
-                format: binary
-        '500':
-          description: Internal server error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /api/placeholders/fighter-female.svg:
-    get:
-      tags:
-      - Fighter
-      summary: Get female fighter placeholder image
-      operationId: femaleFighterPlaceholderImage
-      description: Retrieves a placeholder image for a female fighter.
-      responses:
-        '200':
-          description: The placeholder SVG image.
-          content:
-            image/svg+xml:
-              schema:
-                type: string
-                format: binary
-        '500':
-          description: Internal server error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /api/baseball/search/{term}:
     get:
       tags:
@@ -2096,8 +2054,6 @@ tags:
   description: Category endpoints.
 - name: Country
   description: Country assets and metadata.
-- name: Fighter
-  description: Fighter placeholder assets.
 - name: Manager
   description: Manager endpoints.
 - name: Match
