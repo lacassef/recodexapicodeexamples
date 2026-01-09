@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Flashscore API
   version: 1.0.0
-  description: OpenAPI specification for the Flashscore endpoints exposed by this
+  description: OpenAPI specification for the endpoints exposed by this
     service.
 servers:
 - url: http://localhost:8080
@@ -11,8 +11,8 @@ paths:
   /api/livesports/feed/{version}/{feed}:
     get:
       summary: Get feed data
-      operationId: flashscoreFeed
-      description: 'Fetches Flashscore feed data and normalizes the response into
+      operationId: livescoresFeed
+      description: 'Fetches feed data and normalizes the response into
         JSON.
 
         Response includes decoded field names in `header` and `records[].fields`.
@@ -57,7 +57,7 @@ paths:
   /api/livesports/sports/{sportId}/scoreboard:
     get:
       summary: Get sport scoreboard
-      operationId: flashscoreSportsScoreboard
+      operationId: livescoresSportsScoreboard
       description: Fetches the full scoreboard feed for a sport and day offset.
       tags:
       - Feed
@@ -115,7 +115,7 @@ paths:
   /api/livesports/sports/{sportId}/refresh:
     get:
       summary: Get sport refresh updates
-      operationId: flashscoreSportsRefresh
+      operationId: livescoresSportsRefresh
       description: Fetches lightweight refresh updates for a sport.
       tags:
       - Feed
@@ -157,7 +157,7 @@ paths:
   /api/livesports/sports/{sportId}/odds:
     get:
       summary: Get sport odds list
-      operationId: flashscoreSportsOdds
+      operationId: livescoresSportsOdds
       description: Fetches the odds list feed for a sport and day offset.
       tags:
       - Odds
@@ -215,7 +215,7 @@ paths:
   /api/livesports/sports/{sportId}/featured:
     get:
       summary: Get sport featured list
-      operationId: flashscoreSportsFeatured
+      operationId: livescoresSportsFeatured
       description: Fetches featured matches for a sport.
       tags:
       - Feed
@@ -289,8 +289,8 @@ paths:
   /api/livesports/req/{req}:
     get:
       summary: Get navigation data
-      operationId: flashscoreReq
-      description: 'Fetches Flashscore navigation data from /x/req/{req}.
+      operationId: livescoresReq
+      description: 'Fetches navigation data from /x/req/{req}.
 
         Requests prefixed with `m_` are normalized into JSON; others are proxied as-is.'
       tags:
@@ -325,8 +325,8 @@ paths:
   /api/livesports/navigation/{sportId}/{countryId}:
     get:
       summary: Get navigation by sport/country
-      operationId: flashscoreNavigation
-      description: Fetches Flashscore navigation data for a sport and country.
+      operationId: livescoresNavigation
+      description: Fetches navigation data for a sport and country.
       tags:
       - Navigation
       parameters:
@@ -366,7 +366,7 @@ paths:
   /api/livesports/sports/{sportId}/categories:
     get:
       summary: Get sport categories
-      operationId: flashscoreSportsCategories
+      operationId: livescoresSportsCategories
       description: 'Fetches category sections embedded in the sport landing page.
 
         Use `path` to override the sport URL path (e.g. motorsport/auto-racing).'
@@ -409,7 +409,7 @@ paths:
   /api/livesports/sports/{sportId}/categories/{categoryId}/tournaments:
     get:
       summary: Get category tournament list
-      operationId: flashscoreSportsCategoriesTournaments
+      operationId: livescoresSportsCategoriesTournaments
       description: Fetches tournament list data for a sport category feed.
       tags:
       - Tournaments
@@ -493,7 +493,7 @@ paths:
   /api/livesports/sports/{sportId}/season-calendar:
     get:
       summary: Get season calendar
-      operationId: flashscoreSportsSeasonCalendar
+      operationId: livescoresSportsSeasonCalendar
       description: Fetches season calendar data via persisted queries.
       tags:
       - Calendar
@@ -535,7 +535,7 @@ paths:
   /api/livesports/tournaments/{sportId}/{categoryId}/{templateId}/matches:
     get:
       summary: Get tournament matches
-      operationId: flashscoreTournamentsMatches
+      operationId: livescoresTournamentsMatches
       description: Fetches the match list for a tournament template.
       tags:
       - Tournaments
@@ -599,7 +599,7 @@ paths:
   /api/livesports/tournaments/{sportId}/{categoryId}/{templateId}/fixtures:
     get:
       summary: Get tournament fixtures
-      operationId: flashscoreTournamentsFixtures
+      operationId: livescoresTournamentsFixtures
       description: Fetches fixtures for a tournament template and round.
       tags:
       - Tournaments
@@ -678,7 +678,7 @@ paths:
   /api/livesports/tournaments/{sportId}/{categoryId}/{templateId}/results:
     get:
       summary: Get tournament results
-      operationId: flashscoreTournamentsResults
+      operationId: livescoresTournamentsResults
       description: Fetches results for a tournament template.
       tags:
       - Tournaments
@@ -774,7 +774,7 @@ paths:
   /api/livesports/tournaments/{tournamentId}/top-scorers/{stageId}:
     get:
       summary: Get tournament top scorers
-      operationId: flashscoreTournamentsTopScorers
+      operationId: livescoresTournamentsTopScorers
       description: Fetches top scorers for a tournament stage.
       tags:
       - Tournaments
@@ -823,7 +823,7 @@ paths:
   /api/livesports/tournaments/{tournamentId}/seasons/{stageId}:
     get:
       summary: Get tournament seasons
-      operationId: flashscoreTournamentsSeasons
+      operationId: livescoresTournamentsSeasons
       description: Fetches tournament seasons via persisted queries.
       tags:
       - Tournaments
@@ -872,7 +872,7 @@ paths:
   /api/livesports/tournaments/resolve:
     get:
       summary: Resolve tournament metadata
-      operationId: flashscoreTournamentsResolve
+      operationId: livescoresTournamentsResolve
       description: Extracts ids and season list from a tournament page.
       tags:
       - Tournaments
@@ -927,7 +927,7 @@ paths:
   /api/livesports/tournaments/archive:
     get:
       summary: Get tournament archive
-      operationId: flashscoreTournamentsArchive
+      operationId: livescoresTournamentsArchive
       description: Fetches archive seasons and winners from a tournament archive page.
       tags:
       - Tournaments
@@ -982,7 +982,7 @@ paths:
   /api/livesports/participants/{participantId}/matches:
     get:
       summary: Get participant matches
-      operationId: flashscoreParticipantsMatches
+      operationId: livescoresParticipantsMatches
       description: Fetches the match list for a participant (team or player).
       tags:
       - Participants
@@ -1046,7 +1046,7 @@ paths:
   /api/livesports/participants/{participantId}/squad:
     get:
       summary: Get participant squad
-      operationId: flashscoreParticipantsSquad
+      operationId: livescoresParticipantsSquad
       description: Extracts squad tables from a participant (team) page.
       tags:
       - Participants
@@ -1094,7 +1094,7 @@ paths:
   /api/livesports/participants/{participantId}/news:
     get:
       summary: Get participant news
-      operationId: flashscoreParticipantsNews
+      operationId: livescoresParticipantsNews
       description: Fetches news for a participant (team or player).
       tags:
       - Participants
@@ -1136,7 +1136,7 @@ paths:
   /api/livesports/participants/{participantId}/transfers:
     get:
       summary: Get participant transfers
-      operationId: flashscoreParticipantsTransfers
+      operationId: livescoresParticipantsTransfers
       description: Fetches transfer activity for a participant.
       tags:
       - Participants
@@ -1194,7 +1194,7 @@ paths:
   /api/livesports/participants/{participantId}/events:
     get:
       summary: Get participant events
-      operationId: flashscoreParticipantsEvents
+      operationId: livescoresParticipantsEvents
       description: Fetches participant event schedules (used by motorsport/cycling).
       tags:
       - Participants
@@ -1252,7 +1252,7 @@ paths:
   /api/livesports/participants/{participantId}/events/{eventId}/detail:
     get:
       summary: Get participant event detail
-      operationId: flashscoreParticipantsEventsDetail
+      operationId: livescoresParticipantsEventsDetail
       description: Fetches event detail data for a participant event.
       tags:
       - Participants
@@ -1309,7 +1309,7 @@ paths:
   /api/livesports/participants/{participantId}/last-matches:
     get:
       summary: Get participant last matches
-      operationId: flashscoreParticipantsLastMatches
+      operationId: livescoresParticipantsLastMatches
       description: Fetches recent matches for a participant (JSON feed).
       tags:
       - Participants
@@ -1359,7 +1359,7 @@ paths:
   /api/livesports/players/{playerId}/profile:
     get:
       summary: Get player profile
-      operationId: flashscorePlayersProfile
+      operationId: livescoresPlayersProfile
       description: Fetches player profile data.
       tags:
       - Players
@@ -1409,7 +1409,7 @@ paths:
   /api/livesports/players/{playerId}/match-record:
     get:
       summary: Get player match record
-      operationId: flashscorePlayersMatchRecord
+      operationId: livescoresPlayersMatchRecord
       description: Extracts match record tables from a player page (tennis).
       tags:
       - Players
@@ -1457,7 +1457,7 @@ paths:
   /api/livesports/players/{playerId}/tournaments-won:
     get:
       summary: Get player tournaments won
-      operationId: flashscorePlayersTournamentsWon
+      operationId: livescoresPlayersTournamentsWon
       description: Extracts tournaments won tables from a player page (tennis).
       tags:
       - Players
@@ -1505,7 +1505,7 @@ paths:
   /api/livesports/players/{playerId}/injuries:
     get:
       summary: Get player injuries
-      operationId: flashscorePlayersInjuries
+      operationId: livescoresPlayersInjuries
       description: Extracts injury history from a player page.
       tags:
       - Players
@@ -1553,7 +1553,7 @@ paths:
   /api/livesports/rankings/resolve:
     get:
       summary: Resolve ranking id
-      operationId: flashscoreRankingsResolve
+      operationId: livescoresRankingsResolve
       description: Fetches a rankings page and extracts the rankingId.
       tags:
       - Rankings
@@ -1601,7 +1601,7 @@ paths:
   /api/livesports/rankings/{sport}/{slug}/id:
     get:
       summary: Resolve ranking id by slug
-      operationId: flashscoreRankingsId
+      operationId: livescoresRankingsId
       description: Fetches a rankings page and extracts the rankingId.
       tags:
       - Rankings
@@ -1642,7 +1642,7 @@ paths:
   /api/livesports/rankings/{rankingId}:
     get:
       summary: Get rankings
-      operationId: flashscoreRankings
+      operationId: livescoresRankings
       description: Fetches ranking tables.
       tags:
       - Rankings
@@ -1702,7 +1702,7 @@ paths:
   /api/livesports/matches/{eventId}/hashes:
     get:
       summary: Get match hash feed
-      operationId: flashscoreMatchesHashes
+      operationId: livescoresMatchesHashes
       description: Fetches the hash feed for a match (used by incremental updates).
       tags:
       - Matches
@@ -1744,7 +1744,7 @@ paths:
   /api/livesports/matches/{eventId}/stats:
     get:
       summary: Get match stats
-      operationId: flashscoreMatchesStats
+      operationId: livescoresMatchesStats
       description: Fetches stats for a match.
       tags:
       - Matches
@@ -1786,7 +1786,7 @@ paths:
   /api/livesports/matches/{eventId}/timeline:
     get:
       summary: Get match timeline
-      operationId: flashscoreMatchesTimeline
+      operationId: livescoresMatchesTimeline
       description: Fetches timeline/incidents for a match.
       tags:
       - Matches
@@ -1828,7 +1828,7 @@ paths:
   /api/livesports/matches/{eventId}/commentary:
     get:
       summary: Get match commentary
-      operationId: flashscoreMatchesCommentary
+      operationId: livescoresMatchesCommentary
       description: Fetches live commentary for a match.
       tags:
       - Matches
@@ -1870,7 +1870,7 @@ paths:
   /api/livesports/matches/{eventId}/commentary-only:
     get:
       summary: Get match commentary only
-      operationId: flashscoreMatchesCommentaryOnly
+      operationId: livescoresMatchesCommentaryOnly
       description: Fetches commentary-only updates for a match.
       tags:
       - Matches
@@ -1912,7 +1912,7 @@ paths:
   /api/livesports/matches/{eventId}/point-by-point:
     get:
       summary: Get match point-by-point
-      operationId: flashscoreMatchesPointByPoint
+      operationId: livescoresMatchesPointByPoint
       description: Fetches point-by-point data for a match.
       tags:
       - Matches
@@ -1954,7 +1954,7 @@ paths:
   /api/livesports/matches/{eventId}/h2h:
     get:
       summary: Get match head-to-head
-      operationId: flashscoreMatchesH2h
+      operationId: livescoresMatchesH2h
       description: Fetches head-to-head data for a match.
       tags:
       - Matches
@@ -1996,7 +1996,7 @@ paths:
   /api/livesports/matches/{eventId}/news:
     get:
       summary: Get match news
-      operationId: flashscoreMatchesNews
+      operationId: livescoresMatchesNews
       description: Fetches news entries for a match.
       tags:
       - Matches
@@ -2038,7 +2038,7 @@ paths:
   /api/livesports/matches/{eventId}/news-layout:
     get:
       summary: Get match news layout
-      operationId: flashscoreMatchesNewsLayout
+      operationId: livescoresMatchesNewsLayout
       description: Fetches match news layout data via persisted queries.
       tags:
       - Matches
@@ -2088,7 +2088,7 @@ paths:
   /api/livesports/matches/{eventId}/report:
     get:
       summary: Get match report
-      operationId: flashscoreMatchesReport
+      operationId: livescoresMatchesReport
       description: Fetches match report entries.
       tags:
       - Matches
@@ -2130,7 +2130,7 @@ paths:
   /api/livesports/matches/{eventId}/tv/long:
     get:
       summary: Get match TV list (long)
-      operationId: flashscoreMatchesTvLong
+      operationId: livescoresMatchesTvLong
       description: Fetches the full TV/broadcast list for a match.
       tags:
       - Matches
@@ -2172,7 +2172,7 @@ paths:
   /api/livesports/matches/{eventId}/tv/short:
     get:
       summary: Get match TV list (short)
-      operationId: flashscoreMatchesTvShort
+      operationId: livescoresMatchesTvShort
       description: Fetches the short TV/broadcast list for a match.
       tags:
       - Matches
@@ -2214,7 +2214,7 @@ paths:
   /api/livesports/matches/{eventId}/odds-detail:
     get:
       summary: Get match odds detail
-      operationId: flashscoreMatchesOddsDetail
+      operationId: livescoresMatchesOddsDetail
       description: Fetches odds details for a match.
       tags:
       - Matches
@@ -2256,7 +2256,7 @@ paths:
   /api/livesports/matches/{eventId}/highlights:
     get:
       summary: Get match highlights
-      operationId: flashscoreMatchesHighlights
+      operationId: livescoresMatchesHighlights
       description: Fetches highlights for a match.
       tags:
       - Matches
@@ -2298,7 +2298,7 @@ paths:
   /api/livesports/matches/{eventId}/highlights/videos:
     get:
       summary: Get match highlight videos
-      operationId: flashscoreMatchesHighlightsVideos
+      operationId: livescoresMatchesHighlightsVideos
       description: Fetches highlight video entries for a match.
       tags:
       - Matches
@@ -2340,7 +2340,7 @@ paths:
   /api/livesports/matches/{eventId}/overview:
     get:
       summary: Get match overview
-      operationId: flashscoreMatchesOverview
+      operationId: livescoresMatchesOverview
       description: Fetches overview data for a match.
       tags:
       - Matches
@@ -2390,7 +2390,7 @@ paths:
   /api/livesports/matches/{eventId}/top-scorers:
     get:
       summary: Get match top scorers
-      operationId: flashscoreMatchesTopScorers
+      operationId: livescoresMatchesTopScorers
       description: Fetches top scorers table for a match.
       tags:
       - Matches
@@ -2432,7 +2432,7 @@ paths:
   /api/livesports/matches/{eventId}/report/html:
     get:
       summary: Get match report (HTML)
-      operationId: flashscoreMatchesReportHtml
+      operationId: livescoresMatchesReportHtml
       description: Fetches the full match report HTML.
       tags:
       - Matches
@@ -2474,7 +2474,7 @@ paths:
   /api/livesports/matches/{eventId}/detail-config:
     get:
       summary: Get match detail config
-      operationId: flashscoreMatchesDetailConfig
+      operationId: livescoresMatchesDetailConfig
       description: Fetches the match detail configuration feed.
       tags:
       - Matches
@@ -2516,7 +2516,7 @@ paths:
   /api/livesports/tournaments/{tournamentId}/tables/{stageId}:
     get:
       summary: Get tournament table
-      operationId: flashscoreTournamentsTables
+      operationId: livescoresTournamentsTables
       description: Fetches table data for a tournament stage.
       tags:
       - Tables
@@ -2565,7 +2565,7 @@ paths:
   /api/livesports/tournaments/{tournamentId}/overview/{stageId}:
     get:
       summary: Get tournament overview
-      operationId: flashscoreTournamentsOverview
+      operationId: livescoresTournamentsOverview
       description: Fetches tournament overview data for a stage.
       tags:
       - Tournaments
@@ -2622,7 +2622,7 @@ paths:
   /api/livesports/tournaments/{tournamentId}/list/{stageId}:
     get:
       summary: Get tournament list
-      operationId: flashscoreTournamentsList
+      operationId: livescoresTournamentsList
       description: Fetches tournament list data for a stage.
       tags:
       - Tournaments
@@ -2671,7 +2671,7 @@ paths:
   /api/livesports/tournaments/{tournamentId}/draw/{stageId}:
     get:
       summary: Get tournament draw
-      operationId: flashscoreTournamentsDraw
+      operationId: livescoresTournamentsDraw
       description: Fetches tournament draw data for a stage.
       tags:
       - Tournaments
@@ -2727,7 +2727,7 @@ paths:
   /api/livesports/graphql:
     get:
       summary: Get Flashscore GraphQL data
-      operationId: flashscoreGraphql
+      operationId: livescoresGraphql
       description: 'Proxies persisted-query requests to the Flashscore GraphQL endpoint.
 
         Pass required query params such as `_hash`, `eventId`, and `projectId`.'
@@ -2763,7 +2763,7 @@ paths:
   /api/livesports/odds:
     get:
       summary: Get Flashscore odds data
-      operationId: flashscoreOdds
+      operationId: livescoresOdds
       description: 'Proxies persisted-query requests to the Flashscore odds GraphQL
         endpoint.
 
@@ -2800,7 +2800,7 @@ paths:
   /api/livesports/search:
     get:
       summary: Search entities
-      operationId: flashscoreSearch
+      operationId: livescoresSearch
       description: Proxies the Flashscore search endpoint for teams, players, tournaments,
         and more.
       tags:
@@ -2834,7 +2834,7 @@ paths:
   /api/livesports/top-search:
     get:
       summary: Top search suggestions
-      operationId: flashscoreTopSearch
+      operationId: livescoresTopSearch
       description: Proxies the Flashscore top-search endpoint.
       tags:
       - Search
@@ -2860,7 +2860,7 @@ paths:
   /api/livesports/news:
     get:
       summary: Get news list
-      operationId: flashscoreNews
+      operationId: livescoresNews
       description: 'Fetches the Flashscore news list feed.
 
         Use `sectionId` (or `categoryId`) to select a news section.'
@@ -2917,7 +2917,7 @@ paths:
   /api/livesports/news/articles/{articleId}:
     get:
       summary: Get news article
-      operationId: flashscoreNewsArticles
+      operationId: livescoresNewsArticles
       description: Fetches news article content via persisted queries.
       tags:
       - News
@@ -2959,7 +2959,7 @@ paths:
   /api/livesports/news/entities/{entityTypeId}/{entityId}:
     get:
       summary: Get entity news list
-      operationId: flashscoreNewsEntities
+      operationId: livescoresNewsEntities
       description: Fetches news layout entries for a team, tournament, or player via
         persisted queries.
       tags:
@@ -3033,7 +3033,7 @@ paths:
   /api/livesports/updates:
     get:
       summary: Get updates
-      operationId: flashscoreUpdates
+      operationId: livescoresUpdates
       description: Fetches incremental update data for a sport.
       tags:
       - Updates
@@ -3083,7 +3083,7 @@ paths:
   /api/livesports/updates/list:
     get:
       summary: Get updates list
-      operationId: flashscoreUpdatesList
+      operationId: livescoresUpdatesList
       description: Fetches update list data for a sport.
       tags:
       - Updates
@@ -3133,7 +3133,7 @@ paths:
   /api/livesports/updates/counts:
     get:
       summary: Get update counts
-      operationId: flashscoreUpdatesCounts
+      operationId: livescoresUpdatesCounts
       description: Fetches match count data used by the update polling loop.
       tags:
       - Updates
@@ -3176,7 +3176,7 @@ paths:
   /api/livesports/system/status:
     get:
       summary: Get system status
-      operationId: flashscoreSystemStatus
+      operationId: livescoresSystemStatus
       description: Fetches system status data from the sys feed.
       tags:
       - System
@@ -3219,7 +3219,7 @@ paths:
   /api/livesports/banners:
     get:
       summary: Get banners
-      operationId: flashscoreBanners
+      operationId: livescoresBanners
       description: Proxies Flashscore banners data used for site placements.
       tags:
       - Content
@@ -3245,7 +3245,7 @@ paths:
   /api/livesports/remote-stats:
     get:
       summary: Get remote stats
-      operationId: flashscoreRemoteStats
+      operationId: livescoresRemoteStats
       description: Proxies the Flashscore remote stats endpoint.
       tags:
       - Stats
@@ -3271,7 +3271,7 @@ paths:
   /api/livesports/images/static/{path}:
     get:
       summary: Get static asset image
-      operationId: flashscoreImagesStatic
+      operationId: livescoresImagesStatic
       description: Fetches static Flashscore assets such as bookmaker logos.
       tags:
       - Images
@@ -3309,8 +3309,8 @@ paths:
   /api/livesports/images/ott/{path}:
     get:
       summary: Get media image
-      operationId: flashscoreImagesOtt
-      description: Fetches Flashscore media images (news covers, photos, etc.).
+      operationId: livescoresImagesOtt
+      description: Fetches media images (news covers, photos, etc.).
       tags:
       - Images
       parameters:
