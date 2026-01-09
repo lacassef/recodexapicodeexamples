@@ -5,11 +5,13 @@ info:
   description: OpenAPI specification for the Flashscore endpoints exposed by this
     service.
 servers:
-- url: /
+- url: http://localhost:8080
+  description: Local development server
 paths:
-  /api/flashscore/feed/{version}/{feed}:
+  /api/livesports/feed/{version}/{feed}:
     get:
       summary: Get feed data
+      operationId: flashscoreFeed
       description: 'Fetches Flashscore feed data and normalizes the response into
         JSON.
 
@@ -17,19 +19,20 @@ paths:
 
         Field values are either strings or arrays when list-style values are present.'
       tags:
-      - Flashscore
       - Feed
       parameters:
       - name: version
         in: path
         required: true
         description: 'Feed version identifier. Example: 2.'
+        example: "2"
         schema:
           type: string
       - name: feed
         in: path
         required: true
         description: 'Feed name. Example: f_1_0_2_en_1.'
+        example: f_1_0_2_en_1
         schema:
           type: string
       responses:
@@ -51,24 +54,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/sports/{sportId}/scoreboard:
+  /api/livesports/sports/{sportId}/scoreboard:
     get:
       summary: Get sport scoreboard
+      operationId: flashscoreSportsScoreboard
       description: Fetches the full scoreboard feed for a sport and day offset.
       tags:
-      - Flashscore
       - Feed
       parameters:
       - name: sportId
         in: path
         required: true
         description: 'Sport id. Example: 1.'
+        example: 1
         schema:
           type: integer
       - name: dayOffset
         in: query
         required: false
         description: 'Day offset relative to today. Example: 0.'
+        example: 0
         schema:
           type: integer
           default: 0
@@ -76,6 +81,7 @@ paths:
         in: query
         required: false
         description: 'Language code. Example: en.'
+        example: en
         schema:
           type: string
           default: en
@@ -83,6 +89,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -105,24 +112,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/sports/{sportId}/refresh:
+  /api/livesports/sports/{sportId}/refresh:
     get:
       summary: Get sport refresh updates
+      operationId: flashscoreSportsRefresh
       description: Fetches lightweight refresh updates for a sport.
       tags:
-      - Flashscore
       - Feed
       parameters:
       - name: sportId
         in: path
         required: true
         description: 'Sport id. Example: 1.'
+        example: 1
         schema:
           type: integer
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -145,24 +154,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/sports/{sportId}/odds:
+  /api/livesports/sports/{sportId}/odds:
     get:
       summary: Get sport odds list
+      operationId: flashscoreSportsOdds
       description: Fetches the odds list feed for a sport and day offset.
       tags:
-      - Flashscore
       - Odds
       parameters:
       - name: sportId
         in: path
         required: true
         description: 'Sport id. Example: 1.'
+        example: 1
         schema:
           type: integer
       - name: dayOffset
         in: query
         required: false
         description: 'Day offset relative to today. Example: 0.'
+        example: 0
         schema:
           type: integer
           default: 0
@@ -170,6 +181,7 @@ paths:
         in: query
         required: false
         description: 'Language code. Example: en.'
+        example: en
         schema:
           type: string
           default: en
@@ -177,6 +189,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -199,24 +212,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/sports/{sportId}/featured:
+  /api/livesports/sports/{sportId}/featured:
     get:
       summary: Get sport featured list
+      operationId: flashscoreSportsFeatured
       description: Fetches featured matches for a sport.
       tags:
-      - Flashscore
       - Feed
       parameters:
       - name: sportId
         in: path
         required: true
         description: 'Sport id. Example: 31.'
+        example: 31
         schema:
           type: integer
       - name: scope
         in: query
         required: false
         description: 'Scope selector. Example: 0.'
+        example: 0
         schema:
           type: integer
           default: 0
@@ -224,6 +239,7 @@ paths:
         in: query
         required: false
         description: 'Project id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -231,6 +247,7 @@ paths:
         in: query
         required: false
         description: 'Language code. Example: en.'
+        example: en
         schema:
           type: string
           default: en
@@ -238,6 +255,7 @@ paths:
         in: query
         required: false
         description: 'Group selector. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -245,6 +263,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -267,20 +286,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/req/{req}:
+  /api/livesports/req/{req}:
     get:
       summary: Get navigation data
+      operationId: flashscoreReq
       description: 'Fetches Flashscore navigation data from /x/req/{req}.
 
         Requests prefixed with `m_` are normalized into JSON; others are proxied as-is.'
       tags:
-      - Flashscore
       - Navigation
       parameters:
       - name: req
         in: path
         required: true
         description: 'Req identifier. Example: m_1_17.'
+        example: m_1_17
         schema:
           type: string
       responses:
@@ -302,24 +322,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/navigation/{sportId}/{countryId}:
+  /api/livesports/navigation/{sportId}/{countryId}:
     get:
       summary: Get navigation by sport/country
+      operationId: flashscoreNavigation
       description: Fetches Flashscore navigation data for a sport and country.
       tags:
-      - Flashscore
       - Navigation
       parameters:
       - name: sportId
         in: path
         required: true
         description: 'Sport id. Example: 1.'
+        example: 1
         schema:
           type: integer
       - name: countryId
         in: path
         required: true
         description: 'Country id. Example: 17.'
+        example: 17
         schema:
           type: integer
       responses:
@@ -341,26 +363,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/sports/{sportId}/categories:
+  /api/livesports/sports/{sportId}/categories:
     get:
       summary: Get sport categories
+      operationId: flashscoreSportsCategories
       description: 'Fetches category sections embedded in the sport landing page.
 
         Use `path` to override the sport URL path (e.g. motorsport/auto-racing).'
       tags:
-      - Flashscore
       - Navigation
       parameters:
       - name: sportId
         in: path
         required: true
         description: 'Sport id. Example: 3.'
+        example: 3
         schema:
           type: integer
       - name: path
         in: query
         required: false
         description: 'Override sport path. Example: motorsport/auto-racing.'
+        example: motorsport/auto-racing
         schema:
           type: string
       responses:
@@ -382,30 +406,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/sports/{sportId}/categories/{categoryId}/tournaments:
+  /api/livesports/sports/{sportId}/categories/{categoryId}/tournaments:
     get:
       summary: Get category tournament list
+      operationId: flashscoreSportsCategoriesTournaments
       description: Fetches tournament list data for a sport category feed.
       tags:
-      - Flashscore
       - Tournaments
       parameters:
       - name: sportId
         in: path
         required: true
         description: 'Sport id. Example: 1.'
+        example: 1
         schema:
           type: integer
       - name: categoryId
         in: path
         required: true
         description: 'Category id. Example: 98.'
+        example: 98
         schema:
           type: integer
       - name: projectId
         in: query
         required: false
         description: 'Project id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -413,6 +440,7 @@ paths:
         in: query
         required: false
         description: 'Language code. Example: en.'
+        example: en
         schema:
           type: string
           default: en
@@ -420,6 +448,7 @@ paths:
         in: query
         required: false
         description: 'Category flag (y/n). Example: y.'
+        example: y
         schema:
           type: string
           default: y
@@ -430,6 +459,7 @@ paths:
         in: query
         required: false
         description: 'Group selector. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -437,6 +467,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -459,24 +490,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/sports/{sportId}/season-calendar:
+  /api/livesports/sports/{sportId}/season-calendar:
     get:
       summary: Get season calendar
+      operationId: flashscoreSportsSeasonCalendar
       description: Fetches season calendar data via persisted queries.
       tags:
-      - Flashscore
       - Calendar
       parameters:
       - name: sportId
         in: path
         required: true
         description: 'Sport id. Example: 2.'
+        example: 2
         schema:
           type: integer
       - name: projectId
         in: query
         required: false
         description: 'Project id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -499,36 +532,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/tournaments/{sportId}/{categoryId}/{templateId}/matches:
+  /api/livesports/tournaments/{sportId}/{categoryId}/{templateId}/matches:
     get:
       summary: Get tournament matches
+      operationId: flashscoreTournamentsMatches
       description: Fetches the match list for a tournament template.
       tags:
-      - Flashscore
       - Tournaments
       parameters:
       - name: sportId
         in: path
         required: true
         description: 'Sport id. Example: 1.'
+        example: 1
         schema:
           type: integer
       - name: categoryId
         in: path
         required: true
         description: 'Category id. Example: 98.'
+        example: 98
         schema:
           type: integer
       - name: templateId
         in: path
         required: true
         description: 'Tournament template id. Example: COuk57Ci.'
+        example: COuk57Ci
         schema:
           type: string
       - name: lang
         in: query
         required: false
         description: 'Language code. Example: en.'
+        example: en
         schema:
           type: string
           default: en
@@ -536,6 +573,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -558,42 +596,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/tournaments/{sportId}/{categoryId}/{templateId}/fixtures:
+  /api/livesports/tournaments/{sportId}/{categoryId}/{templateId}/fixtures:
     get:
       summary: Get tournament fixtures
+      operationId: flashscoreTournamentsFixtures
       description: Fetches fixtures for a tournament template and round.
       tags:
-      - Flashscore
       - Tournaments
       parameters:
       - name: sportId
         in: path
         required: true
         description: 'Sport id. Example: 1.'
+        example: 1
         schema:
           type: integer
       - name: categoryId
         in: path
         required: true
         description: 'Category id. Example: 98.'
+        example: 98
         schema:
           type: integer
       - name: templateId
         in: path
         required: true
         description: 'Tournament template id. Example: COuk57Ci.'
+        example: COuk57Ci
         schema:
           type: string
       - name: round
         in: query
         required: true
         description: 'Round/segment identifier. Example: 187.'
+        example: 187
         schema:
           type: integer
       - name: page
         in: query
         required: false
         description: 'Page number. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -601,6 +644,7 @@ paths:
         in: query
         required: false
         description: 'Language code. Example: en.'
+        example: en
         schema:
           type: string
           default: en
@@ -608,6 +652,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -630,36 +675,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/tournaments/{sportId}/{categoryId}/{templateId}/results:
+  /api/livesports/tournaments/{sportId}/{categoryId}/{templateId}/results:
     get:
       summary: Get tournament results
+      operationId: flashscoreTournamentsResults
       description: Fetches results for a tournament template.
       tags:
-      - Flashscore
       - Tournaments
       parameters:
       - name: sportId
         in: path
         required: true
         description: 'Sport id. Example: 2.'
+        example: 2
         schema:
           type: integer
       - name: categoryId
         in: path
         required: true
         description: 'Category id. Example: 182.'
+        example: 182
         schema:
           type: integer
       - name: templateId
         in: path
         required: true
         description: 'Tournament template id. Example: GrsQDFC0.'
+        example: GrsQDFC0
         schema:
           type: string
       - name: segment
         in: query
         required: false
         description: 'Segment/round selector. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -667,6 +716,7 @@ paths:
         in: query
         required: false
         description: 'Project id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -674,6 +724,7 @@ paths:
         in: query
         required: false
         description: 'Language code. Example: en.'
+        example: en
         schema:
           type: string
           default: en
@@ -681,6 +732,7 @@ paths:
         in: query
         required: false
         description: 'Page number. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -688,6 +740,7 @@ paths:
         in: query
         required: false
         description: 'Group/type selector. Example: s.'
+        example: s
         schema:
           type: string
           default: s
@@ -695,6 +748,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -717,30 +771,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/tournaments/{tournamentId}/top-scorers/{stageId}:
+  /api/livesports/tournaments/{tournamentId}/top-scorers/{stageId}:
     get:
       summary: Get tournament top scorers
+      operationId: flashscoreTournamentsTopScorers
       description: Fetches top scorers for a tournament stage.
       tags:
-      - Flashscore
       - Tournaments
       parameters:
       - name: tournamentId
         in: path
         required: true
         description: 'Tournament id. Example: 8recE9FQ.'
+        example: 8recE9FQ
         schema:
           type: string
       - name: stageId
         in: path
         required: true
         description: 'Stage id. Example: EeBEiuQ0.'
+        example: EeBEiuQ0
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -763,30 +820,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/tournaments/{tournamentId}/seasons/{stageId}:
+  /api/livesports/tournaments/{tournamentId}/seasons/{stageId}:
     get:
       summary: Get tournament seasons
+      operationId: flashscoreTournamentsSeasons
       description: Fetches tournament seasons via persisted queries.
       tags:
-      - Flashscore
       - Tournaments
       parameters:
       - name: tournamentId
         in: path
         required: true
         description: 'Tournament id. Example: UFxNEUzj.'
+        example: UFxNEUzj
         schema:
           type: string
       - name: stageId
         in: path
         required: true
         description: 'Stage id. Example: vFA41USe.'
+        example: vFA41USe
         schema:
           type: string
       - name: projectId
         in: query
         required: false
         description: 'Project id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -809,36 +869,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/tournaments/resolve:
+  /api/livesports/tournaments/resolve:
     get:
       summary: Resolve tournament metadata
+      operationId: flashscoreTournamentsResolve
       description: Extracts ids and season list from a tournament page.
       tags:
-      - Flashscore
       - Tournaments
       parameters:
       - name: path
         in: query
         required: false
         description: 'Tournament path. Example: football/england/premier-league.'
+        example: football/england/premier-league
         schema:
           type: string
       - name: sport
         in: query
         required: false
         description: 'Sport slug. Example: football.'
+        example: football
         schema:
           type: string
       - name: country
         in: query
         required: false
         description: 'Country slug. Example: england.'
+        example: england
         schema:
           type: string
       - name: slug
         in: query
         required: false
         description: 'Tournament slug. Example: premier-league.'
+        example: premier-league
         schema:
           type: string
       responses:
@@ -860,36 +924,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/tournaments/archive:
+  /api/livesports/tournaments/archive:
     get:
       summary: Get tournament archive
+      operationId: flashscoreTournamentsArchive
       description: Fetches archive seasons and winners from a tournament archive page.
       tags:
-      - Flashscore
       - Tournaments
       parameters:
       - name: path
         in: query
         required: false
         description: 'Tournament path. Example: football/england/premier-league.'
+        example: football/england/premier-league
         schema:
           type: string
       - name: sport
         in: query
         required: false
         description: 'Sport slug. Example: football.'
+        example: football
         schema:
           type: string
       - name: country
         in: query
         required: false
         description: 'Country slug. Example: england.'
+        example: england
         schema:
           type: string
       - name: slug
         in: query
         required: false
         description: 'Tournament slug. Example: premier-league.'
+        example: premier-league
         schema:
           type: string
       responses:
@@ -911,36 +979,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/participants/{participantId}/matches:
+  /api/livesports/participants/{participantId}/matches:
     get:
       summary: Get participant matches
+      operationId: flashscoreParticipantsMatches
       description: Fetches the match list for a participant (team or player).
       tags:
-      - Flashscore
       - Participants
       parameters:
       - name: participantId
         in: path
         required: true
         description: 'Participant id. Example: 69Dxbc61.'
+        example: 69Dxbc61
         schema:
           type: string
       - name: sportId
         in: query
         required: true
         description: 'Sport id. Example: 1.'
+        example: 1
         schema:
           type: integer
       - name: categoryId
         in: query
         required: true
         description: 'Category id. Example: 98.'
+        example: 98
         schema:
           type: integer
       - name: lang
         in: query
         required: false
         description: 'Language code. Example: en.'
+        example: en
         schema:
           type: string
           default: en
@@ -948,6 +1020,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -970,30 +1043,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/participants/{participantId}/squad:
+  /api/livesports/participants/{participantId}/squad:
     get:
       summary: Get participant squad
+      operationId: flashscoreParticipantsSquad
       description: Extracts squad tables from a participant (team) page.
       tags:
-      - Flashscore
       - Participants
       parameters:
       - name: participantId
         in: path
         required: true
         description: 'Participant id. Example: lId4TMwf.'
+        example: lId4TMwf
         schema:
           type: string
       - name: path
         in: query
         required: false
         description: 'Team path. Example: team/liverpool/lId4TMwf.'
+        example: team/liverpool/lId4TMwf
         schema:
           type: string
       - name: slug
         in: query
         required: false
         description: 'Team slug when path is omitted. Example: liverpool.'
+        example: liverpool
         schema:
           type: string
       responses:
@@ -1015,24 +1091,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/participants/{participantId}/news:
+  /api/livesports/participants/{participantId}/news:
     get:
       summary: Get participant news
+      operationId: flashscoreParticipantsNews
       description: Fetches news for a participant (team or player).
       tags:
-      - Flashscore
       - Participants
       parameters:
       - name: participantId
         in: path
         required: true
         description: 'Participant id. Example: 69Dxbc61.'
+        example: 69Dxbc61
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1055,24 +1133,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/participants/{participantId}/transfers:
+  /api/livesports/participants/{participantId}/transfers:
     get:
       summary: Get participant transfers
+      operationId: flashscoreParticipantsTransfers
       description: Fetches transfer activity for a participant.
       tags:
-      - Flashscore
       - Participants
       parameters:
       - name: participantId
         in: path
         required: true
         description: 'Participant id. Example: 69Dxbc61.'
+        example: 69Dxbc61
         schema:
           type: string
       - name: tab
         in: query
         required: false
         description: 'Tab selector. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -1080,6 +1160,7 @@ paths:
         in: query
         required: false
         description: 'Page number. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -1087,6 +1168,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1109,24 +1191,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/participants/{participantId}/events:
+  /api/livesports/participants/{participantId}/events:
     get:
       summary: Get participant events
+      operationId: flashscoreParticipantsEvents
       description: Fetches participant event schedules (used by motorsport/cycling).
       tags:
-      - Flashscore
       - Participants
       parameters:
       - name: participantId
         in: path
         required: true
         description: 'Participant id. Example: roX4hli0.'
+        example: roX4hli0
         schema:
           type: string
       - name: projectTypeId
         in: query
         required: false
         description: 'Project type id. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -1134,6 +1218,7 @@ paths:
         in: query
         required: false
         description: 'Project id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1141,6 +1226,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1163,30 +1249,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/participants/{participantId}/events/{eventId}/detail:
+  /api/livesports/participants/{participantId}/events/{eventId}/detail:
     get:
       summary: Get participant event detail
+      operationId: flashscoreParticipantsEventsDetail
       description: Fetches event detail data for a participant event.
       tags:
-      - Flashscore
       - Participants
       parameters:
       - name: participantId
         in: path
         required: true
         description: 'Participant id. Example: zNO51Dz3.'
+        example: zNO51Dz3
         schema:
           type: string
       - name: eventId
         in: path
         required: true
         description: 'Event id. Example: IBdwmTR0.'
+        example: IBdwmTR0
         schema:
           type: string
       - name: projectTypeId
         in: query
         required: false
         description: 'Project type id. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -1194,6 +1283,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1216,24 +1306,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/participants/{participantId}/last-matches:
+  /api/livesports/participants/{participantId}/last-matches:
     get:
       summary: Get participant last matches
+      operationId: flashscoreParticipantsLastMatches
       description: Fetches recent matches for a participant (JSON feed).
       tags:
-      - Flashscore
       - Participants
       parameters:
       - name: participantId
         in: path
         required: true
         description: 'Participant id. Example: xAzIxa5n.'
+        example: xAzIxa5n
         schema:
           type: string
       - name: scope
         in: query
         required: false
         description: 'Scope selector. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -1241,6 +1333,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1263,24 +1356,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/players/{playerId}/profile:
+  /api/livesports/players/{playerId}/profile:
     get:
       summary: Get player profile
+      operationId: flashscorePlayersProfile
       description: Fetches player profile data.
       tags:
-      - Flashscore
       - Players
       parameters:
       - name: playerId
         in: path
         required: true
         description: 'Player id. Example: roX4hli0.'
+        example: roX4hli0
         schema:
           type: string
       - name: projectId
         in: query
         required: false
         description: 'Project id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1288,6 +1383,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1310,30 +1406,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/players/{playerId}/match-record:
+  /api/livesports/players/{playerId}/match-record:
     get:
       summary: Get player match record
+      operationId: flashscorePlayersMatchRecord
       description: Extracts match record tables from a player page (tennis).
       tags:
-      - Flashscore
       - Players
       parameters:
       - name: playerId
         in: path
         required: true
         description: 'Player id. Example: UkhgIFEq.'
+        example: UkhgIFEq
         schema:
           type: string
       - name: path
         in: query
         required: false
         description: 'Player path. Example: player/alcaraz-garfia-carlos/UkhgIFEq.'
+        example: player/alcaraz-garfia-carlos/UkhgIFEq
         schema:
           type: string
       - name: slug
         in: query
         required: false
         description: 'Player slug when path is omitted. Example: alcaraz-garfia-carlos.'
+        example: alcaraz-garfia-carlos
         schema:
           type: string
       responses:
@@ -1355,30 +1454,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/players/{playerId}/tournaments-won:
+  /api/livesports/players/{playerId}/tournaments-won:
     get:
       summary: Get player tournaments won
+      operationId: flashscorePlayersTournamentsWon
       description: Extracts tournaments won tables from a player page (tennis).
       tags:
-      - Flashscore
       - Players
       parameters:
       - name: playerId
         in: path
         required: true
         description: 'Player id. Example: UkhgIFEq.'
+        example: UkhgIFEq
         schema:
           type: string
       - name: path
         in: query
         required: false
         description: 'Player path. Example: player/alcaraz-garfia-carlos/UkhgIFEq.'
+        example: player/alcaraz-garfia-carlos/UkhgIFEq
         schema:
           type: string
       - name: slug
         in: query
         required: false
         description: 'Player slug when path is omitted. Example: alcaraz-garfia-carlos.'
+        example: alcaraz-garfia-carlos
         schema:
           type: string
       responses:
@@ -1400,30 +1502,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/players/{playerId}/injuries:
+  /api/livesports/players/{playerId}/injuries:
     get:
       summary: Get player injuries
+      operationId: flashscorePlayersInjuries
       description: Extracts injury history from a player page.
       tags:
-      - Flashscore
       - Players
       parameters:
       - name: playerId
         in: path
         required: true
         description: 'Player id. Example: UkhgIFEq.'
+        example: UkhgIFEq
         schema:
           type: string
       - name: path
         in: query
         required: false
         description: 'Player path. Example: player/alcaraz-garfia-carlos/UkhgIFEq.'
+        example: player/alcaraz-garfia-carlos/UkhgIFEq
         schema:
           type: string
       - name: slug
         in: query
         required: false
         description: 'Player slug when path is omitted. Example: alcaraz-garfia-carlos.'
+        example: alcaraz-garfia-carlos
         schema:
           type: string
       responses:
@@ -1445,30 +1550,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/rankings/resolve:
+  /api/livesports/rankings/resolve:
     get:
       summary: Resolve ranking id
+      operationId: flashscoreRankingsResolve
       description: Fetches a rankings page and extracts the rankingId.
       tags:
-      - Flashscore
       - Rankings
       parameters:
       - name: path
         in: query
         required: false
         description: 'Ranking page path. Example: tennis/rankings/atp.'
+        example: tennis/rankings/atp
         schema:
           type: string
       - name: sport
         in: query
         required: false
         description: 'Sport slug. Example: tennis.'
+        example: tennis
         schema:
           type: string
       - name: slug
         in: query
         required: false
         description: 'Ranking slug. Example: atp.'
+        example: atp
         schema:
           type: string
       responses:
@@ -1490,24 +1598,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/rankings/{sport}/{slug}/id:
+  /api/livesports/rankings/{sport}/{slug}/id:
     get:
       summary: Resolve ranking id by slug
+      operationId: flashscoreRankingsId
       description: Fetches a rankings page and extracts the rankingId.
       tags:
-      - Flashscore
       - Rankings
       parameters:
       - name: sport
         in: path
         required: true
         description: 'Sport slug. Example: tennis.'
+        example: tennis
         schema:
           type: string
       - name: slug
         in: path
         required: true
         description: 'Ranking slug. Example: atp.'
+        example: atp
         schema:
           type: string
       responses:
@@ -1529,24 +1639,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/rankings/{rankingId}:
+  /api/livesports/rankings/{rankingId}:
     get:
       summary: Get rankings
+      operationId: flashscoreRankings
       description: Fetches ranking tables.
       tags:
-      - Flashscore
       - Rankings
       parameters:
       - name: rankingId
         in: path
         required: true
         description: 'Ranking id. Example: 4KeVObqb.'
+        example: 4KeVObqb
         schema:
           type: string
       - name: tab
         in: query
         required: false
         description: 'Tab selector. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 1
@@ -1564,6 +1676,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1586,24 +1699,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/hashes:
+  /api/livesports/matches/{eventId}/hashes:
     get:
       summary: Get match hash feed
+      operationId: flashscoreMatchesHashes
       description: Fetches the hash feed for a match (used by incremental updates).
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: 08W6fzLP.'
+        example: 08W6fzLP
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1626,24 +1741,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/stats:
+  /api/livesports/matches/{eventId}/stats:
     get:
       summary: Get match stats
+      operationId: flashscoreMatchesStats
       description: Fetches stats for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: 08W6fzLP.'
+        example: 08W6fzLP
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1666,24 +1783,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/timeline:
+  /api/livesports/matches/{eventId}/timeline:
     get:
       summary: Get match timeline
+      operationId: flashscoreMatchesTimeline
       description: Fetches timeline/incidents for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: 08W6fzLP.'
+        example: 08W6fzLP
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1706,24 +1825,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/commentary:
+  /api/livesports/matches/{eventId}/commentary:
     get:
       summary: Get match commentary
+      operationId: flashscoreMatchesCommentary
       description: Fetches live commentary for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: 08W6fzLP.'
+        example: 08W6fzLP
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1746,24 +1867,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/commentary-only:
+  /api/livesports/matches/{eventId}/commentary-only:
     get:
       summary: Get match commentary only
+      operationId: flashscoreMatchesCommentaryOnly
       description: Fetches commentary-only updates for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: MJ0y6sRk.'
+        example: MJ0y6sRk
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1786,24 +1909,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/point-by-point:
+  /api/livesports/matches/{eventId}/point-by-point:
     get:
       summary: Get match point-by-point
+      operationId: flashscoreMatchesPointByPoint
       description: Fetches point-by-point data for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: GWMzzSEk.'
+        example: GWMzzSEk
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1826,24 +1951,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/h2h:
+  /api/livesports/matches/{eventId}/h2h:
     get:
       summary: Get match head-to-head
+      operationId: flashscoreMatchesH2h
       description: Fetches head-to-head data for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: 08W6fzLP.'
+        example: 08W6fzLP
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1866,24 +1993,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/news:
+  /api/livesports/matches/{eventId}/news:
     get:
       summary: Get match news
+      operationId: flashscoreMatchesNews
       description: Fetches news entries for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: 08W6fzLP.'
+        example: 08W6fzLP
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1906,24 +2035,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/news-layout:
+  /api/livesports/matches/{eventId}/news-layout:
     get:
       summary: Get match news layout
+      operationId: flashscoreMatchesNewsLayout
       description: Fetches match news layout data via persisted queries.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: MJ0y6sRk.'
+        example: MJ0y6sRk
         schema:
           type: string
       - name: layoutTypeId
         in: query
         required: false
         description: 'Layout type id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1931,6 +2062,7 @@ paths:
         in: query
         required: false
         description: 'Project id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1953,24 +2085,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/report:
+  /api/livesports/matches/{eventId}/report:
     get:
       summary: Get match report
+      operationId: flashscoreMatchesReport
       description: Fetches match report entries.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: 08W6fzLP.'
+        example: 08W6fzLP
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -1993,24 +2127,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/tv/long:
+  /api/livesports/matches/{eventId}/tv/long:
     get:
       summary: Get match TV list (long)
+      operationId: flashscoreMatchesTvLong
       description: Fetches the full TV/broadcast list for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: 08W6fzLP.'
+        example: 08W6fzLP
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2033,24 +2169,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/tv/short:
+  /api/livesports/matches/{eventId}/tv/short:
     get:
       summary: Get match TV list (short)
+      operationId: flashscoreMatchesTvShort
       description: Fetches the short TV/broadcast list for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: 08W6fzLP.'
+        example: 08W6fzLP
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2073,24 +2211,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/odds-detail:
+  /api/livesports/matches/{eventId}/odds-detail:
     get:
       summary: Get match odds detail
+      operationId: flashscoreMatchesOddsDetail
       description: Fetches odds details for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: 08W6fzLP.'
+        example: 08W6fzLP
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2113,24 +2253,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/highlights:
+  /api/livesports/matches/{eventId}/highlights:
     get:
       summary: Get match highlights
+      operationId: flashscoreMatchesHighlights
       description: Fetches highlights for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: 08W6fzLP.'
+        example: 08W6fzLP
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2153,24 +2295,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/highlights/videos:
+  /api/livesports/matches/{eventId}/highlights/videos:
     get:
       summary: Get match highlight videos
+      operationId: flashscoreMatchesHighlightsVideos
       description: Fetches highlight video entries for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: vH0563UN.'
+        example: vH0563UN
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2193,24 +2337,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/overview:
+  /api/livesports/matches/{eventId}/overview:
     get:
       summary: Get match overview
+      operationId: flashscoreMatchesOverview
       description: Fetches overview data for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: C8wD2fTk.'
+        example: C8wD2fTk
         schema:
           type: string
       - name: tab
         in: query
         required: false
         description: 'Tab selector. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -2218,6 +2364,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2240,24 +2387,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/top-scorers:
+  /api/livesports/matches/{eventId}/top-scorers:
     get:
       summary: Get match top scorers
+      operationId: flashscoreMatchesTopScorers
       description: Fetches top scorers table for a match.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: MJ0y6sRk.'
+        example: MJ0y6sRk
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2280,24 +2429,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/report/html:
+  /api/livesports/matches/{eventId}/report/html:
     get:
       summary: Get match report (HTML)
+      operationId: flashscoreMatchesReportHtml
       description: Fetches the full match report HTML.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: vH0563UN.'
+        example: vH0563UN
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2307,7 +2458,7 @@ paths:
           content:
             text/html:
               schema:
-                $ref: '#/components/schemas/FeedResponse'
+                type: string
         '400':
           description: Invalid request parameters.
           content:
@@ -2320,24 +2471,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/matches/{eventId}/detail-config:
+  /api/livesports/matches/{eventId}/detail-config:
     get:
       summary: Get match detail config
+      operationId: flashscoreMatchesDetailConfig
       description: Fetches the match detail configuration feed.
       tags:
-      - Flashscore
       - Matches
       parameters:
       - name: eventId
         in: path
         required: true
         description: 'Match event id. Example: MJ0y6sRk.'
+        example: MJ0y6sRk
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2360,30 +2513,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/tournaments/{tournamentId}/tables/{stageId}:
+  /api/livesports/tournaments/{tournamentId}/tables/{stageId}:
     get:
       summary: Get tournament table
+      operationId: flashscoreTournamentsTables
       description: Fetches table data for a tournament stage.
       tags:
-      - Flashscore
       - Tables
       parameters:
       - name: tournamentId
         in: path
         required: true
         description: 'Tournament id. Example: M1c7lv64.'
+        example: M1c7lv64
         schema:
           type: string
       - name: stageId
         in: path
         required: true
         description: 'Stage id. Example: tKE3WZmL.'
+        example: tKE3WZmL
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2406,30 +2562,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/tournaments/{tournamentId}/overview/{stageId}:
+  /api/livesports/tournaments/{tournamentId}/overview/{stageId}:
     get:
       summary: Get tournament overview
+      operationId: flashscoreTournamentsOverview
       description: Fetches tournament overview data for a stage.
       tags:
-      - Flashscore
       - Tournaments
       parameters:
       - name: tournamentId
         in: path
         required: true
         description: 'Tournament id. Example: 8recE9FQ.'
+        example: 8recE9FQ
         schema:
           type: string
       - name: stageId
         in: path
         required: true
         description: 'Stage id. Example: dK0Jjau7.'
+        example: dK0Jjau7
         schema:
           type: string
       - name: tab
         in: query
         required: false
         description: 'Tab selector. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -2437,6 +2596,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2459,30 +2619,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/tournaments/{tournamentId}/list/{stageId}:
+  /api/livesports/tournaments/{tournamentId}/list/{stageId}:
     get:
       summary: Get tournament list
+      operationId: flashscoreTournamentsList
       description: Fetches tournament list data for a stage.
       tags:
-      - Flashscore
       - Tournaments
       parameters:
       - name: tournamentId
         in: path
         required: true
         description: 'Tournament id. Example: 04lKZTBr.'
+        example: 04lKZTBr
         schema:
           type: string
       - name: stageId
         in: path
         required: true
         description: 'Stage id. Example: 6PWwAsA7.'
+        example: 6PWwAsA7
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2505,36 +2668,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/tournaments/{tournamentId}/draw/{stageId}:
+  /api/livesports/tournaments/{tournamentId}/draw/{stageId}:
     get:
       summary: Get tournament draw
+      operationId: flashscoreTournamentsDraw
       description: Fetches tournament draw data for a stage.
       tags:
-      - Flashscore
       - Tournaments
       parameters:
       - name: tournamentId
         in: path
         required: true
         description: 'Tournament id. Example: UFxNEUzj.'
+        example: UFxNEUzj
         schema:
           type: string
       - name: stageId
         in: path
         required: true
         description: 'Stage id. Example: vFA41USe.'
+        example: vFA41USe
         schema:
           type: string
       - name: groupId
         in: query
         required: false
         description: 'Optional group id. Example: QRiI3vYF.'
+        example: QRiI3vYF
         schema:
           type: string
       - name: version
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2557,20 +2724,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/graphql:
+  /api/livesports/graphql:
     get:
       summary: Get Flashscore GraphQL data
+      operationId: flashscoreGraphql
       description: 'Proxies persisted-query requests to the Flashscore GraphQL endpoint.
 
         Pass required query params such as `_hash`, `eventId`, and `projectId`.'
       tags:
-      - Flashscore
       - GraphQL
       parameters:
       - name: _hash
         in: query
         required: true
         description: 'Persisted query hash. Example: dmpe2.'
+        example: dmpe2
         schema:
           type: string
       responses:
@@ -2592,21 +2760,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/odds:
+  /api/livesports/odds:
     get:
       summary: Get Flashscore odds data
+      operationId: flashscoreOdds
       description: 'Proxies persisted-query requests to the Flashscore odds GraphQL
         endpoint.
 
         Pass required query params such as `_hash`, `eventId`, and `projectId`.'
       tags:
-      - Flashscore
       - Odds
       parameters:
       - name: _hash
         in: query
         required: true
         description: 'Persisted query hash. Example: oce.'
+        example: oce
         schema:
           type: string
       responses:
@@ -2628,13 +2797,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/search:
+  /api/livesports/search:
     get:
       summary: Search entities
+      operationId: flashscoreSearch
       description: Proxies the Flashscore search endpoint for teams, players, tournaments,
         and more.
       tags:
-      - Flashscore
       - Search
       parameters:
       - name: q
@@ -2662,12 +2831,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/top-search:
+  /api/livesports/top-search:
     get:
       summary: Top search suggestions
+      operationId: flashscoreTopSearch
       description: Proxies the Flashscore top-search endpoint.
       tags:
-      - Flashscore
       - Search
       responses:
         '200':
@@ -2688,26 +2857,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/news:
+  /api/livesports/news:
     get:
       summary: Get news list
+      operationId: flashscoreNews
       description: 'Fetches the Flashscore news list feed.
 
         Use `sectionId` (or `categoryId`) to select a news section.'
       tags:
-      - Flashscore
       - News
       parameters:
       - name: sportId
         in: query
         required: true
         description: 'Sport id. Example: 1.'
+        example: 1
         schema:
           type: integer
       - name: sectionId
         in: query
         required: true
         description: 'News section id. Example: 59.'
+        example: 59
         schema:
           type: integer
       - name: categoryId
@@ -2720,6 +2891,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2742,24 +2914,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/news/articles/{articleId}:
+  /api/livesports/news/articles/{articleId}:
     get:
       summary: Get news article
+      operationId: flashscoreNewsArticles
       description: Fetches news article content via persisted queries.
       tags:
-      - Flashscore
       - News
       parameters:
       - name: articleId
         in: path
         required: true
         description: 'Article id. Example: v3LmzFnC.'
+        example: v3LmzFnC
         schema:
           type: string
       - name: projectId
         in: query
         required: false
         description: 'Project id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2782,31 +2956,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/news/entities/{entityTypeId}/{entityId}:
+  /api/livesports/news/entities/{entityTypeId}/{entityId}:
     get:
       summary: Get entity news list
+      operationId: flashscoreNewsEntities
       description: Fetches news layout entries for a team, tournament, or player via
         persisted queries.
       tags:
-      - Flashscore
       - News
       parameters:
       - name: entityTypeId
         in: path
         required: true
         description: 'Entity type id. Example: 41.'
+        example: 41
         schema:
           type: integer
       - name: entityId
         in: path
         required: true
         description: 'Entity id. Example: MP4jLdJh.'
+        example: MP4jLdJh
         schema:
           type: string
       - name: layoutTypeId
         in: query
         required: false
         description: 'Layout type id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2814,6 +2991,7 @@ paths:
         in: query
         required: false
         description: 'Page number. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -2821,6 +2999,7 @@ paths:
         in: query
         required: false
         description: 'Items per page. Example: 10.'
+        example: 10
         schema:
           type: integer
           default: 10
@@ -2828,6 +3007,7 @@ paths:
         in: query
         required: false
         description: 'Project id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2850,24 +3030,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/updates:
+  /api/livesports/updates:
     get:
       summary: Get updates
+      operationId: flashscoreUpdates
       description: Fetches incremental update data for a sport.
       tags:
-      - Flashscore
       - Updates
       parameters:
       - name: sportId
         in: query
         required: true
         description: 'Sport id. Example: 1.'
+        example: 1
         schema:
           type: integer
       - name: scope
         in: query
         required: false
         description: 'Scope selector. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -2875,6 +3057,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2897,24 +3080,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/updates/list:
+  /api/livesports/updates/list:
     get:
       summary: Get updates list
+      operationId: flashscoreUpdatesList
       description: Fetches update list data for a sport.
       tags:
-      - Flashscore
       - Updates
       parameters:
       - name: sportId
         in: query
         required: true
         description: 'Sport id. Example: 2.'
+        example: 2
         schema:
           type: integer
       - name: scope
         in: query
         required: false
         description: 'Scope selector. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 1
@@ -2922,6 +3107,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2944,18 +3130,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/updates/counts:
+  /api/livesports/updates/counts:
     get:
       summary: Get update counts
+      operationId: flashscoreUpdatesCounts
       description: Fetches match count data used by the update polling loop.
       tags:
-      - Flashscore
       - Updates
       parameters:
       - name: projectId
         in: query
         required: false
         description: 'Project id. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2963,6 +3150,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -2985,18 +3173,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/system/status:
+  /api/livesports/system/status:
     get:
       summary: Get system status
+      operationId: flashscoreSystemStatus
       description: Fetches system status data from the sys feed.
       tags:
-      - Flashscore
       - System
       parameters:
       - name: scope
         in: query
         required: false
         description: 'Scope selector. Example: 1.'
+        example: 1
         schema:
           type: integer
           default: 1
@@ -3004,6 +3193,7 @@ paths:
         in: query
         required: false
         description: 'Feed version. Example: 2.'
+        example: 2
         schema:
           type: integer
           default: 2
@@ -3026,12 +3216,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/banners:
+  /api/livesports/banners:
     get:
       summary: Get banners
+      operationId: flashscoreBanners
       description: Proxies Flashscore banners data used for site placements.
       tags:
-      - Flashscore
       - Content
       responses:
         '200':
@@ -3052,12 +3242,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/remote-stats:
+  /api/livesports/remote-stats:
     get:
       summary: Get remote stats
+      operationId: flashscoreRemoteStats
       description: Proxies the Flashscore remote stats endpoint.
       tags:
-      - Flashscore
       - Stats
       responses:
         '200':
@@ -3078,18 +3268,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/images/static/{path}:
+  /api/livesports/images/static/{path}:
     get:
       summary: Get static asset image
+      operationId: flashscoreImagesStatic
       description: Fetches static Flashscore assets such as bookmaker logos.
       tags:
-      - Flashscore
       - Images
       parameters:
       - name: path
         in: path
         required: true
         description: 'Asset path. Example: res/image/data/bookmakers/80-915.png.'
+        example: res/image/data/bookmakers/80-915.png
         schema:
           type: string
         allowReserved: true
@@ -3115,18 +3306,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/flashscore/images/ott/{path}:
+  /api/livesports/images/ott/{path}:
     get:
       summary: Get media image
+      operationId: flashscoreImagesOtt
       description: Fetches Flashscore media images (news covers, photos, etc.).
       tags:
-      - Flashscore
       - Images
       parameters:
       - name: path
         in: path
         required: true
         description: 'Image path. Example: r300xfq60/26bb49b4-4e3b-4899-9055-dc456da25e10.avif.'
+        example: r300xfq60/26bb49b4-4e3b-4899-9055-dc456da25e10.avif
         schema:
           type: string
         allowReserved: true
@@ -3156,12 +3348,14 @@ components:
   schemas:
     FeedRecord:
       type: object
+      description: Record entry containing decoded fields.
       properties:
         fields:
           type: object
           additionalProperties: true
     FeedResponse:
       type: object
+      description: Normalized feed response.
       properties:
         version:
           type: string
@@ -3176,6 +3370,7 @@ components:
             $ref: '#/components/schemas/FeedRecord'
     ReqResponse:
       type: object
+      description: Normalized req response.
       properties:
         req:
           type: string
@@ -3450,18 +3645,61 @@ components:
           type: boolean
     JSONResult:
       type: object
+      description: A generic JSON object response.
       additionalProperties: true
     APIError:
       type: object
+      description: Problem details returned on errors.
       properties:
         status:
           type: integer
+          description: The HTTP status code.
         title:
           type: string
+          description: A short, human-readable summary of the error.
         request_id:
           type: string
+          description: A unique identifier for the request.
     ErrorResponse:
       type: object
+      description: Error envelope.
       properties:
         error:
           $ref: '#/components/schemas/APIError'
+tags:
+- name: Feed
+  description: Feed and scoreboard endpoints.
+- name: Odds
+  description: Odds endpoints.
+- name: Navigation
+  description: Navigation and category endpoints.
+- name: Tournaments
+  description: Tournament endpoints.
+- name: Calendar
+  description: Calendar endpoints.
+- name: Participants
+  description: Participant (team/player) endpoints.
+- name: Players
+  description: Player endpoints.
+- name: Rankings
+  description: Ranking endpoints.
+- name: Matches
+  description: Match endpoints.
+- name: Tables
+  description: Table and standings endpoints.
+- name: GraphQL
+  description: Persisted query proxy endpoints.
+- name: Search
+  description: Search endpoints.
+- name: News
+  description: News endpoints.
+- name: Updates
+  description: Update polling endpoints.
+- name: System
+  description: System status endpoints.
+- name: Content
+  description: Content and banner endpoints.
+- name: Stats
+  description: Statistics endpoints.
+- name: Images
+  description: Image asset endpoints.
