@@ -1,14 +1,16 @@
 openapi: 3.0.3
 info:
-  title: Flashscore API
+  title: Live Sports Data API
   version: 1.0.0
-  description: OpenAPI specification for the endpoints exposed by this
-    service.
+  description: |
+    OpenAPI specification for live sports data endpoints that normalize feed
+    payloads, expose navigation and tournament resources, and proxy select
+    upstream content such as search, news, odds, and images.
 servers:
 - url: http://localhost:8080
   description: Local development server
 paths:
-  /api/livesports/feed/{version}/{feed}:
+  /api/livescores/feed/{version}/{feed}:
     get:
       summary: Get feed data
       operationId: livescoresFeed
@@ -54,7 +56,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/sports/{sportId}/scoreboard:
+  /api/livescores/sports/{sportId}/scoreboard:
     get:
       summary: Get sport scoreboard
       operationId: livescoresSportsScoreboard
@@ -112,7 +114,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/sports/{sportId}/refresh:
+  /api/livescores/sports/{sportId}/refresh:
     get:
       summary: Get sport refresh updates
       operationId: livescoresSportsRefresh
@@ -154,7 +156,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/sports/{sportId}/odds:
+  /api/livescores/sports/{sportId}/odds:
     get:
       summary: Get sport odds list
       operationId: livescoresSportsOdds
@@ -212,7 +214,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/sports/{sportId}/featured:
+  /api/livescores/sports/{sportId}/featured:
     get:
       summary: Get sport featured list
       operationId: livescoresSportsFeatured
@@ -286,7 +288,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/req/{req}:
+  /api/livescores/req/{req}:
     get:
       summary: Get navigation data
       operationId: livescoresReq
@@ -322,7 +324,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/navigation/{sportId}/{countryId}:
+  /api/livescores/navigation/{sportId}/{countryId}:
     get:
       summary: Get navigation by sport/country
       operationId: livescoresNavigation
@@ -363,7 +365,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/sports/{sportId}/categories:
+  /api/livescores/sports/{sportId}/categories:
     get:
       summary: Get sport categories
       operationId: livescoresSportsCategories
@@ -406,7 +408,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/sports/{sportId}/categories/{categoryId}/tournaments:
+  /api/livescores/sports/{sportId}/categories/{categoryId}/tournaments:
     get:
       summary: Get category tournament list
       operationId: livescoresSportsCategoriesTournaments
@@ -490,7 +492,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/sports/{sportId}/season-calendar:
+  /api/livescores/sports/{sportId}/season-calendar:
     get:
       summary: Get season calendar
       operationId: livescoresSportsSeasonCalendar
@@ -532,7 +534,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/tournaments/{sportId}/{categoryId}/{templateId}/matches:
+  /api/livescores/tournaments/{sportId}/{categoryId}/{templateId}/matches:
     get:
       summary: Get tournament matches
       operationId: livescoresTournamentsMatches
@@ -596,7 +598,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/tournaments/{sportId}/{categoryId}/{templateId}/fixtures:
+  /api/livescores/tournaments/{sportId}/{categoryId}/{templateId}/fixtures:
     get:
       summary: Get tournament fixtures
       operationId: livescoresTournamentsFixtures
@@ -675,7 +677,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/tournaments/{sportId}/{categoryId}/{templateId}/results:
+  /api/livescores/tournaments/{sportId}/{categoryId}/{templateId}/results:
     get:
       summary: Get tournament results
       operationId: livescoresTournamentsResults
@@ -771,7 +773,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/tournaments/{tournamentId}/top-scorers/{stageId}:
+  /api/livescores/tournaments/{tournamentId}/top-scorers/{stageId}:
     get:
       summary: Get tournament top scorers
       operationId: livescoresTournamentsTopScorers
@@ -820,7 +822,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/tournaments/{tournamentId}/seasons/{stageId}:
+  /api/livescores/tournaments/{tournamentId}/seasons/{stageId}:
     get:
       summary: Get tournament seasons
       operationId: livescoresTournamentsSeasons
@@ -869,7 +871,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/tournaments/resolve:
+  /api/livescores/tournaments/resolve:
     get:
       summary: Resolve tournament metadata
       operationId: livescoresTournamentsResolve
@@ -924,7 +926,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/tournaments/archive:
+  /api/livescores/tournaments/archive:
     get:
       summary: Get tournament archive
       operationId: livescoresTournamentsArchive
@@ -979,7 +981,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/participants/{participantId}/matches:
+  /api/livescores/participants/{participantId}/matches:
     get:
       summary: Get participant matches
       operationId: livescoresParticipantsMatches
@@ -1043,7 +1045,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/participants/{participantId}/squad:
+  /api/livescores/participants/{participantId}/squad:
     get:
       summary: Get participant squad
       operationId: livescoresParticipantsSquad
@@ -1091,7 +1093,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/participants/{participantId}/news:
+  /api/livescores/participants/{participantId}/news:
     get:
       summary: Get participant news
       operationId: livescoresParticipantsNews
@@ -1133,7 +1135,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/participants/{participantId}/transfers:
+  /api/livescores/participants/{participantId}/transfers:
     get:
       summary: Get participant transfers
       operationId: livescoresParticipantsTransfers
@@ -1191,7 +1193,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/participants/{participantId}/events:
+  /api/livescores/participants/{participantId}/events:
     get:
       summary: Get participant events
       operationId: livescoresParticipantsEvents
@@ -1249,7 +1251,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/participants/{participantId}/events/{eventId}/detail:
+  /api/livescores/participants/{participantId}/events/{eventId}/detail:
     get:
       summary: Get participant event detail
       operationId: livescoresParticipantsEventsDetail
@@ -1306,7 +1308,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/participants/{participantId}/last-matches:
+  /api/livescores/participants/{participantId}/last-matches:
     get:
       summary: Get participant last matches
       operationId: livescoresParticipantsLastMatches
@@ -1356,7 +1358,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/players/{playerId}/profile:
+  /api/livescores/players/{playerId}/profile:
     get:
       summary: Get player profile
       operationId: livescoresPlayersProfile
@@ -1406,7 +1408,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/players/{playerId}/match-record:
+  /api/livescores/players/{playerId}/match-record:
     get:
       summary: Get player match record
       operationId: livescoresPlayersMatchRecord
@@ -1454,7 +1456,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/players/{playerId}/tournaments-won:
+  /api/livescores/players/{playerId}/tournaments-won:
     get:
       summary: Get player tournaments won
       operationId: livescoresPlayersTournamentsWon
@@ -1502,7 +1504,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/players/{playerId}/injuries:
+  /api/livescores/players/{playerId}/injuries:
     get:
       summary: Get player injuries
       operationId: livescoresPlayersInjuries
@@ -1550,7 +1552,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/rankings/resolve:
+  /api/livescores/rankings/resolve:
     get:
       summary: Resolve ranking id
       operationId: livescoresRankingsResolve
@@ -1598,7 +1600,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/rankings/{sport}/{slug}/id:
+  /api/livescores/rankings/{sport}/{slug}/id:
     get:
       summary: Resolve ranking id by slug
       operationId: livescoresRankingsId
@@ -1639,7 +1641,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/rankings/{rankingId}:
+  /api/livescores/rankings/{rankingId}:
     get:
       summary: Get rankings
       operationId: livescoresRankings
@@ -1699,7 +1701,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/hashes:
+  /api/livescores/matches/{eventId}/hashes:
     get:
       summary: Get match hash feed
       operationId: livescoresMatchesHashes
@@ -1741,7 +1743,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/stats:
+  /api/livescores/matches/{eventId}/stats:
     get:
       summary: Get match stats
       operationId: livescoresMatchesStats
@@ -1783,7 +1785,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/timeline:
+  /api/livescores/matches/{eventId}/timeline:
     get:
       summary: Get match timeline
       operationId: livescoresMatchesTimeline
@@ -1825,7 +1827,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/commentary:
+  /api/livescores/matches/{eventId}/commentary:
     get:
       summary: Get match commentary
       operationId: livescoresMatchesCommentary
@@ -1867,7 +1869,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/commentary-only:
+  /api/livescores/matches/{eventId}/commentary-only:
     get:
       summary: Get match commentary only
       operationId: livescoresMatchesCommentaryOnly
@@ -1909,7 +1911,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/point-by-point:
+  /api/livescores/matches/{eventId}/point-by-point:
     get:
       summary: Get match point-by-point
       operationId: livescoresMatchesPointByPoint
@@ -1951,7 +1953,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/h2h:
+  /api/livescores/matches/{eventId}/h2h:
     get:
       summary: Get match head-to-head
       operationId: livescoresMatchesH2h
@@ -1993,7 +1995,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/news:
+  /api/livescores/matches/{eventId}/news:
     get:
       summary: Get match news
       operationId: livescoresMatchesNews
@@ -2035,7 +2037,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/news-layout:
+  /api/livescores/matches/{eventId}/news-layout:
     get:
       summary: Get match news layout
       operationId: livescoresMatchesNewsLayout
@@ -2085,7 +2087,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/report:
+  /api/livescores/matches/{eventId}/report:
     get:
       summary: Get match report
       operationId: livescoresMatchesReport
@@ -2127,7 +2129,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/tv/long:
+  /api/livescores/matches/{eventId}/tv/long:
     get:
       summary: Get match TV list (long)
       operationId: livescoresMatchesTvLong
@@ -2169,7 +2171,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/tv/short:
+  /api/livescores/matches/{eventId}/tv/short:
     get:
       summary: Get match TV list (short)
       operationId: livescoresMatchesTvShort
@@ -2211,7 +2213,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/odds-detail:
+  /api/livescores/matches/{eventId}/odds-detail:
     get:
       summary: Get match odds detail
       operationId: livescoresMatchesOddsDetail
@@ -2253,7 +2255,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/highlights:
+  /api/livescores/matches/{eventId}/highlights:
     get:
       summary: Get match highlights
       operationId: livescoresMatchesHighlights
@@ -2295,7 +2297,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/highlights/videos:
+  /api/livescores/matches/{eventId}/highlights/videos:
     get:
       summary: Get match highlight videos
       operationId: livescoresMatchesHighlightsVideos
@@ -2337,7 +2339,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/overview:
+  /api/livescores/matches/{eventId}/overview:
     get:
       summary: Get match overview
       operationId: livescoresMatchesOverview
@@ -2387,7 +2389,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/top-scorers:
+  /api/livescores/matches/{eventId}/top-scorers:
     get:
       summary: Get match top scorers
       operationId: livescoresMatchesTopScorers
@@ -2429,7 +2431,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/report/html:
+  /api/livescores/matches/{eventId}/report/html:
     get:
       summary: Get match report (HTML)
       operationId: livescoresMatchesReportHtml
@@ -2471,7 +2473,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/matches/{eventId}/detail-config:
+  /api/livescores/matches/{eventId}/detail-config:
     get:
       summary: Get match detail config
       operationId: livescoresMatchesDetailConfig
@@ -2513,7 +2515,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/tournaments/{tournamentId}/tables/{stageId}:
+  /api/livescores/tournaments/{tournamentId}/tables/{stageId}:
     get:
       summary: Get tournament table
       operationId: livescoresTournamentsTables
@@ -2562,7 +2564,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/tournaments/{tournamentId}/overview/{stageId}:
+  /api/livescores/tournaments/{tournamentId}/overview/{stageId}:
     get:
       summary: Get tournament overview
       operationId: livescoresTournamentsOverview
@@ -2619,7 +2621,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/tournaments/{tournamentId}/list/{stageId}:
+  /api/livescores/tournaments/{tournamentId}/list/{stageId}:
     get:
       summary: Get tournament list
       operationId: livescoresTournamentsList
@@ -2668,7 +2670,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/tournaments/{tournamentId}/draw/{stageId}:
+  /api/livescores/tournaments/{tournamentId}/draw/{stageId}:
     get:
       summary: Get tournament draw
       operationId: livescoresTournamentsDraw
@@ -2724,11 +2726,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/graphql:
+  /api/livescores/graphql:
     get:
-      summary: Get Flashscore GraphQL data
+      summary: Get persisted GraphQL data
       operationId: livescoresGraphql
-      description: 'Proxies persisted-query requests to the Flashscore GraphQL endpoint.
+      description: 'Proxies persisted-query requests to the upstream GraphQL endpoint and returns the raw JSON payload.
 
         Pass required query params such as `_hash`, `eventId`, and `projectId`.'
       tags:
@@ -2741,9 +2743,23 @@ paths:
         example: dmpe2
         schema:
           type: string
+      - name: eventId
+        in: query
+        required: false
+        description: 'Event id for match-specific queries. Example: 08W6fzLP.'
+        example: 08W6fzLP
+        schema:
+          type: string
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id for the persisted query. Example: 1.'
+        example: 1
+        schema:
+          type: integer
       responses:
         '200':
-          description: Flashscore GraphQL response.
+          description: GraphQL response payload.
           content:
             application/json:
               schema:
@@ -2760,12 +2776,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/odds:
+  /api/livescores/odds:
     get:
-      summary: Get Flashscore odds data
+      summary: Get odds GraphQL data
       operationId: livescoresOdds
-      description: 'Proxies persisted-query requests to the Flashscore odds GraphQL
-        endpoint.
+      description: 'Proxies persisted-query requests to the upstream odds GraphQL endpoint
+        and returns the raw JSON payload.
 
         Pass required query params such as `_hash`, `eventId`, and `projectId`.'
       tags:
@@ -2778,9 +2794,23 @@ paths:
         example: oce
         schema:
           type: string
+      - name: eventId
+        in: query
+        required: false
+        description: 'Event id for match-specific odds queries. Example: 08W6fzLP.'
+        example: 08W6fzLP
+        schema:
+          type: string
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id for the persisted query. Example: 1.'
+        example: 1
+        schema:
+          type: integer
       responses:
         '200':
-          description: Flashscore odds response.
+          description: Odds response payload.
           content:
             application/json:
               schema:
@@ -2797,12 +2827,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/search:
+  /api/livescores/search:
     get:
       summary: Search entities
       operationId: livescoresSearch
-      description: Proxies the Flashscore search endpoint for teams, players, tournaments,
-        and more.
+      description: Proxies the upstream search endpoint for teams, players, tournaments,
+        and more, returning the raw results payload.
       tags:
       - Search
       parameters:
@@ -2831,11 +2861,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/top-search:
+  /api/livescores/top-search:
     get:
       summary: Top search suggestions
       operationId: livescoresTopSearch
-      description: Proxies the Flashscore top-search endpoint.
+      description: Proxies the upstream top-search suggestions endpoint.
       tags:
       - Search
       responses:
@@ -2857,11 +2887,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/news:
+  /api/livescores/news:
     get:
       summary: Get news list
       operationId: livescoresNews
-      description: 'Fetches the Flashscore news list feed.
+      description: 'Fetches the news list feed and normalizes it into header and
+        record entries.
 
         Use `sectionId` (or `categoryId`) to select a news section.'
       tags:
@@ -2914,7 +2945,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/news/articles/{articleId}:
+  /api/livescores/news/articles/{articleId}:
     get:
       summary: Get news article
       operationId: livescoresNewsArticles
@@ -2956,7 +2987,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/news/entities/{entityTypeId}/{entityId}:
+  /api/livescores/news/entities/{entityTypeId}/{entityId}:
     get:
       summary: Get entity news list
       operationId: livescoresNewsEntities
@@ -3030,7 +3061,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/updates:
+  /api/livescores/updates:
     get:
       summary: Get updates
       operationId: livescoresUpdates
@@ -3080,7 +3111,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/updates/list:
+  /api/livescores/updates/list:
     get:
       summary: Get updates list
       operationId: livescoresUpdatesList
@@ -3130,7 +3161,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/updates/counts:
+  /api/livescores/updates/counts:
     get:
       summary: Get update counts
       operationId: livescoresUpdatesCounts
@@ -3173,7 +3204,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/system/status:
+  /api/livescores/system/status:
     get:
       summary: Get system status
       operationId: livescoresSystemStatus
@@ -3216,11 +3247,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/banners:
+  /api/livescores/banners:
     get:
       summary: Get banners
       operationId: livescoresBanners
-      description: Proxies Flashscore banners data used for site placements.
+      description: Proxies banner placement data used for site placements.
       tags:
       - Content
       responses:
@@ -3242,11 +3273,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/remote-stats:
+  /api/livescores/remote-stats:
     get:
       summary: Get remote stats
       operationId: livescoresRemoteStats
-      description: Proxies the Flashscore remote stats endpoint.
+      description: Proxies the upstream remote stats endpoint for supplemental statistics.
       tags:
       - Stats
       responses:
@@ -3268,11 +3299,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/images/static/{path}:
+  /api/livescores/images/static/{path}:
     get:
       summary: Get static asset image
       operationId: livescoresImagesStatic
-      description: Fetches static Flashscore assets such as bookmaker logos.
+      description: Fetches static assets such as bookmaker logos.
       tags:
       - Images
       parameters:
@@ -3306,7 +3337,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/livesports/images/ott/{path}:
+  /api/livescores/images/ott/{path}:
     get:
       summary: Get media image
       operationId: livescoresImagesOtt
