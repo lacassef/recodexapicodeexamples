@@ -1,0 +1,3467 @@
+openapi: 3.0.3
+info:
+  title: Flashscore API
+  version: 1.0.0
+  description: OpenAPI specification for the Flashscore endpoints exposed by this
+    service.
+servers:
+- url: /
+paths:
+  /api/flashscore/feed/{version}/{feed}:
+    get:
+      summary: Get feed data
+      description: 'Fetches Flashscore feed data and normalizes the response into
+        JSON.
+
+        Response includes decoded field names in `header` and `records[].fields`.
+
+        Field values are either strings or arrays when list-style values are present.'
+      tags:
+      - Flashscore
+      - Feed
+      parameters:
+      - name: version
+        in: path
+        required: true
+        description: 'Feed version identifier. Example: 2.'
+        schema:
+          type: string
+      - name: feed
+        in: path
+        required: true
+        description: 'Feed name. Example: f_1_0_2_en_1.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/sports/{sportId}/scoreboard:
+    get:
+      summary: Get sport scoreboard
+      description: Fetches the full scoreboard feed for a sport and day offset.
+      tags:
+      - Flashscore
+      - Feed
+      parameters:
+      - name: sportId
+        in: path
+        required: true
+        description: 'Sport id. Example: 1.'
+        schema:
+          type: integer
+      - name: dayOffset
+        in: query
+        required: false
+        description: 'Day offset relative to today. Example: 0.'
+        schema:
+          type: integer
+          default: 0
+      - name: lang
+        in: query
+        required: false
+        description: 'Language code. Example: en.'
+        schema:
+          type: string
+          default: en
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/sports/{sportId}/refresh:
+    get:
+      summary: Get sport refresh updates
+      description: Fetches lightweight refresh updates for a sport.
+      tags:
+      - Flashscore
+      - Feed
+      parameters:
+      - name: sportId
+        in: path
+        required: true
+        description: 'Sport id. Example: 1.'
+        schema:
+          type: integer
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/sports/{sportId}/odds:
+    get:
+      summary: Get sport odds list
+      description: Fetches the odds list feed for a sport and day offset.
+      tags:
+      - Flashscore
+      - Odds
+      parameters:
+      - name: sportId
+        in: path
+        required: true
+        description: 'Sport id. Example: 1.'
+        schema:
+          type: integer
+      - name: dayOffset
+        in: query
+        required: false
+        description: 'Day offset relative to today. Example: 0.'
+        schema:
+          type: integer
+          default: 0
+      - name: lang
+        in: query
+        required: false
+        description: 'Language code. Example: en.'
+        schema:
+          type: string
+          default: en
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/sports/{sportId}/featured:
+    get:
+      summary: Get sport featured list
+      description: Fetches featured matches for a sport.
+      tags:
+      - Flashscore
+      - Feed
+      parameters:
+      - name: sportId
+        in: path
+        required: true
+        description: 'Sport id. Example: 31.'
+        schema:
+          type: integer
+      - name: scope
+        in: query
+        required: false
+        description: 'Scope selector. Example: 0.'
+        schema:
+          type: integer
+          default: 0
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      - name: lang
+        in: query
+        required: false
+        description: 'Language code. Example: en.'
+        schema:
+          type: string
+          default: en
+      - name: group
+        in: query
+        required: false
+        description: 'Group selector. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/req/{req}:
+    get:
+      summary: Get navigation data
+      description: 'Fetches Flashscore navigation data from /x/req/{req}.
+
+        Requests prefixed with `m_` are normalized into JSON; others are proxied as-is.'
+      tags:
+      - Flashscore
+      - Navigation
+      parameters:
+      - name: req
+        in: path
+        required: true
+        description: 'Req identifier. Example: m_1_17.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Normalized req response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReqResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/navigation/{sportId}/{countryId}:
+    get:
+      summary: Get navigation by sport/country
+      description: Fetches Flashscore navigation data for a sport and country.
+      tags:
+      - Flashscore
+      - Navigation
+      parameters:
+      - name: sportId
+        in: path
+        required: true
+        description: 'Sport id. Example: 1.'
+        schema:
+          type: integer
+      - name: countryId
+        in: path
+        required: true
+        description: 'Country id. Example: 17.'
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Normalized req response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReqResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/sports/{sportId}/categories:
+    get:
+      summary: Get sport categories
+      description: 'Fetches category sections embedded in the sport landing page.
+
+        Use `path` to override the sport URL path (e.g. motorsport/auto-racing).'
+      tags:
+      - Flashscore
+      - Navigation
+      parameters:
+      - name: sportId
+        in: path
+        required: true
+        description: 'Sport id. Example: 3.'
+        schema:
+          type: integer
+      - name: path
+        in: query
+        required: false
+        description: 'Override sport path. Example: motorsport/auto-racing.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Category sections and items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoriesResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/sports/{sportId}/categories/{categoryId}/tournaments:
+    get:
+      summary: Get category tournament list
+      description: Fetches tournament list data for a sport category feed.
+      tags:
+      - Flashscore
+      - Tournaments
+      parameters:
+      - name: sportId
+        in: path
+        required: true
+        description: 'Sport id. Example: 1.'
+        schema:
+          type: integer
+      - name: categoryId
+        in: path
+        required: true
+        description: 'Category id. Example: 98.'
+        schema:
+          type: integer
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      - name: lang
+        in: query
+        required: false
+        description: 'Language code. Example: en.'
+        schema:
+          type: string
+          default: en
+      - name: flag
+        in: query
+        required: false
+        description: 'Category flag (y/n). Example: y.'
+        schema:
+          type: string
+          default: y
+          enum:
+          - y
+          - n
+      - name: group
+        in: query
+        required: false
+        description: 'Group selector. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/sports/{sportId}/season-calendar:
+    get:
+      summary: Get season calendar
+      description: Fetches season calendar data via persisted queries.
+      tags:
+      - Flashscore
+      - Calendar
+      parameters:
+      - name: sportId
+        in: path
+        required: true
+        description: 'Sport id. Example: 2.'
+        schema:
+          type: integer
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Season calendar payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/tournaments/{sportId}/{categoryId}/{templateId}/matches:
+    get:
+      summary: Get tournament matches
+      description: Fetches the match list for a tournament template.
+      tags:
+      - Flashscore
+      - Tournaments
+      parameters:
+      - name: sportId
+        in: path
+        required: true
+        description: 'Sport id. Example: 1.'
+        schema:
+          type: integer
+      - name: categoryId
+        in: path
+        required: true
+        description: 'Category id. Example: 98.'
+        schema:
+          type: integer
+      - name: templateId
+        in: path
+        required: true
+        description: 'Tournament template id. Example: COuk57Ci.'
+        schema:
+          type: string
+      - name: lang
+        in: query
+        required: false
+        description: 'Language code. Example: en.'
+        schema:
+          type: string
+          default: en
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/tournaments/{sportId}/{categoryId}/{templateId}/fixtures:
+    get:
+      summary: Get tournament fixtures
+      description: Fetches fixtures for a tournament template and round.
+      tags:
+      - Flashscore
+      - Tournaments
+      parameters:
+      - name: sportId
+        in: path
+        required: true
+        description: 'Sport id. Example: 1.'
+        schema:
+          type: integer
+      - name: categoryId
+        in: path
+        required: true
+        description: 'Category id. Example: 98.'
+        schema:
+          type: integer
+      - name: templateId
+        in: path
+        required: true
+        description: 'Tournament template id. Example: COuk57Ci.'
+        schema:
+          type: string
+      - name: round
+        in: query
+        required: true
+        description: 'Round/segment identifier. Example: 187.'
+        schema:
+          type: integer
+      - name: page
+        in: query
+        required: false
+        description: 'Page number. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: lang
+        in: query
+        required: false
+        description: 'Language code. Example: en.'
+        schema:
+          type: string
+          default: en
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/tournaments/{sportId}/{categoryId}/{templateId}/results:
+    get:
+      summary: Get tournament results
+      description: Fetches results for a tournament template.
+      tags:
+      - Flashscore
+      - Tournaments
+      parameters:
+      - name: sportId
+        in: path
+        required: true
+        description: 'Sport id. Example: 2.'
+        schema:
+          type: integer
+      - name: categoryId
+        in: path
+        required: true
+        description: 'Category id. Example: 182.'
+        schema:
+          type: integer
+      - name: templateId
+        in: path
+        required: true
+        description: 'Tournament template id. Example: GrsQDFC0.'
+        schema:
+          type: string
+      - name: segment
+        in: query
+        required: false
+        description: 'Segment/round selector. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      - name: lang
+        in: query
+        required: false
+        description: 'Language code. Example: en.'
+        schema:
+          type: string
+          default: en
+      - name: page
+        in: query
+        required: false
+        description: 'Page number. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: group
+        in: query
+        required: false
+        description: 'Group/type selector. Example: s.'
+        schema:
+          type: string
+          default: s
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/tournaments/{tournamentId}/top-scorers/{stageId}:
+    get:
+      summary: Get tournament top scorers
+      description: Fetches top scorers for a tournament stage.
+      tags:
+      - Flashscore
+      - Tournaments
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        description: 'Tournament id. Example: 8recE9FQ.'
+        schema:
+          type: string
+      - name: stageId
+        in: path
+        required: true
+        description: 'Stage id. Example: EeBEiuQ0.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/tournaments/{tournamentId}/seasons/{stageId}:
+    get:
+      summary: Get tournament seasons
+      description: Fetches tournament seasons via persisted queries.
+      tags:
+      - Flashscore
+      - Tournaments
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        description: 'Tournament id. Example: UFxNEUzj.'
+        schema:
+          type: string
+      - name: stageId
+        in: path
+        required: true
+        description: 'Stage id. Example: vFA41USe.'
+        schema:
+          type: string
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Tournament seasons payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/tournaments/resolve:
+    get:
+      summary: Resolve tournament metadata
+      description: Extracts ids and season list from a tournament page.
+      tags:
+      - Flashscore
+      - Tournaments
+      parameters:
+      - name: path
+        in: query
+        required: false
+        description: 'Tournament path. Example: football/england/premier-league.'
+        schema:
+          type: string
+      - name: sport
+        in: query
+        required: false
+        description: 'Sport slug. Example: football.'
+        schema:
+          type: string
+      - name: country
+        in: query
+        required: false
+        description: 'Country slug. Example: england.'
+        schema:
+          type: string
+      - name: slug
+        in: query
+        required: false
+        description: 'Tournament slug. Example: premier-league.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tournament ids and season list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentResolveResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/tournaments/archive:
+    get:
+      summary: Get tournament archive
+      description: Fetches archive seasons and winners from a tournament archive page.
+      tags:
+      - Flashscore
+      - Tournaments
+      parameters:
+      - name: path
+        in: query
+        required: false
+        description: 'Tournament path. Example: football/england/premier-league.'
+        schema:
+          type: string
+      - name: sport
+        in: query
+        required: false
+        description: 'Sport slug. Example: football.'
+        schema:
+          type: string
+      - name: country
+        in: query
+        required: false
+        description: 'Country slug. Example: england.'
+        schema:
+          type: string
+      - name: slug
+        in: query
+        required: false
+        description: 'Tournament slug. Example: premier-league.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Archive seasons and winners.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TournamentArchiveResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/participants/{participantId}/matches:
+    get:
+      summary: Get participant matches
+      description: Fetches the match list for a participant (team or player).
+      tags:
+      - Flashscore
+      - Participants
+      parameters:
+      - name: participantId
+        in: path
+        required: true
+        description: 'Participant id. Example: 69Dxbc61.'
+        schema:
+          type: string
+      - name: sportId
+        in: query
+        required: true
+        description: 'Sport id. Example: 1.'
+        schema:
+          type: integer
+      - name: categoryId
+        in: query
+        required: true
+        description: 'Category id. Example: 98.'
+        schema:
+          type: integer
+      - name: lang
+        in: query
+        required: false
+        description: 'Language code. Example: en.'
+        schema:
+          type: string
+          default: en
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/participants/{participantId}/squad:
+    get:
+      summary: Get participant squad
+      description: Extracts squad tables from a participant (team) page.
+      tags:
+      - Flashscore
+      - Participants
+      parameters:
+      - name: participantId
+        in: path
+        required: true
+        description: 'Participant id. Example: lId4TMwf.'
+        schema:
+          type: string
+      - name: path
+        in: query
+        required: false
+        description: 'Team path. Example: team/liverpool/lId4TMwf.'
+        schema:
+          type: string
+      - name: slug
+        in: query
+        required: false
+        description: 'Team slug when path is omitted. Example: liverpool.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Squad tables grouped by section.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipantSquadResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/participants/{participantId}/news:
+    get:
+      summary: Get participant news
+      description: Fetches news for a participant (team or player).
+      tags:
+      - Flashscore
+      - Participants
+      parameters:
+      - name: participantId
+        in: path
+        required: true
+        description: 'Participant id. Example: 69Dxbc61.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/participants/{participantId}/transfers:
+    get:
+      summary: Get participant transfers
+      description: Fetches transfer activity for a participant.
+      tags:
+      - Flashscore
+      - Participants
+      parameters:
+      - name: participantId
+        in: path
+        required: true
+        description: 'Participant id. Example: 69Dxbc61.'
+        schema:
+          type: string
+      - name: tab
+        in: query
+        required: false
+        description: 'Tab selector. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: page
+        in: query
+        required: false
+        description: 'Page number. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/participants/{participantId}/events:
+    get:
+      summary: Get participant events
+      description: Fetches participant event schedules (used by motorsport/cycling).
+      tags:
+      - Flashscore
+      - Participants
+      parameters:
+      - name: participantId
+        in: path
+        required: true
+        description: 'Participant id. Example: roX4hli0.'
+        schema:
+          type: string
+      - name: projectTypeId
+        in: query
+        required: false
+        description: 'Project type id. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/participants/{participantId}/events/{eventId}/detail:
+    get:
+      summary: Get participant event detail
+      description: Fetches event detail data for a participant event.
+      tags:
+      - Flashscore
+      - Participants
+      parameters:
+      - name: participantId
+        in: path
+        required: true
+        description: 'Participant id. Example: zNO51Dz3.'
+        schema:
+          type: string
+      - name: eventId
+        in: path
+        required: true
+        description: 'Event id. Example: IBdwmTR0.'
+        schema:
+          type: string
+      - name: projectTypeId
+        in: query
+        required: false
+        description: 'Project type id. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/participants/{participantId}/last-matches:
+    get:
+      summary: Get participant last matches
+      description: Fetches recent matches for a participant (JSON feed).
+      tags:
+      - Flashscore
+      - Participants
+      parameters:
+      - name: participantId
+        in: path
+        required: true
+        description: 'Participant id. Example: xAzIxa5n.'
+        schema:
+          type: string
+      - name: scope
+        in: query
+        required: false
+        description: 'Scope selector. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Participant last matches payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/players/{playerId}/profile:
+    get:
+      summary: Get player profile
+      description: Fetches player profile data.
+      tags:
+      - Flashscore
+      - Players
+      parameters:
+      - name: playerId
+        in: path
+        required: true
+        description: 'Player id. Example: roX4hli0.'
+        schema:
+          type: string
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/players/{playerId}/match-record:
+    get:
+      summary: Get player match record
+      description: Extracts match record tables from a player page (tennis).
+      tags:
+      - Flashscore
+      - Players
+      parameters:
+      - name: playerId
+        in: path
+        required: true
+        description: 'Player id. Example: UkhgIFEq.'
+        schema:
+          type: string
+      - name: path
+        in: query
+        required: false
+        description: 'Player path. Example: player/alcaraz-garfia-carlos/UkhgIFEq.'
+        schema:
+          type: string
+      - name: slug
+        in: query
+        required: false
+        description: 'Player slug when path is omitted. Example: alcaraz-garfia-carlos.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Match record tables.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerMatchRecordResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/players/{playerId}/tournaments-won:
+    get:
+      summary: Get player tournaments won
+      description: Extracts tournaments won tables from a player page (tennis).
+      tags:
+      - Flashscore
+      - Players
+      parameters:
+      - name: playerId
+        in: path
+        required: true
+        description: 'Player id. Example: UkhgIFEq.'
+        schema:
+          type: string
+      - name: path
+        in: query
+        required: false
+        description: 'Player path. Example: player/alcaraz-garfia-carlos/UkhgIFEq.'
+        schema:
+          type: string
+      - name: slug
+        in: query
+        required: false
+        description: 'Player slug when path is omitted. Example: alcaraz-garfia-carlos.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tournaments won tables.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerTournamentsWonResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/players/{playerId}/injuries:
+    get:
+      summary: Get player injuries
+      description: Extracts injury history from a player page.
+      tags:
+      - Flashscore
+      - Players
+      parameters:
+      - name: playerId
+        in: path
+        required: true
+        description: 'Player id. Example: UkhgIFEq.'
+        schema:
+          type: string
+      - name: path
+        in: query
+        required: false
+        description: 'Player path. Example: player/alcaraz-garfia-carlos/UkhgIFEq.'
+        schema:
+          type: string
+      - name: slug
+        in: query
+        required: false
+        description: 'Player slug when path is omitted. Example: alcaraz-garfia-carlos.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Player injury history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerInjuriesResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/rankings/resolve:
+    get:
+      summary: Resolve ranking id
+      description: Fetches a rankings page and extracts the rankingId.
+      tags:
+      - Flashscore
+      - Rankings
+      parameters:
+      - name: path
+        in: query
+        required: false
+        description: 'Ranking page path. Example: tennis/rankings/atp.'
+        schema:
+          type: string
+      - name: sport
+        in: query
+        required: false
+        description: 'Sport slug. Example: tennis.'
+        schema:
+          type: string
+      - name: slug
+        in: query
+        required: false
+        description: 'Ranking slug. Example: atp.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved ranking id.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RankingIDResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/rankings/{sport}/{slug}/id:
+    get:
+      summary: Resolve ranking id by slug
+      description: Fetches a rankings page and extracts the rankingId.
+      tags:
+      - Flashscore
+      - Rankings
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        description: 'Sport slug. Example: tennis.'
+        schema:
+          type: string
+      - name: slug
+        in: path
+        required: true
+        description: 'Ranking slug. Example: atp.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Resolved ranking id.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RankingIDResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/rankings/{rankingId}:
+    get:
+      summary: Get rankings
+      description: Fetches ranking tables.
+      tags:
+      - Flashscore
+      - Rankings
+      parameters:
+      - name: rankingId
+        in: path
+        required: true
+        description: 'Ranking id. Example: 4KeVObqb.'
+        schema:
+          type: string
+      - name: tab
+        in: query
+        required: false
+        description: 'Tab selector. Example: 2.'
+        schema:
+          type: integer
+          default: 1
+      - name: variant
+        in: query
+        required: false
+        description: 'Variant: ran or ral.'
+        schema:
+          type: string
+          default: ran
+          enum:
+          - ran
+          - ral
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/hashes:
+    get:
+      summary: Get match hash feed
+      description: Fetches the hash feed for a match (used by incremental updates).
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: 08W6fzLP.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/stats:
+    get:
+      summary: Get match stats
+      description: Fetches stats for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: 08W6fzLP.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/timeline:
+    get:
+      summary: Get match timeline
+      description: Fetches timeline/incidents for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: 08W6fzLP.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/commentary:
+    get:
+      summary: Get match commentary
+      description: Fetches live commentary for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: 08W6fzLP.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/commentary-only:
+    get:
+      summary: Get match commentary only
+      description: Fetches commentary-only updates for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: MJ0y6sRk.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/point-by-point:
+    get:
+      summary: Get match point-by-point
+      description: Fetches point-by-point data for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: GWMzzSEk.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/h2h:
+    get:
+      summary: Get match head-to-head
+      description: Fetches head-to-head data for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: 08W6fzLP.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/news:
+    get:
+      summary: Get match news
+      description: Fetches news entries for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: 08W6fzLP.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/news-layout:
+    get:
+      summary: Get match news layout
+      description: Fetches match news layout data via persisted queries.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: MJ0y6sRk.'
+        schema:
+          type: string
+      - name: layoutTypeId
+        in: query
+        required: false
+        description: 'Layout type id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Match news layout payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/report:
+    get:
+      summary: Get match report
+      description: Fetches match report entries.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: 08W6fzLP.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/tv/long:
+    get:
+      summary: Get match TV list (long)
+      description: Fetches the full TV/broadcast list for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: 08W6fzLP.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/tv/short:
+    get:
+      summary: Get match TV list (short)
+      description: Fetches the short TV/broadcast list for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: 08W6fzLP.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/odds-detail:
+    get:
+      summary: Get match odds detail
+      description: Fetches odds details for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: 08W6fzLP.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/highlights:
+    get:
+      summary: Get match highlights
+      description: Fetches highlights for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: 08W6fzLP.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/highlights/videos:
+    get:
+      summary: Get match highlight videos
+      description: Fetches highlight video entries for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: vH0563UN.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/overview:
+    get:
+      summary: Get match overview
+      description: Fetches overview data for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: C8wD2fTk.'
+        schema:
+          type: string
+      - name: tab
+        in: query
+        required: false
+        description: 'Tab selector. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/top-scorers:
+    get:
+      summary: Get match top scorers
+      description: Fetches top scorers table for a match.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: MJ0y6sRk.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/report/html:
+    get:
+      summary: Get match report (HTML)
+      description: Fetches the full match report HTML.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: vH0563UN.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Match report payload.
+          content:
+            text/html:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/matches/{eventId}/detail-config:
+    get:
+      summary: Get match detail config
+      description: Fetches the match detail configuration feed.
+      tags:
+      - Flashscore
+      - Matches
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        description: 'Match event id. Example: MJ0y6sRk.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/tournaments/{tournamentId}/tables/{stageId}:
+    get:
+      summary: Get tournament table
+      description: Fetches table data for a tournament stage.
+      tags:
+      - Flashscore
+      - Tables
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        description: 'Tournament id. Example: M1c7lv64.'
+        schema:
+          type: string
+      - name: stageId
+        in: path
+        required: true
+        description: 'Stage id. Example: tKE3WZmL.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/tournaments/{tournamentId}/overview/{stageId}:
+    get:
+      summary: Get tournament overview
+      description: Fetches tournament overview data for a stage.
+      tags:
+      - Flashscore
+      - Tournaments
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        description: 'Tournament id. Example: 8recE9FQ.'
+        schema:
+          type: string
+      - name: stageId
+        in: path
+        required: true
+        description: 'Stage id. Example: dK0Jjau7.'
+        schema:
+          type: string
+      - name: tab
+        in: query
+        required: false
+        description: 'Tab selector. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/tournaments/{tournamentId}/list/{stageId}:
+    get:
+      summary: Get tournament list
+      description: Fetches tournament list data for a stage.
+      tags:
+      - Flashscore
+      - Tournaments
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        description: 'Tournament id. Example: 04lKZTBr.'
+        schema:
+          type: string
+      - name: stageId
+        in: path
+        required: true
+        description: 'Stage id. Example: 6PWwAsA7.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/tournaments/{tournamentId}/draw/{stageId}:
+    get:
+      summary: Get tournament draw
+      description: Fetches tournament draw data for a stage.
+      tags:
+      - Flashscore
+      - Tournaments
+      parameters:
+      - name: tournamentId
+        in: path
+        required: true
+        description: 'Tournament id. Example: UFxNEUzj.'
+        schema:
+          type: string
+      - name: stageId
+        in: path
+        required: true
+        description: 'Stage id. Example: vFA41USe.'
+        schema:
+          type: string
+      - name: groupId
+        in: query
+        required: false
+        description: 'Optional group id. Example: QRiI3vYF.'
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/graphql:
+    get:
+      summary: Get Flashscore GraphQL data
+      description: 'Proxies persisted-query requests to the Flashscore GraphQL endpoint.
+
+        Pass required query params such as `_hash`, `eventId`, and `projectId`.'
+      tags:
+      - Flashscore
+      - GraphQL
+      parameters:
+      - name: _hash
+        in: query
+        required: true
+        description: 'Persisted query hash. Example: dmpe2.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Flashscore GraphQL response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/odds:
+    get:
+      summary: Get Flashscore odds data
+      description: 'Proxies persisted-query requests to the Flashscore odds GraphQL
+        endpoint.
+
+        Pass required query params such as `_hash`, `eventId`, and `projectId`.'
+      tags:
+      - Flashscore
+      - Odds
+      parameters:
+      - name: _hash
+        in: query
+        required: true
+        description: 'Persisted query hash. Example: oce.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Flashscore odds response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/search:
+    get:
+      summary: Search entities
+      description: Proxies the Flashscore search endpoint for teams, players, tournaments,
+        and more.
+      tags:
+      - Flashscore
+      - Search
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: Search query string.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Search results payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/top-search:
+    get:
+      summary: Top search suggestions
+      description: Proxies the Flashscore top-search endpoint.
+      tags:
+      - Flashscore
+      - Search
+      responses:
+        '200':
+          description: Top search payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/news:
+    get:
+      summary: Get news list
+      description: 'Fetches the Flashscore news list feed.
+
+        Use `sectionId` (or `categoryId`) to select a news section.'
+      tags:
+      - Flashscore
+      - News
+      parameters:
+      - name: sportId
+        in: query
+        required: true
+        description: 'Sport id. Example: 1.'
+        schema:
+          type: integer
+      - name: sectionId
+        in: query
+        required: true
+        description: 'News section id. Example: 59.'
+        schema:
+          type: integer
+      - name: categoryId
+        in: query
+        required: false
+        description: Alias for sectionId.
+        schema:
+          type: integer
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/news/articles/{articleId}:
+    get:
+      summary: Get news article
+      description: Fetches news article content via persisted queries.
+      tags:
+      - Flashscore
+      - News
+      parameters:
+      - name: articleId
+        in: path
+        required: true
+        description: 'Article id. Example: v3LmzFnC.'
+        schema:
+          type: string
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: News article payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/news/entities/{entityTypeId}/{entityId}:
+    get:
+      summary: Get entity news list
+      description: Fetches news layout entries for a team, tournament, or player via
+        persisted queries.
+      tags:
+      - Flashscore
+      - News
+      parameters:
+      - name: entityTypeId
+        in: path
+        required: true
+        description: 'Entity type id. Example: 41.'
+        schema:
+          type: integer
+      - name: entityId
+        in: path
+        required: true
+        description: 'Entity id. Example: MP4jLdJh.'
+        schema:
+          type: string
+      - name: layoutTypeId
+        in: query
+        required: false
+        description: 'Layout type id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      - name: page
+        in: query
+        required: false
+        description: 'Page number. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        required: false
+        description: 'Items per page. Example: 10.'
+        schema:
+          type: integer
+          default: 10
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Entity news layout payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/updates:
+    get:
+      summary: Get updates
+      description: Fetches incremental update data for a sport.
+      tags:
+      - Flashscore
+      - Updates
+      parameters:
+      - name: sportId
+        in: query
+        required: true
+        description: 'Sport id. Example: 1.'
+        schema:
+          type: integer
+      - name: scope
+        in: query
+        required: false
+        description: 'Scope selector. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/updates/list:
+    get:
+      summary: Get updates list
+      description: Fetches update list data for a sport.
+      tags:
+      - Flashscore
+      - Updates
+      parameters:
+      - name: sportId
+        in: query
+        required: true
+        description: 'Sport id. Example: 2.'
+        schema:
+          type: integer
+      - name: scope
+        in: query
+        required: false
+        description: 'Scope selector. Example: 2.'
+        schema:
+          type: integer
+          default: 1
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/updates/counts:
+    get:
+      summary: Get update counts
+      description: Fetches match count data used by the update polling loop.
+      tags:
+      - Flashscore
+      - Updates
+      parameters:
+      - name: projectId
+        in: query
+        required: false
+        description: 'Project id. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/system/status:
+    get:
+      summary: Get system status
+      description: Fetches system status data from the sys feed.
+      tags:
+      - Flashscore
+      - System
+      parameters:
+      - name: scope
+        in: query
+        required: false
+        description: 'Scope selector. Example: 1.'
+        schema:
+          type: integer
+          default: 1
+      - name: version
+        in: query
+        required: false
+        description: 'Feed version. Example: 2.'
+        schema:
+          type: integer
+          default: 2
+      responses:
+        '200':
+          description: Normalized feed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/banners:
+    get:
+      summary: Get banners
+      description: Proxies Flashscore banners data used for site placements.
+      tags:
+      - Flashscore
+      - Content
+      responses:
+        '200':
+          description: Banner payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/remote-stats:
+    get:
+      summary: Get remote stats
+      description: Proxies the Flashscore remote stats endpoint.
+      tags:
+      - Flashscore
+      - Stats
+      responses:
+        '200':
+          description: Remote stats payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/images/static/{path}:
+    get:
+      summary: Get static asset image
+      description: Fetches static Flashscore assets such as bookmaker logos.
+      tags:
+      - Flashscore
+      - Images
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: 'Asset path. Example: res/image/data/bookmakers/80-915.png.'
+        schema:
+          type: string
+        allowReserved: true
+        style: simple
+        explode: false
+      responses:
+        '200':
+          description: Image asset.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/flashscore/images/ott/{path}:
+    get:
+      summary: Get media image
+      description: Fetches Flashscore media images (news covers, photos, etc.).
+      tags:
+      - Flashscore
+      - Images
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: 'Image path. Example: r300xfq60/26bb49b4-4e3b-4899-9055-dc456da25e10.avif.'
+        schema:
+          type: string
+        allowReserved: true
+        style: simple
+        explode: false
+      responses:
+        '200':
+          description: Media image.
+          content:
+            image/avif:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Upstream error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    FeedRecord:
+      type: object
+      properties:
+        fields:
+          type: object
+          additionalProperties: true
+    FeedResponse:
+      type: object
+      properties:
+        version:
+          type: string
+        feed:
+          type: string
+        header:
+          type: object
+          additionalProperties: true
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeedRecord'
+    ReqResponse:
+      type: object
+      properties:
+        req:
+          type: string
+        header:
+          type: object
+          additionalProperties: true
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeedRecord'
+    CategoriesResponse:
+      type: object
+      properties:
+        sportId:
+          type: integer
+        path:
+          type: string
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategorySection'
+    CategorySection:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoryItem'
+    CategoryItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        url:
+          type: string
+        sportId:
+          type: integer
+    RankingIDResponse:
+      type: object
+      properties:
+        path:
+          type: string
+        rankingId:
+          type: string
+        sport:
+          type: string
+        slug:
+          type: string
+        feeds:
+          type: object
+          additionalProperties:
+            type: string
+    TournamentArchiveResponse:
+      type: object
+      properties:
+        path:
+          type: string
+        tournamentId:
+          type: string
+        stageId:
+          type: string
+        seasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/TournamentArchiveSeason'
+    TournamentArchiveSeason:
+      type: object
+      properties:
+        season:
+          type: string
+        seasonUrl:
+          type: string
+        winner:
+          $ref: '#/components/schemas/TournamentArchiveWinner'
+    TournamentArchiveWinner:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+        id:
+          type: string
+        logo:
+          type: string
+    TournamentResolveResponse:
+      type: object
+      properties:
+        path:
+          type: string
+        tournamentId:
+          type: string
+        stageId:
+          type: string
+        templateId:
+          type: string
+        sportId:
+          type: integer
+        selectedSeasonId:
+          type: string
+        seasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/TournamentSeason'
+    TournamentSeason:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        path:
+          type: string
+    ParticipantSquadResponse:
+      type: object
+      properties:
+        participantId:
+          type: string
+        slug:
+          type: string
+        path:
+          type: string
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/SquadSection'
+    SquadSection:
+      type: object
+      properties:
+        name:
+          type: string
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/SquadRow'
+    SquadRow:
+      type: object
+      properties:
+        cells:
+          type: object
+          additionalProperties:
+            type: string
+        player:
+          $ref: '#/components/schemas/SquadPlayer'
+    SquadPlayer:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        url:
+          type: string
+        country:
+          type: string
+        flagId:
+          type: string
+        absence:
+          type: string
+    PlayerMatchRecordResponse:
+      type: object
+      properties:
+        playerId:
+          type: string
+        slug:
+          type: string
+        path:
+          type: string
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerMatchRecordTable'
+    PlayerMatchRecordTable:
+      type: object
+      properties:
+        type:
+          type: string
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerMatchRecord'
+    PlayerMatchRecord:
+      type: object
+      properties:
+        season:
+          type: string
+        rank:
+          type: string
+        titles:
+          type: string
+        allMatches:
+          type: string
+        hard:
+          type: string
+        clay:
+          type: string
+        grass:
+          type: string
+    PlayerTournamentsWonResponse:
+      type: object
+      properties:
+        playerId:
+          type: string
+        slug:
+          type: string
+        path:
+          type: string
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/TournamentWinTable'
+    TournamentWinTable:
+      type: object
+      properties:
+        type:
+          type: string
+        years:
+          type: array
+          items:
+            $ref: '#/components/schemas/TournamentWinYear'
+    TournamentWinYear:
+      type: object
+      properties:
+        year:
+          type: string
+        wins:
+          type: array
+          items:
+            $ref: '#/components/schemas/TournamentWinEntry'
+    TournamentWinEntry:
+      type: object
+      properties:
+        tournament:
+          type: string
+        url:
+          type: string
+        country:
+          type: string
+        surface:
+          type: string
+        prizeMoney:
+          type: string
+    PlayerInjuriesResponse:
+      type: object
+      properties:
+        playerId:
+          type: string
+        slug:
+          type: string
+        path:
+          type: string
+        injuries:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerInjury'
+    PlayerInjury:
+      type: object
+      properties:
+        from:
+          type: string
+        until:
+          type: string
+        name:
+          type: string
+        hidden:
+          type: boolean
+    JSONResult:
+      type: object
+      additionalProperties: true
+    APIError:
+      type: object
+      properties:
+        status:
+          type: integer
+        title:
+          type: string
+        request_id:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/APIError'
