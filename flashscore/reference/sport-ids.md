@@ -31,8 +31,8 @@ Known `sportId` values:
 - `29` Netball
 - `30` Pesapallo
 - `31` Motorsport
-- `32` Motorsport Auto Racing
-- `33` Motorsport Moto Racing
+- `32` Motorsport Auto Racing (auto-racing)
+- `33` Motorsport Moto Racing (moto-racing)
 - `34` Cycling
 - `35` Horse Racing
 - `36` Esports

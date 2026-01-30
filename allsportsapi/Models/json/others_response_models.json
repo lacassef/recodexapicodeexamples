@@ -291,7 +291,7 @@
         "type": {
           "type": "integer",
           "required": true,
-          "description": "1: Transfer, 2: Loan, 3: Free transfer"
+          "description": "1: Loan, 2: End of loan (return), 3: Transfer (permanent; can be free if transferFee/transferFeeDescription indicate no cost)"
         },
         "transferDateTimestamp": {
           "type": "timestamp",
