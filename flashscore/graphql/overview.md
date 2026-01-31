@@ -1,6 +1,6 @@
 # GraphQL and odds hashes
 
-These endpoints accept a query hash in `_hash`. Depending on the query, you may also need `eventId` and `projectId`.
+These endpoints accept a query hash in `_hash`. Hashes are endpoint-specific; using the wrong endpoint or an outdated hash usually returns "Query not stored". Each hash expects specific params.
 
 ## GraphQL
 
@@ -8,8 +8,22 @@ GET `/api/livescores/graphql`
 
 Parameters:
 - `_hash` (query, required)
-- `eventId` (query, optional)
-- `projectId` (query, optional)
+- `eventId` (query, optional; required by some hashes)
+- `projectId` (query, optional; required by some hashes)
+
+Hashes:
+
+| `_hash` | Required params |
+| --- | --- |
+| `dlie2` | `eventId`, `projectId` |
+| `dmpe2` | `eventId`, `projectId` |
+| `dsos2` | `eventId`, `projectId` |
+| `epmsd` | `eventId`, `providerId` |
+| `epmsdp` | `eventId`, `playerId`, `providerId` |
+| `epmsse` | `eventId`, `projectId` |
+| `epmsspe` | `eventId`, `projectId`, `playerId` |
+| `fsa` | `articleId`, `projectId` |
+| `fsned` | `entityId`, `layoutTypeId`, `projectId` |
 
 Response: `JSONResult`
 
@@ -24,8 +38,20 @@ GET `/api/livescores/odds`
 
 Parameters:
 - `_hash` (query, required)
-- `eventId` (query, optional)
-- `projectId` (query, optional)
+- `eventId` (query, optional; required by some hashes)
+- `projectId` (query, optional; required by some hashes)
+
+Hashes:
+
+| `_hash` | Required params |
+| --- | --- |
+| `oce` | `eventId`, `projectId`, `geoIpCode`, `geoIpSubdivisionCode` |
+| `ope2` | `eventId`, `bookmakerId`, `betType`, `betScope` |
+| `pobtm` | `eventId`, `projectId`, `geoIpCode`, `geoIpSubdivisionCode` |
+
+Other known hashes:
+- `fsnulae`: entity layout
+- `lobtm`: live odds betting menu (same params as `pobtm`)
 
 Response: `JSONResult`
 
