@@ -379,14 +379,14 @@ paths:
         in: path
         required: true
         description: 'Sport id. Example: 3.'
-        example: 3
+        example: 32
         schema:
           type: integer
       - name: path
         in: query
         required: false
         description: 'Override sport path. Example: motorsport/auto-racing.'
-        example: motorsport/auto-racing
+        example: auto-racing
         schema:
           type: string
       responses:
