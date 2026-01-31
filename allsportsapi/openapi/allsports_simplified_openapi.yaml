@@ -19529,6 +19529,1620 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/category/{id}/image":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Category Image Data
+      operationId: categoryImageData
+      description: Returns category image details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 1370
+        description: Unique identifier for the category.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/event/{id}/meta":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Event Meta Data
+      operationId: eventMetaData
+      description: Returns event meta details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        description: Unique identifier for the event.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/event/{id}/odds/{providerId}/featured":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Event Featured Odds Data
+      operationId: eventOddsProviderFeaturedData
+      description: Returns event featured odds details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        description: Unique identifier for the event.
+        schema:
+          type: integer
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        description: Provider identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/event/{id}/provider/{providerId}/winning-odds":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Event Winning Odds Data
+      operationId: eventProviderWinningOddsData
+      description: Returns event winning odds details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 10974920
+        description: Unique identifier for the event.
+        schema:
+          type: integer
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        description: Provider identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/group/tournament/{tournamentId}/season/{seasonId}/standings/total":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Group Tournament Season Standings Total Data
+      operationId: groupTournamentSeasonStandingsTotalData
+      description: Returns group tournament season standings total details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        description: Tournament identifier.
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        description: Season identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/group/tournament/{tournamentId}/season/{seasonId}/team-events/total":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Group Tournament Season Team Events Total Data
+      operationId: groupTournamentSeasonTeamEventsTotalData
+      description: Returns group tournament season team events total details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        description: Tournament identifier.
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        description: Season identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/main-events/{date}/extended":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Main Events Extended Data
+      operationId: mainEventsExtendedData
+      description: Returns main events extended details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: date
+        in: path
+        required: true
+        example: "2025-07-22"
+        description: Date in YYYY-MM-DD format.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/match/{id}/odds/{providerId}/featured":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Match Featured Odds Data
+      operationId: matchOddsProviderFeaturedData
+      description: Returns match featured odds details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 10060042
+        description: Unique identifier for the match.
+        schema:
+          type: integer
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        description: Provider identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/match/{id}/provider/{providerId}/winning-odds":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Match Winning Odds Data
+      operationId: matchProviderWinningOddsData
+      description: Returns match winning odds details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 10060042
+        description: Unique identifier for the match.
+        schema:
+          type: integer
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        description: Provider identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/stage/{id}/extended":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Stage Extended Data
+      operationId: stageExtendedData
+      description: Returns stage extended details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 203968
+        description: Unique identifier for the stage.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/stage/{id}/odds/provider/{providerId}/all":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Stage Provider Odds All Data
+      operationId: stageProviderOddsAllData
+      description: Returns stage provider odds all details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 203968
+        description: Unique identifier for the stage.
+        schema:
+          type: integer
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        description: Provider identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/stage/{id}/odds/provider/{providerId}/featured":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Stage Provider Odds Featured Data
+      operationId: stageProviderOddsFeaturedData
+      description: Returns stage provider odds featured details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 203968
+        description: Unique identifier for the stage.
+        schema:
+          type: integer
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        description: Provider identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/stage/scheduled/{date}":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Stage Scheduled Data
+      operationId: stageScheduledData
+      description: Returns stage scheduled details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: date
+        in: path
+        required: true
+        example: "2025-07-22"
+        description: Date in YYYY-MM-DD format.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/team/{id}/image/small":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Team Image Small Data
+      operationId: teamImageSmallData
+      description: Returns team image small details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 4388
+        description: Unique identifier for the team.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/team/{id}/odds/provider/{providerId}":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Team Provider Odds Data
+      operationId: teamProviderOddsData
+      description: Returns team provider odds details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 4388
+        description: Unique identifier for the team.
+        schema:
+          type: integer
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        description: Provider identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/team/{id}/performance":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Team Performance Data
+      operationId: teamPerformanceData
+      description: Returns team performance details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 4388
+        description: Unique identifier for the team.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/team/{id}/season/{seasonId}/best-result":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Team Season Best Result Data
+      operationId: teamSeasonBestResultData
+      description: Returns team season best result details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 4388
+        description: Unique identifier for the team.
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        description: Season identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/team/{id}/year-statistics/{year}":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Team Year Statistics Data
+      operationId: teamYearStatisticsData
+      description: Returns team year statistics details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: id
+        in: path
+        required: true
+        example: 4388
+        description: Unique identifier for the team.
+        schema:
+          type: integer
+      - name: year
+        in: path
+        required: true
+        example: 2022
+        description: Four-digit year.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/tournament/categories/all":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Tournament Categories All Data
+      operationId: tournamentCategoriesAllData
+      description: Returns tournament categories all details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/tournament/{tournamentId}/season/{seasonId}/venue/{venueId}/events/all/{page}":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Tournament Season Venue Events All Data
+      operationId: tournamentSeasonVenueEventsAllData
+      description: Returns tournament season venue events details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        description: Tournament identifier.
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        description: Season identifier.
+        schema:
+          type: integer
+      - name: venueId
+        in: path
+        required: true
+        example: 29580
+        description: Venue identifier.
+        schema:
+          type: integer
+      - name: page
+        in: path
+        required: true
+        example: 0
+        description: Page number for pagination.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/{sport}/tournament/{tournamentId}/season/{seasonId}/venues":
+    get:
+      tags:
+      - MultiSport
+      summary: Get Tournament Season Venues Data
+      operationId: tournamentSeasonVenuesData
+      description: Returns tournament season venues details.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        example: basketball
+        description: Sport identifier used in the path.
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - cycling
+          - esport
+          - handball
+          - ice-hockey
+          - mma
+          - motorsport
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: tournamentId
+        in: path
+        required: true
+        example: 9464
+        description: Tournament identifier.
+        schema:
+          type: integer
+      - name: seasonId
+        in: path
+        required: true
+        example: 36422
+        description: Season identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/match/{id}/odds/{providerId}/featured":
+    get:
+      tags:
+      - Football
+      summary: Get Match Featured Odds Data
+      operationId: matchOddsProviderFeaturedDataOdds
+      description: Returns match featured odds details.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14217375
+        description: Unique identifier for the match.
+        schema:
+          type: integer
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        description: Provider identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/match/{id}/provider/{providerId}/winning-odds":
+    get:
+      tags:
+      - Football
+      summary: Get Match Winning Odds Data
+      operationId: matchProviderWinningOddsDataOdds
+      description: Returns match winning odds details.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14217375
+        description: Unique identifier for the match.
+        schema:
+          type: integer
+      - name: providerId
+        in: path
+        required: true
+        example: 1
+        description: Provider identifier.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/match/{id}/player/jersey/away-clean":
+    get:
+      tags:
+      - Football
+      summary: Get Player Jersey Away Clean Data
+      operationId: playerJerseyAwayCleanData
+      description: Returns match player jersey away clean details.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 10114139
+        description: Unique identifier for the match.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/match/{id}/player/jersey/home-clean":
+    get:
+      tags:
+      - Football
+      summary: Get Player Jersey Home Clean Data
+      operationId: playerJerseyHomeCleanData
+      description: Returns match player jersey home clean details.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 10114139
+        description: Unique identifier for the match.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/team/{id}/image/small":
+    get:
+      tags:
+      - Football
+      summary: Get Team Image Small Data
+      operationId: teamImageSmallDataImage
+      description: Returns team image small details.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 24798
+        description: Unique identifier for the team.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
 components:
   schemas:
     JSONResult:
