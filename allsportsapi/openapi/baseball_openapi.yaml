@@ -4,7 +4,7 @@ info:
   description: OpenAPI specification for the Baseball API endpoints.
   version: 1.0.0
 servers:
-- url: http://localhost:8080
+- url: https://rendercodex.com
   description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
@@ -499,6 +499,83 @@ paths:
                 $ref: '#/components/schemas/JSONResult'
         '404':
           description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{id}/comments:
+    get:
+      tags:
+      - Match
+      summary: Get match commentary
+      operationId: matchCommentary
+      description: Retrieves the play-by-play commentary feed for a baseball match.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 14799683
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of commentary entries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/baseball/match/{id}/atbat/{atBatId}/pitches:
+    get:
+      tags:
+      - Match
+      - Statistics
+      summary: Get at-bat pitches
+      operationId: atBatPitches
+      description: Retrieves pitch-by-pitch details for a specific at-bat in a baseball
+        match.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 14799683
+        schema:
+          type: integer
+      - name: atBatId
+        in: path
+        required: true
+        description: Unique identifier for the at-bat.
+        example: 187629
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of pitches for the at-bat.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or at-bat with the specified ID not found.
           content:
             application/json:
               schema:

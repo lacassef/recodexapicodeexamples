@@ -3053,6 +3053,85 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /api/baseball/match/{id}/comments:
+    get:
+      tags:
+      - Baseball
+      - Matches
+      summary: Get match commentary
+      operationId: baseballMatchComments
+      description: Retrieves the play-by-play commentary feed for a baseball match.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 14799683
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of commentary entries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/baseball/match/{id}/atbat/{atBatId}/pitches:
+    get:
+      tags:
+      - Baseball
+      - Matches
+      - Statistics
+      summary: Get at-bat pitches
+      operationId: baseballAtBatPitches
+      description: Retrieves pitch-by-pitch details for a specific at-bat in a baseball
+        match.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier for the match.
+        example: 14799683
+        schema:
+          type: integer
+      - name: atBatId
+        in: path
+        required: true
+        description: Unique identifier for the at-bat.
+        example: 187629
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of pitches for the at-bat.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Match or at-bat with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/baseball/match/{customId}/h2h:
     get:
       tags:
@@ -12949,6 +13028,42 @@ paths:
       responses:
         '200':
           description: A JSON object containing detailed information about the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/achievements:
+    get:
+      tags:
+      - Football
+      - Teams
+      summary: Get team achievements
+      operationId: teamAchievementsFootball
+      description: Returns the achievements and trophies associated with the specified
+        team.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 2829
+        schema:
+          type: integer
+        description: The unique identifier of the team.
+      responses:
+        '200':
+          description: A JSON object containing team achievements.
           content:
             application/json:
               schema:

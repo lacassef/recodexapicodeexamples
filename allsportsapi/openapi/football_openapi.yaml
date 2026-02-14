@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: This is the OpenAPI specification for the FootAPI.
 servers:
-- url: http://localhost:8080
+- url: https://rendercodex.com
   description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
@@ -1781,6 +1781,41 @@ paths:
       responses:
         '200':
           description: A JSON object containing detailed information about the team.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '404':
+          description: Team with the specified ID not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/team/{id}/achievements:
+    get:
+      tags:
+      - Team
+      summary: Get team achievements
+      operationId: teamAchievements
+      description: Returns the achievements and trophies associated with the specified
+        team.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 2829
+        schema:
+          type: integer
+        description: The unique identifier of the team.
+      responses:
+        '200':
+          description: A JSON object containing team achievements.
           content:
             application/json:
               schema:

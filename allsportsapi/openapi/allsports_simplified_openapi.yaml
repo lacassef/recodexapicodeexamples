@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: OpenAPI specification derived from simplified.md endpoints.
 servers:
-- url: http://localhost:8080
+- url: https://rendercodex.com
   description: Local development server
 tags:
 - name: AllSports
@@ -13,6 +13,8 @@ tags:
   description: Endpoints available for multiple sports via the sport path parameter.
 - name: Football
   description: Football-specific endpoints.
+- name: Baseball
+  description: Baseball-specific endpoints.
 paths:
   "/api/country/{code}/flag":
     get:
@@ -3450,6 +3452,93 @@ paths:
         required: true
         example: 10060042
         description: Unique identifier for the match.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/baseball/match/{id}/comments":
+    get:
+      tags:
+      - Baseball
+      summary: Get Baseball Match Comments Data
+      operationId: baseballMatchCommentsData
+      description: Returns baseball match play-by-play commentary details.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14799683
+        description: Unique identifier for the match.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/baseball/match/{id}/atbat/{atBatId}/pitches":
+    get:
+      tags:
+      - Baseball
+      summary: Get Baseball At-Bat Pitches Data
+      operationId: baseballAtBatPitchesData
+      description: Returns pitch-by-pitch details for a baseball at-bat.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 14799683
+        description: Unique identifier for the match.
+        schema:
+          type: integer
+      - name: atBatId
+        in: path
+        required: true
+        example: 187629
+        description: Unique identifier for the at-bat.
         schema:
           type: integer
       responses:
@@ -17281,6 +17370,46 @@ paths:
         in: path
         required: true
         example: 44
+        description: Unique identifier for the team.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/JSONResult"
+        '400':
+          description: Bad request. Check parameter values.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ErrorResponse"
+  "/api/team/{id}/achievements":
+    get:
+      tags:
+      - Football
+      summary: Get Team Achievements Data
+      operationId: teamAchievementsData
+      description: Returns team achievements details.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        example: 2829
         description: Unique identifier for the team.
         schema:
           type: integer
