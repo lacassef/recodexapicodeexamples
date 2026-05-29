@@ -1,28 +1,27 @@
 openapi: 3.0.0
 info:
   title: Table Tennis API
-  description: OpenAPI specification for the Table Tennis API.
   version: 1.0.0
+  description: OpenAPI specification generated from SofaScore route annotations.
 servers:
-- url: http://localhost:8080
-  description: Local development server
+  - url: http://localhost:8080
+    description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
     get:
       summary: Get match TV countries
-      operationId: matchTvCountries
-      description: Lists the countries and the TV channels within them that are broadcasting
-        a specific match.
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-      - TV
+        - AllSports
+        - TV
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10974920
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match
+          example: 14081808
       responses:
         '200':
           description: A JSON object listing countries and their broadcasting channels.
@@ -30,41 +29,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
       summary: Get match TV channel votes
-      operationId: matchTvChannelVotes
-      description: Fetches viewer voting data from a specific TV channel that is broadcasting
-        the match.
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-      - TV
+        - AllSports
+        - TV
       parameters:
-      - name: channId
-        in: path
-        required: true
-        example: 3177
-        schema:
-          type: integer
-        description: The unique identifier for the TV channel.
-      - name: id
-        in: path
-        required: true
-        example: 10974920
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: channId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the TV channel
+          example: 3177
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match
+          example: 10974920
       responses:
         '200':
           description: A JSON object containing viewer vote data from the channel.
@@ -72,34 +67,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match or channel with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
       summary: Get country flag
-      operationId: countryFlag
-      description: Fetches the PNG flag image asset corresponding to a provided country
-        code. The response is the raw image data.
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
+        image data.
       tags:
-      - Country
+        - AllSports
       parameters:
-      - name: flag
-        in: path
-        required: true
-        example: jp
-        schema:
-          type: string
-        description: Country code or identifier (e.g., 'EN' for England).
+        - name: flag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier
+          example: jp
       responses:
         '200':
           description: The country's flag image file.
@@ -108,34 +99,29 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Flag with the specified code not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
       summary: Get country flag (img API)
-      operationId: countryFlagImgApi
-      description: Fetches the flag image from the SofaScore image API by country
-        code.
+      description: Fetches the flag image from the SofaScore image API by country code.
       tags:
-      - Country
+        - AllSports
       parameters:
-      - name: code
-        in: path
-        required: true
-        example: AU
-        schema:
-          type: string
-        description: Country code or identifier (e.g., 'EN' for England).
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier
+          example: AU
       responses:
         '200':
           description: The country's flag image file.
@@ -144,26 +130,22 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Flag with the specified code not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
       summary: Get tournament placeholder image
-      operationId: tournamentPlaceholderImage
-      description: Returns a static placeholder graphic for a tournament. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-      - Tournament
+        - AllSports
+        - Tournaments
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -177,15 +159,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
       summary: Get tournament placeholder image
-      operationId: tournamentPlaceholderImageTournamentSvg
-      description: Returns a static placeholder graphic for a tournament. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-      - Tournament
+        - AllSports
+        - Tournaments
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,15 +183,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
       summary: Get team placeholder image
-      operationId: teamPlaceholderImage
-      description: Returns a static placeholder graphic for a team. The response is
-        an SVG image.
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-      - Team
+        - AllSports
+        - Teams
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -221,15 +207,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
       summary: Get player placeholder image
-      operationId: playerPlaceholderImage
-      description: Returns a static placeholder graphic for a player. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-      - Player
+        - AllSports
+        - Players
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -243,15 +231,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
       summary: Get player placeholder image
-      operationId: playerPlaceholderImagePlayerSvg
-      description: Returns a static placeholder graphic for a player. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-      - Player
+        - AllSports
+        - Players
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -265,15 +255,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
       summary: Get manager placeholder image
-      operationId: managerPlaceholderImage
-      description: Returns a static placeholder graphic for a manager. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-      - Manager
+        - AllSports
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -287,15 +278,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
       summary: Get manager placeholder image
-      operationId: managerPlaceholderImageManagerSvg
-      description: Returns a static placeholder graphic for a manager. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-      - Manager
+        - AllSports
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -309,36 +301,332 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/calendar/season/{seasonId}/{year}/days-with-events:
+    get:
+      summary: Get calendar days with events
+      description: Retrieves days that have events for a specific season and year.
+      tags:
+        - Sofascore
+        - Calendar
+      parameters:
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 61643
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Calendar year
+          example: 2026
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/category/{categoryId}/image:
+    get:
+      summary: Get category image
+      description: Retrieves the image/logo for a sport category.
+      tags:
+        - Sofascore
+        - Categories
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Sport category identifier
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/countries/all:
+    get:
+      summary: Get all countries
+      description: Retrieves a list of all available countries.
+      tags:
+        - Sofascore
+        - Config
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/rankings/team/{teamId}:
+    get:
+      summary: Get team rankings
+      description: Retrieves rankings for a specific team.
+      tags:
+        - Sofascore
+        - Rankings
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique team identifier
+          example: 2817
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/all:
+    get:
+      summary: Search all entities
+      description: Searches across all entity types (teams, players, tournaments).
+      tags:
+        - Sofascore
+        - Search
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/suggestions/{entityType}:
+    get:
+      summary: Get search suggestions
+      description: Retrieves search suggestions for a specific entity type.
+      tags:
+        - Sofascore
+        - Search
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Entity type (teams, players, events, tournaments)
+          example: teams
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/unique-tournaments:
+    get:
+      summary: Search unique tournaments
+      description: Searches for unique tournaments.
+      tags:
+        - Sofascore
+        - Search
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/{entityType}:
+    get:
+      summary: Search by entity type
+      description: Searches for entities of a specific type.
+      tags:
+        - Sofascore
+        - Search
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Entity type (teams, players, events, tournaments)
+          example: teams
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/tv/channel/{id}/schedule:
+    get:
+      summary: Get TV channel schedule
+      description: Retrieves the broadcast schedule for a specific TV channel.
+      tags:
+        - Sofascore
+        - TV
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: TV channel identifier
+          example: 3177
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/tv/country/{countryCode}/channels:
+    get:
+      summary: Get country TV channels
+      description: Retrieves available TV channels for a specific country.
+      tags:
+        - Sofascore
+        - TV
+      parameters:
+        - name: countryCode
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ISO 3166-1 alpha-2 country code
+          example: MZ
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/events/{day}/{month}/{year}:
     get:
       summary: Get table tennis events by date
-      operationId: tableTennisEventsByDate
       description: Returns all scheduled table tennis matches for the provided day.
       tags:
-      - Event
+        - TableTennis
+        - Matches
       parameters:
-      - name: day
-        in: path
-        required: true
-        example: 22
-        schema:
-          type: integer
-        description: Day of the month
-      - name: month
-        in: path
-        required: true
-        example: 7
-        schema:
-          type: integer
-        description: Month of the year
-      - name: year
-        in: path
-        required: true
-        example: 2025
-        schema:
-          type: integer
-        description: Four-digit year
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Four-digit year
+          example: 2025
       responses:
         '200':
           description: Scheduled matches for the given date.
@@ -346,35 +634,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/events/odds/{day}/{month}/{year}:
     get:
       summary: Get table tennis events with odds
-      operationId: tableTennisEventsWithOdds
       description: Returns scheduled matches together with odds for bookmaker `1`.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Odds
       parameters:
-      - name: day
-        in: path
-        required: true
-        example: 22
-        schema:
-          type: integer
-        description: Day of the month
-      - name: month
-        in: path
-        required: true
-        example: 7
-        schema:
-          type: integer
-        description: Month of the year
-      - name: year
-        in: path
-        required: true
-        example: 2025
-        schema:
-          type: integer
-        description: Four-digit year
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Four-digit year
+          example: 2025
       responses:
         '200':
           description: Matches and odds for the date.
@@ -382,13 +680,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/events/live:
     get:
       summary: Get live table tennis events
-      operationId: liveTableTennisEvents
       description: Lists all currently live table tennis matches.
       tags:
-      - Event
+        - TableTennis
+        - Matches
       responses:
         '200':
           description: Live matches.
@@ -396,21 +703,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/events/odds/featured/{providerId}:
     get:
       summary: Get featured table tennis events with odds
-      operationId: featuredTableTennisEventsWithOdds
       description: Returns highlighted table tennis events with odds information for a provider.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Odds
       parameters:
-      - name: providerId
-        in: path
-        required: true
-        example: 1
-        schema:
-          type: integer
-        description: Provider identifier.
+        - name: providerId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Provider identifier
+          example: 1
       responses:
         '200':
           description: A list of featured table tennis events with odds.
@@ -423,22 +740,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/events/odds/featured-by-tiers/{providerId}:
     get:
       summary: Get featured table tennis events by tiers
-      operationId: featuredTableTennisEventsByTiers
       description: Returns highlighted table tennis events by tiers with odds information for a provider.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Odds
       parameters:
-      - name: providerId
-        in: path
-        required: true
-        example: 1
-        schema:
-          type: integer
-        description: Provider identifier.
+        - name: providerId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Provider identifier
+          example: 1
       responses:
         '200':
           description: A list of featured table tennis events by tiers.
@@ -451,29 +772,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/calendar/{month}/{year}:
     get:
       summary: Get table tennis calendar overview
-      operationId: tableTennisCalendarOverview
       description: Provides unique tournaments with events for the requested month.
       tags:
-      - Calendar
+        - TableTennis
+        - Calendar
       parameters:
-      - name: month
-        in: path
-        required: true
-        example: 12
-        schema:
-          type: integer
-        description: Month of the year
-      - name: year
-        in: path
-        required: true
-        example: 2025
-        schema:
-          type: integer
-        description: Four-digit year
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 12
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Four-digit year
+          example: 2025
       responses:
         '200':
           description: Unique tournaments scheduled for the month.
@@ -481,35 +805,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/calendar/{day}/{month}/{year}/categories:
     get:
       summary: Get table tennis categories for a day
-      operationId: tableTennisCategoriesForADay
       description: Lists categories that have events on the provided date.
       tags:
-      - Calendar
+        - TableTennis
+        - Calendar
+        - Categories
       parameters:
-      - name: day
-        in: path
-        required: true
-        example: 23
-        schema:
-          type: integer
-        description: Day of the month
-      - name: month
-        in: path
-        required: true
-        example: 12
-        schema:
-          type: integer
-        description: Month of the year
-      - name: year
-        in: path
-        required: true
-        example: 2025
-        schema:
-          type: integer
-        description: Four-digit year
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 23
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 12
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Four-digit year
+          example: 2025
       responses:
         '200':
           description: Categories available for the date.
@@ -517,35 +851,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/calendar/{month}/{year}/categories:
     get:
       summary: Get table tennis categories for multiple days
-      operationId: tableTennisCategoriesForMultipleDays
       description: Aggregates categories for up to five days in the given month.
       tags:
-      - Calendar
+        - TableTennis
+        - Calendar
+        - Categories
       parameters:
-      - name: month
-        in: path
-        required: true
-        example: 12
-        schema:
-          type: integer
-        description: Month of the year
-      - name: year
-        in: path
-        required: true
-        example: 2025
-        schema:
-          type: integer
-        description: Four-digit year
-      - name: days
-        in: query
-        required: true
-        example: 23,24,26
-        schema:
-          type: string
-        description: Comma separated list of days (max 5).
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 12
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Four-digit year
+          example: 2025
+        - name: days
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Comma separated list of days (max 5)
+          example: 23,24,26
       responses:
         '200':
           description: Map of date to categories.
@@ -553,27 +897,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-  /api/table-tennis/tournament/categories:
-    get:
-      summary: Get table tennis tournament categories
-      operationId: tableTennisTournamentCategories
-      description: Returns all SofaScore categories for table tennis.
-      tags:
-      - Tournament
-      responses:
-        '200':
-          description: Available categories.
+        '500':
+          description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JSONResult'
-  /api/table-tennis/tournament/categories/all:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/table-tennis/tournament/categories:
     get:
-      summary: Get table tennis tournament categories (all)
-      operationId: tableTennisTournamentCategoriesAll
-      description: Returns the full list of table tennis categories.
+      summary: Get table tennis tournament categories
+      description: Returns all SofaScore categories for table tennis.
       tags:
-      - Tournament
+        - TableTennis
+        - Categories
       responses:
         '200':
           description: Available categories.
@@ -586,22 +925,49 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/table-tennis/tournament/categories/all:
+    get:
+      summary: Get table tennis tournament categories (all)
+      description: Returns the full list of table tennis categories.
+      tags:
+        - TableTennis
+        - Categories
+      responses:
+        '200':
+          description: Available categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/all/category/{id}:
     get:
       summary: Get table tennis tournaments by category
-      operationId: tableTennisTournamentsByCategory
       description: Lists unique tournaments under the given category.
       tags:
-      - Tournament
+        - TableTennis
+        - Categories
+        - Tournaments
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 145
-        schema:
-          type: integer
-        description: Category identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category identifier
+          example: 145
       responses:
         '200':
           description: Tournaments in the category.
@@ -609,42 +975,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/category/{id}/events/{day}/{month}/{year}:
     get:
       summary: Get category events by date
-      operationId: categoryEventsByDate
       description: Lists all matches in the category for the provided day.
       tags:
-      - Category
+        - TableTennis
+        - Categories
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 88
-        schema:
-          type: integer
-        description: Category identifier
-      - name: day
-        in: path
-        required: true
-        example: 22
-        schema:
-          type: integer
-        description: Day of the month
-      - name: month
-        in: path
-        required: true
-        example: 7
-        schema:
-          type: integer
-        description: Month of the year
-      - name: year
-        in: path
-        required: true
-        example: 2025
-        schema:
-          type: integer
-        description: Four-digit year
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category identifier
+          example: 88
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Four-digit year
+          example: 2025
       responses:
         '200':
           description: Category schedule.
@@ -652,21 +1028,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}:
     get:
       summary: Get table tennis match details
-      operationId: tableTennisMatchDetails
       description: Returns core information for the requested match.
       tags:
-      - Event
+        - TableTennis
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
       responses:
         '200':
           description: Match information.
@@ -674,21 +1059,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/statistics:
     get:
       summary: Get table tennis match statistics
-      operationId: tableTennisMatchStatistics
       description: Provides detailed statistics for the specified match.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
       responses:
         '200':
           description: Statistical breakdown.
@@ -696,21 +1091,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/incidents:
     get:
       summary: Get table tennis match incidents
-      operationId: tableTennisMatchIncidents
       description: Lists point-by-point incidents and notable events.
       tags:
-      - Event
+        - TableTennis
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
       responses:
         '200':
           description: Match incidents.
@@ -718,21 +1122,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/lineups:
     get:
       summary: Get table tennis match lineups
-      operationId: tableTennisMatchLineups
       description: Returns confirmed lineups when available.
       tags:
-      - Event
+        - TableTennis
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
       responses:
         '200':
           description: Lineups and substitutes.
@@ -740,21 +1153,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/odds:
     get:
       summary: Get table tennis match odds
-      operationId: tableTennisMatchOdds
       description: Retrieves odds from bookmaker `1` for the match.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Odds
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243156
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243156
       responses:
         '200':
           description: Available odds.
@@ -762,28 +1185,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/odds/{providerId}/featured:
     get:
       summary: Get match featured odds
-      operationId: tableTennisMatchFeaturedOdds
       description: Retrieves featured odds for a specific table tennis match and provider.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Odds
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier.
-      - name: providerId
-        in: path
-        required: true
-        example: 1
-        schema:
-          type: integer
-        description: Provider identifier.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
+        - name: providerId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Provider identifier
+          example: 1
       responses:
         '200':
           description: Featured odds for the match.
@@ -791,40 +1224,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/provider/{providerId}/winning-odds:
     get:
       summary: Get match winning odds
-      operationId: tableTennisMatchWinningOdds
       description: Retrieves winning odds for a specific table tennis match and provider.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Odds
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier.
-      - name: providerId
-        in: path
-        required: true
-        example: 1
-        schema:
-          type: integer
-        description: Provider identifier.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
+        - name: providerId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Provider identifier
+          example: 1
       responses:
         '200':
           description: Winning odds for the match.
@@ -832,33 +1263,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/form:
     get:
       summary: Get table tennis match form
-      operationId: tableTennisMatchForm
       description: Provides pre-game form information for both competitors.
       tags:
-      - Event
+        - TableTennis
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
       responses:
         '200':
           description: Form data.
@@ -866,21 +1294,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{customId}/h2h:
     get:
       summary: Get table tennis head-to-head history
-      operationId: tableTennisHeadToHeadHistory
       description: Returns historical meetings for the match custom identifier.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Statistics
       parameters:
-      - name: customId
-        in: path
-        required: true
-        example: axmcsLkOc
-        schema:
-          type: string
-        description: Match custom identifier
+        - name: customId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Match custom identifier
+          example: wLFsebDb
       responses:
         '200':
           description: Head-to-head events.
@@ -888,21 +1326,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/duel:
     get:
       summary: Get table tennis head-to-head summary
-      operationId: tableTennisHeadToHeadSummary
       description: Provides aggregated head-to-head totals for the competitors.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
       responses:
         '200':
           description: Head-to-head summary.
@@ -910,21 +1358,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/streaks:
     get:
       summary: Get table tennis match streaks
-      operationId: tableTennisMatchStreaks
       description: Returns recent streak information for the match participants.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
       responses:
         '200':
           description: Team streaks.
@@ -932,21 +1390,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/streaks/odds:
     get:
       summary: Get table tennis match streaks with odds
-      operationId: tableTennisMatchStreaksWithOdds
       description: Returns streak details paired with bookmaker odds.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Odds
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
       responses:
         '200':
           description: Streaks with odds.
@@ -954,21 +1422,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/highlights:
     get:
       summary: Get table tennis match highlights
-      operationId: tableTennisMatchHighlights
       description: Returns available highlight clips for the match.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
       responses:
         '200':
           description: Highlight list.
@@ -976,21 +1454,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/votes:
     get:
       summary: Get table tennis match votes
-      operationId: tableTennisMatchVotes
       description: Returns community votes for player of the match.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Fans
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
       responses:
         '200':
           description: Vote tallies.
@@ -998,21 +1486,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/win-probability:
     get:
       summary: Get table tennis match win probability
-      operationId: tableTennisMatchWinProbability
       description: Returns win probability timeline for the match.
       tags:
-      - Event
+        - TableTennis
+        - Matches
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 14243166
-        schema:
-          type: integer
-        description: Match identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match identifier
+          example: 14243166
       responses:
         '200':
           description: Win probability data.
@@ -1020,21 +1518,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}:
     get:
       summary: Get table tennis team details
-      operationId: tableTennisTeamDetails
       description: Returns information about the requested team.
       tags:
-      - Team
+        - TableTennis
+        - Teams
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 348036
       responses:
         '200':
           description: Team details.
@@ -1042,21 +1549,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/performance:
     get:
       summary: Get table tennis team performance
-      operationId: tableTennisTeamPerformance
       description: Returns performance data for the requested team.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 348036
       responses:
         '200':
           description: Team performance data.
@@ -1064,33 +1581,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Team with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/players:
     get:
       summary: Get table tennis team roster
-      operationId: tableTennisTeamRoster
       description: Returns current players registered for the team.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Players
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 76821
       responses:
         '200':
           description: List of players.
@@ -1098,21 +1613,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/media:
     get:
       summary: Get table tennis team media
-      operationId: tableTennisTeamMedia
       description: Returns media items linked to the team.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 76821
       responses:
         '200':
           description: Media assets.
@@ -1120,28 +1645,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/matches/previous/{page}:
     get:
       summary: Get previous table tennis matches by team
-      operationId: previousTableTennisMatchesByTeam
       description: Returns paginated list of past matches for the team.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 348036
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number
+          example: 0
       responses:
         '200':
           description: Previous matches.
@@ -1149,28 +1684,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/matches/next/{page}:
     get:
       summary: Get upcoming table tennis matches by team
-      operationId: upcomingTableTennisMatchesByTeam
       description: Returns paginated list of next matches for the team.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 348036
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number
+          example: 0
       responses:
         '200':
           description: Upcoming matches.
@@ -1178,21 +1723,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/matches/near:
     get:
       summary: Get nearby table tennis matches by team
-      operationId: nearbyTableTennisMatchesByTeam
       description: Returns recent and upcoming matches around the current date.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 76821
       responses:
         '200':
           description: Nearby matches.
@@ -1200,21 +1755,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/standings/seasons:
     get:
       summary: Get table tennis team standings seasons
-      operationId: tableTennisTeamStandingsSeasons
       description: Lists seasons that have standings for the team.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Standings
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 76821
       responses:
         '200':
           description: Seasons.
@@ -1222,21 +1787,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/player-statistics/seasons:
     get:
       summary: Get table tennis team player-statistics seasons
-      operationId: tableTennisTeamPlayerStatisticsSeasons
       description: Lists seasons with player statistics for the team.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 348036
       responses:
         '200':
           description: Seasons.
@@ -1244,21 +1819,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/statistics/seasons:
     get:
       summary: Get table tennis team statistics seasons
-      operationId: tableTennisTeamStatisticsSeasons
       description: Lists seasons with team statistics data.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 348036
       responses:
         '200':
           description: Seasons.
@@ -1266,21 +1851,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/rankings:
     get:
       summary: Get table tennis team rankings
-      operationId: tableTennisTeamRankings
       description: Returns the SofaScore rankings for the team.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Rankings
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 348036
       responses:
         '200':
           description: Ranking data.
@@ -1288,21 +1883,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/unique-tournaments:
     get:
       summary: Get table tennis team tournaments
-      operationId: tableTennisTeamTournaments
       description: Lists unique tournaments that the team participates in.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Tournaments
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 348036
       responses:
         '200':
           description: Team tournaments.
@@ -1310,21 +1915,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/transfers:
     get:
       summary: Get table tennis team transfers
-      operationId: tableTennisTeamTransfers
       description: Returns historical transfer activity for the team.
       tags:
-      - Team
+        - TableTennis
+        - Teams
+        - Transfers
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 348036
-        schema:
-          type: integer
-        description: Team identifier
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team identifier
+          example: 348036
       responses:
         '200':
           description: Transfer history.
@@ -1332,21 +1947,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}:
     get:
       summary: Get table tennis tournament details
-      operationId: tableTennisTournamentDetails
       description: Returns detailed information about the tournament.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
       responses:
         '200':
           description: Tournament details.
@@ -1354,21 +1978,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/info:
     get:
       summary: Get table tennis tournament meta info
-      operationId: tableTennisTournamentMetaInfo
       description: Returns metadata used on SofaScore tournament pages.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
       responses:
         '200':
           description: Tournament metadata.
@@ -1376,21 +2009,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/media:
     get:
       summary: Get table tennis tournament media
-      operationId: tableTennisTournamentMedia
       description: Returns media assets associated with the tournament.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Media
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
       responses:
         '200':
           description: Media assets.
@@ -1398,21 +2041,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/featured-events:
     get:
       summary: Get table tennis tournament featured events
-      operationId: tableTennisTournamentFeaturedEvents
       description: Lists SofaScore highlighted events for the tournament.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
       responses:
         '200':
           description: Featured events.
@@ -1420,21 +2073,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/seasons:
     get:
       summary: Get table tennis tournament seasons
-      operationId: tableTennisTournamentSeasons
       description: Lists available seasons for the tournament.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
       responses:
         '200':
           description: Seasons.
@@ -1442,28 +2104,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/info:
     get:
       summary: Get table tennis tournament season info
-      operationId: tableTennisTournamentSeasonInfo
       description: Returns metadata about a specific tournament season.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
       responses:
         '200':
           description: Season info.
@@ -1471,28 +2142,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
       summary: Get table tennis tournament standings
-      operationId: tableTennisTournamentStandings
       description: Returns overall standings table for the season.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Standings
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
       responses:
         '200':
           description: Standings.
@@ -1500,28 +2181,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
       summary: Get table tennis home standings
-      operationId: tableTennisHomeStandings
       description: Returns standings filtered by home matches for the season.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Standings
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
       responses:
         '200':
           description: Home standings.
@@ -1529,42 +2220,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/round/{round}/slug/{slug}:
     get:
       summary: Get table tennis tournament matches by round
-      operationId: tableTennisTournamentMatchesByRound
       description: Returns matches for the specified knockout round slug.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
-      - name: round
-        in: path
-        required: true
-        example: 29
-        schema:
-          type: integer
-        description: Round number
-      - name: slug
-        in: path
-        required: true
-        example: final
-        schema:
-          type: string
-        description: Round slug
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
+        - name: round
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Round number
+          example: 29
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Round slug
+          example: final
       responses:
         '200':
           description: Matches for the round.
@@ -1572,35 +2273,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/last/{page}:
     get:
       summary: Get table tennis tournament last matches
-      operationId: tableTennisTournamentLastMatches
       description: Returns finished matches for the season, paginated.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number
+          example: 0
       responses:
         '200':
           description: Completed matches.
@@ -1608,35 +2319,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/next/{page}:
     get:
       summary: Get table tennis tournament upcoming matches
-      operationId: tableTennisTournamentUpcomingMatches
       description: Returns upcoming matches for the season, paginated.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number
+          example: 0
       responses:
         '200':
           description: Upcoming matches.
@@ -1644,28 +2365,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
       summary: Get table tennis tournament rounds
-      operationId: tableTennisTournamentRounds
       description: Lists available rounds for the tournament season.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
       responses:
         '200':
           description: List of rounds.
@@ -1673,28 +2403,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/groups:
     get:
       summary: Get table tennis tournament groups
-      operationId: tableTennisTournamentGroups
       description: Returns groups for the tournament season.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
       responses:
         '200':
           description: Group data.
@@ -1702,28 +2441,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/cup-trees:
     get:
       summary: Get table tennis tournament bracket
-      operationId: tableTennisTournamentBracket
       description: Returns knockout bracket for the season.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
       responses:
         '200':
           description: Bracket structure.
@@ -1731,28 +2479,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
       summary: Get table tennis tournament team events total
-      operationId: tableTennisTournamentTeamEventsTotal
       description: Returns aggregated event statistics for the season.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 17
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 76986
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 17
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 76986
       responses:
         '200':
           description: Team event totals.
@@ -1760,28 +2518,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
       summary: Get table tennis tournament team events home
-      operationId: tableTennisTournamentTeamEventsHome
       description: Returns team event statistics for home matches only.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 17
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 76986
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 17
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 76986
       responses:
         '200':
           description: Home event statistics.
@@ -1789,28 +2557,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
       summary: Get table tennis tournament team events away
-      operationId: tableTennisTournamentTeamEventsAway
       description: Returns team event statistics for away matches only.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 17
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 76986
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 17
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 76986
       responses:
         '200':
           description: Away event statistics.
@@ -1818,28 +2596,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/statistics/info:
     get:
       summary: Get table tennis tournament statistics info
-      operationId: tableTennisTournamentStatisticsInfo
       description: Lists available statistics fields for the season.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
       responses:
         '200':
           description: Statistics metadata.
@@ -1847,28 +2635,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/player-of-the-season:
     get:
       summary: Get table tennis tournament player of the season
-      operationId: tableTennisTournamentPlayerOfTheSeason
       description: Returns SofaScore player of the season data.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Awards
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
       responses:
         '200':
           description: Player of the season.
@@ -1876,28 +2674,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/power-rankings/rounds:
     get:
       summary: Get table tennis tournament power ranking rounds
-      operationId: tableTennisTournamentPowerRankingRounds
       description: Lists rounds with available power rankings.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Rankings
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
       responses:
         '200':
           description: Power ranking rounds.
@@ -1905,28 +2713,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-of-the-week/rounds:
     get:
       summary: Get table tennis tournament team of the week rounds
-      operationId: tableTennisTournamentTeamOfTheWeekRounds
       description: Lists rounds where a team of the week is available.
       tags:
-      - Tournament
+        - TableTennis
+        - Tournaments
+        - Awards
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 564
-        schema:
-          type: integer
-        description: Tournament identifier
-      - name: seasonId
-        in: path
-        required: true
-        example: 64269
-        schema:
-          type: integer
-        description: Season identifier
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament identifier
+          example: 564
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 64269
       responses:
         '200':
           description: Team of the week rounds.
@@ -1934,31 +2752,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
 components:
   schemas:
     JSONResult:
       type: object
-    Error:
+      additionalProperties: true
+      description: Generic JSON proxy payload.
+    ErrorResponse:
       type: object
-      properties:
-        error:
-          type: string
-tags:
-- name: Calendar
-  description: Calendar and schedule endpoints.
-- name: Category
-  description: Category endpoints.
-- name: Country
-  description: Country assets and metadata.
-- name: Event
-  description: Event endpoints.
-- name: Manager
-  description: Manager endpoints.
-- name: Player
-  description: Player endpoints.
-- name: TV
-  description: TV broadcast endpoints.
-- name: Team
-  description: Team endpoints.
-- name: Tournament
-  description: Tournament endpoints.
+      additionalProperties: true
+      description: Generic error payload.

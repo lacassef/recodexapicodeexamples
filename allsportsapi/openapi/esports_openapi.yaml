@@ -2,27 +2,26 @@ openapi: 3.0.0
 info:
   title: Esports API
   version: 1.0.0
-  description: This is the OpenAPI specification for the Esports API.
+  description: OpenAPI specification generated from SofaScore route annotations.
 servers:
-- url: http://localhost:8080
-  description: Local development server
+  - url: http://localhost:8080
+    description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
     get:
-      tags:
-      - TV
       summary: Get match TV countries
-      operationId: matchTvCountries
-      description: Lists the countries and the TV channels within them that are broadcasting
-        a specific match.
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      tags:
+        - AllSports
+        - TV
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10974920
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match
+          example: 14081808
       responses:
         '200':
           description: A JSON object listing countries and their broadcasting channels.
@@ -30,41 +29,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
-      tags:
-      - TV
       summary: Get match TV channel votes
-      operationId: matchTvChannelVotes
-      description: Fetches viewer voting data from a specific TV channel that is broadcasting
-        the match.
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      tags:
+        - AllSports
+        - TV
       parameters:
-      - name: channId
-        in: path
-        required: true
-        example: 3177
-        schema:
-          type: integer
-        description: The unique identifier for the TV channel.
-      - name: id
-        in: path
-        required: true
-        example: 10974920
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: channId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the TV channel
+          example: 3177
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match
+          example: 10974920
       responses:
         '200':
           description: A JSON object containing viewer vote data from the channel.
@@ -72,34 +67,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match or channel with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
-      tags:
-      - Country
       summary: Get country flag
-      operationId: countryFlag
-      description: Fetches the PNG flag image asset corresponding to a provided country
-        code. The response is the raw image data.
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
+        image data.
+      tags:
+        - AllSports
       parameters:
-      - name: flag
-        in: path
-        required: true
-        example: jp
-        schema:
-          type: string
-        description: Country code or identifier (e.g., 'EN' for England).
+        - name: flag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier
+          example: jp
       responses:
         '200':
           description: The country's flag image file.
@@ -108,34 +99,29 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Flag with the specified code not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
-      tags:
-      - Country
       summary: Get country flag (img API)
-      operationId: countryFlagImgApi
-      description: Fetches the flag image by country code. The response is the raw
-        image data.
+      description: Fetches the flag image from the SofaScore image API by country code.
+      tags:
+        - AllSports
       parameters:
-      - name: code
-        in: path
-        required: true
-        schema:
-          type: string
-        description: Country code or identifier (e.g., 'EN' for England).
-        example: AU
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier
+          example: AU
       responses:
         '200':
           description: The country's flag image file.
@@ -144,26 +130,22 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Flag with the specified code not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
-      tags:
-      - Tournament
       summary: Get tournament placeholder image
-      operationId: tournamentPlaceholderImage
-      description: Returns a static placeholder graphic for a tournament. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      tags:
+        - AllSports
+        - Tournaments
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -178,14 +160,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
-      tags:
-      - Tournament
       summary: Get tournament placeholder image
-      operationId: tournamentPlaceholderImageTournamentSvg
-      description: Returns a static placeholder graphic for a tournament. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      tags:
+        - AllSports
+        - Tournaments
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -200,14 +184,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
-      tags:
-      - Team
       summary: Get team placeholder image
-      operationId: teamPlaceholderImage
-      description: Returns a static placeholder graphic for a team. The response is
-        an SVG image.
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      tags:
+        - AllSports
+        - Teams
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -222,14 +208,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
-      tags:
-      - Player
       summary: Get player placeholder image
-      operationId: playerPlaceholderImage
-      description: Returns a static placeholder graphic for a player. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      tags:
+        - AllSports
+        - Players
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -244,14 +232,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
-      tags:
-      - Player
       summary: Get player placeholder image
-      operationId: playerPlaceholderImagePlayerSvg
-      description: Returns a static placeholder graphic for a player. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      tags:
+        - AllSports
+        - Players
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -266,14 +256,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
-      tags:
-      - Manager
       summary: Get manager placeholder image
-      operationId: managerPlaceholderImage
-      description: Returns a static placeholder graphic for a manager. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      tags:
+        - AllSports
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -288,14 +279,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
-      tags:
-      - Manager
       summary: Get manager placeholder image
-      operationId: managerPlaceholderImageManagerSvg
-      description: Returns a static placeholder graphic for a manager. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      tags:
+        - AllSports
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -310,28 +302,324 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/calendar/season/{seasonId}/{year}/days-with-events:
+    get:
+      summary: Get calendar days with events
+      description: Retrieves days that have events for a specific season and year.
+      tags:
+        - Sofascore
+        - Calendar
+      parameters:
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 61643
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Calendar year
+          example: 2026
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/category/{categoryId}/image:
+    get:
+      summary: Get category image
+      description: Retrieves the image/logo for a sport category.
+      tags:
+        - Sofascore
+        - Categories
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Sport category identifier
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/countries/all:
+    get:
+      summary: Get all countries
+      description: Retrieves a list of all available countries.
+      tags:
+        - Sofascore
+        - Config
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/rankings/team/{teamId}:
+    get:
+      summary: Get team rankings
+      description: Retrieves rankings for a specific team.
+      tags:
+        - Sofascore
+        - Rankings
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique team identifier
+          example: 2817
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/all:
+    get:
+      summary: Search all entities
+      description: Searches across all entity types (teams, players, tournaments).
+      tags:
+        - Sofascore
+        - Search
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/suggestions/{entityType}:
+    get:
+      summary: Get search suggestions
+      description: Retrieves search suggestions for a specific entity type.
+      tags:
+        - Sofascore
+        - Search
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Entity type (teams, players, events, tournaments)
+          example: teams
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/unique-tournaments:
+    get:
+      summary: Search unique tournaments
+      description: Searches for unique tournaments.
+      tags:
+        - Sofascore
+        - Search
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/{entityType}:
+    get:
+      summary: Search by entity type
+      description: Searches for entities of a specific type.
+      tags:
+        - Sofascore
+        - Search
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Entity type (teams, players, events, tournaments)
+          example: teams
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/tv/channel/{id}/schedule:
+    get:
+      summary: Get TV channel schedule
+      description: Retrieves the broadcast schedule for a specific TV channel.
+      tags:
+        - Sofascore
+        - TV
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: TV channel identifier
+          example: 3177
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/tv/country/{countryCode}/channels:
+    get:
+      summary: Get country TV channels
+      description: Retrieves available TV channels for a specific country.
+      tags:
+        - Sofascore
+        - TV
+      parameters:
+        - name: countryCode
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ISO 3166-1 alpha-2 country code
+          example: MZ
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/search/{term}:
     get:
-      tags:
-      - Search
       summary: Search eSports entities
-      operationId: esportsEntities
       description: Searches for eSports teams, players, events, and tournaments.
+      tags:
+        - Esports
+        - Search
       parameters:
-      - name: term
-        in: path
-        required: true
-        example: ATK
-        schema:
-          type: string
-        description: Search term (minimum 2 characters)
-      - name: page
-        in: query
-        required: false
-        schema:
-          type: integer
-        description: Page number for pagination
-        example: 0
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Search term (minimum 2 characters)
+          example: ATK
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination (defaults to 0)
+          example: 0
       responses:
         '200':
           description: Successfully retrieved search results.
@@ -351,35 +639,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/matches/{day}/{month}/{year}:
     get:
-      tags:
-      - Match
       summary: Get eSports matches by date
-      operationId: esportsMatchesByDate
       description: Fetches all eSports matches scheduled for a specific date.
+      tags:
+        - Esports
+        - Matches
       parameters:
-      - name: day
-        in: path
-        required: true
-        example: 18
-        schema:
-          type: integer
-        description: Day of the month (1-31)
-      - name: month
-        in: path
-        required: true
-        example: 12
-        schema:
-          type: integer
-        description: Month (1-12)
-      - name: year
-        in: path
-        required: true
-        example: 2022
-        schema:
-          type: integer
-        description: Year (e.g., 2024)
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (1-31)
+          example: 18
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month (1-12)
+          example: 12
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2022
       responses:
         '200':
           description: Successfully retrieved matches for the specified date.
@@ -399,42 +690,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/category/{id}/events/{day}/{month}/{year}:
     get:
-      tags:
-      - Category
       summary: Get eSports events by category and date
-      operationId: esportsEventsByCategoryAndDate
       description: Fetches all eSports events for a specific category on a given date.
+      tags:
+        - Esports
+        - Matches
+        - Categories
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 1572
-        schema:
-          type: integer
-        description: Category ID
-      - name: day
-        in: path
-        required: true
-        example: 19
-        schema:
-          type: integer
-        description: Day of the month
-      - name: month
-        in: path
-        required: true
-        example: 12
-        schema:
-          type: integer
-        description: Month of the year
-      - name: year
-        in: path
-        required: true
-        example: 2022
-        schema:
-          type: integer
-        description: Year
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID
+          example: 1572
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 19
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 12
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2022
       responses:
         '200':
           description: Successfully retrieved events for the category and date.
@@ -454,13 +749,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/categories:
     get:
-      tags:
-      - Tournament
       summary: Get eSports tournament categories
-      operationId: esportsTournamentCategories
       description: Retrieves all available eSports tournament categories.
+      tags:
+        - Esports
+        - Tournaments
+        - Categories
       responses:
         '200':
           description: Successfully retrieved tournament categories.
@@ -474,21 +773,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/all/category/{id}:
     get:
-      tags:
-      - Tournament
       summary: Get all eSports tournaments for a category
-      operationId: allEsportsTournamentsForACategory
       description: Retrieves all unique tournaments within a specific eSports category.
+      tags:
+        - Esports
+        - Tournaments
+        - Categories
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 1572
-        schema:
-          type: integer
-        description: Category ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID
+          example: 1572
       responses:
         '200':
           description: Successfully retrieved tournaments for the category.
@@ -496,25 +799,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Category not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/matches/live:
     get:
-      tags:
-      - Match
       summary: Get live eSports matches
-      operationId: liveEsportsMatches
       description: Retrieves all currently live eSports matches.
+      tags:
+        - Esports
+        - Matches
       responses:
         '200':
           description: Successfully retrieved live matches.
@@ -528,22 +828,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/event/{id}:
     get:
-      tags:
-      - Event
       summary: Get eSports event details
-      operationId: esportsEventDetails
-      description: Retrieves detailed information for a specific eSports event by
-        its ID.
+      description: Retrieves detailed information for a specific eSports event by its ID.
+      tags:
+        - Esports
+        - Events
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10944540
-        schema:
-          type: integer
-        description: Event ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+          example: 10944540
       responses:
         '200':
           description: Successfully retrieved event details.
@@ -551,34 +853,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Event not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/event/{customId}/h2h:
     get:
-      tags:
-      - Event
       summary: Get eSports H2H events
-      operationId: esportsH2hEvents
-      description: Retrieves head-to-head match history between two teams, identified
-        by a custom event ID.
+      description: Retrieves head-to-head match history between two teams, identified by a custom event ID.
+      tags:
+        - Esports
+        - Events
+        - Statistics
       parameters:
-      - name: customId
-        in: path
-        required: true
-        example: jTVcsXcZc
-        schema:
-          type: string
-        description: Custom event ID for H2H lookup
+        - name: customId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Custom event ID for H2H lookup
+          example: qDFdsBXwh
       responses:
         '200':
           description: Successfully retrieved H2H event history.
@@ -586,33 +885,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: H2H data not found for the given custom ID.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/event/{id}/lineups:
     get:
-      tags:
-      - Event
       summary: Get eSports event lineups
-      operationId: esportsEventLineups
       description: Retrieves player lineups for a specific eSports event.
+      tags:
+        - Esports
+        - Events
+        - Players
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10945127
-        schema:
-          type: integer
-        description: Event ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+          example: 10945127
       responses:
         '200':
           description: Successfully retrieved event lineups.
@@ -620,34 +917,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Event not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/event/{id}/games:
     get:
-      tags:
-      - Event
       summary: Get eSports event games
-      operationId: esportsEventGames
-      description: Retrieves the list of games (maps) played within a single eSports
-        event.
+      description: Retrieves the list of games (maps) played within a single eSports event.
+      tags:
+        - Esports
+        - Events
+        - Games
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10945127
-        schema:
-          type: integer
-        description: Event ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+          example: 15737068
       responses:
         '200':
           description: Successfully retrieved the list of games for the event.
@@ -655,33 +949,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Event not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/event/{id}/highlights:
     get:
-      tags:
-      - Event
       summary: Get eSports event highlights
-      operationId: esportsEventHighlights
       description: Retrieves video highlights for a specific eSports event, if available.
+      tags:
+        - Esports
+        - Events
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10945370
-        schema:
-          type: integer
-        description: Event ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+          example: 15737068
       responses:
         '200':
           description: Successfully retrieved event highlights.
@@ -689,34 +981,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Event or highlights not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/event/{id}/duel:
     get:
-      tags:
-      - Event
       summary: Get eSports event H2H summary
-      operationId: esportsEventH2hSummary
-      description: Retrieves a summary of head-to-head statistics between the two
-        teams in an event.
+      description: Retrieves a summary of head-to-head statistics between the two teams in an event.
+      tags:
+        - Esports
+        - Events
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10945126
-        schema:
-          type: integer
-        description: Event ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+          example: 10945126
       responses:
         '200':
           description: Successfully retrieved H2H summary.
@@ -724,33 +1013,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Event not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/event/{id}/votes:
     get:
-      tags:
-      - Event
       summary: Get eSports event votes
-      operationId: esportsEventVotes
       description: Retrieves fan voting results for a specific eSports event.
+      tags:
+        - Esports
+        - Events
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10944886
-        schema:
-          type: integer
-        description: Event ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+          example: 10944886
       responses:
         '200':
           description: Successfully retrieved event votes.
@@ -758,34 +1044,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Event not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/event/{id}/streaks:
     get:
-      tags:
-      - Event
       summary: Get eSports event streaks
-      operationId: esportsEventStreaks
-      description: Retrieves team streaks (e.g., winning/losing streaks) for a specific
-        eSports event.
+      description: Retrieves team streaks (e.g., winning/losing streaks) for a specific eSports event.
+      tags:
+        - Esports
+        - Events
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10944886
-        schema:
-          type: integer
-        description: Event ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Event ID
+          example: 10944886
       responses:
         '200':
           description: Successfully retrieved team streaks.
@@ -793,34 +1076,162 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Event not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/event/{id}/meta:
+    get:
+      summary: Get event metadata
+      description: Retrieves SEO and metadata for a specific event.
+      tags:
+        - Esports
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique match/event identifier
+          example: 13053250
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/event/{id}/odds/{providerId}/all:
+    get:
+      summary: Get all odds for event
+      description: Retrieves all available odds from a specific provider for an event.
+      tags:
+        - Esports
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique match/event identifier
+          example: 13053250
+        - name: providerId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Odds provider identifier
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/event/{id}/graph/sequence:
+    get:
+      summary: Get event graph sequence
+      description: Retrieves the momentum/pressure graph sequence data for a match.
+      tags:
+        - Esports
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique match/event identifier
+          example: 13053250
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/event/{id}/official-tweets:
+    get:
+      summary: Get event official tweets
+      description: Retrieves official social media posts related to an event.
+      tags:
+        - Esports
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique match/event identifier
+          example: 13053250
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/game/{id}/lineups:
     get:
-      tags:
-      - Game
       summary: Get eSports game lineups
-      operationId: esportsGameLineups
-      description: Retrieves player lineups for a specific game (map) within an eSports
-        event.
+      description: Retrieves player lineups for a specific game (map) within an eSports event.
+      tags:
+        - Esports
+        - Games
+        - Players
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 359360
-        schema:
-          type: integer
-        description: Game ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Game ID
+          example: 359360
       responses:
         '200':
           description: Successfully retrieved game lineups.
@@ -828,33 +1239,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Game not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/game/{id}/rounds:
     get:
-      tags:
-      - Game
       summary: Get eSports game rounds
-      operationId: esportsGameRounds
       description: Retrieves round-by-round results for a specific game (map).
+      tags:
+        - Esports
+        - Games
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 359440
-        schema:
-          type: integer
-        description: Game ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Game ID
+          example: 359440
       responses:
         '200':
           description: Successfully retrieved game rounds.
@@ -862,33 +1270,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Game not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/game/{id}/bans:
     get:
-      tags:
-      - Game
       summary: Get eSports game bans
-      operationId: esportsGameBans
       description: Retrieves character/map bans for a specific game.
+      tags:
+        - Esports
+        - Games
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 359554
-        schema:
-          type: integer
-        description: Game ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Game ID
+          example: 359554
       responses:
         '200':
           description: Successfully retrieved game bans.
@@ -896,33 +1301,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Game not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/game/{id}/statistics:
     get:
-      tags:
-      - Game
       summary: Get eSports game statistics
-      operationId: esportsGameStatistics
       description: Retrieves detailed statistics for a specific game (map).
+      tags:
+        - Esports
+        - Games
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 359554
-        schema:
-          type: integer
-        description: Game ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Game ID
+          example: 359554
       responses:
         '200':
           description: Successfully retrieved game statistics.
@@ -930,40 +1333,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Game not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/team/{id}/matches/previous/{page}:
     get:
-      tags:
-      - Team
       summary: Get previous eSports matches for a team
-      operationId: previousEsportsMatchesForATeam
       description: Retrieves a paginated list of a team's past eSports matches.
+      tags:
+        - Esports
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 459469
-        schema:
-          type: integer
-        description: Team ID
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 364396
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+          example: 0
       responses:
         '200':
           description: Successfully retrieved previous matches.
@@ -977,40 +1378,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/team/{id}/matches/next/{page}:
     get:
-      tags:
-      - Team
       summary: Get next eSports matches for a team
-      operationId: nextEsportsMatchesForATeam
       description: Retrieves a paginated list of a team's upcoming eSports matches.
+      tags:
+        - Esports
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 459262
-        schema:
-          type: integer
-        description: Team ID
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 364396
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+          example: 0
       responses:
         '200':
           description: Successfully retrieved upcoming matches.
@@ -1024,33 +1423,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/team/{id}:
     get:
-      tags:
-      - Team
       summary: Get eSports team details
-      operationId: esportsTeamDetails
       description: Retrieves detailed information for a specific eSports team.
+      tags:
+        - Esports
+        - Teams
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 363904
-        schema:
-          type: integer
-        description: Team ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 364396
       responses:
         '200':
           description: Successfully retrieved team details.
@@ -1058,33 +1454,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/team/{id}/media:
     get:
-      tags:
-      - Team
       summary: Get eSports team media
-      operationId: esportsTeamMedia
       description: Retrieves media (images, videos) associated with an eSports team.
+      tags:
+        - Esports
+        - Teams
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 363904
-        schema:
-          type: integer
-        description: Team ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 364396
       responses:
         '200':
           description: Successfully retrieved team media.
@@ -1092,34 +1486,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/team/{id}/matches/near:
     get:
-      tags:
-      - Team
       summary: Get near eSports matches for a team
-      operationId: nearEsportsMatchesForATeam
-      description: Retrieves a list of recent and upcoming matches for an eSports
-        team.
+      description: Retrieves a list of recent and upcoming matches for an eSports team.
+      tags:
+        - Esports
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 363904
-        schema:
-          type: integer
-        description: Team ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 363904
       responses:
         '200':
           description: Successfully retrieved near matches.
@@ -1127,33 +1518,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/team/{id}/image:
     get:
-      tags:
-      - Team
       summary: Get eSports team image
-      operationId: esportsTeamImage
       description: Retrieves the logo image for a specific eSports team.
+      tags:
+        - Esports
+        - Teams
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: Team ID
-        example: 363904
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 363904
       responses:
         '200':
           description: Successfully retrieved team image.
@@ -1162,33 +1551,92 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Team or image not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/team/{id}/featured-event:
+    get:
+      summary: Get team featured event
+      description: Retrieves the current or next featured event for a team.
+      tags:
+        - Esports
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique team identifier
+          example: 2817
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/team/{id}/unique-tournaments/all:
+    get:
+      summary: Get all team tournaments
+      description: Retrieves all unique tournaments a team participates in.
+      tags:
+        - Esports
+        - Teams
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique team identifier
+          example: 2817
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/player/{id}:
     get:
-      tags:
-      - Player
       summary: Get eSports player details
-      operationId: esportsPlayerDetails
       description: Retrieves detailed information for a specific eSports player.
+      tags:
+        - Esports
+        - Players
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 1078255
-        schema:
-          type: integer
-        description: Player ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Player ID
+          example: 1078255
       responses:
         '200':
           description: Successfully retrieved player details.
@@ -1196,33 +1644,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Player not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/player/{id}/image:
     get:
-      tags:
-      - Player
       summary: Get eSports player image
-      operationId: esportsPlayerImage
       description: Retrieves the profile image for a specific eSports player.
+      tags:
+        - Esports
+        - Players
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: Player ID
-        example: 1078255
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Player ID
+          example: 1078255
       responses:
         '200':
           description: Successfully retrieved player image.
@@ -1231,41 +1677,38 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Player or image not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
-      tags:
-      - Tournament
       summary: Get total standings for eSports tournament season
-      operationId: totalStandingsForEsportsTournamentSeason
-      description: Retrieves the complete standings for a specific eSports tournament
-        season.
+      description: Retrieves the complete standings for a specific eSports tournament season.
+      tags:
+        - Esports
+        - Tournaments
+        - Standings
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 16026
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 47832
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 16026
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 47832
       responses:
         '200':
           description: Successfully retrieved tournament standings.
@@ -1273,41 +1716,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/{tournamentId}/season/{seasonId}/info:
     get:
-      tags:
-      - Tournament
       summary: Get eSports tournament season info
-      operationId: esportsTournamentSeasonInfo
-      description: Retrieves metadata and information about a specific eSports tournament
-        season.
+      description: Retrieves metadata and information about a specific eSports tournament season.
+      tags:
+        - Esports
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 16026
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 47832
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 16026
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 47832
       responses:
         '200':
           description: Successfully retrieved tournament season information.
@@ -1315,48 +1754,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
-      tags:
-      - Tournament
       summary: Get last matches for eSports tournament season
-      operationId: lastMatchesForEsportsTournamentSeason
-      description: Retrieves a paginated list of past matches for a specific eSports
-        tournament season.
+      description: Retrieves a paginated list of past matches for a specific eSports tournament season.
+      tags:
+        - Esports
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 16026
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 47832
-        schema:
-          type: integer
-        description: Season ID
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 16026
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 47832
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+          example: 0
       responses:
         '200':
           description: Successfully retrieved last matches.
@@ -1370,48 +1806,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
-      tags:
-      - Tournament
       summary: Get next matches for eSports tournament season
-      operationId: nextMatchesForEsportsTournamentSeason
-      description: Retrieves a paginated list of upcoming matches for a specific eSports
-        tournament season.
+      description: Retrieves a paginated list of upcoming matches for a specific eSports tournament season.
+      tags:
+        - Esports
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 16026
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 47832
-        schema:
-          type: integer
-        description: Season ID
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 16026
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 47832
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination
+          example: 0
       responses:
         '200':
           description: Successfully retrieved next matches.
@@ -1425,33 +1858,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/{tournamentId}:
     get:
-      tags:
-      - Tournament
       summary: Get eSports tournament details
-      operationId: esportsTournamentDetails
       description: Retrieves detailed information for a specific eSports tournament.
+      tags:
+        - Esports
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 16026
-        schema:
-          type: integer
-        description: Tournament ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 16026
       responses:
         '200':
           description: Successfully retrieved tournament details.
@@ -1459,33 +1889,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/{tournamentId}/image:
     get:
-      tags:
-      - Tournament
       summary: Get eSports tournament image
-      operationId: esportsTournamentImage
       description: Retrieves the logo image for a specific eSports tournament.
+      tags:
+        - Esports
+        - Tournaments
+        - Media
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 16026
-        schema:
-          type: integer
-        description: Tournament ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 16026
       responses:
         '200':
           description: Successfully retrieved tournament image.
@@ -1494,33 +1922,31 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Tournament or image not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/{tournamentId}/image/dark:
     get:
-      tags:
-      - Tournament
       summary: Get eSports tournament dark image
-      operationId: esportsTournamentDarkImage
       description: Retrieves the dark-theme logo image for a specific eSports tournament.
+      tags:
+        - Esports
+        - Tournaments
+        - Media
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: Tournament ID
-        example: 16026
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 16136
       responses:
         '200':
           description: Successfully retrieved tournament dark image.
@@ -1529,33 +1955,31 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Tournament or image not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/{tournamentId}/media:
     get:
-      tags:
-      - Tournament
       summary: Get eSports tournament media
-      operationId: esportsTournamentMedia
       description: Retrieves media (images, videos) associated with an eSports tournament.
+      tags:
+        - Esports
+        - Tournaments
+        - Media
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 16026
-        schema:
-          type: integer
-        description: Tournament ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 16136
       responses:
         '200':
           description: Successfully retrieved tournament media.
@@ -1563,33 +1987,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/{tournamentId}/seasons:
     get:
-      tags:
-      - Tournament
       summary: Get eSports tournament seasons
-      operationId: esportsTournamentSeasons
       description: Retrieves a list of available seasons for a specific eSports tournament.
+      tags:
+        - Esports
+        - Tournaments
+        - Seasons
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 16151
-        schema:
-          type: integer
-        description: Tournament ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 16151
       responses:
         '200':
           description: Successfully retrieved tournament seasons.
@@ -1597,41 +2019,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
-      tags:
-      - Tournament
       summary: Get total team events for eSports tournament season
-      operationId: totalTeamEventsForEsportsTournamentSeason
-      description: Retrieves aggregated team statistics for an entire eSports tournament
-        season.
+      description: Retrieves aggregated team statistics for an entire eSports tournament season.
+      tags:
+        - Esports
+        - Tournaments
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 16254
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 49721
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 16254
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 49721
       responses:
         '200':
           description: Successfully retrieved total team events.
@@ -1639,33 +2058,244 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/tournament/{tournamentId}/featured-events:
+    get:
+      summary: Get tournament featured events
+      description: Retrieves featured/highlighted events for a tournament.
+      tags:
+        - Esports
+        - Matches
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique tournament identifier
+          example: 8
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/tournament/{tournamentId}/winners:
+    get:
+      summary: Get tournament winners
+      description: Retrieves historical winners of a tournament.
+      tags:
+        - Esports
+        - Tournaments
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique tournament identifier
+          example: 8
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/tournament/{tournamentId}/scheduled-events/{date}:
+    get:
+      summary: Get tournament events on date
+      description: Retrieves all events for a tournament on a specific date.
+      tags:
+        - Esports
+        - Matches
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique tournament identifier
+          example: 8
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Date in YYYY-MM-DD format
+          example: '2026-03-18'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/tournament/{tournamentId}/season/{seasonId}/venues:
+    get:
+      summary: Get tournament season venues
+      description: Retrieves all venues used in a tournament season.
+      tags:
+        - Esports
+        - Tournaments
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique tournament identifier
+          example: 8
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 61643
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/calendar/{sportSlug}/{date}/{countryId}/stages:
+    get:
+      summary: Get calendar sport stages
+      description: Retrieves stage events for a sport on a specific date.
+      tags:
+        - Esports
+        - Calendar
+      parameters:
+        - name: sportSlug
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Sport slug
+          example: football
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Date in YYYY-MM-DD format
+          example: '2026-03-18'
+        - name: countryId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country identifier
+          example: MZ
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/category/{categoryId}/live-unique-tournaments:
+    get:
+      summary: Get live tournaments for category
+      description: Retrieves tournaments with currently live events in a category.
+      tags:
+        - Esports
+        - Tournaments
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Sport category identifier
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/character/{characterId}/image:
     get:
-      tags:
-      - Character
       summary: Get eSports character image
-      operationId: esportsCharacterImage
       description: Retrieves the image for a specific in-game character.
+      tags:
+        - Esports
+        - Assets
       parameters:
-      - name: characterId
-        in: path
-        required: true
-        example: 1610
-        schema:
-          type: integer
-        description: Character ID
+        - name: characterId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Character ID
+          example: 1610
       responses:
         '200':
           description: Successfully retrieved character image.
@@ -1674,33 +2304,30 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Character or image not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/esport/map/{mapId}/image:
     get:
-      tags:
-      - Map
       summary: Get eSports map image
-      operationId: esportsMapImage
       description: Retrieves the image for a specific in-game map.
+      tags:
+        - Esports
+        - Assets
       parameters:
-      - name: mapId
-        in: path
-        required: true
-        example: 15
-        schema:
-          type: integer
-        description: Map ID
+        - name: mapId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Map ID
+          example: 15
       responses:
         '200':
           description: Successfully retrieved map image.
@@ -1709,64 +2336,22 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Map or image not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            status:
-              type: integer
-              description: The HTTP status code.
-            title:
-              type: string
-              description: A short, human-readable summary of the problem type.
-            request_id:
-              type: string
-              description: A unique identifier for the request, useful for debugging.
     JSONResult:
       type: object
-      description: A generic JSON object response.
-      properties: {}
       additionalProperties: true
-tags:
-- name: Category
-  description: Category endpoints.
-- name: Character
-  description: Character-related endpoints.
-- name: Country
-  description: Country assets and metadata.
-- name: Event
-  description: Event endpoints.
-- name: Game
-  description: Game endpoints.
-- name: Manager
-  description: Manager endpoints.
-- name: Map
-  description: Map endpoints.
-- name: Match
-  description: Match endpoints.
-- name: Player
-  description: Player endpoints.
-- name: Search
-  description: Search endpoints.
-- name: TV
-  description: TV broadcast endpoints.
-- name: Team
-  description: Team endpoints.
-- name: Tournament
-  description: Tournament endpoints.
+      description: Generic JSON proxy payload.
+    ErrorResponse:
+      type: object
+      additionalProperties: true
+      description: Generic error payload.

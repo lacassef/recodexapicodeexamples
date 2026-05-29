@@ -1,28 +1,27 @@
 openapi: 3.0.0
 info:
   title: Cricket API
-  description: Unofficial API for cricket matches, teams, players, and tournaments.
   version: 1.0.0
+  description: OpenAPI specification generated from SofaScore route annotations.
 servers:
-- url: http://localhost:8080
-  description: Local development server
+  - url: http://localhost:8080
+    description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
     get:
-      tags:
-      - TV
       summary: Get match TV countries
-      operationId: matchTvCountries
-      description: Lists the countries and the TV channels within them that are broadcasting
-        a specific match.
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      tags:
+        - AllSports
+        - TV
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10974920
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match
+          example: 14081808
       responses:
         '200':
           description: A JSON object listing countries and their broadcasting channels.
@@ -30,41 +29,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
-      tags:
-      - TV
       summary: Get match TV channel votes
-      operationId: matchTvChannelVotes
-      description: Fetches viewer voting data from a specific TV channel that is broadcasting
-        the match.
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      tags:
+        - AllSports
+        - TV
       parameters:
-      - name: channId
-        in: path
-        required: true
-        example: 3177
-        schema:
-          type: integer
-        description: The unique identifier for the TV channel.
-      - name: id
-        in: path
-        required: true
-        example: 10974920
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: channId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the TV channel
+          example: 3177
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match
+          example: 10974920
       responses:
         '200':
           description: A JSON object containing viewer vote data from the channel.
@@ -72,34 +67,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match or channel with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
-      tags:
-      - Country
       summary: Get country flag
-      operationId: countryFlag
-      description: Fetches the PNG flag image asset corresponding to a provided country
-        code. The response is the raw image data.
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
+        image data.
+      tags:
+        - AllSports
       parameters:
-      - name: flag
-        in: path
-        required: true
-        example: jp
-        schema:
-          type: string
-        description: Country code or identifier (e.g., 'EN' for England).
+        - name: flag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier
+          example: jp
       responses:
         '200':
           description: The country's flag image file.
@@ -108,33 +99,29 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Flag with the specified code not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
-      tags:
-      - Country
       summary: Get country flag (img API)
-      operationId: countryFlagImgApi
-      description: Fetches the flag image by country code.
+      description: Fetches the flag image from the SofaScore image API by country code.
+      tags:
+        - AllSports
       parameters:
-      - name: code
-        in: path
-        required: true
-        schema:
-          type: string
-        description: Country code or identifier (e.g., 'EN' for England).
-        example: AU
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier
+          example: AU
       responses:
         '200':
           description: The country's flag image file.
@@ -143,26 +130,22 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Flag with the specified code not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
-      tags:
-      - Tournament
       summary: Get tournament placeholder image
-      operationId: tournamentPlaceholderImage
-      description: Returns a static placeholder graphic for a tournament. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      tags:
+        - AllSports
+        - Tournaments
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -177,35 +160,474 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/placeholder/tournament.svg:
+    get:
+      summary: Get tournament placeholder image
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      tags:
+        - AllSports
+        - Tournaments
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/placeholder/team.svg:
+    get:
+      summary: Get team placeholder image
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      tags:
+        - AllSports
+        - Teams
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/placeholder/player.png:
+    get:
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      tags:
+        - AllSports
+        - Players
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/placeholder/player.svg:
+    get:
+      summary: Get player placeholder image
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      tags:
+        - AllSports
+        - Players
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/placeholder/manager.png:
+    get:
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      tags:
+        - AllSports
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/placeholder/manager.svg:
+    get:
+      summary: Get manager placeholder image
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      tags:
+        - AllSports
+      responses:
+        '200':
+          description: The placeholder SVG image file.
+          content:
+            image/svg+xml:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/calendar/season/{seasonId}/{year}/days-with-events:
+    get:
+      summary: Get calendar days with events
+      description: Retrieves days that have events for a specific season and year.
+      tags:
+        - Sofascore
+        - Calendar
+      parameters:
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 61643
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Calendar year
+          example: 2026
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/category/{categoryId}/image:
+    get:
+      summary: Get category image
+      description: Retrieves the image/logo for a sport category.
+      tags:
+        - Sofascore
+        - Categories
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Sport category identifier
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/countries/all:
+    get:
+      summary: Get all countries
+      description: Retrieves a list of all available countries.
+      tags:
+        - Sofascore
+        - Config
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/rankings/team/{teamId}:
+    get:
+      summary: Get team rankings
+      description: Retrieves rankings for a specific team.
+      tags:
+        - Sofascore
+        - Rankings
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique team identifier
+          example: 2817
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/all:
+    get:
+      summary: Search all entities
+      description: Searches across all entity types (teams, players, tournaments).
+      tags:
+        - Sofascore
+        - Search
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/suggestions/{entityType}:
+    get:
+      summary: Get search suggestions
+      description: Retrieves search suggestions for a specific entity type.
+      tags:
+        - Sofascore
+        - Search
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Entity type (teams, players, events, tournaments)
+          example: teams
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/unique-tournaments:
+    get:
+      summary: Search unique tournaments
+      description: Searches for unique tournaments.
+      tags:
+        - Sofascore
+        - Search
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/{entityType}:
+    get:
+      summary: Search by entity type
+      description: Searches for entities of a specific type.
+      tags:
+        - Sofascore
+        - Search
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Entity type (teams, players, events, tournaments)
+          example: teams
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/tv/channel/{id}/schedule:
+    get:
+      summary: Get TV channel schedule
+      description: Retrieves the broadcast schedule for a specific TV channel.
+      tags:
+        - Sofascore
+        - TV
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: TV channel identifier
+          example: 3177
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/tv/country/{countryCode}/channels:
+    get:
+      summary: Get country TV channels
+      description: Retrieves available TV channels for a specific country.
+      tags:
+        - Sofascore
+        - TV
+      parameters:
+        - name: countryCode
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ISO 3166-1 alpha-2 country code
+          example: MZ
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/search/{term}:
     get:
-      tags:
-      - Search
       summary: Search cricket entities
-      operationId: cricketEntities
       description: Searches for cricket teams, players, and tournaments.
+      tags:
+        - Cricket
+        - Search
       parameters:
-      - name: term
-        in: path
-        required: true
-        example: kabul
-        schema:
-          type: string
-        description: Search term (e.g., 'India')
-      - name: page
-        in: query
-        required: false
-        schema:
-          type: integer
-        description: Page number for pagination
-        example: 0
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Search term
+          example: kabul
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination (defaults to 0)
+          example: 0
       responses:
         '200':
           description: A list of search results for teams, players, and tournaments.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SearchResponse'
+                type: object
+                additionalProperties: true
         '400':
           description: Invalid request parameters.
           content:
@@ -218,63 +640,71 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/categories:
     get:
-      tags:
-      - Tournament
       summary: Get cricket tournament categories
-      operationId: cricketTournamentCategories
-      description: Retrieves a list of all available cricket tournament categories,
-        typically corresponding to countries or regions.
+      description: Retrieves a list of all available cricket tournament categories, typically corresponding to countries
+        or regions.
+      tags:
+        - Cricket
+        - Tournaments
       responses:
         '200':
           description: A list of tournament categories.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CategoriesResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/matches/{day}/{month}/{year}:
     get:
-      tags:
-      - Match
       summary: Get cricket matches by date
-      operationId: cricketMatchesByDate
       description: Fetches all cricket matches scheduled for a specific date.
+      tags:
+        - Cricket
+        - Matches
       parameters:
-      - name: day
-        in: path
-        required: true
-        example: 14
-        schema:
-          type: integer
-        description: Day of the month (e.g., 15)
-      - name: month
-        in: path
-        required: true
-        example: 8
-        schema:
-          type: integer
-        description: Month of the year (e.g., 7)
-      - name: year
-        in: path
-        required: true
-        example: 2022
-        schema:
-          type: integer
-        description: Year (e.g., 2024)
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 14
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 8
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2022
       responses:
         '200':
           description: A list of scheduled cricket matches for the given date.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchesResponse'
+                type: object
+                additionalProperties: true
         '400':
           description: Invalid date format in path.
           content:
@@ -287,413 +717,524 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/matches/live:
     get:
-      tags:
-      - Match
       summary: Get live cricket matches
-      operationId: liveCricketMatches
       description: Retrieves all currently live cricket matches.
+      tags:
+        - Cricket
+        - Matches
       responses:
         '200':
           description: A list of live cricket matches.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LiveMatchesResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}:
     get:
-      tags:
-      - Match
       summary: Get cricket match details
-      operationId: cricketMatchDetails
-      description: Retrieves detailed information for a specific cricket match by
-        its ID.
+      description: Retrieves detailed information for a specific cricket match by its ID.
+      tags:
+        - Cricket
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10534787
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match
+          example: 10534787
       responses:
         '200':
           description: Detailed information about the match.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchDetailsResponse'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{customId}/h2h:
     get:
-      tags:
-      - Match
       summary: Get match head-to-head history
-      operationId: matchHeadToHeadHistory
-      description: Retrieves the detailed match history for head-to-head encounters
-        between two teams.
+      description: Retrieves the detailed match history for head-to-head encounters between two teams.
+      tags:
+        - Cricket
+        - Matches
+        - Statistics
       parameters:
-      - name: customId
-        in: path
-        required: true
-        example: kfAbspfAb
-        schema:
-          type: string
-        description: A custom identifier for the match, used for H2H lookups.
+        - name: customId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: A custom identifier for the match, used for H2H lookups
+          example: cJAbsWLWb
       responses:
         '200':
           description: A detailed list of past H2H matches.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/H2HHistoryResponse'
-        '404':
-          description: Match with the specified custom ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/lineups:
     get:
-      tags:
-      - Match
       summary: Get match lineups
-      operationId: matchLineups
-      description: Retrieves the starting lineups and substitutes for both teams in
-        a specific match.
+      description: Retrieves the starting lineups and substitutes for both teams in a specific match.
+      tags:
+        - Cricket
+        - Matches
+        - Players
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10534787
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match
+          example: 10534787
       responses:
         '200':
           description: Starting lineups and substitutes for the match.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LineupsResponse'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/innings:
     get:
-      tags:
-      - Match
       summary: Get match innings
-      operationId: matchInnings
-      description: Retrieves the detailed scorecard for each innings of a cricket
-        match.
+      description: Retrieves the detailed scorecard for each innings of a cricket match.
+      tags:
+        - Cricket
+        - Matches
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10534787
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match
+          example: 10534787
       responses:
         '200':
           description: Detailed innings-by-innings scorecard.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InningsResponse'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/incidents:
     get:
-      tags:
-      - Match
       summary: Get match incidents
-      operationId: matchIncidents
-      description: Retrieves a chronological list of all significant incidents that
-        occurred during the match (e.g., wickets, boundaries).
+      description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., 
+        wickets, boundaries).
+      tags:
+        - Cricket
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10534787
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match
+          example: 10534787
       responses:
         '200':
           description: A list of incidents from the match.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IncidentsResponse'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/duel:
     get:
-      tags:
-      - Match
       summary: Get head-to-head summary
-      operationId: headToHeadSummary
-      description: Retrieves a summary of head-to-head (H2H) statistics between the
-        two teams in a match.
+      description: Retrieves a summary of head-to-head (H2H) statistics between the two teams in a match.
+      tags:
+        - Cricket
+        - Matches
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10534787
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match
+          example: 10534787
       responses:
         '200':
           description: A summary of H2H statistics.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/H2HSummaryResponse'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/form:
     get:
-      tags:
-      - Match
       summary: Get match form analysis
-      operationId: matchFormAnalysis
-      description: Retrieves pre-game form and recent performance data for the teams
-        in a specific match.
+      description: Retrieves pre-game form and recent performance data for the teams in a specific match.
+      tags:
+        - Cricket
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10534787
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match
+          example: 14424444
       responses:
         '200':
           description: Pregame form and performance trends for the teams.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchFormResponse'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/odds:
     get:
-      tags:
-      - Match
       summary: Get match betting odds
-      operationId: matchBettingOdds
-      description: Retrieves available betting odds from various bookmakers for a
-        specific match.
+      description: Retrieves available betting odds from various bookmakers for a specific match.
+      tags:
+        - Cricket
+        - Matches
+        - Odds
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 11067865
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match
+          example: 11067865
       responses:
         '200':
           description: A list of available betting odds for the match.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchOddsResponse'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/votes:
     get:
-      tags:
-      - Match
       summary: Get match votes
-      operationId: matchVotes
       description: Returns fan poll percentages and vote totals for the match outcome.
+      tags:
+        - Cricket
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10534787
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match
+          example: 10534787
       responses:
         '200':
           description: Vote counts and percentages for the match.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VotesResponse'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/graph:
     get:
-      tags:
-      - Match
       summary: Get cricket match graph
-      operationId: cricketMatchGraph
-      description: Retrieves data points for the match graph, showing runs per over
-        for both teams.
+      description: Retrieves data points for the match graph, showing runs per over for both teams.
+      tags:
+        - Cricket
+        - Matches
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: The unique identifier for the match.
-        example: 10534787
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the match
+          example: 10534787
       responses:
         '200':
           description: Data points for the match graph.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GraphResponse'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/match/{id}/meta:
+    get:
+      summary: Get event metadata
+      description: Retrieves SEO and metadata for a specific event.
+      tags:
+        - Cricket
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique match/event identifier
+          example: 13053250
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/match/{id}/odds/{providerId}/all:
+    get:
+      summary: Get all odds for event
+      description: Retrieves all available odds from a specific provider for an event.
+      tags:
+        - Cricket
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique match/event identifier
+          example: 13053250
+        - name: providerId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Odds provider identifier
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/match/{id}/graph/sequence:
+    get:
+      summary: Get event graph sequence
+      description: Retrieves the momentum/pressure graph sequence data for a match.
+      tags:
+        - Cricket
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique match/event identifier
+          example: 13053250
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/match/{id}/official-tweets:
+    get:
+      summary: Get event official tweets
+      description: Retrieves official social media posts related to an event.
+      tags:
+        - Cricket
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique match/event identifier
+          example: 13053250
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/matches/previous/{page}:
     get:
-      tags:
-      - Team
       summary: Get previous team matches
-      operationId: previousTeamMatches
-      description: Fetches a paginated list of completed cricket matches for a specific
-        team, sorted by date descending.
+      description: Fetches a paginated list of completed cricket matches for a specific team, sorted by date descending.
+      tags:
+        - Cricket
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 187760
-        schema:
-          type: integer
-        description: The unique identifier for the team.
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination (starts from 1).
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team
+          example: 187760
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 0)
+          example: 0
       responses:
         '200':
           description: A paginated list of the team's previous matches.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchListResponse'
+                type: object
+                additionalProperties: true
         '400':
           description: Invalid page number or team ID format.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Team with the specified ID not found.
           content:
             application/json:
               schema:
@@ -704,173 +1245,170 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/matches/next/{page}:
     get:
-      tags:
-      - Team
       summary: Get upcoming team matches
-      operationId: upcomingTeamMatches
-      description: Fetches a paginated list of scheduled cricket matches for a specific
-        team, sorted by date ascending.
+      description: Fetches a paginated list of scheduled cricket matches for a specific team, sorted by date ascending.
+      tags:
+        - Cricket
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 187760
-        schema:
-          type: integer
-        description: The unique identifier for the team.
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination (starts from 1).
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team
+          example: 187760
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 0)
+          example: 0
       responses:
         '200':
           description: A paginated list of the team's upcoming matches.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchListResponse'
+                type: object
+                additionalProperties: true
         '400':
           description: Invalid page number or team ID format.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Team with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/standings/seasons:
     get:
-      tags:
-      - Team
       summary: Get team standings seasons
-      operationId: teamStandingsSeasons
       description: Retrieves a list of seasons for which a team's standings are available.
+      tags:
+        - Cricket
+        - Teams
+        - Standings
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 424774
-        schema:
-          type: integer
-        description: The unique identifier for the team.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team
+          example: 424774
       responses:
         '200':
           description: A list of seasons with available standings.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SeasonsResponse'
-        '404':
-          description: Team with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/tournaments:
     get:
-      tags:
-      - Team
       summary: Get team tournaments
-      operationId: teamTournaments
-      description: Retrieves a list of all unique tournaments a team has participated
-        in.
+      description: Retrieves a list of all unique tournaments a team has participated in.
+      tags:
+        - Cricket
+        - Teams
+        - Tournaments
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 424774
-        schema:
-          type: integer
-        description: The unique identifier for the team.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team
+          example: 424774
       responses:
         '200':
           description: A list of unique tournaments the team has participated in.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TournamentsResponse'
-        '404':
-          description: Team with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/matches/near:
     get:
-      tags:
-      - Team
       summary: Get team near matches
-      operationId: teamNearMatches
-      description: Retrieves a list of recent and upcoming matches for a specific
-        team.
+      description: Retrieves a list of recent and upcoming matches for a specific team.
+      tags:
+        - Cricket
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 187765
-        schema:
-          type: integer
-        description: The unique identifier for the team.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team
+          example: 187765
       responses:
         '200':
           description: A list of recent and upcoming matches.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NearMatchesResponse'
-        '404':
-          description: Team with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/image:
     get:
-      tags:
-      - Team
       summary: Get team image
-      operationId: teamImage
       description: Retrieves the logo image for a specific team.
+      tags:
+        - Cricket
+        - Teams
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: The unique identifier for the team.
-        example: 187760
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team
+          example: 187760
       responses:
         '200':
           description: The team's logo image.
@@ -879,255 +1417,304 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Team or logo not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}:
     get:
-      tags:
-      - Team
       summary: Get cricket team details
-      operationId: cricketTeamDetails
       description: Retrieves comprehensive details for a specific cricket team.
+      tags:
+        - Cricket
+        - Teams
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 410009
-        schema:
-          type: integer
-        description: The unique identifier for the team.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team
+          example: 189202
       responses:
         '200':
           description: Comprehensive details for the team.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TeamDetailsResponse'
-        '404':
-          description: Team with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/players/statistics/seasons:
     get:
-      tags:
-      - Team
       summary: Get team player statistics seasons
-      operationId: teamPlayerStatisticsSeasons
-      description: Retrieves a list of seasons for which a team's player statistics
-        are available.
+      description: Retrieves a list of seasons for which a team's player statistics are available.
+      tags:
+        - Cricket
+        - Teams
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 410009
-        schema:
-          type: integer
-        description: The unique identifier for the team.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team
+          example: 410009
       responses:
         '200':
           description: A list of seasons with available player statistics.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SeasonsResponse'
-        '404':
-          description: Team with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/players:
     get:
-      tags:
-      - Team
       summary: Get team players
-      operationId: teamPlayers
       description: Retrieves the current roster of players for a specific team.
+      tags:
+        - Cricket
+        - Teams
+        - Players
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 410009
-        schema:
-          type: integer
-        description: The unique identifier for the team.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team
+          example: 189202
       responses:
         '200':
           description: The current roster of players for the team.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlayersResponse'
-        '404':
-          description: Team with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/media:
     get:
-      tags:
-      - Team
       summary: Get team media
-      operationId: teamMedia
-      description: Retrieves media content (e.g., videos, images) associated with
-        a specific team.
+      description: Retrieves media content (e.g., videos, images) associated with a specific team.
+      tags:
+        - Cricket
+        - Teams
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 187780
-        schema:
-          type: integer
-        description: The unique identifier for the team.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the team
+          example: 187780
       responses:
         '200':
           description: A list of media content for the team.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MediaResponse'
-        '404':
-          description: Team with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/team/{id}/featured-event:
+    get:
+      summary: Get team featured event
+      description: Retrieves the current or next featured event for a team.
+      tags:
+        - Cricket
+        - Matches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique team identifier
+          example: 2817
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/team/{id}/unique-tournaments/all:
+    get:
+      summary: Get all team tournaments
+      description: Retrieves all unique tournaments a team participates in.
+      tags:
+        - Cricket
+        - Teams
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique team identifier
+          example: 2817
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}/statistics/seasons:
     get:
-      tags:
-      - Player
       summary: Get player statistics seasons
-      operationId: playerStatisticsSeasons
-      description: Retrieves a list of seasons for which a player's statistics are
-        available.
+      description: Retrieves a list of seasons for which a player's statistics are available.
+      tags:
+        - Cricket
+        - Players
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 786521
-        schema:
-          type: integer
-        description: The unique identifier for the player.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player
+          example: 786521
       responses:
         '200':
           description: A list of seasons with available statistics.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SeasonsResponse'
-        '404':
-          description: Player with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/overall:
     get:
-      tags:
-      - Player
       summary: Get player overall statistics
-      operationId: playerOverallStatistics
-      description: Retrieves a player's combined statistics for an entire season (regular
-        season and playoffs).
+      description: Retrieves a player's combined statistics for an entire season (regular season and playoffs).
+      tags:
+        - Cricket
+        - Players
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 786521
-        schema:
-          type: integer
-        description: The unique identifier for the player.
-      - name: tournamentId
-        in: path
-        required: true
-        example: 11165
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
-      - name: seasonId
-        in: path
-        required: true
-        example: 41321
-        schema:
-          type: integer
-        description: The unique identifier for the season.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player
+          example: 786521
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 11165
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season
+          example: 41321
       responses:
         '200':
           description: The player's overall statistics for the season.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlayerStatisticsResponse'
-        '404':
-          description: Player, tournament, or season with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}/image:
     get:
-      tags:
-      - Player
       summary: Get player image
-      operationId: playerImage
       description: Retrieves the profile image for a specific player.
+      tags:
+        - Cricket
+        - Players
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: The unique identifier for the player.
-        example: 786521
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player
+          example: 786521
       responses:
         '200':
           description: The player's profile image.
@@ -1136,234 +1723,223 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Player or image not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}:
     get:
-      tags:
-      - Player
       summary: Get cricket player details
-      operationId: cricketPlayerDetails
       description: Retrieves comprehensive information about a specific cricket player.
+      tags:
+        - Cricket
+        - Players
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 786521
-        schema:
-          type: integer
-        description: The unique identifier for the player.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player
+          example: 786521
       responses:
         '200':
           description: Comprehensive details for the player.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlayerDetailsResponse'
-        '404':
-          description: Player with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}/matches/near:
     get:
-      tags:
-      - Player
       summary: Get player near matches
-      operationId: playerNearMatches
-      description: Retrieves a list of recent and upcoming matches for a specific
-        player.
+      description: Retrieves a list of recent and upcoming matches for a specific player.
+      tags:
+        - Cricket
+        - Players
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 786642
-        schema:
-          type: integer
-        description: The unique identifier for the player.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player
+          example: 786642
       responses:
         '200':
           description: A list of the player's recent and upcoming matches.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NearMatchesResponse'
-        '404':
-          description: Player with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}/matches/previous/{page}:
     get:
-      tags:
-      - Player
       summary: Get previous player matches
-      operationId: previousPlayerMatches
-      description: Fetches a paginated list of completed matches for a specific player,
-        sorted by date descending.
+      description: Fetches a paginated list of completed matches for a specific player, sorted by date descending.
+      tags:
+        - Cricket
+        - Players
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 786865
-        schema:
-          type: integer
-        description: The unique identifier for the player.
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination (starts from 1).
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the player
+          example: 786865
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 0)
+          example: 0
       responses:
         '200':
           description: A paginated list of the player's previous matches.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchListResponse'
+                type: object
+                additionalProperties: true
         '400':
           description: Invalid page number or player ID format.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Player with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
-      tags:
-      - Tournament
       summary: Get tournament total standings
-      operationId: tournamentTotalStandings
-      description: Retrieves the complete standings table for all teams in a specific
-        tournament season.
+      description: Retrieves the complete standings table for all teams in a specific tournament season.
+      tags:
+        - Cricket
+        - Tournaments
+        - Standings
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 19048
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
-      - name: seasonId
-        in: path
-        required: true
-        example: 44608
-        schema:
-          type: integer
-        description: The unique identifier for the season.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 19048
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season
+          example: 44608
       responses:
         '200':
           description: The complete standings table for the tournament season.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StandingsResponse'
-        '404':
-          description: Tournament or season with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/top-players:
     get:
-      tags:
-      - Tournament
       summary: Get tournament top players
-      operationId: tournamentTopPlayers
-      description: Retrieves the best performing players in a specific tournament
-        season.
+      description: Retrieves the best performing players in a specific tournament season.
+      tags:
+        - Cricket
+        - Tournaments
+        - Players
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 11165
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
-      - name: seasonId
-        in: path
-        required: true
-        example: 41321
-        schema:
-          type: integer
-        description: The unique identifier for the season.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 11165
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season
+          example: 41321
       responses:
         '200':
           description: A list of top performing players in the tournament.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TopPlayersResponse'
-        '404':
-          description: Tournament or season with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/image:
     get:
-      tags:
-      - Tournament
       summary: Get tournament image
-      operationId: tournamentImage
       description: Retrieves the logo image for a specific tournament.
+      tags:
+        - Cricket
+        - Tournaments
+        - Media
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 11165
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 11165
       responses:
         '200':
           description: The tournament's logo image.
@@ -1372,33 +1948,31 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Tournament or logo not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/image/dark:
     get:
-      tags:
-      - Tournament
       summary: Get tournament dark logo
-      operationId: tournamentDarkLogo
       description: Retrieves the dark theme logo image for a specific tournament.
+      tags:
+        - Cricket
+        - Tournaments
+        - Media
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
-        example: 19048
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 19048
       responses:
         '200':
           description: The tournament's dark theme logo image.
@@ -1407,63 +1981,55 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Tournament or logo not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
-      tags:
-      - Tournament
       summary: Get tournament last matches
-      operationId: tournamentLastMatches
-      description: Retrieves a paginated list of recently played matches in a specific
-        tournament season.
+      description: Retrieves a paginated list of recently played matches in a specific tournament season.
+      tags:
+        - Cricket
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 19048
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
-      - name: seasonId
-        in: path
-        required: true
-        example: 44608
-        schema:
-          type: integer
-        description: The unique identifier for the season.
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination (starts from 1).
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 19048
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season
+          example: 44608
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 0)
+          example: 0
       responses:
         '200':
           description: A paginated list of the tournament's last matches.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchListResponse'
+                type: object
+                additionalProperties: true
         '400':
           description: Invalid page number.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Tournament or season with the specified ID not found.
           content:
             application/json:
               schema:
@@ -1474,627 +2040,536 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
-      tags:
-      - Tournament
       summary: Get tournament upcoming matches
-      operationId: tournamentUpcomingMatches
-      description: Retrieves a paginated list of scheduled upcoming matches in a specific
-        tournament season.
+      description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
+      tags:
+        - Cricket
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 19048
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
-      - name: seasonId
-        in: path
-        required: true
-        example: 44608
-        schema:
-          type: integer
-        description: The unique identifier for the season.
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination (starts from 1).
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 19048
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season
+          example: 44608
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 0)
+          example: 0
       responses:
         '200':
           description: A paginated list of the tournament's upcoming matches.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchListResponse'
+                type: object
+                additionalProperties: true
         '400':
           description: Invalid page number.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Tournament or season with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}:
     get:
-      tags:
-      - Tournament
       summary: Get cricket tournament details
-      operationId: cricketTournamentDetails
       description: Retrieves comprehensive details for a specific cricket tournament.
+      tags:
+        - Cricket
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 19048
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 19048
       responses:
         '200':
           description: Comprehensive details for the tournament.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TournamentDetailsResponse'
-        '404':
-          description: Tournament with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/seasons:
     get:
-      tags:
-      - Tournament
       summary: Get cricket tournament seasons
-      operationId: cricketTournamentSeasons
       description: Retrieves a list of all available seasons for a specific tournament.
+      tags:
+        - Cricket
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 19048
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 19048
       responses:
         '200':
           description: A list of available seasons for the tournament.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SeasonsResponse'
-        '404':
-          description: Tournament with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/media:
     get:
-      tags:
-      - Tournament
       summary: Get cricket tournament media
-      operationId: cricketTournamentMedia
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
+      tags:
+        - Cricket
+        - Tournaments
+        - Media
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 11165
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 11165
       responses:
         '200':
           description: A list of media content for the tournament.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MediaResponse'
-        '404':
-          description: Tournament with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
-      tags:
-      - Tournament
       summary: Get total team events for cricket tournament season
-      operationId: totalTeamEventsForCricketTournamentSeason
-      description: Retrieves aggregated team performance statistics for all games
-        in a tournament season.
+      description: Retrieves aggregated team performance statistics for all games in a tournament season.
+      tags:
+        - Cricket
+        - Tournaments
+        - Teams
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 11184
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
-      - name: seasonId
-        in: path
-        required: true
-        example: 16828
-        schema:
-          type: integer
-        description: The unique identifier for the season.
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 11449
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the season
+          example: 80401
       responses:
         '200':
           description: Aggregated team statistics for the entire season.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TeamEventsResponse'
-        '404':
-          description: Tournament or season with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
-      tags:
-      - Tournament
       summary: Get tournament matches by date
-      operationId: tournamentMatchesByDate
-      description: Retrieves all matches for a specific tournament scheduled on a
-        given date.
+      description: Retrieves all matches for a specific tournament scheduled on a given date.
+      tags:
+        - Cricket
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: The unique identifier for the tournament.
-        example: 11162
-      - name: day
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: Day of the month (e.g., 15).
-        example: 23
-      - name: month
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: Month of the year (e.g., 7).
-        example: 12
-      - name: year
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: Year (e.g., 2024).
-        example: 2025
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the tournament
+          example: 11162
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 23
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 12
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
       responses:
         '200':
-          description: A list of scheduled matches for the tournament on the given
-            date.
+          description: A list of scheduled matches for the tournament on the given date.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchesResponse'
+                type: object
+                additionalProperties: true
         '400':
           description: Invalid date format in path.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Tournament with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/category/{id}/events/{day}/{month}/{year}:
     get:
-      tags:
-      - Category
       summary: Get cricket matches by category and date
-      operationId: cricketMatchesByCategoryAndDate
-      description: Retrieves all cricket matches for a specific category on a given
-        date.
+      description: Retrieves all cricket matches for a specific category on a given date.
+      tags:
+        - Cricket
+        - Categories
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 1350
-        schema:
-          type: integer
-        description: The unique identifier for the category.
-      - name: day
-        in: path
-        required: true
-        example: 5
-        schema:
-          type: integer
-        description: Day of the month (e.g., 15).
-      - name: month
-        in: path
-        required: true
-        example: 4
-        schema:
-          type: integer
-        description: Month of the year (e.g., 7).
-      - name: year
-        in: path
-        required: true
-        example: 2023
-        schema:
-          type: integer
-        description: Year (e.g., 2024).
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the category
+          example: 1350
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 5
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 4
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2023
       responses:
         '200':
           description: A list of scheduled matches for the category on the given date.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchesResponse'
+                type: object
+                additionalProperties: true
         '400':
           description: Invalid date format in path.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Category with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/all/category/{id}:
     get:
-      tags:
-      - Tournament
       summary: Get tournaments by category
-      operationId: tournamentsByCategory
       description: Retrieves all unique tournaments within a specific cricket category.
+      tags:
+        - Cricket
+        - Categories
+        - Tournaments
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 1505
-        schema:
-          type: integer
-        description: The unique identifier for the category.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier for the category
+          example: 1505
       responses:
         '200':
           description: A list of unique tournaments in the specified category.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TournamentsResponse'
-        '404':
-          description: Category with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                type: object
+                additionalProperties: true
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/placeholder/tournament.svg:
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/tournament/{tournamentId}/featured-events:
     get:
+      summary: Get tournament featured events
+      description: Retrieves featured/highlighted events for a tournament.
       tags:
-      - Tournament
-      summary: Get tournament placeholder image
-      operationId: tournamentPlaceholderImageTournamentSvg
-      description: Returns a static placeholder graphic for a tournament. The response
-        is an SVG image.
+        - Cricket
+        - Matches
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique tournament identifier
+          example: 8
       responses:
         '200':
-          description: The placeholder SVG image file.
+          description: Success
           content:
-            image/svg+xml:
+            application/json:
               schema:
-                type: string
-                format: binary
+                $ref: '#/components/schemas/JSONResult'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/placeholder/team.svg:
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/tournament/{tournamentId}/winners:
     get:
+      summary: Get tournament winners
+      description: Retrieves historical winners of a tournament.
       tags:
-      - Team
-      summary: Get team placeholder image
-      operationId: teamPlaceholderImage
-      description: Returns a static placeholder graphic for a team. The response is
-        an SVG image.
+        - Cricket
+        - Tournaments
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique tournament identifier
+          example: 8
       responses:
         '200':
-          description: The placeholder SVG image file.
+          description: Success
           content:
-            image/svg+xml:
+            application/json:
               schema:
-                type: string
-                format: binary
+                $ref: '#/components/schemas/JSONResult'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/placeholder/player.png:
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/tournament/{tournamentId}/scheduled-events/{date}:
     get:
+      summary: Get tournament events on date
+      description: Retrieves all events for a tournament on a specific date.
       tags:
-      - Player
-      summary: Get player placeholder image
-      operationId: playerPlaceholderImage
-      description: Returns a static placeholder graphic for a player. The response
-        is an SVG image.
+        - Cricket
+        - Matches
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique tournament identifier
+          example: 8
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Date in YYYY-MM-DD format
+          example: '2026-03-18'
       responses:
         '200':
-          description: The placeholder SVG image file.
+          description: Success
           content:
-            image/svg+xml:
+            application/json:
               schema:
-                type: string
-                format: binary
+                $ref: '#/components/schemas/JSONResult'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/placeholder/player.svg:
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/tournament/{tournamentId}/season/{seasonId}/venues:
     get:
+      summary: Get tournament season venues
+      description: Retrieves all venues used in a tournament season.
       tags:
-      - Player
-      summary: Get player placeholder image
-      operationId: playerPlaceholderImagePlayerSvg
-      description: Returns a static placeholder graphic for a player. The response
-        is an SVG image.
+        - Cricket
+        - Tournaments
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique tournament identifier
+          example: 8
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 61643
       responses:
         '200':
-          description: The placeholder SVG image file.
+          description: Success
           content:
-            image/svg+xml:
+            application/json:
               schema:
-                type: string
-                format: binary
+                $ref: '#/components/schemas/JSONResult'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/placeholder/manager.png:
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/tournament/{tournamentId}/season/{seasonId}/player-statistics/types:
     get:
+      summary: Get player statistics info
+      description: Retrieves available player statistic categories for a tournament season.
       tags:
-      - Manager
-      summary: Get manager placeholder image
-      operationId: managerPlaceholderImage
-      description: Returns a static placeholder graphic for a manager. The response
-        is an SVG image.
+        - Cricket
+        - Players
+      parameters:
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique tournament identifier
+          example: 8
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 61643
       responses:
         '200':
-          description: The placeholder SVG image file.
+          description: Success
           content:
-            image/svg+xml:
+            application/json:
               schema:
-                type: string
-                format: binary
+                $ref: '#/components/schemas/JSONResult'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /api/placeholder/manager.svg:
-    get:
-      tags:
-      - Manager
-      summary: Get manager placeholder image
-      operationId: managerPlaceholderImageManagerSvg
-      description: Returns a static placeholder graphic for a manager. The response
-        is an SVG image.
-      responses:
-        '200':
-          description: The placeholder SVG image file.
-          content:
-            image/svg+xml:
-              schema:
-                type: string
-                format: binary
-        '500':
-          description: Internal server error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            status:
-              type: integer
-              example: 404
-            title:
-              type: string
-              example: Not Found
-            request_id:
-              type: string
-              example: req-12345
     JSONResult:
       type: object
-      description: Generic JSON response from the upstream API. The actual structure
-        varies by endpoint.
-    SearchResponse:
+      additionalProperties: true
+      description: Generic JSON proxy payload.
+    ErrorResponse:
       type: object
-    CategoriesResponse:
-      type: object
-    MatchesResponse:
-      type: object
-    LiveMatchesResponse:
-      type: object
-    MatchDetailsResponse:
-      type: object
-    MatchFormResponse:
-      type: object
-    MatchOddsResponse:
-      type: object
-    BestPlayersResponse:
-      type: object
-    H2HSummaryResponse:
-      type: object
-    HighlightsResponse:
-      type: object
-    H2HHistoryResponse:
-      type: object
-    LineupsResponse:
-      type: object
-    MatchStatisticsResponse:
-      type: object
-    GraphResponse:
-      type: object
-    IncidentsResponse:
-      type: object
-    ManagersResponse:
-      type: object
-    SeriesResponse:
-      type: object
-    PlayerMatchStatsResponse:
-      type: object
-    ShotMapResponse:
-      type: object
-    MatchListResponse:
-      type: object
-    SeasonsResponse:
-      type: object
-    TopPlayersResponse:
-      type: object
-    TournamentsResponse:
-      type: object
-    TransfersResponse:
-      type: object
-    PlayersResponse:
-      type: object
-    NearMatchesResponse:
-      type: object
-    MediaResponse:
-      type: object
-    TeamDetailsResponse:
-      type: object
-    TeamStatisticsResponse:
-      type: object
-    TeamRanksResponse:
-      type: object
-    PlayerDetailsResponse:
-      type: object
-    TransferHistoryResponse:
-      type: object
-    PlayerStatisticsResponse:
-      type: object
-    ShotActionsResponse:
-      type: object
-    ManagerDetailsResponse:
-      type: object
-    StandingsResponse:
-      type: object
-    TournamentDetailsResponse:
-      type: object
-    CupTreesResponse:
-      type: object
-    TopTeamsResponse:
-      type: object
-    TopPlayersPerGameResponse:
-      type: object
-    StatisticsTypesResponse:
-      type: object
-    ShotAreasResponse:
-      type: object
-    TeamEventsResponse:
-      type: object
-    RoundsResponse:
-      type: object
-    GroupsResponse:
-      type: object
-    InningsResponse:
-      type: object
-    VotesResponse:
-      type: object
-tags:
-- name: Category
-  description: Category endpoints.
-- name: Country
-  description: Country assets and metadata.
-- name: Manager
-  description: Manager endpoints.
-- name: Match
-  description: Match endpoints.
-- name: Player
-  description: Player endpoints.
-- name: Search
-  description: Search endpoints.
-- name: TV
-  description: TV broadcast endpoints.
-- name: Team
-  description: Team endpoints.
-- name: Tournament
-  description: Tournament endpoints.
+      additionalProperties: true
+      description: Generic error payload.

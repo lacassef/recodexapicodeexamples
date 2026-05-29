@@ -1,28 +1,27 @@
 openapi: 3.0.0
 info:
-  title: HandballAPI
+  title: Handball API
   version: 1.0.0
-  description: This is the OpenAPI specification for the HandballAPI.
+  description: OpenAPI specification generated from SofaScore route annotations.
 servers:
-- url: http://localhost:8080
-  description: Local development server
+  - url: http://localhost:8080
+    description: Local development server
 paths:
   /api/tv/country/all/event/{id}:
     get:
-      tags:
-      - TV
       summary: Get match TV countries
-      operationId: matchTvCountries
-      description: Lists the countries and the TV channels within them that are broadcasting
-        a specific match.
+      description: Lists the countries and the TV channels within them that are broadcasting a specific match.
+      tags:
+        - AllSports
+        - TV
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10974920
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match
+          example: 14081808
       responses:
         '200':
           description: A JSON object listing countries and their broadcasting channels.
@@ -30,41 +29,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
-      tags:
-      - TV
       summary: Get match TV channel votes
-      operationId: matchTvChannelVotes
-      description: Fetches viewer voting data from a specific TV channel that is broadcasting
-        the match.
+      description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
+      tags:
+        - AllSports
+        - TV
       parameters:
-      - name: channId
-        in: path
-        required: true
-        example: 3177
-        schema:
-          type: integer
-        description: The unique identifier for the TV channel.
-      - name: id
-        in: path
-        required: true
-        example: 10974920
-        schema:
-          type: integer
-        description: The unique identifier for the match.
+        - name: channId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the TV channel
+          example: 3177
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier for the match
+          example: 10974920
       responses:
         '200':
           description: A JSON object containing viewer vote data from the channel.
@@ -72,34 +67,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match or channel with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
-      tags:
-      - Country
       summary: Get country flag
-      operationId: countryFlag
-      description: Fetches the PNG flag image asset corresponding to a provided country
-        code. The response is the raw image data.
+      description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
+        image data.
+      tags:
+        - AllSports
       parameters:
-      - name: flag
-        in: path
-        required: true
-        example: jp
-        schema:
-          type: string
-        description: Country code or identifier (e.g., 'EN' for England).
+        - name: flag
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier
+          example: jp
       responses:
         '200':
           description: The country's flag image file.
@@ -108,34 +99,29 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Flag with the specified code not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
-      tags:
-      - Country
       summary: Get country flag (img API)
-      operationId: countryFlagImgApi
-      description: Fetches the flag image by country code. The response is the raw
-        image data.
+      description: Fetches the flag image from the SofaScore image API by country code.
+      tags:
+        - AllSports
       parameters:
-      - name: code
-        in: path
-        required: true
-        schema:
-          type: string
-        description: Country code or identifier (e.g., 'EN' for England).
-        example: AU
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Country code or identifier
+          example: AU
       responses:
         '200':
           description: The country's flag image file.
@@ -144,26 +130,22 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Flag with the specified code not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
-      tags:
-      - Tournament
       summary: Get tournament placeholder image
-      operationId: tournamentPlaceholderImage
-      description: Returns a static placeholder graphic for a tournament. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      tags:
+        - AllSports
+        - Tournaments
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -178,14 +160,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
-      tags:
-      - Tournament
       summary: Get tournament placeholder image
-      operationId: tournamentPlaceholderImageTournamentSvg
-      description: Returns a static placeholder graphic for a tournament. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
+      tags:
+        - AllSports
+        - Tournaments
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -200,14 +184,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
-      tags:
-      - Team
       summary: Get team placeholder image
-      operationId: teamPlaceholderImage
-      description: Returns a static placeholder graphic for a team. The response is
-        an SVG image.
+      description: Returns a static placeholder graphic for a team. The response is an SVG image.
+      tags:
+        - AllSports
+        - Teams
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -222,14 +208,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
-      tags:
-      - Player
       summary: Get player placeholder image
-      operationId: playerPlaceholderImage
-      description: Returns a static placeholder graphic for a player. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      tags:
+        - AllSports
+        - Players
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -244,14 +232,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
-      tags:
-      - Player
       summary: Get player placeholder image
-      operationId: playerPlaceholderImagePlayerSvg
-      description: Returns a static placeholder graphic for a player. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a player. The response is an SVG image.
+      tags:
+        - AllSports
+        - Players
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -266,14 +256,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
-      tags:
-      - Manager
       summary: Get manager placeholder image
-      operationId: managerPlaceholderImage
-      description: Returns a static placeholder graphic for a manager. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      tags:
+        - AllSports
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -288,14 +279,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
-      tags:
-      - Manager
       summary: Get manager placeholder image
-      operationId: managerPlaceholderImageManagerSvg
-      description: Returns a static placeholder graphic for a manager. The response
-        is an SVG image.
+      description: Returns a static placeholder graphic for a manager. The response is an SVG image.
+      tags:
+        - AllSports
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -310,28 +302,324 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/calendar/season/{seasonId}/{year}/days-with-events:
+    get:
+      summary: Get calendar days with events
+      description: Retrieves days that have events for a specific season and year.
+      tags:
+        - Sofascore
+        - Calendar
+      parameters:
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season identifier
+          example: 61643
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Calendar year
+          example: 2026
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/category/{categoryId}/image:
+    get:
+      summary: Get category image
+      description: Retrieves the image/logo for a sport category.
+      tags:
+        - Sofascore
+        - Categories
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Sport category identifier
+          example: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/countries/all:
+    get:
+      summary: Get all countries
+      description: Retrieves a list of all available countries.
+      tags:
+        - Sofascore
+        - Config
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/rankings/team/{teamId}:
+    get:
+      summary: Get team rankings
+      description: Retrieves rankings for a specific team.
+      tags:
+        - Sofascore
+        - Rankings
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Unique team identifier
+          example: 2817
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/all:
+    get:
+      summary: Search all entities
+      description: Searches across all entity types (teams, players, tournaments).
+      tags:
+        - Sofascore
+        - Search
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/suggestions/{entityType}:
+    get:
+      summary: Get search suggestions
+      description: Retrieves search suggestions for a specific entity type.
+      tags:
+        - Sofascore
+        - Search
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Entity type (teams, players, events, tournaments)
+          example: teams
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/unique-tournaments:
+    get:
+      summary: Search unique tournaments
+      description: Searches for unique tournaments.
+      tags:
+        - Sofascore
+        - Search
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/search/{entityType}:
+    get:
+      summary: Search by entity type
+      description: Searches for entities of a specific type.
+      tags:
+        - Sofascore
+        - Search
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Entity type (teams, players, events, tournaments)
+          example: teams
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/tv/channel/{id}/schedule:
+    get:
+      summary: Get TV channel schedule
+      description: Retrieves the broadcast schedule for a specific TV channel.
+      tags:
+        - Sofascore
+        - TV
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: TV channel identifier
+          example: 3177
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/tv/country/{countryCode}/channels:
+    get:
+      summary: Get country TV channels
+      description: Retrieves available TV channels for a specific country.
+      tags:
+        - Sofascore
+        - TV
+      parameters:
+        - name: countryCode
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ISO 3166-1 alpha-2 country code
+          example: MZ
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/search/{term}:
     get:
-      tags:
-      - Search
       summary: Search handball entities
-      operationId: handballEntities
       description: Searches for handball teams, players, and tournaments.
+      tags:
+        - Handball
+        - Search
       parameters:
-      - name: term
-        in: path
-        required: true
-        example: asobal
-        schema:
-          type: string
-        description: Search term (e.g., 'Kiel')
-      - name: page
-        in: query
-        required: false
-        schema:
-          type: integer
-        description: Page number for pagination
-        example: 0
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Search term
+          example: asobal
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination (defaults to 0)
+          example: 0
       responses:
         '200':
           description: A list of search results for teams, players, and tournaments.
@@ -351,43 +639,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/category/{id}/events/{day}/{month}/{year}:
     get:
-      tags:
-      - Category
       summary: Get handball matches by category and date
-      operationId: handballMatchesByCategoryAndDate
-      description: Retrieves all handball matches for a specific category on a given
-        date.
+      description: Retrieves all handball matches for a specific category on a given date.
+      tags:
+        - Handball
+        - Categories
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 71
-        schema:
-          type: integer
-        description: Category ID
-      - name: day
-        in: path
-        required: true
-        example: 24
-        schema:
-          type: integer
-        description: Day of the month (1-31)
-      - name: month
-        in: path
-        required: true
-        example: 5
-        schema:
-          type: integer
-        description: Month (1-12)
-      - name: year
-        in: path
-        required: true
-        example: 2023
-        schema:
-          type: integer
-        description: Year (e.g., 2024)
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID
+          example: 71
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (1-31)
+          example: 24
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month (1-12)
+          example: 5
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2023
       responses:
         '200':
           description: A list of scheduled matches for the category on the given date.
@@ -401,25 +692,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Category with the specified ID not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/matches/live:
     get:
-      tags:
-      - Match
       summary: Get live handball matches
-      operationId: liveHandballMatches
       description: Retrieves all currently live handball matches.
+      tags:
+        - Handball
+        - Matches
       responses:
         '200':
           description: A list of live handball matches.
@@ -433,13 +721,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/tournament/categories:
     get:
-      tags:
-      - Tournament
       summary: Get handball tournament categories
-      operationId: handballTournamentCategories
       description: Retrieves all available handball tournament categories (countries/regions).
+      tags:
+        - Handball
+        - Tournaments
+        - Categories
       responses:
         '200':
           description: A list of tournament categories.
@@ -453,21 +745,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/all/category/{id}:
     get:
-      tags:
-      - Tournament
       summary: Get tournaments by category
-      operationId: tournamentsByCategory
       description: Retrieves all handball tournaments within a specific category.
+      tags:
+        - Handball
+        - Categories
+        - Tournaments
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 71
-        schema:
-          type: integer
-        description: Category ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Category ID
+          example: 71
       responses:
         '200':
           description: A list of tournaments for the specified category.
@@ -475,47 +771,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Category not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/matches/{day}/{month}/{year}:
     get:
-      tags:
-      - Match
       summary: Get handball matches by date
-      operationId: handballMatchesByDate
       description: Fetches all handball matches scheduled for a specific date.
+      tags:
+        - Handball
+        - Matches
       parameters:
-      - name: day
-        in: path
-        required: true
-        example: 13
-        schema:
-          type: integer
-        description: Day of the month (1-31)
-      - name: month
-        in: path
-        required: true
-        example: 5
-        schema:
-          type: integer
-        description: Month (1-12)
-      - name: year
-        in: path
-        required: true
-        example: 2023
-        schema:
-          type: integer
-        description: Year (e.g., 2024)
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (1-31)
+          example: 13
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month (1-12)
+          example: 5
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2023
       responses:
         '200':
           description: A list of scheduled matches for the given date.
@@ -535,21 +828,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}:
     get:
-      tags:
-      - Match
       summary: Get handball match details
-      operationId: handballMatchDetails
       description: Retrieves detailed information about a specific handball match.
+      tags:
+        - Handball
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10485769
-        schema:
-          type: integer
-        description: Match ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match ID
+          example: 10485769
       responses:
         '200':
           description: Detailed information about the match.
@@ -557,34 +853,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/odds:
     get:
-      tags:
-      - Match
       summary: Get match betting odds
-      operationId: matchBettingOdds
-      description: Retrieves betting odds from various bookmakers for the handball
-        match.
+      description: Retrieves betting odds from various bookmakers for the handball match.
+      tags:
+        - Handball
+        - Matches
+        - Odds
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10485769
-        schema:
-          type: integer
-        description: Match ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match ID
+          example: 10485769
       responses:
         '200':
           description: A list of available betting odds for the match.
@@ -592,33 +885,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/incidents:
     get:
-      tags:
-      - Match
       summary: Get match incidents
-      operationId: matchIncidents
       description: Retrieves all incidents and events that occurred during the match.
+      tags:
+        - Handball
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10485760
-        schema:
-          type: integer
-        description: Match ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match ID
+          example: 10485760
       responses:
         '200':
           description: A list of incidents from the match.
@@ -626,33 +916,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/best-players:
     get:
-      tags:
-      - Match
       summary: Get match best players
-      operationId: matchBestPlayers
       description: Retrieves the best performing players from the match.
+      tags:
+        - Handball
+        - Matches
+        - Players
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10485760
-        schema:
-          type: integer
-        description: Match ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match ID
+          example: 10485760
       responses:
         '200':
           description: A list of the best performing players in the match.
@@ -660,33 +948,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/votes:
     get:
-      tags:
-      - Match
       summary: Get match votes
-      operationId: matchVotes
       description: Retrieves fan voting results for the match.
+      tags:
+        - Handball
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10485760
-        schema:
-          type: integer
-        description: Match ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match ID
+          example: 10485760
       responses:
         '200':
           description: Fan voting results for the match.
@@ -694,33 +979,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/duel:
     get:
-      tags:
-      - Match
       summary: Get head-to-head summary
-      operationId: headToHeadSummary
       description: Retrieves a summary of head-to-head statistics between the teams.
+      tags:
+        - Handball
+        - Matches
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10485760
-        schema:
-          type: integer
-        description: Match ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match ID
+          example: 10485760
       responses:
         '200':
           description: A summary of H2H statistics.
@@ -728,33 +1011,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/form:
     get:
-      tags:
-      - Match
       summary: Get match form analysis
-      operationId: matchFormAnalysis
       description: Retrieves recent form and performance trends for teams in the match.
+      tags:
+        - Handball
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10485760
-        schema:
-          type: integer
-        description: Match ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match ID
+          example: 10485760
       responses:
         '200':
           description: Pregame form and performance trends for the teams.
@@ -762,33 +1042,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/lineups:
     get:
-      tags:
-      - Match
       summary: Get match lineups
-      operationId: matchLineups
       description: Retrieves starting lineups and player positions for both teams.
+      tags:
+        - Handball
+        - Matches
+        - Players
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10485769
-        schema:
-          type: integer
-        description: Match ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match ID
+          example: 10485769
       responses:
         '200':
           description: Starting lineups and substitutes for the match.
@@ -796,33 +1074,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/statistics:
     get:
-      tags:
-      - Match
       summary: Get match statistics
-      operationId: matchStatistics
       description: Retrieves comprehensive statistical data for the handball match.
+      tags:
+        - Handball
+        - Matches
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10485769
-        schema:
-          type: integer
-        description: Match ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match ID
+          example: 10485769
       responses:
         '200':
           description: Comprehensive statistics for the match.
@@ -830,33 +1106,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/streaks:
     get:
-      tags:
-      - Match
       summary: Get match streaks
-      operationId: matchStreaks
       description: Retrieves winning/scoring streaks information for the match.
+      tags:
+        - Handball
+        - Matches
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 10485769
-        schema:
-          type: integer
-        description: Match ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match ID
+          example: 10485769
       responses:
         '200':
           description: Streak information for both teams.
@@ -864,33 +1138,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{customId}/h2h:
     get:
-      tags:
-      - Match
       summary: Get head-to-head history
-      operationId: headToHeadHistory
       description: Retrieves detailed head-to-head match history between the teams.
+      tags:
+        - Handball
+        - Matches
+        - Statistics
       parameters:
-      - name: customId
-        in: path
-        required: true
-        example: FEbsxAc
-        schema:
-          type: string
-        description: Custom match identifier
+        - name: customId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Custom match identifier
+          example: tAcsmjd
       responses:
         '200':
           description: A detailed list of past H2H matches.
@@ -898,41 +1170,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/matches/previous/{page}:
     get:
-      tags:
-      - Team
       summary: Get previous team matches
-      operationId: previousTeamMatches
-      description: Fetches a list of completed matches for the team, sorted by date
-        descending.
+      description: Fetches a list of completed matches for the team, sorted by date descending.
+      tags:
+        - Handball
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 6272
-        schema:
-          type: integer
-        description: Team ID
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination (starts from 1).
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 6272
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 0)
+          example: 0
       responses:
         '200':
           description: A paginated list of the team's previous matches.
@@ -946,41 +1215,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/matches/next/{page}:
     get:
-      tags:
-      - Team
       summary: Get upcoming team matches
-      operationId: upcomingTeamMatches
-      description: Fetches a list of scheduled matches for the team, sorted by date
-        ascending.
+      description: Fetches a list of scheduled matches for the team, sorted by date ascending.
+      tags:
+        - Handball
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 6272
-        schema:
-          type: integer
-        description: Team ID
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination (starts from 1).
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 6272
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 0)
+          example: 0
       responses:
         '200':
           description: A paginated list of the team's upcoming matches.
@@ -994,33 +1260,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}:
     get:
-      tags:
-      - Team
       summary: Get handball team details
-      operationId: handballTeamDetails
       description: Retrieves comprehensive information about a handball team.
+      tags:
+        - Handball
+        - Teams
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 6272
-        schema:
-          type: integer
-        description: Team ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 6272
       responses:
         '200':
           description: Comprehensive details for the team.
@@ -1028,33 +1291,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/players:
     get:
-      tags:
-      - Team
       summary: Get team players
-      operationId: teamPlayers
       description: Retrieves the current roster of players for the team.
+      tags:
+        - Handball
+        - Teams
+        - Players
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 6272
-        schema:
-          type: integer
-        description: Team ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 6272
       responses:
         '200':
           description: The current roster of players for the team.
@@ -1062,33 +1323,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/matches/near:
     get:
-      tags:
-      - Team
       summary: Get team near matches
-      operationId: teamNearMatches
       description: Retrieves recent and upcoming matches for the team.
+      tags:
+        - Handball
+        - Teams
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 6272
-        schema:
-          type: integer
-        description: Team ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 6272
       responses:
         '200':
           description: A list of recent and upcoming matches.
@@ -1096,33 +1355,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/unique-tournaments:
     get:
-      tags:
-      - Team
       summary: Get team tournaments
-      operationId: teamTournaments
       description: Retrieves all tournaments the team participates in.
+      tags:
+        - Handball
+        - Teams
+        - Tournaments
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 6272
-        schema:
-          type: integer
-        description: Team ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 6272
       responses:
         '200':
           description: A list of unique tournaments the team has participated in.
@@ -1130,33 +1387,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/standings/seasons:
     get:
-      tags:
-      - Team
       summary: Get team standings seasons
-      operationId: teamStandingsSeasons
       description: Retrieves available seasons for team standings data.
+      tags:
+        - Handball
+        - Teams
+        - Standings
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 6272
-        schema:
-          type: integer
-        description: Team ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 6272
       responses:
         '200':
           description: A list of seasons with available standings.
@@ -1164,33 +1419,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/player-statistics/seasons:
     get:
-      tags:
-      - Team
       summary: Get team player statistics seasons
-      operationId: teamPlayerStatisticsSeasons
       description: Retrieves available seasons for team player statistics.
+      tags:
+        - Handball
+        - Teams
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 6272
-        schema:
-          type: integer
-        description: Team ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 6272
       responses:
         '200':
           description: A list of seasons with available player statistics.
@@ -1198,48 +1451,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Team not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/unique-tournament/{tournamentId}/season/{seasonId}/top-players/overall:
     get:
-      tags:
-      - Team
       summary: Get team top players overall
-      operationId: teamTopPlayersOverall
-      description: Retrieves the best performing players for the team in a specific
-        tournament season.
+      description: Retrieves the best performing players for the team in a specific tournament season.
+      tags:
+        - Handball
+        - Teams
+        - Players
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 6272
-        schema:
-          type: integer
-        description: Team ID
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 6272
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: A list of the team's top players for the season.
@@ -1247,40 +1498,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Team, tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
-      tags:
-      - Tournament
       summary: Get tournament total standings
-      operationId: tournamentTotalStandings
       description: Retrieves complete standings table for all teams in the tournament.
+      tags:
+        - Handball
+        - Tournaments
+        - Standings
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: The complete standings table for the tournament season.
@@ -1288,40 +1537,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
-      tags:
-      - Tournament
       summary: Get tournament home standings
-      operationId: tournamentHomeStandings
       description: Retrieves standings based on home games only.
+      tags:
+        - Handball
+        - Tournaments
+        - Standings
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: The home standings table for the tournament season.
@@ -1329,40 +1576,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/standings/away:
     get:
-      tags:
-      - Tournament
       summary: Get tournament away standings
-      operationId: tournamentAwayStandings
       description: Retrieves standings based on away games only.
+      tags:
+        - Handball
+        - Tournaments
+        - Standings
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: The away standings table for the tournament season.
@@ -1370,33 +1615,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}:
     get:
-      tags:
-      - Tournament
       summary: Get tournament details
-      operationId: tournamentDetails
       description: Retrieves comprehensive information about a handball tournament.
+      tags:
+        - Handball
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
       responses:
         '200':
           description: Comprehensive details for the tournament.
@@ -1404,33 +1646,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/seasons:
     get:
-      tags:
-      - Tournament
       summary: Get tournament seasons
-      operationId: tournamentSeasons
       description: Retrieves all available seasons for the tournament.
+      tags:
+        - Handball
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
       responses:
         '200':
           description: A list of available seasons for the tournament.
@@ -1438,40 +1677,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/player-statistics/types:
     get:
-      tags:
-      - Tournament
       summary: Get player statistics types
-      operationId: playerStatisticsTypes
       description: Retrieves available player statistics categories for the tournament.
+      tags:
+        - Handball
+        - Tournaments
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: A list of available player statistics types.
@@ -1479,40 +1716,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-players/overall:
     get:
-      tags:
-      - Tournament
       summary: Get top players overall
-      operationId: topPlayersOverall
       description: Retrieves the best performing players for the entire season.
+      tags:
+        - Handball
+        - Tournaments
+        - Players
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: A list of the top performing players for the season.
@@ -1520,40 +1756,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-players-per-game/all/overall:
     get:
-      tags:
-      - Tournament
       summary: Get top players per game
-      operationId: topPlayersPerGame
       description: Retrieves the best performing players based on per-game averages.
+      tags:
+        - Handball
+        - Tournaments
+        - Players
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: Player rankings based on per-game averages.
@@ -1561,40 +1796,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-teams/overall:
     get:
-      tags:
-      - Tournament
       summary: Get top teams overall
-      operationId: topTeamsOverall
       description: Retrieves the best performing teams for the entire season.
+      tags:
+        - Handball
+        - Tournaments
+        - Teams
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: A list of the top performing teams for the season.
@@ -1602,40 +1836,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
-      tags:
-      - Tournament
       summary: Get team events total statistics
-      operationId: teamEventsTotalStatistics
       description: Retrieves aggregated team performance statistics for all games.
+      tags:
+        - Handball
+        - Tournaments
+        - Teams
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: Aggregated team statistics for the entire season.
@@ -1643,40 +1876,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
-      tags:
-      - Tournament
       summary: Get team events home statistics
-      operationId: teamEventsHomeStatistics
       description: Retrieves aggregated team performance statistics for home games.
+      tags:
+        - Handball
+        - Tournaments
+        - Teams
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: Aggregated team statistics for home games.
@@ -1684,40 +1916,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
-      tags:
-      - Tournament
       summary: Get team events away statistics
-      operationId: teamEventsAwayStatistics
       description: Retrieves aggregated team performance statistics for away games.
+      tags:
+        - Handball
+        - Tournaments
+        - Teams
+        - Statistics
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: Aggregated team statistics for away games.
@@ -1725,47 +1956,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
-      tags:
-      - Tournament
       summary: Get tournament last matches
-      operationId: tournamentLastMatches
       description: Retrieves recently played matches in the tournament.
+      tags:
+        - Handball
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination (starts from 1).
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 0)
+          example: 0
       responses:
         '200':
           description: A paginated list of the tournament's last matches.
@@ -1779,47 +2008,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
-      tags:
-      - Tournament
       summary: Get tournament upcoming matches
-      operationId: tournamentUpcomingMatches
       description: Retrieves scheduled upcoming matches in the tournament.
+      tags:
+        - Handball
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination (starts from 1).
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 78525
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 0)
+          example: 0
       responses:
         '200':
           description: A paginated list of the tournament's upcoming matches.
@@ -1833,33 +2060,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}:
     get:
-      tags:
-      - Player
       summary: Get handball player details
-      operationId: handballPlayerDetails
       description: Retrieves comprehensive information about a handball player.
+      tags:
+        - Handball
+        - Players
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 944907
-        schema:
-          type: integer
-        description: Player ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Player ID
+          example: 944907
       responses:
         '200':
           description: Comprehensive details for the player.
@@ -1867,33 +2091,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Player not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}/matches/near:
     get:
-      tags:
-      - Player
       summary: Get player near matches
-      operationId: playerNearMatches
       description: Retrieves recent and upcoming matches for the player.
+      tags:
+        - Handball
+        - Players
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 944907
-        schema:
-          type: integer
-        description: Player ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Player ID
+          example: 944907
       responses:
         '200':
           description: A list of the player's recent and upcoming matches.
@@ -1901,41 +2123,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Player not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}/matches/previous/{page}:
     get:
-      tags:
-      - Player
       summary: Get previous player matches
-      operationId: previousPlayerMatches
-      description: Fetches a list of completed matches for the player, sorted by date
-        descending.
+      description: Fetches a list of completed matches for the player, sorted by date descending.
+      tags:
+        - Handball
+        - Players
+        - Matches
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 944907
-        schema:
-          type: integer
-        description: Player ID
-      - name: page
-        in: path
-        required: true
-        example: 0
-        schema:
-          type: integer
-        description: Page number for pagination (starts from 1).
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Player ID
+          example: 944907
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number for pagination (starts from 0)
+          example: 0
       responses:
         '200':
           description: A paginated list of the player's previous matches.
@@ -1949,33 +2168,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Player not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}/statistics/season:
     get:
-      tags:
-      - Player
       summary: Get player statistics seasons
-      operationId: playerStatisticsSeasons
       description: Retrieves available seasons for player statistics.
+      tags:
+        - Handball
+        - Players
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 944907
-        schema:
-          type: integer
-        description: Player ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Player ID
+          example: 944907
       responses:
         '200':
           description: A list of seasons with available statistics.
@@ -1983,48 +2200,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Player not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}/unique-tournament/{tournamentId}/season/{seasonId}/statistics/overall:
     get:
-      tags:
-      - Player
       summary: Get player overall statistics
-      operationId: playerOverallStatistics
-      description: Retrieves player's overall statistics for a specific tournament
-        season.
+      description: Retrieves player's overall statistics for a specific tournament season.
+      tags:
+        - Handball
+        - Players
+        - Statistics
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 944907
-        schema:
-          type: integer
-        description: Player ID
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42967
-        schema:
-          type: integer
-        description: Season ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Player ID
+          example: 944907
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42967
       responses:
         '200':
           description: The player's overall statistics for the season.
@@ -2032,40 +2246,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Player, tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/cuptrees:
     get:
-      tags:
-      - Tournament
       summary: Get tournament cup trees
-      operationId: tournamentCupTrees
       description: Retrieves playoff/knockout bracket structure for the tournament.
+      tags:
+        - Handball
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 160
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 24048
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 160
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 24048
       responses:
         '200':
           description: The knockout bracket for the tournament season.
@@ -2073,33 +2284,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/media:
     get:
-      tags:
-      - Tournament
       summary: Get tournament media
-      operationId: tournamentMedia
       description: Retrieves media content for the tournament.
+      tags:
+        - Handball
+        - Tournaments
+        - Media
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 30
-        schema:
-          type: integer
-        description: Tournament ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 30
       responses:
         '200':
           description: A list of media content for the tournament.
@@ -2107,40 +2316,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/tournament/{tournamentId}/season/{seasonId}/matches:
     get:
-      tags:
-      - Tournament
       summary: Get tournament season matches
-      operationId: tournamentSeasonMatches
       description: Retrieves all matches for a tournament season.
+      tags:
+        - Handball
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 2465
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42851
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 2465
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42851
       responses:
         '200':
           description: A list of all events for the season.
@@ -2148,40 +2355,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/groups:
     get:
-      tags:
-      - Tournament
       summary: Get tournament groups
-      operationId: tournamentGroups
       description: Retrieves group stage information for the tournament.
+      tags:
+        - Handball
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 30
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42851
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 30
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42851
       responses:
         '200':
           description: Group stage information for the tournament season.
@@ -2189,40 +2393,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
-      tags:
-      - Tournament
       summary: Get tournament rounds
-      operationId: tournamentRounds
       description: Retrieves all rounds/game weeks for the tournament season.
+      tags:
+        - Handball
+        - Tournaments
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 30
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42851
-        schema:
-          type: integer
-        description: Season ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 30
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42851
       responses:
         '200':
           description: A list of rounds for the tournament season.
@@ -2230,47 +2431,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament or season not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}:
     get:
-      tags:
-      - Tournament
       summary: Get tournament matches by round
-      operationId: tournamentMatchesByRound
       description: Retrieves matches for a specific round in the tournament.
+      tags:
+        - Handball
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 30
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42851
-        schema:
-          type: integer
-        description: Season ID
-      - name: round
-        in: path
-        required: true
-        example: 3
-        schema:
-          type: integer
-        description: Round number
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 30
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42851
+        - name: round
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Round number
+          example: 3
       responses:
         '200':
           description: A list of matches for the specified round.
@@ -2278,54 +2477,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament, season, or round not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}/slug/{slug}:
     get:
-      tags:
-      - Tournament
       summary: Get tournament matches by round with slug
-      operationId: tournamentMatchesByRoundWithSlug
       description: Retrieves matches for a specific round with tournament slug.
+      tags:
+        - Handball
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 30
-        schema:
-          type: integer
-        description: Tournament ID
-      - name: seasonId
-        in: path
-        required: true
-        example: 42851
-        schema:
-          type: integer
-        description: Season ID
-      - name: round
-        in: path
-        required: true
-        example: 27
-        schema:
-          type: integer
-        description: Round number
-      - name: slug
-        in: path
-        required: true
-        example: quarterfinal
-        schema:
-          type: string
-        description: Tournament slug
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 30
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Season ID
+          example: 42851
+        - name: round
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Round number
+          example: 27
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Tournament slug
+          example: quarterfinal
       responses:
         '200':
           description: A list of matches for the specified round and slug.
@@ -2333,33 +2530,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Tournament, season, round, or slug not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/highlights:
     get:
-      tags:
-      - Match
       summary: Get match highlights
-      operationId: matchHighlights
       description: Retrieves video highlights and key moments from the match.
+      tags:
+        - Handball
+        - Matches
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 11179097
-        schema:
-          type: integer
-        description: Match ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Match ID
+          example: 14211254
       responses:
         '200':
           description: A list of video highlights for the match.
@@ -2367,33 +2562,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JSONResult'
-        '404':
-          description: Match not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/image:
     get:
-      tags:
-      - Tournament
       summary: Get tournament logo
-      operationId: tournamentLogo
       description: Retrieves the tournament's logo image.
+      tags:
+        - Handball
+        - Tournaments
+        - Media
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        example: 149
-        schema:
-          type: integer
-        description: Tournament ID
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
       responses:
         '200':
           description: Tournament logo image.
@@ -2402,33 +2595,31 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Tournament or logo not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/image/dark:
     get:
-      tags:
-      - Tournament
       summary: Get tournament dark logo
-      operationId: tournamentDarkLogo
       description: Retrieves the tournament's dark theme logo image.
+      tags:
+        - Handball
+        - Tournaments
+        - Media
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: Tournament ID
-        example: 149
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
       responses:
         '200':
           description: Tournament dark logo image.
@@ -2437,33 +2628,31 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Tournament or logo not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/image:
     get:
-      tags:
-      - Team
       summary: Get team logo
-      operationId: teamLogo
       description: Retrieves the team's logo image.
+      tags:
+        - Handball
+        - Teams
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 6272
-        schema:
-          type: integer
-        description: Team ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Team ID
+          example: 6272
       responses:
         '200':
           description: Team logo image.
@@ -2472,33 +2661,31 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Team or logo not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}/image:
     get:
-      tags:
-      - Player
       summary: Get player image
-      operationId: playerImage
       description: Retrieves the player's profile image.
+      tags:
+        - Handball
+        - Players
+        - Media
       parameters:
-      - name: id
-        in: path
-        required: true
-        example: 944907
-        schema:
-          type: integer
-        description: Player ID
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Player ID
+          example: 944907
       responses:
         '200':
           description: Player profile image.
@@ -2507,58 +2694,55 @@ paths:
               schema:
                 type: string
                 format: binary
-        '404':
-          description: Player or image not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
-      tags:
-      - Tournament
       summary: Get tournament matches by date
-      operationId: tournamentMatchesByDate
       description: Retrieves all tournament matches scheduled for a specific date.
+      tags:
+        - Handball
+        - Tournaments
+        - Matches
       parameters:
-      - name: tournamentId
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: Tournament ID
-        example: 149
-      - name: day
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: Day of the month (1-31)
-        example: 23
-      - name: month
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: Month (1-12)
-        example: 12
-      - name: year
-        in: path
-        required: true
-        schema:
-          type: integer
-        description: Year (e.g., 2024)
-        example: 2025
+        - name: tournamentId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Tournament ID
+          example: 149
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month (1-31)
+          example: 23
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month (1-12)
+          example: 12
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
       responses:
         '200':
-          description: A list of scheduled matches for the tournament on the given
-            date.
+          description: A list of scheduled matches for the tournament on the given date.
           content:
             application/json:
               schema:
@@ -2569,56 +2753,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Tournament not found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            status:
-              type: integer
-              description: The HTTP status code.
-            title:
-              type: string
-              description: A short, human-readable summary of the problem type.
-            request_id:
-              type: string
-              description: A unique identifier for the request, useful for debugging.
     JSONResult:
       type: object
-      description: A generic JSON object response.
-      properties: {}
       additionalProperties: true
-tags:
-- name: Category
-  description: Category endpoints.
-- name: Country
-  description: Country assets and metadata.
-- name: Manager
-  description: Manager endpoints.
-- name: Match
-  description: Match endpoints.
-- name: Player
-  description: Player endpoints.
-- name: Search
-  description: Search endpoints.
-- name: TV
-  description: TV broadcast endpoints.
-- name: Team
-  description: Team endpoints.
-- name: Tournament
-  description: Tournament endpoints.
+      description: Generic JSON proxy payload.
+    ErrorResponse:
+      type: object
+      additionalProperties: true
+      description: Generic error payload.
