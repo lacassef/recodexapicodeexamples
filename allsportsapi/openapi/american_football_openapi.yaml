@@ -1230,7 +1230,7 @@ paths:
       summary: Get event metadata
       description: Retrieves SEO and metadata for a specific event.
       tags:
-        - AmericanFootball
+        - American Football
         - Matches
       parameters:
         - name: id
@@ -1261,7 +1261,7 @@ paths:
       summary: Get all odds for event
       description: Retrieves all available odds from a specific provider for an event.
       tags:
-        - AmericanFootball
+        - American Football
         - Matches
       parameters:
         - name: id
@@ -1299,7 +1299,7 @@ paths:
       summary: Get event graph sequence
       description: Retrieves the momentum/pressure graph sequence data for a match.
       tags:
-        - AmericanFootball
+        - American Football
         - Matches
       parameters:
         - name: id
@@ -1330,7 +1330,7 @@ paths:
       summary: Get event official tweets
       description: Retrieves official social media posts related to an event.
       tags:
-        - AmericanFootball
+        - American Football
         - Matches
       parameters:
         - name: id
@@ -1803,7 +1803,7 @@ paths:
       summary: Get team featured event
       description: Retrieves the current or next featured event for a team.
       tags:
-        - AmericanFootball
+        - American Football
         - Matches
       parameters:
         - name: id
@@ -1834,7 +1834,7 @@ paths:
       summary: Get all team tournaments
       description: Retrieves all unique tournaments a team participates in.
       tags:
-        - AmericanFootball
+        - American Football
         - Teams
       parameters:
         - name: id
@@ -3020,7 +3020,7 @@ paths:
       summary: Get tournament featured events
       description: Retrieves featured/highlighted events for a tournament.
       tags:
-        - AmericanFootball
+        - American Football
         - Matches
       parameters:
         - name: tournamentId
@@ -3051,7 +3051,7 @@ paths:
       summary: Get tournament season venues
       description: Retrieves all venues used in a tournament season.
       tags:
-        - AmericanFootball
+        - American Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -3089,7 +3089,7 @@ paths:
       summary: Get player statistics info
       description: Retrieves available player statistic categories for a tournament season.
       tags:
-        - AmericanFootball
+        - American Football
         - Players
       parameters:
         - name: tournamentId

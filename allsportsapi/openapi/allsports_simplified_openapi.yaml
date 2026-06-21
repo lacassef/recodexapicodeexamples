@@ -4973,6 +4973,28 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
         '204':
           description: No content. The route exists but no data is available for the given parameters.
+  /api/search/all:
+    get:
+      tags:
+      - AllSports
+      summary: Search All Entities
+      description: Compact endpoint template generated from allsports_openapi.yaml. Searches across all entity types (teams,
+        players, tournaments).
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The route exists but no data is available for the given parameters.
   /api/search/suggestions/{entityType}:
     get:
       tags:
@@ -4988,6 +5010,27 @@ paths:
         schema:
           type: string
         example: teams
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The route exists but no data is available for the given parameters.
+  /api/search/unique-tournaments:
+    get:
+      tags:
+      - AllSports
+      summary: Search Unique Tournaments
+      description: Compact endpoint template generated from allsports_openapi.yaml. Searches for unique tournaments.
       responses:
         '200':
           description: Successful response.
@@ -9536,8 +9579,8 @@ paths:
       - name: sport
         in: path
         required: true
-        description: 'Allowed values: american-football, baseball, basketball, cricket, esport, handball, ice-hockey, mma,
-          motorsport, rugby, tennis, volleyball.'
+        description: 'Allowed values: american-football, baseball, basketball, cricket, cycling, esport, handball, ice-hockey,
+          mma, motorsport, rugby, table-tennis, tennis, volleyball.'
         schema:
           type: string
           enum:
@@ -9545,12 +9588,14 @@ paths:
           - baseball
           - basketball
           - cricket
+          - cycling
           - esport
           - handball
           - ice-hockey
           - mma
           - motorsport
           - rugby
+          - table-tennis
           - tennis
           - volleyball
       - name: term

@@ -13801,6 +13801,50 @@ paths:
         '204':
           description: No content. The requested route exists but there is no data available for the given parameters 
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/table-tennis/search/{term}:
+    get:
+      summary: Search table tennis entities
+      description: Searches for table tennis teams, players, and tournaments.
+      tags:
+        - TableTennis
+        - Search
+      parameters:
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Search term
+          example: hugo
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination (defaults to 0)
+          example: 0
+      responses:
+        '200':
+          description: A list of search results for teams, players, and tournaments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/events/{day}/{month}/{year}:
     get:
       summary: Get table tennis events by date
@@ -31905,6 +31949,50 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
         '204':
           description: No content. The requested route exists but there is no data available for the given parameters 
+            (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cycling/search/{term}:
+    get:
+      summary: Search cycling entities
+      description: Searches for cycling teams, riders, and tournaments.
+      tags:
+        - Cycling
+        - Search
+      parameters:
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Search term
+          example: Groenewegen
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Page number for pagination (defaults to 0)
+          example: 0
+      responses:
+        '200':
+          description: A list of search results for teams, riders, and tournaments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/stage/{stageId}/substages:
     get:
