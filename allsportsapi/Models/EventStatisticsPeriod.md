@@ -1,4 +1,15 @@
-### Properties Documentation
+# EventStatisticsPeriod
+
+An **EventStatisticsPeriod** holds the statistics for one slice of a match — typically
+`"ALL"` (whole match) plus per‑period entries such as `"1st half"` / `"2nd half"` or
+quarters. It is one element of [EventStatistics](EventStatistics.md)`.statistics` and
+contains the named [groups](EventStatisticsGroup.md) of stat rows for that period.
+
+**Related models:** [EventStatistics](EventStatistics.md) ·
+[EventStatisticsGroup](EventStatisticsGroup.md) ·
+[EventStatisticsItem](EventStatisticsItem.md).
+
+## Properties
 
 - **groups** (`@NotNull List<EventStatisticsGroup>`):
     - A list of statistical groups for the period, with each entry being an instance of `EventStatisticsGroup`. This list contains various statistical metrics or categories relevant to the period. This field is mandatory and cannot be null.

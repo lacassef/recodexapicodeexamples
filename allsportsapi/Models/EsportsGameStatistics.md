@@ -1,4 +1,18 @@
-### Properties Documentation
+# EsportsGameStatistics (Esports)
+
+**EsportsGameStatistics** holds one team's stats for a single game/map of a MOBA‑style
+esports match (the fields map to *League of Legends*‑type objectives): kills, gold
+earned, structures destroyed (towers, inhibitors, barracks), neutral objectives
+(dragons by element, Baron Nashor, Rift Herald), `firstBlood` and champion `bans`. One
+match is made of several games; each game has a home and an away statistics object —
+see [EsportsGameStatisticsResponse](EsportsGameStatisticsResponse.md).
+
+**Where you'll see it:** esports match‑statistics endpoints.
+
+**Related models:** [EsportsGameStatisticsResponse](EsportsGameStatisticsResponse.md) ·
+[Event](Event.md).
+
+## Properties
 
 - **bans** (`List<ESportCharacter>`):
     - A list of characters that were banned during the match, representing the characters that teams chose to prohibit from being played.

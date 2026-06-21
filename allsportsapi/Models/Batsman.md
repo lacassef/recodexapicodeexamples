@@ -1,4 +1,15 @@
-### Properties Documentation
+# Batsman (Cricket)
+
+A **Batsman** is one batting line in a cricket [Inning](Inning.md): the runs scored,
+balls faced, boundaries (`s4`) and sixes (`s6`), and — if dismissed — how the wicket
+fell (`wicketTypeName`, the bowler and/or fielder involved) and the fall‑of‑wicket
+context (`fowOver`, `fowScore`).
+
+**Where you'll see it:** the `battingLine` of an [Inning](Inning.md).
+
+**Related models:** [Inning](Inning.md) · [Player](Player.md).
+
+## Properties
 
 - **balls** (`Integer`):
     - The number of balls faced by the batsman during their innings.

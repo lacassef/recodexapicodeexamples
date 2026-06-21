@@ -1,4 +1,39 @@
-### Properties Documentation
+# Player
+
+A **Player** is an individual athlete. The same model is reused across player‑profile,
+squad, lineup, transfer and statistics responses, so a player object may be fully
+populated (profile endpoint) or trimmed down to the essentials (`id`, `name`,
+`slug`, `shortName`, `position`) when it appears inside a lineup or shotmap.
+
+**Where you'll see it:** player endpoints, team squads, match lineups, transfer lists,
+and embedded inside incidents/shotmaps.
+
+**Related models:** [Team](Team.md) · [Transfer](Transfer.md) ·
+[PlayerCharacteristics](PlayerCharacteristics.md). Photos come from the player‑image
+endpoint (`image/png`) — see [Examples](../Examples/).
+
+### Example (trimmed)
+
+```json
+{
+  "id": 824200,
+  "name": "Ademola Lookman",
+  "slug": "ademola-lookman",
+  "shortName": "A. Lookman",
+  "position": "F",
+  "jerseyNumber": "11",
+  "height": 174,
+  "preferredFoot": "Both",
+  "country": { "alpha2": "NG", "name": "Nigeria" },
+  "team": { "id": 2685, "name": "Atalanta" }
+}
+```
+
+> ℹ️ Monetary fields (`marketValueRaw`, `proposedMarketValueRaw`) use a `Money` object
+> (amount + currency). Dates (`dateOfBirthTimestamp`, `contractUntilTimestamp`) are
+> UNIX seconds.
+
+## Properties
 
 - **contractUntilTimestamp** (`Long`):
     - A timestamp indicating the date until which the player's current contract is valid.

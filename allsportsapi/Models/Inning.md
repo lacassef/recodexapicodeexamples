@@ -1,4 +1,16 @@
-### Properties Documentation
+# Inning (Cricket)
+
+An **Inning** captures one innings of a cricket match: the batting and bowling line‑ups,
+the running score and wickets, overs bowled, all the extras (byes, leg‑byes, wides,
+no‑balls, penalties) and the batting partnerships. Limited‑overs matches have two
+innings; multi‑day formats can have up to four.
+
+**Where you'll see it:** cricket match‑detail / scorecard endpoints.
+
+**Related models:** [Batsman](Batsman.md) · [Team](Team.md) · [Player](Player.md) ·
+[Event](Event.md).
+
+## Properties
 
 - **battingLine** (`@NotNull List<Batsman>`):
     - A list of batsmen who are part of the batting lineup for the inning. This field is mandatory and cannot be null.

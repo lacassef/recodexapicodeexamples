@@ -1,4 +1,20 @@
-### Properties Documentation
+# UniqueTournament
+
+A **UniqueTournament** is the competition that persists across seasons — the "league"
+itself (e.g. *Premier League*, *NBA*, *ATP Tour*). It is the stable identity you
+should store and reuse: each season produces its own [Tournament](Tournament.md), but
+they all point back to the same `UniqueTournament`. It also carries presentation data
+(colors, founding year) and capability flags (`hasEventPlayerStatistics`,
+`hasBoxScore`, …) that tell you which features are available for that competition.
+
+**Where you'll see it:** inside `Tournament.uniqueTournament`, in a
+[Category](Category.md)'s `uniqueTournamentIds`, and as the entry point for
+season/standings/top‑players endpoints.
+
+**Related models:** [Category](Category.md) · [Tournament](Tournament.md) ·
+[UniqueStage](UniqueStage.md).
+
+## Properties
 
 - **category** (`@NotNull Category`):
     - The category or division to which the tournament belongs, such as a league, conference, or competition level. This field is mandatory and cannot be null.

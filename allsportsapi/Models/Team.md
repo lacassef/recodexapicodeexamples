@@ -1,4 +1,35 @@
-### Properties Documentation
+# Team
+
+A **Team** is a club or national side. The model is shared across every sport, so it
+carries fields that only apply to some of them — e.g. the salary‑cap fields
+(`activeCap`, `capMaximum`, `capSpace`, `luxuryTaxThreshold`, `totalCap`) are mostly
+relevant to North‑American leagues, while `subTeam1`/`subTeam2` describe doubles pairs
+or affiliated squads. Like `Player`, a team object may be full (team endpoint) or
+trimmed (inside an `Event`).
+
+**Where you'll see it:** team endpoints, standings, squads, and as `homeTeam`/`awayTeam`
+on every [Event](Event.md).
+
+**Related models:** [Event](Event.md) · [Player](Player.md) · [Subteam](Subteam.md) ·
+[Transfer](Transfer.md) · [Category](Category.md). Logos come from the team‑image
+endpoint (`image/png`).
+
+### Example (trimmed)
+
+```json
+{
+  "id": 2685,
+  "name": "Atalanta",
+  "shortName": "Atalanta",
+  "nameCode": "ATA",
+  "national": false,
+  "teamColors": { "primary": "#0000ff", "secondary": "#000000", "text": "#000000" },
+  "country": { "alpha2": "IT", "name": "Italy" },
+  "sport": { "id": 1, "name": "Football", "slug": "football" }
+}
+```
+
+## Properties
 
 - **activeCap** (`Integer`):
     - Represents the active salary cap for the team, which is the portion of the salary cap currently allocated to active players.

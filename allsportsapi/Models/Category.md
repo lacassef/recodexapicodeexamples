@@ -1,4 +1,18 @@
-### Properties Documentation
+# Category
+
+A **Category** groups competitions by country, region or tour (e.g. *England*,
+*Italy*, *ATP*). It is the top of the navigable tree: list the categories of a sport,
+then list the tournaments inside each category to enumerate **every league**. The
+`uniqueTournamentIds` field gives you the competitions that belong to the category
+directly.
+
+**Where you'll see it:** the `tournament/categories` endpoints, and embedded inside
+[Tournament](Tournament.md)/[UniqueTournament](UniqueTournament.md) as `category`.
+
+**Related models:** [UniqueTournament](UniqueTournament.md) · [Tournament](Tournament.md).
+See the [FAQ](../FAQ.md) for the full "list all leagues" recipe.
+
+## Properties
 
 - **alpha2** (`String`):
     - A two-letter code representing the category, possibly related to a country code or short identifier.

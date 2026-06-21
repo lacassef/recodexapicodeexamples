@@ -1,4 +1,15 @@
-### Properties Documentation
+# UniqueStage
+
+A **UniqueStage** represents a stage of a competition — for example a round, phase or
+leg within a larger event structure. It is most relevant to sports organised in stages
+(such as motorsport) and carries its own identity, name and branding colors.
+
+**Where you'll see it:** stage‑based competitions and their season/standings endpoints.
+
+**Related models:** [Category](Category.md) · [UniqueTournament](UniqueTournament.md) ·
+[Tournament](Tournament.md).
+
+## Properties
 
 - **category** (`@NotNull Category`):
     - The category or division to which the stage belongs, such as a particular round or level within a tournament. This field is mandatory and cannot be null.

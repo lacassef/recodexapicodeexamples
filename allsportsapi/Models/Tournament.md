@@ -1,4 +1,19 @@
-### Properties Documentation
+# Tournament
+
+A **Tournament** is a competition pinned to a specific context — a season, group or
+stage. It is the object you find on an [Event](Event.md) (`event.tournament`) telling
+you *which competition this match belongs to*. For the competition that persists across
+years (the "league" itself), see [UniqueTournament](UniqueTournament.md), referenced
+here as `uniqueTournament`.
+
+**Where you'll see it:** on every event, in schedule responses, and in the
+category → tournament tree used to enumerate all leagues of a sport (see the
+[FAQ](../FAQ.md)).
+
+**Related models:** [Category](Category.md) · [UniqueTournament](UniqueTournament.md) ·
+[UniqueStage](UniqueStage.md) · [Event](Event.md).
+
+## Properties
 
 - **category** (`@NotNull Category`):
     - The category or division to which the tournament belongs, such as a league, conference, or competition level. This field is mandatory and cannot be null.

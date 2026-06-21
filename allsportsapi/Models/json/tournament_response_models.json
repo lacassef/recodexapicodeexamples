@@ -2264,6 +2264,6 @@
     "nullability": "Fields marked as nullable may be absent in the response",
     "pagination": "List endpoints typically support span (last/next/all) and page parameters",
     "types": "Type parameters in URLs often accept: total, home, away, overall",
-    "authentication": "Some endpoints may require authentication tokens",
+    "authentication": "Some endpoints may require authentication tokens"
   }
 }

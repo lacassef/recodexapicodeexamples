@@ -1,4 +1,41 @@
-### Properties Documentation
+# Event
+
+An **Event** is a single match, game or fixture — the central object of the API.
+Almost everything else (lineups, statistics, incidents, odds, votes) is attached to
+an event by its `id`. One event references both teams, its tournament and season, a
+status, a clock and a score, plus optional sport‑specific blocks (cricket toss,
+American‑football yardage, combat‑sports weight class, and so on).
+
+**Where you'll see it:** schedule/live endpoints return arrays of events; match‑detail
+endpoints return a single event or objects keyed to its `id`.
+
+**Related models:** [Team](Team.md) · [Player](Player.md) · [Tournament](Tournament.md) ·
+[Incidents](Incidents.md) · [EventStatistics](EventStatistics.md). For reading the
+match clock and interpreting `status`, see the [FAQ](../FAQ.md).
+
+### Example (trimmed)
+
+```json
+{
+  "id": 12436870,
+  "slug": "atalanta-sturm-graz",
+  "startTimestamp": 1727861400,
+  "homeTeam": { "id": 2685, "name": "Atalanta", "shortName": "Atalanta" },
+  "awayTeam": { "id": 2832, "name": "Sturm Graz", "shortName": "Sturm Graz" },
+  "homeScore": { "current": 5, "period1": 2, "period2": 3 },
+  "awayScore": { "current": 0, "period1": 0, "period2": 0 },
+  "status": { "code": 100, "description": "Ended", "type": "finished" },
+  "lastPeriod": "period2",
+  "winnerCode": 1,
+  "tournament": { "id": 7, "name": "UEFA Champions League" }
+}
+```
+
+> ℹ️ Sport‑specific fields (e.g. `currentBatsmanId`, `tossDecision`, `yardDistance`,
+> `weightClass`, `fightDiscipline`) are populated only for the relevant sport and are
+> `null` everywhere else.
+
+## Properties
 
 - **aggregatedWinnerCode** (`Integer`):
     - Represents the code of the team or player who is the aggregated winner of the event.
@@ -228,10 +265,8 @@
 - **tossWin** (`String`):
     - The team that won the toss in a cricket event.
 
-- **t
-
-ournament** (`@NotNull Tournament`):
-- The tournament to which the event belongs. This field cannot be null.
+- **tournament** (`@NotNull Tournament`):
+    - The tournament to which the event belongs. This field cannot be null.
 
 - **tvUmpireName** (`String`):
     - Name of the TV umpire in a cricket event.

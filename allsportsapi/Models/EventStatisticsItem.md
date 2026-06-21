@@ -1,4 +1,18 @@
-### Properties Documentation
+# EventStatisticsItem
+
+An **EventStatisticsItem** is a single statistic row comparing the two teams — e.g.
+"Ball possession 62% / 38%" or "Shots on target 7 / 3". It carries both display strings
+(`home`, `away`), raw numbers (`homeValue`, `awayValue`), optional totals, and
+rendering hints (`renderType`, `compareCode`, `shouldRoundToInt`) so a UI can draw bars
+or pick a winner. The `name` tells you which metric the row represents.
+
+**Where you'll see it:** inside an [EventStatisticsGroup](EventStatisticsGroup.md)'s
+`statisticsItems`.
+
+**Related models:** [EventStatistics](EventStatistics.md) ·
+[EventStatisticsPeriod](EventStatisticsPeriod.md).
+
+## Properties
 
 - **addBottomPadding** (`boolean`):
     - A flag indicating whether bottom padding should be added when rendering this statistic, which may affect the layout or spacing in the display.

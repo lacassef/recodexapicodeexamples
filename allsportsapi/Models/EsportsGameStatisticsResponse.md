@@ -1,4 +1,13 @@
-### Properties Documentation
+# EsportsGameStatisticsResponse (Esports)
+
+**EsportsGameStatisticsResponse** pairs the home and away
+[EsportsGameStatistics](EsportsGameStatistics.md) for a single esports game/map, plus a
+`shouldReverseTeams` hint for display. This is the object returned by the esports
+game‑statistics endpoint.
+
+**Related models:** [EsportsGameStatistics](EsportsGameStatistics.md) · [Event](Event.md).
+
+## Properties
 
 - **awayStatistics** (`@NotNull EsportsGameStatistics`):
     - Contains the esports game statistics for the away team. This field is mandatory and cannot be null.

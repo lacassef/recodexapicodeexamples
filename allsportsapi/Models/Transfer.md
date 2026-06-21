@@ -1,4 +1,22 @@
-### Properties Documentation
+# Transfer
+
+A **Transfer** records the movement of a [Player](Player.md) (or manager) between
+[Team](Team.md)s, including the fee, the direction (from/to), the date and the kind of
+move. The `type` field encodes the nature of the transfer:
+
+| `type` | Meaning |
+|--------|---------|
+| `1` | Loan — the player moves temporarily to another team. |
+| `2` | End of loan — the player returns to their original team. |
+| `3` | Permanent transfer — the player is bought/sold outright. |
+
+For draft‑based sports, `round` and `pick` describe the selection slot.
+
+**Where you'll see it:** team and player transfer‑history endpoints.
+
+**Related models:** [Player](Player.md) · [Team](Team.md).
+
+## Properties
 
 - **fromTeamName** (`String`):
     - The name of the team from which the player or manager is being transferred.

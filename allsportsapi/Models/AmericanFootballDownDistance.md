@@ -1,4 +1,15 @@
-### Properties Documentation
+# AmericanFootballDownDistance
+
+**AmericanFootballDownDistance** describes the live situation of an American‑football
+drive: which down it is, how many yards remain for a first down, where the ball is
+spotted, which team has possession and whether they're in goal‑to‑go range. On an
+[Event](Event.md) it appears as `yardDistance`.
+
+**Where you'll see it:** live American‑football match endpoints.
+
+**Related models:** [Event](Event.md).
+
+## Properties
 
 - **currentDown** (`Integer`):
     - Represents the current down in an American football game. The down refers to one of the four attempts a team has to advance the ball ten yards.

@@ -1,4 +1,17 @@
-# Properties Documentation
+# PlayerCharacteristics
+
+**PlayerCharacteristics** summarises a [Player](Player.md)'s scouting profile: the
+positions they can play, plus ranked lists of `positive` (strengths) and `negative`
+(weaknesses) attributes. Each attribute is a `PlayerCharacteristic` with a numeric
+`rank` (higher = stronger) and a `type` code; the code → name mapping is listed in
+[Characteristic Types](#characteristic-types) below (e.g. `5` = Finishing,
+`9` = Tackling).
+
+**Where you'll see it:** the football player‑attributes / characteristics endpoint.
+
+**Related models:** [Player](Player.md).
+
+## Properties
 
 * **negative** (`@NotNull List<PlayerCharacteristic>`):
     * A list of negative characteristics associated with the player.

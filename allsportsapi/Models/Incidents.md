@@ -1,4 +1,27 @@
-## Properties Documentation
+# Incidents
+
+An **Incident** is a single entry on a match timeline — a goal, card, substitution,
+period boundary, penalty‑shootout kick, VAR decision, injury‑time announcement, and so
+on. A match's incidents endpoint returns a list of these, ordered through the game.
+
+The kind of incident is read from `incidentType` (and refined by `incidentClass` /
+`text`). The most common values:
+
+| `incidentType` | Typical `incidentClass` values |
+|----------------|--------------------------------|
+| `goal` | `regular`, `penalty`, `ownGoal` |
+| `card` | `yellow`, `red`, `yellowRed` |
+| `substitution` | `injury`, `null` |
+| `penaltyShootout` | `scored`, `missed` |
+| `varDecision` | `penaltyNotAwarded`, `goalAwarded`, `cardUpgrade` (+ `confirmed`) |
+| `inGamePenalty` | `missed` |
+| `period` | `text`: `HT`, `FT`, `ET`, `PEN` |
+
+See the [FAQ](../FAQ.md) for the full incident & match‑status reference.
+
+**Related models:** [Event](Event.md) · [Player](Player.md).
+
+## Properties
 
 - **addedTime (`Integer`):**
 
@@ -30,7 +53,7 @@
 
 - **isHome (`Boolean`):**
 
-  Determines whether the incident is related to the home team (```true```) or the away team (`false``).
+  Determines whether the incident is related to the home team (`true`) or the away team (`false`).
 
 - **lastItem (`boolean`):**
 

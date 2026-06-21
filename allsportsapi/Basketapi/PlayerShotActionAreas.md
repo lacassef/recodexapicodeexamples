@@ -1,3 +1,14 @@
+# Classifying Basketball Shots into Court Zones
+
+The Basketball API returns each shot as raw court coordinates (`x`, `y`) — see
+[`README.md`](README.md) for the shotmap endpoints and coordinate system. This guide
+shows how to turn those coordinates into **named zones** (corner three, top of the key,
+paint, …) so you can aggregate shooting splits, label charts, or reproduce the
+"shot‑action areas" that the season endpoints expose.
+
+The thresholds below assume the hoop‑centred system used by the examples
+(origin at the basket, `x` ≈ ‑250…250, `y` ≈ 0…470, three‑point arc at radius ≈ 238).
+
 ## Visual Representation
 
 Let's visualize a basketball court divided into zones:

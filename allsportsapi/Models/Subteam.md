@@ -1,4 +1,15 @@
-### Properties Documentation
+# Subteam
+
+A **Subteam** is a side affiliated with a parent [Team](Team.md). It models things
+like the two players of a tennis/badminton doubles pair, the members of a relay team,
+or a reserve/junior squad. On a `Team` you'll find them as `subTeam1` and `subTeam2`.
+
+**Where you'll see it:** doubles and team‑of‑individuals events, and affiliated‑squad
+relationships.
+
+**Related models:** [Team](Team.md) · [Player](Player.md).
+
+## Properties
 
 - **country** (`Country`):
     - Represents the country where the sub-team is based or registered.
