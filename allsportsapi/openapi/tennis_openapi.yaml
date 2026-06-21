@@ -9,6 +9,7 @@ servers:
 paths:
   /api/tv/country/all/event/{id}:
     get:
+      operationId: getMatchTVCountries
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
@@ -40,6 +41,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
+      operationId: getMatchTVChannelVotes
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
@@ -78,6 +80,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
+      operationId: getCountryFlag
       summary: Get country flag
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
@@ -110,6 +113,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
+      operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
       description: Fetches the flag image from the SofaScore image API by country code.
       tags:
@@ -141,6 +145,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
+      operationId: getPlaceholderTournamentPng
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -165,6 +170,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
+      operationId: getPlaceholderTournamentSvg
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -189,6 +195,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
+      operationId: getTeamPlaceholderImage
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
@@ -213,6 +220,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
+      operationId: getPlaceholderPlayerPng
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -237,6 +245,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
+      operationId: getPlaceholderPlayerSvg
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -261,6 +270,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
+      operationId: getPlaceholderManagerPng
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -284,6 +294,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
+      operationId: getPlaceholderManagerSvg
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -307,6 +318,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/calendar/season/{seasonId}/{year}/days-with-events:
     get:
+      operationId: getCalendarDaysWithEvents
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
@@ -345,6 +357,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/category/{categoryId}/image:
     get:
+      operationId: getCategoryImage
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
@@ -376,6 +389,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/countries/all:
     get:
+      operationId: getAllCountries
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
@@ -399,6 +413,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rankings/team/{teamId}:
     get:
+      operationId: getRankingsTeamTeamId
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
@@ -430,6 +445,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/all:
     get:
+      operationId: searchAllEntities
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
@@ -453,6 +469,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/suggestions/{entityType}:
     get:
+      operationId: getSearchSuggestions
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
@@ -484,6 +501,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/unique-tournaments:
     get:
+      operationId: searchUniqueTournaments
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
@@ -507,6 +525,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/{entityType}:
     get:
+      operationId: searchByEntityType
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
@@ -538,6 +557,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{id}/schedule:
     get:
+      operationId: getTVChannelSchedule
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
@@ -569,6 +589,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/country/{countryCode}/channels:
     get:
+      operationId: getCountryTVChannels
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
@@ -600,6 +621,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/search/{term}:
     get:
+      operationId: searchTennisPlayersAndTournaments
       summary: Search tennis players and tournaments
       description: Searches for tennis players and tournaments based on a search term.
       tags:
@@ -644,6 +666,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/events/{day}/{month}/{year}:
     get:
+      operationId: getTennisEventsByDate
       summary: Get tennis events by date
       description: Fetches all tennis matches scheduled for a specific date.
       tags:
@@ -695,6 +718,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/calendar/{month}/{year}:
     get:
+      operationId: getTennisCalendarForMonth
       summary: Get tennis calendar for month
       description: Retrieves a calendar overview of unique tennis tournaments for a specific month.
       tags:
@@ -739,6 +763,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/events/odds/{day}/{month}/{year}:
     get:
+      operationId: getTennisEventsWithOddsByDate
       summary: Get tennis events with odds by date
       description: Retrieves tennis events along with their betting odds for a specific date from bookmaker `1`.
       tags:
@@ -791,6 +816,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/category/{id}/events/{day}/{month}/{year}:
     get:
+      operationId: getTennisEventsByCategoryAndDate
       summary: Get tennis events by category and date
       description: Retrieves all tennis matches for a specific category (e.g., ATP, WTA, Challenger) on a given date.
       tags:
@@ -850,6 +876,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/calendar/{day}/{month}/{year}/categories:
     get:
+      operationId: getDailyTennisCategories
       summary: Get daily tennis categories
       description: Retrieves a list of tennis categories that have scheduled events on a specific date.
       tags:
@@ -902,6 +929,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/events/live:
     get:
+      operationId: getLiveTennisMatches
       summary: Get live tennis matches
       description: Retrieves all currently live tennis matches.
       tags:
@@ -925,6 +953,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/events/odds/featured/{providerId}:
     get:
+      operationId: getFeaturedTennisEventsWithOdds
       summary: Get featured tennis events with odds
       description: Returns highlighted tennis events with odds information for a provider.
       tags:
@@ -957,6 +986,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}:
     get:
+      operationId: getTennisMatchDetails
       summary: Get tennis match details
       description: Retrieves detailed information for a specific tennis match, including players, score, status, and 
         tournament info.
@@ -989,6 +1019,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/statistics:
     get:
+      operationId: getMatchStatistics
       summary: Get match statistics
       description: Retrieves comprehensive statistical data for a tennis match, such as serve stats, break points, etc.
       tags:
@@ -1021,6 +1052,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{customId}/h2h:
     get:
+      operationId: getHeadToHeadHistory
       summary: Get head-to-head history
       description: Retrieves the detailed match history for head-to-head encounters between two players/teams.
       tags:
@@ -1053,6 +1085,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/duel:
     get:
+      operationId: getHeadToHeadSummary
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head statistics, including win counts and recent form.
       tags:
@@ -1085,6 +1118,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/odds:
     get:
+      operationId: getMatchBettingOdds
       summary: Get match betting odds
       description: Retrieves available betting odds from bookmaker `1` for a specific match.
       tags:
@@ -1117,6 +1151,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/odds/{providerId}/featured:
     get:
+      operationId: getMatchFeaturedOdds
       summary: Get match featured odds
       description: Retrieves featured odds for a specific tennis match and provider.
       tags:
@@ -1156,6 +1191,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/provider/{providerId}/winning-odds:
     get:
+      operationId: getMatchWinningOdds
       summary: Get match winning odds
       description: Retrieves winning odds for a specific tennis match and provider.
       tags:
@@ -1195,6 +1231,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/graph:
     get:
+      operationId: getMatchPowerGraph
       summary: Get match power graph
       description: Retrieves the tennis power graph, showing momentum and key service statistics for the match.
       tags:
@@ -1227,6 +1264,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/point-by-point:
     get:
+      operationId: getPointByPointData
       summary: Get point-by-point data
       description: Retrieves a detailed, chronological list of points and games for a tennis match.
       tags:
@@ -1259,6 +1297,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/streak:
     get:
+      operationId: getMatchStreaks
       summary: Get match streaks
       description: Provides recent form and streak information for each player/team in the match.
       tags:
@@ -1291,6 +1330,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/highlights:
     get:
+      operationId: getMatchHighlights
       summary: Get match highlights
       description: Retrieves video highlights and key moments from a specific match, if available.
       tags:
@@ -1323,6 +1363,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/votes:
     get:
+      operationId: getMatchVotes
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome.
       tags:
@@ -1354,6 +1395,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/tennis-power:
     get:
+      operationId: getTennisPowerGraph
       summary: Get tennis power graph
       description: Retrieves the tennis power graph showing momentum and key service statistics.
       tags:
@@ -1385,6 +1427,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/odds/{providerId}/all:
     get:
+      operationId: getAllOddsForEvent
       summary: Get all odds for event
       description: Retrieves all available odds from a specific provider for an event.
       tags:
@@ -1423,6 +1466,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/graph/sequence:
     get:
+      operationId: getEventGraphSequence
       summary: Get event graph sequence
       description: Retrieves the momentum/pressure graph sequence data for a match.
       tags:
@@ -1454,6 +1498,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/event/{id}/official-tweets:
     get:
+      operationId: getEventOfficialTweets
       summary: Get event official tweets
       description: Retrieves official social media posts related to an event.
       tags:
@@ -1485,6 +1530,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/player/{id}:
     get:
+      operationId: getTennisPlayerDetails
       summary: Get tennis player details
       description: Retrieves comprehensive details for a specific tennis player, including personal info and rankings.
       tags:
@@ -1516,6 +1562,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/player/{id}/image:
     get:
+      operationId: getPlayerImage
       summary: Get player image
       description: Retrieves the profile image for a specific player.
       tags:
@@ -1549,6 +1596,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/player/{id}/events/previous/{page}:
     get:
+      operationId: getPreviousPlayerMatches
       summary: Get previous player matches
       description: Fetches a paginated list of completed matches for a player, sorted by date descending.
       tags:
@@ -1594,6 +1642,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/player/{id}/events/next/{page}:
     get:
+      operationId: getUpcomingPlayerMatches
       summary: Get upcoming player matches
       description: Fetches a paginated list of scheduled matches for a player, sorted by date ascending.
       tags:
@@ -1639,6 +1688,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/player/{id}/standings/seasons:
     get:
+      operationId: getPlayerStandingsSeasons
       summary: Get player standings seasons
       description: Retrieves a list of seasons for which a player's standings/rankings are available.
       tags:
@@ -1671,6 +1721,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/player/{id}/tournaments/last:
     get:
+      operationId: getPlayerRecentTournaments
       summary: Get player recent tournaments
       description: Retrieves a list of recent unique tournaments a player has participated in.
       tags:
@@ -1703,6 +1754,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/player/{id}/rankings:
     get:
+      operationId: getPlayerRankings
       summary: Get player rankings
       description: Retrieves current and historical ranking information for a specific player.
       tags:
@@ -1735,6 +1787,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/player/{id}/events/near:
     get:
+      operationId: getPlayerNearMatches
       summary: Get player near matches
       description: Retrieves a list of recent and upcoming matches for a specific player.
       tags:
@@ -1767,6 +1820,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/events/previous/{page}:
     get:
+      operationId: getPreviousTeamMatches
       summary: Get previous team matches
       description: Fetches a paginated list of completed matches for a doubles team, sorted by date descending.
       tags:
@@ -1812,6 +1866,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/events/next/{page}:
     get:
+      operationId: getUpcomingTeamMatches
       summary: Get upcoming team matches
       description: Fetches a paginated list of scheduled matches for a doubles team, sorted by date ascending.
       tags:
@@ -1857,6 +1912,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/standings/seasons:
     get:
+      operationId: getTeamStandingsSeasons
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which a doubles team's standings are available.
       tags:
@@ -1889,6 +1945,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/tournaments/last:
     get:
+      operationId: getTennisTeamIdTournamentsLast
       summary: Get team recent tournaments
       description: Retrieves a list of recent unique tournaments a doubles team has participated in.
       tags:
@@ -1921,6 +1978,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}:
     get:
+      operationId: getTennisTeamDetails
       summary: Get tennis team details
       description: Retrieves comprehensive details for a specific tennis doubles team.
       tags:
@@ -1952,6 +2010,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/rankings:
     get:
+      operationId: getTennisTeamIdRankings
       summary: Get team rankings
       description: Retrieves current and historical ranking information for a doubles team.
       tags:
@@ -1984,6 +2043,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/image:
     get:
+      operationId: getTeamImage
       summary: Get team image
       description: Retrieves the profile image for a specific doubles team.
       tags:
@@ -2017,6 +2077,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/year-statistics/{year}:
     get:
+      operationId: getTeamYearStatistics
       summary: Get team year statistics
       description: Retrieves year-based statistics for a doubles team.
       tags:
@@ -2056,6 +2117,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/season/{seasonId}/best-result:
     get:
+      operationId: getTeamSeasonBestResult
       summary: Get team season best result
       description: Retrieves the best result achieved by a team in a specific season.
       tags:
@@ -2095,6 +2157,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/events/near:
     get:
+      operationId: getTeamNearMatches
       summary: Get team near matches
       description: Retrieves a list of recent and upcoming matches for a specific doubles team.
       tags:
@@ -2127,6 +2190,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/featured-event:
     get:
+      operationId: getTeamFeaturedEvent
       summary: Get team featured event
       description: Retrieves the current or next featured event for a team.
       tags:
@@ -2158,6 +2222,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/recent-unique-tournaments:
     get:
+      operationId: getTennisTeamIdRecentUniqueTournaments
       summary: Get team recent tournaments
       description: Retrieves tournaments the team has recently participated in.
       tags:
@@ -2189,6 +2254,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/team/{id}/tournament/{tournamentId}/season/{seasonId}/ranks/overall:
     get:
+      operationId: getTeamOverallRanks
       summary: Get team overall ranks
       description: Retrieves overall ranking data for a team in a tournament season.
       tags:
@@ -2234,6 +2300,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/manager/{id}/image:
     get:
+      operationId: getManagerImage
       summary: Get manager image
       description: Retrieves the profile image for a specific manager.
       tags:
@@ -2267,6 +2334,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}:
     get:
+      operationId: getTournamentDetails
       summary: Get tournament details
       description: Retrieves comprehensive details for a specific tennis tournament.
       tags:
@@ -2298,6 +2366,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/info:
     get:
+      operationId: getTournamentInfoMetadata
       summary: Get tournament info/metadata
       description: Retrieves metadata for a specific tournament, such as SEO tags and related info.
       tags:
@@ -2329,6 +2398,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/image:
     get:
+      operationId: getTournamentLogo
       summary: Get tournament logo
       description: Retrieves the logo image for a specific tournament.
       tags:
@@ -2362,6 +2432,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/image/dark:
     get:
+      operationId: getTournamentDarkLogo
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       tags:
@@ -2395,6 +2466,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/media:
     get:
+      operationId: getTournamentMedia
       summary: Get tournament media
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       tags:
@@ -2427,6 +2499,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/seasons:
     get:
+      operationId: getTournamentSeasons
       summary: Get tournament seasons
       description: Retrieves a list of all available seasons for a specific tournament.
       tags:
@@ -2458,6 +2531,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/info:
     get:
+      operationId: getTournamentSeasonInfo
       summary: Get tournament season info
       description: Retrieves information about a specific tournament season, such as start and end dates.
       tags:
@@ -2496,6 +2570,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
+      operationId: getTournamentStandings
       summary: Get tournament standings
       description: Retrieves the standings/rankings for a specific tournament season.
       tags:
@@ -2535,6 +2610,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/venues:
     get:
+      operationId: getTournamentVenues
       summary: Get tournament venues
       description: Retrieves the venues available for a tournament season.
       tags:
@@ -2574,6 +2650,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/venue/{venueId}/events/all/{page}:
     get:
+      operationId: getTournamentVenueEvents
       summary: Get tournament venue events
       description: Retrieves events for a specific venue in a tournament season.
       tags:
@@ -2628,6 +2705,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/events/last/{page}:
     get:
+      operationId: getTournamentLastMatches
       summary: Get tournament last matches
       description: Retrieves a paginated list of recently played matches in a specific tournament season.
       tags:
@@ -2680,6 +2758,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/events/next/{page}:
     get:
+      operationId: getTournamentUpcomingMatches
       summary: Get tournament upcoming matches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
       tags:
@@ -2732,6 +2811,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/events/round/{round}/slug/{slug}:
     get:
+      operationId: getTournamentMatchesByRound
       summary: Get tournament matches by round
       description: Retrieves matches for a specific round in a tournament, identified by a slug.
       tags:
@@ -2785,6 +2865,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
+      operationId: getTournamentRounds
       summary: Get tournament rounds
       description: Retrieves a list of all rounds for a specific tournament season.
       tags:
@@ -2823,6 +2904,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/cup-trees:
     get:
+      operationId: getTournamentDrawBracket
       summary: Get tournament draw/bracket
       description: Retrieves the tournament's draw structure (bracket) in a structured format.
       tags:
@@ -2861,6 +2943,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/cup-trees/old:
     get:
+      operationId: getTournamentDrawLegacyFormat
       summary: Get tournament draw (legacy format)
       description: Retrieves the tournament's draw structure in a legacy format.
       tags:
@@ -2899,6 +2982,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
+      operationId: getTournamentMatchesByDate
       summary: Get tournament matches by date
       description: Retrieves all matches for a specific tournament scheduled on a given date.
       tags:
@@ -2958,6 +3042,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/categories:
     get:
+      operationId: getTennisTournamentCategories
       summary: Get tennis tournament categories
       description: Retrieves all available tennis tournament categories (e.g., ATP, WTA, Challenger).
       tags:
@@ -2981,6 +3066,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/all/category/{id}:
     get:
+      operationId: getTournamentsByCategory
       summary: Get tournaments by category
       description: Retrieves all unique tournaments within a specific tennis category.
       tags:
@@ -3013,6 +3099,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/featured-events:
     get:
+      operationId: getTournamentFeaturedEvents
       summary: Get tournament featured events
       description: Retrieves featured/highlighted events for a tournament.
       tags:
@@ -3044,6 +3131,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/winners:
     get:
+      operationId: getTournamentWinners
       summary: Get tournament winners
       description: Retrieves historical winners of a tournament.
       tags:
@@ -3075,6 +3163,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/scheduled-events/{date}:
     get:
+      operationId: getTournamentEventsOnDate
       summary: Get tournament events on date
       description: Retrieves all events for a tournament on a specific date.
       tags:
@@ -3113,6 +3202,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/team-statistics/types:
     get:
+      operationId: getTeamStatisticsTypes
       summary: Get team statistics types
       description: Retrieves available team statistic categories for a tournament season.
       tags:
@@ -3151,6 +3241,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/top-teams/mainDraw:
     get:
+      operationId: getTournamentTopTeamsMainDraw
       summary: Get tournament top teams main draw
       description: Retrieves the top-performing teams in the main draw of a tennis tournament season (e.g. Australian 
         Open).
@@ -3189,6 +3280,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/venue/{id}:
     get:
+      operationId: getVenueDetails
       summary: Get venue details
       description: Retrieves detailed information for a specific venue.
       tags:
@@ -3220,6 +3312,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/venue/{id}/events/{sport}/{span}/{page}:
     get:
+      operationId: getVenueEvents
       summary: Get venue events
       description: Retrieves paginated events at a specific venue.
       tags:
@@ -3272,6 +3365,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/venue/{id}/image:
     get:
+      operationId: getVenueImage
       summary: Get venue image
       description: Retrieves the image for a specific venue.
       tags:
@@ -3303,6 +3397,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/calendar/{month}/{year}/categories:
     get:
+      operationId: getMonthlyCategoriesWithEvents
       summary: Get monthly categories with events
       description: Retrieves a list of categories that have scheduled events for up to five specified days in a given 
         month.
@@ -3356,6 +3451,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/rankings/atp:
     get:
+      operationId: getATPRankings
       summary: Get ATP rankings
       description: Retrieves the current official ATP (Association of Tennis Professionals) singles rankings.
       tags:
@@ -3379,6 +3475,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/rankings/atp/live:
     get:
+      operationId: getLiveATPRankings
       summary: Get live ATP rankings
       description: Retrieves the live/race ATP rankings, updated in real-time with current tournament points.
       tags:
@@ -3402,6 +3499,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/rankings/wta:
     get:
+      operationId: getWTARankings
       summary: Get WTA rankings
       description: Retrieves the current official WTA (Women's Tennis Association) singles rankings.
       tags:
@@ -3425,6 +3523,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tennis/rankings/wta/live:
     get:
+      operationId: getLiveWTARankings
       summary: Get live WTA rankings
       description: Retrieves the live/race WTA rankings, updated in real-time with current tournament points.
       tags:

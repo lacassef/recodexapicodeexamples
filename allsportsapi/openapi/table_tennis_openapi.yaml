@@ -9,6 +9,7 @@ servers:
 paths:
   /api/tv/country/all/event/{id}:
     get:
+      operationId: getMatchTVCountries
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
@@ -40,6 +41,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
+      operationId: getMatchTVChannelVotes
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
@@ -78,6 +80,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
+      operationId: getCountryFlag
       summary: Get country flag
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
@@ -110,6 +113,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
+      operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
       description: Fetches the flag image from the SofaScore image API by country code.
       tags:
@@ -141,6 +145,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
+      operationId: getPlaceholderTournamentPng
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -165,6 +170,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
+      operationId: getPlaceholderTournamentSvg
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -189,6 +195,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
+      operationId: getTeamPlaceholderImage
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
@@ -213,6 +220,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
+      operationId: getPlaceholderPlayerPng
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -237,6 +245,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
+      operationId: getPlaceholderPlayerSvg
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -261,6 +270,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
+      operationId: getPlaceholderManagerPng
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -284,6 +294,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
+      operationId: getPlaceholderManagerSvg
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -307,6 +318,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/calendar/season/{seasonId}/{year}/days-with-events:
     get:
+      operationId: getCalendarDaysWithEvents
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
@@ -345,6 +357,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/category/{categoryId}/image:
     get:
+      operationId: getCategoryImage
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
@@ -376,6 +389,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/countries/all:
     get:
+      operationId: getAllCountries
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
@@ -399,6 +413,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rankings/team/{teamId}:
     get:
+      operationId: getTeamRankings
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
@@ -430,6 +445,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/all:
     get:
+      operationId: searchAllEntities
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
@@ -453,6 +469,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/suggestions/{entityType}:
     get:
+      operationId: getSearchSuggestions
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
@@ -484,6 +501,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/unique-tournaments:
     get:
+      operationId: searchUniqueTournaments
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
@@ -507,6 +525,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/{entityType}:
     get:
+      operationId: searchByEntityType
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
@@ -538,6 +557,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{id}/schedule:
     get:
+      operationId: getTVChannelSchedule
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
@@ -569,6 +589,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/country/{countryCode}/channels:
     get:
+      operationId: getCountryTVChannels
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
@@ -600,6 +621,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/search/{term}:
     get:
+      operationId: searchTableTennisEntities
       summary: Search table tennis entities
       description: Searches for table tennis teams, players, and tournaments.
       tags:
@@ -644,6 +666,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/events/{day}/{month}/{year}:
     get:
+      operationId: getTableTennisEventsByDate
       summary: Get table tennis events by date
       description: Returns all scheduled table tennis matches for the provided day.
       tags:
@@ -689,6 +712,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/events/odds/{day}/{month}/{year}:
     get:
+      operationId: getTableTennisEventsWithOdds
       summary: Get table tennis events with odds
       description: Returns scheduled matches together with odds for bookmaker `1`.
       tags:
@@ -735,6 +759,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/events/live:
     get:
+      operationId: getLiveTableTennisEvents
       summary: Get live table tennis events
       description: Lists all currently live table tennis matches.
       tags:
@@ -758,6 +783,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/events/odds/featured/{providerId}:
     get:
+      operationId: getFeaturedTableTennisEventsWithOdds
       summary: Get featured table tennis events with odds
       description: Returns highlighted table tennis events with odds information for a provider.
       tags:
@@ -790,6 +816,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/events/odds/featured-by-tiers/{providerId}:
     get:
+      operationId: getFeaturedTableTennisEventsByTiers
       summary: Get featured table tennis events by tiers
       description: Returns highlighted table tennis events by tiers with odds information for a provider.
       tags:
@@ -822,6 +849,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/calendar/{month}/{year}:
     get:
+      operationId: getTableTennisCalendarOverview
       summary: Get table tennis calendar overview
       description: Provides unique tournaments with events for the requested month.
       tags:
@@ -860,6 +888,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/calendar/{day}/{month}/{year}/categories:
     get:
+      operationId: getTableTennisCategoriesForADay
       summary: Get table tennis categories for a day
       description: Lists categories that have events on the provided date.
       tags:
@@ -906,6 +935,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/calendar/{month}/{year}/categories:
     get:
+      operationId: getTableTennisCategoriesForMultipleDays
       summary: Get table tennis categories for multiple days
       description: Aggregates categories for up to five days in the given month.
       tags:
@@ -952,6 +982,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/categories:
     get:
+      operationId: getTableTennisTournamentCategories
       summary: Get table tennis tournament categories
       description: Returns all SofaScore categories for table tennis.
       tags:
@@ -975,6 +1006,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/categories/all:
     get:
+      operationId: getTableTennisTournamentCategoriesAll
       summary: Get table tennis tournament categories (all)
       description: Returns the full list of table tennis categories.
       tags:
@@ -998,6 +1030,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/all/category/{id}:
     get:
+      operationId: getTableTennisTournamentsByCategory
       summary: Get table tennis tournaments by category
       description: Lists unique tournaments under the given category.
       tags:
@@ -1030,6 +1063,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/category/{id}/events/{day}/{month}/{year}:
     get:
+      operationId: getCategoryEventsByDate
       summary: Get category events by date
       description: Lists all matches in the category for the provided day.
       tags:
@@ -1083,6 +1117,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}:
     get:
+      operationId: getTableTennisMatchDetails
       summary: Get table tennis match details
       description: Returns core information for the requested match.
       tags:
@@ -1114,6 +1149,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/statistics:
     get:
+      operationId: getTableTennisMatchStatistics
       summary: Get table tennis match statistics
       description: Provides detailed statistics for the specified match.
       tags:
@@ -1146,6 +1182,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/incidents:
     get:
+      operationId: getTableTennisMatchIncidents
       summary: Get table tennis match incidents
       description: Lists point-by-point incidents and notable events.
       tags:
@@ -1177,6 +1214,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/lineups:
     get:
+      operationId: getTableTennisMatchLineups
       summary: Get table tennis match lineups
       description: Returns confirmed lineups when available.
       tags:
@@ -1208,6 +1246,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/odds:
     get:
+      operationId: getTableTennisMatchOdds
       summary: Get table tennis match odds
       description: Retrieves odds from bookmaker `1` for the match.
       tags:
@@ -1240,6 +1279,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/odds/{providerId}/featured:
     get:
+      operationId: getMatchFeaturedOdds
       summary: Get match featured odds
       description: Retrieves featured odds for a specific table tennis match and provider.
       tags:
@@ -1279,6 +1319,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/provider/{providerId}/winning-odds:
     get:
+      operationId: getMatchWinningOdds
       summary: Get match winning odds
       description: Retrieves winning odds for a specific table tennis match and provider.
       tags:
@@ -1318,6 +1359,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/form:
     get:
+      operationId: getTableTennisMatchForm
       summary: Get table tennis match form
       description: Provides pre-game form information for both competitors.
       tags:
@@ -1349,6 +1391,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{customId}/h2h:
     get:
+      operationId: getTableTennisHeadToHeadHistory
       summary: Get table tennis head-to-head history
       description: Returns historical meetings for the match custom identifier.
       tags:
@@ -1381,6 +1424,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/duel:
     get:
+      operationId: getTableTennisHeadToHeadSummary
       summary: Get table tennis head-to-head summary
       description: Provides aggregated head-to-head totals for the competitors.
       tags:
@@ -1413,6 +1457,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/streaks:
     get:
+      operationId: getTableTennisMatchStreaks
       summary: Get table tennis match streaks
       description: Returns recent streak information for the match participants.
       tags:
@@ -1445,6 +1490,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/streaks/odds:
     get:
+      operationId: getTableTennisMatchStreaksWithOdds
       summary: Get table tennis match streaks with odds
       description: Returns streak details paired with bookmaker odds.
       tags:
@@ -1477,6 +1523,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/highlights:
     get:
+      operationId: getTableTennisMatchHighlights
       summary: Get table tennis match highlights
       description: Returns available highlight clips for the match.
       tags:
@@ -1509,6 +1556,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/votes:
     get:
+      operationId: getTableTennisMatchVotes
       summary: Get table tennis match votes
       description: Returns community votes for player of the match.
       tags:
@@ -1541,6 +1589,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/event/{id}/win-probability:
     get:
+      operationId: getTableTennisMatchWinProbability
       summary: Get table tennis match win probability
       description: Returns win probability timeline for the match.
       tags:
@@ -1573,6 +1622,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}:
     get:
+      operationId: getTableTennisTeamDetails
       summary: Get table tennis team details
       description: Returns information about the requested team.
       tags:
@@ -1604,6 +1654,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/performance:
     get:
+      operationId: getTableTennisTeamPerformance
       summary: Get table tennis team performance
       description: Returns performance data for the requested team.
       tags:
@@ -1636,6 +1687,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/players:
     get:
+      operationId: getTableTennisTeamRoster
       summary: Get table tennis team roster
       description: Returns current players registered for the team.
       tags:
@@ -1668,6 +1720,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/media:
     get:
+      operationId: getTableTennisTeamMedia
       summary: Get table tennis team media
       description: Returns media items linked to the team.
       tags:
@@ -1700,6 +1753,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousTableTennisMatchesByTeam
       summary: Get previous table tennis matches by team
       description: Returns paginated list of past matches for the team.
       tags:
@@ -1739,6 +1793,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/matches/next/{page}:
     get:
+      operationId: getUpcomingTableTennisMatchesByTeam
       summary: Get upcoming table tennis matches by team
       description: Returns paginated list of next matches for the team.
       tags:
@@ -1778,6 +1833,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/matches/near:
     get:
+      operationId: getNearbyTableTennisMatchesByTeam
       summary: Get nearby table tennis matches by team
       description: Returns recent and upcoming matches around the current date.
       tags:
@@ -1810,6 +1866,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/standings/seasons:
     get:
+      operationId: getTableTennisTeamStandingsSeasons
       summary: Get table tennis team standings seasons
       description: Lists seasons that have standings for the team.
       tags:
@@ -1842,6 +1899,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/player-statistics/seasons:
     get:
+      operationId: getTableTennisTeamPlayerStatisticsSeasons
       summary: Get table tennis team player-statistics seasons
       description: Lists seasons with player statistics for the team.
       tags:
@@ -1874,6 +1932,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/statistics/seasons:
     get:
+      operationId: getTableTennisTeamStatisticsSeasons
       summary: Get table tennis team statistics seasons
       description: Lists seasons with team statistics data.
       tags:
@@ -1906,6 +1965,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/rankings:
     get:
+      operationId: getTableTennisTeamRankings
       summary: Get table tennis team rankings
       description: Returns the SofaScore rankings for the team.
       tags:
@@ -1938,6 +1998,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/unique-tournaments:
     get:
+      operationId: getTableTennisTeamTournaments
       summary: Get table tennis team tournaments
       description: Lists unique tournaments that the team participates in.
       tags:
@@ -1970,6 +2031,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/team/{id}/transfers:
     get:
+      operationId: getTableTennisTeamTransfers
       summary: Get table tennis team transfers
       description: Returns historical transfer activity for the team.
       tags:
@@ -2002,6 +2064,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}:
     get:
+      operationId: getTableTennisTournamentDetails
       summary: Get table tennis tournament details
       description: Returns detailed information about the tournament.
       tags:
@@ -2033,6 +2096,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/info:
     get:
+      operationId: getTableTennisTournamentMetaInfo
       summary: Get table tennis tournament meta info
       description: Returns metadata used on SofaScore tournament pages.
       tags:
@@ -2064,6 +2128,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/media:
     get:
+      operationId: getTableTennisTournamentMedia
       summary: Get table tennis tournament media
       description: Returns media assets associated with the tournament.
       tags:
@@ -2096,6 +2161,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/featured-events:
     get:
+      operationId: getTableTennisTournamentFeaturedEvents
       summary: Get table tennis tournament featured events
       description: Lists SofaScore highlighted events for the tournament.
       tags:
@@ -2128,6 +2194,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/seasons:
     get:
+      operationId: getTableTennisTournamentSeasons
       summary: Get table tennis tournament seasons
       description: Lists available seasons for the tournament.
       tags:
@@ -2159,6 +2226,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/info:
     get:
+      operationId: getTableTennisTournamentSeasonInfo
       summary: Get table tennis tournament season info
       description: Returns metadata about a specific tournament season.
       tags:
@@ -2197,6 +2265,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
+      operationId: getTableTennisTournamentStandings
       summary: Get table tennis tournament standings
       description: Returns overall standings table for the season.
       tags:
@@ -2236,6 +2305,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
+      operationId: getTableTennisHomeStandings
       summary: Get table tennis home standings
       description: Returns standings filtered by home matches for the season.
       tags:
@@ -2275,6 +2345,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/round/{round}/slug/{slug}:
     get:
+      operationId: getTableTennisTournamentMatchesByRound
       summary: Get table tennis tournament matches by round
       description: Returns matches for the specified knockout round slug.
       tags:
@@ -2328,6 +2399,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/last/{page}:
     get:
+      operationId: getTableTennisTournamentLastMatches
       summary: Get table tennis tournament last matches
       description: Returns finished matches for the season, paginated.
       tags:
@@ -2374,6 +2446,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/events/next/{page}:
     get:
+      operationId: getTableTennisTournamentUpcomingMatches
       summary: Get table tennis tournament upcoming matches
       description: Returns upcoming matches for the season, paginated.
       tags:
@@ -2420,6 +2493,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
+      operationId: getTableTennisTournamentRounds
       summary: Get table tennis tournament rounds
       description: Lists available rounds for the tournament season.
       tags:
@@ -2458,6 +2532,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/groups:
     get:
+      operationId: getTableTennisTournamentGroups
       summary: Get table tennis tournament groups
       description: Returns groups for the tournament season.
       tags:
@@ -2496,6 +2571,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/cup-trees:
     get:
+      operationId: getTableTennisTournamentBracket
       summary: Get table tennis tournament bracket
       description: Returns knockout bracket for the season.
       tags:
@@ -2534,6 +2610,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
+      operationId: getTableTennisTournamentTeamEventsTotal
       summary: Get table tennis tournament team events total
       description: Returns aggregated event statistics for the season.
       tags:
@@ -2573,6 +2650,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
+      operationId: getTableTennisTournamentTeamEventsHome
       summary: Get table tennis tournament team events home
       description: Returns team event statistics for home matches only.
       tags:
@@ -2612,6 +2690,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
+      operationId: getTableTennisTournamentTeamEventsAway
       summary: Get table tennis tournament team events away
       description: Returns team event statistics for away matches only.
       tags:
@@ -2651,6 +2730,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/statistics/info:
     get:
+      operationId: getTableTennisTournamentStatisticsInfo
       summary: Get table tennis tournament statistics info
       description: Lists available statistics fields for the season.
       tags:
@@ -2690,6 +2770,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/player-of-the-season:
     get:
+      operationId: getTableTennisTournamentPlayerOfTheSeason
       summary: Get table tennis tournament player of the season
       description: Returns SofaScore player of the season data.
       tags:
@@ -2729,6 +2810,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/power-rankings/rounds:
     get:
+      operationId: getTableTennisTournamentPowerRankingRounds
       summary: Get table tennis tournament power ranking rounds
       description: Lists rounds with available power rankings.
       tags:
@@ -2768,6 +2850,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-of-the-week/rounds:
     get:
+      operationId: getTableTennisTournamentTeamOfTheWeekRounds
       summary: Get table tennis tournament team of the week rounds
       description: Lists rounds where a team of the week is available.
       tags:

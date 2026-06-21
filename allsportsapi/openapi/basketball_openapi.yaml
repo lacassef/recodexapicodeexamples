@@ -9,6 +9,7 @@ servers:
 paths:
   /api/tv/country/all/event/{id}:
     get:
+      operationId: getMatchTVCountries
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
@@ -40,6 +41,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
+      operationId: getMatchTVChannelVotes
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
@@ -78,6 +80,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
+      operationId: getCountryFlag
       summary: Get country flag
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
@@ -110,6 +113,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
+      operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
       description: Fetches the flag image from the SofaScore image API by country code.
       tags:
@@ -141,6 +145,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
+      operationId: getPlaceholderTournamentPng
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -165,6 +170,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
+      operationId: getPlaceholderTournamentSvg
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -189,6 +195,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
+      operationId: getTeamPlaceholderImage
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
@@ -213,6 +220,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
+      operationId: getPlaceholderPlayerPng
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -237,6 +245,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
+      operationId: getPlaceholderPlayerSvg
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -261,6 +270,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
+      operationId: getPlaceholderManagerPng
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -284,6 +294,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
+      operationId: getPlaceholderManagerSvg
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -307,6 +318,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/calendar/season/{seasonId}/{year}/days-with-events:
     get:
+      operationId: getCalendarDaysWithEvents
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
@@ -345,6 +357,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/category/{categoryId}/image:
     get:
+      operationId: getCategoryImage
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
@@ -376,6 +389,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/countries/all:
     get:
+      operationId: getAllCountries
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
@@ -399,6 +413,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rankings/team/{teamId}:
     get:
+      operationId: getTeamRankings
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
@@ -430,6 +445,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/all:
     get:
+      operationId: searchAllEntities
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
@@ -453,6 +469,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/suggestions/{entityType}:
     get:
+      operationId: getSearchSuggestions
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
@@ -484,6 +501,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/unique-tournaments:
     get:
+      operationId: searchUniqueTournaments
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
@@ -507,6 +525,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/{entityType}:
     get:
+      operationId: searchByEntityType
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
@@ -538,6 +557,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{id}/schedule:
     get:
+      operationId: getTVChannelSchedule
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
@@ -569,6 +589,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/country/{countryCode}/channels:
     get:
+      operationId: getCountryTVChannels
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
@@ -600,6 +621,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/search/{term}:
     get:
+      operationId: searchBasketballEntities
       summary: Search basketball entities
       description: Searches for basketball teams, players, and tournaments.
       tags:
@@ -645,6 +667,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/categories:
     get:
+      operationId: getBasketballTournamentCategories
       summary: Get basketball tournament categories
       description: Retrieves a list of all available basketball tournament categories, typically corresponding to 
         countries or regions.
@@ -670,6 +693,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/matches/{day}/{month}/{year}:
     get:
+      operationId: getBasketballMatchesByDate
       summary: Get basketball matches by date
       description: Fetches all basketball matches scheduled for a specific date.
       tags:
@@ -722,6 +746,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/matches/live:
     get:
+      operationId: getLiveBasketballMatches
       summary: Get live basketball matches
       description: Retrieves all currently live basketball matches.
       tags:
@@ -746,6 +771,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/matches/odds/{day}/{month}/{year}:
     get:
+      operationId: getBasketballMatchesWithOddsByDate
       summary: Get basketball matches with odds by date
       description: Retrieves basketball matches along with their betting odds for a specific date from bookmaker `1`.
       tags:
@@ -798,6 +824,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/matches/odds/featured/{providerId}:
     get:
+      operationId: getFeaturedBettingEvents
       summary: Get featured betting events
       description: Returns highlighted basketball events with odds information for a provider.
       tags:
@@ -830,6 +857,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/matches/odds/featured-by-tiers/{providerId}:
     get:
+      operationId: getFeaturedBettingEventsByTiers
       summary: Get featured betting events by tiers
       description: Returns highlighted basketball events by tiers with odds information for a provider.
       tags:
@@ -862,6 +890,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}:
     get:
+      operationId: getBasketballMatchDetails
       summary: Get basketball match details
       description: Retrieves detailed information for a specific basketball match by its ID.
       tags:
@@ -894,6 +923,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/form:
     get:
+      operationId: getMatchFormAnalysis
       summary: Get match form analysis
       description: Retrieves pre-game form and recent performance data for the teams in a specific match.
       tags:
@@ -926,6 +956,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/odds:
     get:
+      operationId: getMatchBettingOdds
       summary: Get match betting odds
       description: Retrieves available betting odds from various bookmakers for a specific match.
       tags:
@@ -959,6 +990,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/odds/{providerId}/featured:
     get:
+      operationId: getMatchFeaturedOdds
       summary: Get match featured odds
       description: Retrieves featured odds for a specific match and provider.
       tags:
@@ -999,6 +1031,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/provider/{providerId}/winning-odds:
     get:
+      operationId: getMatchWinningOdds
       summary: Get match winning odds
       description: Retrieves winning odds for a specific match and provider.
       tags:
@@ -1039,6 +1072,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/best-players:
     get:
+      operationId: getMatchBestPlayers
       summary: Get match best players
       description: Retrieves a list of the best performing players from a specific match, based on SofaScore ratings.
       tags:
@@ -1072,6 +1106,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/duel:
     get:
+      operationId: getHeadToHeadSummary
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head (H2H) statistics between the two teams in a match.
       tags:
@@ -1105,6 +1140,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/highlights:
     get:
+      operationId: getMatchHighlights
       summary: Get match highlights
       description: Retrieves video highlights and key moments from a specific match, if available.
       tags:
@@ -1138,6 +1174,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{customId}/h2h:
     get:
+      operationId: getHeadToHeadHistory
       summary: Get head-to-head history
       description: Retrieves the detailed match history for head-to-head encounters between two teams.
       tags:
@@ -1171,6 +1208,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/lineups:
     get:
+      operationId: getMatchLineups
       summary: Get match lineups
       description: Retrieves the starting lineups and substitutes for both teams in a specific match.
       tags:
@@ -1204,6 +1242,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/statistics:
     get:
+      operationId: getMatchStatistics
       summary: Get match statistics
       description: Retrieves comprehensive team and player statistics for a specific match.
       tags:
@@ -1237,6 +1276,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/graph:
     get:
+      operationId: getMatchMomentumGraph
       summary: Get match momentum graph
       description: Retrieves data points for the match momentum graph, showing scoring progression and team pressure.
       tags:
@@ -1270,6 +1310,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/incidents:
     get:
+      operationId: getMatchIncidents
       summary: Get match incidents
       description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., 
         points, fouls).
@@ -1303,6 +1344,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/managers:
     get:
+      operationId: getMatchManagersCoaches
       summary: Get match managers/coaches
       description: Retrieves information about the coaches for both teams in a specific match.
       tags:
@@ -1336,6 +1378,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/series:
     get:
+      operationId: getMatchSeriesInformation
       summary: Get match series information
       description: If the match is part of a playoff series, this retrieves the current series score and status.
       tags:
@@ -1368,6 +1411,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/player/{playerId}/statistics:
     get:
+      operationId: getPlayerMatchStatistics
       summary: Get player match statistics
       description: Retrieves detailed statistics for a single player in a specific match.
       tags:
@@ -1409,6 +1453,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/team/{teamId}/shotmap:
     get:
+      operationId: getTeamShotMap
       summary: Get team shot map
       description: Retrieves the shot map for a specific team, showing shot locations and outcomes during the match.
       tags:
@@ -1450,6 +1495,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/player/{playerId}/shotmap:
     get:
+      operationId: getPlayerShotMap
       summary: Get player shot map
       description: Retrieves the shot map for a single player, showing shot locations and outcomes during the match.
       tags:
@@ -1491,6 +1537,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/meta:
     get:
+      operationId: getEventMetadata
       summary: Get event metadata
       description: Retrieves SEO and metadata for a specific event.
       tags:
@@ -1522,6 +1569,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/odds/{providerId}/all:
     get:
+      operationId: getAllOddsForEvent
       summary: Get all odds for event
       description: Retrieves all available odds from a specific provider for an event.
       tags:
@@ -1560,6 +1608,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/graph/sequence:
     get:
+      operationId: getEventGraphSequence
       summary: Get event graph sequence
       description: Retrieves the momentum/pressure graph sequence data for a match.
       tags:
@@ -1591,6 +1640,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/match/{id}/official-tweets:
     get:
+      operationId: getEventOfficialTweets
       summary: Get event official tweets
       description: Retrieves official social media posts related to an event.
       tags:
@@ -1622,6 +1672,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousTeamMatches
       summary: Get previous team matches
       description: Fetches a paginated list of completed basketball games for a specific team, sorted by date 
         descending.
@@ -1669,6 +1720,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/matches/next/{page}:
     get:
+      operationId: getUpcomingTeamMatches
       summary: Get upcoming team matches
       description: Fetches a paginated list of scheduled basketball games for a specific team, sorted by date ascending.
       tags:
@@ -1715,6 +1767,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/players/statistics/seasons:
     get:
+      operationId: getTeamPlayerStatisticsSeasons
       summary: Get team player statistics seasons
       description: Retrieves a list of seasons for which a team's player statistics are available.
       tags:
@@ -1748,6 +1801,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/standings/seasons:
     get:
+      operationId: getTeamStandingsSeasons
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which a team's standings are available.
       tags:
@@ -1781,6 +1835,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players/regularseason:
     get:
+      operationId: getTeamTopPlayersForRegularSeason
       summary: Get team top players for regular season
       description: Retrieves the best performing players for a team in the regular season of a specific tournament.
       tags:
@@ -1829,6 +1884,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players/playoffs:
     get:
+      operationId: getTeamTopPlayersForPlayoffs
       summary: Get team top players for playoffs
       description: Retrieves the best performing players for a team in the playoffs of a specific tournament.
       tags:
@@ -1877,6 +1933,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/tournaments:
     get:
+      operationId: getTeamTournaments
       summary: Get team tournaments
       description: Retrieves a list of all unique tournaments a team has participated in.
       tags:
@@ -1910,6 +1967,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/transfers:
     get:
+      operationId: getTeamTransfers
       summary: Get team transfers
       description: Retrieves the transfer history (players in and out) for a specific team.
       tags:
@@ -1943,6 +2001,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/players:
     get:
+      operationId: getTeamPlayers
       summary: Get team players
       description: Retrieves the current roster of players for a specific team.
       tags:
@@ -1976,6 +2035,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/matches/near:
     get:
+      operationId: getTeamNearMatches
       summary: Get team near matches
       description: Retrieves a list of recent and upcoming matches for a specific team.
       tags:
@@ -2009,6 +2069,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/media:
     get:
+      operationId: getTeamMedia
       summary: Get team media
       description: Retrieves media content (e.g., videos, images) associated with a specific team.
       tags:
@@ -2042,6 +2103,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}:
     get:
+      operationId: getTeamDetails
       summary: Get team details
       description: Retrieves comprehensive details for a specific basketball team.
       tags:
@@ -2074,6 +2136,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/image:
     get:
+      operationId: getTeamLogo
       summary: Get team logo
       description: Retrieves the logo image for a specific team.
       tags:
@@ -2107,6 +2170,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/image/small:
     get:
+      operationId: getTeamSmallLogo
       summary: Get team small logo
       description: Retrieves the small logo image for a specific team.
       tags:
@@ -2140,6 +2204,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularSeason:
     get:
+      operationId: getTeamRegularSeasonStatistics
       summary: Get team regular season statistics
       description: Retrieves comprehensive statistics for a team in the regular season of a specific tournament.
       tags:
@@ -2187,6 +2252,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/playoffs:
     get:
+      operationId: getTeamPlayoffsStatistics
       summary: Get team playoffs statistics
       description: Retrieves comprehensive statistics for a team in the playoffs of a specific tournament.
       tags:
@@ -2234,6 +2300,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/ranks/regularSeason:
     get:
+      operationId: getTeamRegularSeasonRankings
       summary: Get team regular season rankings
       description: Retrieves a team's ranking positions in various statistical categories for the regular season.
       tags:
@@ -2282,6 +2349,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/ranks/playoffs:
     get:
+      operationId: getTeamPlayoffsRankings
       summary: Get team playoffs rankings
       description: Retrieves a team's ranking positions in various statistical categories for the playoffs.
       tags:
@@ -2330,6 +2398,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/featured-event:
     get:
+      operationId: getTeamFeaturedEvent
       summary: Get team featured event
       description: Retrieves the current or next featured event for a team.
       tags:
@@ -2361,6 +2430,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/team/{id}/unique-tournaments/all:
     get:
+      operationId: getAllTeamTournaments
       summary: Get all team tournaments
       description: Retrieves all unique tournaments a team participates in.
       tags:
@@ -2392,6 +2462,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}:
     get:
+      operationId: getPlayerDetails
       summary: Get player details
       description: Retrieves comprehensive information about a specific basketball player.
       tags:
@@ -2424,6 +2495,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/media:
     get:
+      operationId: getPlayerMedia
       summary: Get player media
       description: Retrieves media content (e.g., videos, images) associated with a specific player.
       tags:
@@ -2457,6 +2529,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/matches/near:
     get:
+      operationId: getPlayerNearMatches
       summary: Get player near matches
       description: Retrieves a list of recent and upcoming matches for a specific player.
       tags:
@@ -2490,6 +2563,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/transfers:
     get:
+      operationId: getPlayerTransferHistory
       summary: Get player transfer history
       description: Retrieves the complete transfer history for a specific player.
       tags:
@@ -2523,6 +2597,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/statistics/season:
     get:
+      operationId: getPlayerStatisticsSeasons
       summary: Get player statistics seasons
       description: Retrieves a list of seasons for which a player's statistics are available.
       tags:
@@ -2556,6 +2631,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularseason:
     get:
+      operationId: getPlayerRegularSeasonStatistics
       summary: Get player regular season statistics
       description: Retrieves a player's statistics for the regular season of a specific tournament.
       tags:
@@ -2603,6 +2679,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/playoffs:
     get:
+      operationId: getPlayerPlayoffsStatistics
       summary: Get player playoffs statistics
       description: Retrieves a player's statistics for the playoffs of a specific tournament.
       tags:
@@ -2650,6 +2727,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/overall:
     get:
+      operationId: getPlayerOverallStatistics
       summary: Get player overall statistics
       description: Retrieves a player's combined statistics for an entire season (regular season and playoffs).
       tags:
@@ -2697,6 +2775,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/image:
     get:
+      operationId: getPlayerImage
       summary: Get player image
       description: Retrieves the profile image for a specific player.
       tags:
@@ -2730,6 +2809,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousPlayerMatches
       summary: Get previous player matches
       description: Fetches a paginated list of completed matches for a specific player, sorted by date descending.
       tags:
@@ -2776,6 +2856,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/shot-actions/regularSeason:
     get:
+      operationId: getPlayerShotActionsForRegularSeason
       summary: Get player shot actions for regular season
       description: Retrieves detailed shot action data (e.g., shot types, locations) for a player in the regular season.
       tags:
@@ -2823,6 +2904,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/shot-actions/playoffs:
     get:
+      operationId: getPlayerShotActionsForPlayoffs
       summary: Get player shot actions for playoffs
       description: Retrieves detailed shot action data (e.g., shot types, locations) for a player in the playoffs.
       tags:
@@ -2870,6 +2952,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/media/videos:
     get:
+      operationId: getPlayerMediaVideos
       summary: Get player media videos
       description: Retrieves video highlights and media for a player.
       tags:
@@ -2901,6 +2984,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/ratings/regularSeason:
     get:
+      operationId: getPlayerRegularSeasonRatings
       summary: Get player regular season ratings
       description: Retrieves match-by-match rating data for a player in a tournament season.
       tags:
@@ -2946,6 +3030,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/player/{id}/tournament/{tournamentId}/events/last/{page}:
     get:
+      operationId: getPlayerTournamentLastMatches
       summary: Get player tournament last matches
       description: Retrieves a paginated list of the player's recent matches in a tournament.
       tags:
@@ -2991,6 +3076,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/manager/{id}:
     get:
+      operationId: getManagerCoachDetails
       summary: Get manager/coach details
       description: Retrieves comprehensive information about a specific basketball coach/manager.
       tags:
@@ -3023,6 +3109,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/manager/{id}/image:
     get:
+      operationId: getManagerCoachImage
       summary: Get manager/coach image
       description: Retrieves the profile image for a specific manager.
       tags:
@@ -3056,6 +3143,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/manager/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousManagerMatches
       summary: Get previous manager matches
       description: Fetches a paginated list of completed matches for a specific manager, sorted by date descending.
       tags:
@@ -3102,6 +3190,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
+      operationId: getTournamentTotalStandings
       summary: Get tournament total standings
       description: Retrieves the complete standings table for all teams in a specific tournament season.
       tags:
@@ -3142,6 +3231,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
+      operationId: getTournamentHomeStandings
       summary: Get tournament home standings
       description: Retrieves the standings based on home games only for a specific tournament season.
       tags:
@@ -3182,6 +3272,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/standings/away:
     get:
+      operationId: getTournamentAwayStandings
       summary: Get tournament away standings
       description: Retrieves the standings based on away games only for a specific tournament season.
       tags:
@@ -3222,6 +3313,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/venues:
     get:
+      operationId: getTournamentVenues
       summary: Get tournament venues
       description: Retrieves venues for a specific tournament season.
       tags:
@@ -3261,6 +3353,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}:
     get:
+      operationId: getTournamentDetails
       summary: Get tournament details
       description: Retrieves comprehensive details for a specific basketball tournament.
       tags:
@@ -3293,6 +3386,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/seasons:
     get:
+      operationId: getTournamentSeasons
       summary: Get tournament seasons
       description: Retrieves a list of all available seasons for a specific tournament.
       tags:
@@ -3325,6 +3419,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/media:
     get:
+      operationId: getTournamentMedia
       summary: Get tournament media
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       tags:
@@ -3358,6 +3453,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/image:
     get:
+      operationId: getTournamentLogo
       summary: Get tournament logo
       description: Retrieves the logo image for a specific tournament.
       tags:
@@ -3391,6 +3487,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/image/dark:
     get:
+      operationId: getTournamentDarkLogo
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       tags:
@@ -3424,6 +3521,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/regularseason:
     get:
+      operationId: getTopPlayersForRegularSeason
       summary: Get top players for regular season
       description: Retrieves the best performing players in the regular season of a specific tournament.
       tags:
@@ -3465,6 +3563,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/cuptrees:
     get:
+      operationId: getTournamentCupTrees
       summary: Get tournament cup trees
       description: Retrieves the knockout bracket (cup trees) for a specific tournament season.
       tags:
@@ -3504,6 +3603,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/playoffs:
     get:
+      operationId: getTopPlayersForPlayoffs
       summary: Get top players for playoffs
       description: Retrieves the best performing players in the playoffs of a specific tournament.
       tags:
@@ -3545,6 +3645,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
+      operationId: getTournamentLastMatches
       summary: Get tournament last matches
       description: Retrieves a paginated list of recently played matches in a specific tournament season.
       tags:
@@ -3598,6 +3699,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
+      operationId: getTournamentUpcomingMatches
       summary: Get tournament upcoming matches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
       tags:
@@ -3651,6 +3753,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/category/{id}/events/{day}/{month}/{year}:
     get:
+      operationId: getMatchesByCategoryAndDate
       summary: Get matches by category and date
       description: Retrieves all basketball matches for a specific category on a given date.
       tags:
@@ -3711,6 +3814,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/group/tournament/{tournamentId}/season/{seasonId}/matches:
     get:
+      operationId: getGroupMatches
       summary: Get group matches
       description: Retrieves all matches for a specific group within a tournament season.
       tags:
@@ -3751,6 +3855,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/group/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
+      operationId: getGroupTournamentTotalStandings
       summary: Get group tournament total standings
       description: Retrieves the total standings table for a tournament season in group context.
       tags:
@@ -3792,6 +3897,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/group/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
+      operationId: getGroupTournamentTeamEventsTotal
       summary: Get group tournament team events total
       description: Retrieves aggregated team statistics for all games in a tournament season.
       tags:
@@ -3834,6 +3940,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-teams/regularSeason:
     get:
+      operationId: getTopTeamsForRegularSeason
       summary: Get top teams for regular season
       description: Retrieves the best performing teams in the regular season of a specific tournament.
       tags:
@@ -3875,6 +3982,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-teams/playoffs:
     get:
+      operationId: getTopTeamsForPlayoffs
       summary: Get top teams for playoffs
       description: Retrieves the best performing teams in the playoffs of a specific tournament.
       tags:
@@ -3916,6 +4024,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/per-game:
     get:
+      operationId: getTopPlayersPerGameStatistics
       summary: Get top players per game statistics
       description: Retrieves player rankings based on per-game averages for an entire tournament season.
       tags:
@@ -3957,6 +4066,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/per-game/regularSeason:
     get:
+      operationId: getTopPlayersPerGameForRegularSeason
       summary: Get top players per game for regular season
       description: Retrieves player rankings based on per-game averages for the regular season.
       tags:
@@ -3998,6 +4108,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/per-game/playoffs:
     get:
+      operationId: getTopPlayersPerGameForPlayoffs
       summary: Get top players per game for playoffs
       description: Retrieves player rankings based on per-game averages for the playoffs.
       tags:
@@ -4039,6 +4150,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/types:
     get:
+      operationId: getPlayerStatisticsTypes
       summary: Get player statistics types
       description: Retrieves the available types of player statistics for a given tournament season.
       tags:
@@ -4079,6 +4191,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/shot-actions/areas/regularSeason:
     get:
+      operationId: getShotActionsAreasForRegularSeason
       summary: Get shot actions areas for regular season
       description: Retrieves aggregated shot distribution data by court areas for the regular season of a tournament.
       tags:
@@ -4119,6 +4232,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/shot-actions/areas/playoffs:
     get:
+      operationId: getShotActionsAreasForPlayoffs
       summary: Get shot actions areas for playoffs
       description: Retrieves aggregated shot distribution data by court areas for the playoffs of a tournament.
       tags:
@@ -4159,6 +4273,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
+      operationId: getTeamEventsTotalStatistics
       summary: Get team events total statistics
       description: Retrieves aggregated team performance statistics for all games in a tournament season.
       tags:
@@ -4200,6 +4315,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
+      operationId: getTeamEventsHomeStatistics
       summary: Get team events home statistics
       description: Retrieves aggregated team performance statistics for home games in a tournament season.
       tags:
@@ -4241,6 +4357,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
+      operationId: getTeamEventsAwayStatistics
       summary: Get team events away statistics
       description: Retrieves aggregated team performance statistics for away games in a tournament season.
       tags:
@@ -4282,6 +4399,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-teams/overall:
     get:
+      operationId: getTopTeamsOverall
       summary: Get top teams overall
       description: Retrieves the best performing teams for an entire tournament season.
       tags:
@@ -4323,6 +4441,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
+      operationId: getTournamentRounds
       summary: Get tournament rounds
       description: Retrieves a list of all rounds (or weeks) for a specific tournament season.
       tags:
@@ -4362,6 +4481,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/groups:
     get:
+      operationId: getTournamentGroups
       summary: Get tournament groups
       description: Retrieves the group stage information for a specific tournament season.
       tags:
@@ -4401,6 +4521,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/overall:
     get:
+      operationId: getTopPlayersOverall
       summary: Get top players overall
       description: Retrieves the best performing players for an entire tournament season.
       tags:
@@ -4442,6 +4563,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
+      operationId: getTournamentMatchesByDate
       summary: Get tournament matches by date
       description: Retrieves all matches for a specific tournament scheduled on a given date.
       tags:
@@ -4502,6 +4624,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/all/category/{id}:
     get:
+      operationId: getTournamentsByCategory
       summary: Get tournaments by category
       description: Retrieves all tournaments within a specific basketball category.
       tags:
@@ -4535,6 +4658,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/featured-events:
     get:
+      operationId: getTournamentFeaturedEvents
       summary: Get tournament featured events
       description: Retrieves featured/highlighted events for a tournament.
       tags:
@@ -4566,6 +4690,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/winners:
     get:
+      operationId: getTournamentWinners
       summary: Get tournament winners
       description: Retrieves historical winners of a tournament.
       tags:
@@ -4597,6 +4722,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/player-news:
     get:
+      operationId: getTournamentPlayerNews
       summary: Get tournament player news
       description: Retrieves player-related news for a tournament.
       tags:
@@ -4628,6 +4754,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/player-transfer-history/all/{page}:
     get:
+      operationId: getTournamentTransferHistory
       summary: Get tournament transfer history
       description: Retrieves paginated player transfer history for a tournament.
       tags:
@@ -4666,6 +4793,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/teams:
     get:
+      operationId: getTournamentSeasonTeams
       summary: Get tournament season teams
       description: Retrieves all teams participating in a tournament season.
       tags:
@@ -4704,6 +4832,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/team-statistics/types:
     get:
+      operationId: getTeamStatisticsTypes
       summary: Get team statistics types
       description: Retrieves available team statistic categories for a tournament season.
       tags:
@@ -4742,6 +4871,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/top-ratings/overall:
     get:
+      operationId: getTournamentTopRatings
       summary: Get tournament top ratings
       description: Retrieves overall top-rated players for a tournament season.
       tags:
@@ -4780,6 +4910,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/shot-action-areas/event/overall:
     get:
+      operationId: getShotActionAreasByEventOverall
       summary: Get shot action areas by event overall
       description: Retrieves shot action area statistics aggregated by event for the entire season.
       tags:
@@ -4819,6 +4950,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/tournament/{tournamentId}/top-player-performance:
     get:
+      operationId: getTournamentTopPlayerPerformance
       summary: Get tournament top player performance
       description: Retrieves top individual player performances for a tournament.
       tags:
@@ -4850,6 +4982,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/basketball/category/{categoryId}/live-unique-tournaments:
     get:
+      operationId: getLiveTournamentsForCategory
       summary: Get live tournaments for category
       description: Retrieves tournaments with currently live events in a category.
       tags:

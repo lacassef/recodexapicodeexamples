@@ -9,6 +9,7 @@ servers:
 paths:
   /api/tv/country/all/event/{id}:
     get:
+      operationId: getMatchTVCountries
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
@@ -40,6 +41,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
+      operationId: getMatchTVChannelVotes
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
@@ -78,6 +80,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
+      operationId: getCountryFlag
       summary: Get country flag
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
@@ -110,6 +113,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
+      operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
       description: Fetches the flag image from the SofaScore image API by country code.
       tags:
@@ -141,6 +145,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
+      operationId: getPlaceholderTournamentPng
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -165,6 +170,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
+      operationId: getPlaceholderTournamentSvg
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -189,6 +195,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
+      operationId: getTeamPlaceholderImage
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
@@ -213,6 +220,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
+      operationId: getPlaceholderPlayerPng
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -237,6 +245,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
+      operationId: getPlaceholderPlayerSvg
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -261,6 +270,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
+      operationId: getPlaceholderManagerPng
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -284,6 +294,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
+      operationId: getPlaceholderManagerSvg
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -307,6 +318,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/calendar/season/{seasonId}/{year}/days-with-events:
     get:
+      operationId: getCalendarDaysWithEvents
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
@@ -345,6 +357,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/category/{categoryId}/image:
     get:
+      operationId: getCategoryImage
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
@@ -376,6 +389,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/countries/all:
     get:
+      operationId: getAllCountries
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
@@ -399,6 +413,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rankings/team/{teamId}:
     get:
+      operationId: getTeamRankings
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
@@ -430,6 +445,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/all:
     get:
+      operationId: searchAllEntities
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
@@ -453,6 +469,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/suggestions/{entityType}:
     get:
+      operationId: getSearchSuggestions
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
@@ -484,6 +501,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/unique-tournaments:
     get:
+      operationId: searchUniqueTournaments
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
@@ -507,6 +525,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/{entityType}:
     get:
+      operationId: searchByEntityType
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
@@ -538,6 +557,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{id}/schedule:
     get:
+      operationId: getTVChannelSchedule
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
@@ -569,6 +589,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/country/{countryCode}/channels:
     get:
+      operationId: getCountryTVChannels
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
@@ -600,6 +621,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/search/{term}:
     get:
+      operationId: searchCyclingEntities
       summary: Search cycling entities
       description: Searches for cycling teams, riders, and tournaments.
       tags:
@@ -644,6 +666,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/stage/{stageId}/substages:
     get:
+      operationId: getCyclingStageSubstages
       summary: Get cycling stage substages
       description: Retrieves substages associated with the given cycling stage.
       tags:
@@ -675,6 +698,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/stage/{id}/standings/competitor:
     get:
+      operationId: getCyclingStageCompetitorStandings
       summary: Get cycling stage competitor standings
       description: Retrieves competitor standings for a cycling stage.
       tags:
@@ -707,6 +731,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/stage/{id}/standings/team:
     get:
+      operationId: getCyclingStageTeamStandings
       summary: Get cycling stage team standings
       description: Retrieves team standings for a cycling stage.
       tags:
@@ -739,6 +764,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/stage/{id}/highlights:
     get:
+      operationId: getCyclingStageHighlights
       summary: Get cycling stage highlights
       description: Retrieves highlights for a cycling stage.
       tags:
@@ -771,6 +797,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/stage/{id}/extended:
     get:
+      operationId: getCyclingStageExtendedDetails
       summary: Get cycling stage extended details
       description: Retrieves extended data for a cycling stage.
       tags:
@@ -802,6 +829,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/stage/{id}/odds/provider/{providerId}/all:
     get:
+      operationId: getCyclingStageOddsAllByProvider
       summary: Get cycling stage odds (all) by provider
       description: Retrieves all available odds for a cycling stage from a provider.
       tags:
@@ -841,6 +869,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/stage/{id}/odds/provider/{providerId}/featured:
     get:
+      operationId: getCyclingStageOddsFeaturedByProvider
       summary: Get cycling stage odds (featured) by provider
       description: Retrieves featured odds for a cycling stage from a provider.
       tags:
@@ -880,6 +909,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/team/{id}/stage/seasons:
     get:
+      operationId: getCyclingTeamStageSeasons
       summary: Get cycling team stage seasons
       description: Retrieves cycling stage seasons for a team.
       tags:
@@ -912,6 +942,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/team/{id}/stage/season/{seasonId}/races:
     get:
+      operationId: getCyclingTeamStageSeasonRaces
       summary: Get cycling team stage season races
       description: Retrieves races for a cycling team in a specific stage season.
       tags:
@@ -951,6 +982,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/team/{id}/image:
     get:
+      operationId: getCyclingTeamImage
       summary: Get cycling team image
       description: Retrieves the image for a cycling team.
       tags:
@@ -984,6 +1016,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/unique-stage/{uniqueStageId}/season:
     get:
+      operationId: getCyclingUniqueStageSeasons
       summary: Get cycling unique stage seasons
       description: Retrieves seasons for a cycling unique stage.
       tags:
@@ -1016,6 +1049,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cycling/category/{categoryId}/image:
     get:
+      operationId: getCyclingCategoryImage
       summary: Get cycling category image
       description: Retrieves the image for a cycling category.
       tags:

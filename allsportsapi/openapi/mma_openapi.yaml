@@ -9,6 +9,7 @@ servers:
 paths:
   /api/tv/country/all/event/{id}:
     get:
+      operationId: getMatchTVCountries
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
@@ -40,6 +41,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
+      operationId: getMatchTVChannelVotes
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
@@ -78,6 +80,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
+      operationId: getCountryFlag
       summary: Get country flag
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
@@ -110,6 +113,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
+      operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
       description: Fetches the flag image from the SofaScore image API by country code.
       tags:
@@ -141,6 +145,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
+      operationId: getPlaceholderTournamentPng
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -165,6 +170,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
+      operationId: getPlaceholderTournamentSvg
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -189,6 +195,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
+      operationId: getTeamPlaceholderImage
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
@@ -213,6 +220,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
+      operationId: getPlaceholderPlayerPng
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -237,6 +245,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
+      operationId: getPlaceholderPlayerSvg
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -261,6 +270,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
+      operationId: getPlaceholderManagerPng
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -284,6 +294,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
+      operationId: getPlaceholderManagerSvg
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -307,6 +318,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholders/fighter-male.svg:
     get:
+      operationId: getMaleFighterPlaceholderImage
       summary: Get male fighter placeholder image
       description: Retrieves a placeholder image for a male fighter.
       tags:
@@ -332,6 +344,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholders/fighter-female.svg:
     get:
+      operationId: getFemaleFighterPlaceholderImage
       summary: Get female fighter placeholder image
       description: Retrieves a placeholder image for a female fighter.
       tags:
@@ -357,6 +370,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/calendar/season/{seasonId}/{year}/days-with-events:
     get:
+      operationId: getCalendarDaysWithEvents
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
@@ -395,6 +409,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/category/{categoryId}/image:
     get:
+      operationId: getCategoryImage
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
@@ -426,6 +441,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/countries/all:
     get:
+      operationId: getAllCountries
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
@@ -449,6 +465,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rankings/team/{teamId}:
     get:
+      operationId: getTeamRankings
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
@@ -480,6 +497,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/all:
     get:
+      operationId: searchAllEntities
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
@@ -503,6 +521,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/suggestions/{entityType}:
     get:
+      operationId: getSearchSuggestions
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
@@ -534,6 +553,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/unique-tournaments:
     get:
+      operationId: searchUniqueTournaments
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
@@ -557,6 +577,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/{entityType}:
     get:
+      operationId: searchByEntityType
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
@@ -588,6 +609,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{id}/schedule:
     get:
+      operationId: getTVChannelSchedule
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
@@ -619,6 +641,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/country/{countryCode}/channels:
     get:
+      operationId: getCountryTVChannels
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
@@ -650,6 +673,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/search/{term}:
     get:
+      operationId: searchMMAEntities
       summary: Search MMA entities
       description: Searches for MMA fighters, events, and tournaments.
       tags:
@@ -694,6 +718,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/categories:
     get:
+      operationId: getMMACategories
       summary: Get MMA categories
       description: Retrieves a list of all available MMA categories, which typically correspond to different 
         organizations (e.g., UFC, KSW).
@@ -718,6 +743,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/main-events/{date}/extended:
     get:
+      operationId: getMMAMainEventsExtendedByDate
       summary: Get MMA main events extended by date
       description: Retrieves extended main events for MMA on a specific date.
       tags:
@@ -755,6 +781,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/category/{id}/unique-tournaments:
     get:
+      operationId: getUniqueTournamentsByCategory
       summary: Get unique tournaments by category
       description: Retrieves all unique MMA tournaments within a specific category (organization).
       tags:
@@ -787,6 +814,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/unique-tournament/{tournamentId}/main-events/last/{page}:
     get:
+      operationId: getLastMainEventsForATournament
       summary: Get last main events for a tournament
       description: Retrieves a paginated list of the last main events for a specific MMA tournament.
       tags:
@@ -832,6 +860,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/unique-tournament/{tournamentId}/main-events/next/{page}:
     get:
+      operationId: getNextMainEventsForATournament
       summary: Get next main events for a tournament
       description: Retrieves a paginated list of the next main events for a specific MMA tournament.
       tags:
@@ -877,6 +906,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/unique-tournament/{tournamentId}:
     get:
+      operationId: getMMATournamentDetails
       summary: Get MMA tournament details
       description: Retrieves detailed information for a specific MMA tournament.
       tags:
@@ -908,6 +938,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/rankings/unique-tournament/{tournamentId}/summary:
     get:
+      operationId: getMMARankingsSummaryForATournament
       summary: Get MMA rankings summary for a tournament
       description: Retrieves a summary of rankings for a specific MMA tournament.
       tags:
@@ -940,6 +971,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/unique-tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
+      operationId: getMMATournamentScheduleByDate
       summary: Get MMA tournament schedule by date
       description: Retrieves the schedule of events for a specific MMA tournament on a given date.
       tags:
@@ -999,6 +1031,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/unique-tournament/{tournamentId}/schedules/{month}/{year}:
     get:
+      operationId: getMMAScheduledMainEventsByMonth
       summary: Get MMA scheduled main events by month
       description: Retrieves the main events scheduled for a specific MMA tournament in a given month and year.
       tags:
@@ -1051,6 +1084,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/unique-tournament/{uniqueTournamentId}/tournament/{tournamentId}/mma-events/all:
     get:
+      operationId: getAllMMAEventsForATournament
       summary: Get all MMA events for a tournament
       description: Retrieves all MMA events associated with a specific tournament and unique tournament ID.
       tags:
@@ -1090,6 +1124,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/unique-tournament/{tournamentId}/featured-events:
     get:
+      operationId: getFeaturedMMAEventsForATournament
       summary: Get featured MMA events for a tournament
       description: Retrieves a list of featured MMA events for a specific tournament.
       tags:
@@ -1122,6 +1157,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/unique-tournament/{tournamentId}/image:
     get:
+      operationId: getMMATournamentImage
       summary: Get MMA tournament image
       description: Retrieves the logo image for a specific MMA tournament.
       tags:
@@ -1155,6 +1191,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/unique-tournament/{tournamentId}/image/dark:
     get:
+      operationId: getMMATournamentDarkThemeImage
       summary: Get MMA tournament dark-theme image
       description: Retrieves the dark-theme logo image for a specific MMA tournament.
       tags:
@@ -1188,6 +1225,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/event/{id}:
     get:
+      operationId: getMMAEventDetailsByID
       summary: Get MMA event details by ID
       description: Retrieves detailed information for a specific MMA event by its ID.
       tags:
@@ -1219,6 +1257,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/event/{id}/meta:
     get:
+      operationId: getMMAEventMetadata
       summary: Get MMA event metadata
       description: Retrieves metadata for a specific MMA event.
       tags:
@@ -1250,6 +1289,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/event/{id}/odds/{providerId}/featured:
     get:
+      operationId: getMMAEventFeaturedOdds
       summary: Get MMA event featured odds
       description: Retrieves featured odds for a specific MMA event and provider.
       tags:
@@ -1289,6 +1329,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/event/{id}/pregame-form:
     get:
+      operationId: getPreGameFormForAnMMAEvent
       summary: Get pre-game form for an MMA event
       description: Retrieves pre-game form and recent performance data for the fighters in a specific event.
       tags:
@@ -1320,6 +1361,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/event/{customId}/h2h/events:
     get:
+      operationId: getHeadToHeadHistoryForAnMMAEvent
       summary: Get head-to-head history for an MMA event
       description: Retrieves the detailed match history for head-to-head encounters between the two fighters in an 
         event.
@@ -1353,6 +1395,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/event/{id}/team-streaks:
     get:
+      operationId: getFighterStreaksForAnEvent
       summary: Get fighter streaks for an event
       description: Provides recent form and streak information for each fighter in an event.
       tags:
@@ -1385,6 +1428,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/event/{id}/statistics:
     get:
+      operationId: getMMAEventStatistics
       summary: Get MMA event statistics
       description: Retrieves comprehensive statistics for a specific MMA event.
       tags:
@@ -1417,6 +1461,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/team/{id}:
     get:
+      operationId: getMMAFighterDetails
       summary: Get MMA fighter details
       description: Retrieves comprehensive details for a specific MMA fighter.
       tags:
@@ -1448,6 +1493,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/team/{id}/career-statistics:
     get:
+      operationId: getMMAFighterCareerStatistics
       summary: Get MMA fighter career statistics
       description: Retrieves the career statistics for a specific MMA fighter.
       tags:
@@ -1480,6 +1526,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/team/{id}/events/last/{page}:
     get:
+      operationId: getLastEventsForAnMMAFighter
       summary: Get last events for an MMA fighter
       description: Retrieves a paginated list of the last events for a specific MMA fighter.
       tags:
@@ -1525,6 +1572,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/team/{id}/events/next/{page}:
     get:
+      operationId: getNextEventsForAnMMAFighter
       summary: Get next events for an MMA fighter
       description: Retrieves a paginated list of the next events for a specific MMA fighter.
       tags:
@@ -1570,6 +1618,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/team/{id}/image:
     get:
+      operationId: getMMAFighterImage
       summary: Get MMA fighter image
       description: Retrieves the image for a specific MMA fighter.
       tags:
@@ -1603,6 +1652,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/tournament/{tournamentId}:
     get:
+      operationId: getMMATournamentDetailsByID
       summary: Get MMA tournament details by ID
       description: Retrieves detailed information for a specific MMA tournament by its ID.
       tags:
@@ -1634,6 +1684,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/octogon.png:
     get:
+      operationId: getMMAOctagonImage
       summary: Get MMA octagon image
       description: Retrieves the image of the MMA octagon.
       tags:
@@ -1658,6 +1709,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/calendar/unique-tournament/{id}/{timezoneOffset}/months-with-events:
     get:
+      operationId: getMonthsWithEvents
       summary: Get months with events
       description: Retrieves months that have events for a specific tournament.
       tags:
@@ -1696,6 +1748,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/calendar/{sportSlug}/{date}/{countryId}/stages:
     get:
+      operationId: getCalendarSportStages
       summary: Get calendar sport stages
       description: Retrieves stage events for a sport on a specific date.
       tags:
@@ -1741,6 +1794,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/unique-stage/{id}/recent-stage-ids:
     get:
+      operationId: getRecentStageIDs
       summary: Get recent stage IDs
       description: Retrieves recent stage identifiers for a unique stage.
       tags:
@@ -1772,6 +1826,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/mma/stage/{stageId}/substages:
     get:
+      operationId: getStageSubstages
       summary: Get stage substages
       description: Retrieves substages (sessions/segments) for a motorsport stage.
       tags:

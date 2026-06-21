@@ -9,6 +9,7 @@ servers:
 paths:
   /api/tv/country/all/event/{id}:
     get:
+      operationId: getMatchTVCountries
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
@@ -40,6 +41,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
+      operationId: getMatchTVChannelVotes
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
@@ -78,6 +80,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
+      operationId: getCountryFlag
       summary: Get country flag
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
@@ -110,6 +113,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
+      operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
       description: Fetches the flag image from the SofaScore image API by country code.
       tags:
@@ -141,6 +145,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
+      operationId: getPlaceholderTournamentPng
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -165,6 +170,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
+      operationId: getPlaceholderTournamentSvg
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -189,6 +195,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
+      operationId: getTeamPlaceholderImage
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
@@ -213,6 +220,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
+      operationId: getPlaceholderPlayerPng
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -237,6 +245,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
+      operationId: getPlaceholderPlayerSvg
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -261,6 +270,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
+      operationId: getPlaceholderManagerPng
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -284,6 +294,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
+      operationId: getPlaceholderManagerSvg
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -307,6 +318,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/calendar/season/{seasonId}/{year}/days-with-events:
     get:
+      operationId: getCalendarDaysWithEvents
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
@@ -345,6 +357,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/category/{categoryId}/image:
     get:
+      operationId: getCategoryImage
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
@@ -376,6 +389,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/countries/all:
     get:
+      operationId: getAllCountries
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
@@ -399,6 +413,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rankings/team/{teamId}:
     get:
+      operationId: getTeamRankings
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
@@ -430,6 +445,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/all:
     get:
+      operationId: searchAllEntities
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
@@ -453,6 +469,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/suggestions/{entityType}:
     get:
+      operationId: getSearchSuggestions
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
@@ -484,6 +501,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/unique-tournaments:
     get:
+      operationId: searchUniqueTournaments
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
@@ -507,6 +525,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/{entityType}:
     get:
+      operationId: searchByEntityType
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
@@ -538,6 +557,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{id}/schedule:
     get:
+      operationId: getTVChannelSchedule
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
@@ -569,6 +589,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/country/{countryCode}/channels:
     get:
+      operationId: getCountryTVChannels
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
@@ -600,6 +621,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/search/{term}:
     get:
+      operationId: searchBaseballEntities
       summary: Search baseball entities
       description: Searches for baseball teams, players, and tournaments.
       tags:
@@ -644,6 +666,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/categories:
     get:
+      operationId: getBaseballTournamentCategories
       summary: Get baseball tournament categories
       description: Retrieves a list of all available baseball tournament categories, typically corresponding to 
         countries or regions.
@@ -668,6 +691,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/matches/{day}/{month}/{year}:
     get:
+      operationId: getBaseballMatchesByDate
       summary: Get baseball matches by date
       description: Fetches all baseball matches scheduled for a specific date.
       tags:
@@ -719,6 +743,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/matches/live:
     get:
+      operationId: getLiveBaseballMatches
       summary: Get live baseball matches
       description: Retrieves all currently live baseball matches.
       tags:
@@ -742,6 +767,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}:
     get:
+      operationId: getBaseballMatchDetails
       summary: Get baseball match details
       description: Retrieves detailed information for a specific baseball match by its ID.
       tags:
@@ -773,6 +799,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/statistics:
     get:
+      operationId: getMatchStatistics
       summary: Get match statistics
       description: Retrieves comprehensive team and player statistics for a specific match.
       tags:
@@ -805,6 +832,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/comments:
     get:
+      operationId: getMatchCommentary
       summary: Get match commentary
       description: Retrieves the play-by-play commentary feed for a baseball match.
       tags:
@@ -836,6 +864,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/atbat/{atBatId}/pitches:
     get:
+      operationId: getAtBatPitches
       summary: Get at-bat pitches
       description: Retrieves pitch-by-pitch details for a specific at-bat in a baseball match.
       tags:
@@ -875,6 +904,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{customId}/h2h:
     get:
+      operationId: getHeadToHeadHistory
       summary: Get head-to-head history
       description: Retrieves the detailed match history for head-to-head encounters between two teams.
       tags:
@@ -907,6 +937,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/duel:
     get:
+      operationId: getHeadToHeadSummary
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head statistics between the two teams in a match.
       tags:
@@ -939,6 +970,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/form:
     get:
+      operationId: getMatchFormAnalysis
       summary: Get match form analysis
       description: Retrieves pre-game form and recent performance data for the teams in a specific match.
       tags:
@@ -970,6 +1002,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/odds:
     get:
+      operationId: getMatchBettingOdds
       summary: Get match betting odds
       description: Retrieves available betting odds from various bookmakers for a specific match.
       tags:
@@ -1002,6 +1035,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/votes:
     get:
+      operationId: getMatchVotes
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome.
       tags:
@@ -1033,6 +1067,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/lineups:
     get:
+      operationId: getMatchLineups
       summary: Get match lineups
       description: Retrieves the starting lineups and batting order for both teams in a specific match.
       tags:
@@ -1065,6 +1100,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/highlights:
     get:
+      operationId: getMatchHighlights
       summary: Get match highlights
       description: Retrieves video highlights and key moments from a specific match, if available.
       tags:
@@ -1097,6 +1133,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/player/{playerId}/statistics:
     get:
+      operationId: getPlayerMatchStatistics
       summary: Get player match statistics
       description: Retrieves detailed statistics for a single player in a specific match.
       tags:
@@ -1137,6 +1174,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/meta:
     get:
+      operationId: getEventMetadata
       summary: Get event metadata
       description: Retrieves SEO and metadata for a specific event.
       tags:
@@ -1168,6 +1206,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/odds/{providerId}/all:
     get:
+      operationId: getAllOddsForEvent
       summary: Get all odds for event
       description: Retrieves all available odds from a specific provider for an event.
       tags:
@@ -1206,6 +1245,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/weather:
     get:
+      operationId: getEventWeather
       summary: Get event weather
       description: Retrieves weather conditions for an outdoor event.
       tags:
@@ -1237,6 +1277,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/umpires:
     get:
+      operationId: getEventUmpires
       summary: Get event umpires
       description: Retrieves umpire/referee assignments for an event.
       tags:
@@ -1268,6 +1309,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/graph/sequence:
     get:
+      operationId: getEventGraphSequence
       summary: Get event graph sequence
       description: Retrieves the momentum/pressure graph sequence data for a match.
       tags:
@@ -1299,6 +1341,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/match/{id}/official-tweets:
     get:
+      operationId: getEventOfficialTweets
       summary: Get event official tweets
       description: Retrieves official social media posts related to an event.
       tags:
@@ -1330,6 +1373,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/team/{id}:
     get:
+      operationId: getBaseballTeamDetails
       summary: Get baseball team details
       description: Retrieves comprehensive details for a specific baseball team.
       tags:
@@ -1361,6 +1405,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/team/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousTeamMatches
       summary: Get previous team matches
       description: Fetches a paginated list of completed baseball games for a specific team, sorted by date descending.
       tags:
@@ -1406,6 +1451,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/team/{id}/matches/next/{page}:
     get:
+      operationId: getUpcomingTeamMatches
       summary: Get upcoming team matches
       description: Fetches a paginated list of scheduled baseball games for a specific team, sorted by date ascending.
       tags:
@@ -1451,6 +1497,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/team/{id}/matches/near:
     get:
+      operationId: getTeamNearMatches
       summary: Get team near matches
       description: Retrieves a list of recent and upcoming matches for a specific team.
       tags:
@@ -1483,6 +1530,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/team/{id}/tournaments:
     get:
+      operationId: getTeamTournaments
       summary: Get team tournaments
       description: Retrieves a list of all unique tournaments a team has participated in.
       tags:
@@ -1515,6 +1563,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/team/{id}/standings/seasons:
     get:
+      operationId: getTeamStandingsSeasons
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which a team's standings are available.
       tags:
@@ -1547,6 +1596,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/team/{id}/players:
     get:
+      operationId: getTeamPlayers
       summary: Get team players
       description: Retrieves the current roster of players for a specific team.
       tags:
@@ -1579,6 +1629,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/team/{id}/media:
     get:
+      operationId: getTeamMedia
       summary: Get team media
       description: Retrieves media content (e.g., videos, images) associated with a specific team.
       tags:
@@ -1611,6 +1662,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/team/{id}/image:
     get:
+      operationId: getTeamLogo
       summary: Get team logo
       description: Retrieves the logo image for a specific team.
       tags:
@@ -1644,6 +1696,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/team/{id}/featured-event:
     get:
+      operationId: getTeamFeaturedEvent
       summary: Get team featured event
       description: Retrieves the current or next featured event for a team.
       tags:
@@ -1675,6 +1728,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/team/{id}/unique-tournaments/all:
     get:
+      operationId: getAllTeamTournaments
       summary: Get all team tournaments
       description: Retrieves all unique tournaments a team participates in.
       tags:
@@ -1706,6 +1760,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/player/{id}:
     get:
+      operationId: getBaseballPlayerDetails
       summary: Get baseball player details
       description: Retrieves comprehensive information about a specific baseball player.
       tags:
@@ -1737,6 +1792,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/player/{id}/matches/near:
     get:
+      operationId: getPlayerNearMatches
       summary: Get player near matches
       description: Retrieves a list of recent and upcoming matches for a specific player.
       tags:
@@ -1769,6 +1825,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/player/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousPlayerMatches
       summary: Get previous player matches
       description: Fetches a paginated list of completed matches for a specific player, sorted by date descending.
       tags:
@@ -1814,6 +1871,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/player/{id}/statistics/seasons:
     get:
+      operationId: getPlayerStatisticsSeasons
       summary: Get player statistics seasons
       description: Retrieves a list of seasons for which a player's statistics are available.
       tags:
@@ -1846,6 +1904,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularSeason:
     get:
+      operationId: getPlayerRegularSeasonStatistics
       summary: Get player regular season statistics
       description: Retrieves a player's statistics for the regular season of a specific tournament.
       tags:
@@ -1892,6 +1951,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/player/{id}/image:
     get:
+      operationId: getPlayerImage
       summary: Get player image
       description: Retrieves the profile image for a specific player.
       tags:
@@ -1925,6 +1985,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}:
     get:
+      operationId: getTournamentDetails
       summary: Get tournament details
       description: Retrieves comprehensive details for a specific baseball tournament.
       tags:
@@ -1956,6 +2017,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/seasons:
     get:
+      operationId: getTournamentSeasons
       summary: Get tournament seasons
       description: Retrieves a list of all available seasons for a specific tournament.
       tags:
@@ -1987,6 +2049,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/image:
     get:
+      operationId: getTournamentLogo
       summary: Get tournament logo
       description: Retrieves the logo image for a specific tournament.
       tags:
@@ -2020,6 +2083,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/image/dark:
     get:
+      operationId: getTournamentDarkLogo
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       tags:
@@ -2053,6 +2117,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/media:
     get:
+      operationId: getTournamentMedia
       summary: Get tournament media
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       tags:
@@ -2085,6 +2150,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
+      operationId: getTournamentTotalStandings
       summary: Get tournament total standings
       description: Retrieves the complete standings table for all teams in a specific tournament season.
       tags:
@@ -2124,6 +2190,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
+      operationId: getTournamentHomeStandings
       summary: Get tournament home standings
       description: Retrieves the standings based on home games only for a specific tournament season.
       tags:
@@ -2163,6 +2230,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/standings/away:
     get:
+      operationId: getTournamentAwayStandings
       summary: Get tournament away standings
       description: Retrieves the standings based on away games only for a specific tournament season.
       tags:
@@ -2202,6 +2270,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
+      operationId: getTournamentLastMatches
       summary: Get tournament last matches
       description: Retrieves a paginated list of recently played matches in a specific tournament season.
       tags:
@@ -2254,6 +2323,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
+      operationId: getTournamentUpcomingMatches
       summary: Get tournament upcoming matches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
       tags:
@@ -2306,6 +2376,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/cuptrees:
     get:
+      operationId: getTournamentCupTrees
       summary: Get tournament cup trees
       description: Retrieves the knockout bracket (cup trees) for a specific tournament season.
       tags:
@@ -2344,6 +2415,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
+      operationId: getTeamEventsTotalStatistics
       summary: Get team events total statistics
       description: Retrieves aggregated team performance statistics for all games in a tournament season.
       tags:
@@ -2384,6 +2456,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
+      operationId: getTeamEventsHomeStatistics
       summary: Get team events home statistics
       description: Retrieves aggregated team performance statistics for home games in a tournament season.
       tags:
@@ -2424,6 +2497,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
+      operationId: getTeamEventsAwayStatistics
       summary: Get team events away statistics
       description: Retrieves aggregated team performance statistics for away games in a tournament season.
       tags:
@@ -2464,6 +2538,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/category/{id}/events/{day}/{month}/{year}:
     get:
+      operationId: getMatchesByCategoryAndDate
       summary: Get matches by category and date
       description: Retrieves all baseball matches for a specific category on a given date.
       tags:
@@ -2523,6 +2598,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/all/category/{id}:
     get:
+      operationId: getTournamentsByCategory
       summary: Get tournaments by category
       description: Retrieves all unique tournaments within a specific baseball category.
       tags:
@@ -2555,6 +2631,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/featured-events:
     get:
+      operationId: getTournamentFeaturedEvents
       summary: Get tournament featured events
       description: Retrieves featured/highlighted events for a tournament.
       tags:
@@ -2586,6 +2663,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/winners:
     get:
+      operationId: getTournamentWinners
       summary: Get tournament winners
       description: Retrieves historical winners of a tournament.
       tags:
@@ -2617,6 +2695,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/baseball/tournament/{tournamentId}/season/{seasonId}/venues:
     get:
+      operationId: getTournamentSeasonVenues
       summary: Get tournament season venues
       description: Retrieves all venues used in a tournament season.
       tags:

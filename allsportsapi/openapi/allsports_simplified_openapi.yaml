@@ -10,6 +10,7 @@ servers:
 paths:
   /api/american-football/match/{id}/{segment4}:
     get:
+      operationId: getAmericanFootballMatch
       tags:
       - AllSports
       summary: Get American Football Match
@@ -62,6 +63,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/american-football/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players/{segment9}:
     get:
+      operationId: getAmericanFootballTeamTournamentSeasonBestPlayers
       tags:
       - AllSports
       summary: Get American Football Team Tournament Season Best Players
@@ -115,6 +117,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/american-football/tournament/{tournamentId}/season/{seasonId}/best-players/{segment7}:
     get:
+      operationId: getAmericanFootballTournamentSeasonBestPlayers
       tags:
       - AllSports
       summary: Get American Football Tournament Season Best Players
@@ -162,6 +165,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/baseball/match/{id}/atbat/{atBatId}/pitches:
     get:
+      operationId: getBaseballMatchAtbatPitches
       tags:
       - AllSports
       summary: Get Baseball Match Atbat Pitches
@@ -199,6 +203,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/baseball/match/{id}/{segment4}:
     get:
+      operationId: getBaseballMatch
       tags:
       - AllSports
       summary: Get Baseball Match
@@ -249,6 +254,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/group/tournament/{tournamentId}/season/{seasonId}/matches:
     get:
+      operationId: getBasketballGroupTournamentSeasonMatches
       tags:
       - AllSports
       summary: Get Basketball Group Tournament Season Matches
@@ -287,6 +293,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/group/tournament/{tournamentId}/season/{seasonId}/{segment7}/total:
     get:
+      operationId: getBasketballGroupTournamentSeasonTotal
       tags:
       - AllSports
       summary: Get Basketball Group Tournament Season Total
@@ -334,6 +341,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/match/{id}/odds/{providerId}/featured:
     get:
+      operationId: getBasketballMatchOddsFeatured
       tags:
       - AllSports
       summary: Get Basketball Match Odds Featured
@@ -372,6 +380,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/match/{id}/player/{playerId}/shotmap:
     get:
+      operationId: getBasketballMatchPlayerShotmap
       tags:
       - AllSports
       summary: Get Basketball Match Player Shotmap
@@ -410,6 +419,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/match/{id}/provider/{providerId}/winning-odds:
     get:
+      operationId: getBasketballMatchProviderWinningOdds
       tags:
       - AllSports
       summary: Get Basketball Match Provider Winning Odds
@@ -448,6 +458,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/match/{id}/team/{teamId}/shotmap:
     get:
+      operationId: getBasketballMatchTeamShotmap
       tags:
       - AllSports
       summary: Get Basketball Match Team Shotmap
@@ -486,6 +497,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/match/{id}/{segment4}:
     get:
+      operationId: getBasketballMatch
       tags:
       - AllSports
       summary: Get Basketball Match
@@ -538,6 +550,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/matches/odds/{day}/{month}/{year}:
     get:
+      operationId: getBasketballMatchesOddsDayMonthYear
       tags:
       - AllSports
       summary: Get Basketball Matches Odds
@@ -588,6 +601,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/matches/odds/{segment4}/{providerId}:
     get:
+      operationId: getBasketballMatchesOddsSegment4ProviderId
       tags:
       - AllSports
       summary: Get Basketball Matches Odds
@@ -627,6 +641,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/player/{id}/media/videos:
     get:
+      operationId: getBasketballPlayerMediaVideos
       tags:
       - AllSports
       summary: Get Basketball Player Media Videos
@@ -657,6 +672,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/player/{id}/tournament/{tournamentId}/events/last/{page}:
     get:
+      operationId: getBasketballPlayerTournamentEventsLast
       tags:
       - AllSports
       summary: Get Basketball Player Tournament Events Last
@@ -701,6 +717,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/ratings/regularSeason:
     get:
+      operationId: getBasketballPlayerTournamentSeasonRatingsRegularseason
       tags:
       - AllSports
       summary: Get Basketball Player Tournament Season Ratings Regularseason
@@ -745,6 +762,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/shot-actions/{segment9}:
     get:
+      operationId: getBasketballPlayerTournamentSeasonShotActions
       tags:
       - AllSports
       summary: Get Basketball Player Tournament Season Shot Actions
@@ -799,6 +817,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularseason:
     get:
+      operationId: getBasketballPlayerTournamentSeasonStatisticsRegularseason
       tags:
       - AllSports
       summary: Get Basketball Player Tournament Season Statistics Regularseason
@@ -844,6 +863,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/player/{id}/transfers:
     get:
+      operationId: getBasketballPlayerTransfers
       tags:
       - AllSports
       summary: Get Basketball Player Transfers
@@ -875,6 +895,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/team/{id}/image/small:
     get:
+      operationId: getBasketballTeamImageSmall
       tags:
       - AllSports
       summary: Get Basketball Team Image Small
@@ -906,6 +927,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players/regularseason:
     get:
+      operationId: getBasketballTeamTournamentSeasonBestPlayersRegularseason
       tags:
       - AllSports
       summary: Get Basketball Team Tournament Season Best Players Regularseason
@@ -951,6 +973,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/{segment8}/playoffs:
     get:
+      operationId: getBasketballTeamTournamentSeasonPlayoffs
       tags:
       - AllSports
       summary: Get Basketball Team Tournament Season Playoffs
@@ -1006,6 +1029,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/team/{id}/tournament/{tournamentId}/season/{seasonId}/{segment8}/regularSeason:
     get:
+      operationId: getBasketballTeamTournamentSeasonRegularseason
       tags:
       - AllSports
       summary: Get Basketball Team Tournament Season Regularseason
@@ -1060,6 +1084,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/tournament/{tournamentId}/player-news:
     get:
+      operationId: getBasketballTournamentPlayerNews
       tags:
       - AllSports
       summary: Get Basketball Tournament Player News
@@ -1090,6 +1115,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/tournament/{tournamentId}/player-transfer-history/all/{page}:
     get:
+      operationId: getBasketballTournamentPlayerTransferHistoryAll
       tags:
       - AllSports
       summary: Get Basketball Tournament Player Transfer History All
@@ -1127,6 +1153,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/per-game/{segment8}:
     get:
+      operationId: getBasketballTournamentSeasonBestPlayersPerGame
       tags:
       - AllSports
       summary: Get Basketball Tournament Season Best Players Per Game
@@ -1174,6 +1201,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-players/{segment7}:
     get:
+      operationId: getBasketballTournamentSeasonBestPlayers
       tags:
       - AllSports
       summary: Get Basketball Tournament Season Best Players
@@ -1224,6 +1252,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/best-teams/{segment7}:
     get:
+      operationId: getBasketballTournamentSeasonBestTeams
       tags:
       - AllSports
       summary: Get Basketball Tournament Season Best Teams
@@ -1272,6 +1301,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/shot-action-areas/event/overall:
     get:
+      operationId: getBasketballTournamentSeasonShotActionAreasEvent
       tags:
       - AllSports
       summary: Get Basketball Tournament Season Shot Action Areas Event
@@ -1309,6 +1339,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/shot-actions/areas/{segment8}:
     get:
+      operationId: getBasketballTournamentSeasonShotActionsAreas
       tags:
       - AllSports
       summary: Get Basketball Tournament Season Shot Actions Areas
@@ -1356,6 +1387,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/teams:
     get:
+      operationId: getBasketballTournamentSeasonTeams
       tags:
       - AllSports
       summary: Get Basketball Tournament Season Teams
@@ -1393,6 +1425,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/tournament/{tournamentId}/season/{seasonId}/top-ratings/overall:
     get:
+      operationId: getBasketballTournamentSeasonTopRatingsOverall
       tags:
       - AllSports
       summary: Get Basketball Tournament Season Top Ratings Overall
@@ -1430,6 +1463,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/basketball/tournament/{tournamentId}/top-player-performance:
     get:
+      operationId: getBasketballTournamentTopPlayerPerformance
       tags:
       - AllSports
       summary: Get Basketball Tournament Top Player Performance
@@ -1460,6 +1494,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/calendar/season/{seasonId}/{year}/days-with-events:
     get:
+      operationId: getCalendarSeasonDaysWithEvents
       tags:
       - AllSports
       summary: Get Calendar Season Days With Events
@@ -1497,6 +1532,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/category/{categoryId}/image:
     get:
+      operationId: getCategoryImage
       tags:
       - AllSports
       summary: Get Category Image
@@ -1527,6 +1563,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/category/{categoryId}/matches/{day}/{month}/{year}:
     get:
+      operationId: getCategoryMatches
       tags:
       - AllSports
       summary: Get Category Matches
@@ -1584,6 +1621,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/category/{id}/events/{day}/{month}/{year}:
     get:
+      operationId: getCategoryIdEventsDayMonthYear
       tags:
       - AllSports
       summary: Get Category Events
@@ -1641,6 +1679,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/countries/all:
     get:
+      operationId: getCountriesAll
       tags:
       - AllSports
       summary: Get Countries All
@@ -1663,6 +1702,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/country/{code}/flag:
     get:
+      operationId: getCountryFlag
       tags:
       - AllSports
       summary: Get Country Flag
@@ -1694,6 +1734,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/cricket/match/{id}/{segment4}:
     get:
+      operationId: getCricketMatch
       tags:
       - AllSports
       summary: Get Cricket Match
@@ -1742,6 +1783,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/top-players:
     get:
+      operationId: getCricketTournamentSeasonTopPlayers
       tags:
       - AllSports
       summary: Get Cricket Tournament Season Top Players
@@ -1780,6 +1822,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/cycling/category/{categoryId}/image:
     get:
+      operationId: getCyclingCategoryImage
       tags:
       - AllSports
       summary: Get Cycling Category Image
@@ -1811,6 +1854,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/cycling/stage/{id}/{segment4}:
     get:
+      operationId: getCyclingStage
       tags:
       - AllSports
       summary: Get Cycling Stage
@@ -1850,6 +1894,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/esport/character/{characterId}/image:
     get:
+      operationId: getEsportCharacterImage
       tags:
       - AllSports
       summary: Get Esport Character Image
@@ -1881,6 +1926,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/esport/event/{id}/{segment4}:
     get:
+      operationId: getEsportEvent
       tags:
       - AllSports
       summary: Get Esport Event
@@ -1926,6 +1972,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/esport/game/{id}/{segment4}:
     get:
+      operationId: getEsportGame
       tags:
       - AllSports
       summary: Get Esport Game
@@ -1967,6 +2014,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/esport/map/{mapId}/image:
     get:
+      operationId: getEsportMapImage
       tags:
       - AllSports
       summary: Get Esport Map Image
@@ -1998,6 +2046,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/handball/match/{id}/{segment4}:
     get:
+      operationId: getHandballMatch
       tags:
       - AllSports
       summary: Get Handball Match
@@ -2046,6 +2095,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/handball/player/{id}/unique-tournament/{tournamentId}/season/{seasonId}/statistics/overall:
     get:
+      operationId: getHandballPlayerUniqueTournamentSeasonStatisticsOverall
       tags:
       - AllSports
       summary: Get Handball Player Unique Tournament Season Statistics Overall
@@ -2090,6 +2140,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/handball/team/{id}/unique-tournament/{tournamentId}/season/{seasonId}/top-players/overall:
     get:
+      operationId: getHandballTeamUniqueTournamentSeasonTopPlayers
       tags:
       - AllSports
       summary: Get Handball Team Unique Tournament Season Top Players
@@ -2134,6 +2185,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}/slug/{slug}:
     get:
+      operationId: getHandballUniqueTournamentSeasonMatchesRoundSlug
       tags:
       - AllSports
       summary: Get Handball Unique Tournament Season Matches Round Slug
@@ -2185,6 +2237,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/player-statistics/types:
     get:
+      operationId: getHandballUniqueTournamentSeasonPlayerStatisticsTypes
       tags:
       - AllSports
       summary: Get Handball Unique Tournament Season Player Statistics Types
@@ -2222,6 +2275,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-players-per-game/all/overall:
     get:
+      operationId: getHandballUniqueTournamentSeasonTopPlayersPer
       tags:
       - AllSports
       summary: Get Handball Unique Tournament Season Top Players Per
@@ -2259,6 +2313,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-players/overall:
     get:
+      operationId: getHandballUniqueTournamentSeasonTopPlayersOverall
       tags:
       - AllSports
       summary: Get Handball Unique Tournament Season Top Players Overall
@@ -2296,6 +2351,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-teams/overall:
     get:
+      operationId: getHandballUniqueTournamentSeasonTopTeamsOverall
       tags:
       - AllSports
       summary: Get Handball Unique Tournament Season Top Teams Overall
@@ -2333,6 +2389,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/{segment6}:
     get:
+      operationId: getHandballUniqueTournamentSeason
       tags:
       - AllSports
       summary: Get Handball Unique Tournament Season
@@ -2380,6 +2437,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/handball/unique-tournament/{tournamentId}/{segment4}:
     get:
+      operationId: getHandballUniqueTournament
       tags:
       - AllSports
       summary: Get Handball Unique Tournament
@@ -2424,6 +2482,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/ice-hockey/match/{id}/streaks/odds:
     get:
+      operationId: getIceHockeyMatchStreaksOdds
       tags:
       - AllSports
       summary: Get Ice Hockey Match Streaks Odds
@@ -2454,6 +2513,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/ice-hockey/match/{id}/{segment4}:
     get:
+      operationId: getIceHockeyMatch
       tags:
       - AllSports
       summary: Get Ice Hockey Match
@@ -2503,6 +2563,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/ice-hockey/team/{id}/tournament/{tournamentId}/season/{seasonId}/best-players/{segment9}:
     get:
+      operationId: getIceHockeyTeamTournamentSeasonBestPlayers
       tags:
       - AllSports
       summary: Get Ice Hockey Team Tournament Season Best Players
@@ -2556,6 +2617,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-players/per-game/{segment8}:
     get:
+      operationId: getIceHockeyTournamentSeasonBestPlayersPer
       tags:
       - AllSports
       summary: Get Ice Hockey Tournament Season Best Players Per
@@ -2603,6 +2665,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-players/{segment7}:
     get:
+      operationId: getIceHockeyTournamentSeasonBestPlayers
       tags:
       - AllSports
       summary: Get Ice Hockey Tournament Season Best Players
@@ -2651,6 +2714,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/ice-hockey/tournament/{tournamentId}/season/{seasonId}/best-teams/{segment7}:
     get:
+      operationId: getIceHockeyTournamentSeasonBestTeams
       tags:
       - AllSports
       summary: Get Ice Hockey Tournament Season Best Teams
@@ -2697,6 +2761,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/img/flag/{flag}:
     get:
+      operationId: getImgFlag
       tags:
       - AllSports
       summary: Get Img Flag
@@ -2728,6 +2793,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/manager/{id}/{segment3}:
     get:
+      operationId: getManagerIdSegment3
       tags:
       - AllSports
       summary: Get Manager
@@ -2771,6 +2837,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{customId}/h2h:
     get:
+      operationId: getMatchCustomIdH2h
       tags:
       - AllSports
       summary: Get Match H2h
@@ -2801,6 +2868,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{eventId}/best-players/summary:
     get:
+      operationId: getMatchBestPlayersSummary
       tags:
       - AllSports
       summary: Get Match Best Players Summary
@@ -2831,6 +2899,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{id}/goalkeeper/jersey/{segment5}:
     get:
+      operationId: getMatchGoalkeeperJersey
       tags:
       - AllSports
       summary: Get Match Goalkeeper Jersey
@@ -2871,6 +2940,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{id}/graph/sequence:
     get:
+      operationId: getMatchIdGraphSequence
       tags:
       - AllSports
       summary: Get Match Graph Sequence
@@ -2901,6 +2971,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{id}/odds/{providerId}/{segment5}:
     get:
+      operationId: getMatchOdds
       tags:
       - AllSports
       summary: Get Match Odds
@@ -2947,6 +3018,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{id}/player/jersey/{segment5}:
     get:
+      operationId: getMatchPlayerJersey
       tags:
       - AllSports
       summary: Get Match Player Jersey
@@ -2989,6 +3061,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{id}/player/{playerId}/{segment5}:
     get:
+      operationId: getMatchPlayer
       tags:
       - AllSports
       summary: Get Match Player
@@ -3037,6 +3110,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{id}/players/featured:
     get:
+      operationId: getMatchPlayersFeatured
       tags:
       - AllSports
       summary: Get Match Players Featured
@@ -3067,6 +3141,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{id}/provider/{providerId}/winning-odds:
     get:
+      operationId: getMatchProviderWinningOdds
       tags:
       - AllSports
       summary: Get Match Provider Winning Odds
@@ -3104,6 +3179,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{id}/streaks/odds:
     get:
+      operationId: getMatchStreaksOdds
       tags:
       - AllSports
       summary: Get Match Streaks Odds
@@ -3134,6 +3210,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{id}/team/{teamId}/heatmap:
     get:
+      operationId: getMatchTeamHeatmap
       tags:
       - AllSports
       summary: Get Match Team Heatmap
@@ -3171,6 +3248,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/match/{id}/{segment3}:
     get:
+      operationId: getMatchIdSegment3
       tags:
       - AllSports
       summary: Get Match
@@ -3228,6 +3306,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/matches/bottom/{day}/{month}/{year}:
     get:
+      operationId: getMatchesBottom
       tags:
       - AllSports
       summary: Get Matches Bottom
@@ -3278,6 +3357,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/matches/live:
     get:
+      operationId: getMatchesLive
       tags:
       - AllSports
       summary: Get Matches Live
@@ -3300,6 +3380,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/matches/odds/featured:
     get:
+      operationId: getMatchesOddsFeatured
       tags:
       - AllSports
       summary: Get Matches Odds Featured
@@ -3322,6 +3403,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/matches/odds/{day}/{month}/{year}:
     get:
+      operationId: getMatchesOdds
       tags:
       - AllSports
       summary: Get Matches Odds
@@ -3372,6 +3454,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/matches/top/{day}/{month}/{year}:
     get:
+      operationId: getMatchesTop
       tags:
       - AllSports
       summary: Get Matches Top
@@ -3422,6 +3505,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/matches/{day}/{month}/{year}:
     get:
+      operationId: getMatchesDayMonthYear
       tags:
       - AllSports
       summary: Get Matches
@@ -3472,6 +3556,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/calendar/unique-tournament/{id}/{timezoneOffset}/months-with-events:
     get:
+      operationId: getMmaCalendarUniqueTournamentMonthsWithEvents
       tags:
       - AllSports
       summary: Get Mma Calendar Unique Tournament Months With Events
@@ -3509,6 +3594,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/category/{id}/unique-tournaments:
     get:
+      operationId: getMmaCategoryUniqueTournaments
       tags:
       - AllSports
       summary: Get Mma Category Unique Tournaments
@@ -3539,6 +3625,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/event/{customId}/h2h/events:
     get:
+      operationId: getMmaEventH2hEvents
       tags:
       - AllSports
       summary: Get Mma Event H2h Events
@@ -3569,6 +3656,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/event/{id}/{segment4}:
     get:
+      operationId: getMmaEvent
       tags:
       - AllSports
       summary: Get Mma Event
@@ -3610,6 +3698,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/main-events/{date}/extended:
     get:
+      operationId: getMmaMainEventsExtended
       tags:
       - AllSports
       summary: Get Mma Main Events Extended
@@ -3646,6 +3735,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/rankings/unique-tournament/{tournamentId}/summary:
     get:
+      operationId: getMmaRankingsUniqueTournamentSummary
       tags:
       - AllSports
       summary: Get Mma Rankings Unique Tournament Summary
@@ -3676,6 +3766,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/team/{id}/career-statistics:
     get:
+      operationId: getMmaTeamCareerStatistics
       tags:
       - AllSports
       summary: Get Mma Team Career Statistics
@@ -3706,6 +3797,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/team/{id}/events/{segment5}/{page}:
     get:
+      operationId: getMmaTeamEvents
       tags:
       - AllSports
       summary: Get Mma Team Events
@@ -3758,6 +3850,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/unique-stage/{id}/recent-stage-ids:
     get:
+      operationId: getMmaUniqueStageRecentStageIds
       tags:
       - AllSports
       summary: Get Mma Unique Stage Recent Stage Ids
@@ -3788,6 +3881,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/unique-tournament/{tournamentId}/main-events/{segment5}/{page}:
     get:
+      operationId: getMmaUniqueTournamentMainEvents
       tags:
       - AllSports
       summary: Get Mma Unique Tournament Main Events
@@ -3840,6 +3934,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/unique-tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
+      operationId: getMmaUniqueTournamentTournamentIdSchedulesDayMonthYear
       tags:
       - AllSports
       summary: Get Mma Unique Tournament Schedules
@@ -3897,6 +3992,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/unique-tournament/{tournamentId}/schedules/{month}/{year}:
     get:
+      operationId: getMmaUniqueTournamentTournamentIdSchedulesMonthYear
       tags:
       - AllSports
       summary: Get Mma Unique Tournament Schedules
@@ -3947,6 +4043,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/unique-tournament/{tournamentId}/{segment4}:
     get:
+      operationId: getMmaUniqueTournament
       tags:
       - AllSports
       summary: Get Mma Unique Tournament
@@ -3990,6 +4087,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/unique-tournament/{uniqueTournamentId}/tournament/{tournamentId}/mma-events/all:
     get:
+      operationId: getMmaUniqueTournamentTournamentMmaEventsAll
       tags:
       - AllSports
       summary: Get Mma Unique Tournament Tournament Mma Events All
@@ -4027,6 +4125,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/mma/{segment2}:
     get:
+      operationId: getMma
       tags:
       - AllSports
       summary: Get Mma
@@ -4063,6 +4162,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/motorsport/categories:
     get:
+      operationId: getMotorsportCategories
       tags:
       - AllSports
       summary: Get Motorsport Categories
@@ -4085,6 +4185,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/motorsport/category/{id}/stages/all:
     get:
+      operationId: getMotorsportCategoryStagesAll
       tags:
       - AllSports
       summary: Get Motorsport Category Stages All
@@ -4115,6 +4216,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/motorsport/stage/featured:
     get:
+      operationId: getMotorsportStageFeatured
       tags:
       - AllSports
       summary: Get Motorsport Stage Featured
@@ -4137,6 +4239,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/motorsport/stage/scheduled/{date}:
     get:
+      operationId: getMotorsportStageScheduled
       tags:
       - AllSports
       summary: Get Motorsport Stage Scheduled
@@ -4173,6 +4276,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/motorsport/stage/{id}/{segment4}:
     get:
+      operationId: getMotorsportStageIdSegment4
       tags:
       - AllSports
       summary: Get Motorsport Stage
@@ -4218,6 +4322,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/motorsport/stage/{stageId}:
     get:
+      operationId: getMotorsportStageStageId
       tags:
       - AllSports
       summary: Get Motorsport Stage
@@ -4248,6 +4353,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/motorsport/team/{id}/driver/history:
     get:
+      operationId: getMotorsportTeamDriverHistory
       tags:
       - AllSports
       summary: Get Motorsport Team Driver History
@@ -4278,6 +4384,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/motorsport/team/{id}/odds/provider/{providerId}:
     get:
+      operationId: getMotorsportTeamOddsProvider
       tags:
       - AllSports
       summary: Get Motorsport Team Odds Provider
@@ -4315,6 +4422,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/motorsport/unique-stage/{id}/{segment4}:
     get:
+      operationId: getMotorsportUniqueStage
       tags:
       - AllSports
       summary: Get Motorsport Unique Stage
@@ -4358,6 +4466,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/placeholder/{segment2}:
     get:
+      operationId: getPlaceholder
       tags:
       - AllSports
       summary: Get Placeholder
@@ -4396,6 +4505,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/placeholders/{segment2}:
     get:
+      operationId: getPlaceholders
       tags:
       - AllSports
       summary: Get Placeholders
@@ -4429,6 +4539,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/player/trending:
     get:
+      operationId: getPlayerTrending
       tags:
       - AllSports
       summary: Get Player Trending
@@ -4451,6 +4562,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/player/{id}/matches/near:
     get:
+      operationId: getPlayerIdMatchesNear
       tags:
       - AllSports
       summary: Get Player Matches Near
@@ -4481,6 +4593,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/player/{id}/media/videos:
     get:
+      operationId: getPlayerMediaVideos
       tags:
       - AllSports
       summary: Get Player Media Videos
@@ -4511,6 +4624,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/player/{id}/penalty-history/tournament/{tournamentId}/season/{seasonId}:
     get:
+      operationId: getPlayerPenaltyHistoryTournamentSeason
       tags:
       - AllSports
       summary: Get Player Penalty History Tournament Season
@@ -4555,6 +4669,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/player/{id}/statistics/match-type/{matchType}:
     get:
+      operationId: getPlayerStatisticsMatchType
       tags:
       - AllSports
       summary: Get Player Statistics Match Type
@@ -4592,6 +4707,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/player/{id}/statistics/{segment4}:
     get:
+      operationId: getPlayerStatistics
       tags:
       - AllSports
       summary: Get Player Statistics
@@ -4632,6 +4748,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/player/{id}/tournament/{tournamentId}/events/last/{page}:
     get:
+      operationId: getPlayerTournamentEventsLast
       tags:
       - AllSports
       summary: Get Player Tournament Events Last
@@ -4676,6 +4793,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/player/{id}/tournament/{tournamentId}/season/{seasonId}/{segment7}:
     get:
+      operationId: getPlayerTournamentSeason
       tags:
       - AllSports
       summary: Get Player Tournament Season
@@ -4731,6 +4849,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/player/{id}/{segment3}:
     get:
+      operationId: getPlayerIdSegment3
       tags:
       - AllSports
       summary: Get Player
@@ -4780,6 +4899,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/rankings/fifa:
     get:
+      operationId: getRankingsFifa
       tags:
       - AllSports
       summary: Get Rankings Fifa
@@ -4802,6 +4922,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/rankings/team/{teamId}:
     get:
+      operationId: getRankingsTeam
       tags:
       - AllSports
       summary: Get Rankings Team
@@ -4832,6 +4953,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/rankings/uefa/{segment3}:
     get:
+      operationId: getRankingsUefa
       tags:
       - AllSports
       summary: Get Rankings Uefa
@@ -4864,6 +4986,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/referee/{id}/{segment3}:
     get:
+      operationId: getReferee
       tags:
       - AllSports
       summary: Get Referee
@@ -4907,6 +5030,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/rugby/match/{id}/{segment4}:
     get:
+      operationId: getRugbyMatch
       tags:
       - AllSports
       summary: Get Rugby Match
@@ -4953,6 +5077,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/rugby/rankings/rugby-union:
     get:
+      operationId: getRugbyRankingsRugbyUnion
       tags:
       - AllSports
       summary: Get Rugby Rankings Rugby Union
@@ -4975,6 +5100,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/search/all:
     get:
+      operationId: searchAllEntities
       tags:
       - AllSports
       summary: Search All Entities
@@ -4997,6 +5123,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/search/suggestions/{entityType}:
     get:
+      operationId: getSearchSuggestions
       tags:
       - AllSports
       summary: Get Search Suggestions
@@ -5027,6 +5154,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/search/unique-tournaments:
     get:
+      operationId: searchUniqueTournaments
       tags:
       - AllSports
       summary: Search Unique Tournaments
@@ -5048,6 +5176,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/search/{value}:
     get:
+      operationId: getSearchValue
       tags:
       - AllSports
       summary: Get Search
@@ -5090,6 +5219,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/table-tennis/event/{id}/streaks/odds:
     get:
+      operationId: getTableTennisEventStreaksOdds
       tags:
       - AllSports
       summary: Get Table Tennis Event Streaks Odds
@@ -5120,6 +5250,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/table-tennis/event/{id}/{segment4}:
     get:
+      operationId: getTableTennisEvent
       tags:
       - AllSports
       summary: Get Table Tennis Event
@@ -5167,6 +5298,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/table-tennis/events/odds/{segment4}/{providerId}:
     get:
+      operationId: getTableTennisEventsOdds
       tags:
       - AllSports
       summary: Get Table Tennis Events Odds
@@ -5206,6 +5338,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/table-tennis/team/{id}/performance:
     get:
+      operationId: getTableTennisTeamPerformance
       tags:
       - AllSports
       summary: Get Table Tennis Team Performance
@@ -5236,6 +5369,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/table-tennis/team/{id}/statistics/seasons:
     get:
+      operationId: getTableTennisTeamStatisticsSeasons
       tags:
       - AllSports
       summary: Get Table Tennis Team Statistics Seasons
@@ -5266,6 +5400,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/table-tennis/tournament/categories/all:
     get:
+      operationId: getTableTennisTournamentCategoriesAll
       tags:
       - AllSports
       summary: Get Table Tennis Tournament Categories All
@@ -5288,6 +5423,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/player-of-the-season:
     get:
+      operationId: getTableTennisTournamentSeasonPlayerOfThe
       tags:
       - AllSports
       summary: Get Table Tennis Tournament Season Player Of The
@@ -5325,6 +5461,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/power-rankings/rounds:
     get:
+      operationId: getTableTennisTournamentSeasonPowerRankingsRounds
       tags:
       - AllSports
       summary: Get Table Tennis Tournament Season Power Rankings Rounds
@@ -5362,6 +5499,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/statistics/info:
     get:
+      operationId: getTableTennisTournamentSeasonStatisticsInfo
       tags:
       - AllSports
       summary: Get Table Tennis Tournament Season Statistics Info
@@ -5399,6 +5537,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/table-tennis/tournament/{tournamentId}/season/{seasonId}/team-of-the-week/rounds:
     get:
+      operationId: getTableTennisTournamentSeasonTeamOfThe
       tags:
       - AllSports
       summary: Get Table Tennis Tournament Season Team Of The
@@ -5436,6 +5575,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/team/{id}/image/small:
     get:
+      operationId: getTeamImageSmall
       tags:
       - AllSports
       summary: Get Team Image Small
@@ -5467,6 +5607,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/team/{id}/matches/near:
     get:
+      operationId: getTeamIdMatchesNear
       tags:
       - AllSports
       summary: Get Team Matches Near
@@ -5497,6 +5638,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/team/{id}/players/statistics/seasons:
     get:
+      operationId: getTeamIdPlayersStatisticsSeasons
       tags:
       - AllSports
       summary: Get Team Players Statistics Seasons
@@ -5527,6 +5669,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/team/{id}/tournament/{tournamentId}/season/{seasonId}/ranks/overall:
     get:
+      operationId: getTeamTournamentSeasonRanksOverall
       tags:
       - AllSports
       summary: Get Team Tournament Season Ranks Overall
@@ -5571,6 +5714,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/team/{id}/tournament/{tournamentId}/season/{seasonId}/{segment7}:
     get:
+      operationId: getTeamTournamentSeason
       tags:
       - AllSports
       summary: Get Team Tournament Season
@@ -5624,6 +5768,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/team/{id}/unique-tournaments/all:
     get:
+      operationId: getTeamIdUniqueTournamentsAll
       tags:
       - AllSports
       summary: Get Team Unique Tournaments All
@@ -5654,6 +5799,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/team/{id}/{segment3}:
     get:
+      operationId: getTeamIdSegment3
       tags:
       - AllSports
       summary: Get Team
@@ -5704,6 +5850,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/team/{id}/{segment3}/seasons:
     get:
+      operationId: getTeamSeasons
       tags:
       - AllSports
       summary: Get Team Seasons
@@ -5743,6 +5890,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/team/{teamId}/tournament/{tournamentId}/season/{seasonId}/goal-distributions:
     get:
+      operationId: getTeamTournamentSeasonGoalDistributions
       tags:
       - AllSports
       summary: Get Team Tournament Season Goal Distributions
@@ -5787,6 +5935,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/event/{id}/{segment4}:
     get:
+      operationId: getTennisEvent
       tags:
       - AllSports
       summary: Get Tennis Event
@@ -5835,6 +5984,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/events/odds/featured/{providerId}:
     get:
+      operationId: getTennisEventsOddsFeatured
       tags:
       - AllSports
       summary: Get Tennis Events Odds Featured
@@ -5865,6 +6015,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/player/{id}/rankings:
     get:
+      operationId: getTennisPlayerRankings
       tags:
       - AllSports
       summary: Get Tennis Player Rankings
@@ -5895,6 +6046,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/player/{id}/standings/seasons:
     get:
+      operationId: getTennisPlayerStandingsSeasons
       tags:
       - AllSports
       summary: Get Tennis Player Standings Seasons
@@ -5925,6 +6077,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/rankings/{segment3}:
     get:
+      operationId: getTennisRankings
       tags:
       - AllSports
       summary: Get Tennis Rankings
@@ -5957,6 +6110,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/rankings/{segment3}/live:
     get:
+      operationId: getTennisRankingsLive
       tags:
       - AllSports
       summary: Get Tennis Rankings Live
@@ -5989,6 +6143,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/team/{id}/recent-unique-tournaments:
     get:
+      operationId: getTennisTeamRecentUniqueTournaments
       tags:
       - AllSports
       summary: Get Tennis Team Recent Unique Tournaments
@@ -6019,6 +6174,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/team/{id}/season/{seasonId}/best-result:
     get:
+      operationId: getTennisTeamSeasonBestResult
       tags:
       - AllSports
       summary: Get Tennis Team Season Best Result
@@ -6056,6 +6212,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/team/{id}/tournament/{tournamentId}/season/{seasonId}/ranks/overall:
     get:
+      operationId: getTennisTeamTournamentSeasonRanksOverall
       tags:
       - AllSports
       summary: Get Tennis Team Tournament Season Ranks Overall
@@ -6100,6 +6257,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/team/{id}/year-statistics/{year}:
     get:
+      operationId: getTennisTeamYearStatistics
       tags:
       - AllSports
       summary: Get Tennis Team Year Statistics
@@ -6137,6 +6295,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/cup-trees/old:
     get:
+      operationId: getTennisTournamentSeasonCupTreesOld
       tags:
       - AllSports
       summary: Get Tennis Tournament Season Cup Trees Old
@@ -6174,6 +6333,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/top-teams/mainDraw:
     get:
+      operationId: getTennisTournamentSeasonTopTeamsMaindraw
       tags:
       - AllSports
       summary: Get Tennis Tournament Season Top Teams Maindraw
@@ -6210,6 +6370,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/tournament/{tournamentId}/season/{seasonId}/venue/{venueId}/events/all/{page}:
     get:
+      operationId: getTennisTournamentSeasonVenueEventsAll
       tags:
       - AllSports
       summary: Get Tennis Tournament Season Venue Events All
@@ -6261,6 +6422,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/venue/{id}:
     get:
+      operationId: getTennisVenue
       tags:
       - AllSports
       summary: Get Tennis Venue
@@ -6291,6 +6453,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/venue/{id}/events/{sport}/{span}/{page}:
     get:
+      operationId: getTennisVenueEvents
       tags:
       - AllSports
       summary: Get Tennis Venue Events
@@ -6342,6 +6505,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/venue/{id}/image:
     get:
+      operationId: getTennisVenueImage
       tags:
       - AllSports
       summary: Get Tennis Venue Image
@@ -6372,6 +6536,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/{segment2}/{id}/events/near:
     get:
+      operationId: getTennisEventsNear
       tags:
       - AllSports
       summary: Get Tennis Events Near
@@ -6411,6 +6576,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/{segment2}/{id}/events/{segment5}/{page}:
     get:
+      operationId: getTennisEvents
       tags:
       - AllSports
       summary: Get Tennis Events
@@ -6472,6 +6638,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tennis/{segment2}/{id}/tournaments/last:
     get:
+      operationId: getTennisTournamentsLast
       tags:
       - AllSports
       summary: Get Tennis Tournaments Last
@@ -6511,6 +6678,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/all/category/{id}:
     get:
+      operationId: getTournamentAllCategoryId
       tags:
       - AllSports
       summary: Get Tournament All Category
@@ -6541,6 +6709,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/categories:
     get:
+      operationId: getTournamentCategories
       tags:
       - AllSports
       summary: Get Tournament Categories
@@ -6563,6 +6732,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}:
     get:
+      operationId: getTournamentTournamentId
       tags:
       - AllSports
       summary: Get Tournament
@@ -6593,6 +6763,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/image/dark:
     get:
+      operationId: getTournamentTournamentIdImageDark
       tags:
       - AllSports
       summary: Get Tournament Image Dark
@@ -6624,6 +6795,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/player-transfer-history/all/{page}:
     get:
+      operationId: getTournamentPlayerTransferHistoryAll
       tags:
       - AllSports
       summary: Get Tournament Player Transfer History All
@@ -6661,6 +6833,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/scheduled-events/{date}:
     get:
+      operationId: getTournamentTournamentIdScheduledEventsDate
       tags:
       - AllSports
       summary: Get Tournament Scheduled Events
@@ -6698,6 +6871,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
+      operationId: getTournamentTournamentIdSchedulesDayMonthYear
       tags:
       - AllSports
       summary: Get Tournament Schedules
@@ -6767,6 +6941,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/best-players/per-game:
     get:
+      operationId: getTournamentSeasonBestPlayersPerGame
       tags:
       - AllSports
       summary: Get Tournament Season Best Players Per Game
@@ -6804,6 +6979,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/matches/round/{round}/slug/{slug}:
     get:
+      operationId: getTournamentSeasonMatchesRoundSlug
       tags:
       - AllSports
       summary: Get Tournament Season Matches Round Slug
@@ -6855,6 +7031,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/matches/{segment6}/{page}:
     get:
+      operationId: getTournamentTournamentIdSeasonSeasonIdMatchesSegment6Page
       tags:
       - AllSports
       summary: Get Tournament Season Matches
@@ -6914,6 +7091,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/round/{roundId}/team-of-week:
     get:
+      operationId: getTournamentSeasonRoundTeamOfWeek
       tags:
       - AllSports
       summary: Get Tournament Season Round Team Of Week
@@ -6958,6 +7136,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/statistics/info:
     get:
+      operationId: getTournamentSeasonStatisticsInfo
       tags:
       - AllSports
       summary: Get Tournament Season Statistics Info
@@ -6995,6 +7174,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/team/{teamId}/performance:
     get:
+      operationId: getTournamentSeasonTeamPerformance
       tags:
       - AllSports
       summary: Get Tournament Season Team Performance
@@ -7039,6 +7219,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/top-ratings/overall:
     get:
+      operationId: getTournamentSeasonTopRatingsOverall
       tags:
       - AllSports
       summary: Get Tournament Season Top Ratings Overall
@@ -7076,6 +7257,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/{segment5}:
     get:
+      operationId: getTournamentSeason
       tags:
       - AllSports
       summary: Get Tournament Season
@@ -7187,6 +7369,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/{segment5}/away:
     get:
+      operationId: getTournamentSeasonAway
       tags:
       - AllSports
       summary: Get Tournament Season Away
@@ -7233,6 +7416,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/{segment5}/home:
     get:
+      operationId: getTournamentSeasonHome
       tags:
       - AllSports
       summary: Get Tournament Season Home
@@ -7279,6 +7463,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/{segment5}/round/{round}:
     get:
+      operationId: getTournamentSeasonRound
       tags:
       - AllSports
       summary: Get Tournament Season Round
@@ -7332,6 +7517,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/{segment5}/rounds:
     get:
+      operationId: getTournamentTournamentIdSeasonSeasonIdSegment5Rounds
       tags:
       - AllSports
       summary: Get Tournament Season Rounds
@@ -7378,6 +7564,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/{segment5}/total:
     get:
+      operationId: getTournamentSeasonTotal
       tags:
       - AllSports
       summary: Get Tournament Season Total
@@ -7424,6 +7611,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/season/{seasonId}/{segment5}/types:
     get:
+      operationId: getTournamentSeasonTypes
       tags:
       - AllSports
       summary: Get Tournament Season Types
@@ -7470,6 +7658,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tournament/{tournamentId}/{segment3}:
     get:
+      operationId: getTournamentTournamentIdSegment3
       tags:
       - AllSports
       summary: Get Tournament
@@ -7519,6 +7708,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tv/channel/{channId}/event/{id}:
     get:
+      operationId: getTvChannelEvent
       tags:
       - AllSports
       summary: Get Tv Channel Event
@@ -7556,6 +7746,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tv/channel/{id}/schedule:
     get:
+      operationId: getTvChannelSchedule
       tags:
       - AllSports
       summary: Get Tv Channel Schedule
@@ -7586,6 +7777,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tv/country/all/event/{id}:
     get:
+      operationId: getTvCountryAllEvent
       tags:
       - AllSports
       summary: Get Tv Country All Event
@@ -7616,6 +7808,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/tv/country/{countryCode}/channels:
     get:
+      operationId: getTvCountryChannels
       tags:
       - AllSports
       summary: Get Tv Country Channels
@@ -7646,6 +7839,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/venue/{id}/events/{sport}/{span}/{page}:
     get:
+      operationId: getVenueEvents
       tags:
       - AllSports
       summary: Get Venue Events
@@ -7697,6 +7891,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/venue/{id}/{segment3}:
     get:
+      operationId: getVenue
       tags:
       - AllSports
       summary: Get Venue
@@ -7736,6 +7931,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/volleyball/match/{id}/{segment4}:
     get:
+      operationId: getVolleyballMatch
       tags:
       - AllSports
       summary: Get Volleyball Match
@@ -7781,6 +7977,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/volleyball/unique-tournament/{tournamentId}/season/{seasonId}/{segment6}:
     get:
+      operationId: getVolleyballUniqueTournamentSeason
       tags:
       - AllSports
       summary: Get Volleyball Unique Tournament Season
@@ -7827,6 +8024,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/volleyball/unique-tournament/{tournamentId}/{segment4}:
     get:
+      operationId: getVolleyballUniqueTournament
       tags:
       - AllSports
       summary: Get Volleyball Unique Tournament
@@ -7870,6 +8068,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/calendar/{day}/{month}/{year}/categories:
     get:
+      operationId: getSportCalendarDayMonthYearCategories
       tags:
       - AllSports
       summary: Get Calendar Categories
@@ -7929,6 +8128,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/calendar/{month}/{year}:
     get:
+      operationId: getCalendar
       tags:
       - AllSports
       summary: Get Calendar
@@ -7981,6 +8181,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/calendar/{month}/{year}/categories:
     get:
+      operationId: getSportCalendarMonthYearCategories
       tags:
       - AllSports
       summary: Get Calendar Categories
@@ -8040,6 +8241,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/calendar/{sportSlug}/{date}/{countryId}/stages:
     get:
+      operationId: getCalendarStages
       tags:
       - AllSports
       summary: Get Calendar Stages
@@ -8093,6 +8295,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/category/{categoryId}/live-unique-tournaments:
     get:
+      operationId: getCategoryLiveUniqueTournaments
       tags:
       - AllSports
       summary: Get Category Live Unique Tournaments
@@ -8132,6 +8335,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/category/{id}/events/{day}/{month}/{year}:
     get:
+      operationId: getSportCategoryIdEventsDayMonthYear
       tags:
       - AllSports
       summary: Get Category Events
@@ -8208,6 +8412,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/event/{customId}/h2h:
     get:
+      operationId: getEventH2h
       tags:
       - AllSports
       summary: Get Event H2h
@@ -8248,6 +8453,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/event/{id}:
     get:
+      operationId: getEvent
       tags:
       - AllSports
       summary: Get Event
@@ -8289,6 +8495,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/event/{id}/graph/sequence:
     get:
+      operationId: getEventGraphSequence
       tags:
       - AllSports
       summary: Get Event Graph Sequence
@@ -8328,6 +8535,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/event/{id}/odds/{providerId}/all:
     get:
+      operationId: getEventOddsAll
       tags:
       - AllSports
       summary: Get Event Odds All
@@ -8374,6 +8582,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/event/{id}/odds/{providerId}/featured:
     get:
+      operationId: getEventOddsFeatured
       tags:
       - AllSports
       summary: Get Event Odds Featured
@@ -8421,6 +8630,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/event/{id}/provider/{providerId}/winning-odds:
     get:
+      operationId: getEventProviderWinningOdds
       tags:
       - AllSports
       summary: Get Event Provider Winning Odds
@@ -8467,6 +8677,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/events/live:
     get:
+      operationId: getEventsLive
       tags:
       - AllSports
       summary: Get Events Live
@@ -8499,6 +8710,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/events/odds/{day}/{month}/{year}:
     get:
+      operationId: getEventsOdds
       tags:
       - AllSports
       summary: Get Events Odds
@@ -8558,6 +8770,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/events/{day}/{month}/{year}:
     get:
+      operationId: getEvents
       tags:
       - AllSports
       summary: Get Events
@@ -8617,6 +8830,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/manager/{id}:
     get:
+      operationId: getSportManagerId
       tags:
       - AllSports
       summary: Get Manager
@@ -8658,6 +8872,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/manager/{id}/image:
     get:
+      operationId: getManagerImage
       tags:
       - AllSports
       summary: Get Manager Image
@@ -8701,6 +8916,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/manager/{id}/matches/previous/{page}:
     get:
+      operationId: getManagerMatchesPrevious
       tags:
       - AllSports
       summary: Get Manager Matches Previous
@@ -8755,6 +8971,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/match/{customId}/h2h:
     get:
+      operationId: getSportMatchCustomIdH2h
       tags:
       - AllSports
       summary: Get Match H2h
@@ -8800,6 +9017,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/match/{id}:
     get:
+      operationId: getSportMatchId
       tags:
       - AllSports
       summary: Get Match
@@ -8845,6 +9063,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/match/{id}/graph/sequence:
     get:
+      operationId: getSportMatchIdGraphSequence
       tags:
       - AllSports
       summary: Get Match Graph Sequence
@@ -8887,6 +9106,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/match/{id}/odds/{providerId}/all:
     get:
+      operationId: getMatchOddsAll
       tags:
       - AllSports
       summary: Get Match Odds All
@@ -8936,6 +9156,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/match/{id}/player/{playerId}/statistics:
     get:
+      operationId: getMatchPlayerStatistics
       tags:
       - AllSports
       summary: Get Match Player Statistics
@@ -8984,6 +9205,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/matches/live:
     get:
+      operationId: getSportMatchesLive
       tags:
       - AllSports
       summary: Get Matches Live
@@ -9024,6 +9246,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/matches/{day}/{month}/{year}:
     get:
+      operationId: getSportMatchesDayMonthYear
       tags:
       - AllSports
       summary: Get Matches
@@ -9091,6 +9314,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/player/{id}:
     get:
+      operationId: getSportPlayerId
       tags:
       - AllSports
       summary: Get Player
@@ -9138,6 +9362,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/player/{id}/image:
     get:
+      operationId: getPlayerImage
       tags:
       - AllSports
       summary: Get Player Image
@@ -9186,6 +9411,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/player/{id}/matches/near:
     get:
+      operationId: getSportPlayerIdMatchesNear
       tags:
       - AllSports
       summary: Get Player Matches Near
@@ -9230,6 +9456,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/player/{id}/matches/previous/{page}:
     get:
+      operationId: getPlayerMatchesPrevious
       tags:
       - AllSports
       summary: Get Player Matches Previous
@@ -9287,6 +9514,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/player/{id}/media:
     get:
+      operationId: getPlayerMedia
       tags:
       - AllSports
       summary: Get Player Media
@@ -9327,6 +9555,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/player/{id}/statistics/season:
     get:
+      operationId: getPlayerStatisticsSeason
       tags:
       - AllSports
       summary: Get Player Statistics Season
@@ -9368,6 +9597,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/player/{id}/statistics/seasons:
     get:
+      operationId: getPlayerStatisticsSeasons
       tags:
       - AllSports
       summary: Get Player Statistics Seasons
@@ -9407,6 +9637,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/overall:
     get:
+      operationId: getPlayerTournamentSeasonStatisticsOverall
       tags:
       - AllSports
       summary: Get Player Tournament Season Statistics Overall
@@ -9462,6 +9693,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/playoffs:
     get:
+      operationId: getPlayerTournamentSeasonStatisticsPlayoffs
       tags:
       - AllSports
       summary: Get Player Tournament Season Statistics Playoffs
@@ -9516,6 +9748,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/regularSeason:
     get:
+      operationId: getPlayerTournamentSeasonStatisticsRegularseason
       tags:
       - AllSports
       summary: Get Player Tournament Season Statistics Regularseason
@@ -9570,6 +9803,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/search/{term}:
     get:
+      operationId: getSportSearchTerm
       tags:
       - AllSports
       summary: Get Search
@@ -9635,6 +9869,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/stage/{id}/odds/provider/{providerId}/{segment7}:
     get:
+      operationId: getStageOddsProvider
       tags:
       - AllSports
       summary: Get Stage Odds Provider
@@ -9690,6 +9925,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/stage/{id}/standings/{segment5}:
     get:
+      operationId: getStageStandings
       tags:
       - AllSports
       summary: Get Stage Standings
@@ -9738,6 +9974,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/stage/{stageId}/substages:
     get:
+      operationId: getStageSubstages
       tags:
       - AllSports
       summary: Get Stage Substages
@@ -9778,6 +10015,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}:
     get:
+      operationId: getSportTeamId
       tags:
       - AllSports
       summary: Get Team
@@ -9829,6 +10067,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/featured-event:
     get:
+      operationId: getTeamFeaturedEvent
       tags:
       - AllSports
       summary: Get Team Featured Event
@@ -9872,6 +10111,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/image:
     get:
+      operationId: getTeamImage
       tags:
       - AllSports
       summary: Get Team Image
@@ -9924,6 +10164,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/matches/near:
     get:
+      operationId: getSportTeamIdMatchesNear
       tags:
       - AllSports
       summary: Get Team Matches Near
@@ -9972,6 +10213,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/matches/next/{page}:
     get:
+      operationId: getTeamMatchesNext
       tags:
       - AllSports
       summary: Get Team Matches Next
@@ -10032,6 +10274,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/matches/previous/{page}:
     get:
+      operationId: getTeamMatchesPrevious
       tags:
       - AllSports
       summary: Get Team Matches Previous
@@ -10093,6 +10336,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/media:
     get:
+      operationId: getTeamMedia
       tags:
       - AllSports
       summary: Get Team Media
@@ -10138,6 +10382,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/player-statistics/seasons:
     get:
+      operationId: getTeamPlayerStatisticsSeasons
       tags:
       - AllSports
       summary: Get Team Player Statistics Seasons
@@ -10177,6 +10422,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/players:
     get:
+      operationId: getTeamPlayers
       tags:
       - AllSports
       summary: Get Team Players
@@ -10222,6 +10468,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/players/statistics/seasons:
     get:
+      operationId: getSportTeamIdPlayersStatisticsSeasons
       tags:
       - AllSports
       summary: Get Team Players Statistics Seasons
@@ -10263,6 +10510,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/rankings:
     get:
+      operationId: getTeamRankings
       tags:
       - AllSports
       summary: Get Team Rankings
@@ -10302,6 +10550,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/stage/season/{seasonId}/races:
     get:
+      operationId: getTeamStageSeasonRaces
       tags:
       - AllSports
       summary: Get Team Stage Season Races
@@ -10348,6 +10597,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/stage/seasons:
     get:
+      operationId: getTeamStageSeasons
       tags:
       - AllSports
       summary: Get Team Stage Seasons
@@ -10387,6 +10637,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/standings/seasons:
     get:
+      operationId: getTeamStandingsSeasons
       tags:
       - AllSports
       summary: Get Team Standings Seasons
@@ -10434,6 +10685,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/tournaments:
     get:
+      operationId: getTeamTournaments
       tags:
       - AllSports
       summary: Get Team Tournaments
@@ -10476,6 +10728,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/transfers:
     get:
+      operationId: getTeamTransfers
       tags:
       - AllSports
       summary: Get Team Transfers
@@ -10516,6 +10769,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/unique-tournaments:
     get:
+      operationId: getTeamUniqueTournaments
       tags:
       - AllSports
       summary: Get Team Unique Tournaments
@@ -10556,6 +10810,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/team/{id}/unique-tournaments/all:
     get:
+      operationId: getSportTeamIdUniqueTournamentsAll
       tags:
       - AllSports
       summary: Get Team Unique Tournaments All
@@ -10598,6 +10853,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/all/category/{id}:
     get:
+      operationId: getSportTournamentAllCategoryId
       tags:
       - AllSports
       summary: Get Tournament All Category
@@ -10645,6 +10901,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/categories:
     get:
+      operationId: getSportTournamentCategories
       tags:
       - AllSports
       summary: Get Tournament Categories
@@ -10687,6 +10944,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}:
     get:
+      operationId: getSportTournamentTournamentId
       tags:
       - AllSports
       summary: Get Tournament
@@ -10735,6 +10993,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/featured-events:
     get:
+      operationId: getTournamentFeaturedEvents
       tags:
       - AllSports
       summary: Get Tournament Featured Events
@@ -10780,6 +11039,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/image:
     get:
+      operationId: getTournamentImage
       tags:
       - AllSports
       summary: Get Tournament Image
@@ -10826,6 +11086,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/image/dark:
     get:
+      operationId: getSportTournamentTournamentIdImageDark
       tags:
       - AllSports
       summary: Get Tournament Image Dark
@@ -10872,6 +11133,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/info:
     get:
+      operationId: getTournamentInfo
       tags:
       - AllSports
       summary: Get Tournament Info
@@ -10911,6 +11173,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/media:
     get:
+      operationId: getTournamentMedia
       tags:
       - AllSports
       summary: Get Tournament Media
@@ -10958,6 +11221,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/scheduled-events/{date}:
     get:
+      operationId: getSportTournamentTournamentIdScheduledEventsDate
       tags:
       - AllSports
       summary: Get Tournament Scheduled Events
@@ -11005,6 +11269,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
+      operationId: getSportTournamentTournamentIdSchedulesDayMonthYear
       tags:
       - AllSports
       summary: Get Tournament Schedules
@@ -11077,6 +11342,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/cup-trees:
     get:
+      operationId: getTournamentSeasonCupTrees
       tags:
       - AllSports
       summary: Get Tournament Season Cup Trees
@@ -11123,6 +11389,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/cuptrees:
     get:
+      operationId: getTournamentSeasonCuptrees
       tags:
       - AllSports
       summary: Get Tournament Season Cuptrees
@@ -11171,6 +11438,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/events/round/{round}/slug/{slug}:
     get:
+      operationId: getTournamentSeasonEventsRoundSlug
       tags:
       - AllSports
       summary: Get Tournament Season Events Round Slug
@@ -11231,6 +11499,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/events/{segment7}/{page}:
     get:
+      operationId: getTournamentSeasonEvents
       tags:
       - AllSports
       summary: Get Tournament Season Events
@@ -11299,6 +11568,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/groups:
     get:
+      operationId: getTournamentSeasonGroups
       tags:
       - AllSports
       summary: Get Tournament Season Groups
@@ -11346,6 +11616,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/info:
     get:
+      operationId: getTournamentSeasonInfo
       tags:
       - AllSports
       summary: Get Tournament Season Info
@@ -11393,6 +11664,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/matches:
     get:
+      operationId: getSportTournamentTournamentIdSeasonSeasonIdMatches
       tags:
       - AllSports
       summary: Get Tournament Season Matches
@@ -11439,6 +11711,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/matches/{segment7}/{page}:
     get:
+      operationId: getSportTournamentTournamentIdSeasonSeasonIdMatchesSegment7Page
       tags:
       - AllSports
       summary: Get Tournament Season Matches
@@ -11512,6 +11785,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/player-statistics/types:
     get:
+      operationId: getTournamentSeasonPlayerStatisticsTypes
       tags:
       - AllSports
       summary: Get Tournament Season Player Statistics Types
@@ -11559,6 +11833,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
+      operationId: getSportTournamentTournamentIdSeasonSeasonIdRounds
       tags:
       - AllSports
       summary: Get Tournament Season Rounds
@@ -11607,6 +11882,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/standings/away:
     get:
+      operationId: getTournamentSeasonStandingsAway
       tags:
       - AllSports
       summary: Get Tournament Season Standings Away
@@ -11656,6 +11932,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
+      operationId: getTournamentSeasonStandingsHome
       tags:
       - AllSports
       summary: Get Tournament Season Standings Home
@@ -11707,6 +11984,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
+      operationId: getTournamentSeasonStandingsTotal
       tags:
       - AllSports
       summary: Get Tournament Season Standings Total
@@ -11762,6 +12040,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
+      operationId: getTournamentSeasonTeamEventsAway
       tags:
       - AllSports
       summary: Get Tournament Season Team Events Away
@@ -11812,6 +12091,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
+      operationId: getTournamentSeasonTeamEventsHome
       tags:
       - AllSports
       summary: Get Tournament Season Team Events Home
@@ -11862,6 +12142,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
+      operationId: getTournamentSeasonTeamEventsTotal
       tags:
       - AllSports
       summary: Get Tournament Season Team Events Total
@@ -11914,6 +12195,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/team-statistics/types:
     get:
+      operationId: getTournamentSeasonTeamStatisticsTypes
       tags:
       - AllSports
       summary: Get Tournament Season Team Statistics Types
@@ -11961,6 +12243,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/season/{seasonId}/venues:
     get:
+      operationId: getTournamentSeasonVenues
       tags:
       - AllSports
       summary: Get Tournament Season Venues
@@ -12012,6 +12295,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/seasons:
     get:
+      operationId: getTournamentSeasons
       tags:
       - AllSports
       summary: Get Tournament Seasons
@@ -12059,6 +12343,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/tournament/{tournamentId}/winners:
     get:
+      operationId: getTournamentWinners
       tags:
       - AllSports
       summary: Get Tournament Winners
@@ -12102,6 +12387,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/unique-stage/{uniqueStageId}/season:
     get:
+      operationId: getUniqueStageSeason
       tags:
       - AllSports
       summary: Get Unique Stage Season
@@ -12141,6 +12427,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/unique-tournament/all/category/{id}:
     get:
+      operationId: getUniqueTournamentAllCategory
       tags:
       - AllSports
       summary: Get Unique Tournament All Category
@@ -12180,6 +12467,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/unique-tournament/{tournamentId}:
     get:
+      operationId: getUniqueTournament
       tags:
       - AllSports
       summary: Get Unique Tournament
@@ -12220,6 +12508,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/unique-tournament/{tournamentId}/image/dark:
     get:
+      operationId: getUniqueTournamentImageDark
       tags:
       - AllSports
       summary: Get Unique Tournament Image Dark
@@ -12261,6 +12550,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}:
     get:
+      operationId: getUniqueTournamentSeasonMatchesRound
       tags:
       - AllSports
       summary: Get Unique Tournament Season Matches Round
@@ -12314,6 +12604,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/unique-tournament/{tournamentId}/season/{seasonId}/matches/{segment7}/{page}:
     get:
+      operationId: getUniqueTournamentSeasonMatches
       tags:
       - AllSports
       summary: Get Unique Tournament Season Matches
@@ -12382,6 +12673,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/unique-tournament/{tournamentId}/season/{seasonId}/standings/{segment7}:
     get:
+      operationId: getUniqueTournamentSeasonStandings
       tags:
       - AllSports
       summary: Get Unique Tournament Season Standings
@@ -12438,6 +12730,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/unique-tournament/{tournamentId}/season/{seasonId}/team-events/{segment7}:
     get:
+      operationId: getUniqueTournamentSeasonTeamEvents
       tags:
       - AllSports
       summary: Get Unique Tournament Season Team Events
@@ -12494,6 +12787,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/{id}:
     get:
+      operationId: getAllSportsData
       tags:
       - AllSports
       summary: Get AllSports Data
@@ -12537,6 +12831,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/{id}/matches/next/{page}:
     get:
+      operationId: getMatchesNext
       tags:
       - AllSports
       summary: Get Matches Next
@@ -12590,6 +12885,7 @@ paths:
           description: No content. The route exists but no data is available for the given parameters.
   /api/{sport}/{id}/matches/previous/{page}:
     get:
+      operationId: getMatchesPrevious
       tags:
       - AllSports
       summary: Get Matches Previous

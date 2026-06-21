@@ -9,6 +9,7 @@ servers:
 paths:
   /api/tv/country/all/event/{id}:
     get:
+      operationId: getMatchTVCountries
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
@@ -40,6 +41,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
+      operationId: getMatchTVChannelVotes
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
@@ -78,6 +80,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
+      operationId: getCountryFlag
       summary: Get country flag
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
@@ -110,6 +113,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
+      operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
       description: Fetches the flag image from the SofaScore image API by country code.
       tags:
@@ -141,6 +145,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
+      operationId: getPlaceholderTournamentPng
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -165,6 +170,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
+      operationId: getPlaceholderTournamentSvg
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -189,6 +195,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
+      operationId: getTeamPlaceholderImage
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
@@ -213,6 +220,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
+      operationId: getPlaceholderPlayerPng
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -237,6 +245,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
+      operationId: getPlaceholderPlayerSvg
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -261,6 +270,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
+      operationId: getPlaceholderManagerPng
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -284,6 +294,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
+      operationId: getPlaceholderManagerSvg
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -307,6 +318,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/calendar/season/{seasonId}/{year}/days-with-events:
     get:
+      operationId: getCalendarDaysWithEvents
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
@@ -345,6 +357,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/category/{categoryId}/image:
     get:
+      operationId: getCategoryImage
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
@@ -376,6 +389,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/countries/all:
     get:
+      operationId: getAllCountries
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
@@ -399,6 +413,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rankings/team/{teamId}:
     get:
+      operationId: getTeamRankings
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
@@ -430,6 +445,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/all:
     get:
+      operationId: searchAllEntities
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
@@ -453,6 +469,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/suggestions/{entityType}:
     get:
+      operationId: getSearchSuggestions
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
@@ -484,6 +501,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/unique-tournaments:
     get:
+      operationId: searchUniqueTournaments
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
@@ -507,6 +525,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/{entityType}:
     get:
+      operationId: searchByEntityType
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
@@ -538,6 +557,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{id}/schedule:
     get:
+      operationId: getTVChannelSchedule
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
@@ -569,6 +589,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/country/{countryCode}/channels:
     get:
+      operationId: getCountryTVChannels
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
@@ -600,6 +621,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/search/{term}:
     get:
+      operationId: searchCricketEntities
       summary: Search cricket entities
       description: Searches for cricket teams, players, and tournaments.
       tags:
@@ -645,6 +667,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/categories:
     get:
+      operationId: getCricketTournamentCategories
       summary: Get cricket tournament categories
       description: Retrieves a list of all available cricket tournament categories, typically corresponding to countries
         or regions.
@@ -670,6 +693,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/matches/{day}/{month}/{year}:
     get:
+      operationId: getCricketMatchesByDate
       summary: Get cricket matches by date
       description: Fetches all cricket matches scheduled for a specific date.
       tags:
@@ -722,6 +746,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/matches/live:
     get:
+      operationId: getLiveCricketMatches
       summary: Get live cricket matches
       description: Retrieves all currently live cricket matches.
       tags:
@@ -746,6 +771,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}:
     get:
+      operationId: getCricketMatchDetails
       summary: Get cricket match details
       description: Retrieves detailed information for a specific cricket match by its ID.
       tags:
@@ -778,6 +804,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{customId}/h2h:
     get:
+      operationId: getMatchHeadToHeadHistory
       summary: Get match head-to-head history
       description: Retrieves the detailed match history for head-to-head encounters between two teams.
       tags:
@@ -811,6 +838,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/lineups:
     get:
+      operationId: getMatchLineups
       summary: Get match lineups
       description: Retrieves the starting lineups and substitutes for both teams in a specific match.
       tags:
@@ -844,6 +872,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/innings:
     get:
+      operationId: getMatchInnings
       summary: Get match innings
       description: Retrieves the detailed scorecard for each innings of a cricket match.
       tags:
@@ -877,6 +906,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/incidents:
     get:
+      operationId: getMatchIncidents
       summary: Get match incidents
       description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., 
         wickets, boundaries).
@@ -910,6 +940,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/duel:
     get:
+      operationId: getHeadToHeadSummary
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head (H2H) statistics between the two teams in a match.
       tags:
@@ -943,6 +974,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/form:
     get:
+      operationId: getMatchFormAnalysis
       summary: Get match form analysis
       description: Retrieves pre-game form and recent performance data for the teams in a specific match.
       tags:
@@ -975,6 +1007,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/odds:
     get:
+      operationId: getMatchBettingOdds
       summary: Get match betting odds
       description: Retrieves available betting odds from various bookmakers for a specific match.
       tags:
@@ -1008,6 +1041,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/votes:
     get:
+      operationId: getMatchVotes
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome.
       tags:
@@ -1040,6 +1074,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/graph:
     get:
+      operationId: getCricketMatchGraph
       summary: Get cricket match graph
       description: Retrieves data points for the match graph, showing runs per over for both teams.
       tags:
@@ -1073,6 +1108,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/meta:
     get:
+      operationId: getEventMetadata
       summary: Get event metadata
       description: Retrieves SEO and metadata for a specific event.
       tags:
@@ -1104,6 +1140,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/odds/{providerId}/all:
     get:
+      operationId: getAllOddsForEvent
       summary: Get all odds for event
       description: Retrieves all available odds from a specific provider for an event.
       tags:
@@ -1142,6 +1179,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/graph/sequence:
     get:
+      operationId: getEventGraphSequence
       summary: Get event graph sequence
       description: Retrieves the momentum/pressure graph sequence data for a match.
       tags:
@@ -1173,6 +1211,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/match/{id}/official-tweets:
     get:
+      operationId: getEventOfficialTweets
       summary: Get event official tweets
       description: Retrieves official social media posts related to an event.
       tags:
@@ -1204,6 +1243,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousTeamMatches
       summary: Get previous team matches
       description: Fetches a paginated list of completed cricket matches for a specific team, sorted by date descending.
       tags:
@@ -1250,6 +1290,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/matches/next/{page}:
     get:
+      operationId: getUpcomingTeamMatches
       summary: Get upcoming team matches
       description: Fetches a paginated list of scheduled cricket matches for a specific team, sorted by date ascending.
       tags:
@@ -1296,6 +1337,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/standings/seasons:
     get:
+      operationId: getTeamStandingsSeasons
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which a team's standings are available.
       tags:
@@ -1329,6 +1371,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/tournaments:
     get:
+      operationId: getTeamTournaments
       summary: Get team tournaments
       description: Retrieves a list of all unique tournaments a team has participated in.
       tags:
@@ -1362,6 +1405,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/matches/near:
     get:
+      operationId: getTeamNearMatches
       summary: Get team near matches
       description: Retrieves a list of recent and upcoming matches for a specific team.
       tags:
@@ -1395,6 +1439,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/image:
     get:
+      operationId: getTeamImage
       summary: Get team image
       description: Retrieves the logo image for a specific team.
       tags:
@@ -1428,6 +1473,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}:
     get:
+      operationId: getCricketTeamDetails
       summary: Get cricket team details
       description: Retrieves comprehensive details for a specific cricket team.
       tags:
@@ -1460,6 +1506,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/players/statistics/seasons:
     get:
+      operationId: getTeamPlayerStatisticsSeasons
       summary: Get team player statistics seasons
       description: Retrieves a list of seasons for which a team's player statistics are available.
       tags:
@@ -1493,6 +1540,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/players:
     get:
+      operationId: getTeamPlayers
       summary: Get team players
       description: Retrieves the current roster of players for a specific team.
       tags:
@@ -1526,6 +1574,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/media:
     get:
+      operationId: getTeamMedia
       summary: Get team media
       description: Retrieves media content (e.g., videos, images) associated with a specific team.
       tags:
@@ -1559,6 +1608,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/featured-event:
     get:
+      operationId: getTeamFeaturedEvent
       summary: Get team featured event
       description: Retrieves the current or next featured event for a team.
       tags:
@@ -1590,6 +1640,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/team/{id}/unique-tournaments/all:
     get:
+      operationId: getAllTeamTournaments
       summary: Get all team tournaments
       description: Retrieves all unique tournaments a team participates in.
       tags:
@@ -1621,6 +1672,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}/statistics/seasons:
     get:
+      operationId: getPlayerStatisticsSeasons
       summary: Get player statistics seasons
       description: Retrieves a list of seasons for which a player's statistics are available.
       tags:
@@ -1654,6 +1706,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}/tournament/{tournamentId}/season/{seasonId}/statistics/overall:
     get:
+      operationId: getPlayerOverallStatistics
       summary: Get player overall statistics
       description: Retrieves a player's combined statistics for an entire season (regular season and playoffs).
       tags:
@@ -1701,6 +1754,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}/image:
     get:
+      operationId: getPlayerImage
       summary: Get player image
       description: Retrieves the profile image for a specific player.
       tags:
@@ -1734,6 +1788,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}:
     get:
+      operationId: getCricketPlayerDetails
       summary: Get cricket player details
       description: Retrieves comprehensive information about a specific cricket player.
       tags:
@@ -1766,6 +1821,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}/matches/near:
     get:
+      operationId: getPlayerNearMatches
       summary: Get player near matches
       description: Retrieves a list of recent and upcoming matches for a specific player.
       tags:
@@ -1799,6 +1855,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/player/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousPlayerMatches
       summary: Get previous player matches
       description: Fetches a paginated list of completed matches for a specific player, sorted by date descending.
       tags:
@@ -1845,6 +1902,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
+      operationId: getTournamentTotalStandings
       summary: Get tournament total standings
       description: Retrieves the complete standings table for all teams in a specific tournament season.
       tags:
@@ -1885,6 +1943,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/top-players:
     get:
+      operationId: getTournamentTopPlayers
       summary: Get tournament top players
       description: Retrieves the best performing players in a specific tournament season.
       tags:
@@ -1926,6 +1985,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/image:
     get:
+      operationId: getTournamentImage
       summary: Get tournament image
       description: Retrieves the logo image for a specific tournament.
       tags:
@@ -1959,6 +2019,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/image/dark:
     get:
+      operationId: getTournamentDarkLogo
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       tags:
@@ -1992,6 +2053,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
+      operationId: getTournamentLastMatches
       summary: Get tournament last matches
       description: Retrieves a paginated list of recently played matches in a specific tournament season.
       tags:
@@ -2045,6 +2107,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
+      operationId: getTournamentUpcomingMatches
       summary: Get tournament upcoming matches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
       tags:
@@ -2098,6 +2161,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}:
     get:
+      operationId: getCricketTournamentDetails
       summary: Get cricket tournament details
       description: Retrieves comprehensive details for a specific cricket tournament.
       tags:
@@ -2130,6 +2194,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/seasons:
     get:
+      operationId: getCricketTournamentSeasons
       summary: Get cricket tournament seasons
       description: Retrieves a list of all available seasons for a specific tournament.
       tags:
@@ -2162,6 +2227,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/media:
     get:
+      operationId: getCricketTournamentMedia
       summary: Get cricket tournament media
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       tags:
@@ -2195,6 +2261,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
+      operationId: getTotalTeamEventsForCricketTournamentSeason
       summary: Get total team events for cricket tournament season
       description: Retrieves aggregated team performance statistics for all games in a tournament season.
       tags:
@@ -2236,6 +2303,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
+      operationId: getTournamentMatchesByDate
       summary: Get tournament matches by date
       description: Retrieves all matches for a specific tournament scheduled on a given date.
       tags:
@@ -2296,6 +2364,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/category/{id}/events/{day}/{month}/{year}:
     get:
+      operationId: getCricketMatchesByCategoryAndDate
       summary: Get cricket matches by category and date
       description: Retrieves all cricket matches for a specific category on a given date.
       tags:
@@ -2356,6 +2425,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/all/category/{id}:
     get:
+      operationId: getTournamentsByCategory
       summary: Get tournaments by category
       description: Retrieves all unique tournaments within a specific cricket category.
       tags:
@@ -2389,6 +2459,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/featured-events:
     get:
+      operationId: getTournamentFeaturedEvents
       summary: Get tournament featured events
       description: Retrieves featured/highlighted events for a tournament.
       tags:
@@ -2420,6 +2491,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/winners:
     get:
+      operationId: getTournamentWinners
       summary: Get tournament winners
       description: Retrieves historical winners of a tournament.
       tags:
@@ -2451,6 +2523,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/scheduled-events/{date}:
     get:
+      operationId: getTournamentEventsOnDate
       summary: Get tournament events on date
       description: Retrieves all events for a tournament on a specific date.
       tags:
@@ -2489,6 +2562,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/venues:
     get:
+      operationId: getTournamentSeasonVenues
       summary: Get tournament season venues
       description: Retrieves all venues used in a tournament season.
       tags:
@@ -2527,6 +2601,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/cricket/tournament/{tournamentId}/season/{seasonId}/player-statistics/types:
     get:
+      operationId: getPlayerStatisticsInfo
       summary: Get player statistics info
       description: Retrieves available player statistic categories for a tournament season.
       tags:

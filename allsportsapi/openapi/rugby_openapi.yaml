@@ -9,6 +9,7 @@ servers:
 paths:
   /api/tv/country/all/event/{id}:
     get:
+      operationId: getMatchTVCountries
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
@@ -40,6 +41,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
+      operationId: getMatchTVChannelVotes
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
@@ -78,6 +80,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
+      operationId: getCountryFlag
       summary: Get country flag
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
@@ -110,6 +113,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
+      operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
       description: Fetches the flag image from the SofaScore image API by country code.
       tags:
@@ -141,6 +145,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
+      operationId: getPlaceholderTournamentPng
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -165,6 +170,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
+      operationId: getPlaceholderTournamentSvg
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -189,6 +195,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
+      operationId: getTeamPlaceholderImage
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
@@ -213,6 +220,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
+      operationId: getPlaceholderPlayerPng
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -237,6 +245,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
+      operationId: getPlaceholderPlayerSvg
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -261,6 +270,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
+      operationId: getPlaceholderManagerPng
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -284,6 +294,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
+      operationId: getPlaceholderManagerSvg
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -307,6 +318,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/calendar/season/{seasonId}/{year}/days-with-events:
     get:
+      operationId: getCalendarDaysWithEvents
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
@@ -345,6 +357,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/category/{categoryId}/image:
     get:
+      operationId: getCategoryImage
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
@@ -376,6 +389,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/countries/all:
     get:
+      operationId: getAllCountries
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
@@ -399,6 +413,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rankings/team/{teamId}:
     get:
+      operationId: getTeamRankings
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
@@ -430,6 +445,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/all:
     get:
+      operationId: searchAllEntities
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
@@ -453,6 +469,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/suggestions/{entityType}:
     get:
+      operationId: getSearchSuggestions
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
@@ -484,6 +501,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/unique-tournaments:
     get:
+      operationId: searchUniqueTournaments
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
@@ -507,6 +525,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/{entityType}:
     get:
+      operationId: searchByEntityType
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
@@ -538,6 +557,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{id}/schedule:
     get:
+      operationId: getTVChannelSchedule
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
@@ -569,6 +589,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/country/{countryCode}/channels:
     get:
+      operationId: getCountryTVChannels
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
@@ -600,6 +621,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/search/{term}:
     get:
+      operationId: searchRugbyEntities
       summary: Search rugby entities
       description: Searches for rugby teams, players, and tournaments.
       tags:
@@ -644,6 +666,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/categories:
     get:
+      operationId: getRugbyTournamentCategories
       summary: Get rugby tournament categories
       description: Retrieves all available rugby tournament categories (countries/regions).
       tags:
@@ -667,6 +690,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/matches/{day}/{month}/{year}:
     get:
+      operationId: getAllRugbyMatchesByDate
       summary: Get all rugby matches by date
       description: Fetches all rugby matches scheduled for a specific date.
       tags:
@@ -718,6 +742,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/matches/live:
     get:
+      operationId: getLiveRugbyMatches
       summary: Get live rugby matches
       description: Retrieves all currently live rugby matches.
       tags:
@@ -741,6 +766,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/match/{id}:
     get:
+      operationId: getRugbyMatchDetails
       summary: Get rugby match details
       description: Retrieves detailed information about a specific rugby match.
       tags:
@@ -772,6 +798,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/match/{id}/statistics:
     get:
+      operationId: getMatchStatistics
       summary: Get match statistics
       description: Retrieves comprehensive statistical data for the match.
       tags:
@@ -804,6 +831,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/match/{id}/incidents:
     get:
+      operationId: getMatchIncidents
       summary: Get match incidents
       description: Retrieves all incidents and events that occurred during the match.
       tags:
@@ -835,6 +863,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/match/{customId}/h2h:
     get:
+      operationId: getHeadToHeadHistory
       summary: Get head-to-head history
       description: Retrieves detailed head-to-head match history between the teams.
       tags:
@@ -867,6 +896,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/match/{id}/duel:
     get:
+      operationId: getHeadToHeadSummary
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head statistics between the teams.
       tags:
@@ -899,6 +929,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/match/{id}/form:
     get:
+      operationId: getMatchFormAnalysis
       summary: Get match form analysis
       description: Retrieves recent form and performance trends for teams in the match.
       tags:
@@ -930,6 +961,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/match/{id}/odds:
     get:
+      operationId: getMatchBettingOdds
       summary: Get match betting odds
       description: Retrieves betting odds from various bookmakers for the match.
       tags:
@@ -962,6 +994,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/match/{id}/votes:
     get:
+      operationId: getMatchVotes
       summary: Get match votes
       description: Retrieves fan voting results for the match.
       tags:
@@ -993,6 +1026,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/match/{id}/lineups:
     get:
+      operationId: getMatchLineups
       summary: Get match lineups
       description: Retrieves starting lineups and formations for both teams.
       tags:
@@ -1025,6 +1059,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/match/{id}/highlights:
     get:
+      operationId: getMatchHighlights
       summary: Get match highlights
       description: Retrieves video highlights and key moments from the match.
       tags:
@@ -1057,6 +1092,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/match/{id}/managers:
     get:
+      operationId: getMatchManagersCoaches
       summary: Get match managers/coaches
       description: Retrieves information about the coaches/managers for both teams.
       tags:
@@ -1089,6 +1125,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/team/{id}:
     get:
+      operationId: getRugbyTeamDetails
       summary: Get rugby team details
       description: Retrieves comprehensive information about a rugby team.
       tags:
@@ -1120,6 +1157,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/team/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousTeamMatches
       summary: Get previous team matches
       description: Fetches a list of completed rugby matches for the specified team, sorted by date descending.
       tags:
@@ -1165,6 +1203,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/team/{id}/matches/next/{page}:
     get:
+      operationId: getUpcomingTeamMatches
       summary: Get upcoming team matches
       description: Fetches a list of scheduled rugby matches for the specified team.
       tags:
@@ -1210,6 +1249,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/team/{id}/matches/near:
     get:
+      operationId: getTeamNearMatches
       summary: Get team near matches
       description: Retrieves recent and upcoming matches for the team.
       tags:
@@ -1242,6 +1282,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/team/{id}/standings/seasons:
     get:
+      operationId: getTeamStandingsSeasons
       summary: Get team standings seasons
       description: Retrieves available seasons for team standings.
       tags:
@@ -1274,6 +1315,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/team/{id}/players:
     get:
+      operationId: getTeamPlayers
       summary: Get team players
       description: Retrieves all players currently in the team roster.
       tags:
@@ -1306,6 +1348,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/team/{id}/media:
     get:
+      operationId: getTeamMedia
       summary: Get team media
       description: Retrieves media content for the team.
       tags:
@@ -1338,6 +1381,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/team/{id}/image:
     get:
+      operationId: getTeamLogo
       summary: Get team logo
       description: Retrieves the team's logo image.
       tags:
@@ -1371,6 +1415,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/player/{id}:
     get:
+      operationId: getRugbyPlayerDetails
       summary: Get rugby player details
       description: Retrieves comprehensive information about a rugby player.
       tags:
@@ -1402,6 +1447,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/player/{id}/matches/near:
     get:
+      operationId: getPlayerNearMatches
       summary: Get player near matches
       description: Retrieves recent and upcoming matches for the player.
       tags:
@@ -1434,6 +1480,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/player/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousPlayerMatches
       summary: Get previous player matches
       description: Fetches a list of completed matches for the player, sorted by date descending.
       tags:
@@ -1479,6 +1526,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/player/{id}/image:
     get:
+      operationId: getPlayerImage
       summary: Get player image
       description: Retrieves the player's profile image.
       tags:
@@ -1512,6 +1560,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/manager/{id}:
     get:
+      operationId: getRugbyManagerCoachDetails
       summary: Get rugby manager/coach details
       description: Retrieves comprehensive information about a rugby manager/coach.
       tags:
@@ -1543,6 +1592,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/manager/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousManagerMatches
       summary: Get previous manager matches
       description: Fetches a list of completed matches for the specified manager/coach.
       tags:
@@ -1588,6 +1638,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/manager/{id}/image:
     get:
+      operationId: getManagerCoachImage
       summary: Get manager/coach image
       description: Retrieves the manager's profile image.
       tags:
@@ -1621,6 +1672,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}:
     get:
+      operationId: getTournamentDetails
       summary: Get tournament details
       description: Retrieves comprehensive information about a rugby tournament.
       tags:
@@ -1652,6 +1704,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/seasons:
     get:
+      operationId: getTournamentSeasons
       summary: Get tournament seasons
       description: Retrieves all available seasons for the tournament.
       tags:
@@ -1683,6 +1736,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/image:
     get:
+      operationId: getTournamentLogo
       summary: Get tournament logo
       description: Retrieves the tournament's logo image.
       tags:
@@ -1716,6 +1770,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/image/dark:
     get:
+      operationId: getTournamentDarkLogo
       summary: Get tournament dark logo
       description: Retrieves the tournament's dark theme logo image.
       tags:
@@ -1749,6 +1804,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/media:
     get:
+      operationId: getTournamentMedia
       summary: Get tournament media
       description: Retrieves media content for the tournament.
       tags:
@@ -1781,6 +1837,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
+      operationId: getTournamentTotalStandings
       summary: Get tournament total standings
       description: Retrieves complete standings table for all teams in the tournament.
       tags:
@@ -1820,6 +1877,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
+      operationId: getTournamentHomeStandings
       summary: Get tournament home standings
       description: Retrieves standings based on home games only.
       tags:
@@ -1859,6 +1917,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/season/{seasonId}/standings/away:
     get:
+      operationId: getTournamentAwayStandings
       summary: Get tournament away standings
       description: Retrieves standings based on away games only.
       tags:
@@ -1898,6 +1957,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
+      operationId: getTournamentLastMatches
       summary: Get tournament last matches
       description: Retrieves recently played matches in the tournament.
       tags:
@@ -1950,6 +2010,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
+      operationId: getTournamentUpcomingMatches
       summary: Get tournament upcoming matches
       description: Retrieves scheduled upcoming matches in the tournament.
       tags:
@@ -2002,6 +2063,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
+      operationId: getTeamEventsTotalStatistics
       summary: Get team events total statistics
       description: Retrieves aggregated team performance statistics for all games.
       tags:
@@ -2042,6 +2104,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
+      operationId: getTeamEventsHomeStatistics
       summary: Get team events home statistics
       description: Retrieves aggregated team performance statistics for home games.
       tags:
@@ -2082,6 +2145,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
+      operationId: getTeamEventsAwayStatistics
       summary: Get team events away statistics
       description: Retrieves aggregated team performance statistics for away games.
       tags:
@@ -2122,6 +2186,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
+      operationId: getTournamentMatchesByDate
       summary: Get tournament matches by date
       description: Retrieves all tournament matches scheduled for a specific date.
       tags:
@@ -2181,6 +2246,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/category/{id}/events/{day}/{month}/{year}:
     get:
+      operationId: getMatchesByCategoryAndDate
       summary: Get matches by category and date
       description: Retrieves all rugby matches for a specific category on a given date.
       tags:
@@ -2240,6 +2306,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/tournament/all/category/{id}:
     get:
+      operationId: getTournamentsByCategory
       summary: Get tournaments by category
       description: Retrieves all tournaments within a specific category.
       tags:
@@ -2272,6 +2339,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rugby/rankings/rugby-union:
     get:
+      operationId: getRugbyUnionRankings
       summary: Get Rugby Union rankings
       description: Retrieves current World Rugby rankings for rugby union teams.
       tags:

@@ -9,6 +9,7 @@ servers:
 paths:
   /api/tv/country/all/event/{id}:
     get:
+      operationId: getMatchTVCountries
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
@@ -40,6 +41,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{channId}/event/{id}:
     get:
+      operationId: getMatchTVChannelVotes
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
@@ -78,6 +80,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/img/flag/{flag}:
     get:
+      operationId: getCountryFlag
       summary: Get country flag
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
@@ -110,6 +113,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/country/{code}/flag:
     get:
+      operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
       description: Fetches the flag image from the SofaScore image API by country code.
       tags:
@@ -141,6 +145,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.png:
     get:
+      operationId: getPlaceholderTournamentPng
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -165,6 +170,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/tournament.svg:
     get:
+      operationId: getPlaceholderTournamentSvg
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
@@ -189,6 +195,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/team.svg:
     get:
+      operationId: getTeamPlaceholderImage
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
@@ -213,6 +220,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.png:
     get:
+      operationId: getPlaceholderPlayerPng
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -237,6 +245,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/player.svg:
     get:
+      operationId: getPlaceholderPlayerSvg
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
@@ -261,6 +270,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.png:
     get:
+      operationId: getPlaceholderManagerPng
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -284,6 +294,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/placeholder/manager.svg:
     get:
+      operationId: getPlaceholderManagerSvg
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
@@ -307,6 +318,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/calendar/season/{seasonId}/{year}/days-with-events:
     get:
+      operationId: getCalendarDaysWithEvents
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
@@ -345,6 +357,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/category/{categoryId}/image:
     get:
+      operationId: getCategoryImage
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
@@ -376,6 +389,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/countries/all:
     get:
+      operationId: getAllCountries
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
@@ -399,6 +413,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/rankings/team/{teamId}:
     get:
+      operationId: getTeamRankings
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
@@ -430,6 +445,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/all:
     get:
+      operationId: searchAllEntities
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
@@ -453,6 +469,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/suggestions/{entityType}:
     get:
+      operationId: getSearchSuggestions
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
@@ -484,6 +501,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/unique-tournaments:
     get:
+      operationId: searchUniqueTournaments
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
@@ -507,6 +525,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/search/{entityType}:
     get:
+      operationId: searchByEntityType
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
@@ -538,6 +557,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/channel/{id}/schedule:
     get:
+      operationId: getTVChannelSchedule
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
@@ -569,6 +589,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/tv/country/{countryCode}/channels:
     get:
+      operationId: getCountryTVChannels
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
@@ -600,6 +621,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/search/{term}:
     get:
+      operationId: searchHandballEntities
       summary: Search handball entities
       description: Searches for handball teams, players, and tournaments.
       tags:
@@ -644,6 +666,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/category/{id}/events/{day}/{month}/{year}:
     get:
+      operationId: getHandballMatchesByCategoryAndDate
       summary: Get handball matches by category and date
       description: Retrieves all handball matches for a specific category on a given date.
       tags:
@@ -703,6 +726,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/matches/live:
     get:
+      operationId: getLiveHandballMatches
       summary: Get live handball matches
       description: Retrieves all currently live handball matches.
       tags:
@@ -726,6 +750,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/tournament/categories:
     get:
+      operationId: getHandballTournamentCategories
       summary: Get handball tournament categories
       description: Retrieves all available handball tournament categories (countries/regions).
       tags:
@@ -750,6 +775,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/all/category/{id}:
     get:
+      operationId: getTournamentsByCategory
       summary: Get tournaments by category
       description: Retrieves all handball tournaments within a specific category.
       tags:
@@ -782,6 +808,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/matches/{day}/{month}/{year}:
     get:
+      operationId: getHandballMatchesByDate
       summary: Get handball matches by date
       description: Fetches all handball matches scheduled for a specific date.
       tags:
@@ -833,6 +860,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}:
     get:
+      operationId: getHandballMatchDetails
       summary: Get handball match details
       description: Retrieves detailed information about a specific handball match.
       tags:
@@ -864,6 +892,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/odds:
     get:
+      operationId: getMatchBettingOdds
       summary: Get match betting odds
       description: Retrieves betting odds from various bookmakers for the handball match.
       tags:
@@ -896,6 +925,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/incidents:
     get:
+      operationId: getMatchIncidents
       summary: Get match incidents
       description: Retrieves all incidents and events that occurred during the match.
       tags:
@@ -927,6 +957,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/best-players:
     get:
+      operationId: getMatchBestPlayers
       summary: Get match best players
       description: Retrieves the best performing players from the match.
       tags:
@@ -959,6 +990,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/votes:
     get:
+      operationId: getMatchVotes
       summary: Get match votes
       description: Retrieves fan voting results for the match.
       tags:
@@ -990,6 +1022,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/duel:
     get:
+      operationId: getHeadToHeadSummary
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head statistics between the teams.
       tags:
@@ -1022,6 +1055,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/form:
     get:
+      operationId: getMatchFormAnalysis
       summary: Get match form analysis
       description: Retrieves recent form and performance trends for teams in the match.
       tags:
@@ -1053,6 +1087,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/lineups:
     get:
+      operationId: getMatchLineups
       summary: Get match lineups
       description: Retrieves starting lineups and player positions for both teams.
       tags:
@@ -1085,6 +1120,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/statistics:
     get:
+      operationId: getMatchStatistics
       summary: Get match statistics
       description: Retrieves comprehensive statistical data for the handball match.
       tags:
@@ -1117,6 +1153,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/streaks:
     get:
+      operationId: getMatchStreaks
       summary: Get match streaks
       description: Retrieves winning/scoring streaks information for the match.
       tags:
@@ -1149,6 +1186,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{customId}/h2h:
     get:
+      operationId: getHeadToHeadHistory
       summary: Get head-to-head history
       description: Retrieves detailed head-to-head match history between the teams.
       tags:
@@ -1181,6 +1219,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousTeamMatches
       summary: Get previous team matches
       description: Fetches a list of completed matches for the team, sorted by date descending.
       tags:
@@ -1226,6 +1265,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/matches/next/{page}:
     get:
+      operationId: getUpcomingTeamMatches
       summary: Get upcoming team matches
       description: Fetches a list of scheduled matches for the team, sorted by date ascending.
       tags:
@@ -1271,6 +1311,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}:
     get:
+      operationId: getHandballTeamDetails
       summary: Get handball team details
       description: Retrieves comprehensive information about a handball team.
       tags:
@@ -1302,6 +1343,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/players:
     get:
+      operationId: getTeamPlayers
       summary: Get team players
       description: Retrieves the current roster of players for the team.
       tags:
@@ -1334,6 +1376,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/matches/near:
     get:
+      operationId: getTeamNearMatches
       summary: Get team near matches
       description: Retrieves recent and upcoming matches for the team.
       tags:
@@ -1366,6 +1409,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/unique-tournaments:
     get:
+      operationId: getTeamTournaments
       summary: Get team tournaments
       description: Retrieves all tournaments the team participates in.
       tags:
@@ -1398,6 +1442,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/standings/seasons:
     get:
+      operationId: getTeamStandingsSeasons
       summary: Get team standings seasons
       description: Retrieves available seasons for team standings data.
       tags:
@@ -1430,6 +1475,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/player-statistics/seasons:
     get:
+      operationId: getTeamPlayerStatisticsSeasons
       summary: Get team player statistics seasons
       description: Retrieves available seasons for team player statistics.
       tags:
@@ -1462,6 +1508,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/unique-tournament/{tournamentId}/season/{seasonId}/top-players/overall:
     get:
+      operationId: getTeamTopPlayersOverall
       summary: Get team top players overall
       description: Retrieves the best performing players for the team in a specific tournament season.
       tags:
@@ -1509,6 +1556,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/standings/total:
     get:
+      operationId: getTournamentTotalStandings
       summary: Get tournament total standings
       description: Retrieves complete standings table for all teams in the tournament.
       tags:
@@ -1548,6 +1596,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/standings/home:
     get:
+      operationId: getTournamentHomeStandings
       summary: Get tournament home standings
       description: Retrieves standings based on home games only.
       tags:
@@ -1587,6 +1636,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/standings/away:
     get:
+      operationId: getTournamentAwayStandings
       summary: Get tournament away standings
       description: Retrieves standings based on away games only.
       tags:
@@ -1626,6 +1676,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}:
     get:
+      operationId: getTournamentDetails
       summary: Get tournament details
       description: Retrieves comprehensive information about a handball tournament.
       tags:
@@ -1657,6 +1708,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/seasons:
     get:
+      operationId: getTournamentSeasons
       summary: Get tournament seasons
       description: Retrieves all available seasons for the tournament.
       tags:
@@ -1688,6 +1740,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/player-statistics/types:
     get:
+      operationId: getPlayerStatisticsTypes
       summary: Get player statistics types
       description: Retrieves available player statistics categories for the tournament.
       tags:
@@ -1727,6 +1780,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-players/overall:
     get:
+      operationId: getTopPlayersOverall
       summary: Get top players overall
       description: Retrieves the best performing players for the entire season.
       tags:
@@ -1767,6 +1821,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-players-per-game/all/overall:
     get:
+      operationId: getTopPlayersPerGame
       summary: Get top players per game
       description: Retrieves the best performing players based on per-game averages.
       tags:
@@ -1807,6 +1862,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/top-teams/overall:
     get:
+      operationId: getTopTeamsOverall
       summary: Get top teams overall
       description: Retrieves the best performing teams for the entire season.
       tags:
@@ -1847,6 +1903,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/total:
     get:
+      operationId: getTeamEventsTotalStatistics
       summary: Get team events total statistics
       description: Retrieves aggregated team performance statistics for all games.
       tags:
@@ -1887,6 +1944,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/home:
     get:
+      operationId: getTeamEventsHomeStatistics
       summary: Get team events home statistics
       description: Retrieves aggregated team performance statistics for home games.
       tags:
@@ -1927,6 +1985,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/team-events/away:
     get:
+      operationId: getTeamEventsAwayStatistics
       summary: Get team events away statistics
       description: Retrieves aggregated team performance statistics for away games.
       tags:
@@ -1967,6 +2026,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/last/{page}:
     get:
+      operationId: getTournamentLastMatches
       summary: Get tournament last matches
       description: Retrieves recently played matches in the tournament.
       tags:
@@ -2019,6 +2079,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/next/{page}:
     get:
+      operationId: getTournamentUpcomingMatches
       summary: Get tournament upcoming matches
       description: Retrieves scheduled upcoming matches in the tournament.
       tags:
@@ -2071,6 +2132,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}:
     get:
+      operationId: getHandballPlayerDetails
       summary: Get handball player details
       description: Retrieves comprehensive information about a handball player.
       tags:
@@ -2102,6 +2164,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}/matches/near:
     get:
+      operationId: getPlayerNearMatches
       summary: Get player near matches
       description: Retrieves recent and upcoming matches for the player.
       tags:
@@ -2134,6 +2197,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}/matches/previous/{page}:
     get:
+      operationId: getPreviousPlayerMatches
       summary: Get previous player matches
       description: Fetches a list of completed matches for the player, sorted by date descending.
       tags:
@@ -2179,6 +2243,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}/statistics/season:
     get:
+      operationId: getPlayerStatisticsSeasons
       summary: Get player statistics seasons
       description: Retrieves available seasons for player statistics.
       tags:
@@ -2211,6 +2276,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}/unique-tournament/{tournamentId}/season/{seasonId}/statistics/overall:
     get:
+      operationId: getPlayerOverallStatistics
       summary: Get player overall statistics
       description: Retrieves player's overall statistics for a specific tournament season.
       tags:
@@ -2257,6 +2323,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/cuptrees:
     get:
+      operationId: getTournamentCupTrees
       summary: Get tournament cup trees
       description: Retrieves playoff/knockout bracket structure for the tournament.
       tags:
@@ -2295,6 +2362,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/media:
     get:
+      operationId: getTournamentMedia
       summary: Get tournament media
       description: Retrieves media content for the tournament.
       tags:
@@ -2327,6 +2395,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/tournament/{tournamentId}/season/{seasonId}/matches:
     get:
+      operationId: getTournamentSeasonMatches
       summary: Get tournament season matches
       description: Retrieves all matches for a tournament season.
       tags:
@@ -2366,6 +2435,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/groups:
     get:
+      operationId: getTournamentGroups
       summary: Get tournament groups
       description: Retrieves group stage information for the tournament.
       tags:
@@ -2404,6 +2474,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/rounds:
     get:
+      operationId: getTournamentRounds
       summary: Get tournament rounds
       description: Retrieves all rounds/game weeks for the tournament season.
       tags:
@@ -2442,6 +2513,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}:
     get:
+      operationId: getTournamentMatchesByRound
       summary: Get tournament matches by round
       description: Retrieves matches for a specific round in the tournament.
       tags:
@@ -2488,6 +2560,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/season/{seasonId}/matches/round/{round}/slug/{slug}:
     get:
+      operationId: getTournamentMatchesByRoundWithSlug
       summary: Get tournament matches by round with slug
       description: Retrieves matches for a specific round with tournament slug.
       tags:
@@ -2541,6 +2614,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/match/{id}/highlights:
     get:
+      operationId: getMatchHighlights
       summary: Get match highlights
       description: Retrieves video highlights and key moments from the match.
       tags:
@@ -2573,6 +2647,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/image:
     get:
+      operationId: getTournamentLogo
       summary: Get tournament logo
       description: Retrieves the tournament's logo image.
       tags:
@@ -2606,6 +2681,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/unique-tournament/{tournamentId}/image/dark:
     get:
+      operationId: getTournamentDarkLogo
       summary: Get tournament dark logo
       description: Retrieves the tournament's dark theme logo image.
       tags:
@@ -2639,6 +2715,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/team/{id}/image:
     get:
+      operationId: getTeamLogo
       summary: Get team logo
       description: Retrieves the team's logo image.
       tags:
@@ -2672,6 +2749,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/player/{id}/image:
     get:
+      operationId: getPlayerImage
       summary: Get player image
       description: Retrieves the player's profile image.
       tags:
@@ -2705,6 +2783,7 @@ paths:
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
   /api/handball/tournament/{tournamentId}/schedules/{day}/{month}/{year}:
     get:
+      operationId: getTournamentMatchesByDate
       summary: Get tournament matches by date
       description: Retrieves all tournament matches scheduled for a specific date.
       tags:
