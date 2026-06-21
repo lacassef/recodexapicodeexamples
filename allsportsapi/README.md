@@ -220,10 +220,7 @@ allsportsapi/
 ## Need data we don't provide?
 
 If a data point isn't available here, try the
-[Allscores API](https://rapidapi.com/fluis.lacasse/api/allscores/). For richer,
-sport‑specific betting odds, see
-[Pinaculo](https://rapidapi.com/fluis.lacasse/api/pinaculo) and
-[Uniodds](https://rapidapi.com/fluis.lacasse/api/uniodds4).
+[Allscores API](https://rapidapi.com/fluis.lacasse/api/allscores/).
 
 ## Support
 
