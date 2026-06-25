@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Basketball API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,7 +315,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -361,7 +353,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -393,7 +384,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -417,7 +407,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -449,7 +438,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -473,7 +461,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -505,7 +492,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -529,7 +515,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -561,7 +546,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -593,7 +577,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -625,7 +608,6 @@ paths:
       summary: Search basketball entities
       description: Searches for basketball teams, players, and tournaments.
       tags:
-        - Basketball
         - Search
       parameters:
         - name: term
@@ -672,7 +654,6 @@ paths:
       description: Retrieves a list of all available basketball tournament categories, typically corresponding to 
         countries or regions.
       tags:
-        - Basketball
         - Tournaments
       responses:
         '200':
@@ -694,10 +675,10 @@ paths:
   /api/basketball/matches/{day}/{month}/{year}:
     get:
       operationId: getBasketballMatchesByDate
+      deprecated: true
       summary: Get basketball matches by date
-      description: Fetches all basketball matches scheduled for a specific date.
+      description: Deprecated — the flat per-date feed is being retired. Assemble the day per competition instead — list categories then call /api/{sport}/category/{id}/events/{day}/{month}/{year}, or per tournament /api/{sport}/tournament/{id}/scheduled-events/{date} (ISO date). See the AllSportsAPI FAQ on getting all matches for a specific date. Fetches all basketball matches scheduled for a specific date.
       tags:
-        - Basketball
         - Matches
       parameters:
         - name: day
@@ -750,7 +731,6 @@ paths:
       summary: Get live basketball matches
       description: Retrieves all currently live basketball matches.
       tags:
-        - Basketball
         - Matches
       responses:
         '200':
@@ -775,9 +755,7 @@ paths:
       summary: Get basketball matches with odds by date
       description: Retrieves basketball matches along with their betting odds for a specific date from bookmaker `1`.
       tags:
-        - Basketball
         - Matches
-        - Odds
       parameters:
         - name: day
           in: path
@@ -828,9 +806,7 @@ paths:
       summary: Get featured betting events
       description: Returns highlighted basketball events with odds information for a provider.
       tags:
-        - Basketball
         - Matches
-        - Odds
       parameters:
         - name: providerId
           in: path
@@ -861,9 +837,7 @@ paths:
       summary: Get featured betting events by tiers
       description: Returns highlighted basketball events by tiers with odds information for a provider.
       tags:
-        - Basketball
         - Matches
-        - Odds
       parameters:
         - name: providerId
           in: path
@@ -894,7 +868,6 @@ paths:
       summary: Get basketball match details
       description: Retrieves detailed information for a specific basketball match by its ID.
       tags:
-        - Basketball
         - Matches
       parameters:
         - name: id
@@ -927,7 +900,6 @@ paths:
       summary: Get match form analysis
       description: Retrieves pre-game form and recent performance data for the teams in a specific match.
       tags:
-        - Basketball
         - Matches
       parameters:
         - name: id
@@ -960,9 +932,7 @@ paths:
       summary: Get match betting odds
       description: Retrieves available betting odds from various bookmakers for a specific match.
       tags:
-        - Basketball
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -994,9 +964,7 @@ paths:
       summary: Get match featured odds
       description: Retrieves featured odds for a specific match and provider.
       tags:
-        - Basketball
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1035,9 +1003,7 @@ paths:
       summary: Get match winning odds
       description: Retrieves winning odds for a specific match and provider.
       tags:
-        - Basketball
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1074,11 +1040,9 @@ paths:
     get:
       operationId: getMatchBestPlayers
       summary: Get match best players
-      description: Retrieves a list of the best performing players from a specific match, based on SofaScore ratings.
+      description: Retrieves a list of the best performing players from a specific match, based on player ratings.
       tags:
-        - Basketball
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -1110,9 +1074,7 @@ paths:
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head (H2H) statistics between the two teams in a match.
       tags:
-        - Basketball
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1144,9 +1106,7 @@ paths:
       summary: Get match highlights
       description: Retrieves video highlights and key moments from a specific match, if available.
       tags:
-        - Basketball
         - Matches
-        - Media
       parameters:
         - name: id
           in: path
@@ -1178,9 +1138,7 @@ paths:
       summary: Get head-to-head history
       description: Retrieves the detailed match history for head-to-head encounters between two teams.
       tags:
-        - Basketball
         - Matches
-        - Statistics
       parameters:
         - name: customId
           in: path
@@ -1212,9 +1170,7 @@ paths:
       summary: Get match lineups
       description: Retrieves the starting lineups and substitutes for both teams in a specific match.
       tags:
-        - Basketball
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -1246,9 +1202,7 @@ paths:
       summary: Get match statistics
       description: Retrieves comprehensive team and player statistics for a specific match.
       tags:
-        - Basketball
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1280,9 +1234,7 @@ paths:
       summary: Get match momentum graph
       description: Retrieves data points for the match momentum graph, showing scoring progression and team pressure.
       tags:
-        - Basketball
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1315,7 +1267,6 @@ paths:
       description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., 
         points, fouls).
       tags:
-        - Basketball
         - Matches
       parameters:
         - name: id
@@ -1348,9 +1299,7 @@ paths:
       summary: Get match managers/coaches
       description: Retrieves information about the coaches for both teams in a specific match.
       tags:
-        - Basketball
         - Matches
-        - Managers
       parameters:
         - name: id
           in: path
@@ -1382,7 +1331,6 @@ paths:
       summary: Get match series information
       description: If the match is part of a playoff series, this retrieves the current series score and status.
       tags:
-        - Basketball
         - Matches
       parameters:
         - name: id
@@ -1415,10 +1363,7 @@ paths:
       summary: Get player match statistics
       description: Retrieves detailed statistics for a single player in a specific match.
       tags:
-        - Basketball
         - Matches
-        - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1457,10 +1402,7 @@ paths:
       summary: Get team shot map
       description: Retrieves the shot map for a specific team, showing shot locations and outcomes during the match.
       tags:
-        - Basketball
         - Matches
-        - Teams
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1499,10 +1441,7 @@ paths:
       summary: Get player shot map
       description: Retrieves the shot map for a single player, showing shot locations and outcomes during the match.
       tags:
-        - Basketball
         - Matches
-        - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1541,7 +1480,6 @@ paths:
       summary: Get event metadata
       description: Retrieves SEO and metadata for a specific event.
       tags:
-        - Basketball
         - Matches
       parameters:
         - name: id
@@ -1573,7 +1511,6 @@ paths:
       summary: Get all odds for event
       description: Retrieves all available odds from a specific provider for an event.
       tags:
-        - Basketball
         - Matches
       parameters:
         - name: id
@@ -1612,7 +1549,6 @@ paths:
       summary: Get event graph sequence
       description: Retrieves the momentum/pressure graph sequence data for a match.
       tags:
-        - Basketball
         - Matches
       parameters:
         - name: id
@@ -1644,7 +1580,6 @@ paths:
       summary: Get event official tweets
       description: Retrieves official social media posts related to an event.
       tags:
-        - Basketball
         - Matches
       parameters:
         - name: id
@@ -1677,9 +1612,7 @@ paths:
       description: Fetches a paginated list of completed basketball games for a specific team, sorted by date 
         descending.
       tags:
-        - Basketball
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1724,9 +1657,7 @@ paths:
       summary: Get upcoming team matches
       description: Fetches a paginated list of scheduled basketball games for a specific team, sorted by date ascending.
       tags:
-        - Basketball
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1771,9 +1702,7 @@ paths:
       summary: Get team player statistics seasons
       description: Retrieves a list of seasons for which a team's player statistics are available.
       tags:
-        - Basketball
         - Teams
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1805,9 +1734,7 @@ paths:
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which a team's standings are available.
       tags:
-        - Basketball
         - Teams
-        - Standings
       parameters:
         - name: id
           in: path
@@ -1839,10 +1766,7 @@ paths:
       summary: Get team top players for regular season
       description: Retrieves the best performing players for a team in the regular season of a specific tournament.
       tags:
-        - Basketball
         - Teams
-        - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1888,10 +1812,7 @@ paths:
       summary: Get team top players for playoffs
       description: Retrieves the best performing players for a team in the playoffs of a specific tournament.
       tags:
-        - Basketball
         - Teams
-        - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1937,9 +1858,7 @@ paths:
       summary: Get team tournaments
       description: Retrieves a list of all unique tournaments a team has participated in.
       tags:
-        - Basketball
         - Teams
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -1971,9 +1890,7 @@ paths:
       summary: Get team transfers
       description: Retrieves the transfer history (players in and out) for a specific team.
       tags:
-        - Basketball
         - Teams
-        - Transfers
       parameters:
         - name: id
           in: path
@@ -2005,9 +1922,7 @@ paths:
       summary: Get team players
       description: Retrieves the current roster of players for a specific team.
       tags:
-        - Basketball
         - Teams
-        - Players
       parameters:
         - name: id
           in: path
@@ -2039,9 +1954,7 @@ paths:
       summary: Get team near matches
       description: Retrieves a list of recent and upcoming matches for a specific team.
       tags:
-        - Basketball
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -2073,9 +1986,7 @@ paths:
       summary: Get team media
       description: Retrieves media content (e.g., videos, images) associated with a specific team.
       tags:
-        - Basketball
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -2107,7 +2018,6 @@ paths:
       summary: Get team details
       description: Retrieves comprehensive details for a specific basketball team.
       tags:
-        - Basketball
         - Teams
       parameters:
         - name: id
@@ -2140,9 +2050,7 @@ paths:
       summary: Get team logo
       description: Retrieves the logo image for a specific team.
       tags:
-        - Basketball
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -2174,9 +2082,7 @@ paths:
       summary: Get team small logo
       description: Retrieves the small logo image for a specific team.
       tags:
-        - Basketball
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -2208,9 +2114,7 @@ paths:
       summary: Get team regular season statistics
       description: Retrieves comprehensive statistics for a team in the regular season of a specific tournament.
       tags:
-        - Basketball
         - Teams
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2256,9 +2160,7 @@ paths:
       summary: Get team playoffs statistics
       description: Retrieves comprehensive statistics for a team in the playoffs of a specific tournament.
       tags:
-        - Basketball
         - Teams
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2304,10 +2206,7 @@ paths:
       summary: Get team regular season rankings
       description: Retrieves a team's ranking positions in various statistical categories for the regular season.
       tags:
-        - Basketball
         - Teams
-        - Statistics
-        - Rankings
       parameters:
         - name: id
           in: path
@@ -2353,10 +2252,7 @@ paths:
       summary: Get team playoffs rankings
       description: Retrieves a team's ranking positions in various statistical categories for the playoffs.
       tags:
-        - Basketball
         - Teams
-        - Statistics
-        - Rankings
       parameters:
         - name: id
           in: path
@@ -2402,8 +2298,7 @@ paths:
       summary: Get team featured event
       description: Retrieves the current or next featured event for a team.
       tags:
-        - Basketball
-        - Matches
+        - Teams
       parameters:
         - name: id
           in: path
@@ -2434,7 +2329,6 @@ paths:
       summary: Get all team tournaments
       description: Retrieves all unique tournaments a team participates in.
       tags:
-        - Basketball
         - Teams
       parameters:
         - name: id
@@ -2466,7 +2360,6 @@ paths:
       summary: Get player details
       description: Retrieves comprehensive information about a specific basketball player.
       tags:
-        - Basketball
         - Players
       parameters:
         - name: id
@@ -2499,9 +2392,7 @@ paths:
       summary: Get player media
       description: Retrieves media content (e.g., videos, images) associated with a specific player.
       tags:
-        - Basketball
         - Players
-        - Media
       parameters:
         - name: id
           in: path
@@ -2533,9 +2424,7 @@ paths:
       summary: Get player near matches
       description: Retrieves a list of recent and upcoming matches for a specific player.
       tags:
-        - Basketball
         - Players
-        - Matches
       parameters:
         - name: id
           in: path
@@ -2567,9 +2456,7 @@ paths:
       summary: Get player transfer history
       description: Retrieves the complete transfer history for a specific player.
       tags:
-        - Basketball
         - Players
-        - Transfers
       parameters:
         - name: id
           in: path
@@ -2601,9 +2488,7 @@ paths:
       summary: Get player statistics seasons
       description: Retrieves a list of seasons for which a player's statistics are available.
       tags:
-        - Basketball
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2635,9 +2520,7 @@ paths:
       summary: Get player regular season statistics
       description: Retrieves a player's statistics for the regular season of a specific tournament.
       tags:
-        - Basketball
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2683,9 +2566,7 @@ paths:
       summary: Get player playoffs statistics
       description: Retrieves a player's statistics for the playoffs of a specific tournament.
       tags:
-        - Basketball
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2731,9 +2612,7 @@ paths:
       summary: Get player overall statistics
       description: Retrieves a player's combined statistics for an entire season (regular season and playoffs).
       tags:
-        - Basketball
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2779,9 +2658,7 @@ paths:
       summary: Get player image
       description: Retrieves the profile image for a specific player.
       tags:
-        - Basketball
         - Players
-        - Media
       parameters:
         - name: id
           in: path
@@ -2813,9 +2690,7 @@ paths:
       summary: Get previous player matches
       description: Fetches a paginated list of completed matches for a specific player, sorted by date descending.
       tags:
-        - Basketball
         - Players
-        - Matches
       parameters:
         - name: id
           in: path
@@ -2860,9 +2735,7 @@ paths:
       summary: Get player shot actions for regular season
       description: Retrieves detailed shot action data (e.g., shot types, locations) for a player in the regular season.
       tags:
-        - Basketball
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2908,9 +2781,7 @@ paths:
       summary: Get player shot actions for playoffs
       description: Retrieves detailed shot action data (e.g., shot types, locations) for a player in the playoffs.
       tags:
-        - Basketball
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2956,7 +2827,6 @@ paths:
       summary: Get player media videos
       description: Retrieves video highlights and media for a player.
       tags:
-        - Basketball
         - Players
       parameters:
         - name: id
@@ -2988,7 +2858,6 @@ paths:
       summary: Get player regular season ratings
       description: Retrieves match-by-match rating data for a player in a tournament season.
       tags:
-        - Basketball
         - Players
       parameters:
         - name: id
@@ -3034,8 +2903,7 @@ paths:
       summary: Get player tournament last matches
       description: Retrieves a paginated list of the player's recent matches in a tournament.
       tags:
-        - Basketball
-        - Matches
+        - Players
       parameters:
         - name: id
           in: path
@@ -3080,7 +2948,6 @@ paths:
       summary: Get manager/coach details
       description: Retrieves comprehensive information about a specific basketball coach/manager.
       tags:
-        - Basketball
         - Managers
       parameters:
         - name: id
@@ -3113,9 +2980,7 @@ paths:
       summary: Get manager/coach image
       description: Retrieves the profile image for a specific manager.
       tags:
-        - Basketball
         - Managers
-        - Media
       parameters:
         - name: id
           in: path
@@ -3147,9 +3012,7 @@ paths:
       summary: Get previous manager matches
       description: Fetches a paginated list of completed matches for a specific manager, sorted by date descending.
       tags:
-        - Basketball
         - Managers
-        - Matches
       parameters:
         - name: id
           in: path
@@ -3194,9 +3057,7 @@ paths:
       summary: Get tournament total standings
       description: Retrieves the complete standings table for all teams in a specific tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -3235,9 +3096,7 @@ paths:
       summary: Get tournament home standings
       description: Retrieves the standings based on home games only for a specific tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -3276,9 +3135,7 @@ paths:
       summary: Get tournament away standings
       description: Retrieves the standings based on away games only for a specific tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -3317,9 +3174,7 @@ paths:
       summary: Get tournament venues
       description: Retrieves venues for a specific tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Venues
       parameters:
         - name: tournamentId
           in: path
@@ -3357,7 +3212,6 @@ paths:
       summary: Get tournament details
       description: Retrieves comprehensive details for a specific basketball tournament.
       tags:
-        - Basketball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -3390,7 +3244,6 @@ paths:
       summary: Get tournament seasons
       description: Retrieves a list of all available seasons for a specific tournament.
       tags:
-        - Basketball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -3423,9 +3276,7 @@ paths:
       summary: Get tournament media
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       tags:
-        - Basketball
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -3457,9 +3308,7 @@ paths:
       summary: Get tournament logo
       description: Retrieves the logo image for a specific tournament.
       tags:
-        - Basketball
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -3491,9 +3340,7 @@ paths:
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       tags:
-        - Basketball
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -3525,10 +3372,7 @@ paths:
       summary: Get top players for regular season
       description: Retrieves the best performing players in the regular season of a specific tournament.
       tags:
-        - Basketball
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -3567,7 +3411,6 @@ paths:
       summary: Get tournament cup trees
       description: Retrieves the knockout bracket (cup trees) for a specific tournament season.
       tags:
-        - Basketball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -3607,10 +3450,7 @@ paths:
       summary: Get top players for playoffs
       description: Retrieves the best performing players in the playoffs of a specific tournament.
       tags:
-        - Basketball
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -3649,9 +3489,7 @@ paths:
       summary: Get tournament last matches
       description: Retrieves a paginated list of recently played matches in a specific tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -3703,9 +3541,7 @@ paths:
       summary: Get tournament upcoming matches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -3757,9 +3593,7 @@ paths:
       summary: Get matches by category and date
       description: Retrieves all basketball matches for a specific category on a given date.
       tags:
-        - Basketball
         - Categories
-        - Matches
       parameters:
         - name: id
           in: path
@@ -3818,9 +3652,7 @@ paths:
       summary: Get group matches
       description: Retrieves all matches for a specific group within a tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Groups
       parameters:
         - name: tournamentId
           in: path
@@ -3859,10 +3691,7 @@ paths:
       summary: Get group tournament total standings
       description: Retrieves the total standings table for a tournament season in group context.
       tags:
-        - Basketball
         - Tournaments
-        - Standings
-        - Groups
       parameters:
         - name: tournamentId
           in: path
@@ -3901,11 +3730,7 @@ paths:
       summary: Get group tournament team events total
       description: Retrieves aggregated team statistics for all games in a tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Teams
-        - Statistics
-        - Groups
       parameters:
         - name: tournamentId
           in: path
@@ -3944,10 +3769,7 @@ paths:
       summary: Get top teams for regular season
       description: Retrieves the best performing teams in the regular season of a specific tournament.
       tags:
-        - Basketball
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -3986,10 +3808,7 @@ paths:
       summary: Get top teams for playoffs
       description: Retrieves the best performing teams in the playoffs of a specific tournament.
       tags:
-        - Basketball
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4028,10 +3847,7 @@ paths:
       summary: Get top players per game statistics
       description: Retrieves player rankings based on per-game averages for an entire tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4070,10 +3886,7 @@ paths:
       summary: Get top players per game for regular season
       description: Retrieves player rankings based on per-game averages for the regular season.
       tags:
-        - Basketball
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4112,10 +3925,7 @@ paths:
       summary: Get top players per game for playoffs
       description: Retrieves player rankings based on per-game averages for the playoffs.
       tags:
-        - Basketball
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4154,9 +3964,7 @@ paths:
       summary: Get player statistics types
       description: Retrieves the available types of player statistics for a given tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4195,9 +4003,7 @@ paths:
       summary: Get shot actions areas for regular season
       description: Retrieves aggregated shot distribution data by court areas for the regular season of a tournament.
       tags:
-        - Basketball
         - Tournaments
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4236,9 +4042,7 @@ paths:
       summary: Get shot actions areas for playoffs
       description: Retrieves aggregated shot distribution data by court areas for the playoffs of a tournament.
       tags:
-        - Basketball
         - Tournaments
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4277,10 +4081,7 @@ paths:
       summary: Get team events total statistics
       description: Retrieves aggregated team performance statistics for all games in a tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4319,10 +4120,7 @@ paths:
       summary: Get team events home statistics
       description: Retrieves aggregated team performance statistics for home games in a tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4361,10 +4159,7 @@ paths:
       summary: Get team events away statistics
       description: Retrieves aggregated team performance statistics for away games in a tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4403,10 +4198,7 @@ paths:
       summary: Get top teams overall
       description: Retrieves the best performing teams for an entire tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4445,7 +4237,6 @@ paths:
       summary: Get tournament rounds
       description: Retrieves a list of all rounds (or weeks) for a specific tournament season.
       tags:
-        - Basketball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4485,7 +4276,6 @@ paths:
       summary: Get tournament groups
       description: Retrieves the group stage information for a specific tournament season.
       tags:
-        - Basketball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4525,10 +4315,7 @@ paths:
       summary: Get top players overall
       description: Retrieves the best performing players for an entire tournament season.
       tags:
-        - Basketball
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4567,9 +4354,7 @@ paths:
       summary: Get tournament matches by date
       description: Retrieves all matches for a specific tournament scheduled on a given date.
       tags:
-        - Basketball
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -4628,8 +4413,6 @@ paths:
       summary: Get tournaments by category
       description: Retrieves all tournaments within a specific basketball category.
       tags:
-        - Basketball
-        - Categories
         - Tournaments
       parameters:
         - name: id
@@ -4662,8 +4445,7 @@ paths:
       summary: Get tournament featured events
       description: Retrieves featured/highlighted events for a tournament.
       tags:
-        - Basketball
-        - Matches
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -4694,7 +4476,6 @@ paths:
       summary: Get tournament winners
       description: Retrieves historical winners of a tournament.
       tags:
-        - Basketball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4726,8 +4507,7 @@ paths:
       summary: Get tournament player news
       description: Retrieves player-related news for a tournament.
       tags:
-        - Basketball
-        - Players
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -4758,8 +4538,7 @@ paths:
       summary: Get tournament transfer history
       description: Retrieves paginated player transfer history for a tournament.
       tags:
-        - Basketball
-        - Players
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -4797,8 +4576,7 @@ paths:
       summary: Get tournament season teams
       description: Retrieves all teams participating in a tournament season.
       tags:
-        - Basketball
-        - Teams
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -4836,8 +4614,7 @@ paths:
       summary: Get team statistics types
       description: Retrieves available team statistic categories for a tournament season.
       tags:
-        - Basketball
-        - Teams
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -4875,7 +4652,6 @@ paths:
       summary: Get tournament top ratings
       description: Retrieves overall top-rated players for a tournament season.
       tags:
-        - Basketball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4914,9 +4690,7 @@ paths:
       summary: Get shot action areas by event overall
       description: Retrieves shot action area statistics aggregated by event for the entire season.
       tags:
-        - Basketball
         - Tournaments
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -4954,8 +4728,7 @@ paths:
       summary: Get tournament top player performance
       description: Retrieves top individual player performances for a tournament.
       tags:
-        - Basketball
-        - Players
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -4986,8 +4759,7 @@ paths:
       summary: Get live tournaments for category
       description: Retrieves tournaments with currently live events in a category.
       tags:
-        - Basketball
-        - Tournaments
+        - Categories
       parameters:
         - name: categoryId
           in: path

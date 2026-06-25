@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Cricket API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,7 +315,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -361,7 +353,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -393,7 +384,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -417,7 +407,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -449,7 +438,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -473,7 +461,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -505,7 +492,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -529,7 +515,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -561,7 +546,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -593,7 +577,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -625,7 +608,6 @@ paths:
       summary: Search cricket entities
       description: Searches for cricket teams, players, and tournaments.
       tags:
-        - Cricket
         - Search
       parameters:
         - name: term
@@ -672,7 +654,6 @@ paths:
       description: Retrieves a list of all available cricket tournament categories, typically corresponding to countries
         or regions.
       tags:
-        - Cricket
         - Tournaments
       responses:
         '200':
@@ -694,10 +675,10 @@ paths:
   /api/cricket/matches/{day}/{month}/{year}:
     get:
       operationId: getCricketMatchesByDate
+      deprecated: true
       summary: Get cricket matches by date
-      description: Fetches all cricket matches scheduled for a specific date.
+      description: Deprecated — the flat per-date feed is being retired. Assemble the day per competition instead — list categories then call /api/{sport}/category/{id}/events/{day}/{month}/{year}, or per tournament /api/{sport}/tournament/{id}/scheduled-events/{date} (ISO date). See the AllSportsAPI FAQ on getting all matches for a specific date. Fetches all cricket matches scheduled for a specific date.
       tags:
-        - Cricket
         - Matches
       parameters:
         - name: day
@@ -750,7 +731,6 @@ paths:
       summary: Get live cricket matches
       description: Retrieves all currently live cricket matches.
       tags:
-        - Cricket
         - Matches
       responses:
         '200':
@@ -775,7 +755,6 @@ paths:
       summary: Get cricket match details
       description: Retrieves detailed information for a specific cricket match by its ID.
       tags:
-        - Cricket
         - Matches
       parameters:
         - name: id
@@ -808,9 +787,7 @@ paths:
       summary: Get match head-to-head history
       description: Retrieves the detailed match history for head-to-head encounters between two teams.
       tags:
-        - Cricket
         - Matches
-        - Statistics
       parameters:
         - name: customId
           in: path
@@ -842,9 +819,7 @@ paths:
       summary: Get match lineups
       description: Retrieves the starting lineups and substitutes for both teams in a specific match.
       tags:
-        - Cricket
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -876,9 +851,7 @@ paths:
       summary: Get match innings
       description: Retrieves the detailed scorecard for each innings of a cricket match.
       tags:
-        - Cricket
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -911,7 +884,6 @@ paths:
       description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., 
         wickets, boundaries).
       tags:
-        - Cricket
         - Matches
       parameters:
         - name: id
@@ -944,9 +916,7 @@ paths:
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head (H2H) statistics between the two teams in a match.
       tags:
-        - Cricket
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -978,7 +948,6 @@ paths:
       summary: Get match form analysis
       description: Retrieves pre-game form and recent performance data for the teams in a specific match.
       tags:
-        - Cricket
         - Matches
       parameters:
         - name: id
@@ -1011,9 +980,7 @@ paths:
       summary: Get match betting odds
       description: Retrieves available betting odds from various bookmakers for a specific match.
       tags:
-        - Cricket
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1045,7 +1012,6 @@ paths:
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome.
       tags:
-        - Cricket
         - Matches
       parameters:
         - name: id
@@ -1078,9 +1044,7 @@ paths:
       summary: Get cricket match graph
       description: Retrieves data points for the match graph, showing runs per over for both teams.
       tags:
-        - Cricket
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1112,7 +1076,6 @@ paths:
       summary: Get event metadata
       description: Retrieves SEO and metadata for a specific event.
       tags:
-        - Cricket
         - Matches
       parameters:
         - name: id
@@ -1144,7 +1107,6 @@ paths:
       summary: Get all odds for event
       description: Retrieves all available odds from a specific provider for an event.
       tags:
-        - Cricket
         - Matches
       parameters:
         - name: id
@@ -1183,7 +1145,6 @@ paths:
       summary: Get event graph sequence
       description: Retrieves the momentum/pressure graph sequence data for a match.
       tags:
-        - Cricket
         - Matches
       parameters:
         - name: id
@@ -1215,7 +1176,6 @@ paths:
       summary: Get event official tweets
       description: Retrieves official social media posts related to an event.
       tags:
-        - Cricket
         - Matches
       parameters:
         - name: id
@@ -1247,9 +1207,7 @@ paths:
       summary: Get previous team matches
       description: Fetches a paginated list of completed cricket matches for a specific team, sorted by date descending.
       tags:
-        - Cricket
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1294,9 +1252,7 @@ paths:
       summary: Get upcoming team matches
       description: Fetches a paginated list of scheduled cricket matches for a specific team, sorted by date ascending.
       tags:
-        - Cricket
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1341,9 +1297,7 @@ paths:
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which a team's standings are available.
       tags:
-        - Cricket
         - Teams
-        - Standings
       parameters:
         - name: id
           in: path
@@ -1375,9 +1329,7 @@ paths:
       summary: Get team tournaments
       description: Retrieves a list of all unique tournaments a team has participated in.
       tags:
-        - Cricket
         - Teams
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -1409,9 +1361,7 @@ paths:
       summary: Get team near matches
       description: Retrieves a list of recent and upcoming matches for a specific team.
       tags:
-        - Cricket
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1443,9 +1393,7 @@ paths:
       summary: Get team image
       description: Retrieves the logo image for a specific team.
       tags:
-        - Cricket
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -1477,7 +1425,6 @@ paths:
       summary: Get cricket team details
       description: Retrieves comprehensive details for a specific cricket team.
       tags:
-        - Cricket
         - Teams
       parameters:
         - name: id
@@ -1510,9 +1457,7 @@ paths:
       summary: Get team player statistics seasons
       description: Retrieves a list of seasons for which a team's player statistics are available.
       tags:
-        - Cricket
         - Teams
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1544,9 +1489,7 @@ paths:
       summary: Get team players
       description: Retrieves the current roster of players for a specific team.
       tags:
-        - Cricket
         - Teams
-        - Players
       parameters:
         - name: id
           in: path
@@ -1578,9 +1521,7 @@ paths:
       summary: Get team media
       description: Retrieves media content (e.g., videos, images) associated with a specific team.
       tags:
-        - Cricket
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -1612,8 +1553,7 @@ paths:
       summary: Get team featured event
       description: Retrieves the current or next featured event for a team.
       tags:
-        - Cricket
-        - Matches
+        - Teams
       parameters:
         - name: id
           in: path
@@ -1644,7 +1584,6 @@ paths:
       summary: Get all team tournaments
       description: Retrieves all unique tournaments a team participates in.
       tags:
-        - Cricket
         - Teams
       parameters:
         - name: id
@@ -1676,9 +1615,7 @@ paths:
       summary: Get player statistics seasons
       description: Retrieves a list of seasons for which a player's statistics are available.
       tags:
-        - Cricket
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1710,9 +1647,7 @@ paths:
       summary: Get player overall statistics
       description: Retrieves a player's combined statistics for an entire season (regular season and playoffs).
       tags:
-        - Cricket
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1758,9 +1693,7 @@ paths:
       summary: Get player image
       description: Retrieves the profile image for a specific player.
       tags:
-        - Cricket
         - Players
-        - Media
       parameters:
         - name: id
           in: path
@@ -1792,7 +1725,6 @@ paths:
       summary: Get cricket player details
       description: Retrieves comprehensive information about a specific cricket player.
       tags:
-        - Cricket
         - Players
       parameters:
         - name: id
@@ -1825,9 +1757,7 @@ paths:
       summary: Get player near matches
       description: Retrieves a list of recent and upcoming matches for a specific player.
       tags:
-        - Cricket
         - Players
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1859,9 +1789,7 @@ paths:
       summary: Get previous player matches
       description: Fetches a paginated list of completed matches for a specific player, sorted by date descending.
       tags:
-        - Cricket
         - Players
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1906,9 +1834,7 @@ paths:
       summary: Get tournament total standings
       description: Retrieves the complete standings table for all teams in a specific tournament season.
       tags:
-        - Cricket
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -1947,10 +1873,7 @@ paths:
       summary: Get tournament top players
       description: Retrieves the best performing players in a specific tournament season.
       tags:
-        - Cricket
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -1989,9 +1912,7 @@ paths:
       summary: Get tournament image
       description: Retrieves the logo image for a specific tournament.
       tags:
-        - Cricket
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2023,9 +1944,7 @@ paths:
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       tags:
-        - Cricket
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2057,9 +1976,7 @@ paths:
       summary: Get tournament last matches
       description: Retrieves a paginated list of recently played matches in a specific tournament season.
       tags:
-        - Cricket
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2111,9 +2028,7 @@ paths:
       summary: Get tournament upcoming matches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
       tags:
-        - Cricket
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2165,7 +2080,6 @@ paths:
       summary: Get cricket tournament details
       description: Retrieves comprehensive details for a specific cricket tournament.
       tags:
-        - Cricket
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2198,7 +2112,6 @@ paths:
       summary: Get cricket tournament seasons
       description: Retrieves a list of all available seasons for a specific tournament.
       tags:
-        - Cricket
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2231,9 +2144,7 @@ paths:
       summary: Get cricket tournament media
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       tags:
-        - Cricket
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2265,10 +2176,7 @@ paths:
       summary: Get total team events for cricket tournament season
       description: Retrieves aggregated team performance statistics for all games in a tournament season.
       tags:
-        - Cricket
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2307,9 +2215,7 @@ paths:
       summary: Get tournament matches by date
       description: Retrieves all matches for a specific tournament scheduled on a given date.
       tags:
-        - Cricket
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2368,9 +2274,7 @@ paths:
       summary: Get cricket matches by category and date
       description: Retrieves all cricket matches for a specific category on a given date.
       tags:
-        - Cricket
         - Categories
-        - Matches
       parameters:
         - name: id
           in: path
@@ -2429,8 +2333,6 @@ paths:
       summary: Get tournaments by category
       description: Retrieves all unique tournaments within a specific cricket category.
       tags:
-        - Cricket
-        - Categories
         - Tournaments
       parameters:
         - name: id
@@ -2463,8 +2365,7 @@ paths:
       summary: Get tournament featured events
       description: Retrieves featured/highlighted events for a tournament.
       tags:
-        - Cricket
-        - Matches
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -2495,7 +2396,6 @@ paths:
       summary: Get tournament winners
       description: Retrieves historical winners of a tournament.
       tags:
-        - Cricket
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2527,8 +2427,7 @@ paths:
       summary: Get tournament events on date
       description: Retrieves all events for a tournament on a specific date.
       tags:
-        - Cricket
-        - Matches
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -2566,7 +2465,6 @@ paths:
       summary: Get tournament season venues
       description: Retrieves all venues used in a tournament season.
       tags:
-        - Cricket
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2605,8 +2503,7 @@ paths:
       summary: Get player statistics info
       description: Retrieves available player statistic categories for a tournament season.
       tags:
-        - Cricket
-        - Players
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path

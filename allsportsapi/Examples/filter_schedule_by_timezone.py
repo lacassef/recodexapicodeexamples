@@ -7,7 +7,18 @@ spans ~12 h before and after the UTC date, so every time zone is covered. To sho
 user's *local* day, you must filter by `event.startTimestamp` against that day's
 local bounds — and fetch the neighbouring UTC dates that overlap it.
 
-Endpoint used (football):  /api/matches/{day}/{month}/{year}
+The flat per-date feed (/api/matches/{day}/{month}/{year}) has been retired, so we
+assemble the day *per competition*. Two options (see ../FAQ.md "How do I get all
+matches on a specific date?"):
+
+  1. By category:    /api/{sport}/category/{id}/events/{day}/{month}/{year}
+                     (football: /api/category/{id}/events/{day}/{month}/{year})
+  2. By tournament:  /api/{sport}/tournament/{id}/scheduled-events/{YYYY-MM-DD}
+                     (football, cricket, esport, tennis)
+
+This example uses option 1 over a configurable set of categories (default: football
+category 1 = England). Enumerate every category via /api/{sport}/tournament/categories
+(see list_all_leagues.py) and extend CATEGORY_IDS to widen coverage.
 
 Run:
     export RAPIDAPI_KEY="your_key_here"
@@ -26,6 +37,11 @@ HOST = os.environ.get("RAPIDAPI_HOST", "footapi7.p.rapidapi.com")
 BASE_URL = f"https://{HOST}"
 API_KEY = os.environ.get("RAPIDAPI_KEY")
 
+# "" for football (footapi7); set to e.g. "/tennis" for another sport (and switch HOST).
+SPORT_PREFIX = os.environ.get("SPORT_PREFIX", "")
+# Categories (countries/tours) to assemble the day's schedule from. Comma-separated.
+CATEGORY_IDS = [int(c) for c in os.environ.get("CATEGORY_IDS", "1").split(",") if c.strip()]
+
 
 def get(path, *, timeout=15):
     if not API_KEY:
@@ -39,8 +55,20 @@ def get(path, *, timeout=15):
 
 
 def fetch_schedule(day, month, year):
-    data = get(f"/api/matches/{day}/{month}/{year}")
-    return (data or {}).get("events", [])
+    """All events on a UTC date across CATEGORY_IDS (deduped).
+
+    The flat /api/matches/{day}/{month}/{year} feed is retired, so we union each
+    category's schedule. Swap to /api{SPORT_PREFIX}/tournament/{id}/scheduled-events/
+    {YYYY-MM-DD} if you'd rather drive it by tournament.
+    """
+    events, seen = [], set()
+    for cat_id in CATEGORY_IDS:
+        data = get(f"/api{SPORT_PREFIX}/category/{cat_id}/events/{day}/{month}/{year}")
+        for ev in (data or {}).get("events", []):
+            if ev["id"] not in seen:
+                seen.add(ev["id"])
+                events.append(ev)
+    return events
 
 
 def matches_for_local_day(year, month, day, tz_name):
@@ -75,7 +103,9 @@ def main():
     day = int(os.environ.get("DAY", today.day))
 
     events, tz = matches_for_local_day(year, month, day, tz_name)
-    print(f"{len(events)} matches on {year}-{month:02d}-{day:02d} ({tz_name})\n")
+    cats = ",".join(map(str, CATEGORY_IDS))
+    print(f"{len(events)} matches on {year}-{month:02d}-{day:02d} "
+          f"({tz_name}) across categories {cats}\n")
     for ev in events:
         kickoff = datetime.fromtimestamp(ev["startTimestamp"], tz)
         home, away = ev["homeTeam"]["name"], ev["awayTeam"]["name"]

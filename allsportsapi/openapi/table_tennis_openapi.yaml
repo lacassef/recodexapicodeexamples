@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Table Tennis API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,7 +315,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -361,7 +353,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -393,7 +384,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -417,7 +407,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -449,7 +438,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -473,7 +461,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -505,7 +492,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -529,7 +515,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -561,7 +546,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -593,7 +577,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -625,7 +608,6 @@ paths:
       summary: Search table tennis entities
       description: Searches for table tennis teams, players, and tournaments.
       tags:
-        - TableTennis
         - Search
       parameters:
         - name: term
@@ -667,10 +649,10 @@ paths:
   /api/table-tennis/events/{day}/{month}/{year}:
     get:
       operationId: getTableTennisEventsByDate
+      deprecated: true
       summary: Get table tennis events by date
-      description: Returns all scheduled table tennis matches for the provided day.
+      description: Deprecated — the flat per-date feed is being retired. Assemble the day per competition instead — list categories then call /api/{sport}/category/{id}/events/{day}/{month}/{year}, or per tournament /api/{sport}/tournament/{id}/scheduled-events/{date} (ISO date). See the AllSportsAPI FAQ on getting all matches for a specific date. Returns all scheduled table tennis matches for the provided day.
       tags:
-        - TableTennis
         - Matches
       parameters:
         - name: day
@@ -716,9 +698,7 @@ paths:
       summary: Get table tennis events with odds
       description: Returns scheduled matches together with odds for bookmaker `1`.
       tags:
-        - TableTennis
         - Matches
-        - Odds
       parameters:
         - name: day
           in: path
@@ -763,7 +743,6 @@ paths:
       summary: Get live table tennis events
       description: Lists all currently live table tennis matches.
       tags:
-        - TableTennis
         - Matches
       responses:
         '200':
@@ -787,9 +766,7 @@ paths:
       summary: Get featured table tennis events with odds
       description: Returns highlighted table tennis events with odds information for a provider.
       tags:
-        - TableTennis
         - Matches
-        - Odds
       parameters:
         - name: providerId
           in: path
@@ -820,9 +797,7 @@ paths:
       summary: Get featured table tennis events by tiers
       description: Returns highlighted table tennis events by tiers with odds information for a provider.
       tags:
-        - TableTennis
         - Matches
-        - Odds
       parameters:
         - name: providerId
           in: path
@@ -853,7 +828,6 @@ paths:
       summary: Get table tennis calendar overview
       description: Provides unique tournaments with events for the requested month.
       tags:
-        - TableTennis
         - Calendar
       parameters:
         - name: month
@@ -892,9 +866,7 @@ paths:
       summary: Get table tennis categories for a day
       description: Lists categories that have events on the provided date.
       tags:
-        - TableTennis
         - Calendar
-        - Categories
       parameters:
         - name: day
           in: path
@@ -939,9 +911,7 @@ paths:
       summary: Get table tennis categories for multiple days
       description: Aggregates categories for up to five days in the given month.
       tags:
-        - TableTennis
         - Calendar
-        - Categories
       parameters:
         - name: month
           in: path
@@ -984,10 +954,9 @@ paths:
     get:
       operationId: getTableTennisTournamentCategories
       summary: Get table tennis tournament categories
-      description: Returns all SofaScore categories for table tennis.
+      description: Returns all categories for table tennis.
       tags:
-        - TableTennis
-        - Categories
+        - Tournaments
       responses:
         '200':
           description: Available categories.
@@ -1010,8 +979,7 @@ paths:
       summary: Get table tennis tournament categories (all)
       description: Returns the full list of table tennis categories.
       tags:
-        - TableTennis
-        - Categories
+        - Tournaments
       responses:
         '200':
           description: Available categories.
@@ -1034,8 +1002,6 @@ paths:
       summary: Get table tennis tournaments by category
       description: Lists unique tournaments under the given category.
       tags:
-        - TableTennis
-        - Categories
         - Tournaments
       parameters:
         - name: id
@@ -1067,9 +1033,7 @@ paths:
       summary: Get category events by date
       description: Lists all matches in the category for the provided day.
       tags:
-        - TableTennis
         - Categories
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1121,7 +1085,6 @@ paths:
       summary: Get table tennis match details
       description: Returns core information for the requested match.
       tags:
-        - TableTennis
         - Matches
       parameters:
         - name: id
@@ -1153,9 +1116,7 @@ paths:
       summary: Get table tennis match statistics
       description: Provides detailed statistics for the specified match.
       tags:
-        - TableTennis
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1186,7 +1147,6 @@ paths:
       summary: Get table tennis match incidents
       description: Lists point-by-point incidents and notable events.
       tags:
-        - TableTennis
         - Matches
       parameters:
         - name: id
@@ -1218,7 +1178,6 @@ paths:
       summary: Get table tennis match lineups
       description: Returns confirmed lineups when available.
       tags:
-        - TableTennis
         - Matches
       parameters:
         - name: id
@@ -1250,9 +1209,7 @@ paths:
       summary: Get table tennis match odds
       description: Retrieves odds from bookmaker `1` for the match.
       tags:
-        - TableTennis
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1283,9 +1240,7 @@ paths:
       summary: Get match featured odds
       description: Retrieves featured odds for a specific table tennis match and provider.
       tags:
-        - TableTennis
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1323,9 +1278,7 @@ paths:
       summary: Get match winning odds
       description: Retrieves winning odds for a specific table tennis match and provider.
       tags:
-        - TableTennis
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1363,7 +1316,6 @@ paths:
       summary: Get table tennis match form
       description: Provides pre-game form information for both competitors.
       tags:
-        - TableTennis
         - Matches
       parameters:
         - name: id
@@ -1395,9 +1347,7 @@ paths:
       summary: Get table tennis head-to-head history
       description: Returns historical meetings for the match custom identifier.
       tags:
-        - TableTennis
         - Matches
-        - Statistics
       parameters:
         - name: customId
           in: path
@@ -1428,9 +1378,7 @@ paths:
       summary: Get table tennis head-to-head summary
       description: Provides aggregated head-to-head totals for the competitors.
       tags:
-        - TableTennis
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1461,9 +1409,7 @@ paths:
       summary: Get table tennis match streaks
       description: Returns recent streak information for the match participants.
       tags:
-        - TableTennis
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1494,9 +1440,7 @@ paths:
       summary: Get table tennis match streaks with odds
       description: Returns streak details paired with bookmaker odds.
       tags:
-        - TableTennis
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1527,9 +1471,7 @@ paths:
       summary: Get table tennis match highlights
       description: Returns available highlight clips for the match.
       tags:
-        - TableTennis
         - Matches
-        - Media
       parameters:
         - name: id
           in: path
@@ -1560,9 +1502,7 @@ paths:
       summary: Get table tennis match votes
       description: Returns community votes for player of the match.
       tags:
-        - TableTennis
         - Matches
-        - Fans
       parameters:
         - name: id
           in: path
@@ -1593,9 +1533,7 @@ paths:
       summary: Get table tennis match win probability
       description: Returns win probability timeline for the match.
       tags:
-        - TableTennis
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1626,7 +1564,6 @@ paths:
       summary: Get table tennis team details
       description: Returns information about the requested team.
       tags:
-        - TableTennis
         - Teams
       parameters:
         - name: id
@@ -1658,9 +1595,7 @@ paths:
       summary: Get table tennis team performance
       description: Returns performance data for the requested team.
       tags:
-        - TableTennis
         - Teams
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1691,9 +1626,7 @@ paths:
       summary: Get table tennis team roster
       description: Returns current players registered for the team.
       tags:
-        - TableTennis
         - Teams
-        - Players
       parameters:
         - name: id
           in: path
@@ -1724,9 +1657,7 @@ paths:
       summary: Get table tennis team media
       description: Returns media items linked to the team.
       tags:
-        - TableTennis
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -1757,9 +1688,7 @@ paths:
       summary: Get previous table tennis matches by team
       description: Returns paginated list of past matches for the team.
       tags:
-        - TableTennis
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1797,9 +1726,7 @@ paths:
       summary: Get upcoming table tennis matches by team
       description: Returns paginated list of next matches for the team.
       tags:
-        - TableTennis
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1837,9 +1764,7 @@ paths:
       summary: Get nearby table tennis matches by team
       description: Returns recent and upcoming matches around the current date.
       tags:
-        - TableTennis
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1870,9 +1795,7 @@ paths:
       summary: Get table tennis team standings seasons
       description: Lists seasons that have standings for the team.
       tags:
-        - TableTennis
         - Teams
-        - Standings
       parameters:
         - name: id
           in: path
@@ -1903,9 +1826,7 @@ paths:
       summary: Get table tennis team player-statistics seasons
       description: Lists seasons with player statistics for the team.
       tags:
-        - TableTennis
         - Teams
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1936,9 +1857,7 @@ paths:
       summary: Get table tennis team statistics seasons
       description: Lists seasons with team statistics data.
       tags:
-        - TableTennis
         - Teams
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1967,11 +1886,9 @@ paths:
     get:
       operationId: getTableTennisTeamRankings
       summary: Get table tennis team rankings
-      description: Returns the SofaScore rankings for the team.
+      description: Returns the rankings for the team.
       tags:
-        - TableTennis
         - Teams
-        - Rankings
       parameters:
         - name: id
           in: path
@@ -2002,9 +1919,7 @@ paths:
       summary: Get table tennis team tournaments
       description: Lists unique tournaments that the team participates in.
       tags:
-        - TableTennis
         - Teams
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -2035,9 +1950,7 @@ paths:
       summary: Get table tennis team transfers
       description: Returns historical transfer activity for the team.
       tags:
-        - TableTennis
         - Teams
-        - Transfers
       parameters:
         - name: id
           in: path
@@ -2068,7 +1981,6 @@ paths:
       summary: Get table tennis tournament details
       description: Returns detailed information about the tournament.
       tags:
-        - TableTennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2098,9 +2010,8 @@ paths:
     get:
       operationId: getTableTennisTournamentMetaInfo
       summary: Get table tennis tournament meta info
-      description: Returns metadata used on SofaScore tournament pages.
+      description: Returns metadata used on tournament pages.
       tags:
-        - TableTennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2132,9 +2043,7 @@ paths:
       summary: Get table tennis tournament media
       description: Returns media assets associated with the tournament.
       tags:
-        - TableTennis
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2163,11 +2072,9 @@ paths:
     get:
       operationId: getTableTennisTournamentFeaturedEvents
       summary: Get table tennis tournament featured events
-      description: Lists SofaScore highlighted events for the tournament.
+      description: Lists highlighted events for the tournament.
       tags:
-        - TableTennis
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2198,7 +2105,6 @@ paths:
       summary: Get table tennis tournament seasons
       description: Lists available seasons for the tournament.
       tags:
-        - TableTennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2230,7 +2136,6 @@ paths:
       summary: Get table tennis tournament season info
       description: Returns metadata about a specific tournament season.
       tags:
-        - TableTennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2269,9 +2174,7 @@ paths:
       summary: Get table tennis tournament standings
       description: Returns overall standings table for the season.
       tags:
-        - TableTennis
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -2309,9 +2212,7 @@ paths:
       summary: Get table tennis home standings
       description: Returns standings filtered by home matches for the season.
       tags:
-        - TableTennis
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -2349,9 +2250,7 @@ paths:
       summary: Get table tennis tournament matches by round
       description: Returns matches for the specified knockout round slug.
       tags:
-        - TableTennis
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2403,9 +2302,7 @@ paths:
       summary: Get table tennis tournament last matches
       description: Returns finished matches for the season, paginated.
       tags:
-        - TableTennis
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2450,9 +2347,7 @@ paths:
       summary: Get table tennis tournament upcoming matches
       description: Returns upcoming matches for the season, paginated.
       tags:
-        - TableTennis
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2497,7 +2392,6 @@ paths:
       summary: Get table tennis tournament rounds
       description: Lists available rounds for the tournament season.
       tags:
-        - TableTennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2536,7 +2430,6 @@ paths:
       summary: Get table tennis tournament groups
       description: Returns groups for the tournament season.
       tags:
-        - TableTennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2575,7 +2468,6 @@ paths:
       summary: Get table tennis tournament bracket
       description: Returns knockout bracket for the season.
       tags:
-        - TableTennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2614,9 +2506,7 @@ paths:
       summary: Get table tennis tournament team events total
       description: Returns aggregated event statistics for the season.
       tags:
-        - TableTennis
         - Tournaments
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2654,9 +2544,7 @@ paths:
       summary: Get table tennis tournament team events home
       description: Returns team event statistics for home matches only.
       tags:
-        - TableTennis
         - Tournaments
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2694,9 +2582,7 @@ paths:
       summary: Get table tennis tournament team events away
       description: Returns team event statistics for away matches only.
       tags:
-        - TableTennis
         - Tournaments
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2734,9 +2620,7 @@ paths:
       summary: Get table tennis tournament statistics info
       description: Lists available statistics fields for the season.
       tags:
-        - TableTennis
         - Tournaments
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2772,11 +2656,9 @@ paths:
     get:
       operationId: getTableTennisTournamentPlayerOfTheSeason
       summary: Get table tennis tournament player of the season
-      description: Returns SofaScore player of the season data.
+      description: Returns player of the season data.
       tags:
-        - TableTennis
         - Tournaments
-        - Awards
       parameters:
         - name: tournamentId
           in: path
@@ -2814,9 +2696,7 @@ paths:
       summary: Get table tennis tournament power ranking rounds
       description: Lists rounds with available power rankings.
       tags:
-        - TableTennis
         - Tournaments
-        - Rankings
       parameters:
         - name: tournamentId
           in: path
@@ -2854,9 +2734,7 @@ paths:
       summary: Get table tennis tournament team of the week rounds
       description: Lists rounds where a team of the week is available.
       tags:
-        - TableTennis
         - Tournaments
-        - Awards
       parameters:
         - name: tournamentId
           in: path

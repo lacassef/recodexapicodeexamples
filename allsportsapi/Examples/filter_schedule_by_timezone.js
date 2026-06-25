@@ -7,7 +7,18 @@
  * user's *local* day, filter by `event.startTimestamp` against that day's local
  * bounds — and fetch the neighbouring UTC dates that overlap it.
  *
- * Endpoint used (football):  /api/matches/{day}/{month}/{year}
+ * The flat per-date feed (/api/matches/{day}/{month}/{year}) has been retired, so we
+ * assemble the day *per competition*. Two options (see ../FAQ.md "How do I get all
+ * matches on a specific date?"):
+ *
+ *   1. By category:    /api/{sport}/category/{id}/events/{day}/{month}/{year}
+ *                      (football: /api/category/{id}/events/{day}/{month}/{year})
+ *   2. By tournament:  /api/{sport}/tournament/{id}/scheduled-events/{YYYY-MM-DD}
+ *                      (football, cricket, esport, tennis)
+ *
+ * This example uses option 1 over a configurable set of categories (default: football
+ * category 1 = England). Enumerate categories via /api/{sport}/tournament/categories
+ * (see list_all_leagues.js) and extend CATEGORY_IDS to widen coverage.
  *
  * Run (Node 18+):
  *     export RAPIDAPI_KEY="your_key_here"
@@ -17,6 +28,11 @@
 const HOST = process.env.RAPIDAPI_HOST || 'footapi7.p.rapidapi.com';
 const BASE_URL = `https://${HOST}`;
 const API_KEY = process.env.RAPIDAPI_KEY;
+
+// '' for football (footapi7); set to e.g. '/tennis' for another sport (and switch HOST).
+const SPORT_PREFIX = process.env.SPORT_PREFIX || '';
+// Categories (countries/tours) to assemble the day's schedule from. Comma-separated.
+const CATEGORY_IDS = (process.env.CATEGORY_IDS || '1').split(',').map((c) => c.trim()).filter(Boolean);
 
 async function get(path) {
   if (!API_KEY) {
@@ -31,8 +47,21 @@ async function get(path) {
 }
 
 async function fetchSchedule(day, month, year) {
-  const data = await get(`/api/matches/${day}/${month}/${year}`);
-  return data?.events ?? [];
+  // The flat /api/matches/{day}/{month}/{year} feed is retired — union each category's
+  // schedule and dedupe. Swap to /api{SPORT_PREFIX}/tournament/{id}/scheduled-events/
+  // {YYYY-MM-DD} to drive it by tournament instead. See ../FAQ.md.
+  const seen = new Set();
+  const events = [];
+  for (const catId of CATEGORY_IDS) {
+    const data = await get(`/api${SPORT_PREFIX}/category/${catId}/events/${day}/${month}/${year}`);
+    for (const ev of data?.events ?? []) {
+      if (!seen.has(ev.id)) {
+        seen.add(ev.id);
+        events.push(ev);
+      }
+    }
+  }
+  return events;
 }
 
 /** Offset (ms) between a given instant and the wall-clock in `timeZone`. */
@@ -97,7 +126,8 @@ async function main() {
   const day = Number(process.env.DAY) || todayParts[2];
 
   const events = await matchesForLocalDay(year, month, day, timeZone);
-  console.log(`${events.length} matches on ${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} (${timeZone})\n`);
+  const date = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  console.log(`${events.length} matches on ${date} (${timeZone}) across categories ${CATEGORY_IDS.join(',')}\n`);
   for (const ev of events) {
     const kickoff = new Date(ev.startTimestamp * 1000).toLocaleTimeString('en-GB', {
       timeZone,

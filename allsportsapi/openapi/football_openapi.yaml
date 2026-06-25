@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Football API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,7 +315,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -361,7 +353,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -393,7 +384,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -417,7 +407,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -449,7 +438,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -473,7 +461,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -505,7 +492,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -529,7 +515,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -561,7 +546,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -593,7 +577,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -626,7 +609,6 @@ paths:
       description: Searches for football teams, players, and tournaments. The `type` parameter in the upstream URL is 
         hardcoded to `all`.
       tags:
-        - Football
         - Search
       parameters:
         - name: term
@@ -668,11 +650,11 @@ paths:
   /api/matches/{day}/{month}/{year}:
     get:
       operationId: getAllFootballMatchesByDate
+      deprecated: true
       summary: Get all football matches by date
-      description: Fetches all football matches scheduled for a specific date by combining results from two upstream 
+      description: Deprecated — the flat per-date feed is being retired. Assemble the day per competition instead — list categories then call /api/{sport}/category/{id}/events/{day}/{month}/{year}, or per tournament /api/{sport}/tournament/{id}/scheduled-events/{date} (ISO date). See the AllSportsAPI FAQ on getting all matches for a specific date. Fetches all football matches scheduled for a specific date by combining results from two upstream 
         endpoints (regular and inverse).
       tags:
-        - Football
         - Matches
       parameters:
         - name: day
@@ -724,7 +706,6 @@ paths:
       summary: Get live football matches
       description: Retrieves all currently live football matches.
       tags:
-        - Football
         - Matches
       responses:
         '200':
@@ -745,10 +726,10 @@ paths:
   /api/matches/top/{day}/{month}/{year}:
     get:
       operationId: getTopFootballMatchesByDate
+      deprecated: true
       summary: Get top football matches by date
-      description: Retrieves a curated list of top-tier or more important football matches for a specific date.
+      description: Deprecated — the flat per-date feed is being retired. Assemble the day per competition instead — list categories then call /api/{sport}/category/{id}/events/{day}/{month}/{year}, or per tournament /api/{sport}/tournament/{id}/scheduled-events/{date} (ISO date). See the AllSportsAPI FAQ on getting all matches for a specific date. Retrieves a curated list of top-tier or more important football matches for a specific date.
       tags:
-        - Football
         - Matches
       parameters:
         - name: day
@@ -797,10 +778,10 @@ paths:
   /api/matches/bottom/{day}/{month}/{year}:
     get:
       operationId: getBottomFootballMatchesByDate
+      deprecated: true
       summary: Get bottom football matches by date
-      description: Retrieves a list of less prominent or lower-tier football matches for a specific date.
+      description: Deprecated — the flat per-date feed is being retired. Assemble the day per competition instead — list categories then call /api/{sport}/category/{id}/events/{day}/{month}/{year}, or per tournament /api/{sport}/tournament/{id}/scheduled-events/{date} (ISO date). See the AllSportsAPI FAQ on getting all matches for a specific date. Retrieves a list of less prominent or lower-tier football matches for a specific date.
       tags:
-        - Football
         - Matches
       parameters:
         - name: day
@@ -853,7 +834,6 @@ paths:
       description: Retrieves a list of all available football tournament categories, typically corresponding to 
         countries or regions.
       tags:
-        - Football
         - Tournaments
       responses:
         '200':
@@ -877,8 +857,6 @@ paths:
       summary: Get tournaments by category
       description: Retrieves all unique tournaments within a specific category ID (e.g., a country).
       tags:
-        - Football
-        - Categories
         - Tournaments
       parameters:
         - name: id
@@ -910,9 +888,7 @@ paths:
       summary: Get matches by category and date
       description: Retrieves all football matches for a specific category on a given date.
       tags:
-        - Football
         - Categories
-        - Matches
       parameters:
         - name: id
           in: path
@@ -970,7 +946,6 @@ paths:
       summary: Get tournament metadata
       description: Retrieves SEO metadata and other information for a specific tournament.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -1002,7 +977,6 @@ paths:
       summary: Get FIFA rankings
       description: Retrieves the current official FIFA national team rankings.
       tags:
-        - Football
         - Rankings
       responses:
         '200':
@@ -1026,7 +1000,6 @@ paths:
       summary: Get UEFA countries rankings
       description: Retrieves the current UEFA coefficient rankings for national associations.
       tags:
-        - Football
         - Rankings
       responses:
         '200':
@@ -1050,7 +1023,6 @@ paths:
       summary: Get UEFA clubs rankings
       description: Retrieves the current UEFA coefficient rankings for club teams.
       tags:
-        - Football
         - Rankings
       responses:
         '200':
@@ -1075,7 +1047,6 @@ paths:
       description: Retrieves detailed information for a specific football match by its ID, including teams, score, 
         status, and tournament info.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -1108,9 +1079,7 @@ paths:
       description: Retrieves comprehensive team and player statistics for a specific match, such as possession, shots, 
         and passes.
       tags:
-        - Football
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1142,7 +1111,6 @@ paths:
       description: Retrieves a chronological list of all significant incidents from a match, such as goals, cards, and 
         substitutions.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -1175,9 +1143,7 @@ paths:
       description: Retrieves the detailed match history for head-to-head encounters between the two teams in a specific 
         match.
       tags:
-        - Football
         - Matches
-        - Statistics
       parameters:
         - name: customId
           in: path
@@ -1208,9 +1174,7 @@ paths:
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head statistics, including win/draw/loss counts and recent form.
       tags:
-        - Football
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1241,7 +1205,6 @@ paths:
       summary: Get match form analysis
       description: Retrieves pre-game form, including recent results (e.g., WWDLW) and key stats for both teams.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -1273,9 +1236,7 @@ paths:
       summary: Get match betting odds
       description: Retrieves available betting odds from bookmaker `1` for a specific match, including various markets.
       tags:
-        - Football
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1306,9 +1267,7 @@ paths:
       summary: Get match featured odds
       description: Retrieves featured odds for a specific match and provider.
       tags:
-        - Football
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1346,9 +1305,7 @@ paths:
       summary: Get match winning odds
       description: Retrieves winning odds for a specific match and provider.
       tags:
-        - Football
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1386,9 +1343,7 @@ paths:
       summary: Get match shot map
       description: Retrieves the shot map for a match, showing the location and outcome of every shot taken.
       tags:
-        - Football
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1420,9 +1375,7 @@ paths:
       description: Retrieves data points for the match momentum graph, visualizing team pressure and scoring 
         progression.
       tags:
-        - Football
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1453,9 +1406,7 @@ paths:
       summary: Get match lineups
       description: Retrieves starting lineups, formations, substitutes, and coach details for both teams.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -1486,9 +1437,7 @@ paths:
       summary: Get match win probability
       description: Retrieves real-time win, draw, and loss probabilities at different points during the match.
       tags:
-        - Football
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1520,9 +1469,7 @@ paths:
       description: Fetches detailed performance data for a single player within a specific match, including a statistics
         summary and heatmap.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -1558,11 +1505,9 @@ paths:
     get:
       operationId: getMatchPlayerRatingBreakdown
       summary: Get match player rating breakdown
-      description: Returns the component breakdown that forms a player's SofaScore rating for a given match.
+      description: Returns the component breakdown that forms a player's rating for a given match.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -1600,9 +1545,7 @@ paths:
       summary: Get football match player shotmap
       description: Retrieves the shot map for a single player in a match, showing shot locations and outcomes.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -1641,9 +1584,7 @@ paths:
       description: Provides positional heatmap data showing areas of on-field activity for a specific player during a 
         match.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -1682,7 +1623,6 @@ paths:
       description: Provides positional heatmap data showing the average on-field position for all players during a 
         match.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -1714,7 +1654,6 @@ paths:
       summary: Get match highlights
       description: Retrieves a list of video highlight clips and related metadata for a specific match.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -1746,7 +1685,6 @@ paths:
       summary: Get match managers
       description: Returns information about the managers (coaches) for both teams in a specified match.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -1778,7 +1716,6 @@ paths:
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome (home win, draw, away win).
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -1810,9 +1747,7 @@ paths:
       summary: Get match best players
       description: Returns ratings and key statistics for the standout players in a match.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -1844,7 +1779,6 @@ paths:
       description: Provides recent form and streak information (e.g., unbeaten runs, winless streaks) for each team in a
         match.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -1876,7 +1810,6 @@ paths:
       summary: Get match streaks with odds
       description: Returns recent team streaks combined with associated betting odds from bookmaker `1`.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -1908,9 +1841,7 @@ paths:
       summary: Get match team heatmap by ID
       description: Provides an aggregated positional data heatmap for an entire team in a match, specified by its ID.
       tags:
-        - Football
         - Matches
-        - Teams
       parameters:
         - name: id
           in: path
@@ -1948,7 +1879,6 @@ paths:
       summary: Get match commentary
       description: Fetches a live text commentary feed with entries for key moments in the specified match.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -1978,11 +1908,9 @@ paths:
     get:
       operationId: getMatchFeaturedPlayers
       summary: Get match featured players
-      description: Retrieves a list of players highlighted by SofaScore for the specified match.
+      description: Retrieves a list of players highlighted for the specified match.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -2013,9 +1941,7 @@ paths:
       summary: Get match best-player summary
       description: Returns a summary of the best player's performance, highlighting standout statistics.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: eventId
           in: path
@@ -2046,7 +1972,6 @@ paths:
       summary: Get event metadata
       description: Retrieves SEO and metadata for a specific event.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -2078,7 +2003,6 @@ paths:
       summary: Get all odds for event
       description: Retrieves all available odds from a specific provider for an event.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -2117,7 +2041,6 @@ paths:
       summary: Get event weather
       description: Retrieves weather conditions for an outdoor event.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -2149,7 +2072,6 @@ paths:
       summary: Get event graph sequence
       description: Retrieves the momentum/pressure graph sequence data for a match.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -2181,7 +2103,6 @@ paths:
       summary: Get event official tweets
       description: Retrieves official social media posts related to an event.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -2214,7 +2135,6 @@ paths:
       description: Fetches comprehensive details for a specific team, including name, country, venue, and tournament 
         information.
       tags:
-        - Football
         - Teams
       parameters:
         - name: id
@@ -2246,7 +2166,6 @@ paths:
       summary: Get team achievements
       description: Returns the achievements and trophies associated with the specified team.
       tags:
-        - Football
         - Teams
       parameters:
         - name: id
@@ -2278,7 +2197,6 @@ paths:
       summary: Get team logo
       description: Downloads the official logo (crest) for the specified team ID. The response is the raw image data.
       tags:
-        - Football
         - Teams
       parameters:
         - name: id
@@ -2311,7 +2229,6 @@ paths:
       summary: Get team small logo
       description: Downloads the small logo (crest) for the specified team ID. The response is the raw image data.
       tags:
-        - Football
         - Teams
       parameters:
         - name: id
@@ -2344,9 +2261,7 @@ paths:
       summary: Get team squad
       description: Returns the current roster of players (squad) associated with the specified team.
       tags:
-        - Football
         - Teams
-        - Players
       parameters:
         - name: id
           in: path
@@ -2377,7 +2292,6 @@ paths:
       summary: Get team media
       description: Returns a collection of media items (images, videos) related to the specified team.
       tags:
-        - Football
         - Teams
       parameters:
         - name: id
@@ -2410,8 +2324,6 @@ paths:
       description: Returns a list of recent and upcoming matches for the specified team, centered around the current 
         date.
       tags:
-        - Football
-        - Matches
         - Teams
       parameters:
         - name: id
@@ -2443,8 +2355,6 @@ paths:
       summary: Get previous team matches
       description: Fetches a paginated list of completed matches for a team, sorted by most recent first.
       tags:
-        - Football
-        - Matches
         - Teams
       parameters:
         - name: id
@@ -2489,8 +2399,6 @@ paths:
       summary: Get upcoming team matches
       description: Fetches a paginated list of scheduled future matches for a team, sorted chronologically.
       tags:
-        - Football
-        - Matches
         - Teams
       parameters:
         - name: id
@@ -2535,9 +2443,7 @@ paths:
       summary: Get team player statistics seasons
       description: Returns a list of seasons for which player-level statistics are available for the specified team.
       tags:
-        - Football
         - Teams
-        - Players
       parameters:
         - name: id
           in: path
@@ -2568,7 +2474,6 @@ paths:
       summary: Get team statistics seasons
       description: Provides a list of seasons for which aggregated team-level statistics are available.
       tags:
-        - Football
         - Teams
       parameters:
         - name: id
@@ -2600,9 +2505,7 @@ paths:
       summary: Get team overall statistics
       description: Returns aggregated statistics for a team within a specific tournament and season.
       tags:
-        - Football
         - Teams
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -2647,10 +2550,7 @@ paths:
       summary: Get team top players overall
       description: Returns a list of the top-performing players for a team in a specific tournament and season.
       tags:
-        - Football
         - Teams
-        - Players
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -2695,9 +2595,7 @@ paths:
       summary: Get team unique tournaments
       description: Enumerates all unique competitions a team has participated in.
       tags:
-        - Football
         - Teams
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -2728,7 +2626,6 @@ paths:
       summary: Get team transfer history
       description: Returns a chronological list of a team's incoming and outgoing player transfers.
       tags:
-        - Football
         - Teams
       parameters:
         - name: id
@@ -2760,7 +2657,6 @@ paths:
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which standings information is available for the team.
       tags:
-        - Football
         - Teams
       parameters:
         - name: id
@@ -2793,9 +2689,7 @@ paths:
       description: Provides goal distribution data (goals scored/conceded in different time intervals) for a team in a 
         tournament season.
       tags:
-        - Football
         - Teams
-        - Tournaments
       parameters:
         - name: teamId
           in: path
@@ -2841,8 +2735,6 @@ paths:
       description: Returns time-series data illustrating a team's league position and performance throughout a 
         tournament season.
       tags:
-        - Football
-        - Teams
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2888,8 +2780,7 @@ paths:
       summary: Get team featured event
       description: Retrieves the current or next featured event for a team.
       tags:
-        - Football
-        - Matches
+        - Teams
       parameters:
         - name: id
           in: path
@@ -2920,7 +2811,6 @@ paths:
       summary: Get team featured players
       description: Retrieves highlighted/featured players for a team.
       tags:
-        - Football
         - Teams
       parameters:
         - name: id
@@ -2952,7 +2842,6 @@ paths:
       summary: Get all team tournaments
       description: Retrieves all unique tournaments a team participates in.
       tags:
-        - Football
         - Teams
       parameters:
         - name: id
@@ -2984,7 +2873,6 @@ paths:
       summary: Get team overall ranks
       description: Retrieves overall ranking data for a team in a tournament season.
       tags:
-        - Football
         - Teams
       parameters:
         - name: id
@@ -3030,7 +2918,6 @@ paths:
       summary: Get player details
       description: Fetches profile data for a specific player, such as name, team, nationality, and position.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3062,7 +2949,6 @@ paths:
       summary: Get player image
       description: Downloads the profile picture for the specified player ID. The response is the raw image data.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3095,7 +2981,6 @@ paths:
       summary: Get player media
       description: Retrieves a collection of media items (images, videos) related to the specified player.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3127,7 +3012,6 @@ paths:
       summary: Get player national team statistics
       description: Returns performance data and statistics for a player's appearances with their national team.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3159,7 +3043,6 @@ paths:
       summary: Get player last year summary
       description: Fetches aggregated performance metrics for a player from the previous year.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3191,8 +3074,6 @@ paths:
       summary: Get player nearby matches
       description: Returns a list of the player's recent and upcoming matches.
       tags:
-        - Football
-        - Matches
         - Players
       parameters:
         - name: id
@@ -3224,7 +3105,6 @@ paths:
       summary: Get player seasonal statistics
       description: Fetches a list of seasons for which aggregated statistics are available for a player.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3254,11 +3134,9 @@ paths:
     get:
       operationId: getPlayerLastRatings
       summary: Get player last ratings
-      description: Fetches the most recent SofaScore ratings for a player in a specific tournament season.
+      description: Fetches the most recent ratings for a player in a specific tournament season.
       tags:
-        - Football
         - Players
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -3301,11 +3179,9 @@ paths:
     get:
       operationId: getPlayerRatings
       summary: Get player ratings
-      description: Returns the historical SofaScore rating history for a player in a specific tournament season.
+      description: Returns the historical rating history for a player in a specific tournament season.
       tags:
-        - Football
         - Players
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -3351,9 +3227,7 @@ paths:
       description: Returns aggregated performance metrics for a player across all phases (e.g., regular season, 
         playoffs) of a tournament season.
       tags:
-        - Football
         - Players
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -3398,7 +3272,6 @@ paths:
       summary: Get player characteristics
       description: Returns a list of a player's noted strengths and weaknesses based on statistical analysis.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3431,7 +3304,6 @@ paths:
       description: Returns radar-chart attribute scores (e.g., attacking, defending) and other skill ratings for a 
         player.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3463,7 +3335,6 @@ paths:
       summary: Get player transfer history
       description: Returns a chronological list of a player's transfers between clubs.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3495,7 +3366,6 @@ paths:
       summary: Get player penalty history
       description: Returns information about a player's history of taking penalty kicks.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3528,8 +3398,6 @@ paths:
       description: Fetches a paginated list of completed matches a player has participated in, sorted by most recent 
         first.
       tags:
-        - Football
-        - Matches
         - Players
       parameters:
         - name: id
@@ -3574,9 +3442,7 @@ paths:
       summary: Get player season heatmap overall
       description: Fetches a player's combined positional data heatmap for a specific tournament season.
       tags:
-        - Football
         - Players
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -3621,9 +3487,7 @@ paths:
       summary: Get player penalty history by season
       description: Provides a player's historical penalty kick data within a specific tournament and season.
       tags:
-        - Football
         - Players
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -3668,7 +3532,6 @@ paths:
       summary: Get all player statistics
       description: Retrieves comprehensive statistics for a player across all competitions.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3700,8 +3563,7 @@ paths:
       summary: Get player statistics by match type
       description: Retrieves player statistics filtered by match type (home/away/overall).
       tags:
-        - Football
-        - Matches
+        - Players
       parameters:
         - name: id
           in: path
@@ -3739,7 +3601,6 @@ paths:
       summary: Get player media videos
       description: Retrieves video highlights and media for a player.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3771,7 +3632,6 @@ paths:
       summary: Get player tournaments
       description: Retrieves all unique tournaments a player has participated in.
       tags:
-        - Football
         - Players
       parameters:
         - name: id
@@ -3803,8 +3663,7 @@ paths:
       summary: Get player tournament last matches
       description: Retrieves a paginated list of the player's recent matches in a tournament.
       tags:
-        - Football
-        - Matches
+        - Players
       parameters:
         - name: id
           in: path
@@ -3847,9 +3706,8 @@ paths:
     get:
       operationId: getTrendingPlayers
       summary: Get trending players
-      description: Retrieves a list of football players who are currently trending on SofaScore.
+      description: Retrieves a list of football players who are currently trending.
       tags:
-        - Football
         - Players
       responses:
         '200':
@@ -3873,7 +3731,7 @@ paths:
       summary: Get manager details
       description: Returns biographical and statistical information for a specific manager (coach).
       tags:
-        - Football
+        - Managers
       parameters:
         - name: id
           in: path
@@ -3904,7 +3762,7 @@ paths:
       summary: Get manager image
       description: Returns the profile image for the specified manager ID. The response is the raw image data.
       tags:
-        - Football
+        - Managers
       parameters:
         - name: id
           in: path
@@ -3936,7 +3794,7 @@ paths:
       summary: Get manager career history
       description: Lists the teams previously and currently managed by a specific manager.
       tags:
-        - Football
+        - Managers
       parameters:
         - name: id
           in: path
@@ -3967,8 +3825,7 @@ paths:
       summary: Get manager previous matches
       description: Fetches a paginated list of completed matches for a specific manager, sorted by most recent first.
       tags:
-        - Football
-        - Matches
+        - Managers
       parameters:
         - name: id
           in: path
@@ -4012,8 +3869,7 @@ paths:
       summary: Get manager upcoming matches
       description: Fetches a paginated list of scheduled future matches for a specific manager, sorted chronologically.
       tags:
-        - Football
-        - Matches
+        - Managers
       parameters:
         - name: id
           in: path
@@ -4057,7 +3913,6 @@ paths:
       summary: Get league details
       description: Returns basic information about a tournament, including its name, sport, and current season details.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4090,7 +3945,6 @@ paths:
       description: Downloads the official logo or emblem for the specified tournament ID. The response is the raw image 
         data.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4123,7 +3977,6 @@ paths:
       summary: Get league dark logo
       description: Fetches the dark-theme variant of the tournament's logo. The response is the raw image data.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4156,7 +4009,6 @@ paths:
       summary: Get league media
       description: Fetches a collection of media items (images, videos) related to the specified tournament.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4188,7 +4040,6 @@ paths:
       summary: Get league seasons
       description: Lists every available season associated with the specified tournament.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4220,7 +4071,6 @@ paths:
       summary: Get total league standings
       description: Returns the complete league table (standings) with cumulative statistics for all teams in a season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4259,7 +4109,6 @@ paths:
       summary: Get home league standings
       description: Returns a league table calculated using only the results from games played at home during the season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4298,7 +4147,6 @@ paths:
       summary: Get away league standings
       description: Returns a league table calculated solely from the results of away games during the season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4337,7 +4185,6 @@ paths:
       summary: Get aggregated player statistics
       description: Returns season-wide player performance metrics with optional filtering, ordering, and pagination.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4432,7 +4279,6 @@ paths:
       description: Provides metadata about a specific tournament season, such as the number of rounds and standings 
         format.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4472,8 +4318,6 @@ paths:
       description: Provides a list of the top-performing players for a specified tournament season based on overall 
         ratings.
       tags:
-        - Football
-        - Players
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4513,8 +4357,6 @@ paths:
       description: Returns a leaderboard of the top-performing teams based on aggregate statistics for a tournament 
         season.
       tags:
-        - Football
-        - Teams
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4554,8 +4396,6 @@ paths:
       description: Provides a list of players ranked by their per-game statistical averages across an entire tournament 
         season.
       tags:
-        - Football
-        - Players
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4594,8 +4434,6 @@ paths:
       summary: Get recent league matches
       description: Fetches a paginated list of past matches for a tournament season, ordered by most recent first.
       tags:
-        - Football
-        - Matches
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4648,8 +4486,6 @@ paths:
       description: Returns a paginated list of scheduled future matches for a tournament season, ordered 
         chronologically.
       tags:
-        - Football
-        - Matches
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4699,10 +4535,9 @@ paths:
     get:
       operationId: listTeamOfTheWeekRounds
       summary: List team of the week rounds
-      description: Fetches the round numbers for which SofaScore has published a "Team of the Week" for a tournament 
+      description: Fetches the round numbers for which a "Team of the Week" has been published for a tournament 
         season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4741,7 +4576,6 @@ paths:
       summary: List league rounds
       description: Retrieves all round numbers (e.g., match weeks) defined for a specific tournament season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4780,8 +4614,6 @@ paths:
       summary: Get team of the week
       description: Returns the selected player lineup for the "Team of the Week" for a specific round of a tournament.
       tags:
-        - Football
-        - Teams
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4827,7 +4659,6 @@ paths:
       summary: Get league groups
       description: Fetches the group stage assignments and structure for a specific tournament season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4866,7 +4697,6 @@ paths:
       summary: Get league cup trees
       description: Fetches the knockout stage bracket (cup tree) for a specific tournament season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4905,8 +4735,6 @@ paths:
       summary: Get league team events totals
       description: Returns cumulative team-level event counts (e.g., goals, cards) for a tournament season.
       tags:
-        - Football
-        - Teams
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4945,8 +4773,6 @@ paths:
       summary: Get league team home event totals
       description: Provides cumulative team-level statistics considering only home matches in a given season.
       tags:
-        - Football
-        - Teams
         - Tournaments
       parameters:
         - name: tournamentId
@@ -4985,8 +4811,6 @@ paths:
       summary: Get league team away event totals
       description: Provides cumulative team-level statistics considering only away matches in a given season.
       tags:
-        - Football
-        - Teams
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5026,7 +4850,6 @@ paths:
       description: Retrieves information about the available statistic fields for players in a specific tournament 
         season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5065,7 +4888,6 @@ paths:
       summary: List power ranking rounds
       description: Provides a list of round numbers for which power ranking data is available in a tournament season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5104,7 +4926,6 @@ paths:
       summary: Get power rankings by round
       description: Returns team power ranking positions and metrics for a selected round of a tournament season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5150,8 +4971,6 @@ paths:
       summary: Get player of the season
       description: Returns details about the officially awarded "Player of the Season" for a tournament.
       tags:
-        - Football
-        - Players
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5190,8 +5009,6 @@ paths:
       summary: Get league events by round
       description: Lists all matches for a specific round of a tournament season.
       tags:
-        - Football
-        - Matches
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5237,8 +5054,6 @@ paths:
       summary: Get league events by round and slug
       description: Lists matches for a specific round, further filtered by a stage slug (e.g., 'championship-round').
       tags:
-        - Football
-        - Matches
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5292,7 +5107,6 @@ paths:
       description: Lists all events for a specific tournament scheduled on a given date, with optional timezone 
         formatting.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5363,8 +5177,6 @@ paths:
       summary: Get tournament season events
       description: Returns a list of all events for a specified tournament and season, typically used for group stages.
       tags:
-        - Football
-        - Matches
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5403,10 +5215,7 @@ paths:
       summary: Get group tournament total standings
       description: Retrieves the total standings table for a tournament season in group context.
       tags:
-        - Football
         - Tournaments
-        - Standings
-        - Groups
       parameters:
         - name: tournamentId
           in: path
@@ -5444,10 +5253,7 @@ paths:
       summary: Get group tournament home standings
       description: Retrieves the home standings table for a tournament season in group context.
       tags:
-        - Football
         - Tournaments
-        - Standings
-        - Groups
       parameters:
         - name: tournamentId
           in: path
@@ -5485,8 +5291,7 @@ paths:
       summary: Get tournament featured events
       description: Retrieves featured/highlighted events for a tournament.
       tags:
-        - Football
-        - Matches
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -5517,7 +5322,6 @@ paths:
       summary: Get tournament winners
       description: Retrieves historical winners of a tournament.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5549,8 +5353,7 @@ paths:
       summary: Get tournament player news
       description: Retrieves player-related news for a tournament.
       tags:
-        - Football
-        - Players
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -5581,8 +5384,7 @@ paths:
       summary: Get tournament transfer history
       description: Retrieves paginated player transfer history for a tournament.
       tags:
-        - Football
-        - Players
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -5620,8 +5422,7 @@ paths:
       summary: Get tournament events on date
       description: Retrieves all events for a tournament on a specific date.
       tags:
-        - Football
-        - Matches
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -5659,8 +5460,7 @@ paths:
       summary: Get tournament season teams
       description: Retrieves all teams participating in a tournament season.
       tags:
-        - Football
-        - Teams
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -5698,7 +5498,6 @@ paths:
       summary: Get tournament season venues
       description: Retrieves all venues used in a tournament season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5737,8 +5536,7 @@ paths:
       summary: Get player statistics info
       description: Retrieves available player statistic categories for a tournament season.
       tags:
-        - Football
-        - Players
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -5776,8 +5574,7 @@ paths:
       summary: Get team statistics types
       description: Retrieves available team statistic categories for a tournament season.
       tags:
-        - Football
-        - Teams
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -5815,7 +5612,6 @@ paths:
       summary: Get tournament top ratings
       description: Retrieves overall top-rated players for a tournament season.
       tags:
-        - Football
         - Tournaments
       parameters:
         - name: tournamentId
@@ -5854,8 +5650,7 @@ paths:
       summary: Get player of season race
       description: Retrieves the player of the season race standings for a tournament.
       tags:
-        - Football
-        - Players
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -5893,8 +5688,7 @@ paths:
       summary: Get tournament top player performance
       description: Retrieves top individual player performances for a tournament.
       tags:
-        - Football
-        - Players
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -5925,7 +5719,7 @@ paths:
       summary: Get referee details
       description: Returns the name, nationality, and career data for a specified referee.
       tags:
-        - Football
+        - Referees
       parameters:
         - name: id
           in: path
@@ -5956,7 +5750,7 @@ paths:
       summary: Get referee image
       description: Downloads the official photo for the specified referee ID. The response is the raw image data.
       tags:
-        - Football
+        - Referees
       parameters:
         - name: id
           in: path
@@ -5988,7 +5782,7 @@ paths:
       summary: Get referee statistics
       description: Returns aggregated officiating data for a referee, such as total matches, cards issued, etc.
       tags:
-        - Football
+        - Referees
       parameters:
         - name: id
           in: path
@@ -6019,8 +5813,7 @@ paths:
       summary: Get previous referee matches
       description: Fetches a paginated list of completed matches officiated by a referee, sorted by most recent first.
       tags:
-        - Football
-        - Matches
+        - Referees
       parameters:
         - name: id
           in: path
@@ -6064,8 +5857,7 @@ paths:
       summary: Get upcoming referee matches
       description: Lists a paginated list of scheduled future matches assigned to a referee, sorted chronologically.
       tags:
-        - Football
-        - Matches
+        - Referees
       parameters:
         - name: id
           in: path
@@ -6109,7 +5901,6 @@ paths:
       summary: Get sport odds by date
       description: Fetches pre-match betting odds for all football matches on a specific calendar date.
       tags:
-        - Football
         - Matches
       parameters:
         - name: day
@@ -6161,7 +5952,6 @@ paths:
       summary: Get featured betting events
       description: Returns a curated list of highlighted football matches with their betting odds information.
       tags:
-        - Football
         - Matches
       responses:
         '200':
@@ -6185,8 +5975,7 @@ paths:
       summary: Get category scheduled events
       description: Lists all football matches for a given category occurring on a specific date (YYYY-MM-DD).
       tags:
-        - Football
-        - Matches
+        - Categories
       parameters:
         - name: categoryId
           in: path
@@ -6244,7 +6033,6 @@ paths:
       summary: Get venue details
       description: Retrieves detailed information for a specific venue.
       tags:
-        - Football
         - Venues
       parameters:
         - name: id
@@ -6276,8 +6064,7 @@ paths:
       summary: Get venue events
       description: Retrieves paginated events at a specific venue.
       tags:
-        - Football
-        - Matches
+        - Venues
       parameters:
         - name: id
           in: path
@@ -6329,7 +6116,6 @@ paths:
       summary: Get venue image
       description: Retrieves the image for a specific venue.
       tags:
-        - Football
         - Venues
       parameters:
         - name: id
@@ -6361,8 +6147,7 @@ paths:
       summary: Get venue near events
       description: Retrieves upcoming and recent events at a venue.
       tags:
-        - Football
-        - Matches
+        - Venues
       parameters:
         - name: id
           in: path
@@ -6393,9 +6178,7 @@ paths:
       summary: Get away player jersey
       description: Fetches the away jersey graphic for a player in a specific match. The response is the raw image data.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -6428,7 +6211,6 @@ paths:
       description: Fetches the away jersey graphic for a goalkeeper in a specific match. The response is the raw image 
         data.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -6461,9 +6243,7 @@ paths:
       summary: Get home player jersey
       description: Fetches the home jersey graphic for a player in a specific match. The response is the raw image data.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -6496,7 +6276,6 @@ paths:
       description: Fetches the home jersey graphic for a goalkeeper in a specific match. The response is the raw image 
         data.
       tags:
-        - Football
         - Matches
       parameters:
         - name: id
@@ -6530,9 +6309,7 @@ paths:
       description: Fetches the away clean jersey graphic for a player in a specific match. The response is the raw image
         data.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -6565,9 +6342,7 @@ paths:
       description: Fetches the home clean jersey graphic for a player in a specific match. The response is the raw image
         data.
       tags:
-        - Football
         - Matches
-        - Players
       parameters:
         - name: id
           in: path

@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Volleyball API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,7 +315,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -361,7 +353,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -393,7 +384,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -417,7 +407,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -449,7 +438,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -473,7 +461,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -505,7 +492,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -529,7 +515,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -561,7 +546,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -593,7 +577,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -625,7 +608,6 @@ paths:
       summary: Search volleyball entities
       description: Searches for volleyball teams, players, and tournaments.
       tags:
-        - Volleyball
         - Search
       parameters:
         - name: term
@@ -667,10 +649,10 @@ paths:
   /api/volleyball/matches/{day}/{month}/{year}:
     get:
       operationId: getVolleyballMatchesByDate
+      deprecated: true
       summary: Get volleyball matches by date
-      description: Fetches all volleyball matches scheduled for a specific date.
+      description: Deprecated — the flat per-date feed is being retired. Assemble the day per competition instead — list categories then call /api/{sport}/category/{id}/events/{day}/{month}/{year}, or per tournament /api/{sport}/tournament/{id}/scheduled-events/{date} (ISO date). See the AllSportsAPI FAQ on getting all matches for a specific date. Fetches all volleyball matches scheduled for a specific date.
       tags:
-        - Volleyball
         - Matches
       parameters:
         - name: day
@@ -722,7 +704,6 @@ paths:
       summary: Get live volleyball matches
       description: Retrieves all currently live volleyball matches.
       tags:
-        - Volleyball
         - Matches
       responses:
         '200':
@@ -746,9 +727,7 @@ paths:
       summary: Get volleyball matches by category and date
       description: Retrieves all volleyball matches for a specific category on a given date.
       tags:
-        - Volleyball
         - Categories
-        - Matches
       parameters:
         - name: id
           in: path
@@ -807,9 +786,7 @@ paths:
       description: Retrieves all available volleyball tournament categories, which typically correspond to countries or 
         regions.
       tags:
-        - Volleyball
         - Tournaments
-        - Categories
       responses:
         '200':
           description: A list of tournament categories.
@@ -832,8 +809,6 @@ paths:
       summary: Get tournaments by category
       description: Retrieves all volleyball tournaments within a specific category.
       tags:
-        - Volleyball
-        - Categories
         - Tournaments
       parameters:
         - name: id
@@ -865,7 +840,6 @@ paths:
       summary: Get volleyball match details
       description: Retrieves detailed information for a specific volleyball match, including teams, score, and status.
       tags:
-        - Volleyball
         - Matches
       parameters:
         - name: id
@@ -897,9 +871,7 @@ paths:
       summary: Get match betting odds
       description: Retrieves available betting odds from bookmaker `1` for a specific match.
       tags:
-        - Volleyball
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -931,7 +903,6 @@ paths:
       description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., 
         points won, substitutions).
       tags:
-        - Volleyball
         - Matches
       parameters:
         - name: id
@@ -963,9 +934,7 @@ paths:
       summary: Get match statistics
       description: Retrieves comprehensive team and player statistics for a specific volleyball match.
       tags:
-        - Volleyball
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -996,9 +965,7 @@ paths:
       summary: Get match streaks
       description: Provides recent form and streak information (e.g., winning streaks) for each team in a match.
       tags:
-        - Volleyball
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1029,9 +996,7 @@ paths:
       summary: Get head-to-head history
       description: Retrieves the detailed match history for head-to-head encounters between two teams.
       tags:
-        - Volleyball
         - Matches
-        - Statistics
       parameters:
         - name: customId
           in: path
@@ -1062,9 +1027,7 @@ paths:
       summary: Get previous team matches
       description: Fetches a paginated list of completed matches for a team, sorted by date descending.
       tags:
-        - Volleyball
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1108,7 +1071,6 @@ paths:
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome.
       tags:
-        - Volleyball
         - Matches
       parameters:
         - name: id
@@ -1140,7 +1102,6 @@ paths:
       summary: Get tournament seasons
       description: Retrieves a list of all available seasons for a specific volleyball tournament.
       tags:
-        - Volleyball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -1172,7 +1133,6 @@ paths:
       summary: Get tournament details
       description: Retrieves comprehensive details for a specific volleyball tournament.
       tags:
-        - Volleyball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -1204,9 +1164,7 @@ paths:
       summary: Get tournament total standings
       description: Retrieves the complete standings table for all teams in a specific tournament season.
       tags:
-        - Volleyball
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -1244,9 +1202,7 @@ paths:
       summary: Get tournament home standings
       description: Retrieves the standings based on home games only for a specific tournament season.
       tags:
-        - Volleyball
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -1284,9 +1240,7 @@ paths:
       summary: Get tournament away standings
       description: Retrieves the standings based on away games only for a specific tournament season.
       tags:
-        - Volleyball
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -1324,9 +1278,7 @@ paths:
       summary: Get tournament upcoming matches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
       tags:
-        - Volleyball
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -1377,7 +1329,6 @@ paths:
       summary: Get tournament rounds
       description: Retrieves a list of all rounds (or weeks) for a specific tournament season.
       tags:
-        - Volleyball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -1416,9 +1367,7 @@ paths:
       summary: Get tournament last matches
       description: Retrieves a paginated list of recently played matches in a specific tournament season.
       tags:
-        - Volleyball
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -1469,10 +1418,7 @@ paths:
       summary: Get team events total statistics
       description: Retrieves aggregated team performance statistics for all games in a tournament season.
       tags:
-        - Volleyball
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -1510,10 +1456,7 @@ paths:
       summary: Get team events home statistics
       description: Retrieves aggregated team performance statistics for home games in a tournament season.
       tags:
-        - Volleyball
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -1551,10 +1494,7 @@ paths:
       summary: Get team events away statistics
       description: Retrieves aggregated team performance statistics for away games in a tournament season.
       tags:
-        - Volleyball
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -1592,7 +1532,6 @@ paths:
       summary: Get volleyball team details
       description: Retrieves comprehensive details for a specific volleyball team.
       tags:
-        - Volleyball
         - Teams
       parameters:
         - name: id
@@ -1624,9 +1563,7 @@ paths:
       summary: Get team near matches
       description: Retrieves a list of recent and upcoming matches for a specific team.
       tags:
-        - Volleyball
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1657,9 +1594,7 @@ paths:
       summary: Get team tournaments
       description: Retrieves a list of all unique tournaments a team has participated in.
       tags:
-        - Volleyball
         - Teams
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -1690,9 +1625,7 @@ paths:
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which a team's standings are available.
       tags:
-        - Volleyball
         - Teams
-        - Standings
       parameters:
         - name: id
           in: path
@@ -1723,9 +1656,7 @@ paths:
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head (H2H) statistics between the two teams in a match.
       tags:
-        - Volleyball
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1756,7 +1687,6 @@ paths:
       summary: Get event metadata
       description: Retrieves SEO and metadata for a specific event.
       tags:
-        - Volleyball
         - Matches
       parameters:
         - name: id
@@ -1788,7 +1718,6 @@ paths:
       summary: Get all odds for event
       description: Retrieves all available odds from a specific provider for an event.
       tags:
-        - Volleyball
         - Matches
       parameters:
         - name: id
@@ -1827,7 +1756,6 @@ paths:
       summary: Get event graph sequence
       description: Retrieves the momentum/pressure graph sequence data for a match.
       tags:
-        - Volleyball
         - Matches
       parameters:
         - name: id
@@ -1859,7 +1787,6 @@ paths:
       summary: Get event official tweets
       description: Retrieves official social media posts related to an event.
       tags:
-        - Volleyball
         - Matches
       parameters:
         - name: id
@@ -1891,7 +1818,6 @@ paths:
       summary: Get tournament cup trees
       description: Retrieves the knockout bracket (cup trees) for a specific tournament season.
       tags:
-        - Volleyball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -1930,9 +1856,7 @@ paths:
       summary: Get tournament matches by round
       description: Retrieves all matches for a specific round of a tournament season.
       tags:
-        - Volleyball
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -1977,9 +1901,7 @@ paths:
       summary: Get tournament logo
       description: Retrieves the logo image for a specific tournament.
       tags:
-        - Volleyball
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2011,9 +1933,7 @@ paths:
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       tags:
-        - Volleyball
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2045,9 +1965,7 @@ paths:
       summary: Get team logo
       description: Retrieves the logo image for a specific team.
       tags:
-        - Volleyball
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -2079,9 +1997,7 @@ paths:
       summary: Get tournament matches by date
       description: Retrieves all matches for a specific tournament scheduled on a given date.
       tags:
-        - Volleyball
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2139,8 +2055,7 @@ paths:
       summary: Get tournament featured events
       description: Retrieves featured/highlighted events for a tournament.
       tags:
-        - Volleyball
-        - Matches
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -2171,7 +2086,6 @@ paths:
       summary: Get tournament winners
       description: Retrieves historical winners of a tournament.
       tags:
-        - Volleyball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2203,7 +2117,6 @@ paths:
       summary: Get tournament season venues
       description: Retrieves all venues used in a tournament season.
       tags:
-        - Volleyball
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2242,8 +2155,7 @@ paths:
       summary: Get team statistics types
       description: Retrieves available team statistic categories for a tournament season.
       tags:
-        - Volleyball
-        - Teams
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -2281,8 +2193,7 @@ paths:
       summary: Get player statistics info
       description: Retrieves available player statistic categories for a tournament season.
       tags:
-        - Volleyball
-        - Players
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path

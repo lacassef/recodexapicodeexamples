@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Tennis API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,7 +315,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -361,7 +353,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -393,7 +384,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -417,7 +407,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -449,7 +438,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -473,7 +461,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -505,7 +492,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -529,7 +515,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -561,7 +546,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -593,7 +577,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -625,7 +608,6 @@ paths:
       summary: Search tennis players and tournaments
       description: Searches for tennis players and tournaments based on a search term.
       tags:
-        - Tennis
         - Search
       parameters:
         - name: term
@@ -667,10 +649,10 @@ paths:
   /api/tennis/events/{day}/{month}/{year}:
     get:
       operationId: getTennisEventsByDate
+      deprecated: true
       summary: Get tennis events by date
-      description: Fetches all tennis matches scheduled for a specific date.
+      description: Deprecated — the flat per-date feed is being retired. Assemble the day per competition instead — list categories then call /api/{sport}/category/{id}/events/{day}/{month}/{year}, or per tournament /api/{sport}/tournament/{id}/scheduled-events/{date} (ISO date). See the AllSportsAPI FAQ on getting all matches for a specific date. Fetches all tennis matches scheduled for a specific date.
       tags:
-        - Tennis
         - Matches
       parameters:
         - name: day
@@ -722,7 +704,6 @@ paths:
       summary: Get tennis calendar for month
       description: Retrieves a calendar overview of unique tennis tournaments for a specific month.
       tags:
-        - Tennis
         - Calendar
       parameters:
         - name: month
@@ -767,9 +748,7 @@ paths:
       summary: Get tennis events with odds by date
       description: Retrieves tennis events along with their betting odds for a specific date from bookmaker `1`.
       tags:
-        - Tennis
         - Matches
-        - Odds
       parameters:
         - name: day
           in: path
@@ -820,9 +799,7 @@ paths:
       summary: Get tennis events by category and date
       description: Retrieves all tennis matches for a specific category (e.g., ATP, WTA, Challenger) on a given date.
       tags:
-        - Tennis
         - Categories
-        - Matches
       parameters:
         - name: id
           in: path
@@ -880,8 +857,6 @@ paths:
       summary: Get daily tennis categories
       description: Retrieves a list of tennis categories that have scheduled events on a specific date.
       tags:
-        - Tennis
-        - Categories
         - Calendar
       parameters:
         - name: day
@@ -933,7 +908,6 @@ paths:
       summary: Get live tennis matches
       description: Retrieves all currently live tennis matches.
       tags:
-        - Tennis
         - Matches
       responses:
         '200':
@@ -957,9 +931,7 @@ paths:
       summary: Get featured tennis events with odds
       description: Returns highlighted tennis events with odds information for a provider.
       tags:
-        - Tennis
         - Matches
-        - Odds
       parameters:
         - name: providerId
           in: path
@@ -991,7 +963,6 @@ paths:
       description: Retrieves detailed information for a specific tennis match, including players, score, status, and 
         tournament info.
       tags:
-        - Tennis
         - Matches
       parameters:
         - name: id
@@ -1023,9 +994,7 @@ paths:
       summary: Get match statistics
       description: Retrieves comprehensive statistical data for a tennis match, such as serve stats, break points, etc.
       tags:
-        - Tennis
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1056,9 +1025,7 @@ paths:
       summary: Get head-to-head history
       description: Retrieves the detailed match history for head-to-head encounters between two players/teams.
       tags:
-        - Tennis
         - Matches
-        - Statistics
       parameters:
         - name: customId
           in: path
@@ -1089,9 +1056,7 @@ paths:
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head statistics, including win counts and recent form.
       tags:
-        - Tennis
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1122,9 +1087,7 @@ paths:
       summary: Get match betting odds
       description: Retrieves available betting odds from bookmaker `1` for a specific match.
       tags:
-        - Tennis
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1155,9 +1118,7 @@ paths:
       summary: Get match featured odds
       description: Retrieves featured odds for a specific tennis match and provider.
       tags:
-        - Tennis
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1195,9 +1156,7 @@ paths:
       summary: Get match winning odds
       description: Retrieves winning odds for a specific tennis match and provider.
       tags:
-        - Tennis
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1235,9 +1194,7 @@ paths:
       summary: Get match power graph
       description: Retrieves the tennis power graph, showing momentum and key service statistics for the match.
       tags:
-        - Tennis
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1268,9 +1225,7 @@ paths:
       summary: Get point-by-point data
       description: Retrieves a detailed, chronological list of points and games for a tennis match.
       tags:
-        - Tennis
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1301,9 +1256,7 @@ paths:
       summary: Get match streaks
       description: Provides recent form and streak information for each player/team in the match.
       tags:
-        - Tennis
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1334,9 +1287,7 @@ paths:
       summary: Get match highlights
       description: Retrieves video highlights and key moments from a specific match, if available.
       tags:
-        - Tennis
         - Matches
-        - Media
       parameters:
         - name: id
           in: path
@@ -1367,7 +1318,6 @@ paths:
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome.
       tags:
-        - Tennis
         - Matches
       parameters:
         - name: id
@@ -1399,7 +1349,6 @@ paths:
       summary: Get tennis power graph
       description: Retrieves the tennis power graph showing momentum and key service statistics.
       tags:
-        - Tennis
         - Matches
       parameters:
         - name: id
@@ -1431,7 +1380,6 @@ paths:
       summary: Get all odds for event
       description: Retrieves all available odds from a specific provider for an event.
       tags:
-        - Tennis
         - Matches
       parameters:
         - name: id
@@ -1470,7 +1418,6 @@ paths:
       summary: Get event graph sequence
       description: Retrieves the momentum/pressure graph sequence data for a match.
       tags:
-        - Tennis
         - Matches
       parameters:
         - name: id
@@ -1502,7 +1449,6 @@ paths:
       summary: Get event official tweets
       description: Retrieves official social media posts related to an event.
       tags:
-        - Tennis
         - Matches
       parameters:
         - name: id
@@ -1534,7 +1480,6 @@ paths:
       summary: Get tennis player details
       description: Retrieves comprehensive details for a specific tennis player, including personal info and rankings.
       tags:
-        - Tennis
         - Players
       parameters:
         - name: id
@@ -1566,9 +1511,7 @@ paths:
       summary: Get player image
       description: Retrieves the profile image for a specific player.
       tags:
-        - Tennis
         - Players
-        - Media
       parameters:
         - name: id
           in: path
@@ -1600,9 +1543,7 @@ paths:
       summary: Get previous player matches
       description: Fetches a paginated list of completed matches for a player, sorted by date descending.
       tags:
-        - Tennis
         - Players
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1646,9 +1587,7 @@ paths:
       summary: Get upcoming player matches
       description: Fetches a paginated list of scheduled matches for a player, sorted by date ascending.
       tags:
-        - Tennis
         - Players
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1692,9 +1631,7 @@ paths:
       summary: Get player standings seasons
       description: Retrieves a list of seasons for which a player's standings/rankings are available.
       tags:
-        - Tennis
         - Players
-        - Standings
       parameters:
         - name: id
           in: path
@@ -1725,9 +1662,7 @@ paths:
       summary: Get player recent tournaments
       description: Retrieves a list of recent unique tournaments a player has participated in.
       tags:
-        - Tennis
         - Players
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -1758,9 +1693,7 @@ paths:
       summary: Get player rankings
       description: Retrieves current and historical ranking information for a specific player.
       tags:
-        - Tennis
         - Players
-        - Rankings
       parameters:
         - name: id
           in: path
@@ -1791,9 +1724,7 @@ paths:
       summary: Get player near matches
       description: Retrieves a list of recent and upcoming matches for a specific player.
       tags:
-        - Tennis
         - Players
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1824,9 +1755,7 @@ paths:
       summary: Get previous team matches
       description: Fetches a paginated list of completed matches for a doubles team, sorted by date descending.
       tags:
-        - Tennis
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1870,9 +1799,7 @@ paths:
       summary: Get upcoming team matches
       description: Fetches a paginated list of scheduled matches for a doubles team, sorted by date ascending.
       tags:
-        - Tennis
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1916,9 +1843,7 @@ paths:
       summary: Get team standings seasons
       description: Retrieves a list of seasons for which a doubles team's standings are available.
       tags:
-        - Tennis
         - Teams
-        - Standings
       parameters:
         - name: id
           in: path
@@ -1949,9 +1874,7 @@ paths:
       summary: Get team recent tournaments
       description: Retrieves a list of recent unique tournaments a doubles team has participated in.
       tags:
-        - Tennis
         - Teams
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -1982,7 +1905,6 @@ paths:
       summary: Get tennis team details
       description: Retrieves comprehensive details for a specific tennis doubles team.
       tags:
-        - Tennis
         - Teams
       parameters:
         - name: id
@@ -2014,9 +1936,7 @@ paths:
       summary: Get team rankings
       description: Retrieves current and historical ranking information for a doubles team.
       tags:
-        - Tennis
         - Teams
-        - Rankings
       parameters:
         - name: id
           in: path
@@ -2047,9 +1967,7 @@ paths:
       summary: Get team image
       description: Retrieves the profile image for a specific doubles team.
       tags:
-        - Tennis
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -2081,9 +1999,7 @@ paths:
       summary: Get team year statistics
       description: Retrieves year-based statistics for a doubles team.
       tags:
-        - Tennis
         - Teams
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2121,9 +2037,7 @@ paths:
       summary: Get team season best result
       description: Retrieves the best result achieved by a team in a specific season.
       tags:
-        - Tennis
         - Teams
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2161,9 +2075,7 @@ paths:
       summary: Get team near matches
       description: Retrieves a list of recent and upcoming matches for a specific doubles team.
       tags:
-        - Tennis
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -2194,8 +2106,7 @@ paths:
       summary: Get team featured event
       description: Retrieves the current or next featured event for a team.
       tags:
-        - Tennis
-        - Matches
+        - Teams
       parameters:
         - name: id
           in: path
@@ -2226,7 +2137,6 @@ paths:
       summary: Get team recent tournaments
       description: Retrieves tournaments the team has recently participated in.
       tags:
-        - Tennis
         - Teams
       parameters:
         - name: id
@@ -2258,7 +2168,6 @@ paths:
       summary: Get team overall ranks
       description: Retrieves overall ranking data for a team in a tournament season.
       tags:
-        - Tennis
         - Teams
       parameters:
         - name: id
@@ -2304,9 +2213,7 @@ paths:
       summary: Get manager image
       description: Retrieves the profile image for a specific manager.
       tags:
-        - Tennis
         - Managers
-        - Media
       parameters:
         - name: id
           in: path
@@ -2338,7 +2245,6 @@ paths:
       summary: Get tournament details
       description: Retrieves comprehensive details for a specific tennis tournament.
       tags:
-        - Tennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2370,7 +2276,6 @@ paths:
       summary: Get tournament info/metadata
       description: Retrieves metadata for a specific tournament, such as SEO tags and related info.
       tags:
-        - Tennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2402,9 +2307,7 @@ paths:
       summary: Get tournament logo
       description: Retrieves the logo image for a specific tournament.
       tags:
-        - Tennis
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2436,9 +2339,7 @@ paths:
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       tags:
-        - Tennis
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2470,9 +2371,7 @@ paths:
       summary: Get tournament media
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       tags:
-        - Tennis
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2503,7 +2402,6 @@ paths:
       summary: Get tournament seasons
       description: Retrieves a list of all available seasons for a specific tournament.
       tags:
-        - Tennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2535,7 +2433,6 @@ paths:
       summary: Get tournament season info
       description: Retrieves information about a specific tournament season, such as start and end dates.
       tags:
-        - Tennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2574,9 +2471,7 @@ paths:
       summary: Get tournament standings
       description: Retrieves the standings/rankings for a specific tournament season.
       tags:
-        - Tennis
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -2614,9 +2509,7 @@ paths:
       summary: Get tournament venues
       description: Retrieves the venues available for a tournament season.
       tags:
-        - Tennis
         - Tournaments
-        - Venues
       parameters:
         - name: tournamentId
           in: path
@@ -2654,10 +2547,7 @@ paths:
       summary: Get tournament venue events
       description: Retrieves events for a specific venue in a tournament season.
       tags:
-        - Tennis
         - Tournaments
-        - Venues
-        - Events
       parameters:
         - name: tournamentId
           in: path
@@ -2709,9 +2599,7 @@ paths:
       summary: Get tournament last matches
       description: Retrieves a paginated list of recently played matches in a specific tournament season.
       tags:
-        - Tennis
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2762,9 +2650,7 @@ paths:
       summary: Get tournament upcoming matches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
       tags:
-        - Tennis
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2815,9 +2701,7 @@ paths:
       summary: Get tournament matches by round
       description: Retrieves matches for a specific round in a tournament, identified by a slug.
       tags:
-        - Tennis
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2869,7 +2753,6 @@ paths:
       summary: Get tournament rounds
       description: Retrieves a list of all rounds for a specific tournament season.
       tags:
-        - Tennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2908,7 +2791,6 @@ paths:
       summary: Get tournament draw/bracket
       description: Retrieves the tournament's draw structure (bracket) in a structured format.
       tags:
-        - Tennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2947,7 +2829,6 @@ paths:
       summary: Get tournament draw (legacy format)
       description: Retrieves the tournament's draw structure in a legacy format.
       tags:
-        - Tennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2986,9 +2867,7 @@ paths:
       summary: Get tournament matches by date
       description: Retrieves all matches for a specific tournament scheduled on a given date.
       tags:
-        - Tennis
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -3046,8 +2925,7 @@ paths:
       summary: Get tennis tournament categories
       description: Retrieves all available tennis tournament categories (e.g., ATP, WTA, Challenger).
       tags:
-        - Tennis
-        - Categories
+        - Tournaments
       responses:
         '200':
           description: A list of tennis tournament categories.
@@ -3070,8 +2948,6 @@ paths:
       summary: Get tournaments by category
       description: Retrieves all unique tournaments within a specific tennis category.
       tags:
-        - Tennis
-        - Categories
         - Tournaments
       parameters:
         - name: id
@@ -3103,8 +2979,7 @@ paths:
       summary: Get tournament featured events
       description: Retrieves featured/highlighted events for a tournament.
       tags:
-        - Tennis
-        - Matches
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -3135,7 +3010,6 @@ paths:
       summary: Get tournament winners
       description: Retrieves historical winners of a tournament.
       tags:
-        - Tennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -3167,8 +3041,7 @@ paths:
       summary: Get tournament events on date
       description: Retrieves all events for a tournament on a specific date.
       tags:
-        - Tennis
-        - Matches
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -3206,8 +3079,7 @@ paths:
       summary: Get team statistics types
       description: Retrieves available team statistic categories for a tournament season.
       tags:
-        - Tennis
-        - Teams
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -3246,7 +3118,6 @@ paths:
       description: Retrieves the top-performing teams in the main draw of a tennis tournament season (e.g. Australian 
         Open).
       tags:
-        - Tennis
         - Tournaments
       parameters:
         - name: tournamentId
@@ -3284,7 +3155,6 @@ paths:
       summary: Get venue details
       description: Retrieves detailed information for a specific venue.
       tags:
-        - Tennis
         - Venues
       parameters:
         - name: id
@@ -3316,8 +3186,7 @@ paths:
       summary: Get venue events
       description: Retrieves paginated events at a specific venue.
       tags:
-        - Tennis
-        - Matches
+        - Venues
       parameters:
         - name: id
           in: path
@@ -3369,7 +3238,6 @@ paths:
       summary: Get venue image
       description: Retrieves the image for a specific venue.
       tags:
-        - Tennis
         - Venues
       parameters:
         - name: id
@@ -3402,8 +3270,6 @@ paths:
       description: Retrieves a list of categories that have scheduled events for up to five specified days in a given 
         month.
       tags:
-        - Tennis
-        - Categories
         - Calendar
       parameters:
         - name: month
@@ -3455,7 +3321,6 @@ paths:
       summary: Get ATP rankings
       description: Retrieves the current official ATP (Association of Tennis Professionals) singles rankings.
       tags:
-        - Tennis
         - Rankings
       responses:
         '200':
@@ -3479,7 +3344,6 @@ paths:
       summary: Get live ATP rankings
       description: Retrieves the live/race ATP rankings, updated in real-time with current tournament points.
       tags:
-        - Tennis
         - Rankings
       responses:
         '200':
@@ -3503,7 +3367,6 @@ paths:
       summary: Get WTA rankings
       description: Retrieves the current official WTA (Women's Tennis Association) singles rankings.
       tags:
-        - Tennis
         - Rankings
       responses:
         '200':
@@ -3527,7 +3390,6 @@ paths:
       summary: Get live WTA rankings
       description: Retrieves the live/race WTA rankings, updated in real-time with current tournament points.
       tags:
-        - Tennis
         - Rankings
       responses:
         '200':

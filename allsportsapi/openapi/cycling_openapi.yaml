@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Cycling API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,7 +315,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -361,7 +353,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -393,7 +384,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -417,7 +407,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -449,7 +438,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -473,7 +461,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -505,7 +492,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -529,7 +515,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -561,7 +546,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -593,7 +577,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -625,7 +608,6 @@ paths:
       summary: Search cycling entities
       description: Searches for cycling teams, riders, and tournaments.
       tags:
-        - Cycling
         - Search
       parameters:
         - name: term
@@ -670,8 +652,7 @@ paths:
       summary: Get cycling stage substages
       description: Retrieves substages associated with the given cycling stage.
       tags:
-        - Cycling
-        - Stage
+        - Stages
       parameters:
         - name: stageId
           in: path
@@ -702,9 +683,7 @@ paths:
       summary: Get cycling stage competitor standings
       description: Retrieves competitor standings for a cycling stage.
       tags:
-        - Cycling
-        - Stage
-        - Standings
+        - Stages
       parameters:
         - name: id
           in: path
@@ -735,9 +714,7 @@ paths:
       summary: Get cycling stage team standings
       description: Retrieves team standings for a cycling stage.
       tags:
-        - Cycling
-        - Stage
-        - Standings
+        - Stages
       parameters:
         - name: id
           in: path
@@ -768,9 +745,7 @@ paths:
       summary: Get cycling stage highlights
       description: Retrieves highlights for a cycling stage.
       tags:
-        - Cycling
-        - Stage
-        - Media
+        - Stages
       parameters:
         - name: id
           in: path
@@ -801,8 +776,7 @@ paths:
       summary: Get cycling stage extended details
       description: Retrieves extended data for a cycling stage.
       tags:
-        - Cycling
-        - Stage
+        - Stages
       parameters:
         - name: id
           in: path
@@ -833,9 +807,7 @@ paths:
       summary: Get cycling stage odds (all) by provider
       description: Retrieves all available odds for a cycling stage from a provider.
       tags:
-        - Cycling
-        - Stage
-        - Odds
+        - Stages
       parameters:
         - name: id
           in: path
@@ -873,9 +845,7 @@ paths:
       summary: Get cycling stage odds (featured) by provider
       description: Retrieves featured odds for a cycling stage from a provider.
       tags:
-        - Cycling
-        - Stage
-        - Odds
+        - Stages
       parameters:
         - name: id
           in: path
@@ -913,9 +883,7 @@ paths:
       summary: Get cycling team stage seasons
       description: Retrieves cycling stage seasons for a team.
       tags:
-        - Cycling
-        - Team
-        - Season
+        - Teams
       parameters:
         - name: id
           in: path
@@ -946,9 +914,7 @@ paths:
       summary: Get cycling team stage season races
       description: Retrieves races for a cycling team in a specific stage season.
       tags:
-        - Cycling
-        - Team
-        - Stage
+        - Teams
       parameters:
         - name: id
           in: path
@@ -986,9 +952,7 @@ paths:
       summary: Get cycling team image
       description: Retrieves the image for a cycling team.
       tags:
-        - Cycling
-        - Team
-        - Media
+        - Teams
       parameters:
         - name: id
           in: path
@@ -1020,9 +984,7 @@ paths:
       summary: Get cycling unique stage seasons
       description: Retrieves seasons for a cycling unique stage.
       tags:
-        - Cycling
-        - Stage
-        - Season
+        - Stages
       parameters:
         - name: uniqueStageId
           in: path
@@ -1053,9 +1015,7 @@ paths:
       summary: Get cycling category image
       description: Retrieves the image for a cycling category.
       tags:
-        - Cycling
-        - Category
-        - Media
+        - Categories
       parameters:
         - name: categoryId
           in: path

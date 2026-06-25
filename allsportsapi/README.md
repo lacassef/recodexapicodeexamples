@@ -152,7 +152,7 @@ then list **tournaments per category**. See the
 | Goal | How |
 |------|-----|
 | **Live matches** | `GET /api/matches/live` (football) — search "live" in the Endpoints tab for other sports. |
-| **Matches on a date** | `GET /api/matches/{day}/{month}/{year}` — returns a 48‑hour window around UTC (see FAQ on time zones). |
+| **Matches on a date** | The flat `/api/matches/{day}/{month}/{year}` feed is being retired — assemble the day **per competition** (list categories → `GET /api/{sport}/category/{id}/events/{day}/{month}/{year}`, or per tournament `GET /api/{sport}/tournament/{id}/scheduled-events/{YYYY-MM-DD}`). Full per‑sport recipe: **[DailyMatches.md](DailyMatches.md)**. |
 | **All leagues of a sport** | List categories → list tournaments per category. |
 | **All teams in a league** | Use the **standings** endpoint for the season. |
 | **Match detail** | Find any "Match" endpoint: `lineups`, `statistics`, `incidents`, `best-players`, `odds`, `shotmap`, `highlights`. |
@@ -190,6 +190,7 @@ More answers in the **[FAQ](FAQ.md)**.
 allsportsapi/
 ├── README.md                ← you are here
 ├── FAQ.md                   Frequently asked questions (auth, images, time, odds, leagues…)
+├── DailyMatches.md          How to get a day's matches/events per sport (the new workflow)
 ├── Models/                  Response‑model reference
 │   ├── README.md            Data‑model guide + index of every model
 │   ├── *.md                 Field‑by‑field docs (Event, Player, Team, Tournament…)

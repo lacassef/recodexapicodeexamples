@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Ice Hockey API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,7 +315,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -361,7 +353,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -393,7 +384,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -417,7 +407,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -449,7 +438,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -473,7 +461,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -505,7 +492,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -529,7 +515,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -561,7 +546,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -593,7 +577,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -625,7 +608,6 @@ paths:
       summary: Search ice hockey entities
       description: Searches for ice hockey teams, players, and tournaments.
       tags:
-        - Ice Hockey
         - Search
       parameters:
         - name: term
@@ -667,10 +649,10 @@ paths:
   /api/ice-hockey/matches/{day}/{month}/{year}:
     get:
       operationId: getIceHockeyMatchesByDate
+      deprecated: true
       summary: Get ice hockey matches by date
-      description: Fetches all ice hockey matches scheduled for a specific date.
+      description: Deprecated — the flat per-date feed is being retired. Assemble the day per competition instead — list categories then call /api/{sport}/category/{id}/events/{day}/{month}/{year}, or per tournament /api/{sport}/tournament/{id}/scheduled-events/{date} (ISO date). See the AllSportsAPI FAQ on getting all matches for a specific date. Fetches all ice hockey matches scheduled for a specific date.
       tags:
-        - Ice Hockey
         - Matches
       parameters:
         - name: day
@@ -722,9 +704,7 @@ paths:
       summary: Get matches by category and date
       description: Retrieves all ice hockey matches for a specific category on a given date.
       tags:
-        - Ice Hockey
         - Categories
-        - Matches
       parameters:
         - name: id
           in: path
@@ -783,9 +763,7 @@ paths:
       description: Retrieves all available ice hockey tournament categories, which typically correspond to countries or 
         regions.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Categories
       responses:
         '200':
           description: A list of tournament categories.
@@ -808,8 +786,6 @@ paths:
       summary: Get tournaments by category
       description: Retrieves all ice hockey tournaments within a specific category.
       tags:
-        - Ice Hockey
-        - Categories
         - Tournaments
       parameters:
         - name: id
@@ -841,7 +817,6 @@ paths:
       summary: Get live ice hockey matches
       description: Retrieves all currently live ice hockey matches.
       tags:
-        - Ice Hockey
         - Matches
       responses:
         '200':
@@ -865,7 +840,6 @@ paths:
       summary: Get ice hockey match details
       description: Retrieves detailed information for a specific ice hockey match, including teams, score, and status.
       tags:
-        - Ice Hockey
         - Matches
       parameters:
         - name: id
@@ -897,10 +871,7 @@ paths:
       summary: Get player match statistics
       description: Retrieves detailed statistics for a specific player in a specific match.
       tags:
-        - Ice Hockey
         - Matches
-        - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -938,9 +909,7 @@ paths:
       summary: Get head-to-head history
       description: Retrieves the detailed match history for head-to-head encounters between two teams.
       tags:
-        - Ice Hockey
         - Matches
-        - Statistics
       parameters:
         - name: customId
           in: path
@@ -971,9 +940,7 @@ paths:
       summary: Get match lineups
       description: Retrieves the starting lineups and substitutes for both teams in a specific match.
       tags:
-        - Ice Hockey
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -1004,9 +971,7 @@ paths:
       summary: Get match statistics
       description: Retrieves comprehensive team and player statistics for a specific match.
       tags:
-        - Ice Hockey
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1038,7 +1003,6 @@ paths:
       description: Retrieves a chronological list of all significant incidents that occurred during the match (e.g., 
         goals, penalties).
       tags:
-        - Ice Hockey
         - Matches
       parameters:
         - name: id
@@ -1071,9 +1035,7 @@ paths:
       description: Fetches a paginated list of completed ice hockey games for a specific team, sorted by date 
         descending.
       tags:
-        - Ice Hockey
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1117,9 +1079,7 @@ paths:
       summary: Get upcoming team matches
       description: Fetches a paginated list of scheduled ice hockey games for a specific team, sorted by date ascending.
       tags:
-        - Ice Hockey
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1163,9 +1123,7 @@ paths:
       summary: Get team player statistics seasons
       description: Retrieves a list of seasons for which a team's player statistics are available.
       tags:
-        - Ice Hockey
         - Teams
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1196,10 +1154,7 @@ paths:
       summary: Get team top players for regular season
       description: Retrieves the best performing players for a team in the regular season of a specific tournament.
       tags:
-        - Ice Hockey
         - Teams
-        - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1244,10 +1199,7 @@ paths:
       summary: Get team top players for playoffs
       description: Retrieves the best performing players for a team in the playoffs of a specific tournament.
       tags:
-        - Ice Hockey
         - Teams
-        - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1292,9 +1244,7 @@ paths:
       summary: Get team tournaments
       description: Retrieves a list of all unique tournaments a team has participated in.
       tags:
-        - Ice Hockey
         - Teams
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -1325,7 +1275,6 @@ paths:
       summary: Get ice hockey team details
       description: Retrieves comprehensive details for a specific ice hockey team.
       tags:
-        - Ice Hockey
         - Teams
       parameters:
         - name: id
@@ -1357,9 +1306,7 @@ paths:
       summary: Get team players
       description: Retrieves the current roster of players for a specific team.
       tags:
-        - Ice Hockey
         - Teams
-        - Players
       parameters:
         - name: id
           in: path
@@ -1390,9 +1337,7 @@ paths:
       summary: Get team media
       description: Retrieves media content (e.g., videos, images) associated with a specific team.
       tags:
-        - Ice Hockey
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -1423,9 +1368,7 @@ paths:
       summary: Get team near matches
       description: Retrieves a list of recent and upcoming matches for a specific team.
       tags:
-        - Ice Hockey
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1456,9 +1399,7 @@ paths:
       summary: Get player near matches
       description: Retrieves a list of recent and upcoming matches for a specific player.
       tags:
-        - Ice Hockey
         - Players
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1489,9 +1430,7 @@ paths:
       summary: Get player statistics seasons
       description: Retrieves a list of seasons for which a player's statistics are available.
       tags:
-        - Ice Hockey
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1522,9 +1461,7 @@ paths:
       summary: Get player regular season statistics
       description: Retrieves a player's statistics for the regular season of a specific tournament.
       tags:
-        - Ice Hockey
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1569,9 +1506,7 @@ paths:
       summary: Get player playoffs statistics
       description: Retrieves a player's statistics for the playoffs of a specific tournament.
       tags:
-        - Ice Hockey
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1616,7 +1551,6 @@ paths:
       summary: Get ice hockey player details
       description: Retrieves comprehensive information about a specific ice hockey player.
       tags:
-        - Ice Hockey
         - Players
       parameters:
         - name: id
@@ -1648,9 +1582,7 @@ paths:
       summary: Get player media
       description: Retrieves media content (e.g., videos, images) associated with a specific player.
       tags:
-        - Ice Hockey
         - Players
-        - Media
       parameters:
         - name: id
           in: path
@@ -1681,9 +1613,7 @@ paths:
       summary: Get tournament total standings
       description: Retrieves the complete standings table for all teams in a specific tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -1721,9 +1651,7 @@ paths:
       summary: Get tournament home standings
       description: Retrieves the standings based on home games only for a specific tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -1761,9 +1689,7 @@ paths:
       summary: Get tournament away standings
       description: Retrieves the standings based on away games only for a specific tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -1801,10 +1727,7 @@ paths:
       summary: Get top players for playoffs
       description: Retrieves the best performing players in the playoffs of a specific tournament.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -1842,10 +1765,7 @@ paths:
       summary: Get top players for regular season
       description: Retrieves the best performing players in the regular season of a specific tournament.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -1883,9 +1803,7 @@ paths:
       summary: Get tournament last matches
       description: Retrieves a paginated list of recently played matches in a specific tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -1936,9 +1854,7 @@ paths:
       summary: Get tournament upcoming matches
       description: Retrieves a paginated list of scheduled upcoming matches in a specific tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -1989,7 +1905,6 @@ paths:
       summary: Get tournament details
       description: Retrieves comprehensive details for a specific ice hockey tournament.
       tags:
-        - Ice Hockey
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2021,9 +1936,7 @@ paths:
       summary: Get tournament logo
       description: Retrieves the logo image for a specific tournament.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2055,9 +1968,7 @@ paths:
       summary: Get tournament dark logo
       description: Retrieves the dark theme logo image for a specific tournament.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2089,9 +2000,7 @@ paths:
       summary: Get team logo
       description: Retrieves the logo image for a specific team.
       tags:
-        - Ice Hockey
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -2123,9 +2032,7 @@ paths:
       summary: Get player image
       description: Retrieves the profile image for a specific player.
       tags:
-        - Ice Hockey
         - Players
-        - Media
       parameters:
         - name: id
           in: path
@@ -2157,9 +2064,7 @@ paths:
       summary: Get manager/coach image
       description: Retrieves the profile image for a specific manager.
       tags:
-        - Ice Hockey
         - Managers
-        - Media
       parameters:
         - name: id
           in: path
@@ -2191,9 +2096,7 @@ paths:
       summary: Get tournament media
       description: Retrieves media content (e.g., videos, images) for a specific tournament.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2224,7 +2127,6 @@ paths:
       summary: Get tournament cup trees
       description: Retrieves the knockout bracket (cup trees) for a specific tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2263,7 +2165,6 @@ paths:
       summary: Get tournament seasons
       description: Retrieves a list of all available seasons for a specific tournament.
       tags:
-        - Ice Hockey
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2295,9 +2196,7 @@ paths:
       summary: Get match highlights
       description: Retrieves video highlights and key moments from a specific match, if available.
       tags:
-        - Ice Hockey
         - Matches
-        - Media
       parameters:
         - name: id
           in: path
@@ -2328,9 +2227,7 @@ paths:
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head (H2H) statistics between the two teams in a match.
       tags:
-        - Ice Hockey
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2361,7 +2258,6 @@ paths:
       summary: Get match form analysis
       description: Retrieves pre-game form and recent performance data for the teams in a specific match.
       tags:
-        - Ice Hockey
         - Matches
       parameters:
         - name: id
@@ -2393,9 +2289,7 @@ paths:
       summary: Get match betting odds
       description: Retrieves available betting odds from various bookmakers for a specific match.
       tags:
-        - Ice Hockey
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -2426,9 +2320,7 @@ paths:
       summary: Get match managers/coaches
       description: Retrieves information about the coaches for both teams in a specific match.
       tags:
-        - Ice Hockey
         - Matches
-        - Managers
       parameters:
         - name: id
           in: path
@@ -2459,7 +2351,6 @@ paths:
       summary: Get match votes
       description: Returns fan poll percentages and vote totals for the match outcome.
       tags:
-        - Ice Hockey
         - Matches
       parameters:
         - name: id
@@ -2489,11 +2380,9 @@ paths:
     get:
       operationId: getMatchBestPlayers
       summary: Get match best players
-      description: Retrieves a list of the best performing players from a specific match, based on SofaScore ratings.
+      description: Retrieves a list of the best performing players from a specific match, based on player ratings.
       tags:
-        - Ice Hockey
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -2524,9 +2413,7 @@ paths:
       summary: Get match streaks
       description: Provides recent form and streak information (e.g., winning streaks) for each team in a match.
       tags:
-        - Ice Hockey
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -2557,10 +2444,7 @@ paths:
       summary: Get match streaks with odds
       description: Returns recent team streaks combined with associated betting odds from bookmaker `1`.
       tags:
-        - Ice Hockey
         - Matches
-        - Statistics
-        - Odds
       parameters:
         - name: id
           in: path
@@ -2591,9 +2475,7 @@ paths:
       summary: Get previous manager matches
       description: Fetches a paginated list of completed matches for a specific manager, sorted by date descending.
       tags:
-        - Ice Hockey
         - Managers
-        - Matches
       parameters:
         - name: id
           in: path
@@ -2637,7 +2519,6 @@ paths:
       summary: Get ice hockey manager details
       description: Retrieves comprehensive information about a specific ice hockey manager/coach.
       tags:
-        - Ice Hockey
         - Managers
       parameters:
         - name: id
@@ -2669,10 +2550,7 @@ paths:
       summary: Get team events total statistics
       description: Retrieves aggregated team performance statistics for all games in a tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2710,10 +2588,7 @@ paths:
       summary: Get team events home statistics
       description: Retrieves aggregated team performance statistics for home games in a tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2751,10 +2626,7 @@ paths:
       summary: Get team events away statistics
       description: Retrieves aggregated team performance statistics for away games in a tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2792,10 +2664,7 @@ paths:
       summary: Get top players overall
       description: Retrieves the best performing players for an entire tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2833,9 +2702,7 @@ paths:
       summary: Get player statistics types
       description: Retrieves the available types of player statistics for a given tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2873,10 +2740,7 @@ paths:
       summary: Get top players per game for regular season
       description: Retrieves player rankings based on per-game averages for the regular season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2914,10 +2778,7 @@ paths:
       summary: Get top players per game overall
       description: Retrieves player rankings based on per-game averages for an entire tournament season.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2955,10 +2816,7 @@ paths:
       summary: Get top players per game for playoffs
       description: Retrieves player rankings based on per-game averages for the playoffs.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Players
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2996,10 +2854,7 @@ paths:
       summary: Get top teams for regular season
       description: Retrieves the best performing teams in the regular season of a specific tournament.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -3037,10 +2892,7 @@ paths:
       summary: Get top teams for playoffs
       description: Retrieves the best performing teams in the playoffs of a specific tournament.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -3078,9 +2930,7 @@ paths:
       summary: Get previous player matches
       description: Fetches a paginated list of completed matches for a specific player, sorted by date descending.
       tags:
-        - Ice Hockey
         - Players
-        - Matches
       parameters:
         - name: id
           in: path
@@ -3124,9 +2974,7 @@ paths:
       summary: Get player overall statistics
       description: Retrieves a player's combined statistics for an entire season (regular season and playoffs).
       tags:
-        - Ice Hockey
         - Players
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -3171,9 +3019,7 @@ paths:
       summary: Get tournament matches by date
       description: Retrieves all matches for a specific tournament scheduled on a given date.
       tags:
-        - Ice Hockey
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path

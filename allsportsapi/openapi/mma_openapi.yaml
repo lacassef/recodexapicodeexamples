@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: MMA API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,9 +315,7 @@ paths:
       summary: Get male fighter placeholder image
       description: Retrieves a placeholder image for a male fighter.
       tags:
-        - AllSports
         - Placeholders
-        - Media
       responses:
         '200':
           description: The placeholder SVG image.
@@ -348,9 +339,7 @@ paths:
       summary: Get female fighter placeholder image
       description: Retrieves a placeholder image for a female fighter.
       tags:
-        - AllSports
         - Placeholders
-        - Media
       responses:
         '200':
           description: The placeholder SVG image.
@@ -374,7 +363,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -413,7 +401,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -445,7 +432,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -469,7 +455,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -501,7 +486,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -525,7 +509,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -557,7 +540,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -581,7 +563,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -613,7 +594,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -645,7 +625,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -677,7 +656,6 @@ paths:
       summary: Search MMA entities
       description: Searches for MMA fighters, events, and tournaments.
       tags:
-        - MMA
         - Search
       parameters:
         - name: term
@@ -723,7 +701,6 @@ paths:
       description: Retrieves a list of all available MMA categories, which typically correspond to different 
         organizations (e.g., UFC, KSW).
       tags:
-        - MMA
         - Categories
       responses:
         '200':
@@ -747,7 +724,6 @@ paths:
       summary: Get MMA main events extended by date
       description: Retrieves extended main events for MMA on a specific date.
       tags:
-        - MMA
         - Events
       parameters:
         - name: date
@@ -785,9 +761,7 @@ paths:
       summary: Get unique tournaments by category
       description: Retrieves all unique MMA tournaments within a specific category (organization).
       tags:
-        - MMA
         - Categories
-        - Tournaments
       parameters:
         - name: id
           in: path
@@ -818,9 +792,7 @@ paths:
       summary: Get last main events for a tournament
       description: Retrieves a paginated list of the last main events for a specific MMA tournament.
       tags:
-        - MMA
         - Tournaments
-        - Events
       parameters:
         - name: tournamentId
           in: path
@@ -864,9 +836,7 @@ paths:
       summary: Get next main events for a tournament
       description: Retrieves a paginated list of the next main events for a specific MMA tournament.
       tags:
-        - MMA
         - Tournaments
-        - Events
       parameters:
         - name: tournamentId
           in: path
@@ -910,7 +880,6 @@ paths:
       summary: Get MMA tournament details
       description: Retrieves detailed information for a specific MMA tournament.
       tags:
-        - MMA
         - Tournaments
       parameters:
         - name: tournamentId
@@ -942,8 +911,6 @@ paths:
       summary: Get MMA rankings summary for a tournament
       description: Retrieves a summary of rankings for a specific MMA tournament.
       tags:
-        - MMA
-        - Tournaments
         - Rankings
       parameters:
         - name: tournamentId
@@ -975,9 +942,7 @@ paths:
       summary: Get MMA tournament schedule by date
       description: Retrieves the schedule of events for a specific MMA tournament on a given date.
       tags:
-        - MMA
         - Tournaments
-        - Events
       parameters:
         - name: tournamentId
           in: path
@@ -1035,9 +1000,7 @@ paths:
       summary: Get MMA scheduled main events by month
       description: Retrieves the main events scheduled for a specific MMA tournament in a given month and year.
       tags:
-        - MMA
         - Tournaments
-        - Events
       parameters:
         - name: tournamentId
           in: path
@@ -1088,9 +1051,7 @@ paths:
       summary: Get all MMA events for a tournament
       description: Retrieves all MMA events associated with a specific tournament and unique tournament ID.
       tags:
-        - MMA
         - Tournaments
-        - Events
       parameters:
         - name: uniqueTournamentId
           in: path
@@ -1128,9 +1089,7 @@ paths:
       summary: Get featured MMA events for a tournament
       description: Retrieves a list of featured MMA events for a specific tournament.
       tags:
-        - MMA
         - Tournaments
-        - Events
       parameters:
         - name: tournamentId
           in: path
@@ -1161,9 +1120,7 @@ paths:
       summary: Get MMA tournament image
       description: Retrieves the logo image for a specific MMA tournament.
       tags:
-        - MMA
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -1195,9 +1152,7 @@ paths:
       summary: Get MMA tournament dark-theme image
       description: Retrieves the dark-theme logo image for a specific MMA tournament.
       tags:
-        - MMA
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -1229,7 +1184,6 @@ paths:
       summary: Get MMA event details by ID
       description: Retrieves detailed information for a specific MMA event by its ID.
       tags:
-        - MMA
         - Events
       parameters:
         - name: id
@@ -1261,7 +1215,6 @@ paths:
       summary: Get MMA event metadata
       description: Retrieves metadata for a specific MMA event.
       tags:
-        - MMA
         - Events
       parameters:
         - name: id
@@ -1293,9 +1246,7 @@ paths:
       summary: Get MMA event featured odds
       description: Retrieves featured odds for a specific MMA event and provider.
       tags:
-        - MMA
         - Events
-        - Odds
       parameters:
         - name: id
           in: path
@@ -1333,7 +1284,6 @@ paths:
       summary: Get pre-game form for an MMA event
       description: Retrieves pre-game form and recent performance data for the fighters in a specific event.
       tags:
-        - MMA
         - Events
       parameters:
         - name: id
@@ -1366,9 +1316,7 @@ paths:
       description: Retrieves the detailed match history for head-to-head encounters between the two fighters in an 
         event.
       tags:
-        - MMA
         - Events
-        - Statistics
       parameters:
         - name: customId
           in: path
@@ -1399,9 +1347,7 @@ paths:
       summary: Get fighter streaks for an event
       description: Provides recent form and streak information for each fighter in an event.
       tags:
-        - MMA
         - Events
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1432,9 +1378,7 @@ paths:
       summary: Get MMA event statistics
       description: Retrieves comprehensive statistics for a specific MMA event.
       tags:
-        - MMA
         - Events
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1465,7 +1409,6 @@ paths:
       summary: Get MMA fighter details
       description: Retrieves comprehensive details for a specific MMA fighter.
       tags:
-        - MMA
         - Fighters
       parameters:
         - name: id
@@ -1497,9 +1440,7 @@ paths:
       summary: Get MMA fighter career statistics
       description: Retrieves the career statistics for a specific MMA fighter.
       tags:
-        - MMA
         - Fighters
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1530,9 +1471,7 @@ paths:
       summary: Get last events for an MMA fighter
       description: Retrieves a paginated list of the last events for a specific MMA fighter.
       tags:
-        - MMA
         - Fighters
-        - Events
       parameters:
         - name: id
           in: path
@@ -1576,9 +1515,7 @@ paths:
       summary: Get next events for an MMA fighter
       description: Retrieves a paginated list of the next events for a specific MMA fighter.
       tags:
-        - MMA
         - Fighters
-        - Events
       parameters:
         - name: id
           in: path
@@ -1622,9 +1559,7 @@ paths:
       summary: Get MMA fighter image
       description: Retrieves the image for a specific MMA fighter.
       tags:
-        - MMA
         - Fighters
-        - Media
       parameters:
         - name: id
           in: path
@@ -1656,7 +1591,6 @@ paths:
       summary: Get MMA tournament details by ID
       description: Retrieves detailed information for a specific MMA tournament by its ID.
       tags:
-        - MMA
         - Tournaments
       parameters:
         - name: tournamentId
@@ -1688,7 +1622,6 @@ paths:
       summary: Get MMA octagon image
       description: Retrieves the image of the MMA octagon.
       tags:
-        - MMA
         - Media
       responses:
         '200':
@@ -1713,8 +1646,7 @@ paths:
       summary: Get months with events
       description: Retrieves months that have events for a specific tournament.
       tags:
-        - MMA
-        - Matches
+        - Calendar
       parameters:
         - name: id
           in: path
@@ -1752,7 +1684,6 @@ paths:
       summary: Get calendar sport stages
       description: Retrieves stage events for a sport on a specific date.
       tags:
-        - MMA
         - Calendar
       parameters:
         - name: sportSlug
@@ -1798,7 +1729,6 @@ paths:
       summary: Get recent stage IDs
       description: Retrieves recent stage identifiers for a unique stage.
       tags:
-        - MMA
         - Stages
       parameters:
         - name: id
@@ -1830,7 +1760,6 @@ paths:
       summary: Get stage substages
       description: Retrieves substages (sessions/segments) for a motorsport stage.
       tags:
-        - MMA
         - Stages
       parameters:
         - name: stageId

@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Motorsport API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,7 +315,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -361,7 +353,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -393,7 +384,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -417,7 +407,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -449,7 +438,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -473,7 +461,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -505,7 +492,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -529,7 +515,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -561,7 +546,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -593,7 +577,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -625,7 +608,6 @@ paths:
       summary: Search motorsport entities
       description: Searches for motorsport teams, drivers, stages, and tournaments.
       tags:
-        - Motorsport
         - Search
       parameters:
         - name: term
@@ -670,7 +652,6 @@ paths:
       summary: Get motorsport categories
       description: Retrieves a list of all available motorsport categories (e.g., Formula 1, MotoGP, WRC).
       tags:
-        - Motorsport
         - Categories
       responses:
         '200':
@@ -694,8 +675,7 @@ paths:
       summary: Get featured motorsport stage
       description: Retrieves the currently featured motorsport stage, typically the next upcoming major race or event.
       tags:
-        - Motorsport
-        - Stage
+        - Stages
       responses:
         '200':
           description: A JSON object containing the featured motorsport stage.
@@ -718,8 +698,7 @@ paths:
       summary: Get scheduled motorsport stages by date
       description: Retrieves scheduled motorsport stages for a specific date.
       tags:
-        - Motorsport
-        - Stage
+        - Stages
       parameters:
         - name: date
           in: path
@@ -757,8 +736,7 @@ paths:
       description: Retrieves a list of substages for a given motorsport stage, such as practice sessions, qualifying, 
         and the main race.
       tags:
-        - Motorsport
-        - Stage
+        - Stages
       parameters:
         - name: stageId
           in: path
@@ -789,8 +767,7 @@ paths:
       summary: Get motorsport stage details
       description: Retrieves detailed information for a specific motorsport stage (event).
       tags:
-        - Motorsport
-        - Stage
+        - Stages
       parameters:
         - name: stageId
           in: path
@@ -821,9 +798,7 @@ paths:
       summary: Get competitor standings for stage
       description: Retrieves the competitor (driver) standings for a specific motorsport stage.
       tags:
-        - Motorsport
-        - Stage
-        - Standings
+        - Stages
       parameters:
         - name: id
           in: path
@@ -854,9 +829,7 @@ paths:
       summary: Get team standings for stage
       description: Retrieves the team (constructor) standings for a specific motorsport stage.
       tags:
-        - Motorsport
-        - Stage
-        - Standings
+        - Stages
       parameters:
         - name: id
           in: path
@@ -887,9 +860,7 @@ paths:
       summary: Get motorsport stage image
       description: Retrieves the image for a specific motorsport stage.
       tags:
-        - Motorsport
-        - Stage
-        - Media
+        - Stages
       parameters:
         - name: id
           in: path
@@ -921,9 +892,7 @@ paths:
       summary: Get motorsport stage highlights
       description: Retrieves video highlights for a specific motorsport stage.
       tags:
-        - Motorsport
-        - Stage
-        - Media
+        - Stages
       parameters:
         - name: id
           in: path
@@ -954,8 +923,7 @@ paths:
       summary: Get motorsport team details
       description: Retrieves detailed information for a specific motorsport team (constructor).
       tags:
-        - Motorsport
-        - Team
+        - Teams
       parameters:
         - name: id
           in: path
@@ -986,9 +954,7 @@ paths:
       summary: Get motorsport team driver history
       description: Retrieves the history of drivers for a specific motorsport team.
       tags:
-        - Motorsport
-        - Team
-        - Driver
+        - Teams
       parameters:
         - name: id
           in: path
@@ -1019,9 +985,7 @@ paths:
       summary: Get motorsport team stage seasons
       description: Retrieves a list of seasons in which a motorsport team has participated.
       tags:
-        - Motorsport
-        - Team
-        - Season
+        - Teams
       parameters:
         - name: id
           in: path
@@ -1052,9 +1016,7 @@ paths:
       summary: Get motorsport team races in stage season
       description: Retrieves a list of races for a motorsport team in a specific season.
       tags:
-        - Motorsport
-        - Team
-        - Race
+        - Teams
       parameters:
         - name: id
           in: path
@@ -1092,9 +1054,7 @@ paths:
       summary: Get motorsport team image
       description: Retrieves the image for a specific motorsport team.
       tags:
-        - Motorsport
-        - Team
-        - Media
+        - Teams
       parameters:
         - name: id
           in: path
@@ -1126,9 +1086,7 @@ paths:
       summary: Get motorsport team odds by provider
       description: Retrieves odds for a motorsport team from a specific provider.
       tags:
-        - Motorsport
-        - Team
-        - Odds
+        - Teams
       parameters:
         - name: id
           in: path
@@ -1166,9 +1124,7 @@ paths:
       summary: Get motorsport stages by category
       description: Retrieves a list of all motorsport stages for a specific category.
       tags:
-        - Motorsport
-        - Category
-        - Stage
+        - Categories
       parameters:
         - name: id
           in: path
@@ -1199,9 +1155,7 @@ paths:
       summary: Get seasons for unique stage
       description: Retrieves a list of all seasons for a unique motorsport stage.
       tags:
-        - Motorsport
-        - Stage
-        - Season
+        - Stages
       parameters:
         - name: uniqueStageId
           in: path
@@ -1232,9 +1186,7 @@ paths:
       summary: Get unique stage image
       description: Retrieves the image for a unique motorsport stage.
       tags:
-        - Motorsport
-        - Stage
-        - Media
+        - Stages
       parameters:
         - name: id
           in: path
@@ -1266,7 +1218,6 @@ paths:
       summary: Get recent stage IDs
       description: Retrieves recent stage identifiers for a unique stage.
       tags:
-        - Motorsport
         - Stages
       parameters:
         - name: id
@@ -1298,8 +1249,7 @@ paths:
       summary: Get all stage odds
       description: Retrieves all odds from a provider for a motorsport stage.
       tags:
-        - Motorsport
-        - Odds
+        - Stages
       parameters:
         - name: id
           in: path
@@ -1337,8 +1287,7 @@ paths:
       summary: Get featured stage odds
       description: Retrieves featured odds from a provider for a motorsport stage.
       tags:
-        - Motorsport
-        - Odds
+        - Stages
       parameters:
         - name: id
           in: path
@@ -1376,7 +1325,6 @@ paths:
       summary: Get stage extended details
       description: Retrieves extended details and results for a motorsport stage.
       tags:
-        - Motorsport
         - Stages
       parameters:
         - name: id
@@ -1408,7 +1356,6 @@ paths:
       summary: Get driver performance
       description: Retrieves driver performance data for a motorsport stage.
       tags:
-        - Motorsport
         - Stages
       parameters:
         - name: id

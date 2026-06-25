@@ -22,7 +22,7 @@ npm install express                      # only for the Express proxy (Node 18+ 
 | **Server‑side proxy** | [`server_proxy_flask.py`](server_proxy_flask.py) | [`server_proxy_express.js`](server_proxy_express.js) | Keep your key secret: the browser calls your server, which adds headers and forwards to the API (JSON **and** images). |
 | **Match‑clock calculator** | [`match_clock.py`](match_clock.py) | [`match_clock.js`](match_clock.js) | The FAQ's match‑time algorithm as real code: elapsed time, added time, display clock. Runs offline on a sample event. |
 | **List all leagues** | [`list_all_leagues.py`](list_all_leagues.py) | [`list_all_leagues.js`](list_all_leagues.js) | The categories → tournaments tree walk that enumerates every league of a sport. |
-| **Timezone schedule filter** | [`filter_schedule_by_timezone.py`](filter_schedule_by_timezone.py) | [`filter_schedule_by_timezone.js`](filter_schedule_by_timezone.js) | Filter the ±12 h UTC schedule window down to a user's local calendar day (DST‑safe). |
+| **Timezone schedule filter** | [`filter_schedule_by_timezone.py`](filter_schedule_by_timezone.py) | [`filter_schedule_by_timezone.js`](filter_schedule_by_timezone.js) | Assemble a day's schedule per category (the flat per‑date feed is retired) and filter the ±12 h UTC window down to a user's local calendar day (DST‑safe). |
 
 > The **match‑clock** example needs no network — run it straight away to see the output.
 > The others call the live API, so they need a valid `RAPIDAPI_KEY`.

@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Esports API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,7 +315,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -361,7 +353,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -393,7 +384,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -417,7 +407,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -449,7 +438,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -473,7 +461,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -505,7 +492,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -529,7 +515,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -561,7 +546,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -593,7 +577,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -625,7 +608,6 @@ paths:
       summary: Search eSports entities
       description: Searches for eSports teams, players, events, and tournaments.
       tags:
-        - Esports
         - Search
       parameters:
         - name: term
@@ -667,10 +649,10 @@ paths:
   /api/esport/matches/{day}/{month}/{year}:
     get:
       operationId: getESportsMatchesByDate
+      deprecated: true
       summary: Get eSports matches by date
-      description: Fetches all eSports matches scheduled for a specific date.
+      description: Deprecated — the flat per-date feed is being retired. Assemble the day per competition instead — list categories then call /api/{sport}/category/{id}/events/{day}/{month}/{year}, or per tournament /api/{sport}/tournament/{id}/scheduled-events/{date} (ISO date). See the AllSportsAPI FAQ on getting all matches for a specific date. Fetches all eSports matches scheduled for a specific date.
       tags:
-        - Esports
         - Matches
       parameters:
         - name: day
@@ -722,8 +704,6 @@ paths:
       summary: Get eSports events by category and date
       description: Fetches all eSports events for a specific category on a given date.
       tags:
-        - Esports
-        - Matches
         - Categories
       parameters:
         - name: id
@@ -782,9 +762,7 @@ paths:
       summary: Get eSports tournament categories
       description: Retrieves all available eSports tournament categories.
       tags:
-        - Esports
         - Tournaments
-        - Categories
       responses:
         '200':
           description: Successfully retrieved tournament categories.
@@ -807,9 +785,7 @@ paths:
       summary: Get all eSports tournaments for a category
       description: Retrieves all unique tournaments within a specific eSports category.
       tags:
-        - Esports
         - Tournaments
-        - Categories
       parameters:
         - name: id
           in: path
@@ -840,7 +816,6 @@ paths:
       summary: Get live eSports matches
       description: Retrieves all currently live eSports matches.
       tags:
-        - Esports
         - Matches
       responses:
         '200':
@@ -864,7 +839,6 @@ paths:
       summary: Get eSports event details
       description: Retrieves detailed information for a specific eSports event by its ID.
       tags:
-        - Esports
         - Events
       parameters:
         - name: id
@@ -896,9 +870,7 @@ paths:
       summary: Get eSports H2H events
       description: Retrieves head-to-head match history between two teams, identified by a custom event ID.
       tags:
-        - Esports
         - Events
-        - Statistics
       parameters:
         - name: customId
           in: path
@@ -929,9 +901,7 @@ paths:
       summary: Get eSports event lineups
       description: Retrieves player lineups for a specific eSports event.
       tags:
-        - Esports
         - Events
-        - Players
       parameters:
         - name: id
           in: path
@@ -962,9 +932,7 @@ paths:
       summary: Get eSports event games
       description: Retrieves the list of games (maps) played within a single eSports event.
       tags:
-        - Esports
         - Events
-        - Games
       parameters:
         - name: id
           in: path
@@ -995,9 +963,7 @@ paths:
       summary: Get eSports event highlights
       description: Retrieves video highlights for a specific eSports event, if available.
       tags:
-        - Esports
         - Events
-        - Media
       parameters:
         - name: id
           in: path
@@ -1028,9 +994,7 @@ paths:
       summary: Get eSports event H2H summary
       description: Retrieves a summary of head-to-head statistics between the two teams in an event.
       tags:
-        - Esports
         - Events
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1061,7 +1025,6 @@ paths:
       summary: Get eSports event votes
       description: Retrieves fan voting results for a specific eSports event.
       tags:
-        - Esports
         - Events
       parameters:
         - name: id
@@ -1093,9 +1056,7 @@ paths:
       summary: Get eSports event streaks
       description: Retrieves team streaks (e.g., winning/losing streaks) for a specific eSports event.
       tags:
-        - Esports
         - Events
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1126,8 +1087,7 @@ paths:
       summary: Get event metadata
       description: Retrieves SEO and metadata for a specific event.
       tags:
-        - Esports
-        - Matches
+        - Events
       parameters:
         - name: id
           in: path
@@ -1158,8 +1118,7 @@ paths:
       summary: Get all odds for event
       description: Retrieves all available odds from a specific provider for an event.
       tags:
-        - Esports
-        - Matches
+        - Events
       parameters:
         - name: id
           in: path
@@ -1197,8 +1156,7 @@ paths:
       summary: Get event graph sequence
       description: Retrieves the momentum/pressure graph sequence data for a match.
       tags:
-        - Esports
-        - Matches
+        - Events
       parameters:
         - name: id
           in: path
@@ -1229,8 +1187,7 @@ paths:
       summary: Get event official tweets
       description: Retrieves official social media posts related to an event.
       tags:
-        - Esports
-        - Matches
+        - Events
       parameters:
         - name: id
           in: path
@@ -1261,9 +1218,7 @@ paths:
       summary: Get eSports game lineups
       description: Retrieves player lineups for a specific game (map) within an eSports event.
       tags:
-        - Esports
         - Games
-        - Players
       parameters:
         - name: id
           in: path
@@ -1294,7 +1249,6 @@ paths:
       summary: Get eSports game rounds
       description: Retrieves round-by-round results for a specific game (map).
       tags:
-        - Esports
         - Games
       parameters:
         - name: id
@@ -1326,7 +1280,6 @@ paths:
       summary: Get eSports game bans
       description: Retrieves character/map bans for a specific game.
       tags:
-        - Esports
         - Games
       parameters:
         - name: id
@@ -1358,9 +1311,7 @@ paths:
       summary: Get eSports game statistics
       description: Retrieves detailed statistics for a specific game (map).
       tags:
-        - Esports
         - Games
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -1391,9 +1342,7 @@ paths:
       summary: Get previous eSports matches for a team
       description: Retrieves a paginated list of a team's past eSports matches.
       tags:
-        - Esports
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1437,9 +1386,7 @@ paths:
       summary: Get next eSports matches for a team
       description: Retrieves a paginated list of a team's upcoming eSports matches.
       tags:
-        - Esports
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1483,7 +1430,6 @@ paths:
       summary: Get eSports team details
       description: Retrieves detailed information for a specific eSports team.
       tags:
-        - Esports
         - Teams
       parameters:
         - name: id
@@ -1515,9 +1461,7 @@ paths:
       summary: Get eSports team media
       description: Retrieves media (images, videos) associated with an eSports team.
       tags:
-        - Esports
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -1548,9 +1492,7 @@ paths:
       summary: Get near eSports matches for a team
       description: Retrieves a list of recent and upcoming matches for an eSports team.
       tags:
-        - Esports
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1581,9 +1523,7 @@ paths:
       summary: Get eSports team image
       description: Retrieves the logo image for a specific eSports team.
       tags:
-        - Esports
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -1615,8 +1555,7 @@ paths:
       summary: Get team featured event
       description: Retrieves the current or next featured event for a team.
       tags:
-        - Esports
-        - Matches
+        - Teams
       parameters:
         - name: id
           in: path
@@ -1647,7 +1586,6 @@ paths:
       summary: Get all team tournaments
       description: Retrieves all unique tournaments a team participates in.
       tags:
-        - Esports
         - Teams
       parameters:
         - name: id
@@ -1679,7 +1617,6 @@ paths:
       summary: Get eSports player details
       description: Retrieves detailed information for a specific eSports player.
       tags:
-        - Esports
         - Players
       parameters:
         - name: id
@@ -1711,9 +1648,7 @@ paths:
       summary: Get eSports player image
       description: Retrieves the profile image for a specific eSports player.
       tags:
-        - Esports
         - Players
-        - Media
       parameters:
         - name: id
           in: path
@@ -1745,9 +1680,7 @@ paths:
       summary: Get total standings for eSports tournament season
       description: Retrieves the complete standings for a specific eSports tournament season.
       tags:
-        - Esports
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -1785,7 +1718,6 @@ paths:
       summary: Get eSports tournament season info
       description: Retrieves metadata and information about a specific eSports tournament season.
       tags:
-        - Esports
         - Tournaments
       parameters:
         - name: tournamentId
@@ -1824,9 +1756,7 @@ paths:
       summary: Get last matches for eSports tournament season
       description: Retrieves a paginated list of past matches for a specific eSports tournament season.
       tags:
-        - Esports
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -1877,9 +1807,7 @@ paths:
       summary: Get next matches for eSports tournament season
       description: Retrieves a paginated list of upcoming matches for a specific eSports tournament season.
       tags:
-        - Esports
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -1930,7 +1858,6 @@ paths:
       summary: Get eSports tournament details
       description: Retrieves detailed information for a specific eSports tournament.
       tags:
-        - Esports
         - Tournaments
       parameters:
         - name: tournamentId
@@ -1962,9 +1889,7 @@ paths:
       summary: Get eSports tournament image
       description: Retrieves the logo image for a specific eSports tournament.
       tags:
-        - Esports
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -1996,9 +1921,7 @@ paths:
       summary: Get eSports tournament dark image
       description: Retrieves the dark-theme logo image for a specific eSports tournament.
       tags:
-        - Esports
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2030,9 +1953,7 @@ paths:
       summary: Get eSports tournament media
       description: Retrieves media (images, videos) associated with an eSports tournament.
       tags:
-        - Esports
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -2063,9 +1984,7 @@ paths:
       summary: Get eSports tournament seasons
       description: Retrieves a list of available seasons for a specific eSports tournament.
       tags:
-        - Esports
         - Tournaments
-        - Seasons
       parameters:
         - name: tournamentId
           in: path
@@ -2096,9 +2015,7 @@ paths:
       summary: Get total team events for eSports tournament season
       description: Retrieves aggregated team statistics for an entire eSports tournament season.
       tags:
-        - Esports
         - Tournaments
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2136,8 +2053,7 @@ paths:
       summary: Get tournament featured events
       description: Retrieves featured/highlighted events for a tournament.
       tags:
-        - Esports
-        - Matches
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -2168,7 +2084,6 @@ paths:
       summary: Get tournament winners
       description: Retrieves historical winners of a tournament.
       tags:
-        - Esports
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2200,8 +2115,7 @@ paths:
       summary: Get tournament events on date
       description: Retrieves all events for a tournament on a specific date.
       tags:
-        - Esports
-        - Matches
+        - Tournaments
       parameters:
         - name: tournamentId
           in: path
@@ -2239,7 +2153,6 @@ paths:
       summary: Get tournament season venues
       description: Retrieves all venues used in a tournament season.
       tags:
-        - Esports
         - Tournaments
       parameters:
         - name: tournamentId
@@ -2278,7 +2191,6 @@ paths:
       summary: Get calendar sport stages
       description: Retrieves stage events for a sport on a specific date.
       tags:
-        - Esports
         - Calendar
       parameters:
         - name: sportSlug
@@ -2324,8 +2236,7 @@ paths:
       summary: Get live tournaments for category
       description: Retrieves tournaments with currently live events in a category.
       tags:
-        - Esports
-        - Tournaments
+        - Categories
       parameters:
         - name: categoryId
           in: path
@@ -2356,7 +2267,6 @@ paths:
       summary: Get eSports character image
       description: Retrieves the image for a specific in-game character.
       tags:
-        - Esports
         - Assets
       parameters:
         - name: characterId
@@ -2389,7 +2299,6 @@ paths:
       summary: Get eSports map image
       description: Retrieves the image for a specific in-game map.
       tags:
-        - Esports
         - Assets
       parameters:
         - name: mapId

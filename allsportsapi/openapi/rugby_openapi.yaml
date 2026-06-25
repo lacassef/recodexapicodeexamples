@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Rugby API
   version: 1.0.0
-  description: OpenAPI specification generated from SofaScore route annotations.
+  description: OpenAPI specification generated from route annotations.
 servers:
   - url: http://localhost:8080
     description: Local development server
@@ -13,7 +13,6 @@ paths:
       summary: Get match TV countries
       description: Lists the countries and the TV channels within them that are broadcasting a specific match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: id
@@ -45,7 +44,6 @@ paths:
       summary: Get match TV channel votes
       description: Fetches viewer voting data from a specific TV channel that is broadcasting the match.
       tags:
-        - AllSports
         - TV
       parameters:
         - name: channId
@@ -85,7 +83,7 @@ paths:
       description: Fetches the PNG flag image asset corresponding to a provided country code. The response is the raw 
         image data.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: flag
           in: path
@@ -115,9 +113,9 @@ paths:
     get:
       operationId: getCountryFlagImgAPI
       summary: Get country flag (img API)
-      description: Fetches the flag image from the SofaScore image API by country code.
+      description: Fetches the flag image from the image API by country code.
       tags:
-        - AllSports
+        - Media
       parameters:
         - name: code
           in: path
@@ -149,8 +147,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -174,8 +171,7 @@ paths:
       summary: Get tournament placeholder image
       description: Returns a static placeholder graphic for a tournament. The response is an SVG image.
       tags:
-        - AllSports
-        - Tournaments
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -199,8 +195,7 @@ paths:
       summary: Get team placeholder image
       description: Returns a static placeholder graphic for a team. The response is an SVG image.
       tags:
-        - AllSports
-        - Teams
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -224,8 +219,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -249,8 +243,7 @@ paths:
       summary: Get player placeholder image
       description: Returns a static placeholder graphic for a player. The response is an SVG image.
       tags:
-        - AllSports
-        - Players
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -274,7 +267,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -298,7 +291,7 @@ paths:
       summary: Get manager placeholder image
       description: Returns a static placeholder graphic for a manager. The response is an SVG image.
       tags:
-        - AllSports
+        - Placeholders
       responses:
         '200':
           description: The placeholder SVG image file.
@@ -322,7 +315,6 @@ paths:
       summary: Get calendar days with events
       description: Retrieves days that have events for a specific season and year.
       tags:
-        - Sofascore
         - Calendar
       parameters:
         - name: seasonId
@@ -361,7 +353,6 @@ paths:
       summary: Get category image
       description: Retrieves the image/logo for a sport category.
       tags:
-        - Sofascore
         - Categories
       parameters:
         - name: categoryId
@@ -393,7 +384,6 @@ paths:
       summary: Get all countries
       description: Retrieves a list of all available countries.
       tags:
-        - Sofascore
         - Config
       responses:
         '200':
@@ -417,7 +407,6 @@ paths:
       summary: Get team rankings
       description: Retrieves rankings for a specific team.
       tags:
-        - Sofascore
         - Rankings
       parameters:
         - name: teamId
@@ -449,7 +438,6 @@ paths:
       summary: Search all entities
       description: Searches across all entity types (teams, players, tournaments).
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -473,7 +461,6 @@ paths:
       summary: Get search suggestions
       description: Retrieves search suggestions for a specific entity type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -505,7 +492,6 @@ paths:
       summary: Search unique tournaments
       description: Searches for unique tournaments.
       tags:
-        - Sofascore
         - Search
       responses:
         '200':
@@ -529,7 +515,6 @@ paths:
       summary: Search by entity type
       description: Searches for entities of a specific type.
       tags:
-        - Sofascore
         - Search
       parameters:
         - name: entityType
@@ -561,7 +546,6 @@ paths:
       summary: Get TV channel schedule
       description: Retrieves the broadcast schedule for a specific TV channel.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: id
@@ -593,7 +577,6 @@ paths:
       summary: Get country TV channels
       description: Retrieves available TV channels for a specific country.
       tags:
-        - Sofascore
         - TV
       parameters:
         - name: countryCode
@@ -625,7 +608,6 @@ paths:
       summary: Search rugby entities
       description: Searches for rugby teams, players, and tournaments.
       tags:
-        - Rugby
         - Search
       parameters:
         - name: term
@@ -670,7 +652,6 @@ paths:
       summary: Get rugby tournament categories
       description: Retrieves all available rugby tournament categories (countries/regions).
       tags:
-        - Rugby
         - Tournaments
       responses:
         '200':
@@ -691,10 +672,10 @@ paths:
   /api/rugby/matches/{day}/{month}/{year}:
     get:
       operationId: getAllRugbyMatchesByDate
+      deprecated: true
       summary: Get all rugby matches by date
-      description: Fetches all rugby matches scheduled for a specific date.
+      description: Deprecated — the flat per-date feed is being retired. Assemble the day per competition instead — list categories then call /api/{sport}/category/{id}/events/{day}/{month}/{year}, or per tournament /api/{sport}/tournament/{id}/scheduled-events/{date} (ISO date). See the AllSportsAPI FAQ on getting all matches for a specific date. Fetches all rugby matches scheduled for a specific date.
       tags:
-        - Rugby
         - Matches
       parameters:
         - name: day
@@ -746,7 +727,6 @@ paths:
       summary: Get live rugby matches
       description: Retrieves all currently live rugby matches.
       tags:
-        - Rugby
         - Matches
       responses:
         '200':
@@ -770,7 +750,6 @@ paths:
       summary: Get rugby match details
       description: Retrieves detailed information about a specific rugby match.
       tags:
-        - Rugby
         - Matches
       parameters:
         - name: id
@@ -802,9 +781,7 @@ paths:
       summary: Get match statistics
       description: Retrieves comprehensive statistical data for the match.
       tags:
-        - Rugby
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -835,7 +812,6 @@ paths:
       summary: Get match incidents
       description: Retrieves all incidents and events that occurred during the match.
       tags:
-        - Rugby
         - Matches
       parameters:
         - name: id
@@ -867,9 +843,7 @@ paths:
       summary: Get head-to-head history
       description: Retrieves detailed head-to-head match history between the teams.
       tags:
-        - Rugby
         - Matches
-        - Statistics
       parameters:
         - name: customId
           in: path
@@ -900,9 +874,7 @@ paths:
       summary: Get head-to-head summary
       description: Retrieves a summary of head-to-head statistics between the teams.
       tags:
-        - Rugby
         - Matches
-        - Statistics
       parameters:
         - name: id
           in: path
@@ -933,7 +905,6 @@ paths:
       summary: Get match form analysis
       description: Retrieves recent form and performance trends for teams in the match.
       tags:
-        - Rugby
         - Matches
       parameters:
         - name: id
@@ -965,9 +936,7 @@ paths:
       summary: Get match betting odds
       description: Retrieves betting odds from various bookmakers for the match.
       tags:
-        - Rugby
         - Matches
-        - Odds
       parameters:
         - name: id
           in: path
@@ -998,7 +967,6 @@ paths:
       summary: Get match votes
       description: Retrieves fan voting results for the match.
       tags:
-        - Rugby
         - Matches
       parameters:
         - name: id
@@ -1030,9 +998,7 @@ paths:
       summary: Get match lineups
       description: Retrieves starting lineups and formations for both teams.
       tags:
-        - Rugby
         - Matches
-        - Players
       parameters:
         - name: id
           in: path
@@ -1063,9 +1029,7 @@ paths:
       summary: Get match highlights
       description: Retrieves video highlights and key moments from the match.
       tags:
-        - Rugby
         - Matches
-        - Media
       parameters:
         - name: id
           in: path
@@ -1096,9 +1060,7 @@ paths:
       summary: Get match managers/coaches
       description: Retrieves information about the coaches/managers for both teams.
       tags:
-        - Rugby
         - Matches
-        - Managers
       parameters:
         - name: id
           in: path
@@ -1129,7 +1091,6 @@ paths:
       summary: Get rugby team details
       description: Retrieves comprehensive information about a rugby team.
       tags:
-        - Rugby
         - Teams
       parameters:
         - name: id
@@ -1161,9 +1122,7 @@ paths:
       summary: Get previous team matches
       description: Fetches a list of completed rugby matches for the specified team, sorted by date descending.
       tags:
-        - Rugby
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1207,9 +1166,7 @@ paths:
       summary: Get upcoming team matches
       description: Fetches a list of scheduled rugby matches for the specified team.
       tags:
-        - Rugby
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1253,9 +1210,7 @@ paths:
       summary: Get team near matches
       description: Retrieves recent and upcoming matches for the team.
       tags:
-        - Rugby
         - Teams
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1286,9 +1241,7 @@ paths:
       summary: Get team standings seasons
       description: Retrieves available seasons for team standings.
       tags:
-        - Rugby
         - Teams
-        - Standings
       parameters:
         - name: id
           in: path
@@ -1319,9 +1272,7 @@ paths:
       summary: Get team players
       description: Retrieves all players currently in the team roster.
       tags:
-        - Rugby
         - Teams
-        - Players
       parameters:
         - name: id
           in: path
@@ -1352,9 +1303,7 @@ paths:
       summary: Get team media
       description: Retrieves media content for the team.
       tags:
-        - Rugby
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -1385,9 +1334,7 @@ paths:
       summary: Get team logo
       description: Retrieves the team's logo image.
       tags:
-        - Rugby
         - Teams
-        - Media
       parameters:
         - name: id
           in: path
@@ -1419,7 +1366,6 @@ paths:
       summary: Get rugby player details
       description: Retrieves comprehensive information about a rugby player.
       tags:
-        - Rugby
         - Players
       parameters:
         - name: id
@@ -1451,9 +1397,7 @@ paths:
       summary: Get player near matches
       description: Retrieves recent and upcoming matches for the player.
       tags:
-        - Rugby
         - Players
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1484,9 +1428,7 @@ paths:
       summary: Get previous player matches
       description: Fetches a list of completed matches for the player, sorted by date descending.
       tags:
-        - Rugby
         - Players
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1530,9 +1472,7 @@ paths:
       summary: Get player image
       description: Retrieves the player's profile image.
       tags:
-        - Rugby
         - Players
-        - Media
       parameters:
         - name: id
           in: path
@@ -1564,7 +1504,6 @@ paths:
       summary: Get rugby manager/coach details
       description: Retrieves comprehensive information about a rugby manager/coach.
       tags:
-        - Rugby
         - Managers
       parameters:
         - name: id
@@ -1596,9 +1535,7 @@ paths:
       summary: Get previous manager matches
       description: Fetches a list of completed matches for the specified manager/coach.
       tags:
-        - Rugby
         - Managers
-        - Matches
       parameters:
         - name: id
           in: path
@@ -1642,9 +1579,7 @@ paths:
       summary: Get manager/coach image
       description: Retrieves the manager's profile image.
       tags:
-        - Rugby
         - Managers
-        - Media
       parameters:
         - name: id
           in: path
@@ -1676,7 +1611,6 @@ paths:
       summary: Get tournament details
       description: Retrieves comprehensive information about a rugby tournament.
       tags:
-        - Rugby
         - Tournaments
       parameters:
         - name: tournamentId
@@ -1708,7 +1642,6 @@ paths:
       summary: Get tournament seasons
       description: Retrieves all available seasons for the tournament.
       tags:
-        - Rugby
         - Tournaments
       parameters:
         - name: tournamentId
@@ -1740,9 +1673,7 @@ paths:
       summary: Get tournament logo
       description: Retrieves the tournament's logo image.
       tags:
-        - Rugby
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -1774,9 +1705,7 @@ paths:
       summary: Get tournament dark logo
       description: Retrieves the tournament's dark theme logo image.
       tags:
-        - Rugby
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -1808,9 +1737,7 @@ paths:
       summary: Get tournament media
       description: Retrieves media content for the tournament.
       tags:
-        - Rugby
         - Tournaments
-        - Media
       parameters:
         - name: tournamentId
           in: path
@@ -1841,9 +1768,7 @@ paths:
       summary: Get tournament total standings
       description: Retrieves complete standings table for all teams in the tournament.
       tags:
-        - Rugby
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -1881,9 +1806,7 @@ paths:
       summary: Get tournament home standings
       description: Retrieves standings based on home games only.
       tags:
-        - Rugby
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -1921,9 +1844,7 @@ paths:
       summary: Get tournament away standings
       description: Retrieves standings based on away games only.
       tags:
-        - Rugby
         - Tournaments
-        - Standings
       parameters:
         - name: tournamentId
           in: path
@@ -1961,9 +1882,7 @@ paths:
       summary: Get tournament last matches
       description: Retrieves recently played matches in the tournament.
       tags:
-        - Rugby
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2014,9 +1933,7 @@ paths:
       summary: Get tournament upcoming matches
       description: Retrieves scheduled upcoming matches in the tournament.
       tags:
-        - Rugby
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2067,10 +1984,7 @@ paths:
       summary: Get team events total statistics
       description: Retrieves aggregated team performance statistics for all games.
       tags:
-        - Rugby
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2108,10 +2022,7 @@ paths:
       summary: Get team events home statistics
       description: Retrieves aggregated team performance statistics for home games.
       tags:
-        - Rugby
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2149,10 +2060,7 @@ paths:
       summary: Get team events away statistics
       description: Retrieves aggregated team performance statistics for away games.
       tags:
-        - Rugby
         - Tournaments
-        - Teams
-        - Statistics
       parameters:
         - name: tournamentId
           in: path
@@ -2190,9 +2098,7 @@ paths:
       summary: Get tournament matches by date
       description: Retrieves all tournament matches scheduled for a specific date.
       tags:
-        - Rugby
         - Tournaments
-        - Matches
       parameters:
         - name: tournamentId
           in: path
@@ -2250,9 +2156,7 @@ paths:
       summary: Get matches by category and date
       description: Retrieves all rugby matches for a specific category on a given date.
       tags:
-        - Rugby
         - Categories
-        - Matches
       parameters:
         - name: id
           in: path
@@ -2310,8 +2214,6 @@ paths:
       summary: Get tournaments by category
       description: Retrieves all tournaments within a specific category.
       tags:
-        - Rugby
-        - Categories
         - Tournaments
       parameters:
         - name: id
@@ -2343,7 +2245,6 @@ paths:
       summary: Get Rugby Union rankings
       description: Retrieves current World Rugby rankings for rugby union teams.
       tags:
-        - Rugby
         - Rankings
       responses:
         '200':

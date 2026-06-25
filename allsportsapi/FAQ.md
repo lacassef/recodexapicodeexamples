@@ -16,6 +16,7 @@ Common questions about the AllSportsAPI family. New here? Start with the
 - [Why don't you provide widgets?](#why-dont-you-provide-widgets)
 - [How do I get all leagues of a sport?](#how-do-i-get-all-leagues-of-a-sport)
 - [How do I retrieve all teams in a league?](#how-do-i-retrieve-all-teams-in-a-league)
+- [How do I get all matches on a specific date?](#how-do-i-get-all-matches-on-a-specific-date)
 - [Why do schedule endpoints return matches from the previous/next day?](#why-do-schedule-endpoints-return-matches-from-the-previousnext-day)
 - [What if the data I need isn't available?](#what-if-the-data-i-need-isnt-available)
 - [What do the team transfer types mean?](#what-do-the-team-transfer-types-mean)
@@ -288,6 +289,55 @@ the shapes you'll get back.
 Use the **standings** endpoint for the league/season. It returns every team in the
 competition along with their record (wins, losses, draws, goal difference, etc.) — a
 solid foundation for league tables and team listings.
+
+---
+
+## How do I get all matches on a specific date?
+
+The flat per‑date feed — `GET /api/matches/{day}/{month}/{year}` (football) and
+`GET /api/{sport}/matches|events/{day}/{month}/{year}` (other sports) — is being
+**retired**. Assemble the day **per competition** instead: find what's running that
+day, then pull each one's schedule. Use whichever entry point fits — and for the full
+per‑sport recipe (including MMA, motorsport and cycling) see the dedicated
+[**DailyMatches** guide](DailyMatches.md).
+
+**Option 1 — by category (country / tour).** The most complete; it reuses the
+[league tree walk](#how-do-i-get-all-leagues-of-a-sport).
+
+1. List categories: `/api/tournament/categories` (football) or
+   `/api/{sport}/tournament/categories`.
+2. For each category, fetch that day's schedule:
+   `/api/category/{category_id}/events/{day}/{month}/{year}` (football) or
+   `/api/{sport}/category/{category_id}/events/{day}/{month}/{year}`.
+
+**Option 2 — by tournament, ISO date.** Available for **football, cricket, esport and
+tennis**: `/api/{sport}/tournament/{tournament_id}/scheduled-events/{YYYY-MM-DD}`.
+The other team sports expose the day/month/year form instead:
+`/api/{sport}/tournament/{tournament_id}/schedules/{day}/{month}/{year}`.
+
+**Tennis & table‑tennis shortcut.** Ask which categories actually have play that day,
+then pull only those — no full category list needed:
+`/api/{sport}/calendar/{day}/{month}/{year}/categories` →
+`/api/{sport}/category/{category_id}/events/{day}/{month}/{year}`.
+
+**Helpers**
+
+- **Live right now:** `GET /api/matches/live` (football) /
+  `GET /api/{sport}/matches/live` — unaffected by the change, but in‑play only.
+- **Which days have play:**
+  `GET /api/calendar/season/{season_id}/{year}/days-with-events` — skip empty dates
+  before you fan out.
+
+> Football is the exception: no sport prefix, and its category schedule is also exposed
+> as `/api/category/{category_id}/matches/{day}/{month}/{year}`.
+
+Two practical notes: schedule responses span **±12 h around UTC midnight**, so filter to
+the user's local day yourself (see
+[the next question](#why-do-schedule-endpoints-return-matches-from-the-previousnext-day)
+and the [`filter_schedule_by_timezone`](Examples/filter_schedule_by_timezone.py)
+example); and **cache the category / tournament lists** — they change slowly, so you
+only pay for the per‑day calls. The
+[`list_all_leagues`](Examples/list_all_leagues.py) example shows the enumeration.
 
 ---
 
