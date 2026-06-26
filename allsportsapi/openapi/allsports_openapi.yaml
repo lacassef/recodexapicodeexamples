@@ -34384,8 +34384,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -34441,8 +34441,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -34498,8 +34498,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -34555,8 +34555,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -34612,8 +34612,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -34669,8 +34669,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -34726,8 +34726,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -34783,8 +34783,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -34840,8 +34840,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -34897,8 +34897,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -34954,8 +34954,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -35011,8 +35011,8 @@ paths:
           required: true
           schema:
             type: integer
-          description: Page number (0-based)
-          example: 0
+          description: Page number (1-based)
+          example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.

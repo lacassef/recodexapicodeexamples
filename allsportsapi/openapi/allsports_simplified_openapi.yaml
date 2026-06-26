@@ -12975,10 +12975,10 @@ paths:
       - name: page
         in: path
         required: true
-        description: Page number (0-based)
+        description: Page number (1-based)
         schema:
           type: integer
-        example: 0
+        example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.
@@ -13050,10 +13050,10 @@ paths:
       - name: page
         in: path
         required: true
-        description: Page number (0-based)
+        description: Page number (1-based)
         schema:
           type: integer
-        example: 0
+        example: 1
       responses:
         '200':
           description: A JSON object containing a paginated list of scheduled tournaments for the date.

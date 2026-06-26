@@ -45,7 +45,7 @@ guessing, no empty competitions:
 `GET /api/{sport}/scheduled-tournaments/{day}/{month}/{year}/page/{page}` — football:
 `GET /api/scheduled-tournaments/{day}/{month}/{year}/page/{page}`.
 
-`page` is **0‑based**; walk pages until one comes back empty (or `204`). Then pull each
+`page` is **1‑based**; walk pages until one comes back empty (or `204`). Then pull each
 tournament's matches:
 
 - **ISO date** — football, cricket, esport:
@@ -56,7 +56,7 @@ tournament's matches:
 ```bash
 # Football — tournaments with matches on 22 Jul 2025 (first page)
 HOST=footapi7.p.rapidapi.com
-curl -s "https://$HOST/api/scheduled-tournaments/22/7/2025/page/0" \
+curl -s "https://$HOST/api/scheduled-tournaments/22/7/2025/page/1" \
   -H "X-RapidAPI-Key: $RAPIDAPI_KEY" -H "X-RapidAPI-Host: $HOST"
 ```
 
