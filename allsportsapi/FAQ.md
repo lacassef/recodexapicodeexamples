@@ -301,6 +301,11 @@ day, then pull each one's schedule. Use whichever entry point fits — and for t
 per‑sport recipe (including MMA, motorsport and cycling) see the dedicated
 [**DailyMatches** guide](DailyMatches.md).
 
+> **Quickest discovery (team sports):**
+> `GET /api/{sport}/scheduled-tournaments/{day}/{month}/{year}/page/{page}` returns a
+> paginated list of the tournaments that have matches that day — then fetch each
+> tournament's schedule.
+
 **Option 1 — by category (country / tour).** The most complete; it reuses the
 [league tree walk](#how-do-i-get-all-leagues-of-a-sport).
 

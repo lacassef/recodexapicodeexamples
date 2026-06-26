@@ -12943,6 +12943,138 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
         '204':
           description: No content. The route exists but no data is available for the given parameters.
+  /api/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getFootballScheduledTournamentsByDate
+      tags:
+      - Tournaments
+      summary: Get Football Scheduled Tournaments By Date
+      description: Retrieves a paginated list of tournaments that have scheduled football matches for a specific date.
+      parameters:
+      - name: day
+        in: path
+        required: true
+        description: Day of the month
+        schema:
+          type: integer
+        example: 22
+      - name: month
+        in: path
+        required: true
+        description: Month of the year
+        schema:
+          type: integer
+        example: 7
+      - name: year
+        in: path
+        required: true
+        description: Year
+        schema:
+          type: integer
+        example: 2025
+      - name: page
+        in: path
+        required: true
+        description: Page number (0-based)
+        schema:
+          type: integer
+        example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The route exists but no data is available for the given parameters.
+  /api/{sport}/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getSportScheduledTournamentsByDate
+      tags:
+      - Tournaments
+      summary: Get Scheduled Tournaments By Date
+      description: Retrieves a paginated list of tournaments that have scheduled matches for a specific date. The sport is selected via the {sport} path enum.
+      parameters:
+      - name: sport
+        in: path
+        required: true
+        description: 'Allowed values: american-football, baseball, basketball, cricket, esport, handball, ice-hockey, rugby, table-tennis, tennis, volleyball.'
+        schema:
+          type: string
+          enum:
+          - american-football
+          - baseball
+          - basketball
+          - cricket
+          - esport
+          - handball
+          - ice-hockey
+          - rugby
+          - table-tennis
+          - tennis
+          - volleyball
+      - name: day
+        in: path
+        required: true
+        description: Day of the month
+        schema:
+          type: integer
+        example: 22
+      - name: month
+        in: path
+        required: true
+        description: Month of the year
+        schema:
+          type: integer
+        example: 7
+      - name: year
+        in: path
+        required: true
+        description: Year
+        schema:
+          type: integer
+        example: 2025
+      - name: page
+        in: path
+        required: true
+        description: Page number (0-based)
+        schema:
+          type: integer
+        example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The route exists but no data is available for the given parameters.
 components:
   schemas:
     JSONResult:

@@ -2325,6 +2325,63 @@ paths:
         '204':
           description: No content. The requested route exists but there is no data available for the given parameters 
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getEsportScheduledTournamentsByDate
+      summary: Get eSports scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled eSports matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
 components:
   schemas:
     JSONResult:

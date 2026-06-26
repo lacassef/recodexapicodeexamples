@@ -34350,6 +34350,690 @@ paths:
         '204':
           description: No content. The requested route exists but there is no data available for the given parameters 
             (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getFootballScheduledTournamentsByDate
+      summary: Get football scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled football matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/basketball/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getBasketballScheduledTournamentsByDate
+      summary: Get basketball scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled basketball matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/tennis/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getTennisScheduledTournamentsByDate
+      summary: Get tennis scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled tennis matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/table-tennis/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getTableTennisScheduledTournamentsByDate
+      summary: Get table tennis scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled table tennis matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/volleyball/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getVolleyballScheduledTournamentsByDate
+      summary: Get volleyball scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled volleyball matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/handball/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getHandballScheduledTournamentsByDate
+      summary: Get handball scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled handball matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/ice-hockey/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getIceHockeyScheduledTournamentsByDate
+      summary: Get ice hockey scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled ice hockey matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/baseball/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getBaseballScheduledTournamentsByDate
+      summary: Get baseball scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled baseball matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/american-football/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getAmericanFootballScheduledTournamentsByDate
+      summary: Get American football scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled American football matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/rugby/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getRugbyScheduledTournamentsByDate
+      summary: Get rugby scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled rugby matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/cricket/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getCricketScheduledTournamentsByDate
+      summary: Get cricket scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled cricket matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
+  /api/esport/scheduled-tournaments/{day}/{month}/{year}/page/{page}:
+    get:
+      operationId: getEsportScheduledTournamentsByDate
+      summary: Get eSports scheduled tournaments by date
+      description: Retrieves a paginated list of tournaments that have scheduled eSports matches for a specific date.
+      tags:
+        - Tournaments
+      parameters:
+        - name: day
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Day of the month
+          example: 22
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Month of the year
+          example: 7
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Year
+          example: 2025
+        - name: page
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Page number (0-based)
+          example: 0
+      responses:
+        '200':
+          description: A JSON object containing a paginated list of scheduled tournaments for the date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONResult'
+        '400':
+          description: Invalid date format in path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '204':
+          description: No content. The requested route exists but there is no data available for the given parameters (e.g. match has no TV coverage, no statistics yet, empty search results, etc.).
 components:
   schemas:
     JSONResult:

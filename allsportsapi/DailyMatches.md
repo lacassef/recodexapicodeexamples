@@ -20,8 +20,8 @@ This guide is the complete recipe for every sport. For response shapes see the
 
 | Sport family | Step 1 — discover the day's competitions | Step 2 — fetch the schedule |
 |---|---|---|
-| **Football** | `GET /api/tournament/categories` | `GET /api/category/{id}/events/{day}/{month}/{year}` |
-| **Team sports**¹ | `GET /api/{sport}/tournament/categories` | `GET /api/{sport}/category/{id}/events/{day}/{month}/{year}` |
+| **Football** | `GET /api/scheduled-tournaments/{day}/{month}/{year}/page/{page}` | per tournament, or `GET /api/category/{id}/events/{day}/{month}/{year}` |
+| **Team sports**¹ | `GET /api/{sport}/scheduled-tournaments/{day}/{month}/{year}/page/{page}` | per tournament, or `GET /api/{sport}/category/{id}/events/{day}/{month}/{year}` |
 | **Tennis / Table‑tennis** | `GET /api/{sport}/calendar/{day}/{month}/{year}/categories` | `GET /api/{sport}/category/{id}/events/{day}/{month}/{year}` |
 | **MMA** | `GET /api/mma/main-events/{date}/extended` *(direct, by ISO date)* | — |
 | **Motorsport** | `GET /api/motorsport/stage/scheduled/{date}` *(direct, by ISO date)* | — |
@@ -37,7 +37,30 @@ american‑football, esport.
 Applies to **football, basketball, baseball, handball, cricket, rugby, volleyball,
 ice‑hockey, american‑football, esport**.
 
-### Option A — by category (country / tour) · *works for all of them*
+### Option A — date‑aware tournament index · *recommended*
+
+One paginated call lists the tournaments that **actually have matches that day** — no
+guessing, no empty competitions:
+
+`GET /api/{sport}/scheduled-tournaments/{day}/{month}/{year}/page/{page}` — football:
+`GET /api/scheduled-tournaments/{day}/{month}/{year}/page/{page}`.
+
+`page` is **0‑based**; walk pages until one comes back empty (or `204`). Then pull each
+tournament's matches:
+
+- **ISO date** — football, cricket, esport:
+  `GET /api/{sport}/tournament/{tournament_id}/scheduled-events/{YYYY-MM-DD}`
+- **day/month/year** — football, basketball, handball, rugby, volleyball, ice‑hockey,
+  cricket: `GET /api/{sport}/tournament/{tournament_id}/schedules/{day}/{month}/{year}`
+
+```bash
+# Football — tournaments with matches on 22 Jul 2025 (first page)
+HOST=footapi7.p.rapidapi.com
+curl -s "https://$HOST/api/scheduled-tournaments/22/7/2025/page/0" \
+  -H "X-RapidAPI-Key: $RAPIDAPI_KEY" -H "X-RapidAPI-Host: $HOST"
+```
+
+### Option B — by category (country / tour) · *works for all of them*
 
 One cheap, cacheable discovery call, then one call per category.
 
@@ -57,7 +80,7 @@ curl -s "https://$HOST/api/category/1/events/7/3/2026" \
   -H "X-RapidAPI-Key: $RAPIDAPI_KEY" -H "X-RapidAPI-Host: $HOST"     # → that day's matches
 ```
 
-### Option B — by tournament · *when you only track specific leagues*
+### Option C — by tournament · *when you only track specific leagues*
 
 1. List tournaments in a category:
    `GET /api/{sport}/tournament/all/category/{category_id}`.
