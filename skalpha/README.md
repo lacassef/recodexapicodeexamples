@@ -2,7 +2,7 @@
 
 This documentation set explains how to call the SKAlpha endpoints that are exposed under the `/api/skalpha` path. The goal is to help you assemble valid requests that return the data you expect.
 
-- The full OpenAPI description lives at `skalpha/openapi/openapi-seekingalpha.yaml`.
+- The full OpenAPI description lives at `skalpha/openapi/openapi-skalpha.yaml`.
 - Errors use a JSON:API style wrapper; see [Request essentials](guides/request-essentials.md#handling-errors) for details.
 
 ## Documentation map
